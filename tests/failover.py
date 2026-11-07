@@ -8,7 +8,6 @@ Each test creates an isolated primary + two streaming replicas and cleans them u
 import concurrent.futures
 import contextlib
 import os
-from pathlib import Path
 import socket
 import struct
 import subprocess
@@ -17,6 +16,7 @@ import threading
 import time
 import unittest
 import uuid
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 IMAGE = os.environ.get("RUSTYBOUNCER_POSTGRES_IMAGE", "postgres:16")
@@ -181,6 +181,8 @@ port = {port(node)}
         eventually(self.replicas_discovered, description="replica discovery")
 
     def ready(self):
+        if self.process is None:
+            return False
         if self.process.poll() is not None:
             raise AssertionError(f"proxy exited: {self.log_path.read_text()}")
         with contextlib.closing(Pg(self.proxy_port)) as client:
@@ -251,7 +253,7 @@ class FailoverContinuity(unittest.TestCase):
 
     def tearDown(self):
         # Keep failure diagnostics before temporary files and containers disappear.
-        result = getattr(self._outcome, "result", None)
+        result = getattr(getattr(self, "_outcome", None), "result", None)
         if result and any(test is self for test, _ in result.failures + result.errors):
             self.print_diagnostics()
 

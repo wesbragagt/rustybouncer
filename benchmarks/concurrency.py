@@ -12,7 +12,6 @@ import hashlib
 import json
 import math
 import os
-from pathlib import Path
 import platform
 import re
 import shutil
@@ -21,10 +20,11 @@ import subprocess
 import sys
 import time
 import uuid
+from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
-import failover as fixture
+import failover as fixture  # noqa: E402 -- load the repository-local integration fixture
 
 WORKLOADS = {
     "select": "\\set id random(1, 10000)\nSELECT id, payload FROM continuity WHERE id = :id;\n",

@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+if ! git rev-parse --git-dir >/dev/null 2>&1; then
+  printf '%s\n' 'Not a Git checkout; skipping local hook installation.'
+  exit 0
+fi
+existing=$(git config --local --get core.hooksPath || true)
+if [[ -n "$existing" && "$existing" != .githooks ]]; then
+  printf '%s\n' "Refusing to replace existing core.hooksPath=$existing" >&2
+  exit 1
+fi
+git config --local core.hooksPath .githooks

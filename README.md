@@ -6,6 +6,14 @@ waiting, and opt-in round-robin routing of conservative SELECTs to replicas.
 See [design.md](design.md) for the architecture, routing decisions, failover
 boundaries, and implementation tradeoffs.
 
+## Development verification
+
+Use `nix develop` for the Iceman-generated development environment and local commit
+hook installation. `nix flake check --no-update-lock-file` enforces Rust typechecking,
+strict Clippy, formatting, unit tests, Ruff, Astral ty, and cyclomatic complexity
+(maximum 30). See [development.md](docs/development.md) for staged-snapshot hook
+behavior, first-use dependencies, and exact checks.
+
 ## Run
 
 ```sh

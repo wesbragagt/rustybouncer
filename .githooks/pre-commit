@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(git rev-parse --show-toplevel)"
+command -v nix >/dev/null || { printf '%s\n' 'Nix is required for commit verification.' >&2; exit 1; }
+snapshot=$(mktemp -d "${TMPDIR:-/tmp}/rustybouncer-pre-commit.XXXXXXXX")
+trap 'rm -rf "$snapshot"' EXIT
+# Check exactly the index, including partially staged files; never stash or mutate it.
+tree=$(git write-tree)
+git archive --format=tar "$tree" | tar -xf - -C "$snapshot"
+if [[ ! -f "$snapshot/flake.lock" ]]; then
+  printf '%s\n' 'Stage flake.nix, flake.lock and verification files before committing.' >&2
+  exit 1
+fi
+printf '%s\n' 'Verifying staged snapshot with the locked Nix toolchain...'
+nix flake check --no-update-lock-file "path:$snapshot"

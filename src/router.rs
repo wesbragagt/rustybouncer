@@ -46,46 +46,55 @@ fn allowed_function(name: &str) -> bool {
     )
 }
 
-fn classify(sql: &str) -> Kind {
-    let is_cte = sql
-        .trim_start()
-        .split(|c: char| !c.is_ascii_alphanumeric() && c != '_')
-        .next()
-        .is_some_and(|word| word.eq_ignore_ascii_case("WITH"));
-    if is_cte && !cte::read_only(sql) {
-        return Kind::Stateful;
+fn string_end(bytes: &[u8], mut i: usize) -> Option<usize> {
+    i += 1;
+    loop {
+        match *bytes.get(i)? {
+            b'\\' => return None,
+            b'\'' => {
+                i += 1;
+                if bytes.get(i) != Some(&b'\'') {
+                    return Some(i);
+                }
+            }
+            _ => {}
+        }
+        i += 1;
     }
+}
+
+fn function_token_allowed(
+    sql: &str,
+    start: usize,
+    end: usize,
+    word: &str,
+    previous: Option<&str>,
+    is_cte: bool,
+) -> bool {
+    if !sql[end..].trim_start().starts_with('(') {
+        return true;
+    }
+    if sql[..start].trim_end().ends_with('.') && previous != Some("PG_CATALOG") {
+        return false;
+    }
+    is_cte
+        || allowed_function(word)
+        || matches!(word, "IN" | "EXISTS" | "ANY" | "ALL" | "AS" | "VALUES")
+}
+
+fn scan_words(sql: &str, is_cte: bool) -> Option<Vec<String>> {
     let bytes = sql.as_bytes();
     let mut words = Vec::<String>::new();
     let mut i = 0;
     while i < bytes.len() {
         match bytes[i] {
-            b'\'' => {
-                i += 1;
-                loop {
-                    if i >= bytes.len() {
-                        return Kind::Stateful;
-                    }
-                    if bytes[i] == b'\\' {
-                        return Kind::Stateful;
-                    }
-                    if bytes[i] == b'\'' {
-                        i += 1;
-                        if i < bytes.len() && bytes[i] == b'\'' {
-                            i += 1;
-                            continue;
-                        }
-                        break;
-                    }
-                    i += 1;
-                }
-            }
-            b'"' | b'$' => return Kind::Stateful,
-            b'-' if bytes.get(i + 1) == Some(&b'-') => return Kind::Stateful,
-            b'/' if bytes.get(i + 1) == Some(&b'*') => return Kind::Stateful,
+            b'\'' => i = string_end(bytes, i)?,
+            b'"' | b'$' => return None,
+            b'-' if bytes.get(i + 1) == Some(&b'-') => return None,
+            b'/' if bytes.get(i + 1) == Some(&b'*') => return None,
             b';' => {
                 if !sql[i + 1..].trim().is_empty() {
-                    return Kind::Stateful;
+                    return None;
                 }
                 i += 1;
             }
@@ -95,32 +104,37 @@ fn classify(sql: &str) -> Kind {
                     i += 1;
                 }
                 let word = sql[start..i].to_ascii_uppercase();
-                let mut next = i;
-                while next < bytes.len() && bytes[next].is_ascii_whitespace() {
-                    next += 1;
-                }
-                if bytes.get(next) == Some(&b'(')
-                    && sql[..start].trim_end().ends_with('.')
-                    && words.last().map(String::as_str) != Some("PG_CATALOG")
-                {
-                    return Kind::Stateful;
-                }
-                if !is_cte
-                    && bytes.get(next) == Some(&b'(')
-                    && !allowed_function(&word)
-                    && !matches!(
-                        word.as_str(),
-                        "IN" | "EXISTS" | "ANY" | "ALL" | "AS" | "VALUES"
-                    )
-                {
-                    return Kind::Stateful;
+                if !function_token_allowed(
+                    sql,
+                    start,
+                    i,
+                    &word,
+                    words.last().map(String::as_str),
+                    is_cte,
+                ) {
+                    return None;
                 }
                 words.push(word);
             }
-            c if !c.is_ascii() => return Kind::Stateful,
+            c if !c.is_ascii() => return None,
             _ => i += 1,
         }
     }
+    Some(words)
+}
+
+fn classify(sql: &str) -> Kind {
+    let is_cte = sql
+        .trim_start()
+        .split(|c: char| !c.is_ascii_alphanumeric() && c != '_')
+        .next()
+        .is_some_and(|word| word.eq_ignore_ascii_case("WITH"));
+    if is_cte && !cte::read_only(sql) {
+        return Kind::Stateful;
+    }
+    let Some(words) = scan_words(sql, is_cte) else {
+        return Kind::Stateful;
+    };
     let first = words.first().map(String::as_str).unwrap_or("");
     if first == "COPY" {
         return Kind::Unsupported;
@@ -295,6 +309,182 @@ async fn wait_route(
     }
 }
 
+type Messages = Vec<(u8, Vec<u8>)>;
+type QueryResult = (Messages, u8);
+
+struct SessionState {
+    backends: HashMap<usize, Backend>,
+    transaction: bool,
+    pinned: bool,
+    primary_generation: u64,
+}
+
+async fn initial_backend(
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &[u8],
+) -> Result<(usize, Backend, Messages)> {
+    loop {
+        let (stream, selected) = wait_backend(config, topology).await?;
+        let (backend, messages) = timeout(
+            Duration::from_millis(config.startup_timeout_ms),
+            handshake(stream, packet, selected.generation),
+        )
+        .await??;
+        if topology.borrow().generation == selected.generation {
+            return Ok((selected.primary.unwrap(), backend, messages));
+        }
+    }
+}
+
+async fn receive_query(
+    client: &mut TcpStream,
+    topology: &mut watch::Receiver<Topology>,
+    state: &SessionState,
+) -> Result<(u8, Vec<u8>)> {
+    if state.transaction || state.pinned {
+        tokio::select! {
+            incoming = message(client) => incoming,
+            changed = primary_changed(topology, state.primary_generation) => { changed?; bail!("primary changed during pinned session or transaction"); }
+        }
+    } else {
+        message(client).await
+    }
+}
+
+async fn prepare_backend(
+    config: &Config,
+    node: usize,
+    packet: &[u8],
+    selected: &Topology,
+    read: bool,
+    deadline: Instant,
+) -> Result<Backend> {
+    let (mut backend, _) = connect(config, node, packet, selected.generation).await?;
+    if read && selected.replicas.contains(&node) {
+        let (messages, status) = timeout(
+            deadline
+                .saturating_duration_since(Instant::now())
+                .min(Duration::from_millis(config.probe_timeout_ms)),
+            result(&mut backend, b"SET default_transaction_read_only = on\0"),
+        )
+        .await??;
+        if status != b'I' || messages.iter().any(|(tag, _)| *tag == b'E') {
+            bail!("replica initialization failed");
+        }
+    }
+    Ok(backend)
+}
+
+async fn execute_query(
+    backend: &mut Backend,
+    body: &[u8],
+    topology: &mut watch::Receiver<Topology>,
+    selected: &Topology,
+    node: usize,
+    read: bool,
+    deadline: Instant,
+) -> Result<QueryResult> {
+    let execution = result(backend, body);
+    if read && selected.replicas.contains(&node) {
+        tokio::select! {
+            response = timeout(deadline.saturating_duration_since(Instant::now()), execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
+            unavailable = replica_unavailable(topology, node) => { unavailable?; Err(anyhow::anyhow!("replica no longer available")) }
+        }
+    } else {
+        tokio::select! {
+            response = async {
+                if read { timeout(deadline.saturating_duration_since(Instant::now()), execution).await.map_err(anyhow::Error::from).and_then(|r| r) }
+                else { execution.await }
+            } => response,
+            changed = primary_changed(topology, selected.generation) => { changed?; Err(anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown")) }
+        }
+    }
+}
+
+async fn route_query(
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &[u8],
+    state: &mut SessionState,
+    body: &[u8],
+    kind: Kind,
+) -> Result<Option<Messages>> {
+    let read = kind == Kind::Read && !state.transaction && !state.pinned;
+    let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
+    let mut failed = HashSet::new();
+    loop {
+        let (node, selected) = match timeout(
+            deadline.saturating_duration_since(Instant::now()),
+            wait_route(config, topology, read, &failed),
+        )
+        .await
+        {
+            Ok(Ok(value)) => value,
+            _ => return Ok(None),
+        };
+        if (state.transaction || state.pinned) && selected.generation != state.primary_generation {
+            bail!("primary changed during pinned session or transaction");
+        }
+        if state
+            .backends
+            .get(&node)
+            .is_some_and(|b| b.generation != selected.generation)
+        {
+            state.backends.remove(&node);
+        }
+        if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
+            match timeout(
+                deadline.saturating_duration_since(Instant::now()),
+                prepare_backend(config, node, packet, &selected, read, deadline),
+            )
+            .await
+            {
+                Ok(Ok(backend)) => {
+                    entry.insert(backend);
+                }
+                _ => {
+                    failed.insert(node);
+                    continue;
+                }
+            }
+        }
+        // Revalidate before the first query byte, including split-brain state.
+        if *topology.borrow() != selected {
+            continue;
+        }
+        match execute_query(
+            state.backends.get_mut(&node).unwrap(),
+            body,
+            topology,
+            &selected,
+            node,
+            read,
+            deadline,
+        )
+        .await
+        {
+            Ok((messages, status)) => {
+                state.transaction = status != b'I';
+                state.pinned |= kind == Kind::Stateful;
+                if !read {
+                    state.primary_generation = selected.generation;
+                }
+                return Ok(Some(messages));
+            }
+            Err(error) if read => {
+                warn!(node, %error, "retrying buffered pure read on another eligible backend");
+                state.backends.remove(&node);
+                failed.insert(node);
+            }
+            Err(error) => {
+                return Err(error
+                    .context("query was dispatched; outcome may be unknown and was not replayed"))
+            }
+        }
+    }
+}
+
 pub(super) async fn session(
     mut client: TcpStream,
     config: Arc<Config>,
@@ -306,21 +496,12 @@ pub(super) async fn session(
         startup(&mut client),
     )
     .await??;
-    let initial = timeout(Duration::from_millis(config.wait_timeout_ms), async {
-        loop {
-            let (stream, selected) = wait_backend(&config, &mut topology).await?;
-            let (backend, messages) = timeout(
-                Duration::from_millis(config.startup_timeout_ms),
-                handshake(stream, &packet, selected.generation),
-            )
-            .await??;
-            if topology.borrow().generation == selected.generation {
-                return Ok::<_, anyhow::Error>((selected.primary.unwrap(), backend, messages));
-            }
-        }
-    })
-    .await;
-    let (primary, backend, messages) = match initial {
+    let (primary, backend, messages) = match timeout(
+        Duration::from_millis(config.wait_timeout_ms),
+        initial_backend(&config, &mut topology, &packet),
+    )
+    .await
+    {
         Ok(Ok(value)) => value,
         _ => {
             pg_error(&mut client, "08006", "rustybouncer: startup unavailable; routed mode requires trust-authenticated backends").await?;
@@ -330,20 +511,14 @@ pub(super) async fn session(
     for (tag, body) in messages {
         send(&mut client, tag, &body).await?;
     }
-    let mut backends = HashMap::from([(primary, backend)]);
-    let mut transaction = false;
-    let mut pinned = false;
-    let mut primary_generation = topology.borrow().generation;
+    let mut state = SessionState {
+        backends: HashMap::from([(primary, backend)]),
+        transaction: false,
+        pinned: false,
+        primary_generation: topology.borrow().generation,
+    };
     loop {
-        let incoming = if transaction || pinned {
-            tokio::select! {
-                incoming = message(&mut client) => incoming?,
-                changed = primary_changed(&mut topology, primary_generation) => { changed?; bail!("primary changed during pinned session or transaction"); }
-            }
-        } else {
-            message(&mut client).await?
-        };
-        let (tag, body) = incoming;
+        let (tag, body) = receive_query(&mut client, &mut topology, &state).await?;
         if tag == b'X' {
             return Ok(());
         }
@@ -363,112 +538,19 @@ pub(super) async fn session(
             pg_error(&mut client, "0A000", "COPY is unsupported in routed mode").await?;
             return Ok(());
         }
-        let read = kind == Kind::Read && !transaction && !pinned;
-        let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
-        let mut failed = HashSet::new();
-        loop {
-            let (node, selected) = match timeout(
-                deadline.saturating_duration_since(Instant::now()),
-                wait_route(&config, &mut topology, read, &failed),
+        let Some(messages) =
+            route_query(&config, &mut topology, &packet, &mut state, &body, kind).await?
+        else {
+            pg_error(
+                &mut client,
+                "08006",
+                "rustybouncer: no eligible backend before routing deadline",
             )
-            .await
-            {
-                Ok(Ok(value)) => value,
-                _ => {
-                    pg_error(
-                        &mut client,
-                        "08006",
-                        "rustybouncer: no eligible backend before routing deadline",
-                    )
-                    .await?;
-                    return Ok(());
-                }
-            };
-            if (transaction || pinned) && selected.generation != primary_generation {
-                bail!("primary changed during pinned session or transaction");
-            }
-            if backends
-                .get(&node)
-                .is_some_and(|b| b.generation != selected.generation)
-            {
-                backends.remove(&node);
-            }
-            if let std::collections::hash_map::Entry::Vacant(entry) = backends.entry(node) {
-                match timeout(
-                    deadline.saturating_duration_since(Instant::now()),
-                    connect(&config, node, &packet, selected.generation),
-                )
-                .await
-                {
-                    Ok(Ok((mut backend, _))) => {
-                        if read && selected.replicas.contains(&node) {
-                            // Defence in depth; SQL classification is intentionally conservative.
-                            let initialization = timeout(
-                                deadline
-                                    .saturating_duration_since(Instant::now())
-                                    .min(Duration::from_millis(config.probe_timeout_ms)),
-                                result(&mut backend, b"SET default_transaction_read_only = on\0"),
-                            )
-                            .await;
-                            if !matches!(initialization, Ok(Ok((ref messages, b'I'))) if !messages.iter().any(|(tag, _)| *tag == b'E'))
-                            {
-                                failed.insert(node);
-                                continue;
-                            }
-                        }
-                        entry.insert(backend);
-                    }
-                    _ => {
-                        failed.insert(node);
-                        continue;
-                    }
-                }
-            }
-            // Revalidate before the first query byte, including split-brain state.
-            if *topology.borrow() != selected {
-                continue;
-            }
-            let execution = result(backends.get_mut(&node).unwrap(), &body);
-            let response = if read && selected.replicas.contains(&node) {
-                // Buffer until ReadyForQuery. No client-visible bytes => safe retry of
-                // this conservative read subset if the replica transport fails.
-                tokio::select! {
-                    response = timeout(deadline.saturating_duration_since(Instant::now()), execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
-                    unavailable = replica_unavailable(&mut topology, node) => { unavailable?; Err(anyhow::anyhow!("replica no longer available")) }
-                }
-            } else {
-                tokio::select! {
-                    response = async {
-                        if read {
-                            timeout(deadline.saturating_duration_since(Instant::now()), execution).await.map_err(anyhow::Error::from).and_then(|r| r)
-                        } else { execution.await }
-                    } => response,
-                    changed = primary_changed(&mut topology, selected.generation) => { changed?; Err(anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown")) }
-                }
-            };
-            match response {
-                Ok((messages, status)) => {
-                    transaction = status != b'I';
-                    pinned |= kind == Kind::Stateful;
-                    if !read {
-                        primary_generation = selected.generation;
-                    }
-                    for (tag, body) in messages {
-                        send(&mut client, tag, &body).await?;
-                    }
-                    break;
-                }
-                Err(error) if read => {
-                    warn!(node, %error, "retrying buffered pure read on another eligible backend");
-                    backends.remove(&node);
-                    failed.insert(node);
-                }
-                Err(error) => {
-                    return Err(error.context(
-                        "query was dispatched; outcome may be unknown and was not replayed",
-                    ))
-                }
-            }
+            .await?;
+            return Ok(());
+        };
+        for (tag, body) in messages {
+            send(&mut client, tag, &body).await?;
         }
     }
 }
