@@ -1,0 +1,28 @@
+listen = "127.0.0.1:6432"
+max_clients = 100
+# Opt-in simple-query routing; requires trusted, trust-authenticated backends.
+# Set false for the original transparent-authentication session router.
+route_selects = true
+probe_interval_ms = 500
+probe_timeout_ms = 1000
+wait_timeout_ms = 10000
+startup_timeout_ms = 5000
+probe_user = "postgres"
+probe_database = "postgres"
+# Optional: read the probe password from this environment variable.
+# probe_password_env = "RUSTYBOUNCER_PROBE_PASSWORD"
+
+[[nodes]]
+name = "node-a"
+host = "127.0.0.1"
+port = 55432
+
+[[nodes]]
+name = "node-b"
+host = "127.0.0.1"
+port = 55433
+
+[[nodes]]
+name = "node-c"
+host = "127.0.0.1"
+port = 55434

@@ -1,0 +1,13 @@
+pgbench (16.15 (Debian 16.15-1.pgdg13+2))
+transaction type: /bench/cte.sql
+scaling factor: 1
+query mode: simple
+number of clients: 64
+number of threads: 8
+maximum number of tries: 1
+duration: 4 s
+number of transactions actually processed: 246332
+number of failed transactions: 0 (0.000%)
+latency average = 1.039 ms
+initial connection time = 15.176 ms
+tps = 61573.363769 (without initial connection time)

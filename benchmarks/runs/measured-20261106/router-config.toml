@@ -1,0 +1,21 @@
+listen = "127.0.0.1:51787"
+max_clients = 64
+probe_interval_ms = 100
+probe_timeout_ms = 300
+wait_timeout_ms = 4000
+startup_timeout_ms = 2000
+probe_user = "postgres"
+probe_database = "postgres"
+route_selects = true
+[[nodes]]
+name = "a"
+host = "127.0.0.1"
+port = 32828
+[[nodes]]
+name = "b"
+host = "127.0.0.1"
+port = 32829
+[[nodes]]
+name = "c"
+host = "127.0.0.1"
+port = 32830

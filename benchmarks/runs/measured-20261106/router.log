@@ -1,0 +1,84 @@
+2026-11-07T00:44:39.399644Z  INFO rustybouncer: rustybouncer ready listen=127.0.0.1:51787
+2026-11-07T00:44:39.401490Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [1, 2], ambiguous: false, generation: 1 }
+2026-11-07T00:44:39.403663Z  WARN rustybouncer: session ended peer=127.0.0.1:46674 error=unexpected end of file
+2026-11-07T00:44:39.406961Z  WARN rustybouncer: session ended peer=127.0.0.1:46686 error=unexpected end of file
+2026-11-07T00:46:48.486337Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42566
+2026-11-07T00:46:48.486443Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42580
+2026-11-07T00:46:48.486453Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42594
+2026-11-07T00:46:48.487173Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42608
+2026-11-07T00:46:48.487190Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42614
+2026-11-07T00:46:48.487694Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42624
+2026-11-07T00:46:48.487707Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42630
+2026-11-07T00:46:48.487779Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42642
+2026-11-07T00:46:48.487883Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42650
+2026-11-07T00:46:48.487892Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42662
+2026-11-07T00:46:48.487922Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42678
+2026-11-07T00:46:48.487976Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42694
+2026-11-07T00:46:48.487983Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42708
+2026-11-07T00:46:48.488447Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42710
+2026-11-07T00:46:48.488719Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42718
+2026-11-07T00:46:48.488733Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:42728
+2026-11-07T00:46:48.567465Z  WARN rustybouncer: session ended peer=127.0.0.1:42564 error=unexpected end of file
+2026-11-07T00:46:48.567566Z  WARN rustybouncer: session ended peer=127.0.0.1:42556 error=unexpected end of file
+2026-11-07T00:46:48.567604Z  WARN rustybouncer: session ended peer=127.0.0.1:42010 error=unexpected end of file
+2026-11-07T00:46:48.567642Z  WARN rustybouncer: session ended peer=127.0.0.1:42016 error=unexpected end of file
+2026-11-07T00:46:48.567678Z  WARN rustybouncer: session ended peer=127.0.0.1:42032 error=unexpected end of file
+2026-11-07T00:46:48.567717Z  WARN rustybouncer: session ended peer=127.0.0.1:42044 error=unexpected end of file
+2026-11-07T00:46:48.567760Z  WARN rustybouncer: session ended peer=127.0.0.1:42288 error=unexpected end of file
+2026-11-07T00:46:48.567788Z  WARN rustybouncer: session ended peer=127.0.0.1:42284 error=unexpected end of file
+2026-11-07T00:46:48.567803Z  WARN rustybouncer: session ended peer=127.0.0.1:42294 error=unexpected end of file
+2026-11-07T00:46:48.567837Z  WARN rustybouncer: session ended peer=127.0.0.1:42038 error=unexpected end of file
+2026-11-07T00:46:48.567843Z  WARN rustybouncer: session ended peer=127.0.0.1:42298 error=unexpected end of file
+2026-11-07T00:46:48.567877Z  WARN rustybouncer: session ended peer=127.0.0.1:42050 error=unexpected end of file
+2026-11-07T00:46:48.567880Z  WARN rustybouncer: session ended peer=127.0.0.1:42300 error=unexpected end of file
+2026-11-07T00:46:48.567912Z  WARN rustybouncer: session ended peer=127.0.0.1:42060 error=unexpected end of file
+2026-11-07T00:46:48.567915Z  WARN rustybouncer: session ended peer=127.0.0.1:42306 error=unexpected end of file
+2026-11-07T00:46:48.567967Z  WARN rustybouncer: session ended peer=127.0.0.1:42322 error=unexpected end of file
+2026-11-07T00:46:48.567982Z  WARN rustybouncer: session ended peer=127.0.0.1:42158 error=unexpected end of file
+2026-11-07T00:46:48.568005Z  WARN rustybouncer: session ended peer=127.0.0.1:42416 error=unexpected end of file
+2026-11-07T00:46:48.568020Z  WARN rustybouncer: session ended peer=127.0.0.1:42410 error=unexpected end of file
+2026-11-07T00:46:48.568035Z  WARN rustybouncer: session ended peer=127.0.0.1:42086 error=unexpected end of file
+2026-11-07T00:46:48.568046Z  WARN rustybouncer: session ended peer=127.0.0.1:42424 error=unexpected end of file
+2026-11-07T00:46:48.568081Z  WARN rustybouncer: session ended peer=127.0.0.1:42320 error=unexpected end of file
+2026-11-07T00:46:48.568084Z  WARN rustybouncer: session ended peer=127.0.0.1:42084 error=unexpected end of file
+2026-11-07T00:46:48.568100Z  WARN rustybouncer: session ended peer=127.0.0.1:42440 error=unexpected end of file
+2026-11-07T00:46:48.568120Z  WARN rustybouncer: session ended peer=127.0.0.1:42096 error=unexpected end of file
+2026-11-07T00:46:48.568120Z  WARN rustybouncer: session ended peer=127.0.0.1:42334 error=unexpected end of file
+2026-11-07T00:46:48.568137Z  WARN rustybouncer: session ended peer=127.0.0.1:42450 error=unexpected end of file
+2026-11-07T00:46:48.568158Z  WARN rustybouncer: session ended peer=127.0.0.1:42102 error=unexpected end of file
+2026-11-07T00:46:48.568160Z  WARN rustybouncer: session ended peer=127.0.0.1:42330 error=unexpected end of file
+2026-11-07T00:46:48.568180Z  WARN rustybouncer: session ended peer=127.0.0.1:42464 error=unexpected end of file
+2026-11-07T00:46:48.568200Z  WARN rustybouncer: session ended peer=127.0.0.1:42336 error=unexpected end of file
+2026-11-07T00:46:48.568200Z  WARN rustybouncer: session ended peer=127.0.0.1:42148 error=unexpected end of file
+2026-11-07T00:46:48.568204Z  WARN rustybouncer: session ended peer=127.0.0.1:42144 error=unexpected end of file
+2026-11-07T00:46:48.568217Z  WARN rustybouncer: session ended peer=127.0.0.1:42488 error=unexpected end of file
+2026-11-07T00:46:48.568241Z  WARN rustybouncer: session ended peer=127.0.0.1:42346 error=unexpected end of file
+2026-11-07T00:46:48.568247Z  WARN rustybouncer: session ended peer=127.0.0.1:42112 error=unexpected end of file
+2026-11-07T00:46:48.568256Z  WARN rustybouncer: session ended peer=127.0.0.1:42512 error=unexpected end of file
+2026-11-07T00:46:48.568281Z  WARN rustybouncer: session ended peer=127.0.0.1:42358 error=unexpected end of file
+2026-11-07T00:46:48.568289Z  WARN rustybouncer: session ended peer=127.0.0.1:42124 error=unexpected end of file
+2026-11-07T00:46:48.568296Z  WARN rustybouncer: session ended peer=127.0.0.1:42526 error=unexpected end of file
+2026-11-07T00:46:48.568321Z  WARN rustybouncer: session ended peer=127.0.0.1:42372 error=unexpected end of file
+2026-11-07T00:46:48.568326Z  WARN rustybouncer: session ended peer=127.0.0.1:42478 error=unexpected end of file
+2026-11-07T00:46:48.568327Z  WARN rustybouncer: session ended peer=127.0.0.1:42130 error=unexpected end of file
+2026-11-07T00:46:48.568357Z  WARN rustybouncer: session ended peer=127.0.0.1:42500 error=unexpected end of file
+2026-11-07T00:46:48.568358Z  WARN rustybouncer: session ended peer=127.0.0.1:42378 error=unexpected end of file
+2026-11-07T00:46:48.568361Z  WARN rustybouncer: session ended peer=127.0.0.1:42152 error=unexpected end of file
+2026-11-07T00:46:48.568384Z  WARN rustybouncer: session ended peer=127.0.0.1:42540 error=unexpected end of file
+2026-11-07T00:46:48.568392Z  WARN rustybouncer: session ended peer=127.0.0.1:42386 error=unexpected end of file
+2026-11-07T00:46:48.568398Z  WARN rustybouncer: session ended peer=127.0.0.1:42436 error=unexpected end of file
+2026-11-07T00:46:48.568463Z  WARN rustybouncer: session ended peer=127.0.0.1:42192 error=unexpected end of file
+2026-11-07T00:46:48.568477Z  WARN rustybouncer: session ended peer=127.0.0.1:42216 error=unexpected end of file
+2026-11-07T00:46:48.568504Z  WARN rustybouncer: session ended peer=127.0.0.1:42176 error=unexpected end of file
+2026-11-07T00:46:48.568523Z  WARN rustybouncer: session ended peer=127.0.0.1:42196 error=unexpected end of file
+2026-11-07T00:46:48.568543Z  WARN rustybouncer: session ended peer=127.0.0.1:42164 error=unexpected end of file
+2026-11-07T00:46:48.568570Z  WARN rustybouncer: session ended peer=127.0.0.1:42212 error=unexpected end of file
+2026-11-07T00:46:48.568584Z  WARN rustybouncer: session ended peer=127.0.0.1:42254 error=unexpected end of file
+2026-11-07T00:46:48.568612Z  WARN rustybouncer: session ended peer=127.0.0.1:42280 error=unexpected end of file
+2026-11-07T00:46:48.568618Z  WARN rustybouncer: session ended peer=127.0.0.1:42232 error=unexpected end of file
+2026-11-07T00:46:48.568648Z  WARN rustybouncer: session ended peer=127.0.0.1:42256 error=unexpected end of file
+2026-11-07T00:46:48.568652Z  WARN rustybouncer: session ended peer=127.0.0.1:42248 error=unexpected end of file
+2026-11-07T00:46:48.568705Z  WARN rustybouncer: session ended peer=127.0.0.1:42270 error=unexpected end of file
+2026-11-07T00:46:48.569395Z  WARN rustybouncer: session ended peer=127.0.0.1:42070 error=unexpected end of file
+2026-11-07T00:46:48.569425Z  WARN rustybouncer: session ended peer=127.0.0.1:42146 error=unexpected end of file
+2026-11-07T00:46:48.569425Z  WARN rustybouncer: session ended peer=127.0.0.1:42398 error=unexpected end of file
