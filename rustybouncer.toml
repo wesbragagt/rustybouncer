@@ -7,6 +7,12 @@ probe_interval_ms = 500
 probe_timeout_ms = 1000
 wait_timeout_ms = 10000
 startup_timeout_ms = 5000
+# Per eligible read attempt, independent of routing wait.
+query_timeout_ms = 300000
+# Total eligible-read budget: routing, setup, execution and retries combined.
+read_retry_timeout_ms = 600000
+# Includes the first attempt and failed backend setup; only buffered pure reads retry.
+read_max_attempts = 3
 probe_user = "postgres"
 probe_database = "postgres"
 # Optional: read the probe password from this environment variable.

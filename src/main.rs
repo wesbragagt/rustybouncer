@@ -29,6 +29,12 @@ struct Config {
     probe_timeout_ms: u64,
     wait_timeout_ms: u64,
     startup_timeout_ms: u64,
+    #[serde(default = "default_query_timeout")]
+    query_timeout_ms: u64,
+    #[serde(default = "default_retry_timeout")]
+    read_retry_timeout_ms: u64,
+    #[serde(default = "default_read_attempts")]
+    read_max_attempts: usize,
     probe_user: String,
     probe_database: String,
     probe_password_env: Option<String>,
@@ -36,9 +42,19 @@ struct Config {
     #[serde(default)]
     route_selects: bool,
 }
+fn default_query_timeout() -> u64 {
+    300_000
+}
+fn default_retry_timeout() -> u64 {
+    600_000
+}
+fn default_read_attempts() -> usize {
+    3
+}
+
 impl Config {
     fn validate(&self) -> Result<()> {
-        if self.nodes.is_empty() || self.max_clients == 0 {
+        if self.nodes.is_empty() || self.max_clients == 0 || self.read_max_attempts == 0 {
             bail!("at least one node and a positive max_clients are required");
         }
         if [
@@ -46,6 +62,8 @@ impl Config {
             self.probe_timeout_ms,
             self.wait_timeout_ms,
             self.startup_timeout_ms,
+            self.query_timeout_ms,
+            self.read_retry_timeout_ms,
         ]
         .contains(&0)
         {
@@ -356,7 +374,25 @@ mod tests {
     fn validates_config() {
         let config: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
         config.validate().unwrap();
+        assert_eq!(config.read_max_attempts, 3);
+        let legacy = include_str!("../rustybouncer.toml")
+            .lines()
+            .filter(|line| {
+                !line.starts_with("query_timeout_ms")
+                    && !line.starts_with("read_retry_timeout_ms")
+                    && !line.starts_with("read_max_attempts")
+            })
+            .collect::<Vec<_>>()
+            .join("\n");
+        let legacy: Config = toml::from_str(&legacy).unwrap();
+        legacy.validate().unwrap();
+        assert_eq!(legacy.query_timeout_ms, 300_000);
+        assert_eq!(legacy.read_retry_timeout_ms, 600_000);
+        assert_eq!(legacy.read_max_attempts, 3);
         let mut invalid = config.clone();
+        invalid.read_max_attempts = 0;
+        assert!(invalid.validate().is_err());
+        invalid = config.clone();
         invalid.nodes.push(invalid.nodes[0].clone());
         assert!(invalid.validate().is_err());
         invalid = config;
