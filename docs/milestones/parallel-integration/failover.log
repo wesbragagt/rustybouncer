@@ -1,0 +1,17 @@
+test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss. ... ok
+test_02_unsent_write_waits_then_continues_on_same_connection (__main__.FailoverContinuity.test_02_unsent_write_waits_then_continues_on_same_connection)
+An autocommit statement received during the leader gap waits safely. ... ok
+test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes. ... ok
+test_04_interrupted_transaction_fails_without_replay (__main__.FailoverContinuity.test_04_interrupted_transaction_fails_without_replay)
+Transactions cannot migrate: rollback and uncertain outcomes stay explicit. ... ok
+test_05_failed_replica_leaves_rotation_without_disrupting_reads (__main__.FailoverContinuity.test_05_failed_replica_leaves_rotation_without_disrupting_reads)
+A replica failure is removed; same-client reads survive primary loss too. ... ok
+test_06_read_only_ctes_round_robin_and_continue_through_failover (__main__.FailoverContinuity.test_06_read_only_ctes_round_robin_and_continue_through_failover) ... ok
+test_07_data_modifying_ctes_execute_on_primary (__main__.FailoverContinuity.test_07_data_modifying_ctes_execute_on_primary) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 57.771s
+
+OK

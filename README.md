@@ -98,8 +98,13 @@ read-your-writes consistency is not guaranteed outside explicit primary transact
 
 Responses are buffered until ReadyForQuery before exposing result bytes. Eligible
 reads can retry a transport failure or withdrawn backend only before any result is
-forwarded. A failed target is excluded for the rest of that query. All read attempts
-share the `wait_timeout_ms` deadline; ordinary SQL errors are returned unchanged.
+forwarded. A failed target is excluded for the rest of that query. Each
+routing/setup phase uses `wait_timeout_ms`; healthy read execution uses
+`query_timeout_ms` (default 5 minutes per attempt). `read_retry_timeout_ms`
+(default 10 minutes) covers routing, setup and all read attempts, capped by
+`read_max_attempts` (default 3, including failed setup). Ordinary SQL errors are
+returned unchanged. Healthy reads can finish when an unrelated primary changes
+or their replica becomes the unique primary.
 A response is limited to 32 MiB and an individual protocol message to 16 MiB.
 Oversized results close the connection. Writes have no automatic execution timeout;
 set PostgreSQL-side statement timeouts as needed. Memory use can grow with the number
@@ -122,7 +127,7 @@ leave unknown outcomes; guaranteed business retries require application idempote
 
 `max_clients` bounds accepted session tasks, including waiting clients; excess
 connections close immediately. `startup_timeout_ms` bounds startup packets (64 KiB
-maximum). `wait_timeout_ms` bounds routing and pure-read retry waiting. TLS, Unix
+maximum). `wait_timeout_ms` bounds routing and backend setup. TLS, Unix
 sockets, metrics, hot reload, cancellation routing, and shared transaction pooling
 are not implemented. All traffic is unencrypted.
 
@@ -138,8 +143,11 @@ routing or replay in this mode. SSL/GSS negotiation receives `N` in both modes.
 
 The [black-box conformance suite](conformance/README.md) runs common assertions
 against existing `POOLER_DSN` and `POSTGRES_DSN` endpoints. Capabilities control
-explicit skips; optional adapters own local/Docker setup and fault injection.
-It produces JSON and JUnit reports without importing pooler internals.
+explicit skips in the incomplete baseline, and every skip now makes the run
+exit nonzero. Missing required features/fixtures remain open work. Optional
+adapters own local/Docker setup and fault injection. JSON and JUnit aggregate
+setup, body and cleanup diagnostics per invocation; filtered developer runs
+cannot report release acceptance.
 
 ## Verification
 

@@ -3,8 +3,10 @@
 The authoritative target is [FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md).
 The current baseline runner still reports capability/fixture skips. These are
 diagnostic results, not milestone or release acceptance under the zero-skip
-policy; item R12 tracks removing that completion path. Missing required features
-and fixtures must be implemented/provisioned rather than hidden or excluded.
+policy. The runner exits nonzero for any skip, expected failure, unexpected
+success, failure or error, including fixture/cleanup errors. Empty runs are not
+accepted. Missing required features and fixtures must be implemented/provisioned
+rather than hidden or excluded; H09/R08 track the remaining skip generation.
 
 Run common assertions against PostgreSQL-compatible endpoints. The suite imports
 no pooler source, starts no processes in core tests, and uses no runtime internals.
@@ -41,7 +43,9 @@ Only declare capabilities that the exact deployment/configuration promises.
 An unknown capability, invalid limit, or missing required endpoint is an error;
 unsupported features are explicit skips. Missing optional credentials/adapters or
 insufficient declared capacity also produce skips with distinct explanatory text.
-A skipped fixture does not establish that a declared feature works.
+A skipped fixture does not establish that a declared feature works and makes
+the run fail acceptance. `--match` is for development: reports label it non-release
+and keep `accepted` false even when all selected cases pass.
 
 ```sh
 # List assertions without connecting to any endpoint:
@@ -65,7 +69,12 @@ Important settings:
 - `capacity`: maximum client concurrency this test deployment can support. The
   10/100/1000-client cases skip levels above it; they never silently reduce a level.
 - `operation_timeout`, `connect_timeout`: independent client-side deadlines.
-- `recovery_timeout`: bounded polling budget after a fault.
+- `recovery_timeout`: bounded polling budget after a fault, including each predicate.
+- `cleanup_timeout`: client close/owned task cleanup budget (default 1 second),
+  also used for schema DROP (default 10 seconds when omitted). Schema cleanup
+  opens a fresh direct connection with `connect_timeout`. Each bounded operation
+  has up to one additional second to cancel/join its driver before disposal.
+  Uncooperative tasks report an error; Python cannot forcibly stop them.
 - `observation_window`: bounded negative observation when asserting queueing.
 - `poll_interval`, `timing_tolerance`, `wait_timeout`: explicit timing policy.
 - `cycles`, `queries_per_client`: repeated recovery/saturation and concurrency work.
@@ -108,7 +117,10 @@ Fault/configuration actions require `CONFORMANCE_ALLOW_FAULTS=1`. Names currentl
 used are `postgres_restart`, `pooler_restart`, `network_cut`, `network_restore`,
 `reload`, `pause`, `resume`, `drain`, `pooler_start`, and `invalid_config`.
 Commands must return within `recovery_timeout`; daemons must detach and redirect
-inherited stdout/stderr. Paired restore/start actions should be idempotent because
+inherited stdout/stderr. Commands run in owned POSIX process groups; timeout or
+caller cancellation kills that group and joins its output readers. Descendants
+that escape the session are outside the adapter ownership contract.
+Paired restore/start actions should be idempotent because
 cleanup may repeat them. Use reversible changes on isolated test deployments.
 `invalid_config` must return nonzero; `invalid_config_error_pattern` is required
 to identify the documented rejection. Other actions must return zero on success.

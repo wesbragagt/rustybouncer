@@ -16,7 +16,9 @@ class PostgreSQLDeadlines(unittest.IsolatedAsyncioTestCase):
     @classmethod
     def setUpClass(cls):
         cls.directory = tempfile.TemporaryDirectory(prefix='deadline-postgres-')
+        cls.addClassCleanup(cls.directory.cleanup)
         cls.data = Path(cls.directory.name) / 'data'
+        cls.addClassCleanup(cls.stop_postgres)
         with socket.socket() as probe:
             probe.bind(('127.0.0.1', 0))
             port = probe.getsockname()[1]
@@ -28,12 +30,11 @@ class PostgreSQLDeadlines(unittest.IsolatedAsyncioTestCase):
         cls.dsn = f'host=127.0.0.1 port={port} dbname=postgres user={os.environ["USER"]} sslmode=disable'
 
     @classmethod
-    def tearDownClass(cls):
-        try:
+    def stop_postgres(cls):
+        # Class cleanups also run when setUpClass fails after starting PostgreSQL.
+        if (cls.data / 'postmaster.pid').exists():
             subprocess.run(['pg_ctl', '-D', str(cls.data), '-m', 'immediate', '-w', 'stop'],
                            check=True, capture_output=True, timeout=30)
-        finally:
-            cls.directory.cleanup()
 
     async def asyncSetUp(self):
         self.client = await Client.connect(self.dsn, 1, [])
@@ -43,8 +44,8 @@ class PostgreSQLDeadlines(unittest.IsolatedAsyncioTestCase):
         case = Case()
         case.contract = Contract('postgres-deadlines', 'routing', {}, {'operation_timeout': 1})
         case.pooler_dsn = case.postgres_dsn = self.dsn
-        await case.asyncSetUp()
         self.addAsyncCleanup(case.drop_schema)
+        await case.asyncSetUp()
         await self.client.query('BEGIN')
         await self.client.query('INSERT INTO ' + case.schema + ".records VALUES (1, 'uncommitted')")
         self.client.timeout = .05
@@ -90,6 +91,7 @@ class PostgreSQLDeadlines(unittest.IsolatedAsyncioTestCase):
         case = Case()
         case.contract = Contract('postgres-deadlines', 'routing', {}, {'operation_timeout': 1})
         case.pooler_dsn = case.postgres_dsn = self.dsn
+        self.addAsyncCleanup(case.drop_schema)
         await case.asyncSetUp()
         await case.direct.query('BEGIN')
         await case.direct.query('INSERT INTO ' + case.schema + ".records VALUES (1, 'uncommitted')")

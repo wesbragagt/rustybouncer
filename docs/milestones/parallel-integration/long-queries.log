@@ -1,0 +1,13 @@
+test_attempt_limit (__main__.LongQueries.test_attempt_limit) ... ok
+test_dispatched_write_not_replayed (__main__.LongQueries.test_dispatched_write_not_replayed) ... ok
+test_failed_read_retries_without_partial_results (__main__.LongQueries.test_failed_read_retries_without_partial_results) ... ok
+test_healthy_execution_exceeds_routing_wait (__main__.LongQueries.test_healthy_execution_exceeds_routing_wait) ... ok
+test_interrupted_transaction_not_replayed (__main__.LongQueries.test_interrupted_transaction_not_replayed) ... ok
+test_promoted_backend_drains (__main__.LongQueries.test_promoted_backend_drains) ... ok
+test_total_deadline (__main__.LongQueries.test_total_deadline) ... ok
+test_unrelated_primary_loss_and_promotion (__main__.LongQueries.test_unrelated_primary_loss_and_promotion) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 62.682s
+
+OK

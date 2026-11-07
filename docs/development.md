@@ -118,8 +118,17 @@ cargo build --release --locked
 python3 benchmarks/concurrency.py
 ```
 
-Run the failover suite when routing, transaction state, discovery, or protocol
-behavior changes. Saved benchmark results do not replace correctness checks.
+Run the complete failover and long-query suites when routing, transaction state,
+discovery, or protocol behavior changes:
+
+```sh
+nix develop --command python3 tests/long_queries.py
+nix develop --command python3 -m tests.deadline_integration
+```
+
+The latter provisions its own PostgreSQL cluster and checks the harness lifecycle;
+it does not require Docker. Both suites must run without skipped tests. Saved
+benchmark results do not replace correctness checks.
 
 The dev shell includes Psycopg for endpoint-only conformance and PgBouncer for
 the optional reference adapter. Conformance harness unit tests run offline in

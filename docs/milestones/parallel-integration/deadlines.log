@@ -1,0 +1,10 @@
+test_caller_cancellation_closes_connection (__main__.PostgreSQLDeadlines.test_caller_cancellation_closes_connection) ... ok
+test_connection_handshake_deadline (__main__.PostgreSQLDeadlines.test_connection_handshake_deadline) ... ok
+test_fixture_cleanup_rollback_and_schema (__main__.PostgreSQLDeadlines.test_fixture_cleanup_rollback_and_schema) ... ok
+test_protocol_deadline (__main__.PostgreSQLDeadlines.test_protocol_deadline) ... ok
+test_query_timeout_disconnect_rolls_back (__main__.PostgreSQLDeadlines.test_query_timeout_disconnect_rolls_back) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.694s
+
+OK
