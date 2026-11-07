@@ -1,4 +1,4 @@
-"""Endpoint-only runner. Exit nonzero for test failures or invalid configuration."""
+"""Endpoint-only runner. Exit nonzero for failures, skips, expected failures or invalid configuration."""
 import argparse
 import dataclasses
 import sys
@@ -51,7 +51,8 @@ def main() -> int:
         return 0
     result = unittest.TextTestRunner(verbosity=2, resultclass=Result).run(suite)
     assert isinstance(result, Result)
-    result.write(args.json, args.junit, dataclasses.asdict(Case.contract))
+    result.write(args.json, args.junit, dataclasses.asdict(Case.contract),
+                 full_inventory=not bool(args.match))
     return int(not result.wasSuccessful())
 
 
