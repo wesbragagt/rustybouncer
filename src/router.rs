@@ -265,10 +265,16 @@ async fn primary_changed(topology: &mut watch::Receiver<Topology>, generation: u
     }
 }
 
-async fn replica_unavailable(topology: &mut watch::Receiver<Topology>, node: usize) -> Result<()> {
+// A promotion changes eligibility for new work, not the health of an already
+// dispatched read. The same TCP backend may drain as either replica or primary.
+async fn read_backend_unavailable(
+    topology: &mut watch::Receiver<Topology>,
+    node: usize,
+) -> Result<()> {
     loop {
         let current = topology.borrow_and_update().clone();
-        if current.ambiguous || !current.replicas.contains(&node) {
+        if current.ambiguous || (!current.replicas.contains(&node) && current.primary != Some(node))
+        {
             return Ok(());
         }
         topology.changed().await?;
@@ -386,17 +392,14 @@ async fn execute_query(
     deadline: Instant,
 ) -> Result<QueryResult> {
     let execution = result(backend, body);
-    if read && selected.replicas.contains(&node) {
+    if read {
         tokio::select! {
             response = timeout(deadline.saturating_duration_since(Instant::now()), execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
-            unavailable = replica_unavailable(topology, node) => { unavailable?; Err(anyhow::anyhow!("replica no longer available")) }
+            unavailable = read_backend_unavailable(topology, node) => { unavailable?; Err(anyhow::anyhow!("read backend unavailable or topology ambiguous")) }
         }
     } else {
         tokio::select! {
-            response = async {
-                if read { timeout(deadline.saturating_duration_since(Instant::now()), execution).await.map_err(anyhow::Error::from).and_then(|r| r) }
-                else { execution.await }
-            } => response,
+            response = execution => response,
             changed = primary_changed(topology, selected.generation) => { changed?; Err(anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown")) }
         }
     }
@@ -411,9 +414,22 @@ async fn route_query(
     kind: Kind,
 ) -> Result<Option<Messages>> {
     let read = kind == Kind::Read && !state.transaction && !state.pinned;
-    let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
+    let routing_deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
+    // One wall-clock budget spans routing, setup and all buffered read attempts.
+    // Each new routing phase has its own wait limit; healthy execution does not.
+    let total_deadline = Instant::now() + Duration::from_millis(config.read_retry_timeout_ms);
+    let mut attempts = 0;
     let mut failed = HashSet::new();
     loop {
+        if read && (attempts >= config.read_max_attempts || Instant::now() >= total_deadline) {
+            return Ok(None);
+        }
+        let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
+        let deadline = if read {
+            deadline.min(total_deadline)
+        } else {
+            routing_deadline
+        };
         let (node, selected) = match timeout(
             deadline.saturating_duration_since(Instant::now()),
             wait_route(config, topology, read, &failed),
@@ -433,6 +449,8 @@ async fn route_query(
         {
             state.backends.remove(&node);
         }
+        // Count selections, including handshake failures and pre-dispatch races.
+        attempts += 1;
         if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
             match timeout(
                 deadline.saturating_duration_since(Instant::now()),
@@ -460,7 +478,12 @@ async fn route_query(
             &selected,
             node,
             read,
-            deadline,
+            if read {
+                (Instant::now() + Duration::from_millis(config.query_timeout_ms))
+                    .min(total_deadline)
+            } else {
+                Instant::now() + Duration::from_millis(config.query_timeout_ms)
+            },
         )
         .await
         {
@@ -544,7 +567,7 @@ pub(super) async fn session(
             pg_error(
                 &mut client,
                 "08006",
-                "rustybouncer: no eligible backend before routing deadline",
+                "rustybouncer: routing or read retry budget exhausted",
             )
             .await?;
             return Ok(());
