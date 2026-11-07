@@ -1,0 +1,70 @@
+{
+  "name": "PgBouncer transaction pool reference",
+  "mode": "transaction",
+  "features": {
+    "admin_stats": true,
+    "auth_rejection": false,
+    "backend_reuse": true,
+    "backend_terminate": true,
+    "cancel": true,
+    "certificate_validation": false,
+    "client_limits": true,
+    "drain": false,
+    "extended": true,
+    "idle_client_timeout": false,
+    "idle_server_timeout": false,
+    "independent_pools": false,
+    "limits": true,
+    "multi_database": false,
+    "multi_user": false,
+    "named_prepared": true,
+    "network_interruption": false,
+    "pause_resume": false,
+    "pipeline": true,
+    "pooler_restart": false,
+    "postgres_restart": true,
+    "prepared_eviction": true,
+    "release_after_statement": false,
+    "release_after_transaction": true,
+    "reload": false,
+    "reserve_pool": false,
+    "server_lifetime": false,
+    "session_affinity": false,
+    "session_state": false,
+    "sql_prepare": false,
+    "tls": false,
+    "tls_required": false,
+    "transactions": true,
+    "unsupported_config": false,
+    "wait_timeout": true
+  },
+  "settings": {
+    "operation_timeout": 8,
+    "recovery_timeout": 15,
+    "connect_timeout": 3,
+    "observation_window": 0.15,
+    "poll_interval": 0.03,
+    "pool_size": 2,
+    "max_clients": 24,
+    "capacity": 10,
+    "cycles": 2,
+    "queries_per_client": 5,
+    "concurrency_levels": [
+      10,
+      100,
+      1000
+    ],
+    "wait_timeout": 1,
+    "timing_tolerance": 0.7,
+    "prepared_capacity": 4,
+    "stats_query": "SHOW POOLS"
+  },
+  "notes": "Examples are contracts, not auto-detected features. Match every declared setting to the deployment. Missing optional fixtures are explicitly skipped.",
+  "actions": {
+    "postgres_restart": [
+      "docker",
+      "restart",
+      "pooler-conformance-dcfb2577d9"
+    ]
+  }
+}

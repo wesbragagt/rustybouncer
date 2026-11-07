@@ -1,0 +1,113 @@
+{
+  "case_inventory": 62,
+  "same_inventory_for_all_products": true,
+  "runs": [
+    {
+      "environment": "containers",
+      "contract": "PgBouncer transaction pool reference",
+      "report": "reports/containers/pgbouncer-transaction.json",
+      "passed": 76,
+      "skipped": 48,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "containers",
+      "contract": "rustybouncer simple-query router",
+      "report": "reports/containers/rustybouncer-routing.json",
+      "passed": 44,
+      "skipped": 80,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "docker-postgres",
+      "contract": "PgBouncer transaction pool reference",
+      "report": "reports/docker-postgres/pgbouncer-transaction.json",
+      "passed": 76,
+      "skipped": 48,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "docker-postgres",
+      "contract": "rustybouncer simple-query router",
+      "report": "reports/docker-postgres/rustybouncer-routing.json",
+      "passed": 44,
+      "skipped": 80,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "native",
+      "contract": "PgBouncer transaction pool reference",
+      "report": "reports/native/pgbouncer-transaction.json",
+      "passed": 76,
+      "skipped": 48,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "native",
+      "contract": "rustybouncer simple-query router",
+      "report": "reports/native/rustybouncer-routing.json",
+      "passed": 44,
+      "skipped": 80,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "session",
+      "contract": "PgBouncer session pool reference",
+      "report": "reports/session/pgbouncer-session.json",
+      "passed": 31,
+      "skipped": 31,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "session",
+      "contract": "rustybouncer simple-query router",
+      "report": "reports/session/rustybouncer-routing.json",
+      "passed": 22,
+      "skipped": 40,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "statement",
+      "contract": "PgBouncer statement pool reference",
+      "report": "reports/statement/pgbouncer-statement.json",
+      "passed": 15,
+      "skipped": 47,
+      "failed": 0,
+      "error": 0
+    },
+    {
+      "environment": "statement",
+      "contract": "rustybouncer simple-query router",
+      "report": "reports/statement/rustybouncer-routing.json",
+      "passed": 22,
+      "skipped": 40,
+      "failed": 0,
+      "error": 0
+    }
+  ],
+  "baseline_execution_checks_complete": 8,
+  "baseline_execution_checks_total": 8,
+  "full_feature_checklist_complete": false,
+  "scope": "Declared baseline contracts; optional fixture and deployment coverage gaps remain explicit.",
+  "totals": {
+    "passed": 450,
+    "skipped": 542,
+    "failed": 0,
+    "error": 0
+  },
+  "remaining": [
+    "Unexercised TLS and SCRAM/MD5 fixtures",
+    "Optional administrative and lifecycle semantics",
+    "Network and pooler restart adapters",
+    "100/1000-client capacity and longer stress/failure trials",
+    "Kubernetes and hosted CI execution"
+  ]
+}

@@ -1,0 +1,2657 @@
+{
+  "contract": {
+    "name": "rustybouncer simple-query router",
+    "mode": "routing",
+    "features": {
+      "admin_stats": false,
+      "auth_rejection": false,
+      "backend_reuse": false,
+      "backend_terminate": true,
+      "cancel": false,
+      "certificate_validation": false,
+      "client_limits": true,
+      "drain": false,
+      "extended": false,
+      "idle_client_timeout": false,
+      "idle_server_timeout": false,
+      "independent_pools": false,
+      "limits": false,
+      "multi_database": false,
+      "multi_user": false,
+      "named_prepared": false,
+      "network_interruption": false,
+      "pause_resume": false,
+      "pipeline": false,
+      "pooler_restart": false,
+      "postgres_restart": true,
+      "prepared_eviction": false,
+      "release_after_statement": false,
+      "release_after_transaction": false,
+      "reload": false,
+      "reserve_pool": false,
+      "server_lifetime": false,
+      "session_affinity": false,
+      "session_state": true,
+      "sql_prepare": true,
+      "tls": false,
+      "tls_required": false,
+      "transactions": true,
+      "unsupported_config": false,
+      "wait_timeout": false
+    },
+    "settings": {
+      "operation_timeout": 8,
+      "recovery_timeout": 15,
+      "connect_timeout": 3,
+      "observation_window": 0.15,
+      "poll_interval": 0.03,
+      "pool_size": 2,
+      "max_clients": 24,
+      "capacity": 10,
+      "cycles": 2,
+      "queries_per_client": 5,
+      "concurrency_levels": [
+        10,
+        100,
+        1000
+      ]
+    },
+    "actions": {
+      "postgres_restart": [
+        "pg_ctl",
+        "-D",
+        "/tmp/nix-shell.G9Wb6q/pooler-conformance-ti7bwp3h/postgres",
+        "-m",
+        "fast",
+        "-l",
+        "/tmp/rustybouncer-conformance-final-statement/postgres.log",
+        "-w",
+        "restart"
+      ]
+    }
+  },
+  "results": [
+    {
+      "test": "conformance.pooling.Pooling.test_backend_reuse_after_disconnect",
+      "status": "skipped",
+      "detail": "capability 'backend_reuse' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0047162859700620174,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0006186950486153364,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0012231830041855574,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008304670918732882,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_commit_releases_capacity",
+      "status": "skipped",
+      "detail": "capability 'release_after_transaction' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0025849388912320137,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004255981184542179,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009312678594142199,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007913820445537567,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_connect_and_unique_results",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.007185905938968062,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004089060239493847,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009081640746444464,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006278229411691427,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041104014962911606,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182981,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007336630951613188,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_documented_session_state",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.00707240984775126,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004161011893302202,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008918840903788805,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00044896197505295277,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038633402436971664,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003711350727826357,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007037869654595852,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_read_only_nested_and_recursive_ctes",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.008246269077062607,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003848811611533165,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010513360612094402,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007735390681773424,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004623879212886095,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006701829843223095,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008575890678912401,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_rollback_releases_capacity",
+      "status": "skipped",
+      "detail": "capability 'release_after_transaction' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024080220609903336,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003946388605982065,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008280319161713123,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007309368811547756,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_session_affinity",
+      "status": "skipped",
+      "detail": "capability 'session_affinity' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002421929035335779,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039177387952804565,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008465282153338194,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007059110794216394,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_simultaneous_transactions_have_distinct_backends",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.010532209184020758,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039397808723151684,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008217599242925644,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004010610282421112,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003759430255740881,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009904110338538885,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183004,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009837681427598,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183005,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000389991095289588,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003946400247514248,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008396238554269075,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_statement_releases_capacity",
+      "status": "skipped",
+      "detail": "capability 'release_after_statement' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0025393618270754814,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004254679661244154,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009208580013364553,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008059500250965357,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_commit_and_visibility",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.009902373887598515,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00042738206684589386,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010020730551332235,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004307578783482313,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00044911308214068413,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183015,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005130949430167675,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004436718299984932,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00043182005174458027,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183015,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000372688053175807,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00047230697236955166,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001054741907864809,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_disconnect_rolls_back_and_does_not_contaminate",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.01191121805459261,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040325592271983624,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009660550858825445,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003889380022883415,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006357070524245501,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004119020886719227,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183022,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010075930040329695,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004816350992769003,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005889178719371557,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039958907291293144,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007515070028603077,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_repeatable_read_snapshot",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.008269733050838113,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004021129570901394,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009251770097762346,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039723399095237255,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005597430281341076,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00042185094207525253,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003806529566645622,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00037923012860119343,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000758850947022438,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_rollback_discards_writes",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.007652380969375372,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039146398194134235,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008603341411799192,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003875959664583206,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005613050889223814,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039470894262194633,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004489729180932045,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007498229388147593,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_savepoint_and_error_recovery",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.010716087883338332,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038575311191380024,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008767049293965101,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004409169778227806,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005569080822169781,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041040009818971157,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005066120065748692,
+          "error_type": "UniqueViolation",
+          "sqlstate": "23505"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005025139544159174,
+          "error_type": "InFailedSqlTransaction",
+          "sqlstate": "25P02"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00042494689114391804,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00043266196735203266,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004250369966030121,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00044156890362501144,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00045499391853809357,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007283738814294338,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_serializable_write_conflict",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.01186750503256917,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00044052605517208576,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009575090371072292,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00042225210927426815,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039312709122896194,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005126139149069786,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003691110759973526,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004694419912993908,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004925949033349752,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003769060131162405,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004644219297915697,
+          "error_type": "SerializationFailure",
+          "sqlstate": "40001"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003754529170691967,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007967429701238871,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_transaction_local_state_isolated",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.010777826188132167,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.000385102117434144,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000861635897308588,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00044702901504933834,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004093779716640711,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003665359690785408,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003738999366760254,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007010209374129772,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006289139855653048,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00037497212179005146,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000372517853975296,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007478201296180487,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_extended_parse_bind_execute_sync",
+      "status": "skipped",
+      "detail": "capability 'extended' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002398044103756547,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038670492358505726,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008927658200263977,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007182338740676641,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_named_protocol_statements_across_transactions",
+      "status": "skipped",
+      "detail": "capability 'named_prepared' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002560481894761324,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003915939014405012,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010369690135121346,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000703505938872695,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_named_statement_after_forced_backend_reassignment",
+      "status": "skipped",
+      "detail": "capability 'named_prepared' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023095461074262857,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040523987263441086,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008259189780801535,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000683697871863842,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_pipeline_preserves_result_order",
+      "status": "skipped",
+      "detail": "capability 'pipeline' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023835760075598955,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003874460235238075,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009120921604335308,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006819250993430614,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_prepared_statements_survive_declared_capacity",
+      "status": "skipped",
+      "detail": "capability 'prepared_eviction' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002383085899055004,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003827970940619707,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009013810195028782,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006927058566361666,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_same_statement_name_isolated_between_clients",
+      "status": "skipped",
+      "detail": "capability 'named_prepared' not declared by rustybouncer simple-query router",
+      "duration_s": 0.00241258111782372,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004049690905958414,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009318399243056774,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007039371412247419,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_simple_null_binary_and_parameter_decoding",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.00646617915481329,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038590305484831333,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008459459058940411,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005683889612555504,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007309680804610252,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_simple_query_error_recovery",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.00681987009011209,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004022940993309021,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000876974780112505,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005458157975226641,
+          "error_type": "DivisionByZero",
+          "sqlstate": "22012"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004450648557394743,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007340849842876196,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_sql_prepare_is_separate_from_protocol_prepare",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.007552622118964791,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0005486521404236555,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010607638396322727,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00043923407793045044,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039916811510920525,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038139382377266884,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007478401530534029,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_unnamed_binary_parameters_and_results",
+      "status": "skipped",
+      "detail": "capability 'extended' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002375630894675851,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004017329774796963,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008320589549839497,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007709439378231764,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_cancelled_waiter_leaves_queue",
+      "status": "skipped",
+      "detail": "capability 'cancel' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024554829578846693,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038911914452910423,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009116809815168381,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007117912173271179,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_disconnected_waiter_leaves_queue",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002240956062451005,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004039369523525238,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007988568395376205,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007032060530036688,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_independent_pool_not_blocked",
+      "status": "skipped",
+      "detail": "capability 'independent_pools' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023060189560055733,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004186450969427824,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008556849788874388,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007330919615924358,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_maximum_client_admission",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.04595147608779371,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003895689733326435,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008207978680729866,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006418190896511078,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008522679563611746,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_pool_limit_and_queued_completion",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002523021074011922,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004183240234851837,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009278319776058197,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008385430555790663,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_queued_client_timeout",
+      "status": "skipped",
+      "detail": "capability 'wait_timeout' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024394921492785215,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003978060558438301,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008763340301811695,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007049092091619968,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_repeated_saturation_does_not_leak_capacity",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024460649583488703,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003971040714532137,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009048478677868843,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006867637857794762,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_reserve_capacity",
+      "status": "skipped",
+      "detail": "capability 'reserve_pool' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002442979020997882,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041504809632897377,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000904556829482317,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007042668294161558,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_certificate_hostname_validation",
+      "status": "skipped",
+      "detail": "capability 'certificate_validation' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023479789961129427,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039296597242355347,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008331730496138334,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007577689830213785,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_invalid_credentials_rejected",
+      "status": "skipped",
+      "detail": "capability 'auth_rejection' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0022163991816341877,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003802720457315445,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007851510308682919,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007140261586755514,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_separate_database_identity",
+      "status": "skipped",
+      "detail": "capability 'multi_database' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023789878468960524,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039545982144773006,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008409060537815094,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006831269711256027,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_separate_user_identity",
+      "status": "skipped",
+      "detail": "capability 'multi_user' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002243269933387637,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038488092832267284,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008220910094678402,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006816540844738483,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_tls_negotiation",
+      "status": "skipped",
+      "detail": "capability 'tls' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002579759107902646,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004126930143684149,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009664457757025957,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007808231748640537,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_tls_required_rejects_plaintext",
+      "status": "skipped",
+      "detail": "capability 'tls_required' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023419668432325125,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003935168497264385,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008548530749976635,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007085050456225872,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_unauthorized_database_rejected",
+      "status": "skipped",
+      "detail": "capability 'auth_rejection' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024566650390625,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038644392043352127,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009120020549744368,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007305871695280075,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_cancel_query_and_reuse_connection",
+      "status": "skipped",
+      "detail": "capability 'cancel' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0023588300682604313,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039225490763783455,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008718450553715229,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000692024128511548,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_documented_admin_statistics",
+      "status": "skipped",
+      "detail": "capability 'admin_stats' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0022320691496133804,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003833579830825329,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008131540380418301,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009153780993074179,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_graceful_drain_contract",
+      "status": "skipped",
+      "detail": "capability 'drain' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024372991174459457,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040690298192203045,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009084548801183701,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007107199635356665,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_idle_client_disconnected",
+      "status": "skipped",
+      "detail": "capability 'idle_client_timeout' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002284497953951359,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.000397044001147151,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008146669715642929,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007500939536839724,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_idle_server_retirement",
+      "status": "skipped",
+      "detail": "capability 'idle_server_timeout' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002489587990567088,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041687185876071453,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008878759108483791,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007327611092478037,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_invalid_configuration_rejected",
+      "status": "skipped",
+      "detail": "capability 'unsupported_config' not declared by rustybouncer simple-query router",
+      "duration_s": 0.002445023041218519,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038519082590937614,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000955894822254777,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007336728740483522,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_pause_queues_and_resume_releases",
+      "status": "skipped",
+      "detail": "capability 'pause_resume' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0026520760729908943,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004541219677776098,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010174610652029514,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007496841717511415,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_reload_preserves_query_service",
+      "status": "skipped",
+      "detail": "capability 'reload' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024260759819298983,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003924448974430561,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009367489255964756,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006665459368377924,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_server_lifetime",
+      "status": "skipped",
+      "detail": "capability 'server_lifetime' not declared by rustybouncer simple-query router",
+      "duration_s": 0.00231429492123425,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003909619990736246,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000827600946649909,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010386118665337563,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_backend_termination_and_reconnect",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.011223131092265248,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041927583515644073,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009011810179799795,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004065020475536585,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006292348261922598,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038661411963403225,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183219,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009291148744523525,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039323698729276657,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005282529164105654,
+          "error_type": "OperationalError",
+          "sqlstate": null
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004175931680947542,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007551040034741163,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_interrupted_transaction_never_silently_replayed",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.01163465203717351,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038601201958954334,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008628079667687416,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038108392618596554,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004939981736242771,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00044365297071635723,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003796410746872425,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183226,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008355868048965931,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003928057849407196,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004666759632527828,
+          "error_type": "OperationalError",
+          "sqlstate": null
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003850208595395088,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004303369205445051,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007692209910601377,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_network_interruption_recovery",
+      "status": "skipped",
+      "detail": "capability 'network_interruption' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024652210995554924,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003902409225702286,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008985060267150402,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007131642196327448,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_pooler_restart_recovery",
+      "status": "skipped",
+      "detail": "capability 'pooler_restart' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0025800990406423807,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041126995347440243,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009881670121103525,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007930761203169823,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_postgres_restart_recovery",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.21054205484688282,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040071108378469944,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010045270901173353,
+          "rows": 0
+        },
+        {
+          "adapter": "postgres_restart",
+          "output": "waiting for server to shut down.... done\nserver stopped\nwaiting for server to start.... done\nserver started\n"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000731178792193532,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010808231309056282,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_repeated_backend_failures_restore_capacity",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.01853830204345286,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0005235641729086637,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0011752208229154348,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00043095787987113,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006499351002275944,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041882507503032684,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183434,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010226019658148289,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004051199648529291,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005235138814896345,
+          "error_type": "OperationalError",
+          "sqlstate": null
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041480804793536663,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00040247500874102116,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000530696939677,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038146390579640865,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183439,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005496039520949125,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00037820800207555294,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004449749831110239,
+          "error_type": "OperationalError",
+          "sqlstate": null
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041281385347247124,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007552839815616608,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_10",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.03415307286195457,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00043180002830922604,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010764950420707464,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037438489962369204,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037414650432765484,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003742476925253868,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00375218503177166,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003754720091819763,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00370962405577302,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003687832970172167,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036905878223478794,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036898660473525524,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004732616012915969,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035645379684865475,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035580371040850878,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035559730604290962,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035551011096686125,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00355555210262537,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035567530430853367,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003556914161890745,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003551723901182413,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003552605863660574,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003518391167744994,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035251642111688852,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003523841965943575,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003527658060193062,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00354104395955801,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003597891889512539,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003601117990911007,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003607620019465685,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036102260928601027,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036099450662732124,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036305340472608805,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003640703158453107,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036437390372157097,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036522650625556707,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003633619984611869,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035795271396636963,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035774928983300924,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003570831147953868,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003569668158888817,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035696078557521105,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035575549118220806,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003549339948222041,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0034396410919725895,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00332115706987679,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0032338311430066824,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003147456096485257,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003060571849346161,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0029753001872450113,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0028877928853034973,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.002798022935166955,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0017546319868415594,
+          "rows": 1
+        },
+        {
+          "kind": "performance",
+          "clients": 10,
+          "successes": 50,
+          "elapsed_s": 0.028074990957975388,
+          "queries_per_second": 1780.9444738501786,
+          "p50_ms": 3.567124018445611,
+          "p95_ms": 3.75421904027462,
+          "p99_ms": 4.734810907393694,
+          "backend_pids": []
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008739088661968708,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_100",
+      "status": "skipped",
+      "detail": "100 clients exceed declared test capacity 10; no implicit downscaling",
+      "duration_s": 0.0026447419077157974,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004207491874694824,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009948790539056063,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007419290486723185,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_1000",
+      "status": "skipped",
+      "detail": "1000 clients exceed declared test capacity 10; no implicit downscaling",
+      "duration_s": 0.00241613807156682,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041586882434785366,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008758539333939552,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007272409275174141,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_prepared_statements",
+      "status": "skipped",
+      "detail": "capability 'named_prepared' not declared by rustybouncer simple-query router",
+      "duration_s": 0.0024493709206581116,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041985721327364445,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008753819856792688,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008063120767474174,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_connection_churn",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.06498099095188081,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039866683073341846,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008608850184828043,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004053948214277625,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004239700036123395,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004309542942792177,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00443068309687078,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004563645925372839,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004740180913358927,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004867463139817119,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0050351619720458984,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0051837030332535505,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005355660105124116,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004378695040941238,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004448767984285951,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0044615010265260935,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004829510813578963,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004709933884441853,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004604172892868519,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004741542972624302,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004727486986666918,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004821615060791373,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004910564050078392,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0043217160273343325,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004478575196117163,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004472813103348017,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004489143844693899,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004440282005816698,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004526455188170075,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004774847067892551,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004820793867111206,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00501990201883018,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005193931981921196,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004207198973745108,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0042149340733885765,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004290878074243665,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004257163032889366,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004142415942624211,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004158176016062498,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004359147045761347,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00437198206782341,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00447979592718184,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004675759002566338,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004400717094540596,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004248938988894224,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004116436932235956,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038146628066897392,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0028612930327653885,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0027142141479998827,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0023293630219995975,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0019152769818902016,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0017663640901446342,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0016406651120632887,
+          "rows": 1
+        },
+        {
+          "kind": "performance",
+          "clients": 10,
+          "successes": 50,
+          "elapsed_s": 0.05617574090138078,
+          "queries_per_second": 890.063917230347,
+          "p50_ms": 4.444349091500044,
+          "p95_ms": 5.185777088627219,
+          "p99_ms": 5.357844056561589,
+          "backend_pids": []
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008767649997025728,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_mixed_short_and_blocked_transactions",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.04443311388604343,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004228129982948303,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009887879714369774,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041856500320136547,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005086960736662149,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00039427890442311764,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00046752789057791233,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3183553,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006876459810882807,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007561061065644026,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006032059900462627,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005186349153518677,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.03278724895790219,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00037216697819530964,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000853249803185463,
+          "rows": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "passed": 22,
+    "skipped": 40,
+    "failed": 0,
+    "error": 0
+  },
+  "acceptance": "declared-contract results only; see release acceptance checklist"
+}

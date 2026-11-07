@@ -1,0 +1,2 @@
+# Nix pins the exact driver; this is the portable non-Nix installation interface.
+psycopg[binary]>=3.2,<4

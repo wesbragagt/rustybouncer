@@ -5,9 +5,11 @@ cargo fmt --all -- --check
 cargo check --locked --offline --all-targets --all-features
 cargo clippy --locked --offline --all-targets --all-features -- -D warnings
 cargo test --locked --offline --all-targets --all-features
-ruff check tests benchmarks/concurrency.py scripts
-ty check tests benchmarks/concurrency.py scripts
+ruff check tests benchmarks/concurrency.py scripts conformance
+ty check tests benchmarks/concurrency.py scripts conformance
 python3 scripts/check_complexity.py
 python3 -m unittest discover -s tests -p 'test_*.py'
 nixfmt --check flake.nix
 shellcheck scripts/verify scripts/install-hooks .githooks/pre-commit
+
+actionlint .github/workflows/conformance.yml

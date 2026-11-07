@@ -134,6 +134,13 @@ New connections wait for a primary; a leadership generation change closes existi
 sessions. Replica-only health changes do not close sessions. There is no query
 routing or replay in this mode. SSL/GSS negotiation receives `N` in both modes.
 
+## Runtime-agnostic conformance
+
+The [black-box conformance suite](conformance/README.md) runs common assertions
+against existing `POOLER_DSN` and `POSTGRES_DSN` endpoints. Capabilities control
+explicit skips; optional adapters own local/Docker setup and fault injection.
+It produces JSON and JUnit reports without importing pooler internals.
+
 ## Verification
 
 ```sh

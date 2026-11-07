@@ -1,0 +1,3220 @@
+{
+  "contract": {
+    "name": "PgBouncer statement pool reference",
+    "mode": "statement",
+    "features": {
+      "admin_stats": false,
+      "auth_rejection": false,
+      "backend_reuse": true,
+      "backend_terminate": false,
+      "cancel": false,
+      "certificate_validation": false,
+      "client_limits": true,
+      "drain": false,
+      "extended": true,
+      "idle_client_timeout": false,
+      "idle_server_timeout": false,
+      "independent_pools": false,
+      "limits": false,
+      "multi_database": false,
+      "multi_user": false,
+      "named_prepared": true,
+      "network_interruption": false,
+      "pause_resume": false,
+      "pipeline": true,
+      "pooler_restart": false,
+      "postgres_restart": true,
+      "prepared_eviction": false,
+      "release_after_statement": true,
+      "release_after_transaction": false,
+      "reload": false,
+      "reserve_pool": false,
+      "server_lifetime": false,
+      "session_affinity": false,
+      "session_state": false,
+      "sql_prepare": false,
+      "tls": false,
+      "tls_required": false,
+      "transactions": false,
+      "unsupported_config": false,
+      "wait_timeout": false
+    },
+    "settings": {
+      "operation_timeout": 8,
+      "recovery_timeout": 15,
+      "connect_timeout": 3,
+      "observation_window": 0.15,
+      "poll_interval": 0.03,
+      "pool_size": 2,
+      "max_clients": 24,
+      "capacity": 10,
+      "cycles": 2,
+      "queries_per_client": 5,
+      "concurrency_levels": [
+        10,
+        100,
+        1000
+      ],
+      "wait_timeout": 1,
+      "timing_tolerance": 0.7,
+      "prepared_capacity": 4,
+      "stats_query": "SHOW POOLS"
+    },
+    "actions": {
+      "postgres_restart": [
+        "pg_ctl",
+        "-D",
+        "/tmp/nix-shell.G9Wb6q/pooler-conformance-ti7bwp3h/postgres",
+        "-m",
+        "fast",
+        "-l",
+        "/tmp/rustybouncer-conformance-final-statement/postgres.log",
+        "-w",
+        "restart"
+      ]
+    }
+  },
+  "results": [
+    {
+      "test": "conformance.pooling.Pooling.test_backend_reuse_after_disconnect",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.013805285096168518,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0006555148866027594,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0014450328890234232,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006225721444934607,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041792402043938637,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004158499650657177,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041167112067341805,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00042240205220878124,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008796411566436291,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_commit_releases_capacity",
+      "status": "skipped",
+      "detail": "capability 'release_after_transaction' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002664820058271289,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004592319019138813,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001002524048089981,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007997890934348106,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_connect_and_unique_results",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.00581916980445385,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004018030595034361,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008623269386589527,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004747319035232067,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003871861845254898,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007207279559224844,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_documented_session_state",
+      "status": "skipped",
+      "detail": "capability 'session_state' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0026586290914565325,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040951790288090706,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00102632911875844,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007346048951148987,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_read_only_nested_and_recursive_ctes",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.006561239017173648,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004164611455053091,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008886870928108692,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004335930570960045,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00036726705729961395,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005428509321063757,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007621969562023878,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_rollback_releases_capacity",
+      "status": "skipped",
+      "detail": "capability 'release_after_transaction' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0026071409229189157,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004071029834449291,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000953740905970335,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007039571646600962,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_session_affinity",
+      "status": "skipped",
+      "detail": "capability 'session_affinity' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002507090102881193,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004243359435349703,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000922702020034194,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007060698699206114,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_simultaneous_transactions_have_distinct_backends",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0023298850283026695,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003948700614273548,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008512670174241066,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007670659106224775,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.pooling.Pooling.test_statement_releases_capacity",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.008475614944472909,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039395783096551895,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008799810893833637,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00046136602759361267,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003875759430229664,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00036623515188694,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003747211303561926,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003716761711984873,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003626688849180937,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182381,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007272509392350912,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_commit_and_visibility",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0028795581310987473,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041716196574270725,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0012790791224688292,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008648231159895658,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_disconnect_rolls_back_and_does_not_contaminate",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002415926894173026,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003823959268629551,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008822251111268997,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007565459236502647,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_repeatable_read_snapshot",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0025842669419944286,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0005775669123977423,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000879569910466671,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008753419388085604,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_rollback_discards_writes",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0026142240967601538,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00048036198131740093,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001003685174509883,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006976749282330275,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_savepoint_and_error_recovery",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002362856874242425,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00038789608515799046,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008320510387420654,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008073530625551939,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_serializable_write_conflict",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.00236796704120934,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003841391298919916,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008896600920706987,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007607738953083754,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.transactions.Transactions.test_transaction_local_state_isolated",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024707920383661985,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040178303606808186,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009123228956013918,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007328810170292854,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_extended_parse_bind_execute_sync",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.007474923972040415,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041160103864967823,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008256679866462946,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006733490154147148,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00041119102388620377,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003894988913089037,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0004221308045089245,
+          "error_type": "DivisionByZero",
+          "sqlstate": "22012"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00038937898352742195,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007447740063071251,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_named_protocol_statements_across_transactions",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024364569690078497,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003919948358088732,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008858421351760626,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007847300730645657,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_named_statement_after_forced_backend_reassignment",
+      "status": "skipped",
+      "detail": "capability 'release_after_transaction' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0023610941134393215,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004054401069879532,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008135752286761999,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007604339625686407,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_pipeline_preserves_result_order",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.010325255803763866,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004280430730432272,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009038059506565332,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007330819498747587,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_prepared_statements_survive_declared_capacity",
+      "status": "skipped",
+      "detail": "capability 'prepared_eviction' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.003017971059307456,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00044706882908940315,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010980961378663778,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007862031925469637,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_same_statement_name_isolated_between_clients",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.007625640835613012,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004003101494163275,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008908419404178858,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000928001943975687,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_simple_null_binary_and_parameter_decoding",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.00632267608307302,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0005110709462314844,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009696909692138433,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005268401000648737,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008359579369425774,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_simple_query_error_recovery",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.006092699011787772,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040275510400533676,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008634489495307207,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00043335300870239735,
+          "error_type": "DivisionByZero",
+          "sqlstate": "22012"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0003899899311363697,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008290449623018503,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_sql_prepare_is_separate_from_protocol_prepare",
+      "status": "skipped",
+      "detail": "capability 'sql_prepare' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024921630974859,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004038570914417505,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008909020107239485,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007120419759303331,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.protocol.Protocol.test_unnamed_binary_parameters_and_results",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.005426574964076281,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003841489087790251,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000790460966527462,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007101690862327814,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_cancelled_waiter_leaves_queue",
+      "status": "skipped",
+      "detail": "capability 'cancel' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002400288125500083,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003848711494356394,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008829371072351933,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000678519019857049,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_disconnected_waiter_leaves_queue",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.00223420187830925,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003800620324909687,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008161389268934727,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007138359360396862,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_independent_pool_not_blocked",
+      "status": "skipped",
+      "detail": "capability 'independent_pools' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002333702053874731,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00042334385216236115,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000847178976982832,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000907412962988019,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_maximum_client_admission",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.02187571907415986,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004176630172878504,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010365990456193686,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0005609351210296154,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008652829565107822,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_pool_limit_and_queued_completion",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002549711847677827,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004254169762134552,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000956385862082243,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000861144857481122,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_queued_client_timeout",
+      "status": "skipped",
+      "detail": "capability 'wait_timeout' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0025775141548365355,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004053390584886074,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009313889313489199,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007589319720864296,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_repeated_saturation_does_not_leak_capacity",
+      "status": "skipped",
+      "detail": "capability 'limits' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002512129954993725,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.000409567030146718,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009304368868470192,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006766649894416332,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.limits.Limits.test_reserve_capacity",
+      "status": "skipped",
+      "detail": "capability 'reserve_pool' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0028717119712382555,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0006036672275513411,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010013710707426071,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000721530057489872,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_certificate_hostname_validation",
+      "status": "skipped",
+      "detail": "capability 'certificate_validation' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024907500483095646,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003994791768491268,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000853771110996604,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006989168468862772,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_invalid_credentials_rejected",
+      "status": "skipped",
+      "detail": "capability 'auth_rejection' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002262657042592764,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004176129586994648,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008069321047514677,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007641608826816082,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_separate_database_identity",
+      "status": "skipped",
+      "detail": "capability 'multi_database' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024820840917527676,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003956111613661051,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009063309989869595,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007117318455129862,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_separate_user_identity",
+      "status": "skipped",
+      "detail": "capability 'multi_user' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0023918920196592808,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040426780469715595,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009187650866806507,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007208790630102158,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_tls_negotiation",
+      "status": "skipped",
+      "detail": "capability 'tls' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002682694001123309,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00043913302943110466,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009598429314792156,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007500848732888699,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_tls_required_rejects_plaintext",
+      "status": "skipped",
+      "detail": "capability 'tls_required' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024638480972498655,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040798401460051537,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008724268991500139,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007232842035591602,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.security.Security.test_unauthorized_database_rejected",
+      "status": "skipped",
+      "detail": "capability 'auth_rejection' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002564840018749237,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041070999577641487,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009360769763588905,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007040270138531923,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_cancel_query_and_reuse_connection",
+      "status": "skipped",
+      "detail": "capability 'cancel' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002717830939218402,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040200306102633476,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001113564008846879,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007411479018628597,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_documented_admin_statistics",
+      "status": "skipped",
+      "detail": "capability 'admin_stats' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002546856878325343,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003864739555865526,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009343549609184265,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006993480492383242,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_graceful_drain_contract",
+      "status": "skipped",
+      "detail": "capability 'drain' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002393564907833934,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003849109634757042,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008886370342224836,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007691599894315004,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_idle_client_disconnected",
+      "status": "skipped",
+      "detail": "capability 'idle_client_timeout' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0027653619181364775,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00042528798803687096,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010990968439728022,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008004400879144669,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_idle_server_retirement",
+      "status": "skipped",
+      "detail": "capability 'idle_server_timeout' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0025303650181740522,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00045761908404529095,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008735780138522387,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006796109955757856,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_invalid_configuration_rejected",
+      "status": "skipped",
+      "detail": "capability 'unsupported_config' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0023545909207314253,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039109191857278347,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008515371009707451,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007068829145282507,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_pause_queues_and_resume_releases",
+      "status": "skipped",
+      "detail": "capability 'pause_resume' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0024612639099359512,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041704182513058186,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000849161995574832,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007584309205412865,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_reload_preserves_query_service",
+      "status": "skipped",
+      "detail": "capability 'reload' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0025098558980971575,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040088105015456676,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008960310369729996,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008249059319496155,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.lifecycle.Lifecycle.test_server_lifetime",
+      "status": "skipped",
+      "detail": "capability 'server_lifetime' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002686370862647891,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004051090218126774,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001100469846278429,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010829160455614328,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_backend_termination_and_reconnect",
+      "status": "skipped",
+      "detail": "capability 'backend_terminate' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0025390710216015577,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.000432200962677598,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009613048750907183,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007077029440551996,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_interrupted_transaction_never_silently_replayed",
+      "status": "skipped",
+      "detail": "capability 'backend_terminate' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0026486190035939217,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004023839719593525,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010274311061948538,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007368188817054033,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_network_interruption_recovery",
+      "status": "skipped",
+      "detail": "capability 'network_interruption' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002360713202506304,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040139188058674335,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008353360462933779,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0006755830254405737,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_pooler_restart_recovery",
+      "status": "skipped",
+      "detail": "capability 'pooler_restart' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002458268078044057,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004417088348418474,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008510760962963104,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007302570156753063,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_postgres_restart_recovery",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.2095337409991771,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004449249245226383,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008883469272404909,
+          "rows": 0
+        },
+        {
+          "adapter": "postgres_restart",
+          "output": "waiting for server to shut down.... done\nserver stopped\nwaiting for server to start.... done\nserver started\n"
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001487914938479662,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0010219798423349857,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.recovery.Recovery.test_repeated_backend_failures_restore_capacity",
+      "status": "skipped",
+      "detail": "capability 'backend_terminate' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.002921266946941614,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00045725912787020206,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0011236141435801983,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007584199775010347,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_10",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.05068530607968569,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00039980909787118435,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008895990904420614,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038783240597695112,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003883474040776491,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038882240187376738,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003891840111464262,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00389769091270864,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038944249972701073,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003913430962711573,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00391859095543623,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003920795861631632,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00392304896377027,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037914300337433815,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037926819641143084,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037889450322836637,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003843889106065035,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003920304123312235,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003998092142865062,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004073946038261056,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004129040986299515,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004143076948821545,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00531304907053709,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004073114134371281,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004057906102389097,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004059007856994867,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0040072298143059015,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003966240910813212,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038898861967027187,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037962989881634712,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003755922196432948,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003744038986042142,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003685759147629142,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038534170016646385,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003853847971186042,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038494688924402,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003849619999527931,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038099049124866724,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038038529455661774,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038009381387382746,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037833538372069597,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037879429291933775,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037989639677107334,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003614173037931323,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036118878051638603,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036158058792352676,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036119481083005667,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036181199830025434,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036223779898136854,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036246629897505045,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003627428086474538,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036222191993147135,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035727040376514196,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003620083909481764,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036190429236739874,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036162470933049917,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036123190075159073,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036047850735485554,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036019899416714907,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035976420622318983,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035980618558824062,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035946748685091734,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036327277775853872,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003666613018140197,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036731150466948748,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003685849020257592,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036907580215483904,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003695828141644597,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037004868499934673,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003704895032569766,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003713271114975214,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003718351013958454,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038162460550665855,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038465738762170076,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0039029219187796116,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003925404045730829,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003943858901038766,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00394462002441287,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0039495599921792746,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003954468993470073,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003945142030715942,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003940122202038765,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00384612288326025,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037656209897249937,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003723080037161708,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003691829973831773,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036735760513693094,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003678285051137209,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036724628880620003,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003668236080557108,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036700889468193054,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003678303910419345,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003541385056450963,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003548078006133437,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003429872915148735,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003319844836369157,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0032125199213624,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003098082961514592,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0029904991388320923,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.002881821943446994,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.002773216925561428,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0026606228202581406,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.001606019213795662,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182849,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "kind": "performance",
+          "clients": 10,
+          "successes": 50,
+          "elapsed_s": 0.044963451102375984,
+          "queries_per_second": 1112.0142865848184,
+          "p50_ms": 3.7025408819317818,
+          "p95_ms": 4.060399951413274,
+          "p99_ms": 4.075709963217378,
+          "backend_pids": [
+            3182838,
+            3182849
+          ]
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008640510495752096,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_100",
+      "status": "skipped",
+      "detail": "100 clients exceed declared test capacity 10; no implicit downscaling",
+      "duration_s": 0.0026351739652454853,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00041301408782601357,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009456048719584942,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007645119912922382,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_clients_1000",
+      "status": "skipped",
+      "detail": "1000 clients exceed declared test capacity 10; no implicit downscaling",
+      "duration_s": 0.0023955591022968292,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003879459109157324,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.000834283884614706,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007501738145947456,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_concurrent_prepared_statements",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.024518388090655208,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0003986968658864498,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009515371639281511,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007812939584255219,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_connection_churn",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.07406406989321113,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.00040359701961278915,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0008939080871641636,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003906497964635491,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003906709142029285,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003911607898771763,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003922578878700733,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003930382896214724,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003936586203053594,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00393501203507185,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0039446111768484116,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003948548110201955,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003941694973036647,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003724501933902502,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003948537865653634,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004126315005123615,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004280678927898407,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00441470299847424,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004538628039881587,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004666880937293172,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0047982309479266405,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0049362031277269125,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005111987004056573,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038245120085775852,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038681449368596077,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003880017902702093,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038557120133191347,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003851433051750064,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003828320186585188,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003793243085965514,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003775118151679635,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037534369621425867,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037230500020086765,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037098550237715244,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003825895022600889,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003934822045266628,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004051923984661698,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004154838854447007,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004270058125257492,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00438130903057754,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004480728879570961,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004596679005771875,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004709543194621801,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004086068831384182,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004053025972098112,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004024693043902516,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00399727001786232,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003972392994910479,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003949729958549142,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0039138521533459425,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003874547081068158,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038345211651176214,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00380338286049664,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035640778951346874,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.00376876606605947,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0039091939106583595,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004029772011563182,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004147846018895507,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004268646007403731,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004377102013677359,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004493964137509465,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0045921290293335915,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004720925120636821,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038073400501161814,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037932931445538998,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037706000730395317,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037416249979287386,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037172590382397175,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003697260981425643,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003668055171146989,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036433280911296606,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036271780263632536,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035993149504065514,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035111771430820227,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0036817011423408985,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0038269569631665945,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003962795017287135,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004087220877408981,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004197089932858944,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004319533007219434,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004443838028237224,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004556932952255011,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.004669315880164504,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005765306996181607,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005735882092267275,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005690285004675388,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005660217953845859,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005609310930594802,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005583984078839421,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005559948040172458,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005553034134209156,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.005517967976629734,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0054730328265577555,
+          "rows": 1
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0037364449817687273,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003629382001236081,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0035205651074647903,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003410535864531994,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0033237719908356667,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0032158158719539642,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.003105397103354335,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0029847777914255857,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0028765921015292406,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.002771493047475815,
+          "rows": 1
+        },
+        {
+          "backend_pid": 3182838,
+          "backend_address": "127.0.0.1/32",
+          "backend_port": 48189
+        },
+        {
+          "kind": "performance",
+          "clients": 10,
+          "successes": 50,
+          "elapsed_s": 0.0646804510615766,
+          "queries_per_second": 773.0310964034461,
+          "p50_ms": 3.9092430379241705,
+          "p95_ms": 5.692588863894343,
+          "p99_ms": 5.76853402890265,
+          "backend_pids": [
+            3182838
+          ]
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0009701219387352467,
+          "rows": 0
+        }
+      ]
+    },
+    {
+      "test": "conformance.concurrency.Concurrency.test_mixed_short_and_blocked_transactions",
+      "status": "skipped",
+      "detail": "capability 'transactions' not declared by PgBouncer statement pool reference",
+      "duration_s": 0.0029037240892648697,
+      "evidence": [
+        {
+          "operation": "query",
+          "duration_s": 0.0004224719014018774,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0011304370127618313,
+          "rows": 0
+        },
+        {
+          "operation": "query",
+          "duration_s": 0.0007559750229120255,
+          "rows": 0
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "passed": 15,
+    "skipped": 47,
+    "failed": 0,
+    "error": 0
+  },
+  "acceptance": "declared-contract results only; see release acceptance checklist"
+}

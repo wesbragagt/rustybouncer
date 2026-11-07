@@ -58,7 +58,7 @@ def source_files(paths: list[Path]) -> list[Path]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("paths", nargs="*", type=Path, default=list(map(Path, ["src", "tests", "benchmarks", "scripts"])))
+    parser.add_argument("paths", nargs="*", type=Path, default=list(map(Path, ["src", "tests", "benchmarks", "scripts", "conformance"])))
     with Path("pyproject.toml").open("rb") as config:
         default_limit = tomllib.load(config)["tool"]["rustybouncer"]["max-cyclomatic-complexity"]
     parser.add_argument("--max-complexity", type=int, default=default_limit)

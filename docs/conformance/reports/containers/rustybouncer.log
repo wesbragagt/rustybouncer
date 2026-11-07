@@ -1,0 +1,21 @@
+[2m2026-11-07T22:27:19.927189Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m rustybouncer ready [3mlisten[0m[2m=[0m127.0.0.1:56689
+[2m2026-11-07T22:27:19.930337Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: Some(0), replicas: [], ambiguous: false, generation: 1 }
+[2m2026-11-07T22:27:19.934990Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:58970 [3merror[0m[2m=[0munexpected end of file
+[2m2026-11-07T22:27:24.546082Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: None, replicas: [], ambiguous: false, generation: 2 }
+[2m2026-11-07T22:27:24.806381Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: Some(0), replicas: [], ambiguous: false, generation: 3 }
+[2m2026-11-07T22:27:30.860224Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: None, replicas: [], ambiguous: false, generation: 4 }
+[2m2026-11-07T22:27:31.067765Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: Some(0), replicas: [], ambiguous: false, generation: 5 }
+[2m2026-11-07T22:27:32.999882Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m client capacity reached; connection closed [3mpeer[0m[2m=[0m127.0.0.1:47336
+[2m2026-11-07T22:27:33.139902Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:47358 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:33.154089Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:47376 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:33.233083Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: None, replicas: [], ambiguous: false, generation: 6 }
+[2m2026-11-07T22:27:33.441694Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: Some(0), replicas: [], ambiguous: false, generation: 7 }
+[2m2026-11-07T22:27:33.457081Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:47402 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:33.463951Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:47412 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:33.928652Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m client capacity reached; connection closed [3mpeer[0m[2m=[0m127.0.0.1:36580
+[2m2026-11-07T22:27:34.071692Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:36604 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:34.085137Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:36614 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:34.124049Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: None, replicas: [], ambiguous: false, generation: 8 }
+[2m2026-11-07T22:27:34.383450Z[0m [32m INFO[0m [2mrustybouncer[0m[2m:[0m topology changed [3mnext[0m[2m=[0mTopology { primary: Some(0), replicas: [], ambiguous: false, generation: 9 }
+[2m2026-11-07T22:27:34.398484Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:36646 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed
+[2m2026-11-07T22:27:34.405467Z[0m [33m WARN[0m [2mrustybouncer[0m[2m:[0m session ended [3mpeer[0m[2m=[0m127.0.0.1:36668 [3merror[0m[2m=[0mquery was dispatched; outcome may be unknown and was not replayed

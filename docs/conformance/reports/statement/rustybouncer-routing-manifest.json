@@ -1,0 +1,72 @@
+{
+  "name": "rustybouncer simple-query router",
+  "mode": "routing",
+  "features": {
+    "admin_stats": false,
+    "auth_rejection": false,
+    "backend_reuse": false,
+    "backend_terminate": true,
+    "cancel": false,
+    "certificate_validation": false,
+    "client_limits": true,
+    "drain": false,
+    "extended": false,
+    "idle_client_timeout": false,
+    "idle_server_timeout": false,
+    "independent_pools": false,
+    "limits": false,
+    "multi_database": false,
+    "multi_user": false,
+    "named_prepared": false,
+    "network_interruption": false,
+    "pause_resume": false,
+    "pipeline": false,
+    "pooler_restart": false,
+    "postgres_restart": true,
+    "prepared_eviction": false,
+    "release_after_statement": false,
+    "release_after_transaction": false,
+    "reload": false,
+    "reserve_pool": false,
+    "server_lifetime": false,
+    "session_affinity": false,
+    "session_state": true,
+    "sql_prepare": true,
+    "tls": false,
+    "tls_required": false,
+    "transactions": true,
+    "unsupported_config": false,
+    "wait_timeout": false
+  },
+  "settings": {
+    "operation_timeout": 8,
+    "recovery_timeout": 15,
+    "connect_timeout": 3,
+    "observation_window": 0.15,
+    "poll_interval": 0.03,
+    "pool_size": 2,
+    "max_clients": 24,
+    "capacity": 10,
+    "cycles": 2,
+    "queries_per_client": 5,
+    "concurrency_levels": [
+      10,
+      100,
+      1000
+    ]
+  },
+  "notes": "Examples are contracts, not auto-detected features. Match every declared setting to the deployment. Missing optional fixtures are explicitly skipped.",
+  "actions": {
+    "postgres_restart": [
+      "pg_ctl",
+      "-D",
+      "/tmp/nix-shell.G9Wb6q/pooler-conformance-ti7bwp3h/postgres",
+      "-m",
+      "fast",
+      "-l",
+      "/tmp/rustybouncer-conformance-final-statement/postgres.log",
+      "-w",
+      "restart"
+    ]
+  }
+}

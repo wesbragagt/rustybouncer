@@ -16,6 +16,7 @@
       system:
       let
         pkgs = import nixpkgs { inherit system; };
+        python = pkgs.python3.withPackages (ps: [ ps.psycopg ]);
       in
       {
         packages.default = pkgs.rustPlatform.buildRustPackage {
@@ -34,11 +35,12 @@
           };
           cargoLock.lockFile = ./Cargo.lock;
           nativeBuildInputs = with pkgs; [
+            actionlint
             ty
             rust-code-analysis
             clippy
             rustfmt
-            python3
+            python
             ruff
             nixfmt
             shellcheck
@@ -61,7 +63,7 @@
             clippy
             rustfmt
             rust-analyzer
-            python3
+            python
             ruff
             git
             docker
@@ -70,6 +72,8 @@
             shellcheck
             ty
             rust-code-analysis
+            pgbouncer
+            actionlint
           ];
           shellHook = ''
             bash scripts/install-hooks

@@ -44,10 +44,11 @@ Nix cache. The checks are:
 - `cargo check --locked --offline --all-targets --all-features` (Rust typechecking)
 - `cargo clippy --locked --offline --all-targets --all-features -- -D warnings`
 - `cargo test --locked --offline --all-targets --all-features`
-- `ruff check tests benchmarks/concurrency.py scripts`
-- `ty check tests benchmarks/concurrency.py scripts` (Astral's Python type checker)
+- `ruff check tests benchmarks/concurrency.py scripts conformance`
+- `ty check tests benchmarks/concurrency.py scripts conformance` (Astral's Python type checker)
 - `python3 scripts/check_complexity.py`
 - `python3 -m unittest discover -s tests -p 'test_*.py'`
+- Actionlint for the conformance CI workflow.
 - Nixfmt and ShellCheck for the flake, verification scripts and commit hook.
 
 Python checks cover the Docker integration harness, concurrency benchmark, and
@@ -83,7 +84,7 @@ Linux/macOS x86_64/aarch64 outputs, but only x86_64-linux was exercised here.
 ## Cyclomatic complexity
 
 `pyproject.toml` sets `tool.rustybouncer.max-cyclomatic-complexity = 30`. Every Rust
-and Python function/closure found under `src`, `tests`, `benchmarks`, and `scripts`
+and Python function/closure found under `src`, `tests`, `benchmarks`, `scripts`, and `conformance`
 is measured using rust-code-analysis's tree-sitter parser. The gate fails when
 **per-function McCabe cyclomatic complexity is greater than 30**: 30 passes, 31 fails.
 Nested function totals are subtracted from the enclosing scope's aggregate, and
@@ -100,7 +101,7 @@ closures have separate regression cases: their violations must be reported
 without incorrectly charging their complexity to the enclosing function.
 
 The initial reliable baseline found classifier CC45 and router session CC54.
-Helper extraction brought them below the limit (the project peak is currently
+Helper extraction brought them below the limit (the project peak immediately after that refactor was
 CC23). Lizard was evaluated but rejected for Rust because it misidentified function
 boundaries in this source; it is not a dependency or enforcement tool.
 
@@ -119,3 +120,8 @@ python3 benchmarks/concurrency.py
 
 Run the failover suite when routing, transaction state, discovery, or protocol
 behavior changes. Saved benchmark results do not replace correctness checks.
+
+The dev shell includes Psycopg for endpoint-only conformance and PgBouncer for
+the optional reference adapter. Conformance harness unit tests run offline in
+Nix verification; live endpoint scenarios run explicitly or in the CI workflow.
+See [the conformance guide](../conformance/README.md).

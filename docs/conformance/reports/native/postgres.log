@@ -1,0 +1,126 @@
+2026-11-07 16:26:06.533 CST [3128277] LOG:  starting PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit
+2026-11-07 16:26:06.533 CST [3128277] LOG:  listening on IPv4 address "127.0.0.1", port 50563
+2026-11-07 16:26:06.533 CST [3128277] LOG:  listening on Unix socket "/tmp/nix-shell.hyBFFq/pooler-conformance-_ktxbdqn/.s.PGSQL.50563"
+2026-11-07 16:26:06.534 CST [3128291] LOG:  database system was shut down at 2026-11-07 16:26:06 CST
+2026-11-07 16:26:06.535 CST [3128277] LOG:  database system is ready to accept connections
+2026-11-07 16:26:07.192 CST [3128493] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 16:26:07.192 CST [3128493] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 16:26:07.192 CST [3128493] STATEMENT:  INSERT INTO "conformance_ba12d854446446b885b4a97df649fba5"."records" VALUES (1, 'owned')
+2026-11-07 16:26:07.193 CST [3128493] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 16:26:07.193 CST [3128493] STATEMENT:  SELECT 1
+2026-11-07 16:26:07.206 CST [3128798] ERROR:  could not serialize access due to concurrent update
+2026-11-07 16:26:07.206 CST [3128798] STATEMENT:  UPDATE "conformance_ff39f91a572c45c8ab846a3327d73da8"."records" SET value='b' WHERE id=1
+2026-11-07 16:26:07.226 CST [3128493] ERROR:  division by zero
+2026-11-07 16:26:07.226 CST [3128493] STATEMENT:  SELECT 1/$1::integer
+2026-11-07 16:26:07.293 CST [3128493] ERROR:  division by zero
+2026-11-07 16:26:07.293 CST [3128493] STATEMENT:  SELECT 1/0
+2026-11-07 16:26:11.006 CST [3128493] ERROR:  canceling statement due to user request
+2026-11-07 16:26:11.006 CST [3128493] STATEMENT:  SELECT pg_sleep(24.0)
+2026-11-07 16:26:11.052 CST [3128493] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.062 CST [3130227] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.080 CST [3128277] LOG:  received fast shutdown request
+2026-11-07 16:26:11.080 CST [3128277] LOG:  aborting any active transactions
+2026-11-07 16:26:11.080 CST [3131330] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.080 CST [3131321] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.081 CST [3128277] LOG:  background worker "logical replication launcher" (PID 3128301) exited with exit code 1
+2026-11-07 16:26:11.081 CST [3128289] LOG:  shutting down
+2026-11-07 16:26:11.081 CST [3128289] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 16:26:11.082 CST [3131335] FATAL:  the database system is shutting down
+2026-11-07 16:26:11.082 CST [3128289] LOG:  checkpoint complete: wrote 96 buffers (0.6%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=258, longest=0.001 s, average=0.000 s; distance=1448 kB, estimate=1448 kB; lsn=0/18D0028, redo lsn=0/18D0028
+2026-11-07 16:26:11.084 CST [3128277] LOG:  database system is shut down
+2026-11-07 16:26:11.190 CST [3131373] LOG:  starting PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit
+2026-11-07 16:26:11.190 CST [3131373] LOG:  listening on IPv4 address "127.0.0.1", port 50563
+2026-11-07 16:26:11.190 CST [3131373] LOG:  listening on Unix socket "/tmp/nix-shell.hyBFFq/pooler-conformance-_ktxbdqn/.s.PGSQL.50563"
+2026-11-07 16:26:11.191 CST [3131383] LOG:  database system was shut down at 2026-11-07 16:26:11 CST
+2026-11-07 16:26:11.192 CST [3131373] LOG:  database system is ready to accept connections
+2026-11-07 16:26:11.293 CST [3131474] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.299 CST [3131484] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:11.914 CST [3131486] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 16:26:11.914 CST [3131486] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 16:26:11.914 CST [3131486] STATEMENT:  INSERT INTO "conformance_22d6850e53c9455194f86181c7381af5"."records" VALUES (1, 'owned')
+2026-11-07 16:26:11.915 CST [3131486] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 16:26:11.915 CST [3131486] STATEMENT:  SELECT 1
+2026-11-07 16:26:11.927 CST [3131876] ERROR:  could not serialize access due to concurrent update
+2026-11-07 16:26:11.927 CST [3131876] STATEMENT:  UPDATE "conformance_b53d5d608696448a80662d3720dc9b30"."records" SET value='b' WHERE id=1
+2026-11-07 16:26:11.945 CST [3131486] ERROR:  division by zero
+2026-11-07 16:26:11.945 CST [3131486] STATEMENT:  SELECT 1/$1::integer
+2026-11-07 16:26:12.014 CST [3131486] ERROR:  division by zero
+2026-11-07 16:26:12.014 CST [3131486] STATEMENT:  SELECT 1/0
+2026-11-07 16:26:15.679 CST [3131486] ERROR:  canceling statement due to user request
+2026-11-07 16:26:15.679 CST [3131486] STATEMENT:  SELECT pg_sleep(24.0)
+2026-11-07 16:26:15.725 CST [3131486] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:15.736 CST [3133121] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:15.753 CST [3131373] LOG:  received fast shutdown request
+2026-11-07 16:26:15.753 CST [3131373] LOG:  aborting any active transactions
+2026-11-07 16:26:15.753 CST [3134298] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:15.753 CST [3134289] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:15.754 CST [3131373] LOG:  background worker "logical replication launcher" (PID 3131387) exited with exit code 1
+2026-11-07 16:26:15.754 CST [3131381] LOG:  shutting down
+2026-11-07 16:26:15.754 CST [3131381] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 16:26:15.755 CST [3131381] LOG:  checkpoint complete: wrote 92 buffers (0.6%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=277, longest=0.001 s, average=0.000 s; distance=1522 kB, estimate=1522 kB; lsn=0/1A4CBB8, redo lsn=0/1A4CBB8
+2026-11-07 16:26:15.757 CST [3131373] LOG:  database system is shut down
+2026-11-07 16:26:15.863 CST [3134334] LOG:  starting PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit
+2026-11-07 16:26:15.863 CST [3134334] LOG:  listening on IPv4 address "127.0.0.1", port 50563
+2026-11-07 16:26:15.863 CST [3134334] LOG:  listening on Unix socket "/tmp/nix-shell.hyBFFq/pooler-conformance-_ktxbdqn/.s.PGSQL.50563"
+2026-11-07 16:26:15.864 CST [3134343] LOG:  database system was shut down at 2026-11-07 16:26:15 CST
+2026-11-07 16:26:15.865 CST [3134334] LOG:  database system is ready to accept connections
+2026-11-07 16:26:15.966 CST [3134375] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:15.972 CST [3134385] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.449 CST [3134689] LOG:  unexpected EOF on client connection with an open transaction
+2026-11-07 16:26:16.479 CST [3134712] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 16:26:16.479 CST [3134712] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 16:26:16.479 CST [3134712] STATEMENT:  INSERT INTO "conformance_a891487d7ab440cbac0ea51104e19aa6"."records" VALUES (1, 'owned')
+2026-11-07 16:26:16.480 CST [3134712] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 16:26:16.480 CST [3134712] STATEMENT:  SELECT 1
+2026-11-07 16:26:16.494 CST [3134720] ERROR:  could not serialize access due to concurrent update
+2026-11-07 16:26:16.494 CST [3134720] STATEMENT:  UPDATE "conformance_4f4f965948104842ac0759b77c74fcf9"."records" SET value='b' WHERE id=1
+2026-11-07 16:26:16.546 CST [3134773] ERROR:  division by zero
+2026-11-07 16:26:16.546 CST [3134773] STATEMENT:  SELECT 1/0
+2026-11-07 16:26:16.731 CST [3135017] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.743 CST [3135025] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.761 CST [3134334] LOG:  received fast shutdown request
+2026-11-07 16:26:16.761 CST [3134334] LOG:  aborting any active transactions
+2026-11-07 16:26:16.761 CST [3135039] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.761 CST [3134422] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.761 CST [3134387] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.762 CST [3134334] LOG:  background worker "logical replication launcher" (PID 3134346) exited with exit code 1
+2026-11-07 16:26:16.762 CST [3134341] LOG:  shutting down
+2026-11-07 16:26:16.762 CST [3134341] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 16:26:16.763 CST [3134341] LOG:  checkpoint complete: wrote 105 buffers (0.6%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=278, longest=0.001 s, average=0.000 s; distance=1556 kB, estimate=1556 kB; lsn=0/1BD1D90, redo lsn=0/1BD1D90
+2026-11-07 16:26:16.766 CST [3134334] LOG:  database system is shut down
+2026-11-07 16:26:16.871 CST [3135088] LOG:  starting PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit
+2026-11-07 16:26:16.871 CST [3135088] LOG:  listening on IPv4 address "127.0.0.1", port 50563
+2026-11-07 16:26:16.871 CST [3135088] LOG:  listening on Unix socket "/tmp/nix-shell.hyBFFq/pooler-conformance-_ktxbdqn/.s.PGSQL.50563"
+2026-11-07 16:26:16.872 CST [3135097] LOG:  database system was shut down at 2026-11-07 16:26:16 CST
+2026-11-07 16:26:16.873 CST [3135088] LOG:  database system is ready to accept connections
+2026-11-07 16:26:16.975 CST [3135141] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:16.981 CST [3135146] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:17.218 CST [3135349] LOG:  unexpected EOF on client connection with an open transaction
+2026-11-07 16:26:17.246 CST [3135366] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 16:26:17.246 CST [3135366] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 16:26:17.246 CST [3135366] STATEMENT:  INSERT INTO "conformance_836116e1e4c04fb0a367ca115f9f872a"."records" VALUES (1, 'owned')
+2026-11-07 16:26:17.246 CST [3135366] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 16:26:17.246 CST [3135366] STATEMENT:  SELECT 1
+2026-11-07 16:26:17.259 CST [3135374] ERROR:  could not serialize access due to concurrent update
+2026-11-07 16:26:17.259 CST [3135374] STATEMENT:  UPDATE "conformance_7afae22a6e304c27af9c8bfc1a667f37"."records" SET value='b' WHERE id=1
+2026-11-07 16:26:17.311 CST [3135416] ERROR:  division by zero
+2026-11-07 16:26:17.311 CST [3135416] STATEMENT:  SELECT 1/0
+2026-11-07 16:26:17.494 CST [3135580] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:17.506 CST [3135587] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:17.524 CST [3135088] LOG:  received fast shutdown request
+2026-11-07 16:26:17.524 CST [3135088] LOG:  aborting any active transactions
+2026-11-07 16:26:17.524 CST [3135601] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:17.524 CST [3135088] LOG:  background worker "logical replication launcher" (PID 3135103) exited with exit code 1
+2026-11-07 16:26:17.525 CST [3135095] LOG:  shutting down
+2026-11-07 16:26:17.525 CST [3135095] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 16:26:17.526 CST [3135095] LOG:  checkpoint complete: wrote 95 buffers (0.6%), wrote 3 SLRU buffers; 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=277, longest=0.001 s, average=0.000 s; distance=1512 kB, estimate=1512 kB; lsn=0/1D4C098, redo lsn=0/1D4C098
+2026-11-07 16:26:17.528 CST [3135088] LOG:  database system is shut down
+2026-11-07 16:26:17.633 CST [3135750] LOG:  starting PostgreSQL 18.6 on x86_64-pc-linux-gnu, compiled by clang version 21.1.8, 64-bit
+2026-11-07 16:26:17.633 CST [3135750] LOG:  listening on IPv4 address "127.0.0.1", port 50563
+2026-11-07 16:26:17.633 CST [3135750] LOG:  listening on Unix socket "/tmp/nix-shell.hyBFFq/pooler-conformance-_ktxbdqn/.s.PGSQL.50563"
+2026-11-07 16:26:17.635 CST [3135759] LOG:  database system was shut down at 2026-11-07 16:26:17 CST
+2026-11-07 16:26:17.638 CST [3135750] LOG:  database system is ready to accept connections
+2026-11-07 16:26:17.737 CST [3135797] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:17.743 CST [3135802] FATAL:  terminating connection due to administrator command
+2026-11-07 16:26:18.317 CST [3135750] LOG:  received immediate shutdown request
+2026-11-07 16:26:18.319 CST [3135750] LOG:  database system is shut down

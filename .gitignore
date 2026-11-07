@@ -4,3 +4,7 @@ __pycache__/
 .direnv/
 .ruff_cache/
 /result
+
+.venv/
+/conformance-results.json
+/conformance-results.xml

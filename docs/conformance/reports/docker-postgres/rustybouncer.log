@@ -1,0 +1,21 @@
+2026-11-07T22:26:07.961316Z  INFO rustybouncer: rustybouncer ready listen=127.0.0.1:60241
+2026-11-07T22:26:07.964171Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [], ambiguous: false, generation: 1 }
+2026-11-07T22:26:08.010917Z  WARN rustybouncer: session ended peer=127.0.0.1:43120 error=unexpected end of file
+2026-11-07T22:26:12.512873Z  INFO rustybouncer: topology changed next=Topology { primary: None, replicas: [], ambiguous: false, generation: 2 }
+2026-11-07T22:26:12.771586Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [], ambiguous: false, generation: 3 }
+2026-11-07T22:26:18.495467Z  INFO rustybouncer: topology changed next=Topology { primary: None, replicas: [], ambiguous: false, generation: 4 }
+2026-11-07T22:26:18.703824Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [], ambiguous: false, generation: 5 }
+2026-11-07T22:26:20.715820Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:47572
+2026-11-07T22:26:20.858479Z  WARN rustybouncer: session ended peer=127.0.0.1:47586 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:20.872942Z  WARN rustybouncer: session ended peer=127.0.0.1:47602 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:20.926629Z  INFO rustybouncer: topology changed next=Topology { primary: None, replicas: [], ambiguous: false, generation: 6 }
+2026-11-07T22:26:21.184633Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [], ambiguous: false, generation: 7 }
+2026-11-07T22:26:21.199839Z  WARN rustybouncer: session ended peer=127.0.0.1:47624 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:21.206465Z  WARN rustybouncer: session ended peer=127.0.0.1:47632 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:21.676699Z  WARN rustybouncer: client capacity reached; connection closed peer=127.0.0.1:48690
+2026-11-07T22:26:21.817002Z  WARN rustybouncer: session ended peer=127.0.0.1:48714 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:21.831833Z  WARN rustybouncer: session ended peer=127.0.0.1:48726 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:21.917047Z  INFO rustybouncer: topology changed next=Topology { primary: None, replicas: [], ambiguous: false, generation: 8 }
+2026-11-07T22:26:22.126122Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [], ambiguous: false, generation: 9 }
+2026-11-07T22:26:22.143716Z  WARN rustybouncer: session ended peer=127.0.0.1:48760 error=query was dispatched; outcome may be unknown and was not replayed
+2026-11-07T22:26:22.150714Z  WARN rustybouncer: session ended peer=127.0.0.1:48766 error=query was dispatched; outcome may be unknown and was not replayed

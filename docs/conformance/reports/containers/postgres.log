@@ -1,0 +1,204 @@
+The files belonging to this database system will be owned by user "postgres".
+This user must also own the server process.
+
+The database cluster will be initialized with locale "en_US.utf8".
+The default database encoding has accordingly been set to "UTF8".
+The default text search configuration will be set to "english".
+
+Data page checksums are disabled.
+
+fixing permissions on existing directory /var/lib/postgresql/data ... ok
+creating subdirectories ... ok
+selecting dynamic shared memory implementation ... posix
+selecting default max_connections ... 100
+selecting default shared_buffers ... 128MB
+selecting default time zone ... Etc/UTC
+creating configuration files ... ok
+running bootstrap script ... ok
+performing post-bootstrap initialization ... ok
+syncing data to disk ... ok
+
+
+Success. You can now start the database server using:
+
+    pg_ctl -D /var/lib/postgresql/data -l logfile start
+
+waiting for server to start....2026-11-07 22:27:19.487 UTC [60] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:19.487 UTC [60] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:19.489 UTC [63] LOG:  database system was shut down at 2026-11-07 22:27:19 UTC
+2026-11-07 22:27:19.491 UTC [60] LOG:  database system is ready to accept connections
+ done
+server started
+
+/usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+
+2026-11-07 22:27:19.596 UTC [60] LOG:  received fast shutdown request
+waiting for server to shut down....2026-11-07 22:27:19.616 UTC [60] LOG:  aborting any active transactions
+2026-11-07 22:27:19.617 UTC [60] LOG:  background worker "logical replication launcher" (PID 66) exited with exit code 1
+2026-11-07 22:27:19.618 UTC [61] LOG:  shutting down
+2026-11-07 22:27:19.618 UTC [61] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 22:27:19.621 UTC [61] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/14F2A58, redo lsn=0/14F2A58
+2026-11-07 22:27:19.622 UTC [60] LOG:  database system is shut down
+ done
+server stopped
+
+PostgreSQL init process complete; ready for start up.
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+
+PostgreSQL Database directory appears to contain a database; Skipping initialization
+
+********************************************************************************
+WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+         anyone with access to the Postgres port to access your database without
+         a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+         documentation about "trust":
+         https://www.postgresql.org/docs/current/auth-trust.html
+         In Docker's default configuration, this is effectively any other
+         container on the same system.
+
+         It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+         it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+         "docker run".
+********************************************************************************
+initdb: warning: enabling "trust" authentication for local connections
+initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-11-07 22:27:19.705 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:19.705 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07 22:27:19.705 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07 22:27:19.706 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:19.707 UTC [86] LOG:  database system was shut down at 2026-11-07 22:27:19 UTC
+2026-11-07 22:27:19.709 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07 22:27:19.830 UTC [96] FATAL:  database "conformance" does not exist
+2026-11-07 22:27:20.464 UTC [100] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 22:27:20.464 UTC [100] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 22:27:20.464 UTC [100] STATEMENT:  INSERT INTO "conformance_c2edfa869e454d84930d0cc02b4ac8b7"."records" VALUES (1, 'owned')
+2026-11-07 22:27:20.465 UTC [100] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 22:27:20.465 UTC [100] STATEMENT:  SELECT 1
+2026-11-07 22:27:20.479 UTC [139] ERROR:  could not serialize access due to concurrent update
+2026-11-07 22:27:20.479 UTC [139] STATEMENT:  UPDATE "conformance_5db9098e4b9f4e4fb0f407a581fadd1b"."records" SET value='b' WHERE id=1
+2026-11-07 22:27:20.501 UTC [100] ERROR:  division by zero
+2026-11-07 22:27:20.501 UTC [100] STATEMENT:  SELECT 1/$1::integer
+2026-11-07 22:27:20.573 UTC [100] ERROR:  division by zero
+2026-11-07 22:27:20.573 UTC [100] STATEMENT:  SELECT 1/0
+2026-11-07 22:27:24.385 UTC [100] ERROR:  canceling statement due to user request
+2026-11-07 22:27:24.385 UTC [100] STATEMENT:  SELECT pg_sleep(24.0)
+2026-11-07 22:27:24.461 UTC [100] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:24.475 UTC [203] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:24.513 UTC [1] LOG:  received fast shutdown request
+2026-11-07 22:27:24.514 UTC [1] LOG:  aborting any active transactions
+2026-11-07 22:27:24.514 UTC [298] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:24.514 UTC [291] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:24.515 UTC [1] LOG:  background worker "logical replication launcher" (PID 89) exited with exit code 1
+2026-11-07 22:27:24.515 UTC [84] LOG:  shutting down
+2026-11-07 22:27:24.515 UTC [84] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 22:27:24.538 UTC [84] LOG:  checkpoint complete: wrote 101 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.019 s, total=0.023 s; sync files=258, longest=0.001 s, average=0.001 s; distance=1226 kB, estimate=1226 kB; lsn=0/16252B8, redo lsn=0/16252B8
+2026-11-07 22:27:24.540 UTC [1] LOG:  database system is shut down
+2026-11-07 22:27:24.749 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:24.749 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07 22:27:24.749 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07 22:27:24.749 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:24.751 UTC [29] LOG:  database system was shut down at 2026-11-07 22:27:24 UTC
+2026-11-07 22:27:24.752 UTC [30] FATAL:  the database system is starting up
+2026-11-07 22:27:24.753 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07 22:27:26.006 UTC [56] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:26.013 UTC [60] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:26.794 UTC [61] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 22:27:26.794 UTC [61] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 22:27:26.794 UTC [61] STATEMENT:  INSERT INTO "conformance_ff7f07fc501047228aaef2841b3144ee"."records" VALUES (1, 'owned')
+2026-11-07 22:27:26.794 UTC [61] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 22:27:26.794 UTC [61] STATEMENT:  SELECT 1
+2026-11-07 22:27:26.823 UTC [121] ERROR:  could not serialize access due to concurrent update
+2026-11-07 22:27:26.823 UTC [121] STATEMENT:  UPDATE "conformance_eb4ec4d3d912470ca45c041001e2151e"."records" SET value='b' WHERE id=1
+2026-11-07 22:27:26.862 UTC [61] ERROR:  division by zero
+2026-11-07 22:27:26.862 UTC [61] STATEMENT:  SELECT 1/$1::integer
+2026-11-07 22:27:27.003 UTC [61] ERROR:  division by zero
+2026-11-07 22:27:27.003 UTC [61] STATEMENT:  SELECT 1/0
+2026-11-07 22:27:30.706 UTC [61] ERROR:  canceling statement due to user request
+2026-11-07 22:27:30.706 UTC [61] STATEMENT:  SELECT pg_sleep(24.0)
+2026-11-07 22:27:30.772 UTC [61] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:30.784 UTC [185] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:30.819 UTC [1] LOG:  received fast shutdown request
+2026-11-07 22:27:30.819 UTC [1] LOG:  aborting any active transactions
+2026-11-07 22:27:30.819 UTC [279] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:30.819 UTC [273] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:30.820 UTC [1] LOG:  background worker "logical replication launcher" (PID 33) exited with exit code 1
+2026-11-07 22:27:30.820 UTC [27] LOG:  shutting down
+2026-11-07 22:27:30.821 UTC [27] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 22:27:30.847 UTC [27] LOG:  checkpoint complete: wrote 92 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.022 s, total=0.027 s; sync files=277, longest=0.001 s, average=0.001 s; distance=1332 kB, estimate=1332 kB; lsn=0/1772620, redo lsn=0/1772620
+2026-11-07 22:27:30.849 UTC [1] LOG:  database system is shut down
+2026-11-07 22:27:31.056 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:31.056 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07 22:27:31.056 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07 22:27:31.057 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:31.059 UTC [29] LOG:  database system was shut down at 2026-11-07 22:27:30 UTC
+2026-11-07 22:27:31.061 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07 22:27:32.351 UTC [57] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:32.358 UTC [61] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:32.800 UTC [113] LOG:  unexpected EOF on client connection with an open transaction
+2026-11-07 22:27:32.834 UTC [124] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 22:27:32.834 UTC [124] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 22:27:32.834 UTC [124] STATEMENT:  INSERT INTO "conformance_3b056833bb134732967e461a3be54e44"."records" VALUES (1, 'owned')
+2026-11-07 22:27:32.835 UTC [124] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 22:27:32.835 UTC [124] STATEMENT:  SELECT 1
+2026-11-07 22:27:32.851 UTC [128] ERROR:  could not serialize access due to concurrent update
+2026-11-07 22:27:32.851 UTC [128] STATEMENT:  UPDATE "conformance_55095629538c4607abffd01b90053f22"."records" SET value='b' WHERE id=1
+2026-11-07 22:27:32.921 UTC [152] ERROR:  division by zero
+2026-11-07 22:27:32.921 UTC [152] STATEMENT:  SELECT 1/0
+2026-11-07 22:27:33.139 UTC [237] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.153 UTC [241] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.188 UTC [1] LOG:  received fast shutdown request
+2026-11-07 22:27:33.188 UTC [1] LOG:  aborting any active transactions
+2026-11-07 22:27:33.188 UTC [248] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.188 UTC [65] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.188 UTC [62] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.189 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+2026-11-07 22:27:33.189 UTC [27] LOG:  shutting down
+2026-11-07 22:27:33.190 UTC [27] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 22:27:33.213 UTC [27] LOG:  checkpoint complete: wrote 103 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.020 s, total=0.025 s; sync files=278, longest=0.001 s, average=0.001 s; distance=1355 kB, estimate=1355 kB; lsn=0/18C5290, redo lsn=0/18C5290
+2026-11-07 22:27:33.215 UTC [1] LOG:  database system is shut down
+2026-11-07 22:27:33.422 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:33.422 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07 22:27:33.422 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07 22:27:33.423 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:33.425 UTC [29] LOG:  database system was shut down at 2026-11-07 22:27:33 UTC
+2026-11-07 22:27:33.427 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07 22:27:33.456 UTC [37] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.463 UTC [39] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:33.734 UTC [149] LOG:  unexpected EOF on client connection with an open transaction
+2026-11-07 22:27:33.768 UTC [160] ERROR:  duplicate key value violates unique constraint "records_pkey"
+2026-11-07 22:27:33.768 UTC [160] DETAIL:  Key (id)=(1) already exists.
+2026-11-07 22:27:33.768 UTC [160] STATEMENT:  INSERT INTO "conformance_2bb0aa6c555248fa9d26468fe382b6e0"."records" VALUES (1, 'owned')
+2026-11-07 22:27:33.768 UTC [160] ERROR:  current transaction is aborted, commands ignored until end of transaction block
+2026-11-07 22:27:33.768 UTC [160] STATEMENT:  SELECT 1
+2026-11-07 22:27:33.783 UTC [164] ERROR:  could not serialize access due to concurrent update
+2026-11-07 22:27:33.783 UTC [164] STATEMENT:  UPDATE "conformance_a72ab29a87e84fb29ada534f3437af3c"."records" SET value='b' WHERE id=1
+2026-11-07 22:27:33.850 UTC [187] ERROR:  division by zero
+2026-11-07 22:27:33.850 UTC [187] STATEMENT:  SELECT 1/0
+2026-11-07 22:27:34.071 UTC [272] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:34.084 UTC [277] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:34.120 UTC [1] LOG:  received fast shutdown request
+2026-11-07 22:27:34.120 UTC [1] LOG:  aborting any active transactions
+2026-11-07 22:27:34.120 UTC [284] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:34.122 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+2026-11-07 22:27:34.123 UTC [27] LOG:  shutting down
+2026-11-07 22:27:34.123 UTC [285] FATAL:  the database system is shutting down
+2026-11-07 22:27:34.124 UTC [27] LOG:  checkpoint starting: shutdown immediate
+2026-11-07 22:27:34.151 UTC [27] LOG:  checkpoint complete: wrote 88 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.023 s, total=0.028 s; sync files=276, longest=0.001 s, average=0.001 s; distance=1341 kB, estimate=1341 kB; lsn=0/1A14788, redo lsn=0/1A14788
+2026-11-07 22:27:34.154 UTC [1] LOG:  database system is shut down
+2026-11-07 22:27:34.344 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-07 22:27:34.344 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-07 22:27:34.344 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-07 22:27:34.345 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-07 22:27:34.347 UTC [29] LOG:  database system was shut down at 2026-11-07 22:27:34 UTC
+2026-11-07 22:27:34.348 UTC [1] LOG:  database system is ready to accept connections
+2026-11-07 22:27:34.397 UTC [37] FATAL:  terminating connection due to administrator command
+2026-11-07 22:27:34.404 UTC [39] FATAL:  terminating connection due to administrator command
