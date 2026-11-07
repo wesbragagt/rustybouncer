@@ -9,46 +9,74 @@ import psycopg
 from psycopg import AsyncClientCursor, AsyncConnection, AsyncCursor, pq
 
 
+def positive_seconds(seconds: float) -> None:
+    if type(seconds) not in (int, float) or not math.isfinite(seconds) or seconds <= 0:
+        raise ValueError("deadline must be finite and positive")
+
+
+async def stop_owned(task: asyncio.Future, seconds: float = 1) -> None:
+    """Cancel and join before disposing sockets (readiness registrations own fds)."""
+    if not task.done():
+        task.cancel()
+    done, _ = await asyncio.wait({task}, timeout=seconds)
+    if not done:
+        task.add_done_callback(lambda future: None if future.cancelled() else future.exception())
+        raise RuntimeError("owned task ignored cancellation; Python cannot forcibly stop it")
+    if not task.cancelled():
+        task.exception()
+
+
 async def bounded(operation: Awaitable[Any], seconds: float, abort: Callable[[], None]) -> Any:
+    positive_seconds(seconds)
     task = asyncio.ensure_future(operation)
     try:
         done, _ = await asyncio.wait({task}, timeout=seconds)
-        if task in done:
-            return task.result()
-        raise TimeoutError(f"operation did not complete within {seconds:g}s; connection discarded")
-    finally:
-        if not task.done():
+        if task not in done:
+            raise TimeoutError(f"operation did not complete within {seconds:g}s; connection discarded")
+    except BaseException as primary:
+        try:
+            await stop_owned(task)
             abort()
-            task.cancel()
-            done, _ = await asyncio.wait({task}, timeout=1)
-            if not done:
-                raise RuntimeError("driver task did not stop after connection disposal")
-        if task.done() and not task.cancelled():
-            task.exception()  # Retrieve failures even when the caller was cancelled.
-
+        except BaseException as cleanup:
+            if not task.done():
+                task.add_done_callback(lambda _: abort())
+            raise BaseExceptionGroup("operation and disposal failed", [primary, cleanup]) from None
+        raise
+    return task.result()
 
 
 class Client:
     def __init__(self, connection: AsyncConnection[Any], timeout: float, evidence: list):
+        positive_seconds(timeout)
         self.connection = connection
         self.timeout = timeout
+        self.cleanup_timeout = timeout
         self.evidence = evidence
 
     @classmethod
     async def connect(cls, dsn: str, timeout: float, evidence: list, extended: bool = False, **kwargs: Any) -> "Client":
         kwargs.setdefault("client_encoding", "UTF8")
         factory = AsyncCursor if extended else AsyncClientCursor
-        connection = await asyncio.wait_for(AsyncConnection.connect(
-            dsn, autocommit=True, cursor_factory=factory, prepare_threshold=None,
-            connect_timeout=max(1, math.ceil(timeout)), **kwargs,
-        ), timeout + 1)
+        positive_seconds(timeout)
+        acquired: list[AsyncConnection[Any]] = []
+        async def acquire() -> AsyncConnection[Any]:
+            connection = await AsyncConnection.connect(
+                dsn, autocommit=True, cursor_factory=factory, prepare_threshold=None,
+                connect_timeout=max(1, math.ceil(timeout)), **kwargs,
+            )
+            acquired.append(connection)
+            return connection
+        def discard() -> None:
+            for connection in acquired:
+                connection.pgconn.finish()
+        connection = await bounded(acquire(), timeout, discard)
         return cls(connection, timeout, evidence)
 
     def abort(self) -> None:
         self.connection.pgconn.finish()
 
     async def close(self) -> None:
-        await self.connection.close()
+        await bounded(self.connection.close(), self.cleanup_timeout, self.abort)
 
     async def query(self, query: Any, params: Any = None) -> list:
         started = time.monotonic()

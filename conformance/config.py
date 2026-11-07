@@ -60,7 +60,10 @@ class Contract:
         return cls(data["name"], data["mode"], features, settings, actions)
 
     def number(self, key: str, default: float) -> float:
-        return float(self.settings.get(key, default))
+        value = self.settings.get(key, default)
+        if type(value) not in (int, float) or not math.isfinite(value) or value <= 0:
+            raise ValueError(f"{key} must be finite and positive")
+        return float(value)
 
 
 def endpoints() -> tuple[str, str]:
@@ -73,7 +76,7 @@ def endpoints() -> tuple[str, str]:
 def validate_settings(features: dict, settings: dict) -> None:
     if not isinstance(settings, dict):
         raise ValueError("settings must be an object")
-    for key in ("operation_timeout", "recovery_timeout", "connect_timeout", "observation_window", "poll_interval"):
+    for key in ("operation_timeout", "recovery_timeout", "connect_timeout", "observation_window", "poll_interval", "cleanup_timeout"):
         value = settings.get(key, 10 if key != "poll_interval" else 0.05)
         if type(value) not in (int, float) or not math.isfinite(value) or value <= 0:
             raise ValueError(f"{key} must be finite and positive")
