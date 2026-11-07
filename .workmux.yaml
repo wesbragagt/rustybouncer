@@ -1,0 +1,20 @@
+# External agents use isolated, tool-provisioned worktrees. Workmux coordinates
+# their shells, verification and reviewed merge-back without launching extra agents.
+main_branch: main
+merge_strategy: merge
+merge_keep: true
+window_prefix: "rustybouncer/"
+mode: session
+agent: codex
+windows:
+  - name: coordination
+    panes:
+      - command: zsh
+post_create:
+  - bash scripts/install-hooks
+pre_merge:
+  - nix flake check --no-update-lock-file
+pre_remove: []
+files:
+  copy: []
+  symlink: []
