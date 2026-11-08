@@ -249,8 +249,10 @@ Alerts are example thresholds, not an SLO: scrape down/missing for 1m, no primar
 or ambiguous after discovery for 1m, initial discovery pending for 1m, stale
 discovery for 30s, >90% admission for 5m, >5% router/delivery errors and >20%
 additional read selections for 5m with >1 Q/s. Brief promotions should remain
-pending. Query/topology alerts require routing enabled and up=1; capacity remains
-meaningful in passthrough. Missing all targets and a missing routing contract gauge
+pending. Query alerts require routing enabled and up=1. Topology, discovery and
+capacity alerts apply to both routed and passthrough modes: both depend on
+primary discovery. These alerts require up=1. Missing all targets and a missing
+routing contract gauge
 have separate alerts. Per-target up=0 catches known failed targets. To detect one
 target removed from service discovery while others remain, maintain an external
 expected-instance inventory and compare it to up; absent(up) only detects an

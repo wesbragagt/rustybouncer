@@ -77,7 +77,7 @@
       ]
     },
     {
-      "name": "no primary disabled",
+      "name": "no primary passthrough",
       "interval": "5s",
       "input_series": [
         {
@@ -101,7 +101,20 @@
         {
           "eval_time": "2m",
           "alertname": "RustybouncerNoPrimary",
-          "exp_alerts": []
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "role": "primary",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No eligible unambiguous primary after discovery"
+              }
+            }
+          ]
         }
       ]
     },
@@ -205,7 +218,7 @@
       ]
     },
     {
-      "name": "ambiguous disabled",
+      "name": "ambiguous passthrough",
       "interval": "5s",
       "input_series": [
         {
@@ -229,7 +242,19 @@
         {
           "eval_time": "2m",
           "alertname": "RustybouncerAmbiguousPrimary",
-          "exp_alerts": []
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Multiple writable nodes persist; investigate fencing"
+              }
+            }
+          ]
         }
       ]
     },
@@ -492,7 +517,7 @@
       ]
     },
     {
-      "name": "stale suppressed for passthrough",
+      "name": "stale applies to passthrough",
       "interval": "5s",
       "input_series": [
         {
@@ -516,7 +541,19 @@
         {
           "eval_time": "2m",
           "alertname": "RustybouncerDiscoveryStale",
-          "exp_alerts": []
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Discovery completion is stale for the configured probe profile"
+              }
+            }
+          ]
         }
       ]
     },
@@ -1235,6 +1272,115 @@
               "value": 0.5
             }
           ]
+        }
+      ]
+    },
+    {
+      "name": "startup pending in passthrough",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryNotStarted",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No discovery round has completed"
+              }
+            }
+          ]
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "unknown discovery profile in passthrough",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"custom\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"custom\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryProfileMissing",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "custom",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No matching discovery freshness budget; configure a reviewed profile"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "restart discovery becomes pending in passthrough",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x10 0+0x134"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+5x10 0+0x134"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
         }
       ]
     }

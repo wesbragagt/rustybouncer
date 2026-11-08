@@ -84,3 +84,20 @@ milestone. Root must integrate runtime and validation tracks, run the complete
 metrics plus failover/long-query suites and enabled/disabled benchmarks, confirm
 cadence matches the profile, and perform combined deployment acceptance. Root
 owns shared README/deployment links, workmux merge and checklist registration.
+
+## Coordinator review correction
+
+The original 32-scenario results above describe the delegate commit. Coordinator
+review found that topology alerts were gated on route_selects even though
+passthrough sessions also require discovery of an unambiguous primary. Removed
+that gate for no-primary, ambiguity, startup, freshness and profile alerts; query
+alerts remain gated. Profile alerts now also require successful scraping and the
+contract gauge.
+
+Updated three passthrough fault assertions and added passthrough startup, profile
+and restart cases. The complete corrected suite has 35 scenarios, 47 alert
+assertions and 12 PromQL assertions. Shellcheck, all three promtool config checks,
+24-rule validation and the complete unit suite passed using the same locked
+command above. [Full corrected promtool output](../../deploy/prometheus/evidence/promtool-review.log)
+is retained; the normal commit hook verifies the correction before commit. Live
+runtime and combined acceptance remain pending.

@@ -53,35 +53,35 @@ groups:
         annotations:
           summary: "Scrape succeeded but routing contract gauge is missing"
       - alert: RustybouncerNoPrimary
-        expr: (rustybouncer_topology_nodes{role="primary"} == 0) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        expr: (rustybouncer_topology_nodes{role="primary"} == 0) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
         for: 1m
         labels:
           severity: warning
         annotations:
           summary: "No eligible unambiguous primary after discovery"
       - alert: RustybouncerAmbiguousPrimary
-        expr: (rustybouncer_topology_ambiguous == 1) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        expr: (rustybouncer_topology_ambiguous == 1) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
         for: 1m
         labels:
           severity: warning
         annotations:
           summary: "Multiple writable nodes persist; investigate fencing"
       - alert: RustybouncerDiscoveryNotStarted
-        expr: (rustybouncer_topology_discovery_completed == 0) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        expr: (rustybouncer_topology_discovery_completed == 0) and on (job, instance) (up{job="rustybouncer"} == 1)
         for: 1m
         labels:
           severity: warning
         annotations:
           summary: "No discovery round has completed"
       - alert: RustybouncerDiscoveryStale
-        expr: (rustybouncer:discovery_age_seconds{discovery_profile="interval500ms_timeout1000ms"} > 15) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        expr: (rustybouncer:discovery_age_seconds{discovery_profile="interval500ms_timeout1000ms"} > 15) and on (job, instance) (up{job="rustybouncer"} == 1)
         for: 30s
         labels:
           severity: warning
         annotations:
           summary: "Discovery completion is stale for the configured probe profile"
       - alert: RustybouncerDiscoveryProfileMissing
-        expr: (rustybouncer_routing_enabled == 1) unless rustybouncer_routing_enabled{discovery_profile="interval500ms_timeout1000ms"}
+        expr: ((up{job="rustybouncer"} == 1) unless on (job, instance) rustybouncer_routing_enabled{discovery_profile="interval500ms_timeout1000ms"}) and on (job, instance) rustybouncer_routing_enabled
         for: 1m
         labels:
           severity: warning
