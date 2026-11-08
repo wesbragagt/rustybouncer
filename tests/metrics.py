@@ -254,9 +254,13 @@ class Metrics(unittest.TestCase):
 
     def test_dispatched_write_failure_is_not_replayed(self):
         client = self.client()
-        query = "INSERT INTO continuity SELECT 92, 'uncertain' FROM pg_sleep(3)"
+        query = "INSERT INTO continuity VALUES (92, 'uncertain')"
         before = self.snapshot()
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with contextlib.closing(f.Pg(f.port(self.cluster.nodes[0]))) as blocker, concurrent.futures.ThreadPoolExecutor() as executor:
+            # A table lock holds a recognized INSERT after dispatch. An unknown
+            # pg_sleep function would instead select the stateful metric kind.
+            blocker.query('BEGIN')
+            blocker.query('LOCK TABLE continuity IN ACCESS EXCLUSIVE MODE')
             future = executor.submit(client.query, query)
             self.assertEqual(self.active_node(query), 0)
             self.cluster.pause(0)
@@ -333,7 +337,8 @@ class Metrics(unittest.TestCase):
             # Excess sockets must close before the two-second read deadline.
             readable, _, _ = select.select(sockets, [], [], .5)
             self.assertGreaterEqual(len(readable), 16, '16-connection cap not enforced')
-            self.assertEqual(self.client().query('SELECT 87'), [['87']])
+            with contextlib.closing(self.cluster.connect()) as client:
+                self.assertEqual(client.query('SELECT 87'), [['87']])
             closed = 0
             started = time.monotonic()
             for sock in sockets:

@@ -51,6 +51,8 @@ Nix cache. The checks are:
 - Actionlint for the conformance CI workflow.
 - Promtool checks for all three scrape configurations, recording/alert rules and
   the complete synthetic rule suite via `bash deploy/prometheus/check.sh`.
+- Prometheus parsing of every shipped Grafana panel query via
+  `python3 scripts/check_grafana.py`.
 - Nixfmt and ShellCheck for the flake, verification scripts and commit hook.
 
 Python checks cover the Docker integration harness, concurrency benchmark, and

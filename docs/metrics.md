@@ -3,8 +3,11 @@
 This is the operations companion to the [reviewed contract](plans/prometheus-metrics.md).
 The [canonical checklist](../FEATURE_COMPLETENESS.md) remains authoritative:
 these assets support D04, H11, S10–S12, F11/F12 and Q01–Q08 without establishing
-their acceptance. Runtime implementation and live integration are separate
-dependencies; the operations evidence validates PromQL against synthetic series.
+their broader acceptance. Runtime metrics are opt-in; the operations evidence
+validates PromQL against synthetic series, independently of live endpoint tests.
+
+Start with the [Grafana dashboard recommendations](grafana.md), including the
+shipped [Rustybouncer Overview](../deploy/grafana/rustybouncer-overview.json).
 
 ## Measurement unit and privacy
 
@@ -119,8 +122,7 @@ runtime events can distinguish them without guessing from error strings.
 ## Enable and scrape privately
 
 The default is disabled: omit metrics_listen. Existing deployment manifests
-continue to leave it disabled. After the runtime implementation is integrated,
-add this top-level TOML setting to a private copy of your actual configuration,
+continue to leave it disabled. Add this top-level TOML setting to a private copy of your actual configuration,
 before any [[nodes]] tables:
 
 ```toml

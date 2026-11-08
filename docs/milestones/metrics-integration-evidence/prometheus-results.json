@@ -1,0 +1,394 @@
+{
+  "passed": true,
+  "q_messages": 50,
+  "baseline_read_messages": 5.0,
+  "seconds": 14.404798957053572,
+  "targets": {
+    "activeTargets": [
+      {
+        "discoveredLabels": {
+          "__address__": "127.0.0.1:41455",
+          "__always_scrape_classic_histograms__": "false",
+          "__convert_classic_histograms_to_nhcb__": "false",
+          "__metrics_path__": "/metrics",
+          "__scheme__": "http",
+          "__scrape_interval__": "1s",
+          "__scrape_native_histograms__": "false",
+          "__scrape_timeout__": "1s",
+          "job": "rustybouncer"
+        },
+        "labels": {
+          "instance": "127.0.0.1:41455",
+          "job": "rustybouncer"
+        },
+        "scrapePool": "rustybouncer",
+        "scrapeUrl": "http://127.0.0.1:41455/metrics",
+        "globalUrl": "http://icebox:41455/metrics",
+        "lastError": "",
+        "lastScrape": "2026-11-08T09:22:49.82617749-06:00",
+        "lastScrapeDuration": 0.000613061,
+        "health": "up",
+        "scrapeInterval": "1s",
+        "scrapeTimeout": "1s"
+      }
+    ],
+    "droppedTargets": [],
+    "droppedTargetCounts": {
+      "rustybouncer": 0
+    }
+  },
+  "rules": {
+    "groups": [
+      {
+        "name": "rustybouncer-alerts",
+        "file": "/home/publicuser/dev/rustybouncer/deploy/prometheus/rules.yml",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "RustybouncerScrapeDown",
+            "query": "up{job=\"rustybouncer\"} == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Metrics scrape unavailable; SQL health is unknown"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000129505,
+            "lastEvaluation": "2026-11-08T09:22:49.464209443-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerTargetsMissing",
+            "query": "absent(up{job=\"rustybouncer\"})",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "No rustybouncer scrape targets; check discovery and configuration"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 3.1149e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464342054-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerMetricContractMissing",
+            "query": "(up{job=\"rustybouncer\"} == 1) unless on (job, instance) rustybouncer_routing_enabled",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Scrape succeeded but routing contract gauge is missing"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 3.725e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464374516-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerNoPrimary",
+            "query": "(rustybouncer_topology_nodes{role=\"primary\"} == 0) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "No eligible unambiguous primary after discovery"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 5.6978e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464413109-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerAmbiguousPrimary",
+            "query": "(rustybouncer_topology_ambiguous == 1) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Multiple writable nodes persist; investigate fencing"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 3.173e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.46447156-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerDiscoveryNotStarted",
+            "query": "(rustybouncer_topology_discovery_completed == 0) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "No discovery round has completed"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 2.8284e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464504071-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerDiscoveryStale",
+            "query": "(rustybouncer:discovery_age_seconds{discovery_profile=\"interval500ms_timeout1000ms\"} > 15) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 30,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Discovery completion is stale for the configured probe profile"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 3.0618e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464533767-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "pending",
+            "name": "RustybouncerDiscoveryProfileMissing",
+            "query": "((up{job=\"rustybouncer\"} == 1) unless on (job, instance) rustybouncer_routing_enabled{discovery_profile=\"interval500ms_timeout1000ms\"}) and on (job, instance) rustybouncer_routing_enabled",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "No matching discovery freshness budget; configure a reviewed profile"
+            },
+            "alerts": [
+              {
+                "labels": {
+                  "alertname": "RustybouncerDiscoveryProfileMissing",
+                  "instance": "127.0.0.1:41455",
+                  "job": "rustybouncer",
+                  "severity": "warning"
+                },
+                "annotations": {
+                  "summary": "No matching discovery freshness budget; configure a reviewed profile"
+                },
+                "state": "pending",
+                "activeAt": "2026-11-08T15:22:49.463056632Z",
+                "value": "1e+00"
+              }
+            ],
+            "health": "ok",
+            "evaluationTime": 9.9849e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464567191-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerCapacityPressure",
+            "query": "(rustybouncer:client_utilization:ratio > 0.9) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Admitted clients exceed 90 percent of configured capacity"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 2.7222e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464668793-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerRouterFailures",
+            "query": "(rustybouncer:router_delivery_error_ratio:rate5m > 0.05) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Router or delivery errors exceed 5 percent with traffic"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 3.9835e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.46470406-06:00",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "RustybouncerReadRetryAmplification",
+            "query": "(rustybouncer:read_retry_amplification:rate5m > 0.2) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job=\"rustybouncer\"} == 1)",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "severity": "warning"
+            },
+            "annotations": {
+              "summary": "Additional read selections exceed 20 percent of read messages"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 4.7029e-05,
+            "lastEvaluation": "2026-11-08T09:22:49.464745067-06:00",
+            "type": "alerting"
+          }
+        ],
+        "interval": 5,
+        "limit": 0,
+        "evaluationTime": 0.000614083,
+        "lastEvaluation": "2026-11-08T09:22:49.464179837-06:00"
+      },
+      {
+        "name": "rustybouncer-recording",
+        "file": "/home/publicuser/dev/rustybouncer/deploy/prometheus/rules.yml",
+        "rules": [
+          {
+            "name": "rustybouncer:q_messages_per_second:rate5m",
+            "query": "sum by (job, instance) (rate(rustybouncer_queries_total[5m]))",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.00039599,
+            "lastEvaluation": "2026-11-08T09:22:50.509642685-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:router_delivery_error_ratio:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~\"router_error|delivery_error\"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000271404,
+            "lastEvaluation": "2026-11-08T09:22:50.510050838-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:sql_error_ratio:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~\"sql_error\"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000157748,
+            "lastEvaluation": "2026-11-08T09:22:50.510334185-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:aborted_ratio:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~\"aborted\"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.00010603,
+            "lastEvaluation": "2026-11-08T09:22:50.510495761-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:q_duration_p50_seconds:rate5m",
+            "query": "histogram_quantile(0.5, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000187185,
+            "lastEvaluation": "2026-11-08T09:22:50.510604987-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:q_duration_p95_seconds:rate5m",
+            "query": "histogram_quantile(0.95, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000117682,
+            "lastEvaluation": "2026-11-08T09:22:50.510795148-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:q_duration_p99_seconds:rate5m",
+            "query": "histogram_quantile(0.99, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000301761,
+            "lastEvaluation": "2026-11-08T09:22:50.510915526-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:client_utilization:ratio",
+            "query": "(rustybouncer_clients_active / rustybouncer_client_capacity) and (rustybouncer_client_capacity > 0)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 8.4249e-05,
+            "lastEvaluation": "2026-11-08T09:22:50.511228619-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:backend_connections:sum",
+            "query": "sum by (job, instance) (rustybouncer_backend_connections_active)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 3.6139e-05,
+            "lastEvaluation": "2026-11-08T09:22:50.511315683-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:attempts_per_q_message:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 9.7394e-05,
+            "lastEvaluation": "2026-11-08T09:22:50.511353916-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:read_retry_amplification:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_read_retries_total[5m])) / sum by (job, instance) (rate(rustybouncer_queries_total{kind=\"read\"}[5m]))) and on (job, instance) (sum by (job, instance) (rate(rustybouncer_queries_total{kind=\"read\"}[5m])) > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.00010544,
+            "lastEvaluation": "2026-11-08T09:22:50.511453334-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:attempt_failure_ratio:rate5m",
+            "query": "(sum by (job, instance) (rate(rustybouncer_query_attempts_total{outcome=~\"error|aborted\"}[5m])) / sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m]))) and on (job, instance) (sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m])) > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 0.000127672,
+            "lastEvaluation": "2026-11-08T09:22:50.511561369-06:00",
+            "type": "recording"
+          },
+          {
+            "name": "rustybouncer:discovery_age_seconds",
+            "query": "clamp_min(time() - rustybouncer_topology_last_completed_timestamp_seconds, 0) and (rustybouncer_topology_discovery_completed == 1)",
+            "labels": {},
+            "health": "ok",
+            "evaluationTime": 5.2169e-05,
+            "lastEvaluation": "2026-11-08T09:22:50.511691265-06:00",
+            "type": "recording"
+          }
+        ],
+        "interval": 5,
+        "limit": 0,
+        "evaluationTime": 0.002166183,
+        "lastEvaluation": "2026-11-08T09:22:50.509579926-06:00"
+      }
+    ]
+  }
+}

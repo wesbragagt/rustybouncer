@@ -65,9 +65,9 @@ deployment matrix remain open. Local kind/CNPG validation is linked below. See [
 
 ## Complete deployments
 
-[Prometheus operations](../docs/metrics.md) provides private native, Compose and
-CNPG scrape examples and tested rules. Runtime metrics integration and live
-deployment validation remain pending.
+[Prometheus operations](../docs/metrics.md) provides the opt-in endpoint configuration,
+private native, Compose and CNPG scrape examples and tested rules. The default
+deployment configurations leave metrics disabled.
 
 For a self-contained local stack, use the [Compose starter](compose/README.md).
 For three managed PostgreSQL instances and Kubernetes resources, use the

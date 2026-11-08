@@ -14,3 +14,4 @@ shellcheck scripts/verify scripts/install-hooks .githooks/pre-commit deploy/prom
 
 actionlint .github/workflows/conformance.yml
 bash deploy/prometheus/check.sh
+python3 scripts/check_grafana.py

@@ -30,6 +30,8 @@
               && !(builtins.elem (builtins.baseNameOf path) [
                 "target"
                 ".direnv"
+                "metrics-evidence"
+                "metrics-benchmark-evidence"
               ])
               && !(pkgs.lib.hasInfix "/benchmarks/runs" path);
           };

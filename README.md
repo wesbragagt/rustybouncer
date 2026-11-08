@@ -13,9 +13,12 @@ native-binary connection to existing PostgreSQL. The [deployment guide](docs/dep
 covers local processes, Docker/Podman, [Docker Compose](deploy/compose/README.md),
 and [CloudNativePG](deploy/cnpg/README.md), with configuration, verification and cleanup.
 
-The [metrics guide](docs/metrics.md) defines the planned opt-in Prometheus endpoint,
-private scrape examples and validated recording/alert rules. Runtime integration
-and live metrics acceptance are still pending; see the [reviewed plan](docs/plans/prometheus-metrics.md).
+Enable the opt-in Prometheus endpoint with top-level `metrics_listen = "127.0.0.1:9090"`.
+The [metrics guide](docs/metrics.md) covers accounting boundaries, private scrape
+examples and tested recording/alert rules; the [reviewed plan](docs/plans/prometheus-metrics.md)
+records the implementation and validation contract.
+See [Grafana dashboard recommendations](docs/grafana.md) for the included router
+dashboard and complementary PostgreSQL, CNPG and infrastructure dashboards.
 
 ## Development verification
 
@@ -142,7 +145,7 @@ leave unknown outcomes; guaranteed business retries require application idempote
 `max_clients` bounds accepted session tasks, including waiting clients; excess
 connections close immediately. `startup_timeout_ms` bounds startup packets (64 KiB
 maximum). `wait_timeout_ms` bounds routing and backend setup. TLS, Unix
-sockets, metrics, hot reload, cancellation routing, and shared transaction pooling
+sockets, hot reload, cancellation routing, and shared transaction pooling
 are not implemented. All traffic is unencrypted.
 
 ## Original session mode

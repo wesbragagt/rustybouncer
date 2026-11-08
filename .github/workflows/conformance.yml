@@ -35,7 +35,7 @@ jobs:
         run: nix build .#docker --no-update-lock-file --out-link result-image
       - name: Load image into Docker
         run: docker load -i result-image
-      - name: Real kind and CloudNativePG routing and failover
+      - name: Real kind and CloudNativePG routing, metrics and failover
         run: nix develop --command python3 -m tests.kind_cnpg --output "$RUNNER_TEMP/kind-cnpg"
       - uses: actions/upload-artifact@v7
         if: always()
@@ -45,4 +45,5 @@ jobs:
             ${{ runner.temp }}/kind-cnpg/results.json
             ${{ runner.temp }}/kind-cnpg/junit.xml
             ${{ runner.temp }}/kind-cnpg/events.jsonl
+            ${{ runner.temp }}/kind-cnpg/metrics-*.prom
             ${{ runner.temp }}/kind-cnpg/*.log

@@ -75,6 +75,9 @@ and same-connection continuity have [retained evidence](milestones/kind-cnpg.md)
   Replica reads can be stale, and interrupted transactions/writes require
   application handling of failure or uncertain outcomes. No transparent replay
   of dispatched writes is promised.
+- Set top-level `metrics_listen` to enable the Prometheus endpoint. Bind it to a
+  private interface; it has no authentication or TLS. The [metrics guide](metrics.md)
+  provides deployment-specific scrapes, alert rules and interpretation limits.
 
 These examples are isolated development/test deployments. Frontend authentication,
 TLS, cancellation routing, shared transaction pooling and graceful draining remain

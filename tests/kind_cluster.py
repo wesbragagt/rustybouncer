@@ -43,6 +43,7 @@ class KindCluster:
         self.evidence: list[dict] = []
         self.pins = json.loads((FIXTURES / 'pins.json').read_text())
         self.port = 0
+        self.metrics_port = 0
 
     def run(self, *argv, data=None, seconds=60):
         completed = subprocess.run(argv, input=data, text=True, capture_output=True,
@@ -82,7 +83,10 @@ class KindCluster:
         self.kube('-n', 'cnpg-system', 'rollout', 'status', 'deployment/cnpg-controller-manager',
                   '--timeout=240s', seconds=260)
         self.kube('create', 'namespace', 'rustybouncer-test')
-        self.kube('apply', '-f', str(FIXTURES / 'postgres.yaml'))
+        # Deployment readiness can precede Service routing to the admission
+        # webhook. Applying this owned declarative manifest is idempotent.
+        wait_for(lambda: self.kube('apply', '-f', str(FIXTURES / 'postgres.yaml')),
+                 'CNPG admission webhook to accept the owned cluster manifest', seconds=90)
         self.healthy()
         self.deploy_router()
         self.record('versions', kind=self.run('kind', 'version'), kubernetes=json.loads(self.kube('version', '-o', 'json')),
@@ -120,6 +124,7 @@ class KindCluster:
         config = config.replace('probe_interval_ms = 500', 'probe_interval_ms = 100').replace('probe_timeout_ms = 1000', 'probe_timeout_ms = 500')
         config = config.replace('wait_timeout_ms = 10000', 'wait_timeout_ms = 180000').replace('read_max_attempts = 3', 'read_max_attempts = 6')
         config = config.replace('query_timeout_ms = 300000', 'query_timeout_ms = 10000').replace('read_retry_timeout_ms = 600000', 'read_retry_timeout_ms = 180000')
+        config += '\nmetrics_listen = "0.0.0.0:9090"\n'
         for pod in pods:
             name = pod['metadata']['name']
             config += f'\n[[nodes]]\nname = "{name}"\nhost = "{name}"\nport = 5432\n'
@@ -137,19 +142,21 @@ class KindCluster:
                             'tolerations': [{'key': 'node-role.kubernetes.io/control-plane', 'operator': 'Exists', 'effect': 'NoSchedule'}],
                             'securityContext': {'runAsNonRoot': True, 'runAsUser': 10001, 'runAsGroup': 10001, 'seccompProfile': {'type': 'RuntimeDefault'}},
                             'containers': [{'name': 'router', 'image': self.image, 'imagePullPolicy': 'Never',
-                                            'args': ['/config/config.toml'], 'ports': [{'containerPort': 6432}],
+                                            'args': ['/config/config.toml'], 'ports': [{'containerPort': 6432}, {'containerPort': 9090}],
                                             'securityContext': {'readOnlyRootFilesystem': True, 'allowPrivilegeEscalation': False, 'capabilities': {'drop': ['ALL']}},
                                             'readinessProbe': {'tcpSocket': {'port': 6432}, 'periodSeconds': 1},
                                             'volumeMounts': [{'name': 'config', 'mountPath': '/config', 'readOnly': True}]}],
                             'volumes': [{'name': 'config', 'configMap': {'name': 'router'}}]}}}})
         self.kube('-n', 'rustybouncer-test', 'rollout', 'status', 'deployment/rustybouncer', '--timeout=120s', seconds=140)
-        with socket.socket() as probe:
+        with socket.socket() as probe, socket.socket() as metrics_probe:
             probe.bind(('127.0.0.1', 0))
+            metrics_probe.bind(('127.0.0.1', 0))
             self.port = probe.getsockname()[1]
+            self.metrics_port = metrics_probe.getsockname()[1]
         log = (self.output / 'port-forward.log').open('w')
         try:
             self.forward = subprocess.Popen(['kubectl', '--kubeconfig', str(self.kubeconfig), '-n', 'rustybouncer-test',
-                                             'port-forward', 'deployment/rustybouncer', f'{self.port}:6432'], stdout=log, stderr=subprocess.STDOUT)
+                                             'port-forward', 'deployment/rustybouncer', f'{self.port}:6432', f'{self.metrics_port}:9090'], stdout=log, stderr=subprocess.STDOUT)
         finally:
             log.close()
         def connected():

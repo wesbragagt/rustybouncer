@@ -23,7 +23,7 @@ Choose a new output directory for every invocation; existing evidence is never
 overwritten. `--image` accepts another locally loaded rustybouncer image. The
 runner imports it into its own kind cluster and uses `imagePullPolicy: Never`.
 There is no registry push. There are no skip, capability, filter or downscaling
-options; all five cases run. Missing tools, inaccessible images, setup failures,
+options; all six cases run. Missing tools, inaccessible images, setup failures,
 failed cleanup or failed assertions make the command exit nonzero.
 
 The harness uses a UUID cluster name and explicit private kubeconfig for every
@@ -48,6 +48,11 @@ The kubeconfig is removed and is excluded from CI artifact paths.
    must fail, and its uncommitted marker must be absent on the promoted primary.
    This asserts non-replay, not the outcome of an ambiguous dispatched COMMIT.
 
+6. The opt-in Prometheus endpoint, reached through a private loopback port-forward,
+   reports the independently observed primary/replica names and exactly two
+   successful replica dispatches for SELECT/CTE messages. Promtool parses both
+   snapshots, and client/backend gauges return to zero after closing the client.
+
 Each case uses a unique schema, waits for relation replay on all instances, and
 cleans up its clients/schema. Fault cases restore the worker and wait for all
 three CNPG instances to become healthy with two actual streaming replicas. The tests do not depend on case ordering.
@@ -65,7 +70,7 @@ Tests wait for actual status/SQL conditions, with bounded command/poll budgets,
 rather than assuming a fixed promotion delay. The routing wait budget is 180s to
 accommodate this detection interval. Eligible reads have a 10s per-attempt
 execution budget and a 180s total retry budget, with at most six backend selections. [CNPG failover documentation](https://cloudnative-pg.io/docs/1.30/failover/)
-explains this sequence. The five tests are correctness checks, not performance or
+explains this sequence. The six tests are correctness checks, not performance or
 availability-SLA measurements.
 
 This isolated fixture uses a narrow trust rule for the `app` role/database on the
@@ -83,7 +88,7 @@ these together and rerun the entire suite. The baseline follows the
 Every invocation produces `results.json`, `junit.xml`, command logs, router logs,
 Pod/Cluster snapshots, Kubernetes events, and timestamped fault/promotion evidence.
 Reports use the strict shared reporter; fixture/cleanup errors cannot become a
-passing run. The new `kind-cnpg` CI job builds the image, runs all five cases and
+passing run. The new `kind-cnpg` CI job builds the image, runs all six cases and
 uploads diagnostics even on failure. CI wiring is not evidence of a hosted run.
 
 Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md), especially

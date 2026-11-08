@@ -57,7 +57,9 @@ def pgbench(cluster, clients, seconds, directory, measured):
     tps = re.search(r'tps = ([\d.]+)', result.stdout)
     assert processed and failed and tps, result.stdout
     assert int(failed[1]) == 0, result.stdout
-    return {'wall_seconds': elapsed, 'transactions': int(processed[1]), 'errors': int(failed[1]), 'tps': float(tps[1])}
+    return {'wall_seconds': elapsed, 'transactions': int(processed[1]), 'errors': int(failed[1]),
+            'tps': float(tps[1]), 'measurement_started_monotonic': started,
+            'measurement_finished_monotonic': started + elapsed}
 
 
 def scrape_loop(port, stop, observations, failures):
@@ -94,6 +96,23 @@ def preflight(cluster, clients):
             client.close()
 
 
+def observe_connections(cluster, stop, observations, failures):
+    query = ("SELECT count(*) FROM pg_stat_activity WHERE backend_type='client backend' "
+             "AND usename='postgres' AND pid<>pg_backend_pid()")
+    while not stop.is_set():
+        began, counts = time.monotonic(), {}
+        try:
+            for name, node in zip(cluster.names, cluster.nodes):
+                result = subprocess.run(['docker', 'exec', node, 'psql', '-h', '127.0.0.1',
+                                         '-U', 'postgres', '-At', '-c', query],
+                                        text=True, capture_output=True, check=True, timeout=3)
+                counts[name] = int(result.stdout.strip())
+            observations.append({'monotonic': began, 'backend_connections': counts})
+        except Exception as exc:
+            failures.append(repr(exc))
+        stop.wait(max(0, 5 - (time.monotonic() - began)))
+
+
 def run_arm(cluster, output, clients, repetition, arm):
     directory = output / f'c{clients}-r{repetition}-{arm}'
     directory.mkdir()
@@ -101,6 +120,10 @@ def run_arm(cluster, output, clients, repetition, arm):
     # Verify all required clients can stay connected simultaneously before timing.
     preflight(cluster, clients)
     stop, observations, failures = threading.Event(), [], []
+    connections, connection_errors = [], []
+    observer = threading.Thread(target=observe_connections,
+                                args=(cluster, stop, connections, connection_errors))
+    observer.start()
     worker = None
     if arm == 'scraped':
         worker = threading.Thread(target=scrape_loop, args=(cluster.metrics_port, stop, observations, failures))
@@ -113,8 +136,15 @@ def run_arm(cluster, output, clients, repetition, arm):
         if worker:
             worker.join(timeout=5)
             assert not worker.is_alive()
+        observer.join(timeout=12)
+        assert not observer.is_alive()
         (directory / 'scrapes.json').write_text(json.dumps({'observations': observations, 'errors': failures}, indent=2))
+        (directory / 'connections.json').write_text(json.dumps({'observations': connections, 'errors': connection_errors}, indent=2))
     assert not failures, failures
+    assert not connection_errors, connection_errors
+    measured_counts = [sum(sample['backend_connections'].values()) for sample in connections
+                       if result['measurement_started_monotonic'] <= sample['monotonic'] <= result['measurement_finished_monotonic']]
+    assert measured_counts and max(measured_counts) >= clients, measured_counts
     samples = []
     for path in directory.glob('latency.*'):
         for line in path.read_text().splitlines():
@@ -124,7 +154,10 @@ def run_arm(cluster, output, clients, repetition, arm):
     result.update({'clients': clients, 'repetition': repetition, 'arm': arm, 'sample_count': len(samples),
                    'sample_policy': 'pgbench independent random 10% transaction logging; all transaction errors retained',
                    'p50_ms': percentile(samples, .5), 'p95_ms': percentile(samples, .95),
-                   'p99_ms': percentile(samples, .99), 'scrapes': len(observations)})
+                   'p99_ms': percentile(samples, .99), 'scrapes': len(observations),
+                   'backend_connection_samples': len(measured_counts),
+                   'backend_connections_min': min(measured_counts),
+                   'backend_connections_max': max(measured_counts)})
     (directory / 'result.json').write_text(json.dumps(result, indent=2) + '\n')
     return result
 

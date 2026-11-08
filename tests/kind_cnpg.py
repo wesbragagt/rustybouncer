@@ -1,9 +1,11 @@
-"""H06/F11/G07: five required tests on an owned, real kind + CloudNativePG cluster."""
+"""H06/F11/D04/G07: six required tests on an owned kind + CloudNativePG cluster."""
 import argparse
 import concurrent.futures
+import re
 import threading
 import time
 import unittest
+import urllib.request
 import uuid
 from pathlib import Path
 
@@ -15,6 +17,19 @@ from tests.kind_cluster import KindCluster, wait_for
 OUTPUT = Path('/tmp') / ('rustybouncer-kind-' + uuid.uuid4().hex[:10])
 IMAGE = 'rustybouncer:latest'
 IDENTITY = 'SELECT inet_server_addr()::text, pg_is_in_recovery()'
+
+
+def metric(text, name, **labels):
+    values = []
+    for line in text.splitlines():
+        match = re.fullmatch(r'rustybouncer_' + re.escape(name) + r'(?:\{([^}]*)\})? ([0-9.eE+-]+)', line)
+        if match:
+            actual = dict(re.findall(r'(\w+)="([^"]*)"', match[1] or ''))
+            if all(actual.get(key) == value for key, value in labels.items()):
+                values.append(float(match[2]))
+    if not values:
+        raise AssertionError(f'missing metric {name} {labels}')
+    return sum(values)
 
 
 class CloudNativePG(unittest.TestCase):
@@ -56,6 +71,40 @@ class CloudNativePG(unittest.TestCase):
         rows = client.execute(sql).fetchall()
         self.evidence.append({'query': sql, 'rows': rows, 'duration_s': time.monotonic() - started})
         return rows
+
+    def metrics(self):
+        with urllib.request.urlopen(f'http://127.0.0.1:{self.cluster.metrics_port}/metrics', timeout=3) as response:
+            self.assertEqual(response.status, 200)
+            return response.read().decode()
+
+    def test_metrics_account_for_replica_queries_and_topology(self):
+        client = self.client()
+        before = self.metrics()
+        self.cluster.run('promtool', 'check', 'metrics', data=before)
+        self.assertEqual(metric(before, 'routing_enabled'), 1)
+        self.assertEqual(metric(before, 'topology_nodes', role='primary'), 1)
+        self.assertEqual(metric(before, 'topology_nodes', role='replica'), 2)
+        primary = self.cluster.primary()
+        for pod in self.cluster.pods():
+            name = pod['metadata']['name']
+            self.assertEqual(metric(before, 'node_role', node=name,
+                                    role='primary' if name == primary else 'replica'), 1)
+        for sql in ['SELECT 666', 'WITH item AS (SELECT 667 AS n) SELECT n FROM item']:
+            self.assertEqual(self.query(client, sql), [(666 if sql.startswith('SELECT') else 667,)])
+        after = self.metrics()
+        self.cluster.run('promtool', 'check', 'metrics', data=after)
+        self.assertEqual(metric(after, 'queries_total', kind='read', outcome='ok')
+                         - metric(before, 'queries_total', kind='read', outcome='ok'), 2)
+        self.assertEqual(metric(after, 'query_attempts_total', route='replica', outcome='ok')
+                         - metric(before, 'query_attempts_total', route='replica', outcome='ok'), 2)
+        self.assertGreater(metric(after, 'backend_connections_active'), 0)
+        (self.cluster.output / 'metrics-before.prom').write_text(before)
+        (self.cluster.output / 'metrics-after.prom').write_text(after)
+        client.close()
+        wait_for(lambda: metric(self.metrics(), 'clients_active') == 0
+                 and metric(self.metrics(), 'backend_connections_active') == 0,
+                 'metrics gauges to return to zero after the frontend closes')
+        self.cluster.record('metrics-validated', primary=primary, read_messages=2, replica_attempts=2)
 
     def test_primary_writes(self):
         primary = self.cluster.primary()

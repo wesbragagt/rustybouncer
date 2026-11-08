@@ -1,0 +1,39 @@
+{
+  "contract": {
+    "suite": "kind-cnpg",
+    "image": "rustybouncer:latest",
+    "pins": {
+      "node_image": "kindest/node:v1.36.4@sha256:099e049362a1526b2db71494e1947aae99bd16290d7c895f2b7ea312e3cbfaed",
+      "operator_url": "https://raw.githubusercontent.com/cloudnative-pg/cloudnative-pg/v1.30.1/releases/cnpg-1.30.1.yaml",
+      "operator_sha256": "37237f145d8138256ea25ae830f87759255665ff08f8d552fdd8224a5ec032fb",
+      "operator_image": "ghcr.io/cloudnative-pg/cloudnative-pg:1.30.1@sha256:923c267ec29636db3bee20f993d0ec4973fa22998e1adad37da79e4d32b5bc07"
+    }
+  },
+  "results": [
+    {
+      "test": "setUpClass (__main__.CloudNativePG)",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/suite.py\", line 166, in _handleClassSetUp\n    setUpClass()\n    ~~~~~~~~~~^^\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg.py\", line 42, in setUpClass\n    cls.cluster.start()\n    ~~~~~~~~~~~~~~~~~^^\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cluster.py\", line 86, in start\n    self.kube('apply', '-f', str(FIXTURES / 'postgres.yaml'))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cluster.py\", line 58, in kube\n    return self.run('kubectl', '--kubeconfig', str(self.kubeconfig),\n           ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n                    '--request-timeout=20s', *args, data=data, seconds=seconds)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cluster.py\", line 54, in run\n    raise RuntimeError(f'{argv[:3]} exit {completed.returncode}: {completed.stdout}{completed.stderr}')\nRuntimeError: ('kubectl', '--kubeconfig', '/home/publicuser/dev/rustybouncer-evidence/metrics-integration-20261108/kind-run-1/kubeconfig') exit 1: Error from server (InternalError): error when creating \"/home/publicuser/dev/rustybouncer/tests/kubernetes/postgres.yaml\": Internal error occurred: failed calling webhook \"mcluster.cnpg.io\": failed to call webhook: Post \"https://cnpg-webhook-service.cnpg-system.svc:443/mutate-postgresql-cnpg-io-v1-cluster?timeout=10s\": dial tcp 10.96.61.30:443: connect: connection refused\n\n",
+      "duration_s": 0.0,
+      "evidence": []
+    }
+  ],
+  "summary": {
+    "passed": 0,
+    "skipped": 0,
+    "failed": 0,
+    "error": 1,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "diagnostic_counts": {
+    "failed": 0,
+    "error": 1,
+    "skipped": 0,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "accepted": false,
+  "scope": "full inventory",
+  "acceptance": "declared-contract results only; see release acceptance checklist"
+}

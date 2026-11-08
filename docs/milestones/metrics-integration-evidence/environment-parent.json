@@ -1,0 +1,21 @@
+{
+  "platform": "Linux-7.0.3-x86_64-with-glibc2.40",
+  "cpu_count": 16,
+  "load_average": [
+    8.19775390625,
+    4.88916015625,
+    5.03857421875
+  ],
+  "source_sha256": {
+    "Cargo.lock": "cef4f14606717e2254e789b007e7910b30bb28bcf84dd77df4c9307c3d0f9d83",
+    "flake.lock": "ebdc0d1b06b2404edbb5e7458fdaa16354c28bdaf7ba4465fd80091c13dd70f5",
+    "src/main.rs": "56f56bc6ea0fef16a16dba175ca251c7c99e5e766f708691c1b2dde0673b424b",
+    "src/router.rs": "d706cab32cfbc5f3deb848d160bb366d34c5e625440135dc9b5118674647648f",
+    "src/metrics.rs": "bcff24628c6ad8c6b773914dc95858565a41db2b3f482816f64caee60fcf8352",
+    "tests/metrics.py": "16f744e4bbed123068aa7077cdeb7f7dd975b4e9aeb6c6ab19111f3c2decd440",
+    "tests/metrics_support.py": "74cd07c26c587f95f02600f664b8d57c13a13f8962d07bc47a48500177a1c689",
+    "benchmarks/metrics.py": "24724dcdbbd1195a0fad9c227d7323f431164ab1a49d47e807575f9cebd9b61b"
+  },
+  "postgres_image": "[\"postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c\"]",
+  "host_exclusivity": "shared development host; unrelated workloads were left running; no performance budgets or statistical significance claims"
+}

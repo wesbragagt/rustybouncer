@@ -1,0 +1,254 @@
+# HELP rustybouncer_backend_connections_active backend_connections_active
+# TYPE rustybouncer_backend_connections_active gauge
+rustybouncer_backend_connections_active{node="postgres-1"} 1
+rustybouncer_backend_connections_active{node="postgres-2"} 0
+rustybouncer_backend_connections_active{node="postgres-3"} 0
+# HELP rustybouncer_backend_connects_total backend_connects_total
+# TYPE rustybouncer_backend_connects_total counter
+rustybouncer_backend_connects_total{node="postgres-1",outcome="aborted"} 0
+rustybouncer_backend_connects_total{node="postgres-1",outcome="error"} 0
+rustybouncer_backend_connects_total{node="postgres-1",outcome="ok"} 2
+rustybouncer_backend_connects_total{node="postgres-2",outcome="aborted"} 0
+rustybouncer_backend_connects_total{node="postgres-2",outcome="error"} 0
+rustybouncer_backend_connects_total{node="postgres-2",outcome="ok"} 1
+rustybouncer_backend_connects_total{node="postgres-3",outcome="aborted"} 0
+rustybouncer_backend_connects_total{node="postgres-3",outcome="error"} 0
+rustybouncer_backend_connects_total{node="postgres-3",outcome="ok"} 0
+# HELP rustybouncer_build_info build_info
+# TYPE rustybouncer_build_info gauge
+rustybouncer_build_info{version="0.1.0"} 1
+# HELP rustybouncer_client_capacity client_capacity
+# TYPE rustybouncer_client_capacity gauge
+rustybouncer_client_capacity 100
+# HELP rustybouncer_clients_accepted_total clients_accepted_total
+# TYPE rustybouncer_clients_accepted_total counter
+rustybouncer_clients_accepted_total 3
+# HELP rustybouncer_clients_active clients_active
+# TYPE rustybouncer_clients_active gauge
+rustybouncer_clients_active 1
+# HELP rustybouncer_clients_rejected_total clients_rejected_total
+# TYPE rustybouncer_clients_rejected_total counter
+rustybouncer_clients_rejected_total 0
+# HELP rustybouncer_node_role node_role
+# TYPE rustybouncer_node_role gauge
+rustybouncer_node_role{node="postgres-1",role="primary"} 1
+rustybouncer_node_role{node="postgres-1",role="replica"} 0
+rustybouncer_node_role{node="postgres-1",role="unavailable"} 0
+rustybouncer_node_role{node="postgres-2",role="primary"} 0
+rustybouncer_node_role{node="postgres-2",role="replica"} 1
+rustybouncer_node_role{node="postgres-2",role="unavailable"} 0
+rustybouncer_node_role{node="postgres-3",role="primary"} 0
+rustybouncer_node_role{node="postgres-3",role="replica"} 1
+rustybouncer_node_role{node="postgres-3",role="unavailable"} 0
+# HELP rustybouncer_primary_changes_total primary_changes_total
+# TYPE rustybouncer_primary_changes_total counter
+rustybouncer_primary_changes_total 1
+# HELP rustybouncer_probe_duration_seconds probe_duration_seconds
+# TYPE rustybouncer_probe_duration_seconds histogram
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.001"} 0
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.005"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.01"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.025"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.05"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.25"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="0.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="2.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="10"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="30"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="60"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="120"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="300"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="600"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-1",le="+Inf"} 9
+rustybouncer_probe_duration_seconds_sum{node="postgres-1"} 0.020098587
+rustybouncer_probe_duration_seconds_count{node="postgres-1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.001"} 0
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.005"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.01"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.025"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.05"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.25"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="0.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="2.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="10"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="30"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="60"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="120"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="300"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="600"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-2",le="+Inf"} 9
+rustybouncer_probe_duration_seconds_sum{node="postgres-2"} 0.021736090000000003
+rustybouncer_probe_duration_seconds_count{node="postgres-2"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.001"} 0
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.005"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.01"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.025"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.05"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.25"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="0.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="1"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="2.5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="5"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="10"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="30"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="60"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="120"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="300"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="600"} 9
+rustybouncer_probe_duration_seconds_bucket{node="postgres-3",le="+Inf"} 9
+rustybouncer_probe_duration_seconds_sum{node="postgres-3"} 0.021860483
+rustybouncer_probe_duration_seconds_count{node="postgres-3"} 9
+# HELP rustybouncer_probes_total probes_total
+# TYPE rustybouncer_probes_total counter
+rustybouncer_probes_total{node="postgres-1",outcome="error"} 0
+rustybouncer_probes_total{node="postgres-1",outcome="ok"} 9
+rustybouncer_probes_total{node="postgres-2",outcome="error"} 0
+rustybouncer_probes_total{node="postgres-2",outcome="ok"} 9
+rustybouncer_probes_total{node="postgres-3",outcome="error"} 0
+rustybouncer_probes_total{node="postgres-3",outcome="ok"} 9
+# HELP rustybouncer_queries_in_flight queries_in_flight
+# TYPE rustybouncer_queries_in_flight gauge
+rustybouncer_queries_in_flight 0
+# HELP rustybouncer_queries_total queries_total
+# TYPE rustybouncer_queries_total counter
+rustybouncer_queries_total{kind="malformed",outcome="aborted"} 0
+rustybouncer_queries_total{kind="malformed",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="malformed",outcome="ok"} 0
+rustybouncer_queries_total{kind="malformed",outcome="router_error"} 0
+rustybouncer_queries_total{kind="malformed",outcome="sql_error"} 0
+rustybouncer_queries_total{kind="read",outcome="aborted"} 0
+rustybouncer_queries_total{kind="read",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="read",outcome="ok"} 1
+rustybouncer_queries_total{kind="read",outcome="router_error"} 0
+rustybouncer_queries_total{kind="read",outcome="sql_error"} 0
+rustybouncer_queries_total{kind="stateful",outcome="aborted"} 0
+rustybouncer_queries_total{kind="stateful",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="stateful",outcome="ok"} 0
+rustybouncer_queries_total{kind="stateful",outcome="router_error"} 0
+rustybouncer_queries_total{kind="stateful",outcome="sql_error"} 0
+rustybouncer_queries_total{kind="transaction",outcome="aborted"} 0
+rustybouncer_queries_total{kind="transaction",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="transaction",outcome="ok"} 0
+rustybouncer_queries_total{kind="transaction",outcome="router_error"} 0
+rustybouncer_queries_total{kind="transaction",outcome="sql_error"} 0
+rustybouncer_queries_total{kind="unsupported",outcome="aborted"} 0
+rustybouncer_queries_total{kind="unsupported",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="unsupported",outcome="ok"} 0
+rustybouncer_queries_total{kind="unsupported",outcome="router_error"} 0
+rustybouncer_queries_total{kind="unsupported",outcome="sql_error"} 0
+rustybouncer_queries_total{kind="write",outcome="aborted"} 0
+rustybouncer_queries_total{kind="write",outcome="delivery_error"} 0
+rustybouncer_queries_total{kind="write",outcome="ok"} 0
+rustybouncer_queries_total{kind="write",outcome="router_error"} 0
+rustybouncer_queries_total{kind="write",outcome="sql_error"} 0
+# HELP rustybouncer_query_attempts_total query_attempts_total
+# TYPE rustybouncer_query_attempts_total counter
+rustybouncer_query_attempts_total{outcome="aborted",route="primary"} 0
+rustybouncer_query_attempts_total{outcome="aborted",route="replica"} 0
+rustybouncer_query_attempts_total{outcome="error",route="primary"} 0
+rustybouncer_query_attempts_total{outcome="error",route="replica"} 0
+rustybouncer_query_attempts_total{outcome="ok",route="primary"} 0
+rustybouncer_query_attempts_total{outcome="ok",route="replica"} 1
+rustybouncer_query_attempts_total{outcome="sql_error",route="primary"} 0
+rustybouncer_query_attempts_total{outcome="sql_error",route="replica"} 0
+# HELP rustybouncer_query_duration_seconds query_duration_seconds
+# TYPE rustybouncer_query_duration_seconds histogram
+rustybouncer_query_duration_seconds_bucket{le="0.001"} 0
+rustybouncer_query_duration_seconds_bucket{le="0.005"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.01"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.025"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.05"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.1"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.25"} 1
+rustybouncer_query_duration_seconds_bucket{le="0.5"} 1
+rustybouncer_query_duration_seconds_bucket{le="1"} 1
+rustybouncer_query_duration_seconds_bucket{le="2.5"} 1
+rustybouncer_query_duration_seconds_bucket{le="5"} 1
+rustybouncer_query_duration_seconds_bucket{le="10"} 1
+rustybouncer_query_duration_seconds_bucket{le="30"} 1
+rustybouncer_query_duration_seconds_bucket{le="60"} 1
+rustybouncer_query_duration_seconds_bucket{le="120"} 1
+rustybouncer_query_duration_seconds_bucket{le="300"} 1
+rustybouncer_query_duration_seconds_bucket{le="600"} 1
+rustybouncer_query_duration_seconds_bucket{le="+Inf"} 1
+rustybouncer_query_duration_seconds_sum 0.00155254
+rustybouncer_query_duration_seconds_count 1
+# HELP rustybouncer_read_retries_total read_retries_total
+# TYPE rustybouncer_read_retries_total counter
+rustybouncer_read_retries_total 0
+# HELP rustybouncer_route_wait_duration_seconds route_wait_duration_seconds
+# TYPE rustybouncer_route_wait_duration_seconds histogram
+rustybouncer_route_wait_duration_seconds_bucket{le="0.001"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.005"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.01"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.025"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.05"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.1"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.25"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="0.5"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="1"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="2.5"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="5"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="10"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="30"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="60"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="120"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="300"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="600"} 3
+rustybouncer_route_wait_duration_seconds_bucket{le="+Inf"} 3
+rustybouncer_route_wait_duration_seconds_sum 0.000002636
+rustybouncer_route_wait_duration_seconds_count 3
+# HELP rustybouncer_routing_enabled routing_enabled
+# TYPE rustybouncer_routing_enabled gauge
+rustybouncer_routing_enabled 1
+# HELP rustybouncer_session_duration_seconds session_duration_seconds
+# TYPE rustybouncer_session_duration_seconds histogram
+rustybouncer_session_duration_seconds_bucket{le="0.001"} 1
+rustybouncer_session_duration_seconds_bucket{le="0.005"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.01"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.025"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.05"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.1"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.25"} 2
+rustybouncer_session_duration_seconds_bucket{le="0.5"} 2
+rustybouncer_session_duration_seconds_bucket{le="1"} 2
+rustybouncer_session_duration_seconds_bucket{le="2.5"} 2
+rustybouncer_session_duration_seconds_bucket{le="5"} 2
+rustybouncer_session_duration_seconds_bucket{le="10"} 2
+rustybouncer_session_duration_seconds_bucket{le="30"} 2
+rustybouncer_session_duration_seconds_bucket{le="60"} 2
+rustybouncer_session_duration_seconds_bucket{le="120"} 2
+rustybouncer_session_duration_seconds_bucket{le="300"} 2
+rustybouncer_session_duration_seconds_bucket{le="600"} 2
+rustybouncer_session_duration_seconds_bucket{le="+Inf"} 2
+rustybouncer_session_duration_seconds_sum 0.004174277
+rustybouncer_session_duration_seconds_count 2
+# HELP rustybouncer_sessions_completed_total sessions_completed_total
+# TYPE rustybouncer_sessions_completed_total counter
+rustybouncer_sessions_completed_total{outcome="aborted"} 0
+rustybouncer_sessions_completed_total{outcome="error"} 1
+rustybouncer_sessions_completed_total{outcome="ok"} 1
+# HELP rustybouncer_topology_ambiguous topology_ambiguous
+# TYPE rustybouncer_topology_ambiguous gauge
+rustybouncer_topology_ambiguous 0
+# HELP rustybouncer_topology_changes_total topology_changes_total
+# TYPE rustybouncer_topology_changes_total counter
+rustybouncer_topology_changes_total 1
+# HELP rustybouncer_topology_discovery_completed topology_discovery_completed
+# TYPE rustybouncer_topology_discovery_completed gauge
+rustybouncer_topology_discovery_completed 1
+# HELP rustybouncer_topology_last_completed_timestamp_seconds topology_last_completed_timestamp_seconds
+# TYPE rustybouncer_topology_last_completed_timestamp_seconds gauge
+rustybouncer_topology_last_completed_timestamp_seconds 1794151926
+# HELP rustybouncer_topology_nodes topology_nodes
+# TYPE rustybouncer_topology_nodes gauge
+rustybouncer_topology_nodes{role="primary"} 1
+rustybouncer_topology_nodes{role="replica"} 2
+rustybouncer_topology_nodes{role="unavailable"} 0
