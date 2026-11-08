@@ -2,7 +2,7 @@
 
 Authority: [performance tasks](../tasks/pgbouncer-performance.md) and
 [canonical checklist](../../FEATURE_COMPLETENESS.md), S10–S12/R11.
-Implementation and evidence are ready for the mandatory installed-hook commit.
+Implementation/evidence committed as `2f33b63` through the mandatory installed hook.
 This establishes PERF-001's profiling scope, not a runtime optimization or release
 acceptance. PERF-002–009 and wider canonical scope remain open.
 
@@ -162,10 +162,10 @@ runs. Logs/manifests retain them; no repetition was removed from the complete ac
 
 ## Verification and remaining work
 
-Full native preflight: **26 Rust tests required by installed hook; 65 Python tests**,
-Ruff, Astral ty and complexity maximum **26/30**. Final installed verification hook
-runs normally before the milestone commit; its resulting hash/outcome are recorded
-in the task handoff. No router source was modified for this baseline milestone.
+Full locked installed-hook verification passed: **26 Rust + 65 Python tests**,
+zero failures/errors/skips, Ruff, Astral ty, Clippy, Promtool and Grafana checks;
+complexity maximum **26/30**. [Hook](perf-001-evidence/milestone-hook.log.gz) and
+[complete verification](perf-001-evidence/milestone-verification.log.gz) are retained. No router source was modified for this baseline milestone.
 
 PERF-007's [pool design](../design/backend-pools.md) has a documented coordinator
 review, committed before implementation; session reuse and all acceptance remain
