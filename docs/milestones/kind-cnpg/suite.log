@@ -1,0 +1,11 @@
+creating owned kind cluster rustybouncer-c5b28bc5b8
+test_primary_writes (__main__.CloudNativePG.test_primary_writes) ... ok
+test_reads_continue_and_writes_follow_node_failover (__main__.CloudNativePG.test_reads_continue_and_writes_follow_node_failover) ... ok
+test_replica_replacement (__main__.CloudNativePG.test_replica_replacement) ... ok
+test_replica_round_robin_and_ctes (__main__.CloudNativePG.test_replica_round_robin_and_ctes) ... ok
+test_transaction_interruption_is_not_replayed (__main__.CloudNativePG.test_transaction_interruption_is_not_replayed) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 542.917s
+
+OK

@@ -24,3 +24,25 @@ jobs:
           path: |
             ${{ runner.temp }}/conformance-local
             ${{ runner.temp }}/conformance-docker
+
+  kind-cnpg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v7
+      - uses: cachix/install-nix-action@v31
+      - name: Build distroless image
+        run: nix build .#docker --no-update-lock-file --out-link result-image
+      - name: Load image into Docker
+        run: docker load -i result-image
+      - name: Real kind and CloudNativePG routing and failover
+        run: nix develop --command python3 -m tests.kind_cnpg --output "$RUNNER_TEMP/kind-cnpg"
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: kind-cnpg
+          path: |
+            ${{ runner.temp }}/kind-cnpg/results.json
+            ${{ runner.temp }}/kind-cnpg/junit.xml
+            ${{ runner.temp }}/kind-cnpg/events.jsonl
+            ${{ runner.temp }}/kind-cnpg/*.log

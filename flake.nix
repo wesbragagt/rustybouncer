@@ -96,6 +96,8 @@
             rust-code-analysis
             pgbouncer
             actionlint
+            kind
+            kubectl
           ];
           shellHook = ''
             bash scripts/install-hooks

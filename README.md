@@ -176,3 +176,15 @@ then `docker load -i result-image` (or `podman load -i result-image`). The image
 runs as UID/GID 10001 with no shell or package manager. See the
 [container guide](deploy/README.md) for read-only deployment, configuration and
 rootless runtime verification.
+
+## Real Kubernetes integration
+
+The [kind + CloudNativePG suite](tests/kubernetes/README.md) provisions four kind
+nodes and three PostgreSQL instances, then tests the distroless proxy through real
+replica replacement and primary-node failovers. After building/loading the image:
+
+```sh
+nix develop --command python3 -m tests.kind_cnpg --output /tmp/rustybouncer-kind-results
+```
+
+All five cases run without skips and emit JSON/JUnit reports and diagnostics.

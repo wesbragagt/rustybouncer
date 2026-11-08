@@ -134,3 +134,18 @@ The dev shell includes Psycopg for endpoint-only conformance and PgBouncer for
 the optional reference adapter. Conformance harness unit tests run offline in
 Nix verification; live endpoint scenarios run explicitly or in the CI workflow.
 See [the conformance guide](../conformance/README.md).
+
+## kind and CloudNativePG
+
+Changes to the Kubernetes harness, manifests or deployment contract require the
+complete [five-case kind/CNPG suite](../tests/kubernetes/README.md). Build/load the
+Docker image first, then run:
+
+```sh
+nix develop --command python3 -m tests.kind_cnpg --output /tmp/rustybouncer-kind-results
+```
+
+Use a fresh output directory. The suite owns its kind nodes and kubeconfig and
+removes them even after setup/test failures. Its Kubernetes privileges and image
+pulls are separate from the sandboxed Nix/offline checks. The CI `kind-cnpg` job
+runs this scope independently of the incomplete broad conformance baseline.
