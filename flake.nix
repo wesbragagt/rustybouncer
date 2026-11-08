@@ -98,6 +98,7 @@
             actionlint
             kind
             kubectl
+            prometheus.cli
           ];
           shellHook = ''
             bash scripts/install-hooks
