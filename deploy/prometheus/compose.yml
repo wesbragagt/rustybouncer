@@ -1,0 +1,24 @@
+# Standalone private scraper: attach the router to the SAME network and enable
+# metrics_listen = "0.0.0.0:9090" in its mounted TOML. Publish no router metrics port.
+services:
+  prometheus:
+    image: prom/prometheus:v3.15.1
+    user: "65534:65534"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+    volumes:
+      - ./prometheus.compose.yml:/etc/prometheus/prometheus.yml:ro
+      - ./rules.yml:/etc/prometheus/rules.yml:ro
+      - metrics-data:/prometheus
+    networks: [metrics]
+    # No ports: Prometheus UI and metrics endpoint remain unpublished.
+networks:
+  metrics:
+    external: true
+    name: rustybouncer-metrics
+volumes:
+  metrics-data:

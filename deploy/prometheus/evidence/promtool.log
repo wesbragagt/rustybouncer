@@ -1,0 +1,37 @@
+[31mdirenv: error /home/publicuser/.t3/worktrees/rustybouncer/t3-28a521d5/.envrc is blocked. Run `direnv allow` to approve its content[0m
+promtool, version 3.15.1 (branch: unknown, revision: unknown)
+  build user:       nix@nixpkgs
+  build date:       unknown
+  go version:       go1.26.10
+  platform:         linux/amd64
+  tags:             builtinassets
++ promtool check config deploy/prometheus/prometheus.yml
+Checking deploy/prometheus/prometheus.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check config deploy/prometheus/prometheus.compose.yml
+Checking deploy/prometheus/prometheus.compose.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.compose.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check config deploy/prometheus/prometheus.cnpg.yml
+Checking deploy/prometheus/prometheus.cnpg.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.cnpg.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check rules deploy/prometheus/rules.yml
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool test rules deploy/prometheus/rules.test.yml
+  SUCCESS

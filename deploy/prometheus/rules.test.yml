@@ -1,0 +1,1242 @@
+{
+  "rule_files": [
+    "rules.yml"
+  ],
+  "evaluation_interval": "5s",
+  "fuzzy_compare": true,
+  "tests": [
+    {
+      "name": "no primary sustained",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_nodes{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",role=\"primary\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "role": "primary",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No eligible unambiguous primary after discovery"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "no primary transient",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_nodes{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",role=\"primary\"}",
+          "values": "0+0x3 1+0x140"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "no primary disabled",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_nodes{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",role=\"primary\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "no primary undiscovered",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_nodes{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",role=\"primary\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "ambiguous sustained",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_ambiguous{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerAmbiguousPrimary",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Multiple writable nodes persist; investigate fencing"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "ambiguous transient",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_ambiguous{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x3 0+0x140"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerAmbiguousPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "ambiguous disabled",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_ambiguous{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerAmbiguousPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "ambiguous undiscovered",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_ambiguous{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerAmbiguousPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "missing all targets",
+      "interval": "5s",
+      "input_series": [],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerTargetsMissing",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No rustybouncer scrape targets; check discovery and configuration"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "scrape down",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerScrapeDown",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Metrics scrape unavailable; SQL health is unknown"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "missing contract",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerMetricContractMissing",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Scrape succeeded but routing contract gauge is missing"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "startup pending",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryNotStarted",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No discovery round has completed"
+              }
+            }
+          ]
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "stale unchanged topology",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "5+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_changes_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Discovery completion is stale for the configured probe profile"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "fresh unchanged topology",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+5x144"
+        },
+        {
+          "series": "rustybouncer_topology_changes_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "transient stale then recovery",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x5 30+5x139"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "stale suppressed for passthrough",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "capacity sustained",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_client_capacity{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "100+0x144"
+        },
+        {
+          "series": "rustybouncer_clients_active{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "95+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "6m",
+          "alertname": "RustybouncerCapacityPressure",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "interval500ms_timeout1000ms",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Admitted clients exceed 90 percent of configured capacity"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "capacity transient",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_client_capacity{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "100+0x144"
+        },
+        {
+          "series": "rustybouncer_clients_active{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "95+0x20 10+0x124"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "6m",
+          "alertname": "RustybouncerCapacityPressure",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "capacity zero_capacity",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_client_capacity{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_clients_active{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "95+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "6m",
+          "alertname": "RustybouncerCapacityPressure",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "query faults sustained",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+2x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+4x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Router or delivery errors exceed 5 percent with traffic"
+              }
+            }
+          ]
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "Additional read selections exceed 20 percent of read messages"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "query faults no_traffic",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "query faults disabled",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+2x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+4x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "query faults transient",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+2x10 20+0x134"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+4x10 40+0x134"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "query faults sql_only",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+1x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "query faults reset",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x50 0+10x93"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"router_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerRouterFailures",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "10m",
+          "alertname": "RustybouncerReadRetryAmplification",
+          "exp_alerts": []
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "rustybouncer:q_messages_per_second:rate5m > bool 0",
+          "eval_time": "6m",
+          "exp_samples": [
+            {
+              "labels": "{instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 1
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "no observations omit ratios and quantiles",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+0x144"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "rustybouncer:router_delivery_error_ratio:rate5m",
+          "eval_time": "5m",
+          "exp_samples": []
+        },
+        {
+          "expr": "rustybouncer:q_duration_p95_seconds:rate5m",
+          "eval_time": "5m",
+          "exp_samples": []
+        },
+        {
+          "expr": "rustybouncer:read_retry_amplification:rate5m",
+          "eval_time": "5m",
+          "exp_samples": []
+        }
+      ]
+    },
+    {
+      "name": "throughput ratios and mixed-outcome histogram",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+8x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"write\",outcome=\"sql_error\"}",
+          "values": "0+2x144"
+        },
+        {
+          "series": "rustybouncer_query_duration_seconds_bucket{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",le=\"1\"}",
+          "values": "0+5x144"
+        },
+        {
+          "series": "rustybouncer_query_duration_seconds_bucket{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",le=\"2\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_query_duration_seconds_bucket{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",le=\"+Inf\"}",
+          "values": "0+10x144"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "rustybouncer:q_messages_per_second:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:q_messages_per_second:rate5m\",instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 2
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:sql_error_ratio:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:sql_error_ratio:rate5m\",instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 0.2
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:q_duration_p50_seconds:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:q_duration_p50_seconds:rate5m\",instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:q_duration_p95_seconds:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:q_duration_p95_seconds:rate5m\",instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 1.9
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:q_duration_p99_seconds:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:q_duration_p99_seconds:rate5m\",instance=\"router:9090\",job=\"rustybouncer\"}",
+              "value": 1.98
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "healthy target no missing alerts",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerTargetsMissing",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerScrapeDown",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerMetricContractMissing",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryProfileMissing",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "unknown discovery profile",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"custom\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"custom\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryProfileMissing",
+          "exp_alerts": [
+            {
+              "exp_labels": {
+                "job": "rustybouncer",
+                "instance": "router:9090",
+                "discovery_profile": "custom",
+                "severity": "warning"
+              },
+              "exp_annotations": {
+                "summary": "No matching discovery freshness budget; configure a reviewed profile"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "restart discovery becomes pending",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x10 0+0x134"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+5x10 0+0x134"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "failed scrape suppresses topology alerts",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_discovery_completed{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_ambiguous{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_nodes{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",role=\"primary\"}",
+          "values": "0+0x144"
+        },
+        {
+          "series": "rustybouncer_topology_last_completed_timestamp_seconds{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        }
+      ],
+      "alert_rule_test": [
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerDiscoveryStale",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerNoPrimary",
+          "exp_alerts": []
+        },
+        {
+          "eval_time": "2m",
+          "alertname": "RustybouncerAmbiguousPrimary",
+          "exp_alerts": []
+        }
+      ]
+    },
+    {
+      "name": "attempt failures recovered independently of Q outcomes",
+      "interval": "5s",
+      "input_series": [
+        {
+          "series": "up{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_routing_enabled{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "1+0x144"
+        },
+        {
+          "series": "rustybouncer_queries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",kind=\"read\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_query_attempts_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",route=\"replica\",outcome=\"ok\"}",
+          "values": "0+10x144"
+        },
+        {
+          "series": "rustybouncer_query_attempts_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\",route=\"primary\",outcome=\"error\"}",
+          "values": "0+5x144"
+        },
+        {
+          "series": "rustybouncer_read_retries_total{job=\"rustybouncer\",instance=\"router:9090\",discovery_profile=\"interval500ms_timeout1000ms\"}",
+          "values": "0+5x144"
+        }
+      ],
+      "promql_expr_test": [
+        {
+          "expr": "rustybouncer:attempts_per_q_message:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:attempts_per_q_message:rate5m\",job=\"rustybouncer\",instance=\"router:9090\"}",
+              "value": 1.5
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:attempt_failure_ratio:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:attempt_failure_ratio:rate5m\",job=\"rustybouncer\",instance=\"router:9090\"}",
+              "value": 0.3333333333333333
+            }
+          ]
+        },
+        {
+          "expr": "rustybouncer:read_retry_amplification:rate5m",
+          "eval_time": "5m",
+          "exp_samples": [
+            {
+              "labels": "{__name__=\"rustybouncer:read_retry_amplification:rate5m\",job=\"rustybouncer\",instance=\"router:9090\"}",
+              "value": 0.5
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

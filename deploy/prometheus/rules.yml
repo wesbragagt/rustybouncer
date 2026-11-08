@@ -1,0 +1,110 @@
+groups:
+  - name: rustybouncer-recording
+    interval: 5s
+    rules:
+      - record: rustybouncer:q_messages_per_second:rate5m
+        expr: sum by (job, instance) (rate(rustybouncer_queries_total[5m]))
+      - record: rustybouncer:router_delivery_error_ratio:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~"router_error|delivery_error"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:sql_error_ratio:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~"sql_error"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:aborted_ratio:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_queries_total{outcome=~"aborted"}[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:q_duration_p50_seconds:rate5m
+        expr: histogram_quantile(0.50, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:q_duration_p95_seconds:rate5m
+        expr: histogram_quantile(0.95, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:q_duration_p99_seconds:rate5m
+        expr: histogram_quantile(0.99, sum by (job, instance, le) (rate(rustybouncer_query_duration_seconds_bucket[5m]))) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:client_utilization:ratio
+        expr: (rustybouncer_clients_active / rustybouncer_client_capacity) and (rustybouncer_client_capacity > 0)
+      - record: rustybouncer:backend_connections:sum
+        expr: sum by (job, instance) (rustybouncer_backend_connections_active)
+      - record: rustybouncer:attempts_per_q_message:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m])) / rustybouncer:q_messages_per_second:rate5m) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:read_retry_amplification:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_read_retries_total[5m])) / sum by (job, instance) (rate(rustybouncer_queries_total{kind="read"}[5m]))) and on (job, instance) (sum by (job, instance) (rate(rustybouncer_queries_total{kind="read"}[5m])) > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:attempt_failure_ratio:rate5m
+        expr: (sum by (job, instance) (rate(rustybouncer_query_attempts_total{outcome=~"error|aborted"}[5m])) / sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m]))) and on (job, instance) (sum by (job, instance) (rate(rustybouncer_query_attempts_total[5m])) > 0) and on (job, instance) (rustybouncer_routing_enabled == 1)
+      - record: rustybouncer:discovery_age_seconds
+        expr: clamp_min(time() - rustybouncer_topology_last_completed_timestamp_seconds, 0) and (rustybouncer_topology_discovery_completed == 1)
+  - name: rustybouncer-alerts
+    interval: 5s
+    rules:
+      - alert: RustybouncerScrapeDown
+        expr: up{job="rustybouncer"} == 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Metrics scrape unavailable; SQL health is unknown"
+      - alert: RustybouncerTargetsMissing
+        expr: absent(up{job="rustybouncer"})
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No rustybouncer scrape targets; check discovery and configuration"
+      - alert: RustybouncerMetricContractMissing
+        expr: (up{job="rustybouncer"} == 1) unless on (job, instance) rustybouncer_routing_enabled
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Scrape succeeded but routing contract gauge is missing"
+      - alert: RustybouncerNoPrimary
+        expr: (rustybouncer_topology_nodes{role="primary"} == 0) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No eligible unambiguous primary after discovery"
+      - alert: RustybouncerAmbiguousPrimary
+        expr: (rustybouncer_topology_ambiguous == 1) and on (job, instance) (rustybouncer_topology_discovery_completed == 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Multiple writable nodes persist; investigate fencing"
+      - alert: RustybouncerDiscoveryNotStarted
+        expr: (rustybouncer_topology_discovery_completed == 0) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No discovery round has completed"
+      - alert: RustybouncerDiscoveryStale
+        expr: (rustybouncer:discovery_age_seconds{discovery_profile="interval500ms_timeout1000ms"} > 15) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: "Discovery completion is stale for the configured probe profile"
+      - alert: RustybouncerDiscoveryProfileMissing
+        expr: (rustybouncer_routing_enabled == 1) unless rustybouncer_routing_enabled{discovery_profile="interval500ms_timeout1000ms"}
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: "No matching discovery freshness budget; configure a reviewed profile"
+      - alert: RustybouncerCapacityPressure
+        expr: (rustybouncer:client_utilization:ratio > 0.9) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Admitted clients exceed 90 percent of configured capacity"
+      - alert: RustybouncerRouterFailures
+        expr: (rustybouncer:router_delivery_error_ratio:rate5m > 0.05) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Router or delivery errors exceed 5 percent with traffic"
+      - alert: RustybouncerReadRetryAmplification
+        expr: (rustybouncer:read_retry_amplification:rate5m > 0.2) and on (job, instance) (rustybouncer:q_messages_per_second:rate5m > 1) and on (job, instance) (rustybouncer_routing_enabled == 1) and on (job, instance) (up{job="rustybouncer"} == 1)
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Additional read selections exceed 20 percent of read messages"
