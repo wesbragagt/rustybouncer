@@ -60,5 +60,14 @@ the absence of shells/toolchains/package managers in the exported filesystem.
 Host `/proc` access is required for the process identity checks.
 
 Authority: [FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md). This is a
-container checkpoint toward H06/G07; Kubernetes, hosted CI, full conformance and
-the complete deployment matrix remain open. See [milestone evidence](../docs/milestones/container.md).
+container checkpoint toward H06/G07; hosted CI, full conformance and the complete
+deployment matrix remain open. Local kind/CNPG validation is linked below. See [milestone evidence](../docs/milestones/container.md).
+
+## Complete deployments
+
+For a self-contained local stack, use the [Compose starter](compose/README.md).
+For three managed PostgreSQL instances and Kubernetes resources, use the
+[CloudNativePG deployment](cnpg/README.md). The [getting-started guide](../docs/getting-started.md)
+and [deployment guide](../docs/deployments.md) explain the different entry points.
+Local Kubernetes failover has [verified evidence](../docs/milestones/kind-cnpg.md);
+the full H06/G07 deployment/hosted-CI matrix remains open.

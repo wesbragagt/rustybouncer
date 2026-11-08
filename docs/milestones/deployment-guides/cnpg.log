@@ -1,0 +1,18 @@
+PASS: CNPG three-instance deployment, both replica identities and transactional write/read. [('10.244.3.4/32', True), ('10.244.1.5/32', True), ('10.244.3.4/32', True), ('10.244.1.5/32', True), ('10.244.3.4/32', True), ('10.244.1.5/32', True)]
+NAME                                  AGE     INSTANCES   READY   STATUS                     PRIMARY
+cluster.postgresql.cnpg.io/postgres   2m22s   3           3       Cluster in healthy state   postgres-1
+
+NAME                                READY   STATUS    RESTARTS   AGE
+pod/postgres-1                      1/1     Running   0          107s
+pod/postgres-2                      1/1     Running   0          67s
+pod/postgres-3                      1/1     Running   0          13s
+pod/rustybouncer-754fcf7ff4-76679   1/1     Running   0          2s
+
+NAME                   TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
+service/postgres-1     ClusterIP   10.96.82.214    <none>        5432/TCP   2s
+service/postgres-2     ClusterIP   10.96.7.12      <none>        5432/TCP   2s
+service/postgres-3     ClusterIP   10.96.244.48    <none>        5432/TCP   2s
+service/postgres-r     ClusterIP   10.96.191.149   <none>        5432/TCP   2m22s
+service/postgres-ro    ClusterIP   10.96.246.152   <none>        5432/TCP   2m22s
+service/postgres-rw    ClusterIP   10.96.162.127   <none>        5432/TCP   2m22s
+service/rustybouncer   ClusterIP   10.96.187.32    <none>        6432/TCP   2s

@@ -6,6 +6,13 @@ waiting, and opt-in round-robin routing of conservative SELECTs to replicas.
 See [design.md](design.md) for the architecture, routing decisions, failover
 boundaries, and implementation tradeoffs.
 
+## Getting started and deployments
+
+Follow [Getting started](docs/getting-started.md) for a complete Compose demo or a
+native-binary connection to existing PostgreSQL. The [deployment guide](docs/deployments.md)
+covers local processes, Docker/Podman, [Docker Compose](deploy/compose/README.md),
+and [CloudNativePG](deploy/cnpg/README.md), with configuration, verification and cleanup.
+
 ## Development verification
 
 Use `nix develop` for the Iceman-generated development environment and local commit
@@ -14,7 +21,10 @@ strict Clippy, formatting, unit tests, Ruff, Astral ty, and cyclomatic complexit
 (maximum 30). See [development.md](docs/development.md) for staged-snapshot hook
 behavior, first-use dependencies, and exact checks.
 
-## Run
+## Run against existing PostgreSQL
+
+Configure reachable backend addresses first; the sample does not start PostgreSQL.
+See the [native quickstart](docs/getting-started.md#run-a-native-rust-binary-against-existing-postgresql).
 
 ```sh
 cargo build --locked
@@ -25,7 +35,7 @@ psql 'host=127.0.0.1 port=6432 user=postgres dbname=postgres sslmode=disable'
 Configure your primary and replicas in `rustybouncer.toml`; the sample lists ports
 55432–55434. All nodes must be members of the same streaming-replication cluster.
 The router does not validate cluster identity, elect leaders, fence nodes, or
-promote standbys. Run a cluster manager such as Patroni for those jobs.
+promote standbys. Run a cluster manager such as CloudNativePG or Patroni for those jobs.
 
 The sample enables `route_selects = true`. The default when omitted is `false`,
 which preserves the original session router. `RUST_LOG=rustybouncer=debug` changes

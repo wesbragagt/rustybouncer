@@ -1,0 +1,32 @@
+
+Network rustybouncer-doc-7ad411ac_default Creating
+ Volume rustybouncer-doc-7ad411ac_postgres-data Creating
+ Volume rustybouncer-doc-7ad411ac_postgres-data Creating
+ Network rustybouncer-doc-7ad411ac_default Creating
+ Volume rustybouncer-doc-7ad411ac_postgres-data Created
+ Volume rustybouncer-doc-7ad411ac_postgres-data Created
+ Network rustybouncer-doc-7ad411ac_default Created
+ Network rustybouncer-doc-7ad411ac_default Created
+ Container rustybouncer-doc-7ad411ac-postgres-1 Creating
+ Container rustybouncer-doc-7ad411ac-postgres-1 Created
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Creating
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Created
+ Container rustybouncer-doc-7ad411ac-postgres-1 Starting
+ Container rustybouncer-doc-7ad411ac-postgres-1 Started
+ Container rustybouncer-doc-7ad411ac-postgres-1 Waiting
+ Container rustybouncer-doc-7ad411ac-postgres-1 Healthy
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Starting
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Started
+PASS: Compose readiness, primary identity and write/read round trip.
+Container rustybouncer-doc-7ad411ac-rustybouncer-1 Stopping
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Stopped
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Removing
+ Container rustybouncer-doc-7ad411ac-rustybouncer-1 Removed
+ Container rustybouncer-doc-7ad411ac-postgres-1 Stopping
+ Container rustybouncer-doc-7ad411ac-postgres-1 Stopped
+ Container rustybouncer-doc-7ad411ac-postgres-1 Removing
+ Container rustybouncer-doc-7ad411ac-postgres-1 Removed
+ Volume rustybouncer-doc-7ad411ac_postgres-data Removing
+ Network rustybouncer-doc-7ad411ac_default Removing
+ Volume rustybouncer-doc-7ad411ac_postgres-data Removed
+ Network rustybouncer-doc-7ad411ac_default Removed

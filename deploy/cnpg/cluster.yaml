@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rustybouncer-demo
+---
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: postgres
+  namespace: rustybouncer-demo
+spec:
+  instances: 3
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.13@sha256:425e365273a0519c9cc1deb199a69c226734041a9a59a1f8250fecb06f6dcbb5
+  storage:
+    size: 1Gi
+  resources:
+    requests:
+      cpu: 100m
+      memory: 256Mi
+    limits:
+      memory: 512Mi
+  affinity:
+    enablePodAntiAffinity: true
+    podAntiAffinityType: required
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+  postgresql:
+    # Demo only: replace this CIDR with your cluster's actual Pod CIDR.
+    pg_hba:
+      - host app app 10.244.0.0/16 trust

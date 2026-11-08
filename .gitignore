@@ -10,3 +10,5 @@ __pycache__/
 /conformance-results.xml
 
 /result-image
+
+/config.demo.kubeconfig
