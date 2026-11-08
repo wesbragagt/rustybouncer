@@ -1,0 +1,18 @@
+{
+  "base_source_commit": "c8997e8",
+  "preparation_commit": "1cc1ceb",
+  "source_hashes": {
+    "src/main.rs": "56f56bc6ea0fef16a16dba175ca251c7c99e5e766f708691c1b2dde0673b424b",
+    "src/router.rs": "d706cab32cfbc5f3deb848d160bb366d34c5e625440135dc9b5118674647648f",
+    "src/metrics.rs": "bcff24628c6ad8c6b773914dc95858565a41db2b3f482816f64caee60fcf8352",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "Cargo.lock": "cef4f14606717e2254e789b007e7910b30bb28bcf84dd77df4c9307c3d0f9d83",
+    "flake.lock": "ebdc0d1b06b2404edbb5e7458fdaa16354c28bdaf7ba4465fd80091c13dd70f5"
+  },
+  "binaries": {
+    "production": "b58acae3b99be386af2640bdca00dc6efd1f7e42510655bdd2d9531d60a9bdab",
+    "profile": "9fe2ab9f6c1297401039408c5045d7c0b1362cb199c83a7727782fb774bb5541"
+  },
+  "profiling_build": "CARGO_TARGET_DIR=target/perf-001 CARGO_PROFILE_RELEASE_DEBUG=2 RUSTFLAGS=-Cforce-frame-pointers=yes cargo build --release --locked --offline",
+  "retained_binary_directory": "/home/publicuser/dev/rustybouncer-evidence/perf-001-20261108/binaries"
+}

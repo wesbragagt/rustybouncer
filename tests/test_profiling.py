@@ -55,3 +55,84 @@ class ProfilingSafety(unittest.TestCase):
             self.assertEqual(totals['sendto']['errors'],1)
             self.assertEqual(totals['sendto']['returned_bytes'],0)
             self.assertEqual(totals['recvfrom']['returned_bytes'],8)
+
+
+class ProfileReport(unittest.TestCase):
+    def test_matrix_rejects_duplicate_replacing_required_arm(self):
+        from benchmarks.profile_report import matrix
+        rows = [{'clients': c, 'repetition': r, 'target': t} for c in (10,100)
+                for r in (1,2,3) for t in ('direct','pgbouncer-session','pgbouncer-transaction',
+                                           'rustybouncer-session','rustybouncer-routed')]
+        rows[-1] = rows[0]
+        with self.assertRaisesRegex(AssertionError,'incomplete or duplicate'):
+            matrix(rows)
+
+    def test_switch_intervals_are_thread_local_clipped_and_not_wall_percentage(self):
+        from benchmarks.profile_report import switches
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'stacks.txt'
+            path.write_text("""worker 10 1.000000: PERF_RECORD_SWITCH OUT
+worker 11 1.500000: PERF_RECORD_SWITCH OUT
+worker 10 2.000000: PERF_RECORD_SWITCH IN
+worker 11 3.000000: PERF_RECORD_SWITCH IN
+worker 12 3.500000: PERF_RECORD_SWITCH IN
+worker 13 3.600000: PERF_RECORD_SWITCH OUT
+""")
+            result=switches(path,1.75,2.5)
+            self.assertEqual(result['matched_in_window'],2)
+            self.assertEqual(result['aggregate_thread_offcpu_seconds'],1.0)
+            self.assertEqual(result['wall_seconds'],.75)
+            self.assertEqual(result['unmatched_in'],1)
+            self.assertEqual(result['unmatched_out'],1)
+
+
+class WorkloadEvidence(unittest.TestCase):
+    def test_mixed_latency_keeps_short_and_long_distributions(self):
+        from benchmarks.workload_compare import latencies
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'latency.1').write_text('0 1 100 0 1 1\n1 1 20000 1 1 1\n')
+            result=latencies(root,'mixed')
+            self.assertEqual(result['scripts']['0']['p99_ms'],.1)
+            self.assertEqual(result['scripts']['1']['p99_ms'],20)
+            self.assertEqual(result['all']['samples'],2)
+
+    def test_missing_long_workload_cannot_pass(self):
+        from benchmarks.workload_compare import latencies
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'latency.1').write_text('0 1 100 0 1 1\n')
+            with self.assertRaisesRegex(AssertionError,'missing workload'):
+                latencies(root,'mixed')
+
+
+class HeapEvidence(unittest.TestCase):
+    def test_bytes_count_allocations_not_live_or_peak_size(self):
+        from benchmarks.profile_report import heap_summary
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'sizes.tsv'
+            path.write_text('16\t100\n32\t10\n')
+            result=heap_summary(path,10)
+            self.assertEqual(result['allocation_calls'],110)
+            self.assertEqual(result['allocated_bytes_including_reallocations'],1920)
+            self.assertEqual(result['calls_per_controlled_q'],11)
+
+
+class CpuEvidence(unittest.TestCase):
+    def test_samples_are_period_weighted_and_unresolved_work_is_retained(self):
+        from benchmarks.profile_report import sample_categories
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/'stacks.txt'
+            path.write_text("""worker 10 1.0: 100 cpu-clock:u:
+  111 rustybouncer::router::scan_words (binary)
+  222 rustybouncer::router::route_query (binary)
+
+worker 10 2.0: PERF_RECORD_SWITCH OUT
+worker 11 2.5: 300 cpu-clock:u:
+  333 unresolved_symbol (lib)
+""")
+            result=sample_categories(path)
+            self.assertEqual(result['samples'],2)
+            self.assertEqual(result['period_weight'],400)
+            self.assertEqual(result['ranked_categories'][0]['category'],'runtime_or_other')
+            self.assertEqual(result['ranked_categories'][0]['period_share'],.75)

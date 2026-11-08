@@ -1,0 +1,48 @@
+{
+  "monotonic": 1145609.376964873,
+  "processes": [
+    [
+      2624113,
+      "0::/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice/app-t3code-agents.slice/app-t3code-agents-de2941b8dde0.slice/t3code-codex-a19075da.scope\n"
+    ],
+    [
+      2112365,
+      "0::/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice/app-t3code-agents.slice/app-t3code-agents-de2941b8dde0.slice/t3code-codex-a19075da.scope\n"
+    ]
+  ],
+  "ancestor_controls": {
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice/app-t3code-agents.slice/app-t3code-agents-de2941b8dde0.slice/t3code-codex-a19075da.scope": {
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice/app-t3code-agents.slice/app-t3code-agents-de2941b8dde0.slice": {
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice/app-t3code-agents.slice": {
+      "memory.max": "60603543552"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice/app-t3code.slice": {
+      "cpu.max": "max 100000",
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice": {
+      "cpu.max": "max 100000",
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service": {
+      "cpu.max": "max 100000",
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice/user-1000.slice": {
+      "cpu.max": "max 100000",
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup/user.slice": {
+      "cpu.max": "max 100000",
+      "cpuset.cpus.effective": "0-15",
+      "memory.max": "max"
+    },
+    "/sys/fs/cgroup": {
+      "cpuset.cpus.effective": "0-15"
+    }
+  }
+}

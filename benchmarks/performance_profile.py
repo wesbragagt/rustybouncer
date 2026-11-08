@@ -41,6 +41,23 @@ def children(pid):
     return result
 
 
+def cgroups(pid):
+    raw=Path(f'/proc/{pid}/cgroup').read_text()
+    controls={}
+    for line in raw.splitlines():
+        if not line.startswith('0::'):
+            continue
+        current=Path('/sys/fs/cgroup')/line[3:].lstrip('/')
+        while str(current).startswith('/sys/fs/cgroup'):
+            controls[str(current)]={name:(current/name).read_text().strip()
+                                    for name in ('cpu.max','cpuset.cpus.effective','memory.max')
+                                    if (current/name).exists()}
+            if current==Path('/sys/fs/cgroup'):
+                break
+            current=current.parent
+    return {'membership':raw,'ancestor_controls':controls}
+
+
 def process_info(pid):
     base = Path(f'/proc/{pid}')
     stat = (base / 'stat').read_text().rsplit(')', 1)[1].split()
@@ -99,11 +116,11 @@ class Instrumented(c.Fixture):
             prefix = ['taskset', '-c', str(self.cpu)]
         elif self.mode == 'cpu':
             self.artifact = directory / 'cpu.data'
-            prefix = ['perf', 'record', '-e', 'cpu-clock:u', '-F', '199', '--call-graph', 'dwarf',
+            prefix = ['perf', 'record', '--clockid', 'mono', '-e', 'cpu-clock:u', '-F', '199', '--call-graph', 'dwarf',
                       '--switch-events', '-o', str(self.artifact), '--']
         elif self.mode == 'offcpu':
             self.artifact = directory / 'offcpu.data'
-            prefix = ['perf', 'record', '-e', 'cpu-clock:u', '-F', '99', '--call-graph', 'dwarf',
+            prefix = ['perf', 'record', '--clockid', 'mono', '-e', 'cpu-clock:u', '-F', '99', '--call-graph', 'dwarf',
                       '--switch-events', '-o', str(self.artifact), '--']
         elif self.mode == 'heap':
             self.artifact = directory / 'heap'
@@ -147,12 +164,13 @@ class Instrumented(c.Fixture):
             return None
         self.target_pid = c.m.f.eventually(find_target, description='owned target PID')
         first = process_info(self.target_pid)
+        dump(directory / 'placement.json', {'proxy': first, 'harness_affinity': sorted(os.sched_getaffinity(0)),
+                                           'postgres_affinity': self.postgres_affinity(), 'proxy_cgroups': cgroups(self.target_pid),
+                                           'harness_cgroups': cgroups(os.getpid())})
         if self.mode == 'normalized':
             assert first['threads'] and all(t['affinity'] == [self.cpu] for t in first['threads'])
             if target.startswith('rustybouncer'):
-                assert sum(t['name'].startswith('tokio-runtime') for t in first['threads']) == 1
-        dump(directory / 'placement.json', {'proxy': first, 'harness_affinity': sorted(os.sched_getaffinity(0)),
-                                           'postgres_affinity': self.postgres_affinity()})
+                assert sum(t['name'].startswith(('tokio-rt-worker', 'tokio-runtime')) for t in first['threads']) == 1
         self.resource_worker = threading.Thread(target=self.resources)
         self.resource_worker.start()
 
@@ -241,7 +259,7 @@ def report_profile(fixture, directory):
     elif fixture.mode == 'heap':
         files = list(directory.glob('heap*.gz')) + list(directory.glob('heap*.zst'))
         assert len(files) == 1, files
-        result = subprocess.run(['heaptrack_print', '-f', str(files[0]), '-n', '30', '-s', '5'],
+        result = subprocess.run(['heaptrack_print', '-f', str(files[0]), '-n', '30', '-s', '5', '-H', str(directory / 'allocation-sizes.tsv')],
                                 text=True, capture_output=True, timeout=120, check=True)
         (directory / 'allocations.txt').write_text(result.stdout + result.stderr)
 
@@ -295,10 +313,17 @@ def main():
     assert reference
     os.environ['PERF_PGBOUNCER_BIN'] = reference
     cpu = min(os.sched_getaffinity(0))
+    shutil.copyfile(__file__, output / 'harness.py')
+    (output / 'source-diff.patch').write_text(subprocess.check_output(['git','diff','HEAD','--','benchmarks/performance_profile.py'],text=True))
     dump(output / 'environment.json', {'cpu': cpu, 'harness_affinity': sorted(os.sched_getaffinity(0)),
         'binary': str(args.binary.resolve()), 'binary_sha256': hashlib.sha256(args.binary.read_bytes()).hexdigest(),
         'profile_binary': str(args.profile_binary.resolve()), 'profile_sha256': hashlib.sha256(args.profile_binary.read_bytes()).hexdigest(),
         'pgbouncer': reference, 'pgbouncer_sha256': hashlib.sha256(Path(reference).read_bytes()).hexdigest(),
+        'command': sys.argv, 'git_head': subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+        'python': sys.version, 'rustc': subprocess.check_output(['rustc','--version'],text=True).strip(),
+        'pgbench': subprocess.check_output(['pgbench','--version'],text=True).strip(),
+        'postgres_image': c.m.f.docker('image','inspect',c.m.f.IMAGE,'--format','{{json .RepoDigests}}'),
+        'harness_sha256': hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         'normalized_arms': 30, 'attribution_arms': 16, 'profiling_timing_separated': True,
         'platform': platform.platform(), 'logical_cpus': os.cpu_count(), 'load_start': os.getloadavg(),
         'fd_limit': resource.getrlimit(resource.RLIMIT_NOFILE),

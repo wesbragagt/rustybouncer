@@ -1,0 +1,2818 @@
+{
+  "unrestricted": [
+    {
+      "clients": 10,
+      "target": "direct",
+      "tps": {
+        "all": [
+          215696.90961,
+          222915.456984,
+          219590.851228
+        ],
+        "median": 219590.851228,
+        "min": 215696.90961,
+        "max": 222915.456984,
+        "sample_cv": 0.016467621263451575
+      },
+      "p50_ms": {
+        "all": [
+          0.04,
+          0.039,
+          0.04
+        ],
+        "median": 0.04,
+        "min": 0.039,
+        "max": 0.04,
+        "sample_cv": 0.01455504880309982
+      },
+      "p95_ms": {
+        "all": [
+          0.076,
+          0.071,
+          0.073
+        ],
+        "median": 0.073,
+        "min": 0.071,
+        "max": 0.076,
+        "sample_cv": 0.03431742925123071
+      },
+      "p99_ms": {
+        "all": [
+          0.127,
+          0.118,
+          0.119
+        ],
+        "median": 0.119,
+        "min": 0.118,
+        "max": 0.127,
+        "sample_cv": 0.040655627986122954
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "tps": {
+        "all": [
+          154652.716077,
+          156967.095832,
+          159862.154746
+        ],
+        "median": 156967.095832,
+        "min": 154652.716077,
+        "max": 159862.154746,
+        "sample_cv": 0.0166078947679835
+      },
+      "p50_ms": {
+        "all": [
+          0.061,
+          0.06,
+          0.06
+        ],
+        "median": 0.06,
+        "min": 0.06,
+        "max": 0.061,
+        "sample_cv": 0.009569341478281099
+      },
+      "p95_ms": {
+        "all": [
+          0.086,
+          0.082,
+          0.079
+        ],
+        "median": 0.082,
+        "min": 0.079,
+        "max": 0.086,
+        "sample_cv": 0.042654468635031285
+      },
+      "p99_ms": {
+        "all": [
+          0.132,
+          0.123,
+          0.11
+        ],
+        "median": 0.123,
+        "min": 0.11,
+        "max": 0.132,
+        "sample_cv": 0.09090772615362773
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "tps": {
+        "all": [
+          157590.558139,
+          155560.809691,
+          155839.163573
+        ],
+        "median": 155839.163573,
+        "min": 155560.809691,
+        "max": 157590.558139,
+        "sample_cv": 0.00703868726589574
+      },
+      "p50_ms": {
+        "all": [
+          0.061,
+          0.061,
+          0.061
+        ],
+        "median": 0.061,
+        "min": 0.061,
+        "max": 0.061,
+        "sample_cv": 0.0
+      },
+      "p95_ms": {
+        "all": [
+          0.08,
+          0.082,
+          0.082
+        ],
+        "median": 0.082,
+        "min": 0.08,
+        "max": 0.082,
+        "sample_cv": 0.01419713776695802
+      },
+      "p99_ms": {
+        "all": [
+          0.112,
+          0.119,
+          0.116
+        ],
+        "median": 0.116,
+        "min": 0.112,
+        "max": 0.119,
+        "sample_cv": 0.03036211456153524
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 10,
+      "target": "rustybouncer-session",
+      "tps": {
+        "all": [
+          160138.834773,
+          163463.35979,
+          162735.889155
+        ],
+        "median": 162735.889155,
+        "min": 160138.834773,
+        "max": 163463.35979,
+        "sample_cv": 0.010780666074977907
+      },
+      "p50_ms": {
+        "all": [
+          0.057,
+          0.056,
+          0.056
+        ],
+        "median": 0.056,
+        "min": 0.056,
+        "max": 0.057,
+        "sample_cv": 0.010248821346561413
+      },
+      "p95_ms": {
+        "all": [
+          0.09,
+          0.087,
+          0.087
+        ],
+        "median": 0.087,
+        "min": 0.087,
+        "max": 0.09,
+        "sample_cv": 0.019682395540555443
+      },
+      "p99_ms": {
+        "all": [
+          0.15,
+          0.138,
+          0.139
+        ],
+        "median": 0.139,
+        "min": 0.138,
+        "max": 0.15,
+        "sample_cv": 0.04677982284645937
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 10,
+      "target": "rustybouncer-routed",
+      "tps": {
+        "all": [
+          68133.140639,
+          67776.015927,
+          67029.405175
+        ],
+        "median": 67776.015927,
+        "min": 67029.405175,
+        "max": 68133.140639,
+        "sample_cv": 0.008325742938883655
+      },
+      "p50_ms": {
+        "all": [
+          0.123,
+          0.125,
+          0.125
+        ],
+        "median": 0.125,
+        "min": 0.123,
+        "max": 0.125,
+        "sample_cv": 0.00928713569742026
+      },
+      "p95_ms": {
+        "all": [
+          0.263,
+          0.263,
+          0.269
+        ],
+        "median": 0.263,
+        "min": 0.263,
+        "max": 0.269,
+        "sample_cv": 0.013072081566557576
+      },
+      "p99_ms": {
+        "all": [
+          0.419,
+          0.414,
+          0.427
+        ],
+        "median": 0.419,
+        "min": 0.414,
+        "max": 0.427,
+        "sample_cv": 0.01561294886738573
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "direct",
+      "tps": {
+        "all": [
+          334654.866234,
+          333558.476966,
+          335535.50201
+        ],
+        "median": 334654.866234,
+        "min": 333558.476966,
+        "max": 335535.50201,
+        "sample_cv": 0.0029603202682949997
+      },
+      "p50_ms": {
+        "all": [
+          0.202,
+          0.203,
+          0.202
+        ],
+        "median": 0.202,
+        "min": 0.202,
+        "max": 0.203,
+        "sample_cv": 0.002853460967988268
+      },
+      "p95_ms": {
+        "all": [
+          0.807,
+          0.814,
+          0.8
+        ],
+        "median": 0.807,
+        "min": 0.8,
+        "max": 0.814,
+        "sample_cv": 0.008674101610904523
+      },
+      "p99_ms": {
+        "all": [
+          1.691,
+          1.717,
+          1.693
+        ],
+        "median": 1.693,
+        "min": 1.691,
+        "max": 1.717,
+        "sample_cv": 0.008509129352758566
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "tps": {
+        "all": [
+          155307.762043,
+          154141.697143,
+          154899.353907
+        ],
+        "median": 154899.353907,
+        "min": 154141.697143,
+        "max": 155307.762043,
+        "sample_cv": 0.0038226772221223925
+      },
+      "p50_ms": {
+        "all": [
+          0.62,
+          0.62,
+          0.622
+        ],
+        "median": 0.62,
+        "min": 0.62,
+        "max": 0.622,
+        "sample_cv": 0.001860419771824789
+      },
+      "p95_ms": {
+        "all": [
+          0.78,
+          0.801,
+          0.781
+        ],
+        "median": 0.781,
+        "min": 0.78,
+        "max": 0.801,
+        "sample_cv": 0.015046025100691682
+      },
+      "p99_ms": {
+        "all": [
+          1.127,
+          1.208,
+          1.086
+        ],
+        "median": 1.127,
+        "min": 1.086,
+        "max": 1.208,
+        "sample_cv": 0.05444309623346663
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "tps": {
+        "all": [
+          151702.411891,
+          151871.860715,
+          148702.104934
+        ],
+        "median": 151702.411891,
+        "min": 148702.104934,
+        "max": 151871.860715,
+        "sample_cv": 0.011827884688866773
+      },
+      "p50_ms": {
+        "all": [
+          0.61,
+          0.61,
+          0.619
+        ],
+        "median": 0.61,
+        "min": 0.61,
+        "max": 0.619,
+        "sample_cv": 0.008476594490549163
+      },
+      "p95_ms": {
+        "all": [
+          0.944,
+          0.938,
+          0.979
+        ],
+        "median": 0.944,
+        "min": 0.938,
+        "max": 0.979,
+        "sample_cv": 0.02321929909855629
+      },
+      "p99_ms": {
+        "all": [
+          1.319,
+          1.298,
+          1.41
+        ],
+        "median": 1.319,
+        "min": 1.298,
+        "max": 1.41,
+        "sample_cv": 0.0443513562230998
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "rustybouncer-session",
+      "tps": {
+        "all": [
+          184261.333627,
+          186463.032402,
+          186466.62859
+        ],
+        "median": 186463.032402,
+        "min": 184261.333627,
+        "max": 186466.62859,
+        "sample_cv": 0.006849666237219598
+      },
+      "p50_ms": {
+        "all": [
+          0.518,
+          0.516,
+          0.515
+        ],
+        "median": 0.516,
+        "min": 0.515,
+        "max": 0.518,
+        "sample_cv": 0.002958409099390474
+      },
+      "p95_ms": {
+        "all": [
+          0.927,
+          0.893,
+          0.895
+        ],
+        "median": 0.895,
+        "min": 0.893,
+        "max": 0.927,
+        "sample_cv": 0.02108152931308169
+      },
+      "p99_ms": {
+        "all": [
+          1.479,
+          1.412,
+          1.389
+        ],
+        "median": 1.412,
+        "min": 1.389,
+        "max": 1.479,
+        "sample_cv": 0.03277446972895979
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "rustybouncer-routed",
+      "tps": {
+        "all": [
+          88046.210464,
+          89777.525306,
+          90156.115887
+        ],
+        "median": 89777.525306,
+        "min": 88046.210464,
+        "max": 90156.115887,
+        "sample_cv": 0.012593179555507122
+      },
+      "p50_ms": {
+        "all": [
+          1.032,
+          1.009,
+          1.007
+        ],
+        "median": 1.009,
+        "min": 1.007,
+        "max": 1.032,
+        "sample_cv": 0.013673665343946732
+      },
+      "p95_ms": {
+        "all": [
+          2.09,
+          2.042,
+          2.041
+        ],
+        "median": 2.042,
+        "min": 2.041,
+        "max": 2.09,
+        "sample_cv": 0.013610538675713569
+      },
+      "p99_ms": {
+        "all": [
+          2.939,
+          2.882,
+          2.869
+        ],
+        "median": 2.882,
+        "min": 2.869,
+        "max": 2.939,
+        "sample_cv": 0.012853911667347038
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    }
+  ],
+  "equal_core": [
+    {
+      "clients": 10,
+      "target": "direct",
+      "tps": {
+        "all": [
+          230292.110964,
+          230990.89306,
+          203688.430592
+        ],
+        "median": 230292.110964,
+        "min": 203688.430592,
+        "max": 230990.89306,
+        "sample_cv": 0.07022234677229888
+      },
+      "p50_ms": {
+        "all": [
+          0.039,
+          0.039,
+          0.041
+        ],
+        "median": 0.039,
+        "min": 0.039,
+        "max": 0.041,
+        "sample_cv": 0.02911009760619964
+      },
+      "p95_ms": {
+        "all": [
+          0.067,
+          0.066,
+          0.085
+        ],
+        "median": 0.067,
+        "min": 0.066,
+        "max": 0.085,
+        "sample_cv": 0.14714692598482057
+      },
+      "p99_ms": {
+        "all": [
+          0.105,
+          0.1,
+          0.149
+        ],
+        "median": 0.105,
+        "min": 0.1,
+        "max": 0.149,
+        "sample_cv": 0.22849947055445358
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "tps": {
+        "all": [
+          153801.946045,
+          157235.711148,
+          159221.732347
+        ],
+        "median": 157235.711148,
+        "min": 153801.946045,
+        "max": 159221.732347,
+        "sample_cv": 0.01749203213142582
+      },
+      "p50_ms": {
+        "all": [
+          0.06,
+          0.06,
+          0.06
+        ],
+        "median": 0.06,
+        "min": 0.06,
+        "max": 0.06,
+        "sample_cv": 0.0
+      },
+      "p95_ms": {
+        "all": [
+          0.087,
+          0.081,
+          0.079
+        ],
+        "median": 0.081,
+        "min": 0.079,
+        "max": 0.087,
+        "sample_cv": 0.050566785412132734
+      },
+      "p99_ms": {
+        "all": [
+          0.138,
+          0.12,
+          0.115
+        ],
+        "median": 0.12,
+        "min": 0.115,
+        "max": 0.138,
+        "sample_cv": 0.09729355126876173
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          2.8543272316038393e-06,
+          2.8301808792979792e-06,
+          2.8158074615757423e-06
+        ],
+        "median": 2.8301808792979792e-06,
+        "min": 2.8158074615757423e-06,
+        "max": 2.8543272316038393e-06,
+        "sample_cv": 0.0068698912107802304
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          13291520,
+          13291520,
+          13291520
+        ],
+        "median": 13291520,
+        "min": 13291520,
+        "max": 13291520,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.02047876842173476,
+          0.014690016754246808,
+          0.013602129545985067
+        ],
+        "median": 0.014690016754246808,
+        "min": 0.013602129545985067,
+        "max": 0.02047876842173476,
+        "sample_cv": 0.22737470390269196
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.006713629054927269,
+          0.002869612612897187,
+          0.0021444100988044857
+        ],
+        "median": 0.002869612612897187,
+        "min": 0.0021444100988044857,
+        "max": 0.006713629054927269,
+        "sample_cv": 0.628159174225616
+      }
+    },
+    {
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "tps": {
+        "all": [
+          156860.754879,
+          157437.766705,
+          151592.584801
+        ],
+        "median": 156860.754879,
+        "min": 151592.584801,
+        "max": 157437.766705,
+        "sample_cv": 0.020741508596251016
+      },
+      "p50_ms": {
+        "all": [
+          0.061,
+          0.061,
+          0.061
+        ],
+        "median": 0.061,
+        "min": 0.061,
+        "max": 0.061,
+        "sample_cv": 0.0
+      },
+      "p95_ms": {
+        "all": [
+          0.08,
+          0.079,
+          0.086
+        ],
+        "median": 0.08,
+        "min": 0.079,
+        "max": 0.086,
+        "sample_cv": 0.04635843547592054
+      },
+      "p99_ms": {
+        "all": [
+          0.117,
+          0.116,
+          0.14
+        ],
+        "median": 0.117,
+        "min": 0.116,
+        "max": 0.14,
+        "sample_cv": 0.10919791879043596
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          2.909195075236375e-06,
+          2.902767453180436e-06,
+          2.9531275115601858e-06
+        ],
+        "median": 2.909195075236375e-06,
+        "min": 2.902767453180436e-06,
+        "max": 2.9531275115601858e-06,
+        "sample_cv": 0.009381181485704054
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          13291520,
+          13291520,
+          13291520
+        ],
+        "median": 13291520,
+        "min": 13291520,
+        "max": 13291520,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.011885836300081878,
+          0.011661248943750464,
+          0.016311686666794202
+        ],
+        "median": 0.011885836300081878,
+        "min": 0.011661248943750464,
+        "max": 0.016311686666794202,
+        "sample_cv": 0.19738470324041424
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.0024839723326835635,
+          0.0018892336969167781,
+          0.00497370001369917
+        ],
+        "median": 0.0024839723326835635,
+        "min": 0.0018892336969167781,
+        "max": 0.00497370001369917,
+        "sample_cv": 0.5252147457573413
+      }
+    },
+    {
+      "clients": 10,
+      "target": "rustybouncer-session",
+      "tps": {
+        "all": [
+          153259.548194,
+          151750.939815,
+          145220.337966
+        ],
+        "median": 151750.939815,
+        "min": 145220.337966,
+        "max": 153259.548194,
+        "sample_cv": 0.028472372184145764
+      },
+      "p50_ms": {
+        "all": [
+          0.063,
+          0.064,
+          0.065
+        ],
+        "median": 0.064,
+        "min": 0.063,
+        "max": 0.065,
+        "sample_cv": 0.015625000000000014
+      },
+      "p95_ms": {
+        "all": [
+          0.084,
+          0.085,
+          0.095
+        ],
+        "median": 0.085,
+        "min": 0.084,
+        "max": 0.095,
+        "sample_cv": 0.06912230148066155
+      },
+      "p99_ms": {
+        "all": [
+          0.12,
+          0.123,
+          0.152
+        ],
+        "median": 0.123,
+        "min": 0.12,
+        "max": 0.152,
+        "sample_cv": 0.1342249735879652
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          3.0778935462119068e-06,
+          3.11507865024389e-06,
+          3.195453640785559e-06
+        ],
+        "median": 3.11507865024389e-06,
+        "min": 3.0778935462119068e-06,
+        "max": 3.195453640785559e-06,
+        "sample_cv": 0.01920059222476475
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          6221824,
+          6221824,
+          6221824
+        ],
+        "median": 6221824,
+        "min": 6221824,
+        "max": 6221824,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.011224631849128837,
+          0.011174740534598462,
+          0.018281116820229794
+        ],
+        "median": 0.011224631849128837,
+        "min": 0.011174740534598462,
+        "max": 0.018281116820229794,
+        "sample_cv": 0.30151126951307167
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.0021680116590172493,
+          0.0026605583591751587,
+          0.006771515193670431
+        ],
+        "median": 0.0026605583591751587,
+        "min": 0.0021680116590172493,
+        "max": 0.006771515193670431,
+        "sample_cv": 0.6537039743703951
+      }
+    },
+    {
+      "clients": 10,
+      "target": "rustybouncer-routed",
+      "tps": {
+        "all": [
+          28483.211064,
+          28527.653276,
+          28104.319151
+        ],
+        "median": 28483.211064,
+        "min": 28104.319151,
+        "max": 28527.653276,
+        "sample_cv": 0.00819993627236174
+      },
+      "p50_ms": {
+        "all": [
+          0.372,
+          0.37,
+          0.373
+        ],
+        "median": 0.372,
+        "min": 0.37,
+        "max": 0.373,
+        "sample_cv": 0.004109933358704794
+      },
+      "p95_ms": {
+        "all": [
+          0.438,
+          0.439,
+          0.459
+        ],
+        "median": 0.439,
+        "min": 0.438,
+        "max": 0.459,
+        "sample_cv": 0.026600831802270773
+      },
+      "p99_ms": {
+        "all": [
+          0.509,
+          0.526,
+          0.549
+        ],
+        "median": 0.526,
+        "min": 0.509,
+        "max": 0.549,
+        "sample_cv": 0.03802056799220597
+      },
+      "backend_connections_peak": {
+        "all": [
+          10,
+          10,
+          10
+        ],
+        "median": 10,
+        "min": 10,
+        "max": 10,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          1.5999176048285444e-05,
+          1.593916008572557e-05,
+          1.6274029993084724e-05
+        ],
+        "median": 1.5999176048285444e-05,
+        "min": 1.593916008572557e-05,
+        "max": 1.6274029993084724e-05,
+        "sample_cv": 0.011110331827128546
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          6090752,
+          6090752,
+          6090752
+        ],
+        "median": 6090752,
+        "min": 6090752,
+        "max": 6090752,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.0003452638576623413,
+          0.0008542174503420375,
+          0.0005420722818396296
+        ],
+        "median": 0.0005420722818396296,
+        "min": 0.0003452638576623413,
+        "max": 0.0008542174503420375,
+        "sample_cv": 0.4420977559806962
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.001399781605980204,
+          0.0024656618607683985,
+          0.004147979802173271
+        ],
+        "median": 0.0024656618607683985,
+        "min": 0.001399781605980204,
+        "max": 0.004147979802173271,
+        "sample_cv": 0.51871979181861
+      }
+    },
+    {
+      "clients": 100,
+      "target": "direct",
+      "tps": {
+        "all": [
+          317942.577229,
+          334738.772521,
+          335249.875973
+        ],
+        "median": 334738.772521,
+        "min": 317942.577229,
+        "max": 335249.875973,
+        "sample_cv": 0.02990536198317961
+      },
+      "p50_ms": {
+        "all": [
+          0.209,
+          0.203,
+          0.204
+        ],
+        "median": 0.204,
+        "min": 0.203,
+        "max": 0.209,
+        "sample_cv": 0.01565527720940411
+      },
+      "p95_ms": {
+        "all": [
+          0.861,
+          0.809,
+          0.794
+        ],
+        "median": 0.809,
+        "min": 0.794,
+        "max": 0.861,
+        "sample_cv": 0.042810306831102936
+      },
+      "p99_ms": {
+        "all": [
+          1.866,
+          1.681,
+          1.652
+        ],
+        "median": 1.681,
+        "min": 1.652,
+        "max": 1.866,
+        "sample_cv": 0.06698816038814558
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      }
+    },
+    {
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "tps": {
+        "all": [
+          144928.323177,
+          149053.464351,
+          149010.669026
+        ],
+        "median": 149010.669026,
+        "min": 144928.323177,
+        "max": 149053.464351,
+        "sample_cv": 0.01604583108084713
+      },
+      "p50_ms": {
+        "all": [
+          0.642,
+          0.638,
+          0.638
+        ],
+        "median": 0.638,
+        "min": 0.638,
+        "max": 0.642,
+        "sample_cv": 0.0036122018927401017
+      },
+      "p95_ms": {
+        "all": [
+          0.952,
+          0.858,
+          0.868
+        ],
+        "median": 0.868,
+        "min": 0.858,
+        "max": 0.952,
+        "sample_cv": 0.05783442836907942
+      },
+      "p99_ms": {
+        "all": [
+          1.494,
+          1.256,
+          1.268
+        ],
+        "median": 1.268,
+        "min": 1.256,
+        "max": 1.494,
+        "sample_cv": 0.10010919240456528
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          2.9963808690056846e-06,
+          2.985232275239311e-06,
+          2.9538864754293707e-06
+        ],
+        "median": 2.985232275239311e-06,
+        "min": 2.9538864754293707e-06,
+        "max": 2.9963808690056846e-06,
+        "sample_cv": 0.007397227668002199
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          14077952,
+          14077952,
+          14077952
+        ],
+        "median": 14077952,
+        "min": 14077952,
+        "max": 14077952,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.0009587498233700217,
+          0.0007510074599477607,
+          0.0007709196142313775
+        ],
+        "median": 0.0007709196142313775,
+        "min": 0.0007510074599477607,
+        "max": 0.0009587498233700217,
+        "sample_cv": 0.13862163822655776
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.02274810010581689,
+          0.013256087277987336,
+          0.012867532289671534
+        ],
+        "median": 0.013256087277987336,
+        "min": 0.012867532289671534,
+        "max": 0.02274810010581689,
+        "sample_cv": 0.34349656073089285
+      }
+    },
+    {
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "tps": {
+        "all": [
+          147382.611863,
+          148823.523526,
+          151694.109462
+        ],
+        "median": 148823.523526,
+        "min": 147382.611863,
+        "max": 151694.109462,
+        "sample_cv": 0.014701260887279563
+      },
+      "p50_ms": {
+        "all": [
+          0.621,
+          0.621,
+          0.612
+        ],
+        "median": 0.621,
+        "min": 0.612,
+        "max": 0.621,
+        "sample_cv": 0.00840801362897514
+      },
+      "p95_ms": {
+        "all": [
+          0.994,
+          0.97,
+          0.934
+        ],
+        "median": 0.97,
+        "min": 0.934,
+        "max": 0.994,
+        "sample_cv": 0.031262254390355036
+      },
+      "p99_ms": {
+        "all": [
+          1.488,
+          1.345,
+          1.29
+        ],
+        "median": 1.345,
+        "min": 1.29,
+        "max": 1.488,
+        "sample_cv": 0.07436864346952697
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          3.0232441310368144e-06,
+          3.0119233169701934e-06,
+          2.9614646828297704e-06
+        ],
+        "median": 3.0119233169701934e-06,
+        "min": 2.9614646828297704e-06,
+        "max": 3.0232441310368144e-06,
+        "sample_cv": 0.010967794145652233
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          13684736,
+          13684736,
+          13684736
+        ],
+        "median": 13684736,
+        "min": 13684736,
+        "max": 13684736,
+        "sample_cv": 0.0
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.001473831513880447,
+          0.0011913232405516034,
+          0.0010685017341167547
+        ],
+        "median": 0.0011913232405516034,
+        "min": 0.0010685017341167547,
+        "max": 0.001473831513880447,
+        "sample_cv": 0.16700095262315068
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.015732410308538357,
+          0.01723115951204153,
+          0.014253945046911843
+        ],
+        "median": 0.015732410308538357,
+        "min": 0.014253945046911843,
+        "max": 0.01723115951204153,
+        "sample_cv": 0.09458050172745668
+      }
+    },
+    {
+      "clients": 100,
+      "target": "rustybouncer-session",
+      "tps": {
+        "all": [
+          146340.850641,
+          149207.154264,
+          146119.024175
+        ],
+        "median": 146340.850641,
+        "min": 146119.024175,
+        "max": 149207.154264,
+        "sample_cv": 0.01169979762870169
+      },
+      "p50_ms": {
+        "all": [
+          0.657,
+          0.653,
+          0.66
+        ],
+        "median": 0.657,
+        "min": 0.653,
+        "max": 0.66,
+        "sample_cv": 0.005348047590280582
+      },
+      "p95_ms": {
+        "all": [
+          0.879,
+          0.816,
+          0.87
+        ],
+        "median": 0.87,
+        "min": 0.816,
+        "max": 0.879,
+        "sample_cv": 0.039851988391580905
+      },
+      "p99_ms": {
+        "all": [
+          1.318,
+          1.159,
+          1.287
+        ],
+        "median": 1.287,
+        "min": 1.159,
+        "max": 1.318,
+        "sample_cv": 0.0671789644623679
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          3.1554364819071964e-06,
+          3.1263781334225475e-06,
+          3.1647123160054296e-06
+        ],
+        "median": 3.1554364819071964e-06,
+        "min": 3.1263781334225475e-06,
+        "max": 3.1647123160054296e-06,
+        "sample_cv": 0.006351458985487184
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          7925760,
+          7962624,
+          7925760
+        ],
+        "median": 7925760,
+        "min": 7925760,
+        "max": 7962624,
+        "sample_cv": 0.0026811932005710174
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.000708605244636385,
+          0.0006140940167652587,
+          0.0008952984842032676
+        ],
+        "median": 0.000708605244636385,
+        "min": 0.0006140940167652587,
+        "max": 0.0008952984842032676,
+        "sample_cv": 0.1935506079031202
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.011304168801260167,
+          0.006982468130175408,
+          0.011230162037380595
+        ],
+        "median": 0.011230162037380595,
+        "min": 0.006982468130175408,
+        "max": 0.011304168801260167,
+        "sample_cv": 0.25145489597775444
+      }
+    },
+    {
+      "clients": 100,
+      "target": "rustybouncer-routed",
+      "tps": {
+        "all": [
+          27580.155795,
+          27672.645455,
+          26870.794932
+        ],
+        "median": 27580.155795,
+        "min": 26870.794932,
+        "max": 27672.645455,
+        "sample_cv": 0.0160256038747934
+      },
+      "p50_ms": {
+        "all": [
+          3.587,
+          3.597,
+          3.634
+        ],
+        "median": 3.597,
+        "min": 3.587,
+        "max": 3.634,
+        "sample_cv": 0.006866011316217351
+      },
+      "p95_ms": {
+        "all": [
+          4.232,
+          4.128,
+          4.718
+        ],
+        "median": 4.232,
+        "min": 4.128,
+        "max": 4.718,
+        "sample_cv": 0.07224431046257472
+      },
+      "p99_ms": {
+        "all": [
+          5.348,
+          4.953,
+          5.826
+        ],
+        "median": 5.348,
+        "min": 4.953,
+        "max": 5.826,
+        "sample_cv": 0.08132146779696331
+      },
+      "backend_connections_peak": {
+        "all": [
+          100,
+          100,
+          100
+        ],
+        "median": 100,
+        "min": 100,
+        "max": 100,
+        "sample_cv": 0.0
+      },
+      "cpu_seconds_per_q_including_connect": {
+        "all": [
+          1.663231337939577e-05,
+          1.657814939625394e-05,
+          1.711078550674249e-05
+        ],
+        "median": 1.663231337939577e-05,
+        "min": 1.657814939625394e-05,
+        "max": 1.711078550674249e-05,
+        "sample_cv": 0.01747584847434485
+      },
+      "rss_peak_bytes_observed": {
+        "all": [
+          6483968,
+          6483968,
+          6352896
+        ],
+        "median": 6483968,
+        "min": 6352896,
+        "max": 6483968,
+        "sample_cv": 0.011750185677804552
+      },
+      "voluntary_ctxt_switches_per_q": {
+        "all": [
+          0.00025039191778435815,
+          0.00019411505838522796,
+          0.00023468348771947252
+        ],
+        "median": 0.00023468348771947252,
+        "min": 0.00019411505838522796,
+        "max": 0.00025039191778435815,
+        "sample_cv": 0.12826664513190006
+      },
+      "nonvoluntary_ctxt_switches_per_q": {
+        "all": [
+          0.014695707290638488,
+          0.008050349346820914,
+          0.01889139990562992
+        ],
+        "median": 0.014695707290638488,
+        "min": 0.008050349346820914,
+        "max": 0.01889139990562992,
+        "sample_cv": 0.3938611088173269
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "mode": "cpu",
+      "target": "rustybouncer-session",
+      "clients": 10,
+      "queries": 1616036,
+      "measurement_started_monotonic": 1145932.140294595,
+      "measurement_finished_monotonic": 1145942.144859881,
+      "profile_seconds": 10.004565285984427,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 10.51,
+      "rss_peak_bytes_observed": 5988352,
+      "observed_cpu_window_seconds": 9.54087172797881,
+      "sampled_cpu": {
+        "samples": 702,
+        "period_weight": 3527637750,
+        "ranked_categories": [
+          {
+            "category": "runtime_or_other",
+            "samples": 501,
+            "period_share": 0.7136752136752137
+          },
+          {
+            "category": "passthrough_copy",
+            "samples": 201,
+            "period_share": 0.2863247863247863
+          }
+        ],
+        "ranked_self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.06267806267806268
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.039886039886039885
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.03276353276353276
+          },
+          {
+            "symbol": "tokio::runtime::scheduler::multi_thread::queue::unpack+0x32 (inlined)",
+            "period_share": 0.022792022792022793
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x27 (inlined)",
+            "period_share": 0.021367521367521368
+          },
+          {
+            "symbol": "send+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.018518518518518517
+          },
+          {
+            "symbol": "<core::cell::BorrowRefMut>::new+0xda (inlined)",
+            "period_share": 0.01282051282051282
+          },
+          {
+            "symbol": "tokio::sync::watch::changed_impl::<rustybouncer::Topology>::{closure#0}+0xb1 (inlined)",
+            "period_share": 0.01282051282051282
+          },
+          {
+            "symbol": "tokio::runtime::scheduler::multi_thread::queue::unpack+0x3e5 (inlined)",
+            "period_share": 0.011396011396011397
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::inject::shared::Shared<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::is_empty+0x417 (inlined)",
+            "period_share": 0.011396011396011397
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream as tokio::io::async_read::AsyncRead>::poll_read+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.009971509971509971
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.009971509971509971
+          },
+          {
+            "symbol": "send+0x6a (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009971509971509971
+          },
+          {
+            "symbol": "rustybouncer::session::{closure#0}::{closure#0}+0x1cd (inlined)",
+            "period_share": 0.009971509971509971
+          },
+          {
+            "symbol": "rustybouncer::main::{closure#0}::{closure#7}+0x21 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.009971509971509971
+          },
+          {
+            "symbol": "<tokio::runtime::task::core::TaskIdGuard as core::ops::drop::Drop>::drop+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.008547008547008548
+          },
+          {
+            "symbol": "core::mem::replace::<core::option::Option<tokio::runtime::task::Notified<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>>+0x110 (inlined)",
+            "period_share": 0.008547008547008548
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.008547008547008548
+          },
+          {
+            "symbol": "tokio::runtime::task::harness::poll_future::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x71 (inlined)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "send+0x60 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<usize>+0x193 (inlined)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<tokio::task::coop::RestoreOnPending as core::ops::drop::Drop>::drop+0x3 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::queue::Steal<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::steal_into+0x88 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0xbb (inlined)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<tokio::io::util::copy::CopyBuffer>::poll_copy::<tokio::net::tcp::stream::TcpStream, tokio::net::tcp::stream::TcpStream>+0x22e (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<tokio::runtime::task::harness::Harness<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::poll_inner+0x91 (inlined)",
+            "period_share": 0.007122507122507123
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x144 (inlined)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "tokio::runtime::context::with_scheduler::<(), tokio::runtime::scheduler::multi_thread::worker::with_current<(), <tokio::runtime::scheduler::multi_thread::handle::Handle>::schedule_task::{closure#0}>::{closure#0}>+0x14 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::idle::Idle>::unpark_worker_by_id+0xe18 (inlined)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x72 ([vdso])",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "__floattidf+0x1 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x257 (inlined)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "syscall+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Core>::steal_work+0x8d5 (inlined)",
+            "period_share": 0.005698005698005698
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.004273504273504274
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Context>::reset_lifo_enabled+0x207 (inlined)",
+            "period_share": 0.004273504273504274
+          },
+          {
+            "symbol": "<tokio::runtime::task::core::Core<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::current_thread::Handle>>>::poll::{closure#0}+0x3f (inlined)",
+            "period_share": 0.004273504273504274
+          },
+          {
+            "symbol": "clock_gettime@@GLIBC_2.17+0x12 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004273504273504274
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.004273504273504274
+          }
+        ],
+        "interpretation": "exclusive observed user callchain buckets in documented precedence; unresolved/inlined frames and kernel execution are not attributed; not isolated marginal costs"
+      }
+    },
+    {
+      "mode": "cpu",
+      "target": "rustybouncer-routed",
+      "clients": 10,
+      "queries": 673403,
+      "measurement_started_monotonic": 1145948.043309311,
+      "measurement_finished_monotonic": 1145958.04806647,
+      "profile_seconds": 10.004757159156725,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 17.459999999999997,
+      "rss_peak_bytes_observed": 5726208,
+      "observed_cpu_window_seconds": 9.537919476861134,
+      "sampled_cpu": {
+        "samples": 573,
+        "period_weight": 2879396625,
+        "ranked_categories": [
+          {
+            "category": "runtime_or_other",
+            "samples": 162,
+            "period_share": 0.28272251308900526
+          },
+          {
+            "category": "frame_write",
+            "samples": 142,
+            "period_share": 0.24781849912739964
+          },
+          {
+            "category": "routing_and_dispatch",
+            "samples": 113,
+            "period_share": 0.19720767888307156
+          },
+          {
+            "category": "frame_read",
+            "samples": 94,
+            "period_share": 0.16404886561954624
+          },
+          {
+            "category": "classification",
+            "samples": 36,
+            "period_share": 0.06282722513089005
+          },
+          {
+            "category": "response_delivery",
+            "samples": 20,
+            "period_share": 0.034904013961605584
+          },
+          {
+            "category": "result_accumulation",
+            "samples": 5,
+            "period_share": 0.008726003490401396
+          },
+          {
+            "category": "metrics",
+            "samples": 1,
+            "period_share": 0.0017452006980802793
+          }
+        ],
+        "ranked_self_symbols": [
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.08376963350785341
+          },
+          {
+            "symbol": "send+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.03315881326352531
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.027923211169284468
+          },
+          {
+            "symbol": "send+0x6a (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.017452006980802792
+          },
+          {
+            "symbol": "recv+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.013961605584642234
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x25 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.013961605584642234
+          },
+          {
+            "symbol": "cfree@GLIBC_2.2.5+0x1b (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.013961605584642234
+          },
+          {
+            "symbol": "<&mio::net::tcp::stream::TcpStream as core::io::write::Write>::write+0x1d (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.012216404886561954
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.012216404886561954
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.010471204188481676
+          },
+          {
+            "symbol": "<core::cell::BorrowRefMut>::new+0xda (inlined)",
+            "period_share": 0.010471204188481676
+          },
+          {
+            "symbol": "send+0x60 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.010471204188481676
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0xbb (inlined)",
+            "period_share": 0.008726003490401396
+          },
+          {
+            "symbol": "core::mem::replace::<core::option::Option<tokio::runtime::task::Notified<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>>+0x110 (inlined)",
+            "period_share": 0.008726003490401396
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream as tokio::io::async_write::AsyncWrite>::poll_write+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.008726003490401396
+          },
+          {
+            "symbol": "<tokio::io::util::write_int::WriteU32<&mut tokio::net::tcp::stream::TcpStream> as core::future::future::Future>::poll+0xca (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "tokio::runtime::task::harness::poll_future::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x71 (inlined)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x1e (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0x11d (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::runtime::time::entry::TimerShared>> as core::cmp::PartialEq>::eq+0x87 (inlined)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "__rustc::__rust_dealloc+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.006980802792321117
+          },
+          {
+            "symbol": "__syscall_cancel_arch_start+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "cfree@GLIBC_2.2.5+0x68 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x2b (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "malloc+0x63 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "__rustc::__rust_no_alloc_shim_is_unstable_v2+0x5 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_write_priv+0x22 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "__rustc::__rust_dealloc+0x1 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005235602094240838
+          },
+          {
+            "symbol": "rustybouncer::router::execute_query::{closure#0}+0x3064 (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "<tokio::io::poll_evented::PollEvented<mio::net::tcp::stream::TcpStream>>::poll_read+0x1f5 (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "rustybouncer::router::send::{closure#0}+0x49 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::stats::Stats>::end_processing_scheduled_tasks+0x794 (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::queue::Steal<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::steal_into2+0x58 (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "tokio::sync::notify::get_num_notify_waiters_calls+0x3b (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "rustybouncer::session::{closure#0}+0x2b5 (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "<alloc::raw_vec::RawVec<u8> as core::ops::drop::Drop>::drop+0x385f (inlined)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "send+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0034904013961605585
+          },
+          {
+            "symbol": "<tokio::sync::watch::state::AtomicState>::load+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.0034904013961605585
+          }
+        ],
+        "interpretation": "exclusive observed user callchain buckets in documented precedence; unresolved/inlined frames and kernel execution are not attributed; not isolated marginal costs"
+      }
+    },
+    {
+      "mode": "cpu",
+      "target": "rustybouncer-session",
+      "clients": 100,
+      "queries": 1826353,
+      "measurement_started_monotonic": 1145963.4708605,
+      "measurement_finished_monotonic": 1145973.483601044,
+      "profile_seconds": 10.012740544043481,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 7.88,
+      "rss_peak_bytes_observed": 8249344,
+      "observed_cpu_window_seconds": 9.828906212002039,
+      "sampled_cpu": {
+        "samples": 376,
+        "period_weight": 1889447000,
+        "ranked_categories": [
+          {
+            "category": "runtime_or_other",
+            "samples": 228,
+            "period_share": 0.6063829787234043
+          },
+          {
+            "category": "passthrough_copy",
+            "samples": 148,
+            "period_share": 0.39361702127659576
+          }
+        ],
+        "ranked_self_symbols": [
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0425531914893617
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.0398936170212766
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.034574468085106384
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x144 (inlined)",
+            "period_share": 0.023936170212765957
+          },
+          {
+            "symbol": "tokio::sync::watch::changed_impl::<rustybouncer::Topology>::{closure#0}+0xb1 (inlined)",
+            "period_share": 0.02127659574468085
+          },
+          {
+            "symbol": "tokio::runtime::task::harness::poll_future::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x71 (inlined)",
+            "period_share": 0.018617021276595744
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.018617021276595744
+          },
+          {
+            "symbol": "recv+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.015957446808510637
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x64 (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0x30 (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "send+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Context>::reset_lifo_enabled+0x207 (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "tokio::runtime::scheduler::multi_thread::queue::unpack+0x3e5 (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x257 (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<core::cell::BorrowRefMut>::new+0xda (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<tokio::io::util::copy::CopyBuffer>::poll_copy::<tokio::net::tcp::stream::TcpStream, tokio::net::tcp::stream::TcpStream>+0x22e (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "tokio::runtime::task::raw::poll::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::task::coop::RestoreOnPending as core::ops::drop::Drop>::drop+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::io::scheduled_io::ScheduledIo>::wake+0x40 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "rustybouncer::session::{closure#0}::{closure#2}+0x123 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "core::mem::replace::<core::option::Option<tokio::runtime::scheduler::multi_thread::worker::with_current<(), <tokio::runtime::scheduler::multi_thread::handle::Handle>::schedule_task::{closure#0}>::{closure#0}>>+0x34 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "rustybouncer::main::{closure#0}::{closure#7}+0x2c (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::sync::notify::Notified>::project+0xb (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Context>::run+0x173 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "tokio::runtime::task::waker::clone_waker+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0xa3 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Context>::maintenance+0x1b1 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "core::mem::replace::<core::option::Option<tokio::runtime::task::Notified<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>>+0x110 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream as tokio::io::async_read::AsyncRead>::poll_read+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<usize>+0x7 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::transition_to_running+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "__ieee754_pow_fma+0x1d0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libm.so.6)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "<tokio::sync::notify::Notified as core::future::future::Future>::poll+0x1 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "<core::cell::Cell<std::sys::thread_local::native::eager::State>>::get+0x3b (inlined)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Core>::maintenance+0xc44 (inlined)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005319148936170213
+          }
+        ],
+        "interpretation": "exclusive observed user callchain buckets in documented precedence; unresolved/inlined frames and kernel execution are not attributed; not isolated marginal costs"
+      }
+    },
+    {
+      "mode": "cpu",
+      "target": "rustybouncer-routed",
+      "clients": 100,
+      "queries": 914410,
+      "measurement_started_monotonic": 1145977.045808674,
+      "measurement_finished_monotonic": 1145987.058708975,
+      "profile_seconds": 10.012900301022455,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 22.23,
+      "rss_peak_bytes_observed": 6250496,
+      "observed_cpu_window_seconds": 9.590111211873591,
+      "sampled_cpu": {
+        "samples": 949,
+        "period_weight": 4768843625,
+        "ranked_categories": [
+          {
+            "category": "routing_and_dispatch",
+            "samples": 220,
+            "period_share": 0.23182297154899895
+          },
+          {
+            "category": "frame_read",
+            "samples": 209,
+            "period_share": 0.220231822971549
+          },
+          {
+            "category": "frame_write",
+            "samples": 206,
+            "period_share": 0.21707060063224448
+          },
+          {
+            "category": "runtime_or_other",
+            "samples": 185,
+            "period_share": 0.19494204425711276
+          },
+          {
+            "category": "classification",
+            "samples": 84,
+            "period_share": 0.08851422550052687
+          },
+          {
+            "category": "response_delivery",
+            "samples": 22,
+            "period_share": 0.023182297154899896
+          },
+          {
+            "category": "result_accumulation",
+            "samples": 17,
+            "period_share": 0.01791359325605901
+          },
+          {
+            "category": "metrics",
+            "samples": 6,
+            "period_share": 0.006322444678609062
+          }
+        ],
+        "ranked_self_symbols": [
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0821917808219178
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.037934668071654375
+          },
+          {
+            "symbol": "recv+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.02528977871443625
+          },
+          {
+            "symbol": "send+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.023182297154899896
+          },
+          {
+            "symbol": "send+0x6a (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.014752370916754479
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x25 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0136986301369863
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.0136986301369863
+          },
+          {
+            "symbol": "__libc_calloc+0x84 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009483667017913594
+          },
+          {
+            "symbol": "cfree@GLIBC_2.2.5+0x1b (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009483667017913594
+          },
+          {
+            "symbol": "cfree@GLIBC_2.2.5+0x68 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.008429926238145416
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.008429926238145416
+          },
+          {
+            "symbol": "tokio::runtime::task::raw::poll::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.007376185458377239
+          },
+          {
+            "symbol": "malloc+0x63 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.007376185458377239
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.006322444678609062
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "send+0x60 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "rustybouncer::router::scan_words+0x357 (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_swap::<usize>+0x89 (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_write_priv+0x22 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "rustybouncer::router::send::{closure#0}+0x31 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "tokio::runtime::task::harness::poll_future::<rustybouncer::main::{closure#0}::{closure#7}, alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x71 (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "__rustc::__rust_dealloc+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0xda (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<parking_lot::raw_rwlock::RawRwLock>::try_lock_shared_fast+0x1d6 (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x257 (inlined)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream as tokio::io::async_write::AsyncWrite>::poll_write+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.005268703898840885
+          },
+          {
+            "symbol": "tokio::runtime::scheduler::multi_thread::queue::unpack+0x3e5 (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::runtime::io::registration::Registration>::poll_ready+0x11d (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "recv+0x60 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::util::linked_list::LinkedList<tokio::runtime::time::entry::TimerShared>>::is_empty+0x83 (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<alloc::sync::Arc<rustybouncer::Config> as core::ops::deref::Deref>::deref+0xeff (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "core::core_arch::x86::sse2::_mm_movemask_epi8+0x2354 (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream as tokio::io::async_read::AsyncRead>::poll_read+0x0 (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x64 (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::worker::Core>::next_task+0x69a (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<usize>+0x193 (inlined)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "<tokio::runtime::io::scheduled_io::ScheduledIo>::poll_readiness+0xd (/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer)",
+            "period_share": 0.004214963119072708
+          },
+          {
+            "symbol": "send+0x29 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004214963119072708
+          }
+        ],
+        "interpretation": "exclusive observed user callchain buckets in documented precedence; unresolved/inlined frames and kernel execution are not attributed; not isolated marginal costs"
+      }
+    },
+    {
+      "mode": "offcpu",
+      "target": "rustybouncer-session",
+      "clients": 10,
+      "queries": 1586972,
+      "measurement_started_monotonic": 1145994.068939358,
+      "measurement_finished_monotonic": 1146004.07266284,
+      "profile_seconds": 10.003723481902853,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 10.05,
+      "rss_peak_bytes_observed": 5988352,
+      "observed_cpu_window_seconds": 9.54000577609986,
+      "switch_intervals": {
+        "matched_in_window": 1353454,
+        "aggregate_thread_offcpu_seconds": 154.23261932842433,
+        "longest_interval_seconds": 10.003723481902853,
+        "unmatched_in": 16,
+        "unmatched_out": 0,
+        "wall_seconds": 10.003723481902853,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "mode": "offcpu",
+      "target": "rustybouncer-routed",
+      "clients": 10,
+      "queries": 661700,
+      "measurement_started_monotonic": 1146009.369571906,
+      "measurement_finished_monotonic": 1146019.373198669,
+      "profile_seconds": 10.003626762889326,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 17.24,
+      "rss_peak_bytes_observed": 5627904,
+      "observed_cpu_window_seconds": 9.54009415092878,
+      "switch_intervals": {
+        "matched_in_window": 742062,
+        "aggregate_thread_offcpu_seconds": 136.3566840335261,
+        "longest_interval_seconds": 10.003626762889326,
+        "unmatched_in": 17,
+        "unmatched_out": 0,
+        "wall_seconds": 10.003626762889326,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "mode": "offcpu",
+      "target": "rustybouncer-session",
+      "clients": 100,
+      "queries": 1863420,
+      "measurement_started_monotonic": 1146023.997630044,
+      "measurement_finished_monotonic": 1146034.007930546,
+      "profile_seconds": 10.010300502181053,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 7.68,
+      "rss_peak_bytes_observed": 8290304,
+      "observed_cpu_window_seconds": 9.562075576046482,
+      "switch_intervals": {
+        "matched_in_window": 249239,
+        "aggregate_thread_offcpu_seconds": 154.23703359626234,
+        "longest_interval_seconds": 9.994932999834418,
+        "unmatched_in": 16,
+        "unmatched_out": 0,
+        "wall_seconds": 10.010300502181053,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "mode": "offcpu",
+      "target": "rustybouncer-routed",
+      "clients": 100,
+      "queries": 914297,
+      "measurement_started_monotonic": 1146037.165963306,
+      "measurement_finished_monotonic": 1146047.186247077,
+      "profile_seconds": 10.020283770980313,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 22.25,
+      "rss_peak_bytes_observed": 6381568,
+      "observed_cpu_window_seconds": 9.60156516986899,
+      "switch_intervals": {
+        "matched_in_window": 600610,
+        "aggregate_thread_offcpu_seconds": 123.4748772222083,
+        "longest_interval_seconds": 9.98949300008826,
+        "unmatched_in": 16,
+        "unmatched_out": 0,
+        "wall_seconds": 10.020283770980313,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "mode": "heap",
+      "target": "rustybouncer-session",
+      "clients": 10,
+      "queries": 10000,
+      "measurement_started_monotonic": 1146052.93632617,
+      "measurement_finished_monotonic": 1146053.015859716,
+      "profile_seconds": 0.07953354599885643,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "heap": {
+        "allocation_calls": 976,
+        "allocated_bytes_including_reallocations": 752211,
+        "calls_per_controlled_q": 0.0976,
+        "allocated_bytes_per_controlled_q": 75.2211,
+        "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+      }
+    },
+    {
+      "mode": "heap",
+      "target": "rustybouncer-routed",
+      "clients": 10,
+      "queries": 10000,
+      "measurement_started_monotonic": 1146053.25382955,
+      "measurement_finished_monotonic": 1146053.557112167,
+      "profile_seconds": 0.30328261689282954,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 0.0,
+      "rss_peak_bytes_observed": 13049856,
+      "observed_cpu_window_seconds": 0.0,
+      "heap": {
+        "allocation_calls": 141543,
+        "allocated_bytes_including_reallocations": 7119397,
+        "calls_per_controlled_q": 14.1543,
+        "allocated_bytes_per_controlled_q": 711.9397,
+        "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+      }
+    },
+    {
+      "mode": "heap",
+      "target": "rustybouncer-session",
+      "clients": 100,
+      "queries": 100000,
+      "measurement_started_monotonic": 1146053.754435905,
+      "measurement_finished_monotonic": 1146054.373702111,
+      "profile_seconds": 0.619266205932945,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 0.2,
+      "rss_peak_bytes_observed": 15474688,
+      "observed_cpu_window_seconds": 0.25113474391400814,
+      "heap": {
+        "allocation_calls": 3231,
+        "allocated_bytes_including_reallocations": 4413379,
+        "calls_per_controlled_q": 0.03231,
+        "allocated_bytes_per_controlled_q": 44.13379,
+        "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+      }
+    },
+    {
+      "mode": "heap",
+      "target": "rustybouncer-routed",
+      "clients": 100,
+      "queries": 100000,
+      "measurement_started_monotonic": 1146054.658206919,
+      "measurement_finished_monotonic": 1146056.125468259,
+      "profile_seconds": 1.4672613400034606,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 3.21,
+      "rss_peak_bytes_observed": 13770752,
+      "observed_cpu_window_seconds": 1.2569311109837145,
+      "heap": {
+        "allocation_calls": 1408161,
+        "allocated_bytes_including_reallocations": 68520645,
+        "calls_per_controlled_q": 14.08161,
+        "allocated_bytes_per_controlled_q": 685.20645,
+        "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+      }
+    },
+    {
+      "mode": "syscalls",
+      "target": "rustybouncer-session",
+      "clients": 10,
+      "queries": 10000,
+      "measurement_started_monotonic": 1146057.285513506,
+      "measurement_finished_monotonic": 1146057.679979659,
+      "profile_seconds": 0.3944661528803408,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 0.0,
+      "rss_peak_bytes_observed": 5857280,
+      "observed_cpu_window_seconds": 0.0,
+      "syscalls_per_controlled_q": {
+        "read": {
+          "calls": 25,
+          "returned_bytes": 7984,
+          "errors": 0,
+          "aggregate_wall_seconds": 6.799999999999997e-05,
+          "calls_per_q": 0.0025,
+          "bytes_per_q": 0.7984
+        },
+        "futex": {
+          "calls": 18560,
+          "returned_bytes": 0,
+          "errors": 2532,
+          "aggregate_wall_seconds": 5.663848999999967,
+          "calls_per_q": 1.856,
+          "bytes_per_q": 0.0
+        },
+        "write": {
+          "calls": 63,
+          "returned_bytes": 2841,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0008370000000000004,
+          "calls_per_q": 0.0063,
+          "bytes_per_q": 0.2841
+        },
+        "epoll_wait": {
+          "calls": 3838,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.13178899999999996,
+          "calls_per_q": 0.3838,
+          "bytes_per_q": 0.0
+        },
+        "sendto": {
+          "calls": 20096,
+          "returned_bytes": 2461686,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.3658079999999967,
+          "calls_per_q": 2.0096,
+          "bytes_per_q": 246.1686
+        },
+        "recvfrom": {
+          "calls": 20204,
+          "returned_bytes": 2462137,
+          "errors": 28,
+          "aggregate_wall_seconds": 0.31186999999999554,
+          "calls_per_q": 2.0204,
+          "bytes_per_q": 246.2137
+        }
+      }
+    },
+    {
+      "mode": "syscalls",
+      "target": "rustybouncer-routed",
+      "clients": 10,
+      "queries": 10000,
+      "measurement_started_monotonic": 1146057.908160979,
+      "measurement_finished_monotonic": 1146059.963490422,
+      "profile_seconds": 2.0553294429555535,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 0.7200000000000001,
+      "rss_peak_bytes_observed": 5726208,
+      "observed_cpu_window_seconds": 1.7558327810838819,
+      "syscalls_per_controlled_q": {
+        "read": {
+          "calls": 26,
+          "returned_bytes": 7988,
+          "errors": 0,
+          "aggregate_wall_seconds": 8.9e-05,
+          "calls_per_q": 0.0026,
+          "bytes_per_q": 0.7988
+        },
+        "futex": {
+          "calls": 1353,
+          "returned_bytes": 0,
+          "errors": 53,
+          "aggregate_wall_seconds": 14.547686999999998,
+          "calls_per_q": 0.1353,
+          "bytes_per_q": 0.0
+        },
+        "write": {
+          "calls": 1568,
+          "returned_bytes": 14013,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.047600000000000135,
+          "calls_per_q": 0.1568,
+          "bytes_per_q": 1.4013
+        },
+        "epoll_wait": {
+          "calls": 15669,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 1.1563659999999252,
+          "calls_per_q": 1.5669,
+          "bytes_per_q": 0.0
+        },
+        "sendto": {
+          "calls": 151334,
+          "returned_bytes": 2462076,
+          "errors": 0,
+          "aggregate_wall_seconds": 4.806660000000782,
+          "calls_per_q": 15.1334,
+          "bytes_per_q": 246.2076
+        },
+        "recvfrom": {
+          "calls": 152506,
+          "returned_bytes": 2464377,
+          "errors": 1035,
+          "aggregate_wall_seconds": 4.333316000001587,
+          "calls_per_q": 15.2506,
+          "bytes_per_q": 246.4377
+        }
+      }
+    },
+    {
+      "mode": "syscalls",
+      "target": "rustybouncer-session",
+      "clients": 100,
+      "queries": 100000,
+      "measurement_started_monotonic": 1146060.818935855,
+      "measurement_finished_monotonic": 1146063.986566191,
+      "profile_seconds": 3.167630336014554,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 1.28,
+      "rss_peak_bytes_observed": 8347648,
+      "observed_cpu_window_seconds": 2.759713262086734,
+      "syscalls_per_controlled_q": {
+        "read": {
+          "calls": 26,
+          "returned_bytes": 7985,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.000106,
+          "calls_per_q": 0.00026,
+          "bytes_per_q": 0.07985
+        },
+        "futex": {
+          "calls": 18291,
+          "returned_bytes": 0,
+          "errors": 1207,
+          "aggregate_wall_seconds": 8.530224000000032,
+          "calls_per_q": 0.18291,
+          "bytes_per_q": 0.0
+        },
+        "write": {
+          "calls": 299,
+          "returned_bytes": 21289,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.008271999999999998,
+          "calls_per_q": 0.00299,
+          "bytes_per_q": 0.21289
+        },
+        "epoll_wait": {
+          "calls": 4437,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.32925699999999963,
+          "calls_per_q": 0.04437,
+          "bytes_per_q": 0.0
+        },
+        "sendto": {
+          "calls": 200834,
+          "returned_bytes": 24599864,
+          "errors": 0,
+          "aggregate_wall_seconds": 11.444213999999402,
+          "calls_per_q": 2.00834,
+          "bytes_per_q": 245.99864
+        },
+        "recvfrom": {
+          "calls": 201766,
+          "returned_bytes": 24603189,
+          "errors": 222,
+          "aggregate_wall_seconds": 10.44600699999974,
+          "calls_per_q": 2.01766,
+          "bytes_per_q": 246.03189
+        }
+      }
+    },
+    {
+      "mode": "syscalls",
+      "target": "rustybouncer-routed",
+      "clients": 100,
+      "queries": 100000,
+      "measurement_started_monotonic": 1146065.145330906,
+      "measurement_finished_monotonic": 1146084.896433253,
+      "profile_seconds": 19.751102347159758,
+      "errors": 0,
+      "not_timing_comparable": true,
+      "amortization_scope": "profiler lifetime includes startup, readiness, preflight and probes; divide by controlled pgbench Q count as an upper bound, not steady-state cost",
+      "cpu_seconds_observed": 8.200000000000001,
+      "rss_peak_bytes_observed": 6250496,
+      "observed_cpu_window_seconds": 19.56944154505618,
+      "syscalls_per_controlled_q": {
+        "read": {
+          "calls": 25,
+          "returned_bytes": 7983,
+          "errors": 0,
+          "aggregate_wall_seconds": 7.999999999999998e-05,
+          "calls_per_q": 0.00025,
+          "bytes_per_q": 0.07983
+        },
+        "futex": {
+          "calls": 1091,
+          "returned_bytes": 0,
+          "errors": 92,
+          "aggregate_wall_seconds": 22.001078999999987,
+          "calls_per_q": 0.01091,
+          "bytes_per_q": 0.0
+        },
+        "write": {
+          "calls": 286,
+          "returned_bytes": 13117,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.010121999999999996,
+          "calls_per_q": 0.00286,
+          "bytes_per_q": 0.13117
+        },
+        "epoll_wait": {
+          "calls": 4360,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.3068049999999888,
+          "calls_per_q": 0.0436,
+          "bytes_per_q": 0.0
+        },
+        "sendto": {
+          "calls": 1511690,
+          "returned_bytes": 24602840,
+          "errors": 0,
+          "aggregate_wall_seconds": 78.1081110000321,
+          "calls_per_q": 15.1169,
+          "bytes_per_q": 246.0284
+        },
+        "recvfrom": {
+          "calls": 1514641,
+          "returned_bytes": 24620448,
+          "errors": 1734,
+          "aggregate_wall_seconds": 72.56801300001226,
+          "calls_per_q": 15.14641,
+          "bytes_per_q": 246.20448
+        }
+      }
+    }
+  ],
+  "uncertainty": "Three repetitions on a shared host. Ranges/CV are descriptive, not confidence in production SLOs; profiles are separate from timing."
+}

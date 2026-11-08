@@ -1,0 +1,31 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer",
+  "sha256": "9fe2ab9f6c1297401039408c5045d7c0b1362cb199c83a7727782fb774bb5541",
+  "command": [
+    "benchmarks/large_profile.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-001-20261108/large-baseline",
+    "--binary",
+    "target/perf-001/release/rustybouncer"
+  ],
+  "affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "arms": 4,
+  "workload": "2048 ordered rows with 128-byte payload; 10 transactions per client; instrumented observations only"
+}

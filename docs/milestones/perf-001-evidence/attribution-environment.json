@@ -1,0 +1,14 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer/target/perf-001/release/rustybouncer",
+  "sha256": "9fe2ab9f6c1297401039408c5045d7c0b1362cb199c83a7727782fb774bb5541",
+  "command": [
+    "benchmarks/attribution.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-001-20261108/attribution-monotonic",
+    "--binary",
+    "target/perf-001/release/rustybouncer"
+  ],
+  "clock": "perf --clockid mono = Python CLOCK_MONOTONIC",
+  "attribution_arms": 16,
+  "not_timing_comparable": true
+}

@@ -1,0 +1,84 @@
+[
+  {
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "queries": 100,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145813.449786365,
+    "measurement_finished_monotonic": 1145813.470374729,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "heap": {
+      "allocation_calls": 992,
+      "allocated_bytes_including_reallocations": 773230,
+      "calls_per_controlled_q": 9.92,
+      "allocated_bytes_per_controlled_q": 7732.3,
+      "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+    }
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "queries": 100,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145813.822128397,
+    "measurement_finished_monotonic": 1145814.151861186,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "cpu_seconds_observed": 0.0,
+    "rss_peak_bytes_observed": 17887232,
+    "observed_cpu_window_seconds": 0.0,
+    "heap": {
+      "allocation_calls": 213417,
+      "allocated_bytes_including_reallocations": 56820313,
+      "calls_per_controlled_q": 2134.17,
+      "allocated_bytes_per_controlled_q": 568203.13,
+      "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "queries": 1000,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145814.369302156,
+    "measurement_finished_monotonic": 1145814.556165147,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "heap": {
+      "allocation_calls": 3137,
+      "allocated_bytes_including_reallocations": 4396445,
+      "calls_per_controlled_q": 3.137,
+      "allocated_bytes_per_controlled_q": 4396.445,
+      "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "queries": 1000,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145814.843175139,
+    "measurement_finished_monotonic": 1145817.939946507,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "cpu_seconds_observed": 10.32,
+    "rss_peak_bytes_observed": 57135104,
+    "observed_cpu_window_seconds": 2.7647381289862096,
+    "heap": {
+      "allocation_calls": 2088716,
+      "allocated_bytes_including_reallocations": 555339421,
+      "calls_per_controlled_q": 2088.716,
+      "allocated_bytes_per_controlled_q": 555339.421,
+      "scope": "whole lifetime including startup/background/preflight; controlled-Q amortization, not isolated steady state"
+    }
+  }
+]

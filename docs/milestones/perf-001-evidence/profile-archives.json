@@ -1,0 +1,102 @@
+[
+  {
+    "file": "cpu-c10-rustybouncer-routed.tar.zst",
+    "bytes": 16422538,
+    "sha256": "b8c542ada492402b023da1cba3ab440d8c5fa46a5e4e6c237294828e939dfc90"
+  },
+  {
+    "file": "cpu-c10-rustybouncer-session.tar.zst",
+    "bytes": 27705078,
+    "sha256": "0070cde6906d4ddd9e9650da2d27c3b1e590c02d33bf6f6bed521ec0377d7ceb"
+  },
+  {
+    "file": "cpu-c100-rustybouncer-routed.tar.zst",
+    "bytes": 13069313,
+    "sha256": "400cc2c3d788b65c85c731746f98760cb553f2bea15eaef466c6460717ad32f1"
+  },
+  {
+    "file": "cpu-c100-rustybouncer-session.tar.zst",
+    "bytes": 6101919,
+    "sha256": "073c87fad1b05737404dcd651887cab1333ca242787cdef12cc2055a897eacbd"
+  },
+  {
+    "file": "heap-c10-rustybouncer-routed.tar.zst",
+    "bytes": 259077,
+    "sha256": "a49fcffb7a7cd2d30278fa8e43b2c6bc80d9cbc51b68fa3017f8acce2ce45643"
+  },
+  {
+    "file": "heap-c10-rustybouncer-session.tar.zst",
+    "bytes": 62460,
+    "sha256": "1e3bb1eae34cc02b81191cef6cf1acb2918e7a07097735d2543e24d83237d680"
+  },
+  {
+    "file": "heap-c100-rustybouncer-routed.tar.zst",
+    "bytes": 2356620,
+    "sha256": "2242b37f358136ab4fe26c386887b60609808abaabca4c4b610ca78d72192768"
+  },
+  {
+    "file": "heap-c100-rustybouncer-session.tar.zst",
+    "bytes": 69012,
+    "sha256": "a951ecc339af24dae32a00d7319645ba1fae3264cc6d949b4b3e5920d2adce1d"
+  },
+  {
+    "file": "large-c10-rustybouncer-routed.tar.zst",
+    "bytes": 333856,
+    "sha256": "64aa5469ab6665f30920605ceed20979848cf16ed112aa86651663f582c2f8eb"
+  },
+  {
+    "file": "large-c10-rustybouncer-session.tar.zst",
+    "bytes": 63139,
+    "sha256": "e48dfc3320577ca9736a8e4b3d665588b007ae438c8802efb38cc5eb19dad688"
+  },
+  {
+    "file": "large-c100-rustybouncer-routed.tar.zst",
+    "bytes": 3487431,
+    "sha256": "cab7dfef750a9568a7524842dbcca955579ec378cb05c0bf870521d8e27d29bb"
+  },
+  {
+    "file": "large-c100-rustybouncer-session.tar.zst",
+    "bytes": 67074,
+    "sha256": "b9768d29ac1be4e6c61f56c26f8adbbf4c99b02c6fb17a7386ce9e49e262337c"
+  },
+  {
+    "file": "offcpu-c10-rustybouncer-routed.tar.zst",
+    "bytes": 15770462,
+    "sha256": "9e2514d9f66a554eef4ba3f90f4d4e6b2ca4491338805f4e61edfe66c4ed1023"
+  },
+  {
+    "file": "offcpu-c10-rustybouncer-session.tar.zst",
+    "bytes": 25696889,
+    "sha256": "33000e61ffbb485fe48d901cfacb974d701059a9bebdf831a7130c9a0b663181"
+  },
+  {
+    "file": "offcpu-c100-rustybouncer-routed.tar.zst",
+    "bytes": 12405633,
+    "sha256": "6d038a8038b84b9eac47e339391df85f16282c8f8063f7a79031f8e002f284fc"
+  },
+  {
+    "file": "offcpu-c100-rustybouncer-session.tar.zst",
+    "bytes": 5759735,
+    "sha256": "9f561a3d904872b73117b82d042ae32098ab142fe7025a9f9287e6244dcf2ffb"
+  },
+  {
+    "file": "syscalls-c10-rustybouncer-routed.tar.zst",
+    "bytes": 5135920,
+    "sha256": "e50580846640cbe6c7e6f698a85a53a94231b6d50c2b4849034ad698c348b963"
+  },
+  {
+    "file": "syscalls-c10-rustybouncer-session.tar.zst",
+    "bytes": 1119251,
+    "sha256": "d26e2593ac049aee45f1598e62bcec4ef0fba9e6c8e87476ee41a125f96deffa"
+  },
+  {
+    "file": "syscalls-c100-rustybouncer-routed.tar.zst",
+    "bytes": 47216305,
+    "sha256": "e79f4ce132471f32bf0720b61bf96c6e78813ca947bbdfed9d4e26ae19cbaaeb"
+  },
+  {
+    "file": "syscalls-c100-rustybouncer-session.tar.zst",
+    "bytes": 7789450,
+    "sha256": "85e668db4e711d8177700acf0f5fec73146871630c585d6fe8803169ab4c8cc4"
+  }
+]

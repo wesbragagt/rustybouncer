@@ -1,0 +1,56 @@
+[
+  {
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "queries": 100,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145813.449786365,
+    "measurement_finished_monotonic": 1145813.470374729,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly"
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "queries": 100,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145813.822128397,
+    "measurement_finished_monotonic": 1145814.151861186,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "cpu_seconds_observed": 0.0,
+    "rss_peak_bytes_observed": 17887232,
+    "observed_cpu_window_seconds": 0.0
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "queries": 1000,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145814.369302156,
+    "measurement_finished_monotonic": 1145814.556165147,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly"
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "queries": 1000,
+    "errors": 0,
+    "rows_per_q": 2048,
+    "payload_bytes_per_row": 128,
+    "measurement_started_monotonic": 1145814.843175139,
+    "measurement_finished_monotonic": 1145817.939946507,
+    "not_timing_comparable": true,
+    "amortization_scope": "heap lifetime includes startup/preflight and two exact 2048-row oracle queries; controlled pgbench Q count excludes these; report overhead explicitly",
+    "cpu_seconds_observed": 10.32,
+    "rss_peak_bytes_observed": 57135104,
+    "observed_cpu_window_seconds": 2.7647381289862096
+  }
+]
