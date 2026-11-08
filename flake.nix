@@ -82,27 +82,35 @@
         formatter = pkgs.nixfmt;
 
         devShells.default = pkgs.mkShell {
-          buildInputs = with pkgs; [
-            rustc
-            cargo
-            clippy
-            rustfmt
-            rust-analyzer
-            python
-            ruff
-            git
-            docker
-            postgresql
-            nixfmt
-            shellcheck
-            ty
-            rust-code-analysis
-            pgbouncer
-            actionlint
-            kind
-            kubectl
-            prometheus.cli
-          ];
+          buildInputs =
+            with pkgs;
+            [
+              rustc
+              cargo
+              clippy
+              rustfmt
+              rust-analyzer
+              python
+              ruff
+              git
+              docker
+              postgresql
+              nixfmt
+              shellcheck
+              ty
+              rust-code-analysis
+              pgbouncer
+              actionlint
+              kind
+              kubectl
+              prometheus.cli
+            ]
+            ++ lib.optionals stdenv.hostPlatform.isLinux [
+              perf
+              heaptrack
+              strace
+              util-linux
+            ];
           shellHook = ''
             bash scripts/install-hooks
           '';

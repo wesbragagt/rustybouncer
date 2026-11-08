@@ -1,0 +1,25 @@
+{
+  "platform": "Linux-7.0.3-x86_64-with-glibc2.44",
+  "cpu_count": 16,
+  "load_average_start": [
+    1.23681640625,
+    1.58056640625,
+    1.71728515625
+  ],
+  "binary_sha256": "b58acae3b99be386af2640bdca00dc6efd1f7e42510655bdd2d9531d60a9bdab",
+  "pgbouncer": "PgBouncer 1.26.1\nlibevent 2.1.13-stable\nadns: c-ares 1.34.8\ntls: OpenSSL 3.6.1 27 Jan 2026\nsystemd: yes",
+  "pgbench": "pgbench (PostgreSQL) 18.6",
+  "postgres_image": "[\"postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c\"]",
+  "warmup_seconds": 5,
+  "measure_seconds": 30,
+  "repetitions": 3,
+  "sampling_rate": 0.1,
+  "max_clients": 256,
+  "pgbouncer_pool_size": 256,
+  "postgres_max_connections": 400,
+  "tls": false,
+  "authentication": "trust, owned loopback fixture",
+  "metrics": "disabled",
+  "workload": "random indexed lookup, 10000 rows, 128-byte payload; persistent simple protocol",
+  "host_isolation": "shared development host, no exclusive CPU isolation"
+}
