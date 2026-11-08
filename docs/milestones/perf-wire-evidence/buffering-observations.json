@@ -1,0 +1,4158 @@
+{
+  "test_pipelined_query_error_keeps_later_responses_ordered": [],
+  "test_10_clients_multirow_null_and_unique_results": [
+    {
+      "held_backend_connections": 10,
+      "clients": 10
+    },
+    {
+      "client": 3,
+      "cycle": 0,
+      "seconds": 0.0732149628456682,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 0,
+      "seconds": 0.07348102703690529,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 0,
+      "seconds": 0.07455098396167159,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 0,
+      "seconds": 0.07754786894656718,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 0,
+      "seconds": 0.07767698494717479,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 0,
+      "seconds": 0.07774158706888556,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 0,
+      "seconds": 0.0804875569883734,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 0,
+      "seconds": 0.08055871189571917,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 0,
+      "seconds": 0.0828808699734509,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 0,
+      "seconds": 0.0831582248210907,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 1,
+      "seconds": 0.07892923685722053,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 1,
+      "seconds": 0.07627188391052186,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 1,
+      "seconds": 0.07623197697103024,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 1,
+      "seconds": 0.0816434370353818,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 1,
+      "seconds": 0.07881311606615782,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 1,
+      "seconds": 0.08380171400494874,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 1,
+      "seconds": 0.07810718915425241,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 1,
+      "seconds": 0.07755501382052898,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 1,
+      "seconds": 0.07943137688562274,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 1,
+      "seconds": 0.08324568090029061,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 2,
+      "seconds": 0.07647288381122053,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 2,
+      "seconds": 0.08094653696753085,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 2,
+      "seconds": 0.08276528096757829,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 2,
+      "seconds": 0.08230320690199733,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 2,
+      "seconds": 0.08545176894403994,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 2,
+      "seconds": 0.08222750318236649,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 2,
+      "seconds": 0.08199402107857168,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 2,
+      "seconds": 0.08405868103727698,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 2,
+      "seconds": 0.08238730486482382,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 2,
+      "seconds": 0.08440236188471317,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 3,
+      "seconds": 0.08520515193231404,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 3,
+      "seconds": 0.07992744608782232,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 3,
+      "seconds": 0.08083454496227205,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 3,
+      "seconds": 0.08386039594188333,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 3,
+      "seconds": 0.0777666240464896,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 3,
+      "seconds": 0.08519767806865275,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 3,
+      "seconds": 0.08484789496287704,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 3,
+      "seconds": 0.08118016901426017,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 3,
+      "seconds": 0.08599568903446198,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 3,
+      "seconds": 0.08231177204288542,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 4,
+      "seconds": 0.0743268090300262,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 4,
+      "seconds": 0.08098033000715077,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 4,
+      "seconds": 0.08474052185192704,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 4,
+      "seconds": 0.07998545607551932,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 4,
+      "seconds": 0.07743102917447686,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 4,
+      "seconds": 0.08445031312294304,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 4,
+      "seconds": 0.08063205098733306,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 4,
+      "seconds": 0.08221651194617152,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 4,
+      "seconds": 0.07976719294674695,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 4,
+      "seconds": 0.07823121408000588,
+      "row_count": 1024
+    },
+    {
+      "after_disconnect": {
+        "monotonic": 1148070.361841323,
+        "pid": 4009635,
+        "cpu_seconds": 0.0,
+        "user_cpu_seconds": 0.0,
+        "system_cpu_seconds": 0.0,
+        "rss_bytes": 7602176,
+        "threads": [
+          {
+            "tid": 4009635,
+            "name": "production",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 24,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009636,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 304,
+            "nonvoluntary_ctxt_switches": 3
+          },
+          {
+            "tid": 4009637,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 2,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009638,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 4,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009639,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009640,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009641,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009642,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 7,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009643,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 135,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009644,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 4,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009645,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 9,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009646,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009647,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 14,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009648,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 38,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009649,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 321,
+            "nonvoluntary_ctxt_switches": 2
+          },
+          {
+            "tid": 4009650,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4009651,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 44,
+            "nonvoluntary_ctxt_switches": 0
+          }
+        ]
+      },
+      "backend_connections": 0
+    }
+  ],
+  "test_message_and_result_overflow_discard_before_exposure": [],
+  "test_100_clients_multirow_null_and_unique_results": [
+    {
+      "held_backend_connections": 100,
+      "clients": 100
+    },
+    {
+      "client": 92,
+      "cycle": 0,
+      "seconds": 0.6410780800506473,
+      "row_count": 1024
+    },
+    {
+      "client": 44,
+      "cycle": 0,
+      "seconds": 0.6987067849840969,
+      "row_count": 1024
+    },
+    {
+      "client": 20,
+      "cycle": 0,
+      "seconds": 0.7068046010099351,
+      "row_count": 1024
+    },
+    {
+      "client": 76,
+      "cycle": 0,
+      "seconds": 0.70936916815117,
+      "row_count": 1024
+    },
+    {
+      "client": 98,
+      "cycle": 0,
+      "seconds": 0.7143392912112176,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 0,
+      "seconds": 0.7165975389070809,
+      "row_count": 1024
+    },
+    {
+      "client": 55,
+      "cycle": 0,
+      "seconds": 0.7180274359416217,
+      "row_count": 1024
+    },
+    {
+      "client": 10,
+      "cycle": 0,
+      "seconds": 0.7188180738594383,
+      "row_count": 1024
+    },
+    {
+      "client": 71,
+      "cycle": 0,
+      "seconds": 0.7192062891554087,
+      "row_count": 1024
+    },
+    {
+      "client": 54,
+      "cycle": 0,
+      "seconds": 0.7211772918235511,
+      "row_count": 1024
+    },
+    {
+      "client": 70,
+      "cycle": 0,
+      "seconds": 0.7232169350609183,
+      "row_count": 1024
+    },
+    {
+      "client": 23,
+      "cycle": 0,
+      "seconds": 0.7286736101377755,
+      "row_count": 1024
+    },
+    {
+      "client": 94,
+      "cycle": 0,
+      "seconds": 0.7290101670660079,
+      "row_count": 1024
+    },
+    {
+      "client": 90,
+      "cycle": 0,
+      "seconds": 0.731095246039331,
+      "row_count": 1024
+    },
+    {
+      "client": 43,
+      "cycle": 0,
+      "seconds": 0.7319803719874471,
+      "row_count": 1024
+    },
+    {
+      "client": 95,
+      "cycle": 0,
+      "seconds": 0.7305727871134877,
+      "row_count": 1024
+    },
+    {
+      "client": 56,
+      "cycle": 0,
+      "seconds": 0.739795905072242,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 0,
+      "seconds": 0.7414688728749752,
+      "row_count": 1024
+    },
+    {
+      "client": 77,
+      "cycle": 0,
+      "seconds": 0.7430619599763304,
+      "row_count": 1024
+    },
+    {
+      "client": 86,
+      "cycle": 0,
+      "seconds": 0.7465194468386471,
+      "row_count": 1024
+    },
+    {
+      "client": 12,
+      "cycle": 0,
+      "seconds": 0.7482572700828314,
+      "row_count": 1024
+    },
+    {
+      "client": 28,
+      "cycle": 0,
+      "seconds": 0.7485654929187149,
+      "row_count": 1024
+    },
+    {
+      "client": 74,
+      "cycle": 0,
+      "seconds": 0.7502770940773189,
+      "row_count": 1024
+    },
+    {
+      "client": 72,
+      "cycle": 0,
+      "seconds": 0.7505790160503238,
+      "row_count": 1024
+    },
+    {
+      "client": 84,
+      "cycle": 0,
+      "seconds": 0.7535530989989638,
+      "row_count": 1024
+    },
+    {
+      "client": 15,
+      "cycle": 0,
+      "seconds": 0.7558931009843946,
+      "row_count": 1024
+    },
+    {
+      "client": 52,
+      "cycle": 0,
+      "seconds": 0.7565990679431707,
+      "row_count": 1024
+    },
+    {
+      "client": 87,
+      "cycle": 0,
+      "seconds": 0.7578897229395807,
+      "row_count": 1024
+    },
+    {
+      "client": 57,
+      "cycle": 0,
+      "seconds": 0.7589115079026669,
+      "row_count": 1024
+    },
+    {
+      "client": 66,
+      "cycle": 0,
+      "seconds": 0.7589140620548278,
+      "row_count": 1024
+    },
+    {
+      "client": 49,
+      "cycle": 0,
+      "seconds": 0.7614925459492952,
+      "row_count": 1024
+    },
+    {
+      "client": 89,
+      "cycle": 0,
+      "seconds": 0.7617103080265224,
+      "row_count": 1024
+    },
+    {
+      "client": 33,
+      "cycle": 0,
+      "seconds": 0.7626621508970857,
+      "row_count": 1024
+    },
+    {
+      "client": 81,
+      "cycle": 0,
+      "seconds": 0.763024526881054,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 0,
+      "seconds": 0.7639112260658294,
+      "row_count": 1024
+    },
+    {
+      "client": 16,
+      "cycle": 0,
+      "seconds": 0.7644052118994296,
+      "row_count": 1024
+    },
+    {
+      "client": 13,
+      "cycle": 0,
+      "seconds": 0.7640354910399765,
+      "row_count": 1024
+    },
+    {
+      "client": 26,
+      "cycle": 0,
+      "seconds": 0.7647116119042039,
+      "row_count": 1024
+    },
+    {
+      "client": 68,
+      "cycle": 0,
+      "seconds": 0.7622113770339638,
+      "row_count": 1024
+    },
+    {
+      "client": 51,
+      "cycle": 0,
+      "seconds": 0.7645245380699635,
+      "row_count": 1024
+    },
+    {
+      "client": 67,
+      "cycle": 0,
+      "seconds": 0.7659561801701784,
+      "row_count": 1024
+    },
+    {
+      "client": 99,
+      "cycle": 0,
+      "seconds": 0.7709002341143787,
+      "row_count": 1024
+    },
+    {
+      "client": 22,
+      "cycle": 0,
+      "seconds": 0.7768783550709486,
+      "row_count": 1024
+    },
+    {
+      "client": 32,
+      "cycle": 0,
+      "seconds": 0.7778488830663264,
+      "row_count": 1024
+    },
+    {
+      "client": 36,
+      "cycle": 0,
+      "seconds": 0.7797003500163555,
+      "row_count": 1024
+    },
+    {
+      "client": 40,
+      "cycle": 0,
+      "seconds": 0.7815561138559133,
+      "row_count": 1024
+    },
+    {
+      "client": 85,
+      "cycle": 0,
+      "seconds": 0.7822108550462872,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 0,
+      "seconds": 0.7826578810345381,
+      "row_count": 1024
+    },
+    {
+      "client": 96,
+      "cycle": 0,
+      "seconds": 0.7829665651079267,
+      "row_count": 1024
+    },
+    {
+      "client": 39,
+      "cycle": 0,
+      "seconds": 0.7832928739953786,
+      "row_count": 1024
+    },
+    {
+      "client": 35,
+      "cycle": 0,
+      "seconds": 0.7837501699104905,
+      "row_count": 1024
+    },
+    {
+      "client": 88,
+      "cycle": 0,
+      "seconds": 0.7837163261137903,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 0,
+      "seconds": 0.7856482239440084,
+      "row_count": 1024
+    },
+    {
+      "client": 21,
+      "cycle": 0,
+      "seconds": 0.7859817559365183,
+      "row_count": 1024
+    },
+    {
+      "client": 75,
+      "cycle": 0,
+      "seconds": 0.7891976770479232,
+      "row_count": 1024
+    },
+    {
+      "client": 42,
+      "cycle": 0,
+      "seconds": 0.7903677530121058,
+      "row_count": 1024
+    },
+    {
+      "client": 34,
+      "cycle": 0,
+      "seconds": 0.7897820128127933,
+      "row_count": 1024
+    },
+    {
+      "client": 63,
+      "cycle": 0,
+      "seconds": 0.792696223128587,
+      "row_count": 1024
+    },
+    {
+      "client": 50,
+      "cycle": 0,
+      "seconds": 0.7930881851352751,
+      "row_count": 1024
+    },
+    {
+      "client": 91,
+      "cycle": 0,
+      "seconds": 0.7972493458073586,
+      "row_count": 1024
+    },
+    {
+      "client": 97,
+      "cycle": 0,
+      "seconds": 0.7973829288966954,
+      "row_count": 1024
+    },
+    {
+      "client": 18,
+      "cycle": 0,
+      "seconds": 0.7995051990728825,
+      "row_count": 1024
+    },
+    {
+      "client": 61,
+      "cycle": 0,
+      "seconds": 0.7987781220581383,
+      "row_count": 1024
+    },
+    {
+      "client": 64,
+      "cycle": 0,
+      "seconds": 0.8036543568596244,
+      "row_count": 1024
+    },
+    {
+      "client": 30,
+      "cycle": 0,
+      "seconds": 0.8040011641569436,
+      "row_count": 1024
+    },
+    {
+      "client": 69,
+      "cycle": 0,
+      "seconds": 0.8048927329946309,
+      "row_count": 1024
+    },
+    {
+      "client": 47,
+      "cycle": 0,
+      "seconds": 0.8061341540887952,
+      "row_count": 1024
+    },
+    {
+      "client": 82,
+      "cycle": 0,
+      "seconds": 0.8070487449876964,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 0,
+      "seconds": 0.8095717739779502,
+      "row_count": 1024
+    },
+    {
+      "client": 27,
+      "cycle": 0,
+      "seconds": 0.8106021950952709,
+      "row_count": 1024
+    },
+    {
+      "client": 83,
+      "cycle": 0,
+      "seconds": 0.8136557890102267,
+      "row_count": 1024
+    },
+    {
+      "client": 80,
+      "cycle": 0,
+      "seconds": 0.8167075789533556,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 0,
+      "seconds": 0.8163865499664098,
+      "row_count": 1024
+    },
+    {
+      "client": 62,
+      "cycle": 0,
+      "seconds": 0.8185980790294707,
+      "row_count": 1024
+    },
+    {
+      "client": 46,
+      "cycle": 0,
+      "seconds": 0.8190403371118009,
+      "row_count": 1024
+    },
+    {
+      "client": 19,
+      "cycle": 0,
+      "seconds": 0.8218350799288601,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 0,
+      "seconds": 0.8212629670742899,
+      "row_count": 1024
+    },
+    {
+      "client": 60,
+      "cycle": 0,
+      "seconds": 0.8247585268691182,
+      "row_count": 1024
+    },
+    {
+      "client": 37,
+      "cycle": 0,
+      "seconds": 0.8256966539192945,
+      "row_count": 1024
+    },
+    {
+      "client": 79,
+      "cycle": 0,
+      "seconds": 0.826435653027147,
+      "row_count": 1024
+    },
+    {
+      "client": 25,
+      "cycle": 0,
+      "seconds": 0.8270898121409118,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 0,
+      "seconds": 0.8273001299239695,
+      "row_count": 1024
+    },
+    {
+      "client": 53,
+      "cycle": 0,
+      "seconds": 0.8281575238797814,
+      "row_count": 1024
+    },
+    {
+      "client": 31,
+      "cycle": 0,
+      "seconds": 0.8282073480077088,
+      "row_count": 1024
+    },
+    {
+      "client": 29,
+      "cycle": 0,
+      "seconds": 0.8312961880583316,
+      "row_count": 1024
+    },
+    {
+      "client": 17,
+      "cycle": 0,
+      "seconds": 0.8318157121539116,
+      "row_count": 1024
+    },
+    {
+      "client": 14,
+      "cycle": 0,
+      "seconds": 0.8336428829934448,
+      "row_count": 1024
+    },
+    {
+      "client": 41,
+      "cycle": 0,
+      "seconds": 0.8332906160503626,
+      "row_count": 1024
+    },
+    {
+      "client": 38,
+      "cycle": 0,
+      "seconds": 0.8335666889324784,
+      "row_count": 1024
+    },
+    {
+      "client": 65,
+      "cycle": 0,
+      "seconds": 0.841455209068954,
+      "row_count": 1024
+    },
+    {
+      "client": 48,
+      "cycle": 0,
+      "seconds": 0.8413073178380728,
+      "row_count": 1024
+    },
+    {
+      "client": 73,
+      "cycle": 0,
+      "seconds": 0.8449152719695121,
+      "row_count": 1024
+    },
+    {
+      "client": 59,
+      "cycle": 0,
+      "seconds": 0.8468109120149165,
+      "row_count": 1024
+    },
+    {
+      "client": 93,
+      "cycle": 0,
+      "seconds": 0.8476240918971598,
+      "row_count": 1024
+    },
+    {
+      "client": 45,
+      "cycle": 0,
+      "seconds": 0.8475582969840616,
+      "row_count": 1024
+    },
+    {
+      "client": 78,
+      "cycle": 0,
+      "seconds": 0.8484308400657028,
+      "row_count": 1024
+    },
+    {
+      "client": 24,
+      "cycle": 0,
+      "seconds": 0.8573475368320942,
+      "row_count": 1024
+    },
+    {
+      "client": 58,
+      "cycle": 0,
+      "seconds": 0.8608931829221547,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 0,
+      "seconds": 0.8712864459957927,
+      "row_count": 1024
+    },
+    {
+      "client": 11,
+      "cycle": 0,
+      "seconds": 0.8728125658817589,
+      "row_count": 1024
+    },
+    {
+      "client": 92,
+      "cycle": 1,
+      "seconds": 0.8562143510207534,
+      "row_count": 1024
+    },
+    {
+      "client": 15,
+      "cycle": 1,
+      "seconds": 0.7751266281120479,
+      "row_count": 1024
+    },
+    {
+      "client": 44,
+      "cycle": 1,
+      "seconds": 0.8526224191300571,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 1,
+      "seconds": 0.810066742124036,
+      "row_count": 1024
+    },
+    {
+      "client": 10,
+      "cycle": 1,
+      "seconds": 0.8356224419549108,
+      "row_count": 1024
+    },
+    {
+      "client": 55,
+      "cycle": 1,
+      "seconds": 0.8523653030861169,
+      "row_count": 1024
+    },
+    {
+      "client": 72,
+      "cycle": 1,
+      "seconds": 0.8233833420090377,
+      "row_count": 1024
+    },
+    {
+      "client": 95,
+      "cycle": 1,
+      "seconds": 0.841095307841897,
+      "row_count": 1024
+    },
+    {
+      "client": 70,
+      "cycle": 1,
+      "seconds": 0.8590849780011922,
+      "row_count": 1024
+    },
+    {
+      "client": 54,
+      "cycle": 1,
+      "seconds": 0.8626712700352073,
+      "row_count": 1024
+    },
+    {
+      "client": 87,
+      "cycle": 1,
+      "seconds": 0.8253019461408257,
+      "row_count": 1024
+    },
+    {
+      "client": 76,
+      "cycle": 1,
+      "seconds": 0.8790667918510735,
+      "row_count": 1024
+    },
+    {
+      "client": 20,
+      "cycle": 1,
+      "seconds": 0.8841081410646439,
+      "row_count": 1024
+    },
+    {
+      "client": 47,
+      "cycle": 1,
+      "seconds": 0.7861310499720275,
+      "row_count": 1024
+    },
+    {
+      "client": 86,
+      "cycle": 1,
+      "seconds": 0.8448801659978926,
+      "row_count": 1024
+    },
+    {
+      "client": 57,
+      "cycle": 1,
+      "seconds": 0.8330361840780824,
+      "row_count": 1024
+    },
+    {
+      "client": 46,
+      "cycle": 1,
+      "seconds": 0.7768271688837558,
+      "row_count": 1024
+    },
+    {
+      "client": 28,
+      "cycle": 1,
+      "seconds": 0.846885162871331,
+      "row_count": 1024
+    },
+    {
+      "client": 12,
+      "cycle": 1,
+      "seconds": 0.8492524870671332,
+      "row_count": 1024
+    },
+    {
+      "client": 16,
+      "cycle": 1,
+      "seconds": 0.843536821892485,
+      "row_count": 1024
+    },
+    {
+      "client": 89,
+      "cycle": 1,
+      "seconds": 0.8464318451005965,
+      "row_count": 1024
+    },
+    {
+      "client": 67,
+      "cycle": 1,
+      "seconds": 0.8413245819974691,
+      "row_count": 1024
+    },
+    {
+      "client": 56,
+      "cycle": 1,
+      "seconds": 0.8684817750472575,
+      "row_count": 1024
+    },
+    {
+      "client": 39,
+      "cycle": 1,
+      "seconds": 0.8257598739583045,
+      "row_count": 1024
+    },
+    {
+      "client": 68,
+      "cycle": 1,
+      "seconds": 0.8446726431138813,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 1,
+      "seconds": 0.8461087630130351,
+      "row_count": 1024
+    },
+    {
+      "client": 66,
+      "cycle": 1,
+      "seconds": 0.8528229489456862,
+      "row_count": 1024
+    },
+    {
+      "client": 71,
+      "cycle": 1,
+      "seconds": 0.8923322458285838,
+      "row_count": 1024
+    },
+    {
+      "client": 94,
+      "cycle": 1,
+      "seconds": 0.8840199331752956,
+      "row_count": 1024
+    },
+    {
+      "client": 35,
+      "cycle": 1,
+      "seconds": 0.8382146519143134,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 1,
+      "seconds": 0.9125721289310604,
+      "row_count": 1024
+    },
+    {
+      "client": 61,
+      "cycle": 1,
+      "seconds": 0.8301799648907036,
+      "row_count": 1024
+    },
+    {
+      "client": 22,
+      "cycle": 1,
+      "seconds": 0.8532997919246554,
+      "row_count": 1024
+    },
+    {
+      "client": 42,
+      "cycle": 1,
+      "seconds": 0.841494302963838,
+      "row_count": 1024
+    },
+    {
+      "client": 32,
+      "cycle": 1,
+      "seconds": 0.8552821460179985,
+      "row_count": 1024
+    },
+    {
+      "client": 59,
+      "cycle": 1,
+      "seconds": 0.7899079630151391,
+      "row_count": 1024
+    },
+    {
+      "client": 75,
+      "cycle": 1,
+      "seconds": 0.8489891681820154,
+      "row_count": 1024
+    },
+    {
+      "client": 82,
+      "cycle": 1,
+      "seconds": 0.8351454788353294,
+      "row_count": 1024
+    },
+    {
+      "client": 23,
+      "cycle": 1,
+      "seconds": 0.9144677489530295,
+      "row_count": 1024
+    },
+    {
+      "client": 85,
+      "cycle": 1,
+      "seconds": 0.8643959069158882,
+      "row_count": 1024
+    },
+    {
+      "client": 49,
+      "cycle": 1,
+      "seconds": 0.885569378035143,
+      "row_count": 1024
+    },
+    {
+      "client": 43,
+      "cycle": 1,
+      "seconds": 0.9144317209720612,
+      "row_count": 1024
+    },
+    {
+      "client": 99,
+      "cycle": 1,
+      "seconds": 0.883733191061765,
+      "row_count": 1024
+    },
+    {
+      "client": 30,
+      "cycle": 1,
+      "seconds": 0.850098178954795,
+      "row_count": 1024
+    },
+    {
+      "client": 88,
+      "cycle": 1,
+      "seconds": 0.8737239940091968,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 1,
+      "seconds": 0.8493423669133335,
+      "row_count": 1024
+    },
+    {
+      "client": 84,
+      "cycle": 1,
+      "seconds": 0.9051040650811046,
+      "row_count": 1024
+    },
+    {
+      "client": 83,
+      "cycle": 1,
+      "seconds": 0.8444117289036512,
+      "row_count": 1024
+    },
+    {
+      "client": 33,
+      "cycle": 1,
+      "seconds": 0.8962644941639155,
+      "row_count": 1024
+    },
+    {
+      "client": 52,
+      "cycle": 1,
+      "seconds": 0.9048649419564754,
+      "row_count": 1024
+    },
+    {
+      "client": 40,
+      "cycle": 1,
+      "seconds": 0.8827195109333843,
+      "row_count": 1024
+    },
+    {
+      "client": 93,
+      "cycle": 1,
+      "seconds": 0.8171003730967641,
+      "row_count": 1024
+    },
+    {
+      "client": 36,
+      "cycle": 1,
+      "seconds": 0.8855131219606847,
+      "row_count": 1024
+    },
+    {
+      "client": 13,
+      "cycle": 1,
+      "seconds": 0.9008183081168681,
+      "row_count": 1024
+    },
+    {
+      "client": 80,
+      "cycle": 1,
+      "seconds": 0.8486124840565026,
+      "row_count": 1024
+    },
+    {
+      "client": 26,
+      "cycle": 1,
+      "seconds": 0.9025643449276686,
+      "row_count": 1024
+    },
+    {
+      "client": 31,
+      "cycle": 1,
+      "seconds": 0.8391060901340097,
+      "row_count": 1024
+    },
+    {
+      "client": 78,
+      "cycle": 1,
+      "seconds": 0.8188755949959159,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 1,
+      "seconds": 0.8573285520542413,
+      "row_count": 1024
+    },
+    {
+      "client": 97,
+      "cycle": 1,
+      "seconds": 0.8782081459648907,
+      "row_count": 1024
+    },
+    {
+      "client": 98,
+      "cycle": 1,
+      "seconds": 0.9632682029623538,
+      "row_count": 1024
+    },
+    {
+      "client": 79,
+      "cycle": 1,
+      "seconds": 0.8568417110946029,
+      "row_count": 1024
+    },
+    {
+      "client": 51,
+      "cycle": 1,
+      "seconds": 0.9239436560310423,
+      "row_count": 1024
+    },
+    {
+      "client": 91,
+      "cycle": 1,
+      "seconds": 0.8941842240747064,
+      "row_count": 1024
+    },
+    {
+      "client": 90,
+      "cycle": 1,
+      "seconds": 0.9663111260160804,
+      "row_count": 1024
+    },
+    {
+      "client": 63,
+      "cycle": 1,
+      "seconds": 0.9055617530830204,
+      "row_count": 1024
+    },
+    {
+      "client": 69,
+      "cycle": 1,
+      "seconds": 0.8945687720552087,
+      "row_count": 1024
+    },
+    {
+      "client": 77,
+      "cycle": 1,
+      "seconds": 0.9557400259654969,
+      "row_count": 1024
+    },
+    {
+      "client": 53,
+      "cycle": 1,
+      "seconds": 0.8739815808366984,
+      "row_count": 1024
+    },
+    {
+      "client": 27,
+      "cycle": 1,
+      "seconds": 0.8911724200006574,
+      "row_count": 1024
+    },
+    {
+      "client": 21,
+      "cycle": 1,
+      "seconds": 0.9152035431470722,
+      "row_count": 1024
+    },
+    {
+      "client": 45,
+      "cycle": 1,
+      "seconds": 0.8568528911564499,
+      "row_count": 1024
+    },
+    {
+      "client": 96,
+      "cycle": 1,
+      "seconds": 0.9222825400065631,
+      "row_count": 1024
+    },
+    {
+      "client": 19,
+      "cycle": 1,
+      "seconds": 0.8864805840421468,
+      "row_count": 1024
+    },
+    {
+      "client": 50,
+      "cycle": 1,
+      "seconds": 0.9180186649318784,
+      "row_count": 1024
+    },
+    {
+      "client": 18,
+      "cycle": 1,
+      "seconds": 0.9125747040379792,
+      "row_count": 1024
+    },
+    {
+      "client": 81,
+      "cycle": 1,
+      "seconds": 0.9504567498806864,
+      "row_count": 1024
+    },
+    {
+      "client": 37,
+      "cycle": 1,
+      "seconds": 0.8958543569315225,
+      "row_count": 1024
+    },
+    {
+      "client": 60,
+      "cycle": 1,
+      "seconds": 0.8969881038647145,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 1,
+      "seconds": 0.9421196701005101,
+      "row_count": 1024
+    },
+    {
+      "client": 41,
+      "cycle": 1,
+      "seconds": 0.8928324929438531,
+      "row_count": 1024
+    },
+    {
+      "client": 65,
+      "cycle": 1,
+      "seconds": 0.8854661229997873,
+      "row_count": 1024
+    },
+    {
+      "client": 24,
+      "cycle": 1,
+      "seconds": 0.8762969470117241,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 1,
+      "seconds": 0.9482045341283083,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 1,
+      "seconds": 0.9069697079248726,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 1,
+      "seconds": 0.9142524721100926,
+      "row_count": 1024
+    },
+    {
+      "client": 64,
+      "cycle": 1,
+      "seconds": 0.9324554370250553,
+      "row_count": 1024
+    },
+    {
+      "client": 34,
+      "cycle": 1,
+      "seconds": 0.9485331869218498,
+      "row_count": 1024
+    },
+    {
+      "client": 62,
+      "cycle": 1,
+      "seconds": 0.9214076430071145,
+      "row_count": 1024
+    },
+    {
+      "client": 74,
+      "cycle": 1,
+      "seconds": 0.9912894328590482,
+      "row_count": 1024
+    },
+    {
+      "client": 29,
+      "cycle": 1,
+      "seconds": 0.9114145271014422,
+      "row_count": 1024
+    },
+    {
+      "client": 73,
+      "cycle": 1,
+      "seconds": 0.8991940529085696,
+      "row_count": 1024
+    },
+    {
+      "client": 38,
+      "cycle": 1,
+      "seconds": 0.9096734190825373,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 1,
+      "seconds": 0.875451906118542,
+      "row_count": 1024
+    },
+    {
+      "client": 11,
+      "cycle": 1,
+      "seconds": 0.8756978118326515,
+      "row_count": 1024
+    },
+    {
+      "client": 25,
+      "cycle": 1,
+      "seconds": 0.9310312389861792,
+      "row_count": 1024
+    },
+    {
+      "client": 48,
+      "cycle": 1,
+      "seconds": 0.9231291029136628,
+      "row_count": 1024
+    },
+    {
+      "client": 58,
+      "cycle": 1,
+      "seconds": 0.90246004704386,
+      "row_count": 1024
+    },
+    {
+      "client": 17,
+      "cycle": 1,
+      "seconds": 0.9373142691329122,
+      "row_count": 1024
+    },
+    {
+      "client": 14,
+      "cycle": 1,
+      "seconds": 0.9376092269085348,
+      "row_count": 1024
+    },
+    {
+      "client": 92,
+      "cycle": 2,
+      "seconds": 0.9062631509732455,
+      "row_count": 1024
+    },
+    {
+      "client": 55,
+      "cycle": 2,
+      "seconds": 0.8795662198681384,
+      "row_count": 1024
+    },
+    {
+      "client": 57,
+      "cycle": 2,
+      "seconds": 0.8588946489617229,
+      "row_count": 1024
+    },
+    {
+      "client": 46,
+      "cycle": 2,
+      "seconds": 0.856365439016372,
+      "row_count": 1024
+    },
+    {
+      "client": 15,
+      "cycle": 2,
+      "seconds": 0.9275936400517821,
+      "row_count": 1024
+    },
+    {
+      "client": 47,
+      "cycle": 2,
+      "seconds": 0.8819403450470418,
+      "row_count": 1024
+    },
+    {
+      "client": 56,
+      "cycle": 2,
+      "seconds": 0.8749090489000082,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 2,
+      "seconds": 0.9342002719640732,
+      "row_count": 1024
+    },
+    {
+      "client": 44,
+      "cycle": 2,
+      "seconds": 0.9358999109826982,
+      "row_count": 1024
+    },
+    {
+      "client": 20,
+      "cycle": 2,
+      "seconds": 0.8958927309140563,
+      "row_count": 1024
+    },
+    {
+      "client": 43,
+      "cycle": 2,
+      "seconds": 0.8427453639451414,
+      "row_count": 1024
+    },
+    {
+      "client": 32,
+      "cycle": 2,
+      "seconds": 0.8568444661796093,
+      "row_count": 1024
+    },
+    {
+      "client": 98,
+      "cycle": 2,
+      "seconds": 0.8125945499632508,
+      "row_count": 1024
+    },
+    {
+      "client": 88,
+      "cycle": 2,
+      "seconds": 0.8342301258817315,
+      "row_count": 1024
+    },
+    {
+      "client": 99,
+      "cycle": 2,
+      "seconds": 0.8399671320803463,
+      "row_count": 1024
+    },
+    {
+      "client": 83,
+      "cycle": 2,
+      "seconds": 0.8361536890733987,
+      "row_count": 1024
+    },
+    {
+      "client": 12,
+      "cycle": 2,
+      "seconds": 0.8973157461732626,
+      "row_count": 1024
+    },
+    {
+      "client": 10,
+      "cycle": 2,
+      "seconds": 0.9434272469952703,
+      "row_count": 1024
+    },
+    {
+      "client": 95,
+      "cycle": 2,
+      "seconds": 0.9273015069775283,
+      "row_count": 1024
+    },
+    {
+      "client": 82,
+      "cycle": 2,
+      "seconds": 0.861615302041173,
+      "row_count": 1024
+    },
+    {
+      "client": 86,
+      "cycle": 2,
+      "seconds": 0.9184457941446453,
+      "row_count": 1024
+    },
+    {
+      "client": 66,
+      "cycle": 2,
+      "seconds": 0.898614534875378,
+      "row_count": 1024
+    },
+    {
+      "client": 94,
+      "cycle": 2,
+      "seconds": 0.899728185031563,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 2,
+      "seconds": 0.857201622100547,
+      "row_count": 1024
+    },
+    {
+      "client": 72,
+      "cycle": 2,
+      "seconds": 0.9419592770282179,
+      "row_count": 1024
+    },
+    {
+      "client": 75,
+      "cycle": 2,
+      "seconds": 0.8847040601540357,
+      "row_count": 1024
+    },
+    {
+      "client": 41,
+      "cycle": 2,
+      "seconds": 0.7974339569918811,
+      "row_count": 1024
+    },
+    {
+      "client": 42,
+      "cycle": 2,
+      "seconds": 0.8935142660047859,
+      "row_count": 1024
+    },
+    {
+      "client": 49,
+      "cycle": 2,
+      "seconds": 0.878357470035553,
+      "row_count": 1024
+    },
+    {
+      "client": 39,
+      "cycle": 2,
+      "seconds": 0.9171716009732336,
+      "row_count": 1024
+    },
+    {
+      "client": 54,
+      "cycle": 2,
+      "seconds": 0.9457408690359443,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 2,
+      "seconds": 0.9096880271099508,
+      "row_count": 1024
+    },
+    {
+      "client": 87,
+      "cycle": 2,
+      "seconds": 0.9556361399590969,
+      "row_count": 1024
+    },
+    {
+      "client": 89,
+      "cycle": 2,
+      "seconds": 0.9345115320757031,
+      "row_count": 1024
+    },
+    {
+      "client": 30,
+      "cycle": 2,
+      "seconds": 0.8928913371637464,
+      "row_count": 1024
+    },
+    {
+      "client": 31,
+      "cycle": 2,
+      "seconds": 0.8806590689346194,
+      "row_count": 1024
+    },
+    {
+      "client": 33,
+      "cycle": 2,
+      "seconds": 0.8891381281428039,
+      "row_count": 1024
+    },
+    {
+      "client": 16,
+      "cycle": 2,
+      "seconds": 0.9461583700031042,
+      "row_count": 1024
+    },
+    {
+      "client": 68,
+      "cycle": 2,
+      "seconds": 0.9487034089397639,
+      "row_count": 1024
+    },
+    {
+      "client": 70,
+      "cycle": 2,
+      "seconds": 0.9801030291710049,
+      "row_count": 1024
+    },
+    {
+      "client": 97,
+      "cycle": 2,
+      "seconds": 0.8882884378544986,
+      "row_count": 1024
+    },
+    {
+      "client": 71,
+      "cycle": 2,
+      "seconds": 0.9531368259340525,
+      "row_count": 1024
+    },
+    {
+      "client": 28,
+      "cycle": 2,
+      "seconds": 0.9729803579393774,
+      "row_count": 1024
+    },
+    {
+      "client": 76,
+      "cycle": 2,
+      "seconds": 0.9813120381440967,
+      "row_count": 1024
+    },
+    {
+      "client": 13,
+      "cycle": 2,
+      "seconds": 0.9047666860278696,
+      "row_count": 1024
+    },
+    {
+      "client": 36,
+      "cycle": 2,
+      "seconds": 0.9091566610150039,
+      "row_count": 1024
+    },
+    {
+      "client": 59,
+      "cycle": 2,
+      "seconds": 0.938001852016896,
+      "row_count": 1024
+    },
+    {
+      "client": 93,
+      "cycle": 2,
+      "seconds": 0.910826904932037,
+      "row_count": 1024
+    },
+    {
+      "client": 61,
+      "cycle": 2,
+      "seconds": 0.9489264520816505,
+      "row_count": 1024
+    },
+    {
+      "client": 34,
+      "cycle": 2,
+      "seconds": 0.840217204997316,
+      "row_count": 1024
+    },
+    {
+      "client": 23,
+      "cycle": 2,
+      "seconds": 0.9402439079713076,
+      "row_count": 1024
+    },
+    {
+      "client": 22,
+      "cycle": 2,
+      "seconds": 0.9588154009543359,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 2,
+      "seconds": 0.8567772589158267,
+      "row_count": 1024
+    },
+    {
+      "client": 67,
+      "cycle": 2,
+      "seconds": 0.9847948441747576,
+      "row_count": 1024
+    },
+    {
+      "client": 38,
+      "cycle": 2,
+      "seconds": 0.8557868730276823,
+      "row_count": 1024
+    },
+    {
+      "client": 85,
+      "cycle": 2,
+      "seconds": 0.9557093079201877,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 2,
+      "seconds": 0.9922986759338528,
+      "row_count": 1024
+    },
+    {
+      "client": 90,
+      "cycle": 2,
+      "seconds": 0.9107396791223437,
+      "row_count": 1024
+    },
+    {
+      "client": 35,
+      "cycle": 2,
+      "seconds": 0.9867032780312002,
+      "row_count": 1024
+    },
+    {
+      "client": 78,
+      "cycle": 2,
+      "seconds": 0.9426546038594097,
+      "row_count": 1024
+    },
+    {
+      "client": 45,
+      "cycle": 2,
+      "seconds": 0.9051178218796849,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 2,
+      "seconds": 0.9378878260031343,
+      "row_count": 1024
+    },
+    {
+      "client": 91,
+      "cycle": 2,
+      "seconds": 0.9213035369757563,
+      "row_count": 1024
+    },
+    {
+      "client": 37,
+      "cycle": 2,
+      "seconds": 0.8916756140533835,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 2,
+      "seconds": 0.8935655530076474,
+      "row_count": 1024
+    },
+    {
+      "client": 51,
+      "cycle": 2,
+      "seconds": 0.9331745891831815,
+      "row_count": 1024
+    },
+    {
+      "client": 52,
+      "cycle": 2,
+      "seconds": 0.9609758120495826,
+      "row_count": 1024
+    },
+    {
+      "client": 18,
+      "cycle": 2,
+      "seconds": 0.9122026399709284,
+      "row_count": 1024
+    },
+    {
+      "client": 81,
+      "cycle": 2,
+      "seconds": 0.9125239388085902,
+      "row_count": 1024
+    },
+    {
+      "client": 53,
+      "cycle": 2,
+      "seconds": 0.9248965210281312,
+      "row_count": 1024
+    },
+    {
+      "client": 69,
+      "cycle": 2,
+      "seconds": 0.9367487388662994,
+      "row_count": 1024
+    },
+    {
+      "client": 11,
+      "cycle": 2,
+      "seconds": 0.886968128150329,
+      "row_count": 1024
+    },
+    {
+      "client": 40,
+      "cycle": 2,
+      "seconds": 0.9794942149892449,
+      "row_count": 1024
+    },
+    {
+      "client": 80,
+      "cycle": 2,
+      "seconds": 0.9816184181254357,
+      "row_count": 1024
+    },
+    {
+      "client": 79,
+      "cycle": 2,
+      "seconds": 0.9640697319991887,
+      "row_count": 1024
+    },
+    {
+      "client": 84,
+      "cycle": 2,
+      "seconds": 0.9891856198664755,
+      "row_count": 1024
+    },
+    {
+      "client": 63,
+      "cycle": 2,
+      "seconds": 0.9488865160383284,
+      "row_count": 1024
+    },
+    {
+      "client": 27,
+      "cycle": 2,
+      "seconds": 0.9465624149888754,
+      "row_count": 1024
+    },
+    {
+      "client": 21,
+      "cycle": 2,
+      "seconds": 0.9485557700973004,
+      "row_count": 1024
+    },
+    {
+      "client": 19,
+      "cycle": 2,
+      "seconds": 0.9437270450871438,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 2,
+      "seconds": 0.9178618178702891,
+      "row_count": 1024
+    },
+    {
+      "client": 62,
+      "cycle": 2,
+      "seconds": 0.9260614078957587,
+      "row_count": 1024
+    },
+    {
+      "client": 73,
+      "cycle": 2,
+      "seconds": 0.9223743239417672,
+      "row_count": 1024
+    },
+    {
+      "client": 65,
+      "cycle": 2,
+      "seconds": 0.9422183779533952,
+      "row_count": 1024
+    },
+    {
+      "client": 77,
+      "cycle": 2,
+      "seconds": 0.9700874490663409,
+      "row_count": 1024
+    },
+    {
+      "client": 26,
+      "cycle": 2,
+      "seconds": 1.0052482611499727,
+      "row_count": 1024
+    },
+    {
+      "client": 29,
+      "cycle": 2,
+      "seconds": 0.9316729248967022,
+      "row_count": 1024
+    },
+    {
+      "client": 60,
+      "cycle": 2,
+      "seconds": 0.9534922300372273,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 2,
+      "seconds": 0.9458135371096432,
+      "row_count": 1024
+    },
+    {
+      "client": 24,
+      "cycle": 2,
+      "seconds": 0.9500748571008444,
+      "row_count": 1024
+    },
+    {
+      "client": 64,
+      "cycle": 2,
+      "seconds": 0.9465354129206389,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 2,
+      "seconds": 0.9418810789939016,
+      "row_count": 1024
+    },
+    {
+      "client": 48,
+      "cycle": 2,
+      "seconds": 0.9263270609080791,
+      "row_count": 1024
+    },
+    {
+      "client": 17,
+      "cycle": 2,
+      "seconds": 0.9256765691097826,
+      "row_count": 1024
+    },
+    {
+      "client": 96,
+      "cycle": 2,
+      "seconds": 0.9895228990353644,
+      "row_count": 1024
+    },
+    {
+      "client": 50,
+      "cycle": 2,
+      "seconds": 0.983416514005512,
+      "row_count": 1024
+    },
+    {
+      "client": 58,
+      "cycle": 2,
+      "seconds": 0.9324520609807223,
+      "row_count": 1024
+    },
+    {
+      "client": 74,
+      "cycle": 2,
+      "seconds": 0.958276028977707,
+      "row_count": 1024
+    },
+    {
+      "client": 14,
+      "cycle": 2,
+      "seconds": 0.9669902538880706,
+      "row_count": 1024
+    },
+    {
+      "client": 25,
+      "cycle": 2,
+      "seconds": 1.0017557460814714,
+      "row_count": 1024
+    },
+    {
+      "client": 92,
+      "cycle": 3,
+      "seconds": 0.9149181430693716,
+      "row_count": 1024
+    },
+    {
+      "client": 15,
+      "cycle": 3,
+      "seconds": 0.9381944269407541,
+      "row_count": 1024
+    },
+    {
+      "client": 46,
+      "cycle": 3,
+      "seconds": 0.954588906140998,
+      "row_count": 1024
+    },
+    {
+      "client": 20,
+      "cycle": 3,
+      "seconds": 0.920513650868088,
+      "row_count": 1024
+    },
+    {
+      "client": 55,
+      "cycle": 3,
+      "seconds": 0.9648284800350666,
+      "row_count": 1024
+    },
+    {
+      "client": 82,
+      "cycle": 3,
+      "seconds": 0.9155054059810936,
+      "row_count": 1024
+    },
+    {
+      "client": 88,
+      "cycle": 3,
+      "seconds": 0.9316053669899702,
+      "row_count": 1024
+    },
+    {
+      "client": 86,
+      "cycle": 3,
+      "seconds": 0.9194494860712439,
+      "row_count": 1024
+    },
+    {
+      "client": 75,
+      "cycle": 3,
+      "seconds": 0.9070877230260521,
+      "row_count": 1024
+    },
+    {
+      "client": 94,
+      "cycle": 3,
+      "seconds": 0.922640749020502,
+      "row_count": 1024
+    },
+    {
+      "client": 72,
+      "cycle": 3,
+      "seconds": 0.9216862921603024,
+      "row_count": 1024
+    },
+    {
+      "client": 32,
+      "cycle": 3,
+      "seconds": 0.9475801738444716,
+      "row_count": 1024
+    },
+    {
+      "client": 54,
+      "cycle": 3,
+      "seconds": 0.9113612179644406,
+      "row_count": 1024
+    },
+    {
+      "client": 99,
+      "cycle": 3,
+      "seconds": 0.9465125710703433,
+      "row_count": 1024
+    },
+    {
+      "client": 98,
+      "cycle": 3,
+      "seconds": 0.9507792720105499,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 3,
+      "seconds": 0.9565633258316666,
+      "row_count": 1024
+    },
+    {
+      "client": 57,
+      "cycle": 3,
+      "seconds": 0.9927150649018586,
+      "row_count": 1024
+    },
+    {
+      "client": 70,
+      "cycle": 3,
+      "seconds": 0.8943615108728409,
+      "row_count": 1024
+    },
+    {
+      "client": 56,
+      "cycle": 3,
+      "seconds": 0.9746741668786854,
+      "row_count": 1024
+    },
+    {
+      "client": 47,
+      "cycle": 3,
+      "seconds": 0.9842951579485089,
+      "row_count": 1024
+    },
+    {
+      "client": 49,
+      "cycle": 3,
+      "seconds": 0.9359238760080189,
+      "row_count": 1024
+    },
+    {
+      "client": 12,
+      "cycle": 3,
+      "seconds": 0.9661477280315012,
+      "row_count": 1024
+    },
+    {
+      "client": 41,
+      "cycle": 3,
+      "seconds": 0.9374199700541794,
+      "row_count": 1024
+    },
+    {
+      "client": 31,
+      "cycle": 3,
+      "seconds": 0.9185870219953358,
+      "row_count": 1024
+    },
+    {
+      "client": 44,
+      "cycle": 3,
+      "seconds": 0.98754395195283,
+      "row_count": 1024
+    },
+    {
+      "client": 95,
+      "cycle": 3,
+      "seconds": 0.973340982105583,
+      "row_count": 1024
+    },
+    {
+      "client": 33,
+      "cycle": 3,
+      "seconds": 0.9364905599504709,
+      "row_count": 1024
+    },
+    {
+      "client": 35,
+      "cycle": 3,
+      "seconds": 0.8784075549338013,
+      "row_count": 1024
+    },
+    {
+      "client": 39,
+      "cycle": 3,
+      "seconds": 0.9648879719898105,
+      "row_count": 1024
+    },
+    {
+      "client": 43,
+      "cycle": 3,
+      "seconds": 1.0016381649766117,
+      "row_count": 1024
+    },
+    {
+      "client": 38,
+      "cycle": 3,
+      "seconds": 0.8895869280677289,
+      "row_count": 1024
+    },
+    {
+      "client": 10,
+      "cycle": 3,
+      "seconds": 0.9940435509197414,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 3,
+      "seconds": 0.9762945459224284,
+      "row_count": 1024
+    },
+    {
+      "client": 66,
+      "cycle": 3,
+      "seconds": 0.9816613600123674,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 3,
+      "seconds": 0.8904130330774933,
+      "row_count": 1024
+    },
+    {
+      "client": 34,
+      "cycle": 3,
+      "seconds": 0.9196347768884152,
+      "row_count": 1024
+    },
+    {
+      "client": 16,
+      "cycle": 3,
+      "seconds": 0.9448219689074904,
+      "row_count": 1024
+    },
+    {
+      "client": 23,
+      "cycle": 3,
+      "seconds": 0.9231803012080491,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 3,
+      "seconds": 0.8942829128354788,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 3,
+      "seconds": 0.9698049451690167,
+      "row_count": 1024
+    },
+    {
+      "client": 67,
+      "cycle": 3,
+      "seconds": 0.9170394421089441,
+      "row_count": 1024
+    },
+    {
+      "client": 90,
+      "cycle": 3,
+      "seconds": 0.9131412089336663,
+      "row_count": 1024
+    },
+    {
+      "client": 59,
+      "cycle": 3,
+      "seconds": 0.9473267130088061,
+      "row_count": 1024
+    },
+    {
+      "client": 76,
+      "cycle": 3,
+      "seconds": 0.9525732689071447,
+      "row_count": 1024
+    },
+    {
+      "client": 73,
+      "cycle": 3,
+      "seconds": 0.857549793086946,
+      "row_count": 1024
+    },
+    {
+      "client": 87,
+      "cycle": 3,
+      "seconds": 0.9847439280711114,
+      "row_count": 1024
+    },
+    {
+      "client": 13,
+      "cycle": 3,
+      "seconds": 0.9554189490154386,
+      "row_count": 1024
+    },
+    {
+      "client": 21,
+      "cycle": 3,
+      "seconds": 0.8753064919728786,
+      "row_count": 1024
+    },
+    {
+      "client": 85,
+      "cycle": 3,
+      "seconds": 0.9241658879909664,
+      "row_count": 1024
+    },
+    {
+      "client": 22,
+      "cycle": 3,
+      "seconds": 0.9384138830937445,
+      "row_count": 1024
+    },
+    {
+      "client": 30,
+      "cycle": 3,
+      "seconds": 0.9958200950641185,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 3,
+      "seconds": 0.9545400650240481,
+      "row_count": 1024
+    },
+    {
+      "client": 19,
+      "cycle": 3,
+      "seconds": 0.8944951640442014,
+      "row_count": 1024
+    },
+    {
+      "client": 42,
+      "cycle": 3,
+      "seconds": 1.0293125580064952,
+      "row_count": 1024
+    },
+    {
+      "client": 53,
+      "cycle": 3,
+      "seconds": 0.931628602091223,
+      "row_count": 1024
+    },
+    {
+      "client": 93,
+      "cycle": 3,
+      "seconds": 0.982930394122377,
+      "row_count": 1024
+    },
+    {
+      "client": 78,
+      "cycle": 3,
+      "seconds": 0.9530789868440479,
+      "row_count": 1024
+    },
+    {
+      "client": 52,
+      "cycle": 3,
+      "seconds": 0.940359306987375,
+      "row_count": 1024
+    },
+    {
+      "client": 83,
+      "cycle": 3,
+      "seconds": 1.068859526887536,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 3,
+      "seconds": 0.9460679991170764,
+      "row_count": 1024
+    },
+    {
+      "client": 63,
+      "cycle": 3,
+      "seconds": 0.9165961721446365,
+      "row_count": 1024
+    },
+    {
+      "client": 28,
+      "cycle": 3,
+      "seconds": 0.9962091620545834,
+      "row_count": 1024
+    },
+    {
+      "client": 71,
+      "cycle": 3,
+      "seconds": 1.0065628020092845,
+      "row_count": 1024
+    },
+    {
+      "client": 77,
+      "cycle": 3,
+      "seconds": 0.902692309115082,
+      "row_count": 1024
+    },
+    {
+      "client": 91,
+      "cycle": 3,
+      "seconds": 0.9597632971126586,
+      "row_count": 1024
+    },
+    {
+      "client": 89,
+      "cycle": 3,
+      "seconds": 1.031879368936643,
+      "row_count": 1024
+    },
+    {
+      "client": 29,
+      "cycle": 3,
+      "seconds": 0.9008093029260635,
+      "row_count": 1024
+    },
+    {
+      "client": 61,
+      "cycle": 3,
+      "seconds": 0.996896464144811,
+      "row_count": 1024
+    },
+    {
+      "client": 45,
+      "cycle": 3,
+      "seconds": 0.9729712621774524,
+      "row_count": 1024
+    },
+    {
+      "client": 68,
+      "cycle": 3,
+      "seconds": 1.0280642230063677,
+      "row_count": 1024
+    },
+    {
+      "client": 79,
+      "cycle": 3,
+      "seconds": 0.9413539110682905,
+      "row_count": 1024
+    },
+    {
+      "client": 36,
+      "cycle": 3,
+      "seconds": 1.016806012019515,
+      "row_count": 1024
+    },
+    {
+      "client": 18,
+      "cycle": 3,
+      "seconds": 0.9700234499759972,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 3,
+      "seconds": 0.9394600540399551,
+      "row_count": 1024
+    },
+    {
+      "client": 97,
+      "cycle": 3,
+      "seconds": 1.030436506960541,
+      "row_count": 1024
+    },
+    {
+      "client": 37,
+      "cycle": 3,
+      "seconds": 0.9829605610575527,
+      "row_count": 1024
+    },
+    {
+      "client": 81,
+      "cycle": 3,
+      "seconds": 0.9700745060108602,
+      "row_count": 1024
+    },
+    {
+      "client": 65,
+      "cycle": 3,
+      "seconds": 0.927786435931921,
+      "row_count": 1024
+    },
+    {
+      "client": 51,
+      "cycle": 3,
+      "seconds": 0.9801890619564801,
+      "row_count": 1024
+    },
+    {
+      "client": 84,
+      "cycle": 3,
+      "seconds": 0.958674515131861,
+      "row_count": 1024
+    },
+    {
+      "client": 60,
+      "cycle": 3,
+      "seconds": 0.9396177129819989,
+      "row_count": 1024
+    },
+    {
+      "client": 62,
+      "cycle": 3,
+      "seconds": 0.9493215510156006,
+      "row_count": 1024
+    },
+    {
+      "client": 11,
+      "cycle": 3,
+      "seconds": 0.9823119919747114,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 3,
+      "seconds": 0.9390016358811408,
+      "row_count": 1024
+    },
+    {
+      "client": 64,
+      "cycle": 3,
+      "seconds": 0.9366758009418845,
+      "row_count": 1024
+    },
+    {
+      "client": 69,
+      "cycle": 3,
+      "seconds": 0.9909677358809859,
+      "row_count": 1024
+    },
+    {
+      "client": 50,
+      "cycle": 3,
+      "seconds": 0.943855888908729,
+      "row_count": 1024
+    },
+    {
+      "client": 96,
+      "cycle": 3,
+      "seconds": 0.9447731471154839,
+      "row_count": 1024
+    },
+    {
+      "client": 24,
+      "cycle": 3,
+      "seconds": 0.9589945711195469,
+      "row_count": 1024
+    },
+    {
+      "client": 17,
+      "cycle": 3,
+      "seconds": 0.9533405730035156,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 3,
+      "seconds": 0.960140551906079,
+      "row_count": 1024
+    },
+    {
+      "client": 48,
+      "cycle": 3,
+      "seconds": 0.9572205122094601,
+      "row_count": 1024
+    },
+    {
+      "client": 27,
+      "cycle": 3,
+      "seconds": 1.002890967996791,
+      "row_count": 1024
+    },
+    {
+      "client": 74,
+      "cycle": 3,
+      "seconds": 0.9611029441002756,
+      "row_count": 1024
+    },
+    {
+      "client": 40,
+      "cycle": 3,
+      "seconds": 1.0185162301640958,
+      "row_count": 1024
+    },
+    {
+      "client": 80,
+      "cycle": 3,
+      "seconds": 1.0159344598650932,
+      "row_count": 1024
+    },
+    {
+      "client": 26,
+      "cycle": 3,
+      "seconds": 0.9908613739535213,
+      "row_count": 1024
+    },
+    {
+      "client": 58,
+      "cycle": 3,
+      "seconds": 0.9652175970841199,
+      "row_count": 1024
+    },
+    {
+      "client": 14,
+      "cycle": 3,
+      "seconds": 0.9828242820221931,
+      "row_count": 1024
+    },
+    {
+      "client": 25,
+      "cycle": 3,
+      "seconds": 0.9732712910044938,
+      "row_count": 1024
+    },
+    {
+      "client": 92,
+      "cycle": 4,
+      "seconds": 1.02838649507612,
+      "row_count": 1024
+    },
+    {
+      "client": 72,
+      "cycle": 4,
+      "seconds": 0.9545655539259315,
+      "row_count": 1024
+    },
+    {
+      "client": 20,
+      "cycle": 4,
+      "seconds": 0.9903426219243556,
+      "row_count": 1024
+    },
+    {
+      "client": 88,
+      "cycle": 4,
+      "seconds": 0.9806588529609144,
+      "row_count": 1024
+    },
+    {
+      "client": 15,
+      "cycle": 4,
+      "seconds": 1.0128180999308825,
+      "row_count": 1024
+    },
+    {
+      "client": 44,
+      "cycle": 4,
+      "seconds": 0.9557238470297307,
+      "row_count": 1024
+    },
+    {
+      "client": 86,
+      "cycle": 4,
+      "seconds": 1.000994066009298,
+      "row_count": 1024
+    },
+    {
+      "client": 21,
+      "cycle": 4,
+      "seconds": 0.9057128611020744,
+      "row_count": 1024
+    },
+    {
+      "client": 47,
+      "cycle": 4,
+      "seconds": 0.9812885851133615,
+      "row_count": 1024
+    },
+    {
+      "client": 82,
+      "cycle": 4,
+      "seconds": 1.0205001789145172,
+      "row_count": 1024
+    },
+    {
+      "client": 94,
+      "cycle": 4,
+      "seconds": 1.0094056869857013,
+      "row_count": 1024
+    },
+    {
+      "client": 10,
+      "cycle": 4,
+      "seconds": 0.9595049479976296,
+      "row_count": 1024
+    },
+    {
+      "client": 4,
+      "cycle": 4,
+      "seconds": 0.9603818899486214,
+      "row_count": 1024
+    },
+    {
+      "client": 12,
+      "cycle": 4,
+      "seconds": 0.9942901090253145,
+      "row_count": 1024
+    },
+    {
+      "client": 98,
+      "cycle": 4,
+      "seconds": 1.0144470750819892,
+      "row_count": 1024
+    },
+    {
+      "client": 32,
+      "cycle": 4,
+      "seconds": 1.0231553670018911,
+      "row_count": 1024
+    },
+    {
+      "client": 95,
+      "cycle": 4,
+      "seconds": 0.9875680881086737,
+      "row_count": 1024
+    },
+    {
+      "client": 9,
+      "cycle": 4,
+      "seconds": 1.0220745711121708,
+      "row_count": 1024
+    },
+    {
+      "client": 99,
+      "cycle": 4,
+      "seconds": 1.030544932000339,
+      "row_count": 1024
+    },
+    {
+      "client": 56,
+      "cycle": 4,
+      "seconds": 1.0141063288319856,
+      "row_count": 1024
+    },
+    {
+      "client": 75,
+      "cycle": 4,
+      "seconds": 1.0437340619973838,
+      "row_count": 1024
+    },
+    {
+      "client": 33,
+      "cycle": 4,
+      "seconds": 0.9912127410061657,
+      "row_count": 1024
+    },
+    {
+      "client": 67,
+      "cycle": 4,
+      "seconds": 0.9681189530529082,
+      "row_count": 1024
+    },
+    {
+      "client": 68,
+      "cycle": 4,
+      "seconds": 0.8955687789712101,
+      "row_count": 1024
+    },
+    {
+      "client": 55,
+      "cycle": 4,
+      "seconds": 1.076924622990191,
+      "row_count": 1024
+    },
+    {
+      "client": 85,
+      "cycle": 4,
+      "seconds": 0.9678565359208733,
+      "row_count": 1024
+    },
+    {
+      "client": 39,
+      "cycle": 4,
+      "seconds": 1.0074255268555135,
+      "row_count": 1024
+    },
+    {
+      "client": 46,
+      "cycle": 4,
+      "seconds": 1.0944059200119227,
+      "row_count": 1024
+    },
+    {
+      "client": 31,
+      "cycle": 4,
+      "seconds": 1.0377729421015829,
+      "row_count": 1024
+    },
+    {
+      "client": 54,
+      "cycle": 4,
+      "seconds": 1.0639656989369541,
+      "row_count": 1024
+    },
+    {
+      "client": 0,
+      "cycle": 4,
+      "seconds": 1.012853818014264,
+      "row_count": 1024
+    },
+    {
+      "client": 41,
+      "cycle": 4,
+      "seconds": 1.0438311358448118,
+      "row_count": 1024
+    },
+    {
+      "client": 38,
+      "cycle": 4,
+      "seconds": 1.0139400840271264,
+      "row_count": 1024
+    },
+    {
+      "client": 70,
+      "cycle": 4,
+      "seconds": 1.0502129320520908,
+      "row_count": 1024
+    },
+    {
+      "client": 29,
+      "cycle": 4,
+      "seconds": 0.9339583551045507,
+      "row_count": 1024
+    },
+    {
+      "client": 90,
+      "cycle": 4,
+      "seconds": 0.9877734170295298,
+      "row_count": 1024
+    },
+    {
+      "client": 57,
+      "cycle": 4,
+      "seconds": 1.0651394920423627,
+      "row_count": 1024
+    },
+    {
+      "client": 13,
+      "cycle": 4,
+      "seconds": 1.0054115618113428,
+      "row_count": 1024
+    },
+    {
+      "client": 34,
+      "cycle": 4,
+      "seconds": 1.034038859885186,
+      "row_count": 1024
+    },
+    {
+      "client": 2,
+      "cycle": 4,
+      "seconds": 0.9682597101200372,
+      "row_count": 1024
+    },
+    {
+      "client": 49,
+      "cycle": 4,
+      "seconds": 1.0745223320554942,
+      "row_count": 1024
+    },
+    {
+      "client": 53,
+      "cycle": 4,
+      "seconds": 0.9782546991482377,
+      "row_count": 1024
+    },
+    {
+      "client": 16,
+      "cycle": 4,
+      "seconds": 1.0418186439201236,
+      "row_count": 1024
+    },
+    {
+      "client": 66,
+      "cycle": 4,
+      "seconds": 1.0488379378803074,
+      "row_count": 1024
+    },
+    {
+      "client": 63,
+      "cycle": 4,
+      "seconds": 0.9779800090473145,
+      "row_count": 1024
+    },
+    {
+      "client": 83,
+      "cycle": 4,
+      "seconds": 0.9799454719759524,
+      "row_count": 1024
+    },
+    {
+      "client": 22,
+      "cycle": 4,
+      "seconds": 1.0171212500426918,
+      "row_count": 1024
+    },
+    {
+      "client": 87,
+      "cycle": 4,
+      "seconds": 1.0219248270150274,
+      "row_count": 1024
+    },
+    {
+      "client": 11,
+      "cycle": 4,
+      "seconds": 0.9285326700191945,
+      "row_count": 1024
+    },
+    {
+      "client": 59,
+      "cycle": 4,
+      "seconds": 1.0256169198546559,
+      "row_count": 1024
+    },
+    {
+      "client": 93,
+      "cycle": 4,
+      "seconds": 0.9923222819343209,
+      "row_count": 1024
+    },
+    {
+      "client": 35,
+      "cycle": 4,
+      "seconds": 1.0658817279618233,
+      "row_count": 1024
+    },
+    {
+      "client": 79,
+      "cycle": 4,
+      "seconds": 0.9733965680934489,
+      "row_count": 1024
+    },
+    {
+      "client": 42,
+      "cycle": 4,
+      "seconds": 1.0079741450026631,
+      "row_count": 1024
+    },
+    {
+      "client": 1,
+      "cycle": 4,
+      "seconds": 1.056935734814033,
+      "row_count": 1024
+    },
+    {
+      "client": 8,
+      "cycle": 4,
+      "seconds": 0.9704463209491223,
+      "row_count": 1024
+    },
+    {
+      "client": 23,
+      "cycle": 4,
+      "seconds": 1.0610163330566138,
+      "row_count": 1024
+    },
+    {
+      "client": 91,
+      "cycle": 4,
+      "seconds": 0.9957972930278629,
+      "row_count": 1024
+    },
+    {
+      "client": 76,
+      "cycle": 4,
+      "seconds": 1.0468334420584142,
+      "row_count": 1024
+    },
+    {
+      "client": 78,
+      "cycle": 4,
+      "seconds": 1.0203743800520897,
+      "row_count": 1024
+    },
+    {
+      "client": 89,
+      "cycle": 4,
+      "seconds": 1.0113388979807496,
+      "row_count": 1024
+    },
+    {
+      "client": 61,
+      "cycle": 4,
+      "seconds": 1.0105572980828583,
+      "row_count": 1024
+    },
+    {
+      "client": 71,
+      "cycle": 4,
+      "seconds": 1.014826773898676,
+      "row_count": 1024
+    },
+    {
+      "client": 65,
+      "cycle": 4,
+      "seconds": 0.9957216309849173,
+      "row_count": 1024
+    },
+    {
+      "client": 60,
+      "cycle": 4,
+      "seconds": 0.9796756710857153,
+      "row_count": 1024
+    },
+    {
+      "client": 6,
+      "cycle": 4,
+      "seconds": 0.976824089884758,
+      "row_count": 1024
+    },
+    {
+      "client": 97,
+      "cycle": 4,
+      "seconds": 1.0055241859517992,
+      "row_count": 1024
+    },
+    {
+      "client": 30,
+      "cycle": 4,
+      "seconds": 1.0563147189095616,
+      "row_count": 1024
+    },
+    {
+      "client": 51,
+      "cycle": 4,
+      "seconds": 0.999596409033984,
+      "row_count": 1024
+    },
+    {
+      "client": 19,
+      "cycle": 4,
+      "seconds": 1.0552428390365094,
+      "row_count": 1024
+    },
+    {
+      "client": 43,
+      "cycle": 4,
+      "seconds": 1.1146734058856964,
+      "row_count": 1024
+    },
+    {
+      "client": 64,
+      "cycle": 4,
+      "seconds": 0.9858337729237974,
+      "row_count": 1024
+    },
+    {
+      "client": 52,
+      "cycle": 4,
+      "seconds": 1.0432140280026942,
+      "row_count": 1024
+    },
+    {
+      "client": 69,
+      "cycle": 4,
+      "seconds": 0.980578179936856,
+      "row_count": 1024
+    },
+    {
+      "client": 28,
+      "cycle": 4,
+      "seconds": 1.0432190268766135,
+      "row_count": 1024
+    },
+    {
+      "client": 18,
+      "cycle": 4,
+      "seconds": 1.0234850118868053,
+      "row_count": 1024
+    },
+    {
+      "client": 45,
+      "cycle": 4,
+      "seconds": 1.0363195398822427,
+      "row_count": 1024
+    },
+    {
+      "client": 5,
+      "cycle": 4,
+      "seconds": 1.0744021050632,
+      "row_count": 1024
+    },
+    {
+      "client": 3,
+      "cycle": 4,
+      "seconds": 1.1119262229185551,
+      "row_count": 1024
+    },
+    {
+      "client": 73,
+      "cycle": 4,
+      "seconds": 1.0980648198165,
+      "row_count": 1024
+    },
+    {
+      "client": 77,
+      "cycle": 4,
+      "seconds": 1.0510680021252483,
+      "row_count": 1024
+    },
+    {
+      "client": 96,
+      "cycle": 4,
+      "seconds": 0.9874703930690885,
+      "row_count": 1024
+    },
+    {
+      "client": 50,
+      "cycle": 4,
+      "seconds": 0.9903703150339425,
+      "row_count": 1024
+    },
+    {
+      "client": 81,
+      "cycle": 4,
+      "seconds": 1.034579464001581,
+      "row_count": 1024
+    },
+    {
+      "client": 84,
+      "cycle": 4,
+      "seconds": 1.02673221193254,
+      "row_count": 1024
+    },
+    {
+      "client": 17,
+      "cycle": 4,
+      "seconds": 0.9857168719172478,
+      "row_count": 1024
+    },
+    {
+      "client": 7,
+      "cycle": 4,
+      "seconds": 0.9871509880758822,
+      "row_count": 1024
+    },
+    {
+      "client": 36,
+      "cycle": 4,
+      "seconds": 1.0451730880886316,
+      "row_count": 1024
+    },
+    {
+      "client": 48,
+      "cycle": 4,
+      "seconds": 0.9946802279446274,
+      "row_count": 1024
+    },
+    {
+      "client": 24,
+      "cycle": 4,
+      "seconds": 1.0029052160680294,
+      "row_count": 1024
+    },
+    {
+      "client": 27,
+      "cycle": 4,
+      "seconds": 0.9942279709503055,
+      "row_count": 1024
+    },
+    {
+      "client": 58,
+      "cycle": 4,
+      "seconds": 0.9858552240766585,
+      "row_count": 1024
+    },
+    {
+      "client": 74,
+      "cycle": 4,
+      "seconds": 0.9884223360568285,
+      "row_count": 1024
+    },
+    {
+      "client": 26,
+      "cycle": 4,
+      "seconds": 0.98799007688649,
+      "row_count": 1024
+    },
+    {
+      "client": 37,
+      "cycle": 4,
+      "seconds": 1.0584371180739254,
+      "row_count": 1024
+    },
+    {
+      "client": 40,
+      "cycle": 4,
+      "seconds": 0.9924162200186402,
+      "row_count": 1024
+    },
+    {
+      "client": 62,
+      "cycle": 4,
+      "seconds": 1.0395052628591657,
+      "row_count": 1024
+    },
+    {
+      "client": 80,
+      "cycle": 4,
+      "seconds": 0.9927930640988052,
+      "row_count": 1024
+    },
+    {
+      "client": 25,
+      "cycle": 4,
+      "seconds": 0.9264798318035901,
+      "row_count": 1024
+    },
+    {
+      "client": 14,
+      "cycle": 4,
+      "seconds": 0.9388703980948776,
+      "row_count": 1024
+    },
+    {
+      "after_disconnect": {
+        "monotonic": 1148068.756276655,
+        "pid": 4006300,
+        "cpu_seconds": 0.07,
+        "user_cpu_seconds": 0.03,
+        "system_cpu_seconds": 0.04,
+        "rss_bytes": 9871360,
+        "threads": [
+          {
+            "tid": 4006300,
+            "name": "production",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 137,
+            "nonvoluntary_ctxt_switches": 2
+          },
+          {
+            "tid": 4006301,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 72,
+            "nonvoluntary_ctxt_switches": 3
+          },
+          {
+            "tid": 4006302,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 11,
+            "nonvoluntary_ctxt_switches": 2
+          },
+          {
+            "tid": 4006303,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 2215,
+            "nonvoluntary_ctxt_switches": 18
+          },
+          {
+            "tid": 4006304,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 15,
+            "nonvoluntary_ctxt_switches": 0
+          },
+          {
+            "tid": 4006305,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 16,
+            "nonvoluntary_ctxt_switches": 4
+          },
+          {
+            "tid": 4006306,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 46,
+            "nonvoluntary_ctxt_switches": 15
+          },
+          {
+            "tid": 4006307,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 27,
+            "nonvoluntary_ctxt_switches": 4
+          },
+          {
+            "tid": 4006308,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 19,
+            "nonvoluntary_ctxt_switches": 4
+          },
+          {
+            "tid": 4006309,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 635,
+            "nonvoluntary_ctxt_switches": 13
+          },
+          {
+            "tid": 4006310,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 1278,
+            "nonvoluntary_ctxt_switches": 15
+          },
+          {
+            "tid": 4006311,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 3459,
+            "nonvoluntary_ctxt_switches": 22
+          },
+          {
+            "tid": 4006312,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 18,
+            "nonvoluntary_ctxt_switches": 2
+          },
+          {
+            "tid": 4006313,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 86,
+            "nonvoluntary_ctxt_switches": 11
+          },
+          {
+            "tid": 4006314,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 32,
+            "nonvoluntary_ctxt_switches": 3
+          },
+          {
+            "tid": 4006315,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 65,
+            "nonvoluntary_ctxt_switches": 1
+          },
+          {
+            "tid": 4006316,
+            "name": "tokio-rt-worker",
+            "affinity": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              11,
+              12,
+              13,
+              14,
+              15
+            ],
+            "voluntary_ctxt_switches": 84,
+            "nonvoluntary_ctxt_switches": 4
+          }
+        ]
+      },
+      "backend_connections": 0
+    }
+  ]
+}

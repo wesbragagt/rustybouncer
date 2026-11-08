@@ -1,0 +1,6 @@
+null|autovacuum launcher|1
+null|background writer|1
+null|checkpointer|1
+null|walwriter|1
+postgres|client backend|1
+postgres|logical replication launcher|1

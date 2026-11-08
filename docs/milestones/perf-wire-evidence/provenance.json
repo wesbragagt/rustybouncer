@@ -1,0 +1,12 @@
+{
+  "production_sha256": "7d6c1f01269e5e223cf4bc9fb87b95ed765f11dd156091c12caf0072b5813940",
+  "profile_sha256": "25daa96bf8f0d39dd62513d0bd8fbb210dcb8032a0d98e618a77834b4c511372",
+  "earlier_production_sha256": "68018089089dca7f6303abb8274cf723cbc7e4f78ea04619cabdb31c9362505d",
+  "source_sha256": {
+    "src/router.rs": "5c45fee1e46bb1711d5b08177dcbefe24da702dce7d59a29548686ef9a8eb1ac",
+    "src/router/wire.rs": "4d11e8a22f90b2ffbbca2f1f925de115fe7a03e99b75d9b455959bd2956e3637",
+    "tests/buffering.py": "07df9146ce61e0ac6984213c26d662a74ccfdf446174a4613579363970b661a0"
+  },
+  "verification_scope": "final/ full 7+8+10+4 scope must pass before checkpoint commit; accepted/ retains previous 29/29 run for initial hash",
+  "reason_for_repeated_runtime_scope": "final rebuilt hash changed after test-only partial-write Pending coverage; no assumption of binary equivalence"
+}

@@ -2,13 +2,15 @@
 //! client's original startup identity; no privileged probe credentials are used.
 use super::*;
 mod cte;
+mod wire;
 use std::{
     collections::HashMap,
     sync::atomic::{AtomicUsize, Ordering},
 };
+use tokio::io::BufReader;
+use wire::{send, Response};
 
 const MAX_MESSAGE: usize = 16 * 1024 * 1024;
-const MAX_RESULT: usize = 32 * 1024 * 1024;
 static NEXT_REPLICA: AtomicUsize = AtomicUsize::new(0);
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
@@ -176,15 +178,8 @@ async fn message(stream: &mut TcpStream) -> Result<(u8, Vec<u8>)> {
     Ok((tag, body))
 }
 
-async fn send(stream: &mut TcpStream, tag: u8, body: &[u8]) -> Result<()> {
-    stream.write_u8(tag).await?;
-    stream.write_u32((body.len() + 4) as u32).await?;
-    stream.write_all(body).await?;
-    Ok(())
-}
-
 struct Backend {
-    stream: TcpStream,
+    stream: BufReader<TcpStream>,
     _live: Guard,
     generation: u64,
 }
@@ -218,7 +213,7 @@ async fn handshake(
         if ready {
             return Ok((
                 Backend {
-                    stream,
+                    stream: BufReader::new(stream),
                     generation,
                     _live: live,
                 },
@@ -243,26 +238,9 @@ async fn connect(
     .context("backend handshake timed out")?
 }
 
-async fn result(backend: &mut Backend, query: &[u8]) -> Result<(Vec<(u8, Vec<u8>)>, u8)> {
+async fn result(backend: &mut Backend, query: &[u8]) -> Result<(Response, u8)> {
     send(&mut backend.stream, b'Q', query).await?;
-    let mut messages = Vec::new();
-    let mut total = 0;
-    loop {
-        let (tag, body) = message(&mut backend.stream).await?;
-        total += body.len() + 5;
-        if total > MAX_RESULT {
-            bail!("routed result exceeds 32 MiB limit");
-        }
-        if matches!(tag, b'G' | b'H' | b'W') {
-            bail!("COPY is unsupported in routed mode");
-        }
-        if tag == b'Z' {
-            let status = *body.first().context("missing transaction status")?;
-            messages.push((tag, body));
-            return Ok((messages, status));
-        }
-        messages.push((tag, body));
-    }
+    wire::response(&mut backend.stream).await
 }
 
 async fn primary_changed(topology: &mut watch::Receiver<Topology>, generation: u64) -> Result<()> {
@@ -326,7 +304,7 @@ async fn wait_route(
 }
 
 type Messages = Vec<(u8, Vec<u8>)>;
-type QueryResult = (Messages, u8);
+type QueryResult = (Response, u8);
 
 struct SessionState {
     backends: HashMap<usize, Backend>,
@@ -387,7 +365,7 @@ async fn prepare_backend(
             result(&mut backend, b"SET default_transaction_read_only = on\0"),
         )
         .await??;
-        if status != b'I' || messages.iter().any(|(tag, _)| *tag == b'E') {
+        if status != b'I' || messages.sql_error {
             bail!("replica initialization failed");
         }
     }
@@ -427,7 +405,7 @@ async fn execute_query(
         }
     };
     let outcome = match &response {
-        Ok((messages, _)) if messages.iter().any(|(tag, _)| *tag == b'E') => Outcome::SqlError,
+        Ok((messages, _)) if messages.sql_error => Outcome::SqlError,
         Ok(_) => Outcome::Ok,
         Err(_) => Outcome::Error,
     };
@@ -442,7 +420,7 @@ async fn route_query(
     state: &mut SessionState,
     body: &[u8],
     kind: Kind,
-) -> Result<Option<Messages>> {
+) -> Result<Option<Response>> {
     let read = kind == Kind::Read && !state.transaction && !state.pinned;
     let routing_deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     // One wall-clock budget spans routing, setup and all buffered read attempts.
@@ -683,12 +661,10 @@ async fn deliver_query(
         .await?;
         bail!("routing budget exhausted");
     };
-    let sql_error = messages.iter().any(|(tag, _)| *tag == b'E');
-    for (tag, body) in messages {
-        if let Err(error) = send(client, tag, &body).await {
-            accounting.finish(Outcome::DeliveryError);
-            return Err(error);
-        }
+    let sql_error = messages.sql_error;
+    if let Err(error) = client.write_all(&messages.bytes).await {
+        accounting.finish(Outcome::DeliveryError);
+        return Err(error.into());
     }
     accounting.finish(if sql_error {
         Outcome::SqlError
@@ -775,7 +751,7 @@ mod tests {
             let c = measured_config();
             let (stream, mut server) = crate::tests::socket_pair().await;
             let mut backend = Backend {
-                stream,
+                stream: BufReader::new(stream),
                 generation: 0,
                 _live: c.metrics.guard(Event::Backend("node-a".into())),
             };
@@ -818,7 +794,7 @@ mod tests {
             let m = c.metrics.clone();
             let (stream, mut server) = crate::tests::socket_pair().await;
             let backend = Backend {
-                stream,
+                stream: BufReader::new(stream),
                 generation: 0,
                 _live: m.guard(Event::Backend("node-a".into())),
             };
