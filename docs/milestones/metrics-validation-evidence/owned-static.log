@@ -1,0 +1,9 @@
+[31mdirenv: error /home/publicuser/.t3/worktrees/rustybouncer/t3-41cf4b05/.envrc is blocked. Run `direnv allow` to approve its content[0m
+All checks passed!
+All checks passed!
+Complexity: 45 functions checked; maximum 25 (tests/metrics_support.py:102, validate); limit 30.
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK
