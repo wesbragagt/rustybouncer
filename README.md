@@ -13,6 +13,10 @@ native-binary connection to existing PostgreSQL. The [deployment guide](docs/dep
 covers local processes, Docker/Podman, [Docker Compose](deploy/compose/README.md),
 and [CloudNativePG](deploy/cnpg/README.md), with configuration, verification and cleanup.
 
+The [metrics guide](docs/metrics.md) defines the planned opt-in Prometheus endpoint,
+private scrape examples and validated recording/alert rules. Runtime integration
+and live metrics acceptance are still pending; see the [reviewed plan](docs/plans/prometheus-metrics.md).
+
 ## Development verification
 
 Use `nix develop` for the Iceman-generated development environment and local commit

@@ -10,6 +10,7 @@ ty check tests benchmarks/concurrency.py scripts conformance
 python3 scripts/check_complexity.py
 python3 -m unittest discover -s tests -p 'test_*.py'
 nixfmt --check flake.nix
-shellcheck scripts/verify scripts/install-hooks .githooks/pre-commit
+shellcheck scripts/verify scripts/install-hooks .githooks/pre-commit deploy/prometheus/check.sh
 
 actionlint .github/workflows/conformance.yml
+bash deploy/prometheus/check.sh

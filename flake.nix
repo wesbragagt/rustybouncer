@@ -44,6 +44,7 @@
             ruff
             nixfmt
             shellcheck
+            prometheus.cli
           ];
           doCheck = true;
           checkPhase = ''

@@ -49,6 +49,8 @@ Nix cache. The checks are:
 - `python3 scripts/check_complexity.py`
 - `python3 -m unittest discover -s tests -p 'test_*.py'`
 - Actionlint for the conformance CI workflow.
+- Promtool checks for all three scrape configurations, recording/alert rules and
+  the complete synthetic rule suite via `bash deploy/prometheus/check.sh`.
 - Nixfmt and ShellCheck for the flake, verification scripts and commit hook.
 
 Python checks cover the Docker integration harness, concurrency benchmark, and

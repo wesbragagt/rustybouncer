@@ -65,6 +65,10 @@ deployment matrix remain open. Local kind/CNPG validation is linked below. See [
 
 ## Complete deployments
 
+[Prometheus operations](../docs/metrics.md) provides private native, Compose and
+CNPG scrape examples and tested rules. Runtime metrics integration and live
+deployment validation remain pending.
+
 For a self-contained local stack, use the [Compose starter](compose/README.md).
 For three managed PostgreSQL instances and Kubernetes resources, use the
 [CloudNativePG deployment](cnpg/README.md). The [getting-started guide](../docs/getting-started.md)
