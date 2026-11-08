@@ -118,3 +118,9 @@ runtime. The single-process comparison has no equal-core quota, so it is not a
 CPU-efficiency ranking. PgBouncer can be deployed with multiple instances and
 SO_REUSEPORT; that topology is not measured here. See
 [upstream SO_REUSEPORT documentation](https://www.pgbouncer.org/config.html#so_reuseport).
+
+## Follow-up work
+
+[Prioritized performance tasks](../tasks/pgbouncer-performance.md) distinguish
+measured gaps, code-inspection hypotheses and unmeasured pooling/resource gaps.
+Task acceptance preserves routing safety and the full required verification scope.

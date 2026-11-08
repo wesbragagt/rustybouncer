@@ -61,6 +61,9 @@ The test does not measure replica read scaling, failover, connection churn,
 prepared statements, writes, TLS or large-result memory pressure.
 [Reproduce, individual runs, ranges and provenance](docs/benchmarks/pgbouncer-comparison.md).
 
+The [performance improvement task backlog](docs/tasks/pgbouncer-performance.md)
+prioritizes profiling, routed-path optimizations, tail latency and shared pooling.
+
 ### Advantages and trade-offs
 
 | Area | PgBouncer | Rustybouncer today |
