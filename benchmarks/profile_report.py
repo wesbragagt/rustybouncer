@@ -92,12 +92,11 @@ def category(stack):
     # Exclusive observed-callchain buckets. Missing/inlined callers remain
     # unresolved; these shares are not estimates of hypothetical isolated costs.
     rules = (
-        ('classification', ('router::classify', 'router::scan_words', 'router::cte::')),
+        ('classification', ('router::classify', 'router::scan_words', 'router::classification::', 'router::cte::')),
         ('metrics', ('rustybouncer::metrics::',)),
         ('topology_discovery', ('rustybouncer::discover', 'rustybouncer::probe')),
-        ('frame_read', ('router::message',)),
-        ('frame_write', ('router::send',)),
-        ('result_accumulation', ('router::result',)),
+        ('frame_write', ('router::send', 'router::wire::send')),
+        ('response_read_and_assembly', ('router::message', 'router::result', 'router::wire::response')),
         ('routing_and_dispatch', ('router::route_query', 'router::execute_query', 'router::wait_route')),
         ('response_delivery', ('router::deliver_query',)),
         ('passthrough_copy', ('copy_bidirectional', 'copy_buf',)),

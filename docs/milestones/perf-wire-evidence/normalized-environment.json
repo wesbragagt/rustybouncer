@@ -1,0 +1,70 @@
+{
+  "cpu": 0,
+  "harness_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/production",
+  "binary_sha256": "7d6c1f01269e5e223cf4bc9fb87b95ed765f11dd156091c12caf0072b5813940",
+  "profile_binary": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/profile",
+  "profile_sha256": "25daa96bf8f0d39dd62513d0bd8fbb210dcb8032a0d98e618a77834b4c511372",
+  "pgbouncer": "/nix/store/b8yriq6cjbrbny6s5yrcgc83bckainkf-pgbouncer-1.26.1/bin/pgbouncer",
+  "pgbouncer_sha256": "6502914f28ba5f53c4bc448122129450514901b9d863c019b2803397fbcb9646",
+  "command": [
+    "benchmarks/performance_profile.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles",
+    "--binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/production",
+    "--profile-binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/profile"
+  ],
+  "git_head": "60d14df751db7bfccfc52a19acb409dff1f73624",
+  "python": "3.14.8 (main, Sep 30 2026, 17:55:09) [GCC 16.2.0]",
+  "rustc": "rustc 1.99.0 (b940084d7 2026-09-28) (built from a source tarball)",
+  "pgbench": "pgbench (PostgreSQL) 18.6",
+  "postgres_image": "[\"postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c\"]",
+  "harness_sha256": "951e2885331ea4da4f3bbd64a2e271f950fd6349b779d4978216fbf6a94e9357",
+  "normalized_arms": 30,
+  "attribution_arms": 16,
+  "profiling_timing_separated": true,
+  "platform": "Linux-7.0.3-x86_64-with-glibc2.44",
+  "logical_cpus": 16,
+  "load_start": [
+    1.23046875,
+    4.8193359375,
+    10.54296875
+  ],
+  "fd_limit": [
+    524288,
+    524288
+  ],
+  "hardware": {
+    "model name": "AMD Ryzen 7 9700X 8-Core Processor",
+    "cpu family": "26",
+    "model": "68",
+    "stepping": "0",
+    "cpu cores": "8",
+    "siblings": "16"
+  },
+  "tools": {
+    "perf": "perf version 7.3.1",
+    "strace": "strace -- version 7.3\nCopyright (c) 1991-2026 The strace developers <https://strace.io>.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\nOptional features enabled: stack-trace=libdw m32-mpers mx32-mpers",
+    "heaptrack": "heaptrack 1.6.80"
+  },
+  "perf_event_paranoid": "2"
+}

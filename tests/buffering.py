@@ -47,6 +47,7 @@ class Buffering(unittest.TestCase):
         )
 
     def concurrent(self, count):
+        completed_before = sum("row_count" in row for row in self.rows)
         barrier = threading.Barrier(count + 1, timeout=30)
         release = threading.Event()
 
@@ -118,13 +119,17 @@ class Buffering(unittest.TestCase):
                 "backend_connections": self.backends(),
             }
         )
-        self.assertEqual(sum("row_count" in row for row in self.rows), count * 5)
+        self.assertEqual(
+            sum("row_count" in row for row in self.rows) - completed_before, count * 5
+        )
 
     def test_10_clients_multirow_null_and_unique_results(self):
-        self.concurrent(10)
+        for _ in range(3):
+            self.concurrent(10)
 
     def test_100_clients_multirow_null_and_unique_results(self):
-        self.concurrent(100)
+        for _ in range(3):
+            self.concurrent(100)
 
     def test_pipelined_query_error_keeps_later_responses_ordered(self):
         with contextlib.closing(self.fixture.connect()) as client:

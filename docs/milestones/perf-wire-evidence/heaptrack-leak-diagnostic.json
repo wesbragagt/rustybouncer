@@ -1,0 +1,41 @@
+[
+  {
+    "profile": "normalized-and-profiles/heap/c10-rustybouncer-routed",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "normalized-and-profiles/heap/c10-rustybouncer-session",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "normalized-and-profiles/heap/c100-rustybouncer-routed",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "normalized-and-profiles/heap/c100-rustybouncer-session",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "large-candidate-hwm/c10-rustybouncer-routed",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "large-candidate-hwm/c10-rustybouncer-session",
+    "private_response_leak_frames": []
+  },
+  {
+    "profile": "large-candidate-hwm/c100-rustybouncer-routed",
+    "private_response_leak_frames": [
+      "  rustybouncer::router::wire::response::<>::{closure#0}",
+      "  rustybouncer::router::wire::response::<>::{closure#0}",
+      "  rustybouncer::router::wire::response::<>::{closure#0}",
+      "  rustybouncer::router::wire::response::<>::{closure#0}",
+      "  rustybouncer::router::wire::response::<>::{closure#0}",
+      "  rustybouncer::router::wire::response::<>::{closure#0}"
+    ]
+  },
+  {
+    "profile": "large-candidate-hwm/c100-rustybouncer-session",
+    "private_response_leak_frames": []
+  }
+]

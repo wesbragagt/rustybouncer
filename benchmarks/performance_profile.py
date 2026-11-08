@@ -72,10 +72,12 @@ def process_info(pid):
                             'affinity': sorted(os.sched_getaffinity(tid)), **switches})
         except (ProcessLookupError, FileNotFoundError):
             pass
+    status = (base / 'status').read_text()
+    hwm = next(line.split()[1] for line in status.splitlines() if line.startswith('VmHWM:'))
     ticks = os.sysconf('SC_CLK_TCK')
     return {'monotonic': time.monotonic(), 'pid': pid, 'cpu_seconds': (int(stat[11])+int(stat[12]))/ticks,
             'user_cpu_seconds': int(stat[11])/ticks, 'system_cpu_seconds': int(stat[12])/ticks,
-            'rss_bytes': int(stat[21])*os.sysconf('SC_PAGE_SIZE'), 'threads': threads}
+            'rss_bytes': int(stat[21])*os.sysconf('SC_PAGE_SIZE'), 'rss_lifetime_hwm_bytes': int(hwm)*1024, 'threads': threads}
 
 
 class Instrumented(c.Fixture):
@@ -109,6 +111,9 @@ class Instrumented(c.Fixture):
                 os.killpg(self.process.pid, signal.SIGKILL)
                 self.process.wait(timeout=5)
                 raise AssertionError('owned profiler group did not finish cleanly')
+        if self.process is not None:
+            status = self.process.poll()
+            assert status == 0, f'owned workload/profiler exited with status {status}'
 
     def command(self, command, directory):
         prefix = []
@@ -124,7 +129,7 @@ class Instrumented(c.Fixture):
                       '--switch-events', '-o', str(self.artifact), '--']
         elif self.mode == 'heap':
             self.artifact = directory / 'heap'
-            prefix = ['heaptrack', '-o', str(self.artifact)]
+            prefix = ['heaptrack', '--record-only', '-o', str(self.artifact)]
         elif self.mode == 'syscalls':
             self.artifact = directory / 'syscalls.txt'
             prefix = ['strace', '-f', '-ttt', '-T', '-s', '0',
@@ -187,14 +192,22 @@ class Instrumented(c.Fixture):
             self.resource_stop.wait(.25)
 
     def finish(self, directory, result):
+        if self.target_pid and self.process is not None and self.process.poll() is None:
+            try:
+                self.resource_rows.append(process_info(self.target_pid))
+            except Exception as error:
+                self.resource_errors.append(repr(error))
         self.stop_group()
-        dump(directory / 'resources.json', {'samples': self.resource_rows, 'errors': self.resource_errors})
+        dump(directory / 'resources.json', {'samples': self.resource_rows, 'errors': self.resource_errors,
+                                             'process_exit_code': self.process.poll() if self.process else None})
         assert not self.resource_errors, self.resource_errors
         rows = [r for r in self.resource_rows if result['measurement_started_monotonic'] <= r['monotonic'] <= result['measurement_finished_monotonic']]
         if self.target_pid is not None and rows:
             result['cpu_seconds_observed'] = rows[-1]['cpu_seconds'] - rows[0]['cpu_seconds']
             result['rss_peak_bytes_observed'] = max(r['rss_bytes'] for r in rows)
             result['observed_cpu_window_seconds'] = rows[-1]['monotonic'] - rows[0]['monotonic']
+        if self.resource_rows:
+            result['rss_lifetime_hwm_bytes'] = max(row['rss_lifetime_hwm_bytes'] for row in self.resource_rows)
         dump(directory / 'result.json', result)
 
     def close(self):

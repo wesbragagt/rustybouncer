@@ -1,0 +1,22 @@
+{
+  "command": [
+    "benchmarks/memory_audit.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/memcheck-final",
+    "--binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/profile"
+  ],
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/profile",
+  "binary_sha256": "25daa96bf8f0d39dd62513d0bd8fbb210dcb8032a0d98e618a77834b4c511372",
+  "valgrind": "valgrind-3.27.1",
+  "arms": 4,
+  "not_timing_comparable": true,
+  "sampling": false,
+  "suppressions": false,
+  "instrumentation_timeouts_ms": {
+    "probe": 10000,
+    "startup": 30000,
+    "route": 30000
+  },
+  "limitation": "VM audit only; no throughput/latency/RSS comparison with native timing"
+}

@@ -136,3 +136,21 @@ worker 11 2.5: 300 cpu-clock:u:
             self.assertEqual(result['period_weight'],400)
             self.assertEqual(result['ranked_categories'][0]['category'],'runtime_or_other')
             self.assertEqual(result['ranked_categories'][0]['period_share'],.75)
+
+
+class AttributionSymbols(unittest.TestCase):
+    def test_renamed_wire_and_classifier_helpers_retain_explicit_attribution(self):
+        from benchmarks.profile_report import category
+        self.assertEqual(category('rustybouncer::router::wire::send\nrustybouncer::router::route_query'),'frame_write')
+        self.assertEqual(category('rustybouncer::router::wire::response\nrustybouncer::router::route_query'),'response_read_and_assembly')
+        self.assertEqual(category('rustybouncer::router::classification::scan'),'classification')
+
+
+class ProfilerExitStatus(unittest.TestCase):
+    def test_failed_owned_profiler_exit_cannot_be_counted_as_success(self):
+        with tempfile.TemporaryDirectory() as directory:
+            fixture=Instrumented(Path(directory),Path('/unused'),mode='heap',cpu=0)
+            fixture.process=Mock()
+            fixture.process.poll.return_value=7
+            with self.assertRaisesRegex(AssertionError,'status 7'):
+                fixture.stop_group()

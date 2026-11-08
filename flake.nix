@@ -110,6 +110,7 @@
               heaptrack
               strace
               util-linux
+              valgrind
             ];
           shellHook = ''
             bash scripts/install-hooks

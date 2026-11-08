@@ -1,0 +1,152 @@
+[
+  {
+    "path": "raw-profiles/normalized-and-profiles-cpu-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/cpu/c10-rustybouncer-routed",
+    "bytes": 25050173,
+    "sha256": "1e0e67885d8a3bfb26b036df8db83b605fa929da3a5f8afaeb6429a4051ff972"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-cpu-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/cpu/c10-rustybouncer-session",
+    "bytes": 26622932,
+    "sha256": "aa0ec0604f18db64171cc66a4b5376413b59bd9948cde9a8478f0b334cb642ec"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-cpu-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/cpu/c100-rustybouncer-routed",
+    "bytes": 7420941,
+    "sha256": "aea70a57c3a5f4bae0a2e1157ea161890b6211697d38a647212fb5ab0e4c54be"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-cpu-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/cpu/c100-rustybouncer-session",
+    "bytes": 6062836,
+    "sha256": "fef0f86387eef485afdcd2d00439e07fcaabb11d88efa23f917e109a34b2c673"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-offcpu-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/offcpu/c10-rustybouncer-routed",
+    "bytes": 25998655,
+    "sha256": "3c0bad9a7647d7e53ad7e47c03909685f36ac6462e03fe736a3c529b93a82f0a"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-offcpu-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/offcpu/c10-rustybouncer-session",
+    "bytes": 25995707,
+    "sha256": "0f94296e7ac95370307dcbd5a4c10d7b5374e30e39046a26a5f5220caa1c1975"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-offcpu-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/offcpu/c100-rustybouncer-routed",
+    "bytes": 6764103,
+    "sha256": "f4ab86549ebf299c5182c4fb7241fcd486f65bb55b99f9763c8d62dd733a8b56"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-offcpu-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/offcpu/c100-rustybouncer-session",
+    "bytes": 5781933,
+    "sha256": "ca1ed2888570bfc652452b05c2fb9345ffcda0104059db6c9bd27a14b590110b"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-heap-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/heap/c10-rustybouncer-routed",
+    "bytes": 165664,
+    "sha256": "aeb1199e3e3fcdb3f97d22e9815c0235227943a6dab168522a476a7511404043"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-heap-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/heap/c10-rustybouncer-session",
+    "bytes": 66002,
+    "sha256": "d27cc3da499e1144b80101282e790101193b8db3835fbe71ac985a49bce5f90b"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-heap-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/heap/c100-rustybouncer-routed",
+    "bytes": 1293680,
+    "sha256": "576d765ef1c836ccd7f1945ca53a815a63507b36c8b2d7327a08282aa5849eb4"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-heap-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/heap/c100-rustybouncer-session",
+    "bytes": 72747,
+    "sha256": "8fcdac25ecabc3199a4b6a7f5f95fd7145a8af4dc658772fae391b8095333877"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-syscalls-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/syscalls/c10-rustybouncer-routed",
+    "bytes": 1335987,
+    "sha256": "d719e2b2d28166c11213dfe967348f358849a4a650c86005b9aacece7a66380a"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-syscalls-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/syscalls/c10-rustybouncer-session",
+    "bytes": 1115991,
+    "sha256": "b876cc754144aa47fe440f0ab06fce0f841e08ca33706a5b060cc7f05a162826"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-syscalls-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/syscalls/c100-rustybouncer-routed",
+    "bytes": 10639416,
+    "sha256": "e37230f65921d8ee11329c5941e6007136f0cb0514e444902e997a1836531866"
+  },
+  {
+    "path": "raw-profiles/normalized-and-profiles-syscalls-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/normalized-and-profiles/syscalls/c100-rustybouncer-session",
+    "bytes": 7788470,
+    "sha256": "fbc2ddf93cbd00b1a64bf94618e0e1eca183057fb68d5da50f838ce8c482b7be"
+  },
+  {
+    "path": "raw-profiles/large-original-hwm-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-original-hwm/c10-rustybouncer-routed",
+    "bytes": 302969,
+    "sha256": "c1721765821697fc6d130cc541dd01daa111a9d66e5d0f33b79de471574f858c"
+  },
+  {
+    "path": "raw-profiles/large-original-hwm-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-original-hwm/c10-rustybouncer-session",
+    "bytes": 63050,
+    "sha256": "8a3568ca8880d16f769681cb816c5ad5a94da37e0c377c38cc1aca036fa60cff"
+  },
+  {
+    "path": "raw-profiles/large-original-hwm-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-original-hwm/c100-rustybouncer-routed",
+    "bytes": 3656115,
+    "sha256": "adc48ae3c67cccf0866b711b5516f32a61e34b1beb529e050c46e07f7295a43e"
+  },
+  {
+    "path": "raw-profiles/large-original-hwm-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-original-hwm/c100-rustybouncer-session",
+    "bytes": 67597,
+    "sha256": "462a54c774a9db99b1846c6153f61ce3e9fd0aa2c318adf51d79c8a030cfc329"
+  },
+  {
+    "path": "raw-profiles/large-candidate-hwm-c10-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-candidate-hwm/c10-rustybouncer-routed",
+    "bytes": 73449,
+    "sha256": "aac07d74a307ab1b80b82fb62e119336fa31eaece8a5ba8053b9acb6fc133a3a"
+  },
+  {
+    "path": "raw-profiles/large-candidate-hwm-c10-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-candidate-hwm/c10-rustybouncer-session",
+    "bytes": 66994,
+    "sha256": "6237e49ee93648d1b80b6e44925f61b0fb0898634fda0cfcf5c0dcccbece9780"
+  },
+  {
+    "path": "raw-profiles/large-candidate-hwm-c100-rustybouncer-routed.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-candidate-hwm/c100-rustybouncer-routed",
+    "bytes": 105566,
+    "sha256": "e1e85622cd88bd5378df31570b1025c5189f56beba278a39b6a1c97b9b993447"
+  },
+  {
+    "path": "raw-profiles/large-candidate-hwm-c100-rustybouncer-session.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/large-candidate-hwm/c100-rustybouncer-session",
+    "bytes": 70780,
+    "sha256": "4cd6a6c4e821aa3df724ecb58a4dde32d1533685ab23dbb98658465496fbaf7f"
+  },
+  {
+    "path": "raw-profiles/memcheck-final.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108/memcheck-final",
+    "bytes": 27509,
+    "sha256": "d3a170181838c1214803d96640629a196cd6e840e62a39c1dd3697339f14e50a"
+  }
+]
