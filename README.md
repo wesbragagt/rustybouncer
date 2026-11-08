@@ -168,3 +168,11 @@ isolated and cleaned up. Set `RUSTYBOUNCER_BIN` to use another binary.
 Protocol references: [PostgreSQL message flow](https://www.postgresql.org/docs/current/protocol-flow.html),
 [message formats](https://www.postgresql.org/docs/current/protocol-message-formats.html),
 [PgBouncer pooling modes](https://www.pgbouncer.org/features.html).
+
+## Distroless container
+
+Build a Docker-loadable image with `nix build .#docker --out-link result-image`,
+then `docker load -i result-image` (or `podman load -i result-image`). The image
+runs as UID/GID 10001 with no shell or package manager. See the
+[container guide](deploy/README.md) for read-only deployment, configuration and
+rootless runtime verification.

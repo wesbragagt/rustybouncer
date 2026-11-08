@@ -1,0 +1,12 @@
+runtime=docker, rootless=False, image=rustybouncer:latest
+test_distroless_filesystem (__main__.ContainerImage.test_distroless_filesystem) ... ok
+test_nonroot_process_without_capabilities (__main__.ContainerImage.test_nonroot_process_without_capabilities) ... container Uid=10001, host Uid=10001
+container Gid=10001, host Gid=10001
+read-only root filesystem, CapEff=0, NoNewPrivs=1
+ok
+test_sql_through_read_only_container (__main__.ContainerImage.test_sql_through_read_only_container) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 1.657s
+
+OK

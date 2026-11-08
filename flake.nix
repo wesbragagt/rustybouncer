@@ -53,6 +53,28 @@
           '';
         };
 
+        # Pure Nix image assembly: no Docker daemon, distribution, shell or
+        # package manager. Include only the executable's runtime closure and NSS.
+        packages.docker = pkgs.dockerTools.buildLayeredImage {
+          name = "rustybouncer";
+          tag = "latest";
+          contents = [
+            (pkgs.writeTextDir "etc/passwd" "rustybouncer:x:10001:10001:rustybouncer:/:/sbin/nologin\n")
+            (pkgs.writeTextDir "etc/group" "rustybouncer:x:10001:\n")
+            (pkgs.writeTextDir "etc/nsswitch.conf" "hosts: files dns\npasswd: files\ngroup: files\n")
+          ];
+          config = {
+            User = "10001:10001";
+            Entrypoint = [ "${self.packages.${system}.default}/bin/rustybouncer" ];
+            Cmd = [ "/etc/rustybouncer/rustybouncer.toml" ];
+            WorkingDir = "/";
+            ExposedPorts = {
+              "6432/tcp" = { };
+            };
+            Env = [ "RUST_LOG=rustybouncer=info" ];
+          };
+        };
+
         checks.verification = self.packages.${system}.default;
         formatter = pkgs.nixfmt;
 

@@ -1,0 +1,28 @@
+error (ignored): SQLite database '/home/publicuser/.cache/nix/eval-cache-v6/df9297b832e20fe6eef600a667531757c7e9b2e75fc5d082122604a381d704b8.sqlite' is busy
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.10s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.06s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running unittests src/main.rs (target/debug/deps/rustybouncer-47dce6560a80b073)
+
+running 10 tests
+test tests::primary_selection_fails_closed ... ok
+test router::tests::writes_and_transactions_stay_primary ... ok
+test router::tests::pure_read_allowlist ... ok
+test tests::startup_rejects_oversized_packet ... ok
+test tests::startup_declines_tls_and_preserves_packet ... ok
+test tests::validates_config ... ok
+test router::tests::unsafe_selects_are_pinned ... ok
+test router::tests::read_only_ctes_route_to_replicas ... ok
+test router::tests::unsafe_and_unrecognized_ctes_stay_on_primary ... ok
+test tests::backend_wait_is_bounded ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+All checks passed!
+All checks passed!
+Complexity: 363 functions checked; maximum 24 (src/router.rs:408, route_query); limit 30.
+..........................................
+----------------------------------------------------------------------
+Ran 42 tests in 0.509s
+
+OK

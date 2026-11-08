@@ -8,3 +8,5 @@ __pycache__/
 .venv/
 /conformance-results.json
 /conformance-results.xml
+
+/result-image
