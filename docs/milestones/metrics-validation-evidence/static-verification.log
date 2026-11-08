@@ -1,0 +1,28 @@
+[31mdirenv: error /home/publicuser/.t3/worktrees/rustybouncer/t3-41cf4b05/.envrc is blocked. Run `direnv allow` to approve its content[0m
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.07s
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.08s
+     Running unittests src/main.rs (target/debug/deps/rustybouncer-47dce6560a80b073)
+
+running 10 tests
+test tests::primary_selection_fails_closed ... ok
+test router::tests::writes_and_transactions_stay_primary ... ok
+test router::tests::pure_read_allowlist ... ok
+test router::tests::unsafe_selects_are_pinned ... ok
+test router::tests::read_only_ctes_route_to_replicas ... ok
+test tests::validates_config ... ok
+test router::tests::unsafe_and_unrecognized_ctes_stay_on_primary ... ok
+test tests::startup_rejects_oversized_packet ... ok
+test tests::startup_declines_tls_and_preserves_packet ... ok
+test tests::backend_wait_is_bounded ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+All checks passed!
+All checks passed!
+Complexity: 448 functions checked; maximum 25 (tests/metrics_support.py:102, validate); limit 30.
+.................................................
+----------------------------------------------------------------------
+Ran 49 tests in 0.539s
+
+OK
