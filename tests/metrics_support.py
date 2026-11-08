@@ -171,6 +171,9 @@ class MetricsCluster(f.Cluster):
         f.docker('exec', primary, 'bash', '-c',
                  'echo "host replication all 0.0.0.0/0 trust" >> "$PGDATA/pg_hba.conf"')
         f.sql(primary, 'SELECT pg_reload_conf()')
+        # A separate probe identity makes pg_stat_activity reconciliation
+        # independent of a probe's brief active/idle transition at disconnect.
+        f.sql(primary, 'CREATE ROLE rustybouncer_metrics_probe LOGIN')
         f.sql(primary, 'CREATE TABLE continuity (id integer PRIMARY KEY, payload text NOT NULL)')
         for node, name in zip(self.nodes[1:], ('b', 'c')):
             f.docker('run', '-d', '--name', node, '--network', self.prefix,
@@ -198,7 +201,7 @@ class MetricsCluster(f.Cluster):
                   'probe_interval_ms = 100\nprobe_timeout_ms = 300\nwait_timeout_ms = 4000\n'
                   'startup_timeout_ms = 2000\nquery_timeout_ms = 6000\n'
                   'read_retry_timeout_ms = 8000\nread_max_attempts = 3\n'
-                  'probe_user = "postgres"\nprobe_database = "postgres"\n'
+                  'probe_user = "rustybouncer_metrics_probe"\nprobe_database = "postgres"\n'
                   f'route_selects = {str(routed).lower()}\n')
         if enabled:
             config += f'metrics_listen = "127.0.0.1:{self.metrics_port}"\n'

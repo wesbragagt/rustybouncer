@@ -110,13 +110,14 @@ class Metrics(unittest.TestCase):
         current = self.cluster.idle()
         self.assertEqual(current.value('clients_accepted_total'), current.value('clients_rejected_total') + current.total('sessions_completed_total'))
         self.assertEqual(current.value('session_duration_seconds_count'), current.total('sessions_completed_total'))
-        # Direct-verifier's own active query and discovery probes are excluded.
+        # Exclude the verifier and dedicated probe role, across all states.
         for node in self.cluster.nodes:
             if self.cluster.nodes.index(node) in self.cluster.paused:
                 continue
             f.eventually(lambda node=node: f.sql(node, "SELECT count(*) FROM pg_stat_activity WHERE "
-                         "backend_type='client backend' AND pid<>pg_backend_pid() AND state='idle'") == '0',
-                         description='no idle frontend-owned PostgreSQL sessions')
+                         "backend_type='client backend' AND usename='postgres' "
+                         "AND pid<>pg_backend_pid()") == '0',
+                         description='no remaining frontend-owned PostgreSQL sessions')
         return current
 
     def test_connection_capacity_startup_and_independent_backends(self):
@@ -127,11 +128,11 @@ class Metrics(unittest.TestCase):
         self.assertEqual(two.query('SELECT 42'), [['42']])
         current = self.snapshot()
         self.assertEqual(current.value('clients_active'), 2)
-        # Cached streams are idle; probes complete their own sessions per round.
-        idle = sum(int(f.sql(node, "SELECT count(*) FROM pg_stat_activity WHERE "
-                   "backend_type='client backend' AND pid<>pg_backend_pid() AND state='idle'"))
+        observed = sum(int(f.sql(node, "SELECT count(*) FROM pg_stat_activity WHERE "
+                   "backend_type='client backend' AND usename='postgres' "
+                   "AND pid<>pg_backend_pid()"))
                    for node in self.cluster.nodes)
-        self.assertEqual(current.total('backend_connections_active'), idle)
+        self.assertEqual(current.total('backend_connections_active'), observed)
         with self.assertRaises((f.PgError, OSError)):
             self.cluster.connect()
         one.close()
@@ -158,8 +159,13 @@ class Metrics(unittest.TestCase):
         # Fully accepted startup socket abandoned before its startup packet.
         with socket.create_connection(('127.0.0.1', self.cluster.proxy_port), timeout=3):
             pass
+        f.eventually(lambda: self.snapshot().total('sessions_completed_total')
+                     >= after.total('sessions_completed_total') + 1,
+                     description='abandoned startup accepted and completed')
         abandoned = self.cluster.idle()
         self.assertEqual(abandoned.total('sessions_completed_total') - after.total('sessions_completed_total'), 1)
+        self.assertEqual(abandoned.value('sessions_completed_total', outcome='error')
+                         - after.value('sessions_completed_total', outcome='error'), 1)
         for index in range(3):
             self.cluster.pause(index)
         f.eventually(lambda: self.snapshot().value('topology_nodes', role='unavailable') == 3)
@@ -189,6 +195,18 @@ class Metrics(unittest.TestCase):
             client.close()
             after = self.cluster.idle()
             self.assertEqual(after.total('queries_total'), before.total('queries_total'))
+            self.assertEqual(after.value('sessions_completed_total', outcome='error')
+                             - before.value('sessions_completed_total', outcome='error'), 1)
+        client = self.client()
+        before = self.snapshot()
+        client.sock.sendall(b'P' + struct.pack('!I', 4))
+        with self.assertRaises(f.PgError):
+            client.read_cycle()
+        client.close()
+        after = self.cluster.idle()
+        self.assertEqual(after.total('queries_total'), before.total('queries_total'))
+        self.assertEqual(after.value('sessions_completed_total', outcome='error')
+                         - before.value('sessions_completed_total', outcome='error'), 1)
         self.reconcile()
 
     def active_node(self, query):
@@ -293,8 +311,10 @@ class Metrics(unittest.TestCase):
         client.close()
         after = self.reconcile()
         self.assertEqual(after.value('routing_enabled'), 0)
-        for family in ('queries_total', 'query_attempts_total', 'read_retries_total', 'query_duration_seconds_count', 'route_wait_duration_seconds_count'):
+        for family in ('queries_total', 'query_attempts_total', 'read_retries_total', 'query_duration_seconds_count'):
             self.assertEqual(after.total(family), 0)
+        # Passthrough still selects its initial primary through wait_backend.
+        self.assertGreater(after.value('route_wait_duration_seconds_count'), 0)
         self.assertGreater(after.value('clients_accepted_total'), before.value('clients_accepted_total'))
 
     def test_http_rejections_deadlines_cap_and_sql_availability(self):
@@ -336,7 +356,7 @@ class Metrics(unittest.TestCase):
 
 
 def main():
-    EVIDENCE.mkdir(parents=True, exist_ok=True)
+    EVIDENCE.mkdir(parents=True, exist_ok=False)
     output = io.StringIO()
     result = unittest.TextTestRunner(stream=output, verbosity=2).run(unittest.defaultTestLoader.loadTestsFromTestCase(Metrics))
     (EVIDENCE / 'unittest.log').write_text(output.getvalue())

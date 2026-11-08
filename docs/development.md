@@ -44,8 +44,8 @@ Nix cache. The checks are:
 - `cargo check --locked --offline --all-targets --all-features` (Rust typechecking)
 - `cargo clippy --locked --offline --all-targets --all-features -- -D warnings`
 - `cargo test --locked --offline --all-targets --all-features`
-- `ruff check tests benchmarks/concurrency.py scripts conformance`
-- `ty check tests benchmarks/concurrency.py scripts conformance` (Astral's Python type checker)
+- `ruff check tests benchmarks scripts conformance`
+- `ty check tests benchmarks scripts conformance` (Astral's Python type checker)
 - `python3 scripts/check_complexity.py`
 - `python3 -m unittest discover -s tests -p 'test_*.py'`
 - Actionlint for the conformance CI workflow.

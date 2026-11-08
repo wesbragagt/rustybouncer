@@ -39,9 +39,17 @@ def pgbench(cluster, clients, seconds, directory, measured):
         command += ['-l', '--sampling-rate=0.1', '--log-prefix=' + str(directory / 'latency')]
     (directory / ('command.json' if measured else 'warmup-command.json')).write_text(json.dumps(command))
     started = time.monotonic()
-    result = subprocess.run(command, capture_output=True, text=True, check=False, timeout=seconds + 30)
+    log = directory / ('pgbench.txt' if measured else 'warmup.txt')
+    try:
+        result = subprocess.run(command, capture_output=True, text=True, check=False, timeout=seconds + 30)
+    except subprocess.TimeoutExpired as exc:
+        # Python may return bytes on timeout even when text=True was requested.
+        chunks = [part.decode(errors='replace') if isinstance(part, bytes) else part or ''
+                  for part in (exc.stdout, exc.stderr)]
+        log.write_text(''.join(chunks) + '\npgbench exceeded its operation deadline\n')
+        raise
     elapsed = time.monotonic() - started
-    (directory / ('pgbench.txt' if measured else 'warmup.txt')).write_text(result.stdout + result.stderr)
+    log.write_text(result.stdout + result.stderr)
     assert result.returncode == 0, result.stdout + result.stderr
     # Missing/error output must fail, never turn into a zero-error observation.
     processed = re.search(r'number of transactions actually processed:\s*(\d+)', result.stdout)
@@ -65,19 +73,33 @@ def scrape_loop(port, stop, observations, failures):
         stop.wait(max(0, deadline - time.monotonic()))
 
 
+def preflight(cluster, clients):
+    connected, lock = [], threading.Lock()
+
+    def connect(_):
+        client = cluster.connect()
+        with lock:
+            connected.append(client)
+        return client
+
+    try:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=clients) as executor:
+            # The executor joins even when one connect fails; all successful
+            # connections are owned before any future can expose that failure.
+            list(executor.map(connect, range(clients)))
+            responses = list(executor.map(lambda client: client.query('SELECT 1'), connected))
+            assert responses == [[['1']]] * clients
+    finally:
+        for client in connected:
+            client.close()
+
+
 def run_arm(cluster, output, clients, repetition, arm):
     directory = output / f'c{clients}-r{repetition}-{arm}'
     directory.mkdir()
     cluster.restart(enabled=arm != 'disabled')
     # Verify all required clients can stay connected simultaneously before timing.
-    with concurrent.futures.ThreadPoolExecutor(max_workers=clients) as executor:
-        connected = list(executor.map(lambda _: cluster.connect(), range(clients)))
-        try:
-            responses = list(executor.map(lambda client: client.query('SELECT 1'), connected))
-            assert responses == [[['1']]] * clients
-        finally:
-            for client in connected:
-                client.close()
+    preflight(cluster, clients)
     stop, observations, failures = threading.Event(), [], []
     worker = None
     if arm == 'scraped':
