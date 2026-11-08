@@ -10,7 +10,9 @@ use tokio::{
 };
 use tokio_postgres::NoTls;
 use tracing::{info, warn};
+mod metrics;
 mod router;
+use metrics::{Event, Guard, Metrics, Outcome};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -24,6 +26,9 @@ struct Node {
 #[serde(deny_unknown_fields)]
 struct Config {
     listen: String,
+    metrics_listen: Option<String>,
+    #[serde(skip)]
+    metrics: Metrics,
     max_clients: usize,
     probe_interval_ms: u64,
     probe_timeout_ms: u64,
@@ -133,12 +138,26 @@ async fn probe(node: &Node, config: &Config, password: Option<&str>) -> Option<(
 }
 
 async fn discover(config: Arc<Config>, password: Option<String>, tx: watch::Sender<Topology>) {
+    let mut discovered = false;
     loop {
         let mut probes = JoinSet::new();
         for (index, node) in config.nodes.iter().cloned().enumerate() {
             let config = config.clone();
             let password = password.clone();
-            probes.spawn(async move { (index, probe(&node, &config, password.as_deref()).await) });
+            probes.spawn(async move {
+                let start = std::time::Instant::now();
+                let result = probe(&node, &config, password.as_deref()).await;
+                config.metrics.inc(
+                    "probes_total",
+                    &[&node.name, if result.is_some() { "ok" } else { "error" }],
+                );
+                config.metrics.observe(
+                    "probe_duration_seconds",
+                    &[&node.name],
+                    start.elapsed().as_secs_f64(),
+                );
+                (index, result)
+            });
         }
         let mut writable = Vec::new();
         let mut replicas = Vec::new();
@@ -158,6 +177,22 @@ async fn discover(config: Arc<Config>, password: Option<String>, tx: watch::Send
             warn!("multiple writable nodes detected; routing disabled");
         }
         let previous = tx.borrow().clone();
+        let changed = previous.primary != primary
+            || previous.replicas != replicas
+            || previous.ambiguous != ambiguous;
+        let observed = Topology {
+            primary,
+            replicas: replicas.clone(),
+            ambiguous,
+            generation: previous.generation,
+        };
+        config.metrics.topology(
+            &config.nodes,
+            &observed,
+            changed || !discovered,
+            previous.primary != primary,
+        );
+        discovered = true;
         if previous.primary != primary
             || previous.replicas != replicas
             || previous.ambiguous != ambiguous
@@ -216,24 +251,57 @@ async fn startup(client: &mut TcpStream) -> Result<Vec<u8>> {
     bail!("too many encryption negotiation requests")
 }
 
+async fn connect_tcp(
+    config: &Config,
+    index: usize,
+    ticket: &mut Option<Guard>,
+) -> Result<(TcpStream, Guard)> {
+    let node = &config.nodes[index];
+    *ticket = Some(config.metrics.guard(Event::Connect(node.name.clone())));
+    let result = timeout(
+        Duration::from_millis(config.probe_timeout_ms),
+        TcpStream::connect((node.host.as_str(), node.port)),
+    )
+    .await;
+    finish_ticket(
+        ticket,
+        if matches!(result, Ok(Ok(_))) {
+            Outcome::Ok
+        } else {
+            Outcome::Error
+        },
+    );
+    let stream = result??;
+    Ok((
+        stream,
+        config.metrics.guard(Event::Backend(node.name.clone())),
+    ))
+}
+fn finish_ticket(ticket: &mut Option<Guard>, outcome: Outcome) {
+    if let Some(mut guard) = ticket.take() {
+        guard.finish(outcome);
+    }
+}
+
 async fn wait_backend(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
-) -> Result<(TcpStream, Topology)> {
+    ticket: &mut Option<Guard>,
+) -> Result<(TcpStream, Topology, Guard)> {
+    let mut wait = Some(config.metrics.timer("route_wait_duration_seconds"));
     let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     loop {
         let selected = topology.borrow_and_update().clone();
         if let Some(index) = selected.primary {
-            let node = &config.nodes[index];
-            let connect = timeout(
-                Duration::from_millis(config.probe_timeout_ms),
-                TcpStream::connect((node.host.as_str(), node.port)),
-            );
-            if let Ok(Ok(stream)) = connect.await {
+            drop(wait.take());
+            if let Ok((stream, live)) = connect_tcp(config, index, ticket).await {
                 if *topology.borrow() == selected {
-                    return Ok((stream, selected));
+                    return Ok((stream, selected, live));
                 }
             }
+        }
+        if wait.is_none() {
+            wait = Some(config.metrics.timer("route_wait_duration_seconds"));
         }
         if Instant::now() >= deadline {
             bail!("timed out waiting for a writable primary");
@@ -259,12 +327,14 @@ async fn session(
     )
     .await??;
     // An outer deadline bounds the entire wait, including slow DNS/connects.
+    let mut ticket = None;
     let backend = timeout(
         Duration::from_millis(config.wait_timeout_ms),
-        wait_backend(&config, &mut topology),
+        wait_backend(&config, &mut topology, &mut ticket),
     )
     .await;
-    let (mut backend, selected) = match backend {
+    finish_ticket(&mut ticket, Outcome::Error);
+    let (mut backend, selected, _live) = match backend {
         Ok(Ok(value)) => value,
         _ => {
             timeout(
@@ -276,7 +346,7 @@ async fn session(
                 ),
             )
             .await??;
-            return Ok(());
+            bail!("startup unavailable");
         }
     };
     client.set_nodelay(true)?;
@@ -289,7 +359,7 @@ async fn session(
                 if topology.borrow().generation != selected.generation { break; }
             }
             Ok::<(), watch::error::RecvError>(())
-        } => { result?; }
+        } => { result?; bail!("topology changed during passthrough session"); }
         result = async {
             backend.write_all(&packet).await?;
             tokio::io::copy_bidirectional(&mut client, &mut backend).await?;
@@ -301,6 +371,21 @@ async fn session(
         "session closed; no statements replayed"
     );
     Ok(())
+}
+
+async fn accounted_session(
+    mut accounting: Guard,
+    stream: TcpStream,
+    config: Arc<Config>,
+    topology: watch::Receiver<Topology>,
+) -> Result<()> {
+    let result = session(stream, config, topology).await;
+    accounting.finish(if result.is_ok() {
+        Outcome::Ok
+    } else {
+        Outcome::Error
+    });
+    result
 }
 
 #[tokio::main]
@@ -322,7 +407,24 @@ async fn main() -> Result<()> {
         .as_ref()
         .map(|key| env::var(key).with_context(|| format!("missing environment variable {key}")))
         .transpose()?;
+    let mut config = config;
+    config.metrics = Metrics::new(
+        config.metrics_listen.is_some(),
+        &config.nodes,
+        config.route_selects,
+        config.max_clients,
+    )?;
+    let metrics_listener = match &config.metrics_listen {
+        Some(address) => Some(
+            TcpListener::bind(address)
+                .await
+                .context("binding metrics listener")?,
+        ),
+        None => None,
+    };
     let config = Arc::new(config);
+    let mut metrics_task = metrics_listener
+        .map(|listener| tokio::spawn(metrics::serve(listener, config.metrics.clone())));
     let listener = TcpListener::bind(&config.listen).await?;
     let permits = Arc::new(Semaphore::new(config.max_clients));
     let (tx, rx) = watch::channel(Topology::default());
@@ -331,27 +433,37 @@ async fn main() -> Result<()> {
     let mut sessions = JoinSet::new();
     loop {
         tokio::select! {
+            result = async { metrics_task.as_mut().unwrap().await }, if metrics_task.is_some() => {
+                discovery.abort();
+                sessions.abort_all();
+                return metrics::listener_exit(result);
+            }
             _ = tokio::signal::ctrl_c() => break,
             result = sessions.join_next(), if !sessions.is_empty() => {
                 if let Some(Err(error)) = result { warn!(%error, "session task failed"); }
             }
             accepted = listener.accept() => {
                 let (stream, peer) = accepted?;
+                config.metrics.inc("clients_accepted_total", &[]);
                 match permits.clone().try_acquire_owned() {
                     Ok(permit) => {
                         let config = config.clone();
                         let topology = rx.clone();
+                        let accounting = config.metrics.guard(Event::Session);
                         sessions.spawn(async move {
                             let _permit = permit;
-                            if let Err(error) = session(stream, config, topology).await {
+                            if let Err(error) = accounted_session(accounting,stream,config,topology).await {
                                 warn!(%peer, %error, "session ended");
                             }
                         });
                     }
-                    Err(_) => { warn!(%peer, "client capacity reached; connection closed"); }
+                    Err(_) => { config.metrics.inc("clients_rejected_total", &[]); warn!(%peer, "client capacity reached; connection closed"); }
                 }
             }
         }
+    }
+    if let Some(task) = metrics_task {
+        task.abort();
     }
     discovery.abort();
     sessions.abort_all();
@@ -363,6 +475,42 @@ async fn main() -> Result<()> {
 mod tests {
     use super::*;
 
+    #[tokio::test]
+    async fn fatal_startup_is_session_error_even_after_successful_delivery() {
+        for routed in [false, true] {
+            let mut c: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
+            c.route_selects = routed;
+            c.wait_timeout_ms = 10;
+            c.metrics = Metrics::new(true, &c.nodes, routed, c.max_clients).unwrap();
+            let m = c.metrics.clone();
+            let (_tx, rx) = watch::channel(Topology::default());
+            let (mut client, server) = socket_pair().await;
+            let guard = m.guard(Event::Session);
+            let task = tokio::spawn(accounted_session(guard, server, Arc::new(c), rx));
+            client
+                .write_all(&[0, 0, 0, 9, 0, 3, 0, 0, 0])
+                .await
+                .unwrap();
+            assert_eq!(client.read_u8().await.unwrap(), b'E');
+            assert!(task.await.unwrap().is_err());
+            let text = String::from_utf8(m.render().unwrap()).unwrap();
+            assert!(text.contains("rustybouncer_sessions_completed_total{outcome=\"error\"} 1"));
+            assert!(text.contains("rustybouncer_clients_active 0"));
+        }
+    }
+    #[tokio::test]
+    async fn tcp_connect_failure_has_no_live_backend_and_one_error() {
+        let mut c: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
+        let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
+        c.nodes[0].port = listener.local_addr().unwrap().port();
+        drop(listener);
+        c.metrics = Metrics::new(true, &c.nodes, true, 100).unwrap();
+        assert!(connect_tcp(&c, 0, &mut None).await.is_err());
+        let text = String::from_utf8(c.metrics.render().unwrap()).unwrap();
+        assert!(text
+            .contains("rustybouncer_backend_connects_total{node=\"node-a\",outcome=\"error\"} 1"));
+        assert!(text.contains("rustybouncer_backend_connections_active{node=\"node-a\"} 0"));
+    }
     #[test]
     fn primary_selection_fails_closed() {
         assert_eq!(unique_primary(&[]), None);
@@ -400,7 +548,7 @@ mod tests {
         assert!(invalid.validate().is_err());
     }
 
-    async fn socket_pair() -> (TcpStream, TcpStream) {
+    pub(crate) async fn socket_pair() -> (TcpStream, TcpStream) {
         let listener = TcpListener::bind("127.0.0.1:0").await.unwrap();
         let client = TcpStream::connect(listener.local_addr().unwrap())
             .await
@@ -434,11 +582,12 @@ mod tests {
         let mut config: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
         config.wait_timeout_ms = 20;
         let (_tx, mut rx) = watch::channel(Topology::default());
-        assert!(
-            timeout(Duration::from_secs(1), wait_backend(&config, &mut rx))
-                .await
-                .unwrap()
-                .is_err()
-        );
+        assert!(timeout(
+            Duration::from_secs(1),
+            wait_backend(&config, &mut rx, &mut None)
+        )
+        .await
+        .unwrap()
+        .is_err());
     }
 }

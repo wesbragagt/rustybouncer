@@ -11,7 +11,7 @@ const MAX_MESSAGE: usize = 16 * 1024 * 1024;
 const MAX_RESULT: usize = 32 * 1024 * 1024;
 static NEXT_REPLICA: AtomicUsize = AtomicUsize::new(0);
 
-#[derive(Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 enum Kind {
     Read,
     Write,
@@ -185,6 +185,7 @@ async fn send(stream: &mut TcpStream, tag: u8, body: &[u8]) -> Result<()> {
 
 struct Backend {
     stream: TcpStream,
+    _live: Guard,
     generation: u64,
 }
 
@@ -192,6 +193,7 @@ async fn handshake(
     mut stream: TcpStream,
     packet: &[u8],
     generation: u64,
+    live: Guard,
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
     stream.set_nodelay(true)?;
     stream.write_all(packet).await?;
@@ -214,7 +216,14 @@ async fn handshake(
             startup.push((tag, body));
         } // cancellation is unsupported
         if ready {
-            return Ok((Backend { stream, generation }, startup));
+            return Ok((
+                Backend {
+                    stream,
+                    generation,
+                    _live: live,
+                },
+                startup,
+            ));
         }
     }
 }
@@ -224,11 +233,11 @@ async fn connect(
     node: usize,
     packet: &[u8],
     generation: u64,
+    ticket: &mut Option<Guard>,
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
     timeout(Duration::from_millis(config.probe_timeout_ms), async {
-        let node = &config.nodes[node];
-        let stream = TcpStream::connect((node.host.as_str(), node.port)).await?;
-        handshake(stream, packet, generation).await
+        let (stream, live) = connect_tcp(config, node, ticket).await?;
+        handshake(stream, packet, generation, live).await
     })
     .await
     .context("backend handshake timed out")?
@@ -259,7 +268,7 @@ async fn result(backend: &mut Backend, query: &[u8]) -> Result<(Vec<(u8, Vec<u8>
 async fn primary_changed(topology: &mut watch::Receiver<Topology>, generation: u64) -> Result<()> {
     loop {
         if topology.borrow_and_update().generation != generation {
-            return Ok(());
+            bail!("session rejected");
         }
         topology.changed().await?;
     }
@@ -275,7 +284,7 @@ async fn read_backend_unavailable(
         let current = topology.borrow_and_update().clone();
         if current.ambiguous || (!current.replicas.contains(&node) && current.primary != Some(node))
         {
-            return Ok(());
+            bail!("session rejected");
         }
         topology.changed().await?;
     }
@@ -287,6 +296,7 @@ async fn wait_route(
     read: bool,
     failed: &HashSet<usize>,
 ) -> Result<(usize, Topology)> {
+    let _wait = config.metrics.timer("route_wait_duration_seconds");
     let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     loop {
         let current = topology.borrow_and_update().clone();
@@ -329,12 +339,13 @@ async fn initial_backend(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
+    ticket: &mut Option<Guard>,
 ) -> Result<(usize, Backend, Messages)> {
     loop {
-        let (stream, selected) = wait_backend(config, topology).await?;
+        let (stream, selected, live) = wait_backend(config, topology, ticket).await?;
         let (backend, messages) = timeout(
             Duration::from_millis(config.startup_timeout_ms),
-            handshake(stream, packet, selected.generation),
+            handshake(stream, packet, selected.generation, live),
         )
         .await??;
         if topology.borrow().generation == selected.generation {
@@ -365,8 +376,9 @@ async fn prepare_backend(
     selected: &Topology,
     read: bool,
     deadline: Instant,
+    ticket: &mut Option<Guard>,
 ) -> Result<Backend> {
-    let (mut backend, _) = connect(config, node, packet, selected.generation).await?;
+    let (mut backend, _) = connect(config, node, packet, selected.generation, ticket).await?;
     if read && selected.replicas.contains(&node) {
         let (messages, status) = timeout(
             deadline
@@ -388,21 +400,39 @@ async fn execute_query(
     topology: &mut watch::Receiver<Topology>,
     selected: &Topology,
     node: usize,
-    read: bool,
-    deadline: Instant,
+    timing: (bool, Instant),
+    metrics: &Metrics,
 ) -> Result<QueryResult> {
-    let execution = result(backend, body);
-    if read {
+    let (read, deadline) = timing;
+    let mut ticket = None;
+    let execution = async {
+        ticket = Some(
+            metrics.guard(Event::Attempt(if selected.replicas.contains(&node) {
+                "replica"
+            } else {
+                "primary"
+            })),
+        );
+        result(backend, body).await
+    };
+    let response = if read {
         tokio::select! {
             response = timeout(deadline.saturating_duration_since(Instant::now()), execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
-            unavailable = read_backend_unavailable(topology, node) => { unavailable?; Err(anyhow::anyhow!("read backend unavailable or topology ambiguous")) }
+            unavailable = read_backend_unavailable(topology, node) => { Err(unavailable.err().unwrap_or_else(|| anyhow::anyhow!("read backend unavailable or topology ambiguous"))) }
         }
     } else {
         tokio::select! {
             response = execution => response,
-            changed = primary_changed(topology, selected.generation) => { changed?; Err(anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown")) }
+            changed = primary_changed(topology, selected.generation) => { Err(changed.err().unwrap_or_else(|| anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown"))) }
         }
-    }
+    };
+    let outcome = match &response {
+        Ok((messages, _)) if messages.iter().any(|(tag, _)| *tag == b'E') => Outcome::SqlError,
+        Ok(_) => Outcome::Ok,
+        Err(_) => Outcome::Error,
+    };
+    finish_ticket(&mut ticket, outcome);
+    response
 }
 
 async fn route_query(
@@ -450,14 +480,19 @@ async fn route_query(
             state.backends.remove(&node);
         }
         // Count selections, including handshake failures and pre-dispatch races.
+        if read && attempts > 0 {
+            config.metrics.inc("read_retries_total", &[]);
+        }
         attempts += 1;
         if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
-            match timeout(
+            let mut ticket = None;
+            let prepared = timeout(
                 deadline.saturating_duration_since(Instant::now()),
-                prepare_backend(config, node, packet, &selected, read, deadline),
+                prepare_backend(config, node, packet, &selected, read, deadline, &mut ticket),
             )
-            .await
-            {
+            .await;
+            finish_ticket(&mut ticket, Outcome::Error);
+            match prepared {
                 Ok(Ok(backend)) => {
                     entry.insert(backend);
                 }
@@ -477,13 +512,16 @@ async fn route_query(
             topology,
             &selected,
             node,
-            read,
-            if read {
-                (Instant::now() + Duration::from_millis(config.query_timeout_ms))
-                    .min(total_deadline)
-            } else {
-                Instant::now() + Duration::from_millis(config.query_timeout_ms)
-            },
+            (
+                read,
+                if read {
+                    (Instant::now() + Duration::from_millis(config.query_timeout_ms))
+                        .min(total_deadline)
+                } else {
+                    Instant::now() + Duration::from_millis(config.query_timeout_ms)
+                },
+            ),
+            &config.metrics,
         )
         .await
         {
@@ -519,16 +557,18 @@ pub(super) async fn session(
         startup(&mut client),
     )
     .await??;
-    let (primary, backend, messages) = match timeout(
+    let mut ticket = None;
+    let initial = timeout(
         Duration::from_millis(config.wait_timeout_ms),
-        initial_backend(&config, &mut topology, &packet),
+        initial_backend(&config, &mut topology, &packet, &mut ticket),
     )
-    .await
-    {
+    .await;
+    finish_ticket(&mut ticket, Outcome::Error);
+    let (primary, backend, messages) = match initial {
         Ok(Ok(value)) => value,
         _ => {
             pg_error(&mut client, "08006", "rustybouncer: startup unavailable; routed mode requires trust-authenticated backends").await?;
-            return Ok(());
+            bail!("session rejected");
         }
     };
     for (tag, body) in messages {
@@ -547,40 +587,273 @@ pub(super) async fn session(
         }
         if tag != b'Q' {
             pg_error(&mut client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
-            return Ok(());
+            bail!("session rejected");
         }
-        let sql = match body
-            .strip_suffix(&[0])
-            .and_then(|bytes| std::str::from_utf8(bytes).ok())
-        {
-            Some(sql) if !sql.contains('\0') => sql,
-            _ => bail!("malformed Query message"),
-        };
-        let kind = classify(sql);
-        if kind == Kind::Unsupported {
-            pg_error(&mut client, "0A000", "COPY is unsupported in routed mode").await?;
-            return Ok(());
-        }
-        let Some(messages) =
-            route_query(&config, &mut topology, &packet, &mut state, &body, kind).await?
-        else {
-            pg_error(
-                &mut client,
-                "08006",
-                "rustybouncer: routing or read retry budget exhausted",
-            )
-            .await?;
-            return Ok(());
-        };
-        for (tag, body) in messages {
-            send(&mut client, tag, &body).await?;
+        handle_query(
+            &mut client,
+            &config,
+            &mut topology,
+            &packet,
+            &mut state,
+            &body,
+        )
+        .await?;
+    }
+}
+fn query_kind(body: &[u8]) -> Option<Kind> {
+    let sql = body
+        .strip_suffix(&[0])
+        .and_then(|b| std::str::from_utf8(b).ok())?;
+    if sql.contains('\0') {
+        return None;
+    }
+    Some(classify(sql))
+}
+impl Kind {
+    fn label(self) -> &'static str {
+        match self {
+            Self::Read => "read",
+            Self::Write => "write",
+            Self::Transaction => "transaction",
+            Self::Stateful => "stateful",
+            Self::Unsupported => "unsupported",
         }
     }
+}
+async fn handle_query(
+    client: &mut TcpStream,
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &[u8],
+    state: &mut SessionState,
+    body: &[u8],
+) -> Result<()> {
+    let mut accounting = config.metrics.guard(Event::Query("malformed"));
+    let kind = query_kind(body);
+    accounting.classify_query(kind.map(Kind::label).unwrap_or("malformed"));
+    deliver_query(
+        client,
+        config,
+        topology,
+        packet,
+        state,
+        (body, kind),
+        &mut accounting,
+    )
+    .await
+}
+async fn deliver_query(
+    client: &mut TcpStream,
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &[u8],
+    state: &mut SessionState,
+    query: (&[u8], Option<Kind>),
+    accounting: &mut Guard,
+) -> Result<()> {
+    let (body, kind) = query;
+    let Some(kind) = kind else {
+        accounting.finish(Outcome::RouterError);
+        bail!("malformed Query message");
+    };
+    if kind == Kind::Unsupported {
+        fatal_query(
+            client,
+            "0A000",
+            "COPY is unsupported in routed mode",
+            accounting,
+        )
+        .await?;
+        bail!("unsupported query");
+    }
+    let routed = match route_query(config, topology, packet, state, body, kind).await {
+        Ok(value) => value,
+        Err(error) => {
+            accounting.finish(Outcome::RouterError);
+            return Err(error);
+        }
+    };
+    let Some(messages) = routed else {
+        fatal_query(
+            client,
+            "08006",
+            "rustybouncer: routing or read retry budget exhausted",
+            accounting,
+        )
+        .await?;
+        bail!("routing budget exhausted");
+    };
+    let sql_error = messages.iter().any(|(tag, _)| *tag == b'E');
+    for (tag, body) in messages {
+        if let Err(error) = send(client, tag, &body).await {
+            accounting.finish(Outcome::DeliveryError);
+            return Err(error);
+        }
+    }
+    accounting.finish(if sql_error {
+        Outcome::SqlError
+    } else {
+        Outcome::Ok
+    });
+    Ok(())
+}
+async fn fatal_query(
+    client: &mut TcpStream,
+    code: &str,
+    message: &str,
+    accounting: &mut Guard,
+) -> Result<()> {
+    let result = pg_error(client, code, message).await;
+    accounting.finish(if result.is_ok() {
+        Outcome::RouterError
+    } else {
+        Outcome::DeliveryError
+    });
+    result
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn measured_config() -> Config {
+        let mut c: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
+        c.metrics = Metrics::new(true, &c.nodes, true, c.max_clients).unwrap();
+        c
+    }
+    fn text(m: &Metrics) -> String {
+        String::from_utf8(m.render().unwrap()).unwrap()
+    }
+    #[test]
+    fn malformed_query_body_labels_are_finite() {
+        for body in [
+            &b"SELECT 1"[..],
+            &b"SELECT\0hidden\0"[..],
+            &[255, 0][..],
+            &b""[..],
+        ] {
+            assert!(query_kind(body).is_none());
+        }
+        assert_eq!(query_kind(b"SELECT 1\0"), Some(Kind::Read));
+        assert_eq!(query_kind(b"COPY x TO STDOUT\0"), Some(Kind::Unsupported));
+    }
+    #[tokio::test]
+    async fn framing_boundary_excludes_truncated_and_oversized_queries() {
+        for bytes in [
+            &[b'Q', 0, 0, 0, 3][..],
+            &[b'Q', 1, 0, 0, 1][..],
+            &[b'Q', 0, 0, 0, 9, b'x'][..],
+        ] {
+            let (mut client, mut server) = crate::tests::socket_pair().await;
+            client.write_all(bytes).await.unwrap();
+            client.shutdown().await.unwrap();
+            assert!(message(&mut server).await.is_err());
+        }
+        let c = measured_config();
+        let (mut client, mut server) = crate::tests::socket_pair().await;
+        send(&mut client, b'Q', &[255, 0]).await.unwrap();
+        let (tag, body) = message(&mut server).await.unwrap();
+        assert_eq!(tag, b'Q');
+        let (_tx, mut rx) = watch::channel(Topology::default());
+        let mut state = SessionState {
+            backends: HashMap::new(),
+            transaction: false,
+            pinned: false,
+            primary_generation: 0,
+        };
+        assert!(
+            handle_query(&mut server, &c, &mut rx, &[], &mut state, &body)
+                .await
+                .is_err()
+        );
+        assert!(text(&c.metrics)
+            .contains("rustybouncer_queries_total{kind=\"malformed\",outcome=\"router_error\"} 1"));
+    }
+    #[tokio::test]
+    async fn dispatch_sql_error_and_deadline_are_distinct() {
+        for sql_error in [true, false] {
+            let c = measured_config();
+            let (stream, mut server) = crate::tests::socket_pair().await;
+            let mut backend = Backend {
+                stream,
+                generation: 0,
+                _live: c.metrics.guard(Event::Backend("node-a".into())),
+            };
+            let topology = Topology {
+                primary: Some(0),
+                ..Topology::default()
+            };
+            let (_tx, mut rx) = watch::channel(topology.clone());
+            let task = tokio::spawn(async move {
+                assert_eq!(message(&mut server).await.unwrap().0, b'Q');
+                if sql_error {
+                    send(&mut server, b'E', b"error").await.unwrap();
+                    send(&mut server, b'Z', b"I").await.unwrap();
+                } else {
+                    std::future::pending::<()>().await;
+                }
+            });
+            let response = execute_query(
+                &mut backend,
+                b"SELECT 1\0",
+                &mut rx,
+                &topology,
+                0,
+                (true, Instant::now() + Duration::from_millis(20)),
+                &c.metrics,
+            )
+            .await;
+            assert_eq!(response.is_ok(), sql_error);
+            let outcome = if sql_error { "sql_error" } else { "error" };
+            assert!(text(&c.metrics).contains(&format!(
+                "rustybouncer_query_attempts_total{{outcome=\"{outcome}\",route=\"primary\"}} 1"
+            )));
+            task.abort();
+        }
+    }
+    #[tokio::test]
+    async fn topology_dropped_dispatch_is_error_external_abort_is_aborted() {
+        for abort in [true, false] {
+            let c = measured_config();
+            let m = c.metrics.clone();
+            let (stream, mut server) = crate::tests::socket_pair().await;
+            let backend = Backend {
+                stream,
+                generation: 0,
+                _live: m.guard(Event::Backend("node-a".into())),
+            };
+            let selected = Topology {
+                primary: Some(0),
+                ..Topology::default()
+            };
+            let (tx, mut rx) = watch::channel(selected.clone());
+            let task = tokio::spawn(async move {
+                let mut backend = backend;
+                execute_query(
+                    &mut backend,
+                    b"SELECT 1\0",
+                    &mut rx,
+                    &selected,
+                    0,
+                    (true, Instant::now() + Duration::from_secs(60)),
+                    &m,
+                )
+                .await
+            });
+            assert_eq!(message(&mut server).await.unwrap().0, b'Q');
+            if abort {
+                task.abort();
+                assert!(task.await.unwrap_err().is_cancelled());
+            } else {
+                tx.send_replace(Topology::default());
+                assert!(task.await.unwrap().is_err());
+            }
+            let outcome = if abort { "aborted" } else { "error" };
+            assert!(text(&c.metrics).contains(&format!(
+                "rustybouncer_query_attempts_total{{outcome=\"{outcome}\",route=\"primary\"}} 1"
+            )));
+        }
+    }
     #[test]
     fn read_only_ctes_route_to_replicas() {
         for sql in [

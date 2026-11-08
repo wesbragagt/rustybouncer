@@ -1,5 +1,7 @@
 listen = "127.0.0.1:6432"
 max_clients = 100
+# Optional private Prometheus endpoint; absent means instrumentation is disabled.
+# metrics_listen = "127.0.0.1:9090"
 # Opt-in simple-query routing; requires trusted, trust-authenticated backends.
 # Set false for the original transparent-authentication session router.
 route_selects = true
