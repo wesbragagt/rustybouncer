@@ -1,0 +1,11 @@
+{
+  "source_base": "8e195a11aa65ccf88e613ffdf0a4a2a454ec695b",
+  "files": {
+    "benchmarks/compare.py": "93a65c3e40ead92e67b6353b6be0dd6d75c979424ccf9cdf562cf8fe4a578db7",
+    "benchmarks/metrics.py": "24724dcdbbd1195a0fad9c227d7323f431164ab1a49d47e807575f9cebd9b61b",
+    "tests/metrics_support.py": "74cd07c26c587f95f02600f664b8d57c13a13f8962d07bc47a48500177a1c689",
+    "tests/failover.py": "85abb17e1c63d6cddc0380c9838da4c2f9334cc8a436778b3d07b15d1e35564f",
+    "Cargo.lock": "cef4f14606717e2254e789b007e7910b30bb28bcf84dd77df4c9307c3d0f9d83",
+    "flake.lock": "ebdc0d1b06b2404edbb5e7458fdaa16354c28bdaf7ba4465fd80091c13dd70f5"
+  }
+}

@@ -1,0 +1,112 @@
+[
+  {
+    "clients": 10,
+    "target": "direct",
+    "tps": 222569.233431,
+    "p50_ms": 0.039,
+    "p95_ms": 0.072,
+    "p99_ms": 0.116,
+    "tps_min": 220561.407727,
+    "tps_max": 230063.751937,
+    "backend_connections_peak": 10
+  },
+  {
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps": 157912.659845,
+    "p50_ms": 0.06,
+    "p95_ms": 0.083,
+    "p99_ms": 0.121,
+    "tps_min": 155349.986182,
+    "tps_max": 161535.735616,
+    "backend_connections_peak": 10
+  },
+  {
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps": 155583.395106,
+    "p50_ms": 0.061,
+    "p95_ms": 0.083,
+    "p99_ms": 0.125,
+    "tps_min": 153416.532862,
+    "tps_max": 159057.946594,
+    "backend_connections_peak": 10
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps": 156936.554918,
+    "p50_ms": 0.058,
+    "p95_ms": 0.092,
+    "p99_ms": 0.155,
+    "tps_min": 152541.431003,
+    "tps_max": 166279.315642,
+    "backend_connections_peak": 10
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps": 67519.540985,
+    "p50_ms": 0.124,
+    "p95_ms": 0.268,
+    "p99_ms": 0.426,
+    "tps_min": 64826.452923,
+    "tps_max": 67765.768152,
+    "backend_connections_peak": 10
+  },
+  {
+    "clients": 100,
+    "target": "direct",
+    "tps": 332701.932172,
+    "p50_ms": 0.203,
+    "p95_ms": 0.814,
+    "p99_ms": 1.732,
+    "tps_min": 320040.020019,
+    "tps_max": 336775.965045,
+    "backend_connections_peak": 100
+  },
+  {
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps": 152506.968643,
+    "p50_ms": 0.621,
+    "p95_ms": 0.849,
+    "p99_ms": 1.277,
+    "tps_min": 146114.809574,
+    "tps_max": 154890.49442,
+    "backend_connections_peak": 100
+  },
+  {
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps": 152280.451935,
+    "p50_ms": 0.606,
+    "p95_ms": 0.951,
+    "p99_ms": 1.344,
+    "tps_min": 151047.670134,
+    "tps_max": 153213.689921,
+    "backend_connections_peak": 100
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps": 186693.090116,
+    "p50_ms": 0.508,
+    "p95_ms": 0.915,
+    "p99_ms": 1.436,
+    "tps_min": 184146.80357,
+    "tps_max": 188650.662257,
+    "backend_connections_peak": 100
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps": 93030.562209,
+    "p50_ms": 0.987,
+    "p95_ms": 1.942,
+    "p99_ms": 2.674,
+    "tps_min": 88188.868813,
+    "tps_max": 93257.327013,
+    "backend_connections_peak": 100
+  }
+]

@@ -20,6 +20,73 @@ records the implementation and validation contract.
 See [Grafana dashboard recommendations](docs/grafana.md) for the included router
 dashboard and complementary PostgreSQL, CNPG and infrastructure dashboards.
 
+## PgBouncer comparison
+
+Measured on 2026-11-08: PgBouncer **1.26.1**, this optimized Rustybouncer release,
+and the same PostgreSQL 16 primary. A random indexed lookup over 10,000 rows
+returns a 128-byte payload; clients stay connected and use simple query protocol.
+Each cell summarizes three 30-second runs after 5-second warmups, with rotated
+execution order. Latencies are medians of per-run sampled quantiles (10% random
+sampling); backend peaks are independently observed via PostgreSQL. All 30 arms
+completed with **zero query errors**. TLS and metrics are disabled; authentication
+is trust on an isolated loopback fixture.
+
+| Target | Clients | Median Q/s | p50 ms | p95 ms | p99 ms | Peak PG backends |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Direct PostgreSQL | 10 | 222,569 | 0.039 | 0.072 | 0.116 | 10 |
+| PgBouncer session | 10 | 157,913 | 0.060 | 0.083 | 0.121 | 10 |
+| PgBouncer transaction | 10 | 155,583 | 0.061 | 0.083 | 0.125 | 10 |
+| Rustybouncer passthrough | 10 | 156,937 | 0.058 | 0.092 | 0.155 | 10 |
+| Rustybouncer routed → primary | 10 | 67,520 | 0.124 | 0.268 | 0.426 | 10 |
+| Direct PostgreSQL | 100 | 332,702 | 0.203 | 0.814 | 1.732 | 100 |
+| PgBouncer session | 100 | 152,507 | 0.621 | 0.849 | 1.277 | 100 |
+| PgBouncer transaction | 100 | 152,280 | 0.606 | 0.951 | 1.344 | 100 |
+| Rustybouncer passthrough | 100 | 186,693 | 0.508 | 0.915 | 1.436 | 100 |
+| Rustybouncer routed → primary | 100 | 93,031 | 0.987 | 1.942 | 2.674 | 100 |
+
+Routed Rustybouncer is slower than both PgBouncer modes on this workload; it
+classifies and buffers each query. Passthrough has different semantics and cannot
+stand in for routed-mode performance. At 100 clients its throughput exceeds the
+single PgBouncer process, but this is **not an equal-core efficiency comparison**:
+Tokio can use multiple cores, while one PgBouncer instance uses one core. The host
+has 16 logical CPUs and also runs other workloads. PgBouncer supports multiple
+instances/SO_REUSEPORT; that setup was not measured.
+[PgBouncer CPU configuration](https://www.pgbouncer.org/config.html#so_reuseport).
+
+Use these as local observations, not a production ranking or SLO. All modes target
+one primary with maximum client/pool capacity 256 and PostgreSQL capacity 400.
+All modes reached the same observed backend count here; the benchmark does not
+establish pooling savings for idle clients or connection churn.
+The test does not measure replica read scaling, failover, connection churn,
+prepared statements, writes, TLS or large-result memory pressure.
+[Reproduce, individual runs, ranges and provenance](docs/benchmarks/pgbouncer-comparison.md).
+
+### Advantages and trade-offs
+
+| Area | PgBouncer | Rustybouncer today |
+| --- | --- | --- |
+| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Backends belong to each client; routed sessions can cache a connection per node. No shared transaction pool |
+| Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
+| Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
+| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY, cancellation routing or TLS. Passthrough preserves backend protocol/authentication |
+| Response and memory | Streams protocol traffic | Routed results buffered to ReadyForQuery, capped at 32 MiB/result and 16 MiB/message; memory grows with concurrent results |
+| Operations | Administrative console, reload and pool controls | Prometheus/Grafana support and container/CNPG examples; reload, shared-pool controls and graceful draining remain open |
+
+Choose PgBouncer when your main need is shared connection pooling and established
+protocol/security/administrative features. Transaction pooling requires compatible
+application session behavior; protocol prepared statements need appropriate
+configuration. [Upstream feature map](https://www.pgbouncer.org/features.html).
+
+Rustybouncer is an experimental option for evaluating role-aware routing and
+buffered read continuity. Both need external promotion, replication and fencing;
+interrupted transactions and uncertain writes require application handling and
+are never transparently replayed by Rustybouncer. Modern PgBouncer host lists and
+DNS selection are connection-level mechanisms, distinct from SQL-aware routing.
+[Host configuration](https://www.pgbouncer.org/config.html#host),
+[failover integration](https://www.pgbouncer.org/faq.html#how-to-failover).
+[FEATURE_COMPLETENESS.md](FEATURE_COMPLETENESS.md) remains authoritative; these
+benchmarks do not establish the full workload or release checklist.
+
 ## Development verification
 
 Use `nix develop` for the Iceman-generated development environment and local commit
@@ -204,4 +271,4 @@ replica replacement and primary-node failovers. After building/loading the image
 nix develop --command python3 -m tests.kind_cnpg --output /tmp/rustybouncer-kind-results
 ```
 
-All five cases run without skips and emit JSON/JUnit reports and diagnostics.
+All six cases run without skips and emit JSON/JUnit reports and diagnostics.
