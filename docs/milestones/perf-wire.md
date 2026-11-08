@@ -3,7 +3,7 @@
 Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-002/003, and
 [canonical checklist](../../FEATURE_COMPLETENESS.md), W01/W09–W11, Q04/Q07, S06/S11.
 Runtime source checkpoint: `60d14df`. This acceptance report records completed
-comparative verification; the evidence commit is registered in the task ledger.
+comparative verification; acceptance/evidence commit: `3ab8c6b`, registered in the task ledger.
 Broader cancellation, aggregate limits, pooling and release acceptance remain open.
 
 The vectored header/body writer handles partial writes, Pending, WriteZero and
@@ -131,6 +131,7 @@ diagnostics remain retained; none substitute for accepted complete reruns.
 Frozen production SHA256: `7d6c1f01269e5e223cf4bc9fb87b95ed765f11dd156091c12caf0072b5813940`.
 Separate frame-pointer/debug binary: `25daa96bf8f0d39dd62513d0bd8fbb210dcb8032a0d98e618a77834b4c511372`.
 Exact evidence root: `/home/publicuser/dev/rustybouncer-evidence/perf-wire-20261108`.
+[Interactive comparison](../benchmarks/perf-wire/chart.html),
 [All timing/profile summaries](perf-wire-evidence/summary.json),
 [large study](perf-wire-evidence/large-summary.json),
 [raw archive hashes](perf-wire-evidence/raw-archives.json),
@@ -148,6 +149,7 @@ nix develop --no-update-lock-file --command python3 benchmarks/memory_audit.py -
 # Full runtime environment/commands are preserved in soak-final/run.log.
 ```
 
-The installed locked Nix hook must pass before the evidence milestone commits.
-This closes only PERF-002/003 acceptance after that commit is registered.
+The installed locked Nix hook passed normally for `3ab8c6b` (31 Rust +71 Python;
+zero failures/errors/skips). [Hook log](perf-wire-evidence/acceptance-hook.log.gz).
+This closes only PERF-002/003 acceptance.
 PERF-004–009 and the canonical deployment/workload matrix remain open.
