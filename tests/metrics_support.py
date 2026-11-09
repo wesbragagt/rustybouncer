@@ -159,6 +159,7 @@ class Snapshot:
 class MetricsCluster(f.Cluster):
     """Real physical streaming replicas; capacity is deliberately above 100."""
     names = ('a"\\\nmetrics', 'b', 'c')
+    container_options: tuple[str, ...] = ()
 
     def __init__(self, evidence):
         super().__init__()
@@ -172,7 +173,7 @@ class MetricsCluster(f.Cluster):
         f.docker('network', 'create', self.prefix)
         self.network_created = True
         primary = self.nodes[0]
-        f.docker('run', '-d', '--name', primary, '--network', self.prefix,
+        f.docker('run', *self.container_options, '-d', '--name', primary, '--network', self.prefix,
                  '-p', '127.0.0.1::5432', '-e', 'POSTGRES_HOST_AUTH_METHOD=trust',
                  f.IMAGE, '-c', 'wal_level=replica', '-c', 'max_wal_senders=10',
                  '-c', 'max_connections=400', '-c', 'cluster_name=a')
@@ -185,7 +186,7 @@ class MetricsCluster(f.Cluster):
         f.sql(primary, 'CREATE ROLE rustybouncer_metrics_probe LOGIN')
         f.sql(primary, 'CREATE TABLE continuity (id integer PRIMARY KEY, payload text NOT NULL)')
         for node, name in zip(self.nodes[1:], ('b', 'c')):
-            f.docker('run', '-d', '--name', node, '--network', self.prefix,
+            f.docker('run', *self.container_options, '-d', '--name', node, '--network', self.prefix,
                      '-p', '127.0.0.1::5432', '--user', 'postgres', f.IMAGE, 'bash', '-c',
                      f'pg_basebackup -h {primary} -U postgres -D /tmp/standby -R -X stream && '
                      f'exec postgres -D /tmp/standby -c listen_addresses="*" '

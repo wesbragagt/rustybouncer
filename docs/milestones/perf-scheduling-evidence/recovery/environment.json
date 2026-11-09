@@ -1,0 +1,34 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/heads-frozen/production",
+  "binary_sha256": "103fb7c79cb53baebb629446b32481952fe3124a4cf3a7fc6e86bbd94c9b3e1f",
+  "command": [
+    "benchmarks/failover_load.py",
+    "--binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/heads-frozen/production",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/failover-load"
+  ],
+  "targets": [
+    "pgbouncer-session",
+    "pgbouncer-transaction",
+    "rustybouncer-pool-session",
+    "rustybouncer-pool-transaction"
+  ],
+  "clients": [
+    10,
+    100
+  ],
+  "repetitions": 3,
+  "arms": 24,
+  "postgres_image": "[\"postgres@sha256:1beaa3084eee2676f20a9cd9928f0bf2c5bf674f8e49f81017912183d377c61c\"]",
+  "replication": "ANY 2 (*) synchronous acknowledgements before primary crash",
+  "statement_logging": "all on owned database nodes; every acknowledged/committed INSERT must appear once, no duplicate SQL execution",
+  "container_logging": "blocking json-file for owned fault databases; no host journald rate limit",
+  "read_oracle": "distinct per-operation literals; committed writes independently checked on promoted primary",
+  "replica_reparenting": false,
+  "read_freshness_claim": false,
+  "reference_adapter": "after real promotion, rewrite PgBouncer backend and issue RELOAD + RECONNECT postgres",
+  "rust_adapter": "no pooler restart, reload or endpoint rewrite; topology discovery",
+  "placement": "unrestricted shared host; functional fault experiment, not normal throughput comparison",
+  "scope": "one new connection per unique operation; no application SQL replay, all workers must recover"
+}

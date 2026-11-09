@@ -85,11 +85,16 @@ def main():
             shutil.copy2(path,metadata/path.name)
     harness=output/'harness'
     harness.mkdir()
-    for path in sorted(Path('benchmarks').glob('*.py')):
-        shutil.copy2(path,harness/path.name)
+    for directory in ('benchmarks','tests','conformance','scripts'):
+        destination=harness/directory
+        destination.mkdir()
+        for path in sorted(Path(directory).glob('*.py')):
+            shutil.copy2(path,destination/path.name)
     for name in ('comparison.template.html','README.md'):
-        shutil.copy2(Path('benchmarks')/name,harness/name)
-    shutil.copy2(__file__,harness/Path(__file__).name)
+        shutil.copy2(Path('benchmarks')/name,harness/'benchmarks'/name)
+    for name in ('flake.nix','flake.lock','pyproject.toml'):
+        shutil.copy2(name,harness/name)
+    shutil.copy2('scripts/verify',harness/'scripts'/'verify')
     (output/'archives.json').write_text(json.dumps(archives,indent=2)+'\n')
     print(json.dumps({'archives':len(archives),'bytes':sum(row['bytes'] for row in archives),
                       'required_scopes':len(REQUIRED),'output':str(output)}))

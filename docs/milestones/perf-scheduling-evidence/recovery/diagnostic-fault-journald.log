@@ -1,0 +1,34 @@
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/benchmarks/failover_load.py", line 354, in <module>
+    main()
+    ~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/benchmarks/failover_load.py", line 342, in main
+    result = asyncio.run(load(cluster,clients))
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/asyncio/runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/asyncio/runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/asyncio/base_events.py", line 720, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/benchmarks/failover_load.py", line 251, in load
+    return await validate(cluster,events,cleanup,(fault_at,promoted_at,stable_at),(first,recovered,clients))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/benchmarks/failover_load.py", line 266, in validate
+    oracle=await database_oracle(cluster,events)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/benchmarks/failover_load.py", line 293, in database_oracle
+    executions=await asyncio.to_thread(f.eventually,logged,15,'all acknowledged writes present once in database statement logs')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/asyncio/threads.py", line 26, in to_thread
+    return await loop.run_in_executor(None, func_call)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/home/publicuser/dev/rustybouncer/worktrees/scheduler/tests/failover.py", line 46, in eventually
+    raise AssertionError(f"{description} did not become true in {seconds}s: {last}")
+AssertionError: all acknowledged writes present once in database statement logs did not become true in 15s: None

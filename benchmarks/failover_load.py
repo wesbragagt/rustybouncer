@@ -35,6 +35,9 @@ def dump(path, data):
 
 
 class Cluster(MetricsCluster):
+    # Host journald rate limits can drop SQL execution evidence. Override only
+    # these owned database containers; retain full blocking JSON-file logs.
+    container_options = ('--log-driver=json-file', '--log-opt', 'mode=blocking')
     def __init__(self, output, binary, target):
         super().__init__(output)
         self.binary, self.target = binary, target
@@ -91,6 +94,9 @@ probe_database = "postgres"
 
     def begin(self):
         self.start()
+        logging=[json.loads(f.docker('inspect',node,'--format','{{json .HostConfig.LogConfig}}')) for node in self.nodes]
+        dump(self.evidence/'container-logging.json',logging)
+        assert all(item['Type']=='json-file' for item in logging),logging
         self.stop_proxy()
         # Both standbys must durably acknowledge every primary commit. Without
         # this, async WAL loss would be a database policy, not a pooler failure.
@@ -324,6 +330,7 @@ def main():
         'postgres_image': f.docker('image', 'inspect', f.IMAGE, '--format', '{{json .RepoDigests}}'),
         'replication': 'ANY 2 (*) synchronous acknowledgements before primary crash',
         'statement_logging':'all on owned database nodes; every acknowledged/committed INSERT must appear once, no duplicate SQL execution',
+        'container_logging':'blocking json-file for owned fault databases; no host journald rate limit',
         'read_oracle':'distinct per-operation literals; committed writes independently checked on promoted primary',
         'replica_reparenting':False,'read_freshness_claim':False,
         'reference_adapter': 'after real promotion, rewrite PgBouncer backend and issue RELOAD + RECONNECT postgres',
