@@ -1,0 +1,2740 @@
+{
+  "profiles": [
+    {
+      "placement": "unrestricted",
+      "mode": "cpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 137430,
+      "errors": 0,
+      "measurement_started_monotonic": 1176258.911892182,
+      "measurement_finished_monotonic": 1176268.921366202,
+      "measurement_started_epoch": 1794203079.6319168,
+      "measurement_finished_epoch": 1794203089.6413908,
+      "profile_seconds": 10.009474019985646,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 22.060000000000002,
+      "rss_peak_bytes_observed": 11468800,
+      "observed_cpu_window_seconds": 9.798636347055435,
+      "rss_lifetime_hwm_bytes": 12181504,
+      "cpu": {
+        "samples": 2645,
+        "period_weight": 13291455625,
+        "categories": [
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 1241,
+            "period_share": 0.46918714555765595
+          },
+          {
+            "name": "pool_admission_handoff",
+            "samples": 1024,
+            "period_share": 0.38714555765595465
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 187,
+            "period_share": 0.07069943289224953
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 83,
+            "period_share": 0.031379962192816635
+          },
+          {
+            "name": "frame_write",
+            "samples": 50,
+            "period_share": 0.01890359168241966
+          },
+          {
+            "name": "query_classification",
+            "samples": 33,
+            "period_share": 0.012476370510396975
+          },
+          {
+            "name": "response_delivery",
+            "samples": 14,
+            "period_share": 0.005293005671077505
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 8,
+            "period_share": 0.0030245746691871457
+          },
+          {
+            "name": "metrics",
+            "samples": 5,
+            "period_share": 0.001890359168241966
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.04120982986767486
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x22 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.017013232514177693
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.014366729678638942
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.012098298676748583
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.010964083175803403
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x64 (inlined)",
+            "period_share": 0.010964083175803403
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.01058601134215501
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.00945179584120983
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.00945179584120983
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.007939508506616257
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x24 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.007561436672967864
+          },
+          {
+            "symbol": "tokio::sync::notify::get_num_notify_waiters_calls+0xa (inlined)",
+            "period_share": 0.007183364839319471
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.006805293005671078
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.006427221172022685
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.006427221172022685
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.006427221172022685
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.0060491493383742915
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0x25 (inlined)",
+            "period_share": 0.0060491493383742915
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.005671077504725898
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.005671077504725898
+          },
+          {
+            "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds>>::reset+0x11 (inlined)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x114 (inlined)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x48 (inlined)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "<core::sync::atomic::Atomic<bool>>::load+0x1fb (inlined)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "<core::ops::range::Range<u32> as core::iter::range::RangeIteratorImpl>::spec_next+0x212 (inlined)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x46 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005293005671077505
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.004914933837429111
+          },
+          {
+            "symbol": "<tokio::util::linked_list::LinkedList<tokio::runtime::time::entry::TimerShared>>::is_empty+0x83 (inlined)",
+            "period_share": 0.004536862003780718
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x13 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004536862003780718
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0xff9 (inlined)",
+            "period_share": 0.004536862003780718
+          },
+          {
+            "symbol": "malloc+0x63 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004158790170132325
+          },
+          {
+            "symbol": "tokio::runtime::scheduler::multi_thread::queue::unpack+0x32 (inlined)",
+            "period_share": 0.004158790170132325
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::runtime::time::entry::TimerShared>> as core::cmp::PartialEq>::eq+0x87 (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_or::<usize, usize>+0x5d (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.003780718336483932
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.003780718336483932
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "cpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 138420,
+      "errors": 0,
+      "measurement_started_monotonic": 1176288.224576639,
+      "measurement_finished_monotonic": 1176298.234097321,
+      "measurement_started_epoch": 1794203108.944601,
+      "measurement_finished_epoch": 1794203118.9541218,
+      "profile_seconds": 10.009520682040602,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 26.5,
+      "rss_peak_bytes_observed": 14540800,
+      "observed_cpu_window_seconds": 9.796085129026324,
+      "rss_lifetime_hwm_bytes": 15933440,
+      "cpu": {
+        "samples": 3588,
+        "period_weight": 18030148500,
+        "categories": [
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 1726,
+            "period_share": 0.4810479375696767
+          },
+          {
+            "name": "pool_admission_handoff",
+            "samples": 986,
+            "period_share": 0.27480490523968787
+          },
+          {
+            "name": "session_affinity_analysis",
+            "samples": 449,
+            "period_share": 0.12513935340022297
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 209,
+            "period_share": 0.05824972129319955
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 87,
+            "period_share": 0.024247491638795988
+          },
+          {
+            "name": "frame_write",
+            "samples": 60,
+            "period_share": 0.016722408026755852
+          },
+          {
+            "name": "query_classification",
+            "samples": 29,
+            "period_share": 0.008082497212931996
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 18,
+            "period_share": 0.005016722408026756
+          },
+          {
+            "name": "response_delivery",
+            "samples": 17,
+            "period_share": 0.004738015607580825
+          },
+          {
+            "name": "metrics",
+            "samples": 6,
+            "period_share": 0.0016722408026755853
+          },
+          {
+            "name": "topology_discovery",
+            "samples": 1,
+            "period_share": 0.0002787068004459309
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.026755852842809364
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.01588628762541806
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x22 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.013656633221850614
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.00947603121516165
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x64 (inlined)",
+            "period_share": 0.00947603121516165
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.00919732441471572
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.008082497212931996
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x13 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.006967670011148272
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.006967670011148272
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.006688963210702341
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.006131549609810479
+          },
+          {
+            "symbol": "malloc+0x63 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.005852842809364548
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.005295429208472687
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.005295429208472687
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x24 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.005016722408026756
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.005016722408026756
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x24 (inlined)",
+            "period_share": 0.004738015607580825
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.004459308807134894
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004459308807134894
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x114 (inlined)",
+            "period_share": 0.004459308807134894
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.004459308807134894
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x46 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004459308807134894
+          },
+          {
+            "symbol": "<core::ops::range::Range<u32> as core::iter::range::RangeIteratorImpl>::spec_next+0x212 (inlined)",
+            "period_share": 0.004180602006688963
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.004180602006688963
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.004180602006688963
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::runtime::time::entry::TimerShared>> as core::cmp::PartialEq>::eq+0x87 (inlined)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x11d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0xff9 (inlined)",
+            "period_share": 0.0033444816053511705
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0x30 (inlined)",
+            "period_share": 0.0030657748049052395
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.0030657748049052395
+          },
+          {
+            "symbol": "<tokio::time::instant::Instant>::now+0x0 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.0030657748049052395
+          },
+          {
+            "symbol": "<core::result::Result<core::option::Option<sqlparser::tokenizer::Token>, sqlparser::tokenizer::TokenizerError> as core::ops::try_trait::Try>::branch+0x133 (inlined)",
+            "period_share": 0.002787068004459309
+          },
+          {
+            "symbol": "<sqlparser::tokenizer::Tokenizer>::tokenize_with_location_into_buf_with_mapper::<<sqlparser::tokenizer::Tokenizer>::tokenize_with_location_into_buf::{closure#0}>+0x169 (inlined)",
+            "period_share": 0.002787068004459309
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.002787068004459309
+          },
+          {
+            "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write+0x124 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.002787068004459309
+          },
+          {
+            "symbol": "__libc_malloc2+0x59 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.002787068004459309
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "cpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 43426,
+      "errors": 0,
+      "measurement_started_monotonic": 1176345.093197331,
+      "measurement_finished_monotonic": 1176355.221771054,
+      "measurement_started_epoch": 1794203165.8132217,
+      "measurement_finished_epoch": 1794203175.9417956,
+      "profile_seconds": 10.128573722904548,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 68.75,
+      "rss_peak_bytes_observed": 28590080,
+      "observed_cpu_window_seconds": 9.7945824470371,
+      "rss_lifetime_hwm_bytes": 29720576,
+      "cpu": {
+        "samples": 8503,
+        "period_weight": 42728637875,
+        "categories": [
+          {
+            "name": "pool_admission_handoff",
+            "samples": 5721,
+            "period_share": 0.6728213571680584
+          },
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 2269,
+            "period_share": 0.2668469951781724
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 341,
+            "period_share": 0.040103492884864166
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 83,
+            "period_share": 0.009761260731506526
+          },
+          {
+            "name": "frame_write",
+            "samples": 27,
+            "period_share": 0.0031753498765141716
+          },
+          {
+            "name": "response_delivery",
+            "samples": 25,
+            "period_share": 0.002940138774550159
+          },
+          {
+            "name": "query_classification",
+            "samples": 17,
+            "period_share": 0.001999294366694108
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 13,
+            "period_share": 0.0015288721627660826
+          },
+          {
+            "name": "metrics",
+            "samples": 7,
+            "period_share": 0.0008232388568740445
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.031165471010231684
+          },
+          {
+            "symbol": "<core::ops::range::Range<u32> as core::iter::range::RangeIteratorImpl>::spec_next+0x212 (inlined)",
+            "period_share": 0.02481477125720334
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x22 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.022697871339527227
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.021757026931671176
+          },
+          {
+            "symbol": "syscall+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.020463365870869107
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<u8>+0x439 (inlined)",
+            "period_share": 0.01834646595319299
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.015406327178642832
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.014347877219804775
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.014347877219804775
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.012701399506056687
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x24 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.01258379395507468
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x114 (inlined)",
+            "period_share": 0.012466188404092674
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock+0x46 (inlined)",
+            "period_share": 0.011995766200164648
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x64 (inlined)",
+            "period_share": 0.011407738445254617
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0xd2 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.011172527343290604
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.010819710690344585
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0xff9 (inlined)",
+            "period_share": 0.009761260731506526
+          },
+          {
+            "symbol": "<core::sync::atomic::Atomic<bool>>::load+0x1fb (inlined)",
+            "period_share": 0.009526049629542514
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.009526049629542514
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::inject::synced::Synced>::pop::<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x9d (inlined)",
+            "period_share": 0.009173232976596495
+          },
+          {
+            "symbol": "tokio::sync::notify::get_num_notify_waiters_calls+0xa (inlined)",
+            "period_share": 0.008820416323650476
+          },
+          {
+            "symbol": "__sched_yield+0xb (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.008820416323650476
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.00870281077266847
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.00834999411972245
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.00834999411972245
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.008114783017758437
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x48 (inlined)",
+            "period_share": 0.008114783017758437
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.007997177466776431
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.007879571915794425
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.007761966364812419
+          },
+          {
+            "symbol": "<tokio::util::linked_list::LinkedList<tokio::runtime::time::entry::TimerShared>>::is_empty+0x83 (inlined)",
+            "period_share": 0.007644360813830413
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::runtime::time::entry::TimerShared>> as core::cmp::PartialEq>::eq+0x87 (inlined)",
+            "period_share": 0.007526755262848407
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.0074091497118664
+          },
+          {
+            "symbol": "core::ptr::write::<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>+0x121 (inlined)",
+            "period_share": 0.007173938609902388
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<u8>+0x2b (inlined)",
+            "period_share": 0.006938727507938375
+          },
+          {
+            "symbol": "<alloc::sync::Arc<[u8]> as core::clone::Clone>::clone+0x7ae (inlined)",
+            "period_share": 0.006821121956956369
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.006585910854992356
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.006350699753028343
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x24 (inlined)",
+            "period_share": 0.0057626719981183116
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x130 (inlined)",
+            "period_share": 0.0057626719981183116
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "cpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 42381,
+      "errors": 0,
+      "measurement_started_monotonic": 1176399.192361664,
+      "measurement_finished_monotonic": 1176409.329451842,
+      "measurement_started_epoch": 1794203219.9123864,
+      "measurement_finished_epoch": 1794203230.0494764,
+      "profile_seconds": 10.137090177973732,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 68.34,
+      "rss_peak_bytes_observed": 31698944,
+      "observed_cpu_window_seconds": 9.79389342200011,
+      "rss_lifetime_hwm_bytes": 33222656,
+      "cpu": {
+        "samples": 8591,
+        "period_weight": 43170848875,
+        "categories": [
+          {
+            "name": "pool_admission_handoff",
+            "samples": 5496,
+            "period_share": 0.6397392620183914
+          },
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 2385,
+            "period_share": 0.2776161098824351
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 299,
+            "period_share": 0.03480386450937027
+          },
+          {
+            "name": "session_affinity_analysis",
+            "samples": 268,
+            "period_share": 0.03119543708532185
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 57,
+            "period_share": 0.006634850424863229
+          },
+          {
+            "name": "frame_write",
+            "samples": 32,
+            "period_share": 0.003724828308695146
+          },
+          {
+            "name": "query_classification",
+            "samples": 22,
+            "period_share": 0.002560819462227913
+          },
+          {
+            "name": "metrics",
+            "samples": 14,
+            "period_share": 0.0016296123850541265
+          },
+          {
+            "name": "response_delivery",
+            "samples": 13,
+            "period_share": 0.001513211500407403
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 4,
+            "period_share": 0.00046560353858689327
+          },
+          {
+            "name": "topology_discovery",
+            "samples": 1,
+            "period_share": 0.00011640088464672332
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.034105459201489934
+          },
+          {
+            "symbol": "<core::ops::range::Range<u32> as core::iter::range::RangeIteratorImpl>::spec_next+0x212 (inlined)",
+            "period_share": 0.023745780467931556
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.0224653707368176
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x22 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.02141776277499709
+          },
+          {
+            "symbol": "syscall+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.02037015481317658
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<u8>+0x439 (inlined)",
+            "period_share": 0.017692934466301945
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.016994529158421603
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x114 (inlined)",
+            "period_share": 0.013036899080433012
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.012687696426492841
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.012222092887905949
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0x24 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.011407286695378886
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.011174484926085438
+          },
+          {
+            "symbol": "tokio::sync::notify::get_num_notify_waiters_calls+0xa (inlined)",
+            "period_share": 0.010708881387498545
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.010592480502851822
+          },
+          {
+            "symbol": "<core::sync::atomic::Atomic<bool>>::load+0x1fb (inlined)",
+            "period_share": 0.010359678733558374
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.010359678733558374
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x64 (inlined)",
+            "period_share": 0.009894075194971482
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.009777674310324759
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock_contended+0xd2 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.009661273425678036
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.008962868117797696
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.008846467233150973
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x46 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.008730066348504248
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.008613665463857525
+          },
+          {
+            "symbol": "__sched_yield+0xb (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.008497264579210802
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock+0x46 (inlined)",
+            "period_share": 0.008148061925270633
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::inject::synced::Synced>::pop::<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x9d (inlined)",
+            "period_share": 0.008148061925270633
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x48 (inlined)",
+            "period_share": 0.00803166104062391
+          },
+          {
+            "symbol": "tokio::runtime::time::wheel::level::slot_for+0x66 (inlined)",
+            "period_share": 0.00803166104062391
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.0077988592713304624
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.007449656617390292
+          },
+          {
+            "symbol": "core::ptr::write::<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>+0x121 (inlined)",
+            "period_share": 0.007333255732743569
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0xff9 (inlined)",
+            "period_share": 0.007100453963450122
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.006751251309509952
+          },
+          {
+            "symbol": "<tokio::util::linked_list::LinkedList<tokio::runtime::time::entry::TimerShared>>::is_empty+0x83 (inlined)",
+            "period_share": 0.006634850424863229
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.006634850424863229
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::runtime::time::entry::TimerShared>> as core::cmp::PartialEq>::eq+0x87 (inlined)",
+            "period_share": 0.006402048655569782
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.006052846001629612
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x130 (inlined)",
+            "period_share": 0.005820044232336166
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_load::<u8>+0x2b (inlined)",
+            "period_share": 0.005820044232336166
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.005820044232336166
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "offcpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 140289,
+      "errors": 0,
+      "measurement_started_monotonic": 1176470.898142099,
+      "measurement_finished_monotonic": 1176480.907598213,
+      "measurement_started_epoch": 1794203291.6181664,
+      "measurement_finished_epoch": 1794203301.6276228,
+      "profile_seconds": 10.009456114144996,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 22.7,
+      "rss_peak_bytes_observed": 10502144,
+      "observed_cpu_window_seconds": 9.794065594905987,
+      "rss_lifetime_hwm_bytes": 11558912,
+      "switches": {
+        "matched_in_window": 1084232,
+        "aggregate_thread_offcpu_seconds": 139.93787388899364,
+        "longest_interval_seconds": 0.17617700016126037,
+        "unmatched_in": 16,
+        "unmatched_out": 0,
+        "wall_seconds": 10.009456114144996,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "offcpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 140403,
+      "errors": 0,
+      "measurement_started_monotonic": 1176494.921653314,
+      "measurement_finished_monotonic": 1176504.929141678,
+      "measurement_started_epoch": 1794203315.6416779,
+      "measurement_finished_epoch": 1794203325.649166,
+      "profile_seconds": 10.007488363888115,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 27.52,
+      "rss_peak_bytes_observed": 13877248,
+      "observed_cpu_window_seconds": 9.794999320991337,
+      "rss_lifetime_hwm_bytes": 15495168,
+      "switches": {
+        "matched_in_window": 1020326,
+        "aggregate_thread_offcpu_seconds": 134.7272700520698,
+        "longest_interval_seconds": 0.1423770000692457,
+        "unmatched_in": 16,
+        "unmatched_out": 0,
+        "wall_seconds": 10.007488363888115,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "offcpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 43903,
+      "errors": 0,
+      "measurement_started_monotonic": 1176537.370268594,
+      "measurement_finished_monotonic": 1176547.531165,
+      "measurement_started_epoch": 1794203358.090293,
+      "measurement_finished_epoch": 1794203368.2511895,
+      "profile_seconds": 10.160896406043321,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 70.52,
+      "rss_peak_bytes_observed": 27594752,
+      "observed_cpu_window_seconds": 9.794018154963851,
+      "rss_lifetime_hwm_bytes": 28827648,
+      "switches": {
+        "matched_in_window": 13524135,
+        "aggregate_thread_offcpu_seconds": 101.38690221356228,
+        "longest_interval_seconds": 0.059847405878826976,
+        "unmatched_in": 60,
+        "unmatched_out": 0,
+        "wall_seconds": 10.160896406043321,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "offcpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 39903,
+      "errors": 0,
+      "measurement_started_monotonic": 1176584.159411785,
+      "measurement_finished_monotonic": 1176594.310057987,
+      "measurement_started_epoch": 1794203404.8794365,
+      "measurement_finished_epoch": 1794203415.0300825,
+      "profile_seconds": 10.150646202033386,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 60.260000000000005,
+      "rss_peak_bytes_observed": 31895552,
+      "observed_cpu_window_seconds": 9.795432606944814,
+      "rss_lifetime_hwm_bytes": 33234944,
+      "switches": {
+        "matched_in_window": 10946841,
+        "aggregate_thread_offcpu_seconds": 111.75309342262335,
+        "longest_interval_seconds": 0.04743321496061981,
+        "unmatched_in": 25,
+        "unmatched_out": 0,
+        "wall_seconds": 10.150646202033386,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "syscalls",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 200,
+      "errors": 0,
+      "measurement_started_monotonic": 1176643.049194835,
+      "measurement_finished_monotonic": 1176643.13804781,
+      "measurement_started_epoch": 1794203463.7692194,
+      "measurement_finished_epoch": 1794203463.8580723,
+      "profile_seconds": 0.08885297505185008,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "rss_lifetime_hwm_bytes": 9744384,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 26,
+          "returned_bytes": 8379,
+          "errors": 0,
+          "aggregate_wall_seconds": 7.099999999999999e-05,
+          "calls_per_transaction": 0.13
+        },
+        "futex": {
+          "calls": 3733,
+          "returned_bytes": 0,
+          "errors": 452,
+          "aggregate_wall_seconds": 2.7487140000000228,
+          "calls_per_transaction": 18.665
+        },
+        "write": {
+          "calls": 186,
+          "returned_bytes": 1709,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.004877999999999999,
+          "calls_per_transaction": 0.93
+        },
+        "epoll_wait": {
+          "calls": 1000,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.1537100000000004,
+          "calls_per_transaction": 5.0
+        },
+        "sendto": {
+          "calls": 1938,
+          "returned_bytes": 105447,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.07459900000000008,
+          "calls_per_transaction": 9.69
+        },
+        "recvfrom": {
+          "calls": 11458,
+          "returned_bytes": 209355,
+          "errors": 1506,
+          "aggregate_wall_seconds": 0.4028480000000017,
+          "calls_per_transaction": 57.29
+        },
+        "writev": {
+          "calls": 7638,
+          "returned_bytes": 205664,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.29405800000000004,
+          "calls_per_transaction": 38.19
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "syscalls",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 200,
+      "errors": 0,
+      "measurement_started_monotonic": 1176643.423589235,
+      "measurement_finished_monotonic": 1176643.518191902,
+      "measurement_started_epoch": 1794203464.1436136,
+      "measurement_finished_epoch": 1794203464.2382164,
+      "profile_seconds": 0.0946026670280844,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "rss_lifetime_hwm_bytes": 13504512,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 26,
+          "returned_bytes": 8383,
+          "errors": 0,
+          "aggregate_wall_seconds": 8.299999999999998e-05,
+          "calls_per_transaction": 0.13
+        },
+        "futex": {
+          "calls": 3651,
+          "returned_bytes": 0,
+          "errors": 443,
+          "aggregate_wall_seconds": 2.852571000000002,
+          "calls_per_transaction": 18.255
+        },
+        "write": {
+          "calls": 133,
+          "returned_bytes": 1285,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0035640000000000008,
+          "calls_per_transaction": 0.665
+        },
+        "epoll_wait": {
+          "calls": 938,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.1588759999999997,
+          "calls_per_transaction": 4.69
+        },
+        "sendto": {
+          "calls": 1938,
+          "returned_bytes": 105446,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.07781600000000002,
+          "calls_per_transaction": 9.69
+        },
+        "recvfrom": {
+          "calls": 11844,
+          "returned_bytes": 227752,
+          "errors": 1492,
+          "aggregate_wall_seconds": 0.43778200000000533,
+          "calls_per_transaction": 59.22
+        },
+        "writev": {
+          "calls": 8338,
+          "returned_bytes": 218652,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.35519399999999945,
+          "calls_per_transaction": 41.69
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "syscalls",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 2000,
+      "errors": 0,
+      "measurement_started_monotonic": 1176646.495947472,
+      "measurement_finished_monotonic": 1176647.422917261,
+      "measurement_started_epoch": 1794203467.215972,
+      "measurement_finished_epoch": 1794203468.1429417,
+      "profile_seconds": 0.9269697889685631,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 0.7500000000000001,
+      "rss_peak_bytes_observed": 25968640,
+      "observed_cpu_window_seconds": 0.5015947411302477,
+      "rss_lifetime_hwm_bytes": 27140096,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 27,
+          "returned_bytes": 8384,
+          "errors": 0,
+          "aggregate_wall_seconds": 6.999999999999998e-05,
+          "calls_per_transaction": 0.0135
+        },
+        "futex": {
+          "calls": 58694,
+          "returned_bytes": 0,
+          "errors": 14568,
+          "aggregate_wall_seconds": 40.632638000006125,
+          "calls_per_transaction": 29.347
+        },
+        "write": {
+          "calls": 1151,
+          "returned_bytes": 9429,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.033941000000000006,
+          "calls_per_transaction": 0.5755
+        },
+        "epoll_wait": {
+          "calls": 12850,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 2.556623000000062,
+          "calls_per_transaction": 6.425
+        },
+        "sendto": {
+          "calls": 19059,
+          "returned_bytes": 1042713,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.7825039999999815,
+          "calls_per_transaction": 9.5295
+        },
+        "recvfrom": {
+          "calls": 99289,
+          "returned_bytes": 1971492,
+          "errors": 14616,
+          "aggregate_wall_seconds": 3.6427990000002244,
+          "calls_per_transaction": 49.6445
+        },
+        "writev": {
+          "calls": 76038,
+          "returned_bytes": 2052117,
+          "errors": 0,
+          "aggregate_wall_seconds": 3.043503999999975,
+          "calls_per_transaction": 38.019
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "mode": "syscalls",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 2000,
+      "errors": 0,
+      "measurement_started_monotonic": 1176651.009340473,
+      "measurement_finished_monotonic": 1176652.001912962,
+      "measurement_started_epoch": 1794203471.729365,
+      "measurement_finished_epoch": 1794203472.7219374,
+      "profile_seconds": 0.9925724889617413,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 1.16,
+      "rss_peak_bytes_observed": 29511680,
+      "observed_cpu_window_seconds": 0.7530604319181293,
+      "rss_lifetime_hwm_bytes": 30781440,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 27,
+          "returned_bytes": 8388,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0006969999999999999,
+          "calls_per_transaction": 0.0135
+        },
+        "futex": {
+          "calls": 86444,
+          "returned_bytes": 0,
+          "errors": 23976,
+          "aggregate_wall_seconds": 40.19016600000636,
+          "calls_per_transaction": 43.222
+        },
+        "write": {
+          "calls": 1171,
+          "returned_bytes": 9589,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.03361500000000003,
+          "calls_per_transaction": 0.5855
+        },
+        "epoll_wait": {
+          "calls": 16700,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 2.4828770000000726,
+          "calls_per_transaction": 8.35
+        },
+        "sendto": {
+          "calls": 19059,
+          "returned_bytes": 1042675,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.7504909999999834,
+          "calls_per_transaction": 9.5295
+        },
+        "recvfrom": {
+          "calls": 103216,
+          "returned_bytes": 2155378,
+          "errors": 14543,
+          "aggregate_wall_seconds": 3.630213000000208,
+          "calls_per_transaction": 51.608
+        },
+        "writev": {
+          "calls": 83038,
+          "returned_bytes": 2182931,
+          "errors": 0,
+          "aggregate_wall_seconds": 3.1173590000000773,
+          "calls_per_transaction": 41.519
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "cpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 84637,
+      "errors": 0,
+      "measurement_started_monotonic": 1176654.36005823,
+      "measurement_finished_monotonic": 1176664.369380764,
+      "measurement_started_epoch": 1794203475.080083,
+      "measurement_finished_epoch": 1794203485.0894053,
+      "profile_seconds": 10.009322533849627,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 6.21,
+      "rss_peak_bytes_observed": 9187328,
+      "observed_cpu_window_seconds": 9.766538408817723,
+      "rss_lifetime_hwm_bytes": 9248768,
+      "cpu": {
+        "samples": 642,
+        "period_weight": 3226130250,
+        "categories": [
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 313,
+            "period_share": 0.48753894080996885
+          },
+          {
+            "name": "pool_admission_handoff",
+            "samples": 227,
+            "period_share": 0.35358255451713394
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 46,
+            "period_share": 0.07165109034267912
+          },
+          {
+            "name": "frame_write",
+            "samples": 21,
+            "period_share": 0.03271028037383177
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 21,
+            "period_share": 0.03271028037383177
+          },
+          {
+            "name": "response_delivery",
+            "samples": 5,
+            "period_share": 0.00778816199376947
+          },
+          {
+            "name": "query_classification",
+            "samples": 5,
+            "period_share": 0.00778816199376947
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 4,
+            "period_share": 0.006230529595015576
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.059190031152647975
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.020249221183800622
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.017133956386292833
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.01557632398753894
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.01557632398753894
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.014018691588785047
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x1f (inlined)",
+            "period_share": 0.010903426791277258
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.010903426791277258
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.010903426791277258
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.010903426791277258
+          },
+          {
+            "symbol": "syscall+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009345794392523364
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x31 (inlined)",
+            "period_share": 0.009345794392523364
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_add::<usize, usize>+0x16a (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::net::tcp::stream::TcpStream> as core::ops::deref::Deref>::deref+0x7 (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x13 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "core::mem::replace::<core::option::Option<tokio::runtime::scheduler::multi_thread::worker::with_current<(), <tokio::runtime::scheduler::multi_thread::handle::Handle>::schedule_task::{closure#0}>::{closure#0}>>+0x34 (inlined)",
+            "period_share": 0.00778816199376947
+          },
+          {
+            "symbol": "<core::iter::adapters::filter_map::FilterMap<std::collections::hash::map::Iter<rustybouncer::router::pool::Key, rustybouncer::router::pool::Group>, <rustybouncer::router::pool::Manager>::decide::{closure#1}> as core::iter::traits::iterator::Iterator>::min_by_key::<u64, <rustybouncer::router::pool::Manager>::decide::{closure#2}>+0x8f0 (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x161 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "<tokio::sync::notify::NotifiedProject>::poll_notified+0x18 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x53 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_or::<usize, usize>+0x5d (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x57 ([vdso])",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::fetch_update_action::<<tokio::runtime::task::state::State>::transition_to_notified_by_val::{closure#0}, tokio::runtime::task::state::TransitionToNotifiedByVal>+0x15 (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "<u64>::wrapping_add+0x13f (inlined)",
+            "period_share": 0.006230529595015576
+          },
+          {
+            "symbol": "tokio::sync::notify::get_num_notify_waiters_calls+0x103 (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds>>::reset+0x17 (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<core::cell::BorrowRefMut>::new+0xda (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "tokio::time::timeout::timeout_at::<<rustybouncer::cancel::Control>::wait_delivered::{closure#0}::{closure#0}>+0x5f (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_add::<usize, usize>+0x29 (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "_mid_memalign+0x94 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::decide::{closure#1}+0x39a (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0x30 (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<tokio::runtime::task::core::Core<rustybouncer::main::{closure#0}::{closure#9}, alloc::sync::Arc<tokio::runtime::scheduler::current_thread::Handle>>>::poll::{closure#0}+0x4e (inlined)",
+            "period_share": 0.004672897196261682
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::decide::{closure#3}+0x93c (inlined)",
+            "period_share": 0.004672897196261682
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "cpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 74369,
+      "errors": 0,
+      "measurement_started_monotonic": 1176672.544796139,
+      "measurement_finished_monotonic": 1176682.55503381,
+      "measurement_started_epoch": 1794203493.2648208,
+      "measurement_finished_epoch": 1794203503.2750585,
+      "profile_seconds": 10.010237670969218,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 6.62,
+      "rss_peak_bytes_observed": 11042816,
+      "observed_cpu_window_seconds": 9.766586752841249,
+      "rss_lifetime_hwm_bytes": 11177984,
+      "cpu": {
+        "samples": 808,
+        "period_weight": 4060301000,
+        "categories": [
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 408,
+            "period_share": 0.504950495049505
+          },
+          {
+            "name": "pool_admission_handoff",
+            "samples": 210,
+            "period_share": 0.2599009900990099
+          },
+          {
+            "name": "session_affinity_analysis",
+            "samples": 103,
+            "period_share": 0.12747524752475248
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 39,
+            "period_share": 0.04826732673267327
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 23,
+            "period_share": 0.028465346534653466
+          },
+          {
+            "name": "frame_write",
+            "samples": 16,
+            "period_share": 0.019801980198019802
+          },
+          {
+            "name": "response_delivery",
+            "samples": 4,
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "name": "query_classification",
+            "samples": 3,
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 2,
+            "period_share": 0.0024752475247524753
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.04826732673267327
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.01485148514851485
+          },
+          {
+            "symbol": "syscall+0x1d (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.013613861386138614
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.012376237623762377
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x13 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009900990099009901
+          },
+          {
+            "symbol": "_int_free_chunk+0x3f (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.009900990099009901
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.009900990099009901
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.008663366336633664
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.008663366336633664
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.008663366336633664
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.007425742574257425
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.006188118811881188
+          },
+          {
+            "symbol": "<core::result::Result<core::option::Option<sqlparser::tokenizer::Token>, sqlparser::tokenizer::TokenizerError> as core::ops::try_trait::Try>::branch+0x133 (inlined)",
+            "period_share": 0.006188118811881188
+          },
+          {
+            "symbol": "__libc_malloc2+0x59 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.006188118811881188
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.006188118811881188
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x144 (inlined)",
+            "period_share": 0.006188118811881188
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x57 ([vdso])",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x130 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock+0x46 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "rustybouncer::main::{closure#0}::{closure#9}+0x30 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::net::tcp::stream::TcpStream> as core::ops::deref::Deref>::deref+0x7 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<core::iter::adapters::zip::Zip<core::slice::iter::Iter<u8>, core::slice::iter::Iter<u8>> as core::iter::adapters::zip::ZipImpl<core::slice::iter::Iter<u8>, core::slice::iter::Iter<u8>>>::next+0x291 (inlined)",
+            "period_share": 0.0049504950495049506
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<usize as core::cmp::Ord>::min+0x2bb (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x1f (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<tokio::time::instant::Instant as core::ops::arith::Add<core::time::Duration>>::add+0x1 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "cfree@GLIBC_2.2.5+0x1b (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<core::task::wake::Waker>::will_wake+0x96 (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "__memcmp_evex_movbe+0x25 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "__GI___writev+0x5c (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x24 (inlined)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "<core::hash::sip::Hasher<core::hash::sip::Sip13Rounds> as core::hash::Hasher>::write+0x124 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.0037128712871287127
+          },
+          {
+            "symbol": "_int_malloc+0x994 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.0037128712871287127
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "cpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 26129,
+      "errors": 0,
+      "measurement_started_monotonic": 1176702.786916052,
+      "measurement_finished_monotonic": 1176712.98101694,
+      "measurement_started_epoch": 1794203523.5069404,
+      "measurement_finished_epoch": 1794203533.7010415,
+      "profile_seconds": 10.194100887980312,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 8.65,
+      "rss_peak_bytes_observed": 28311552,
+      "observed_cpu_window_seconds": 10.016592804109678,
+      "rss_lifetime_hwm_bytes": 28397568,
+      "cpu": {
+        "samples": 1504,
+        "period_weight": 7557788000,
+        "categories": [
+          {
+            "name": "pool_admission_handoff",
+            "samples": 947,
+            "period_share": 0.629654255319149
+          },
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 468,
+            "period_share": 0.31117021276595747
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 71,
+            "period_share": 0.04720744680851064
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 8,
+            "period_share": 0.005319148936170213
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 4,
+            "period_share": 0.0026595744680851063
+          },
+          {
+            "name": "query_classification",
+            "samples": 2,
+            "period_share": 0.0013297872340425532
+          },
+          {
+            "name": "frame_write",
+            "samples": 2,
+            "period_share": 0.0013297872340425532
+          },
+          {
+            "name": "metrics",
+            "samples": 2,
+            "period_share": 0.0013297872340425532
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.09175531914893617
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.023936170212765957
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.022606382978723406
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.020611702127659573
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.01795212765957447
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::inject::synced::Synced>::pop::<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x9d (inlined)",
+            "period_share": 0.017287234042553192
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.017287234042553192
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.015957446808510637
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.015292553191489361
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.013962765957446808
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.013297872340425532
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.011968085106382979
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.011968085106382979
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_swap::<usize>+0x89 (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock+0x46 (inlined)",
+            "period_share": 0.010638297872340425
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::decide::{closure#1}+0x7ce (inlined)",
+            "period_share": 0.00997340425531915
+          },
+          {
+            "symbol": "core::ptr::write::<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>+0x121 (inlined)",
+            "period_share": 0.009308510638297872
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.009308510638297872
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x144 (inlined)",
+            "period_share": 0.009308510638297872
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::acquire_wait::{closure#0}+0x7bc (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::acquire_wait::{closure#0}+0xef1 (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_add::<usize, usize>+0x16a (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::net::tcp::stream::TcpStream> as core::ops::deref::Deref>::deref+0x7 (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_or::<usize, usize>+0x5d (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.008643617021276596
+          },
+          {
+            "symbol": "<core::iter::adapters::filter_map::FilterMap<std::collections::hash::map::Iter<rustybouncer::router::pool::Key, rustybouncer::router::pool::Group>, <rustybouncer::router::pool::Manager>::decide::{closure#1}> as core::iter::traits::iterator::Iterator>::min_by_key::<u64, <rustybouncer::router::pool::Manager>::decide::{closure#2}>+0x8f0 (inlined)",
+            "period_share": 0.007978723404255319
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::fetch_update_action::<<tokio::runtime::task::state::State>::transition_to_notified_by_val::{closure#0}, tokio::runtime::task::state::TransitionToNotifiedByVal>+0x15 (inlined)",
+            "period_share": 0.007313829787234043
+          },
+          {
+            "symbol": "<u64>::wrapping_add+0x13f (inlined)",
+            "period_share": 0.007313829787234043
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0x30 (inlined)",
+            "period_share": 0.007313829787234043
+          },
+          {
+            "symbol": "tokio::runtime::context::with_scheduler::<(), tokio::runtime::scheduler::multi_thread::worker::with_current<(), <tokio::runtime::scheduler::multi_thread::handle::Handle>::schedule_task::{closure#0}>::{closure#0}>+0x14 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.006648936170212766
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.006648936170212766
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x1f (inlined)",
+            "period_share": 0.006648936170212766
+          },
+          {
+            "symbol": "<hashbrown::raw::RawIterRange<(rustybouncer::router::pool::Key, rustybouncer::router::pool::Group)>>::fold_impl::<<hashbrown::map::Iter<rustybouncer::router::pool::Key, rustybouncer::router::pool::Group> as core::iter::traits::iterator::Iterator>::fold<(u64, (u64, rustybouncer::router::pool::Key)), core::iter::adapters::filter_map::filter_map_fold<(&rustybouncer::router::pool::Key, &rustybouncer::router::pool::Group), (u64, rustybouncer::router::pool::Key), (u64, (u64, rustybouncer::router::pool::Key)), <rustybouncer::router::pool::Manager>::decide::{closure#1}, core::iter::adapters::map::map_fold<(u64, rustybouncer::router::pool::Key), (u64, (u64, rustybouncer::router::pool::Key)), (u64, (u64, rustybouncer::router::pool::Key)), core::iter::traits::iterator::Iterator::min_by_key::key<(u64, rustybouncer::router::pool::Key), u64, <rustybouncer::router::pool::Manager>::decide::{closure#2}>::{closure#0}, core::iter::traits::iterator::Iterator::min_by::fold<(u64, (u64, rustybouncer::router::pool::Key)), core::iter::traits::iterator::Iterator::min_by_key::compare<(u64, rustybouncer::router::pool::Key), u64>>::{closure#0}>::{closure#0}>::{closure#0}>::{closure#0}, (u64, (u64, rustybouncer::router::pool::Key))>+0x37b (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.006648936170212766
+          },
+          {
+            "symbol": "rustybouncer::main::{closure#0}::{closure#9}+0x30 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.006648936170212766
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle> as core::ops::drop::Drop>::drop+0x25 (inlined)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::queue::Local<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::pop+0x5b0 (inlined)",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x72 ([vdso])",
+            "period_share": 0.005319148936170213
+          },
+          {
+            "symbol": "__vdso_clock_gettime+0x57 ([vdso])",
+            "period_share": 0.005319148936170213
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "cpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 25158,
+      "errors": 0,
+      "measurement_started_monotonic": 1176723.338950352,
+      "measurement_finished_monotonic": 1176733.556949021,
+      "measurement_started_epoch": 1794203544.0589747,
+      "measurement_finished_epoch": 1794203554.2769735,
+      "profile_seconds": 10.217998669017106,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 8.700000000000001,
+      "rss_peak_bytes_observed": 30023680,
+      "observed_cpu_window_seconds": 10.016806456027552,
+      "rss_lifetime_hwm_bytes": 30117888,
+      "cpu": {
+        "samples": 1535,
+        "period_weight": 7713566875,
+        "categories": [
+          {
+            "name": "pool_admission_handoff",
+            "samples": 849,
+            "period_share": 0.5530944625407166
+          },
+          {
+            "name": "runtime_lifecycle_or_other",
+            "samples": 556,
+            "period_share": 0.36221498371335503
+          },
+          {
+            "name": "cancellation_control",
+            "samples": 63,
+            "period_share": 0.04104234527687296
+          },
+          {
+            "name": "session_affinity_analysis",
+            "samples": 43,
+            "period_share": 0.028013029315960912
+          },
+          {
+            "name": "frame_read_assembly",
+            "samples": 8,
+            "period_share": 0.005211726384364821
+          },
+          {
+            "name": "frame_write",
+            "samples": 5,
+            "period_share": 0.003257328990228013
+          },
+          {
+            "name": "response_delivery",
+            "samples": 4,
+            "period_share": 0.0026058631921824105
+          },
+          {
+            "name": "bulk_buffer_accounting",
+            "samples": 3,
+            "period_share": 0.001954397394136808
+          },
+          {
+            "name": "query_classification",
+            "samples": 2,
+            "period_share": 0.0013029315960912053
+          },
+          {
+            "name": "topology_discovery",
+            "samples": 1,
+            "period_share": 0.0006514657980456026
+          },
+          {
+            "name": "metrics",
+            "samples": 1,
+            "period_share": 0.0006514657980456026
+          }
+        ],
+        "self_symbols": [
+          {
+            "symbol": "__vdso_clock_gettime+0x55 ([vdso])",
+            "period_share": 0.06905537459283388
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_inc+0xa (inlined)",
+            "period_share": 0.02214983713355049
+          },
+          {
+            "symbol": "<tokio::io::ready::Ready as core::ops::bit::BitAnd>::bitand+0x1e (inlined)",
+            "period_share": 0.021498371335504887
+          },
+          {
+            "symbol": "<tokio::net::tcp::stream::TcpStream>::poll_read_priv+0x43 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.020195439739413682
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::inject::synced::Synced>::pop::<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>+0x9d (inlined)",
+            "period_share": 0.020195439739413682
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0xc (inlined)",
+            "period_share": 0.020195439739413682
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x59 (inlined)",
+            "period_share": 0.018892508143322474
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x87 (inlined)",
+            "period_share": 0.016286644951140065
+          },
+          {
+            "symbol": "<tokio::sync::task::atomic_waker::AtomicWaker>::do_register::<&core::task::wake::Waker>+0x1e (inlined)",
+            "period_share": 0.015635179153094463
+          },
+          {
+            "symbol": "core::ptr::write::<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>+0x121 (inlined)",
+            "period_share": 0.012377850162866449
+          },
+          {
+            "symbol": "core::ptr::copy_nonoverlapping::<u8>+0x2e (inlined)",
+            "period_share": 0.012377850162866449
+          },
+          {
+            "symbol": "core::sync::atomic::atomic_or::<usize, usize>+0x5d (inlined)",
+            "period_share": 0.011726384364820847
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::unlock+0x2a5 (inlined)",
+            "period_share": 0.011074918566775244
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1f (inlined)",
+            "period_share": 0.011074918566775244
+          },
+          {
+            "symbol": "<core::option::Option<core::ptr::non_null::NonNull<tokio::sync::notify::Waiter>>>::unwrap+0x110 (inlined)",
+            "period_share": 0.009771986970684038
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x144 (inlined)",
+            "period_share": 0.009120521172638436
+          },
+          {
+            "symbol": "<std::sys::sync::mutex::futex::Mutex>::lock+0x46 (inlined)",
+            "period_share": 0.009120521172638436
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x45a (inlined)",
+            "period_share": 0.007817589576547232
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x3cc (inlined)",
+            "period_share": 0.007817589576547232
+          },
+          {
+            "symbol": "rustybouncer::router::prepare_backend::{closure#0}+0x8f (inlined)",
+            "period_share": 0.007817589576547232
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x1b3 (inlined)",
+            "period_share": 0.0071661237785016286
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x19 (inlined)",
+            "period_share": 0.0071661237785016286
+          },
+          {
+            "symbol": "rustybouncer::router::session_work::{closure#0}+0x21 (inlined)",
+            "period_share": 0.0071661237785016286
+          },
+          {
+            "symbol": "core::hash::sip::u8to64_le+0x18f (inlined)",
+            "period_share": 0.0071661237785016286
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x91 (inlined)",
+            "period_share": 0.006514657980456026
+          },
+          {
+            "symbol": "rustybouncer::router::frontend::read::{closure#0}+0x24 (inlined)",
+            "period_share": 0.006514657980456026
+          },
+          {
+            "symbol": "rustybouncer::main::{closure#0}::{closure#9}+0x30 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.006514657980456026
+          },
+          {
+            "symbol": "<tokio::runtime::task::state::State>::ref_dec+0x30 (inlined)",
+            "period_share": 0.005863192182410423
+          },
+          {
+            "symbol": "<rustybouncer::router::pool::Manager>::acquire_wait::{closure#0}+0x7bc (inlined)",
+            "period_share": 0.005863192182410423
+          },
+          {
+            "symbol": "tokio::runtime::context::with_scheduler::<(), tokio::runtime::scheduler::multi_thread::worker::with_current<(), <tokio::runtime::scheduler::multi_thread::handle::Handle>::schedule_task::{closure#0}>::{closure#0}>+0x14 (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.005211726384364821
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::unlock+0x114 (inlined)",
+            "period_share": 0.005211726384364821
+          },
+          {
+            "symbol": "<hashbrown::raw::RawIterRange<(rustybouncer::router::pool::Key, rustybouncer::router::pool::Group)>>::fold_impl::<<hashbrown::map::Iter<rustybouncer::router::pool::Key, rustybouncer::router::pool::Group> as core::iter::traits::iterator::Iterator>::fold<(u64, (u64, rustybouncer::router::pool::Key)), core::iter::adapters::filter_map::filter_map_fold<(&rustybouncer::router::pool::Key, &rustybouncer::router::pool::Group), (u64, rustybouncer::router::pool::Key), (u64, (u64, rustybouncer::router::pool::Key)), <rustybouncer::router::pool::Manager>::decide::{closure#1}, core::iter::adapters::map::map_fold<(u64, rustybouncer::router::pool::Key), (u64, (u64, rustybouncer::router::pool::Key)), (u64, (u64, rustybouncer::router::pool::Key)), core::iter::traits::iterator::Iterator::min_by_key::key<(u64, rustybouncer::router::pool::Key), u64, <rustybouncer::router::pool::Manager>::decide::{closure#2}>::{closure#0}, core::iter::traits::iterator::Iterator::min_by::fold<(u64, (u64, rustybouncer::router::pool::Key)), core::iter::traits::iterator::Iterator::min_by_key::compare<(u64, rustybouncer::router::pool::Key), u64>>::{closure#0}>::{closure#0}>::{closure#0}>::{closure#0}, (u64, (u64, rustybouncer::router::pool::Key))>+0x37b (/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer)",
+            "period_share": 0.005211726384364821
+          },
+          {
+            "symbol": "core::mem::replace::<isize>+0xff (inlined)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "__memmove_avx512_unaligned_erms+0x13 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::multi_thread::queue::Local<alloc::sync::Arc<tokio::runtime::scheduler::multi_thread::handle::Handle>>>::pop+0x5b0 (inlined)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "__syscall_cancel_arch_end+0x0 (/nix/store/pqyiidz5mi73wv5f91d48s9plcqyj5bz-glibc-2.44-57/lib/libc.so.6)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "<alloc::sync::Arc<tokio::net::tcp::stream::TcpStream> as core::ops::deref::Deref>::deref+0x7 (inlined)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "<tokio::runtime::task::raw::RawTask>::poll+0xd0 (inlined)",
+            "period_share": 0.004560260586319218
+          },
+          {
+            "symbol": "<parking_lot::raw_mutex::RawMutex as lock_api::mutex::RawMutex>::lock+0x64 (inlined)",
+            "period_share": 0.003908794788273616
+          },
+          {
+            "symbol": "<tokio::runtime::scheduler::Handle as core::clone::Clone>::clone+0x130 (inlined)",
+            "period_share": 0.003908794788273616
+          }
+        ],
+        "interpretation": "Exclusive user callchain buckets in listed precedence, clipped to the controlled load window. Pool includes admission/handoff bookkeeping; cancellation includes repeated control polling. Kernel execution and unresolved/inlined ancestors limit attribution. Shares are not isolated marginal elapsed costs."
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "offcpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 83888,
+      "errors": 0,
+      "measurement_started_monotonic": 1176749.486595984,
+      "measurement_finished_monotonic": 1176759.496916743,
+      "measurement_started_epoch": 1794203570.2066205,
+      "measurement_finished_epoch": 1794203580.2169416,
+      "profile_seconds": 10.010320758912712,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 6.2,
+      "rss_peak_bytes_observed": 9121792,
+      "observed_cpu_window_seconds": 9.767552363919094,
+      "rss_lifetime_hwm_bytes": 9187328,
+      "switches": {
+        "matched_in_window": 256435,
+        "aggregate_thread_offcpu_seconds": 10.133734514471143,
+        "longest_interval_seconds": 0.008709999965503812,
+        "unmatched_in": 1,
+        "unmatched_out": 0,
+        "wall_seconds": 10.010320758912712,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "offcpu",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 74178,
+      "errors": 0,
+      "measurement_started_monotonic": 1176765.830954356,
+      "measurement_finished_monotonic": 1176775.841230509,
+      "measurement_started_epoch": 1794203586.550979,
+      "measurement_finished_epoch": 1794203596.561255,
+      "profile_seconds": 10.010276153218001,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 6.62,
+      "rss_peak_bytes_observed": 11141120,
+      "observed_cpu_window_seconds": 9.766640583984554,
+      "rss_lifetime_hwm_bytes": 11268096,
+      "switches": {
+        "matched_in_window": 225121,
+        "aggregate_thread_offcpu_seconds": 10.106437302893028,
+        "longest_interval_seconds": 0.007305999984964728,
+        "unmatched_in": 1,
+        "unmatched_out": 0,
+        "wall_seconds": 10.010276153218001,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "offcpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 26031,
+      "errors": 0,
+      "measurement_started_monotonic": 1176789.954804305,
+      "measurement_finished_monotonic": 1176800.148314323,
+      "measurement_started_epoch": 1794203610.6748288,
+      "measurement_finished_epoch": 1794203620.868339,
+      "profile_seconds": 10.193510018056259,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 8.64,
+      "rss_peak_bytes_observed": 28573696,
+      "observed_cpu_window_seconds": 10.01715467683971,
+      "rss_lifetime_hwm_bytes": 28610560,
+      "switches": {
+        "matched_in_window": 111736,
+        "aggregate_thread_offcpu_seconds": 10.440357028273866,
+        "longest_interval_seconds": 0.012214000103995204,
+        "unmatched_in": 1,
+        "unmatched_out": 0,
+        "wall_seconds": 10.193510018056259,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "offcpu",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 25067,
+      "errors": 0,
+      "measurement_started_monotonic": 1176808.548558119,
+      "measurement_finished_monotonic": 1176818.759171824,
+      "measurement_started_epoch": 1794203629.2685826,
+      "measurement_finished_epoch": 1794203639.4791963,
+      "profile_seconds": 10.210613704985008,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 8.73,
+      "rss_peak_bytes_observed": 30191616,
+      "observed_cpu_window_seconds": 10.016023888951167,
+      "rss_lifetime_hwm_bytes": 30355456,
+      "switches": {
+        "matched_in_window": 106147,
+        "aggregate_thread_offcpu_seconds": 10.39263742021285,
+        "longest_interval_seconds": 0.009718999965116382,
+        "unmatched_in": 1,
+        "unmatched_out": 0,
+        "wall_seconds": 10.210613704985008,
+        "interpretation": "sum over threads; sleep plus runnable delay, not exact kernel blocking stacks; incomplete edge intervals excluded"
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "syscalls",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "transactions": 200,
+      "errors": 0,
+      "measurement_started_monotonic": 1176831.127743877,
+      "measurement_finished_monotonic": 1176831.270905456,
+      "measurement_started_epoch": 1794203651.8477688,
+      "measurement_finished_epoch": 1794203651.99093,
+      "profile_seconds": 0.14316157903522253,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 0.0,
+      "rss_peak_bytes_observed": 8056832,
+      "observed_cpu_window_seconds": 0.0,
+      "rss_lifetime_hwm_bytes": 8450048,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 11,
+          "returned_bytes": 9177,
+          "errors": 0,
+          "aggregate_wall_seconds": 4.2999999999999995e-05,
+          "calls_per_transaction": 0.055
+        },
+        "write": {
+          "calls": 70,
+          "returned_bytes": 781,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0003079999999999998,
+          "calls_per_transaction": 0.35
+        },
+        "epoll_wait": {
+          "calls": 499,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.13127800000000103,
+          "calls_per_transaction": 2.495
+        },
+        "sendto": {
+          "calls": 1938,
+          "returned_bytes": 105451,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.01087100000000005,
+          "calls_per_transaction": 9.69
+        },
+        "recvfrom": {
+          "calls": 11504,
+          "returned_bytes": 209367,
+          "errors": 1552,
+          "aggregate_wall_seconds": 0.024664999999998466,
+          "calls_per_transaction": 57.52
+        },
+        "futex": {
+          "calls": 689,
+          "returned_bytes": 0,
+          "errors": 1,
+          "aggregate_wall_seconds": 0.36329499999999837,
+          "calls_per_transaction": 3.445
+        },
+        "writev": {
+          "calls": 7638,
+          "returned_bytes": 205672,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.03832799999999976,
+          "calls_per_transaction": 38.19
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "syscalls",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 200,
+      "errors": 0,
+      "measurement_started_monotonic": 1176831.606977399,
+      "measurement_finished_monotonic": 1176831.742271773,
+      "measurement_started_epoch": 1794203652.3270018,
+      "measurement_finished_epoch": 1794203652.4622965,
+      "profile_seconds": 0.1352943740785122,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 0.0,
+      "rss_peak_bytes_observed": 9854976,
+      "observed_cpu_window_seconds": 0.0,
+      "rss_lifetime_hwm_bytes": 10641408,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 11,
+          "returned_bytes": 9181,
+          "errors": 0,
+          "aggregate_wall_seconds": 4.799999999999999e-05,
+          "calls_per_transaction": 0.055
+        },
+        "write": {
+          "calls": 69,
+          "returned_bytes": 773,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0002509999999999998,
+          "calls_per_transaction": 0.345
+        },
+        "epoll_wait": {
+          "calls": 551,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.12811400000000123,
+          "calls_per_transaction": 2.755
+        },
+        "sendto": {
+          "calls": 1938,
+          "returned_bytes": 105443,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.010534000000000076,
+          "calls_per_transaction": 9.69
+        },
+        "recvfrom": {
+          "calls": 11895,
+          "returned_bytes": 227743,
+          "errors": 1543,
+          "aggregate_wall_seconds": 0.025537999999998912,
+          "calls_per_transaction": 59.475
+        },
+        "futex": {
+          "calls": 673,
+          "returned_bytes": 0,
+          "errors": 1,
+          "aggregate_wall_seconds": 0.3884469999999986,
+          "calls_per_transaction": 3.365
+        },
+        "writev": {
+          "calls": 8338,
+          "returned_bytes": 218646,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.04455499999999854,
+          "calls_per_transaction": 41.69
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "syscalls",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "transactions": 2000,
+      "errors": 0,
+      "measurement_started_monotonic": 1176834.320048284,
+      "measurement_finished_monotonic": 1176836.019653697,
+      "measurement_started_epoch": 1794203655.040073,
+      "measurement_finished_epoch": 1794203656.7396781,
+      "profile_seconds": 1.6996054130140692,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 0.71,
+      "rss_peak_bytes_observed": 25255936,
+      "observed_cpu_window_seconds": 1.5023423130623996,
+      "rss_lifetime_hwm_bytes": 25341952,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 12,
+          "returned_bytes": 9178,
+          "errors": 0,
+          "aggregate_wall_seconds": 4.499999999999999e-05,
+          "calls_per_transaction": 0.006
+        },
+        "write": {
+          "calls": 544,
+          "returned_bytes": 4573,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0016970000000000036,
+          "calls_per_transaction": 0.272
+        },
+        "epoll_wait": {
+          "calls": 23381,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 1.2280210000002496,
+          "calls_per_transaction": 11.6905
+        },
+        "sendto": {
+          "calls": 19062,
+          "returned_bytes": 1042906,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.0993270000000209,
+          "calls_per_transaction": 9.531
+        },
+        "recvfrom": {
+          "calls": 99646,
+          "returned_bytes": 1972039,
+          "errors": 14970,
+          "aggregate_wall_seconds": 0.2003100000001422,
+          "calls_per_transaction": 49.823
+        },
+        "futex": {
+          "calls": 7977,
+          "returned_bytes": 0,
+          "errors": 6,
+          "aggregate_wall_seconds": 4.047380999999766,
+          "calls_per_transaction": 3.9885
+        },
+        "writev": {
+          "calls": 76038,
+          "returned_bytes": 2052097,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.3562719999999915,
+          "calls_per_transaction": 38.019
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "mode": "syscalls",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "transactions": 2000,
+      "errors": 0,
+      "measurement_started_monotonic": 1176840.134388543,
+      "measurement_finished_monotonic": 1176841.850860518,
+      "measurement_started_epoch": 1794203660.854413,
+      "measurement_finished_epoch": 1794203662.5708852,
+      "profile_seconds": 1.7164719749707729,
+      "not_timing_comparable": true,
+      "pool_size": 16,
+      "client_capacity": 1200,
+      "workload": "churn, BEGIN/guarded lookup/COMMIT",
+      "amortization_scope": "profiler lifetime includes real prepared preflight, setup/probes and controlled load; raw time windows retained",
+      "cpu_seconds_observed": 0.7500000000000001,
+      "rss_peak_bytes_observed": 27328512,
+      "observed_cpu_window_seconds": 1.5024296678602695,
+      "rss_lifetime_hwm_bytes": 27414528,
+      "lifetime_syscalls_per_controlled_transaction": {
+        "read": {
+          "calls": 11,
+          "returned_bytes": 9181,
+          "errors": 0,
+          "aggregate_wall_seconds": 3.5999999999999994e-05,
+          "calls_per_transaction": 0.0055
+        },
+        "write": {
+          "calls": 387,
+          "returned_bytes": 3317,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.001187999999999996,
+          "calls_per_transaction": 0.1935
+        },
+        "epoll_wait": {
+          "calls": 31196,
+          "returned_bytes": 0,
+          "errors": 0,
+          "aggregate_wall_seconds": 1.8519690000004423,
+          "calls_per_transaction": 15.598
+        },
+        "sendto": {
+          "calls": 19068,
+          "returned_bytes": 1043308,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.10304200000001176,
+          "calls_per_transaction": 9.534
+        },
+        "recvfrom": {
+          "calls": 103380,
+          "returned_bytes": 2157172,
+          "errors": 14698,
+          "aggregate_wall_seconds": 0.21509800000015766,
+          "calls_per_transaction": 51.69
+        },
+        "futex": {
+          "calls": 7940,
+          "returned_bytes": 0,
+          "errors": 4,
+          "aggregate_wall_seconds": 5.15171499999988,
+          "calls_per_transaction": 3.97
+        },
+        "writev": {
+          "calls": 83038,
+          "returned_bytes": 2182973,
+          "errors": 0,
+          "aggregate_wall_seconds": 0.3780869999999314,
+          "calls_per_transaction": 41.519
+        }
+      }
+    }
+  ],
+  "count": 24,
+  "not_normal_timing": true
+}

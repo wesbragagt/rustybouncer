@@ -1,0 +1,53 @@
+{
+  "command": [
+    "benchmarks/pool_profile.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profiles-before",
+    "--profile-binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer",
+    "--production-binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-ownership-frozen/production"
+  ],
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/profile-before-target/release/rustybouncer",
+  "binary_sha256": "bf044fdfaaeb55912ebfc49a53ea52534a347fb4ca9dbda4f060c6fa34a026cf",
+  "production_sha256": "208e98670db9a76d3ce4ca2528cedda4b8e4f1a27e1b162fcfe747ae7efef9b3",
+  "source_commit": "487a7b47e923ac7e292cb63ebfd4df449a59f798",
+  "source_status": " M benchmarks/README.md\n M benchmarks/performance_profile.py\n M benchmarks/workload_compare.py\n M docs/grafana.md\n M docs/metrics.md\n M tests/test_profiling.py\n?? benchmarks/failover_load.py\n?? benchmarks/performance_summary.py\n?? benchmarks/pool_compare.py\n?? benchmarks/pool_profile.py\n?? docs/benchmarks/perf-pools/\n",
+  "harness_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "profile_arms": 24,
+  "placements": [
+    "unrestricted",
+    "normalized"
+  ],
+  "clients": [
+    100,
+    1000
+  ],
+  "targets": [
+    "rustybouncer-pool-session",
+    "rustybouncer-pool-transaction"
+  ],
+  "modes": [
+    "cpu",
+    "offcpu",
+    "syscalls"
+  ],
+  "limitation": "instrumented attribution only; not throughput evidence; user-mode samples/switch records are not complete kernel scheduling traces"
+}

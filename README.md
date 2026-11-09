@@ -63,15 +63,15 @@ prepared statements, writes, TLS or large-result memory pressure.
 [Reproduce, individual runs, ranges and provenance](docs/benchmarks/pgbouncer-comparison.md).
 
 The [performance improvement task backlog](docs/tasks/pgbouncer-performance.md)
-records later wire/classifier studies and the remaining tail-latency/shared-pooling
-work. A final combined comparison remains pending; this table is preserved as
+records wire/classifier and shared-pooling acceptance, plus remaining scheduling
+and final comparison work. A final combined comparison remains pending; this table is preserved as
 historical evidence.
 
 ### Advantages and trade-offs
 
 | Area | PgBouncer | Rustybouncer today |
 | --- | --- | --- |
-| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared primary session reuse; default routed mode caches per-client connections. Transaction leases are an experimental partial slice; PERF-008 acceptance remains open |
+| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared session/transaction pools; 1,000 frontends with a 16-backend ceiling verified. Default routing keeps per-client caches; current shared-pool CPU/tail costs are documented |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
 | Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
@@ -155,9 +155,12 @@ A reader remains active during metadata bootstrap, including pipelined input.
 Explicit pool phase/queue metrics distinguish backend saturation from frontend
 admission. Positive tests provision all 10/100/1,000 frontend levels.
 
-**PERF-008 is incomplete:** full combined protocol verification and the complete
-PgBouncer comparison remain required work. This partial prototype must not be treated as
-full transaction-pool conformance.
+**Scoped PERF-008 acceptance is complete** as `0604ee8`: all 144 live cases and
+all 144 bounded-pool comparison arms passed, including actual 1,000-client scopes.
+[Evidence and trade-offs](docs/milestones/perf-pools.md) show backend capacity
+savings and the current high-concurrency CPU/tail gap. Scheduling improvement and
+the final combined comparison remain open; broader canonical conformance is
+tracked separately.
 Shared pooling uses routed trust authentication and the bounded response contract
 described below. The historical benchmark
 above did not measure this feature; final comparisons remain pending.

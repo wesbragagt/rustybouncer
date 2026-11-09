@@ -1,0 +1,204 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_1000_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_1000_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_1000_frontend_admission_limit (__main__.Queues.test_1000_frontend_admission_limit) ... ok
+test_100_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_100_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_100_frontend_admission_limit (__main__.Queues.test_100_frontend_admission_limit) ... ok
+test_10_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_10_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_10_frontend_admission_limit (__main__.Queues.test_10_frontend_admission_limit) ... ok
+test_bootstrap_disconnect_with_queued_bytes_immediately_refunds_ticket (__main__.Queues.test_bootstrap_disconnect_with_queued_bytes_immediately_refunds_ticket) ... ok
+test_fair_queue_order_observed_before_each_capacity_handoff (__main__.Queues.test_fair_queue_order_observed_before_each_capacity_handoff) ... ok
+test_independent_user_and_database_pools_progress_under_saturation (__main__.Queues.test_independent_user_and_database_pools_progress_under_saturation) ... ok
+test_obsolete_reset_releases_capacity_before_its_network_timeout (__main__.Queues.test_obsolete_reset_releases_capacity_before_its_network_timeout) ... ok
+test_queued_bootstrap_continues_on_new_primary_without_client_reconnect (__main__.Queues.test_queued_bootstrap_continues_on_new_primary_without_client_reconnect) ... ok
+test_reserve_creation_waits_for_delay_and_respects_global_limit (__main__.Queues.test_reserve_creation_waits_for_delay_and_respects_global_limit) ... ok
+test_wait_deadline_is_terminal_without_read_retry_or_dispatch (__main__.Queues.test_wait_deadline_is_terminal_without_read_retry_or_dispatch) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 40.509s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_1000_prepared_clients (__main__.SessionProtocol.test_1000_prepared_clients) ... ok
+test_100_prepared_clients (__main__.SessionProtocol.test_100_prepared_clients) ... ok
+test_10_prepared_clients (__main__.SessionProtocol.test_10_prepared_clients) ... ok
+test_bound_portal_outlives_close_statement_until_transaction_end (__main__.SessionProtocol.test_bound_portal_outlives_close_statement_until_transaction_end) ... ok
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.SessionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ok
+test_cancellation_during_partial_execute_delivery_closes_and_refunds (__main__.SessionProtocol.test_cancellation_during_partial_execute_delivery_closes_and_refunds) ... ok
+test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner (__main__.SessionProtocol.test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.SessionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ok
+test_duplicate_names_close_and_independent_clients (__main__.SessionProtocol.test_duplicate_names_close_and_independent_clients) ... ok
+test_extended_large_result_and_error_limit_do_not_expose_partial_rows (__main__.SessionProtocol.test_extended_large_result_and_error_limit_do_not_expose_partial_rows) ... ok
+test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames (__main__.SessionProtocol.test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames) ... ok
+test_extended_session_effects_and_deallocation_keep_native_namespace (__main__.SessionProtocol.test_extended_session_effects_and_deallocation_keep_native_namespace) ... ok
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.SessionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ok
+test_libpq_pipeline_repeated_parameterized_statements (__main__.SessionProtocol.test_libpq_pipeline_repeated_parameterized_statements) ... ok
+test_malformed_extended_frame_is_protocol_error_before_dispatch (__main__.SessionProtocol.test_malformed_extended_frame_is_protocol_error_before_dispatch) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.SessionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ok
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.SessionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... ok
+test_portal_suspension_transaction_lifetime_and_close (__main__.SessionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ok
+test_real_primary_promotion_fences_partial_write_and_recovers_new_work (__main__.SessionProtocol.test_real_primary_promotion_fences_partial_write_and_recovers_new_work) ... ok
+test_result_type_change_never_delivers_binary_using_old_description (__main__.SessionProtocol.test_result_type_change_never_delivers_binary_using_old_description) ... ok
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.SessionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ok
+test_slow_execute_receiver_delivery_deadline_refunds_ownership (__main__.SessionProtocol.test_slow_execute_receiver_delivery_deadline_refunds_ownership) ... ok
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.SessionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ok
+test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.SessionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute) ... ok
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.SessionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ok
+test_1000_prepared_clients (__main__.TransactionProtocol.test_1000_prepared_clients) ... ok
+test_100_prepared_clients (__main__.TransactionProtocol.test_100_prepared_clients) ... ok
+test_10_prepared_clients (__main__.TransactionProtocol.test_10_prepared_clients) ... ok
+test_bound_portal_outlives_close_statement_until_transaction_end (__main__.TransactionProtocol.test_bound_portal_outlives_close_statement_until_transaction_end) ... ok
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.TransactionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ok
+test_cancellation_during_partial_execute_delivery_closes_and_refunds (__main__.TransactionProtocol.test_cancellation_during_partial_execute_delivery_closes_and_refunds) ... ok
+test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner (__main__.TransactionProtocol.test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner) ... ok
+test_count_and_byte_limits_fail_closed_without_committing_prior_write (__main__.TransactionProtocol.test_count_and_byte_limits_fail_closed_without_committing_prior_write) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.TransactionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ok
+test_duplicate_names_close_and_independent_clients (__main__.TransactionProtocol.test_duplicate_names_close_and_independent_clients) ... ok
+test_extended_large_result_and_error_limit_do_not_expose_partial_rows (__main__.TransactionProtocol.test_extended_large_result_and_error_limit_do_not_expose_partial_rows) ... ok
+test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames (__main__.TransactionProtocol.test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames) ... ok
+test_extended_session_effects_and_deallocation_keep_native_namespace (__main__.TransactionProtocol.test_extended_session_effects_and_deallocation_keep_native_namespace) ... ok
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.TransactionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ok
+test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions (__main__.TransactionProtocol.test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions) ... ok
+test_libpq_pipeline_repeated_parameterized_statements (__main__.TransactionProtocol.test_libpq_pipeline_repeated_parameterized_statements) ... ok
+test_malformed_extended_frame_is_protocol_error_before_dispatch (__main__.TransactionProtocol.test_malformed_extended_frame_is_protocol_error_before_dispatch) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.TransactionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ok
+test_original_inferred_parameter_types_survive_schema_change (__main__.TransactionProtocol.test_original_inferred_parameter_types_survive_schema_change) ... ok
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.TransactionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... ok
+test_portal_count_is_bounded_even_after_its_statement_name_closes (__main__.TransactionProtocol.test_portal_count_is_bounded_even_after_its_statement_name_closes) ... ok
+test_portal_suspension_transaction_lifetime_and_close (__main__.TransactionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ok
+test_real_primary_promotion_fences_partial_write_and_recovers_new_work (__main__.TransactionProtocol.test_real_primary_promotion_fences_partial_write_and_recovers_new_work) ... ok
+test_result_type_change_never_delivers_binary_using_old_description (__main__.TransactionProtocol.test_result_type_change_never_delivers_binary_using_old_description) ... ok
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.TransactionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ok
+test_slow_execute_receiver_delivery_deadline_refunds_ownership (__main__.TransactionProtocol.test_slow_execute_receiver_delivery_deadline_refunds_ownership) ... ok
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.TransactionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ok
+test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.TransactionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute) ... ok
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.TransactionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ok
+test_waiting_parse_cancellation_and_eof_refund_without_dispatch (__main__.TransactionProtocol.test_waiting_parse_cancellation_and_eof_refund_without_dispatch) ... ok
+
+----------------------------------------------------------------------
+Ran 55 tests in 101.347s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_aborted_transaction_cannot_donate_backend_until_rollback (__main__.Transactions.test_aborted_transaction_cannot_donate_backend_until_rollback) ... ok
+test_autocommit_errors_release_and_next_queries_remain_correct (__main__.Transactions.test_autocommit_errors_release_and_next_queries_remain_correct) ... ok
+test_cancelled_transaction_preserves_savepoint_before_release (__main__.Transactions.test_cancelled_transaction_preserves_savepoint_before_release) ... ok
+test_commit_and_rollback_chain_retain_actual_nonidle_status (__main__.Transactions.test_commit_and_rollback_chain_retain_actual_nonidle_status) ... ok
+test_disconnect_with_open_or_aborted_transaction_rolls_back (__main__.Transactions.test_disconnect_with_open_or_aborted_transaction_rolls_back) ... ok
+test_exclusive_concurrent_transactions_and_local_state (__main__.Transactions.test_exclusive_concurrent_transactions_and_local_state) ... ok
+test_multistatement_transaction_releases_only_after_final_idle (__main__.Transactions.test_multistatement_transaction_releases_only_after_final_idle) ... ok
+test_pin_commit_visibility_and_capacity_release (__main__.Transactions.test_pin_commit_visibility_and_capacity_release) ... ok
+test_read_committed_and_read_uncommitted_hide_dirty_writes (__main__.Transactions.test_read_committed_and_read_uncommitted_hide_dirty_writes) ... ok
+test_read_only_transaction_rejection_does_not_leak_state (__main__.Transactions.test_read_only_transaction_rejection_does_not_leak_state) ... ok
+test_repeatable_read_snapshot_matches_direct_postgres (__main__.Transactions.test_repeatable_read_snapshot_matches_direct_postgres) ... ok
+test_rollback_discards_writes_and_releases_capacity (__main__.Transactions.test_rollback_discards_writes_and_releases_capacity) ... ok
+test_savepoint_error_abort_and_recovery_keep_same_backend (__main__.Transactions.test_savepoint_error_abort_and_recovery_keep_same_backend) ... ok
+test_serializable_conflict_is_native_and_not_replayed (__main__.Transactions.test_serializable_conflict_is_native_and_not_replayed) ... ok
+test_session_state_is_pinned_and_reset_only_at_frontend_close (__main__.Transactions.test_session_state_is_pinned_and_reset_only_at_frontend_close) ... ok
+test_stateless_primary_observations_do_not_permanently_pin (__main__.Transactions.test_stateless_primary_observations_do_not_permanently_pin) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 21.385s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_backend_transport_failure_during_reset_discards_connection (__main__.SessionPool.test_backend_transport_failure_during_reset_discards_connection) ... ok
+test_declared_sequential_connection_churn_reuses_one_backend (__main__.SessionPool.test_declared_sequential_connection_churn_reuses_one_backend) ... ok
+test_disconnect_aborted_transaction_does_not_contaminate_next_client (__main__.SessionPool.test_disconnect_aborted_transaction_does_not_contaminate_next_client) ... ok
+test_disconnect_open_transaction_rolls_back_before_reuse (__main__.SessionPool.test_disconnect_open_transaction_rolls_back_before_reuse) ... ok
+test_idle_and_lifetime_retirement_release_capacity (__main__.SessionPool.test_idle_and_lifetime_retirement_release_capacity) ... ok
+test_idle_frontends_share_startup_metadata_without_backend_leases (__main__.SessionPool.test_idle_frontends_share_startup_metadata_without_backend_leases) ... ok
+test_killed_idle_backend_is_retired_without_restarting_pooler (__main__.SessionPool.test_killed_idle_backend_is_retired_without_restarting_pooler) ... ok
+test_physical_promotion_fences_session_and_reuses_only_new_primary (__main__.SessionPool.test_physical_promotion_fences_session_and_reuses_only_new_primary) ... ok
+test_reset_temporary_state_sql_prepared_locks_listen_and_settings (__main__.SessionPool.test_reset_temporary_state_sql_prepared_locks_listen_and_settings) ... ok
+test_saturated_session_pool_waits_then_hands_off_exclusively (__main__.SessionPool.test_saturated_session_pool_waits_then_hands_off_exclusively) ... ok
+test_session_affinity_exclusive_ownership_and_reuse (__main__.SessionPool.test_session_affinity_exclusive_ownership_and_reuse) ... ok
+test_stale_virtual_cancel_does_not_hit_next_owner (__main__.SessionPool.test_stale_virtual_cancel_does_not_hit_next_owner) ... ok
+test_startup_parameters_partition_and_restore_original_defaults (__main__.SessionPool.test_startup_parameters_partition_and_restore_original_defaults) ... ok
+test_topology_generation_retires_old_backends (__main__.SessionPool.test_topology_generation_retires_old_backends) ... ok
+test_unpooled_churn_opens_one_backend_per_client (__main__.SessionPool.test_unpooled_churn_opens_one_backend_per_client) ... ok
+test_user_and_database_identity_never_uses_privileged_probe (__main__.SessionPool.test_user_and_database_identity_never_uses_privileged_probe) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 35.084s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_100_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_100_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_10_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_10_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_cancel_admission_remains_available_at_sql_client_capacity (__main__.Resources.test_cancel_admission_remains_available_at_sql_client_capacity) ... ok
+test_cancel_during_backend_handshake_releases_connect_ownership (__main__.Resources.test_cancel_during_backend_handshake_releases_connect_ownership) ... ok
+test_cancel_during_no_route_wait_does_not_dispatch_or_retry (__main__.Resources.test_cancel_during_no_route_wait_does_not_dispatch_or_retry) ... ok
+test_cancel_during_partial_delivery_closes_without_replaying (__main__.Resources.test_cancel_during_partial_delivery_closes_without_replaying) ... ok
+test_cancel_preserves_savepoint_and_prior_transaction_write (__main__.Resources.test_cancel_preserves_savepoint_and_prior_transaction_write) ... ok
+test_cancel_ready_races_cannot_cancel_the_next_query (__main__.Resources.test_cancel_ready_races_cannot_cancel_the_next_query) ... ok
+test_disconnect_cancels_active_read_and_refunds_every_charge (__main__.Resources.test_disconnect_cancels_active_read_and_refunds_every_charge) ... ok
+test_dispatched_primary_write_cancellation_is_not_replayed (__main__.Resources.test_dispatched_primary_write_cancellation_is_not_replayed) ... ok
+test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running (__main__.Resources.test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running) ... ok
+test_replica_cancel_stops_retry_and_preserves_connection (__main__.Resources.test_replica_cancel_stops_retry_and_preserves_connection) ... ok
+test_shutdown_during_connection_churn_reaps_all_backend_owners (__main__.Resources.test_shutdown_during_connection_churn_reaps_all_backend_owners) ... ok
+test_slow_receiver_delivery_deadline_refunds_capacity (__main__.Resources.test_slow_receiver_delivery_deadline_refunds_capacity) ... ok
+test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client (__main__.Resources.test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 123.920s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss. ... ok
+test_02_unsent_write_waits_then_continues_on_same_connection (__main__.FailoverContinuity.test_02_unsent_write_waits_then_continues_on_same_connection)
+An autocommit statement received during the leader gap waits safely. ... ok
+test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes. ... ok
+test_04_interrupted_transaction_fails_without_replay (__main__.FailoverContinuity.test_04_interrupted_transaction_fails_without_replay)
+Transactions cannot migrate: rollback and uncertain outcomes stay explicit. ... ok
+test_05_failed_replica_leaves_rotation_without_disrupting_reads (__main__.FailoverContinuity.test_05_failed_replica_leaves_rotation_without_disrupting_reads)
+A replica failure is removed; same-client reads survive primary loss too. ... ok
+test_06_read_only_ctes_round_robin_and_continue_through_failover (__main__.FailoverContinuity.test_06_read_only_ctes_round_robin_and_continue_through_failover) ... ok
+test_07_data_modifying_ctes_execute_on_primary (__main__.FailoverContinuity.test_07_data_modifying_ctes_execute_on_primary) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 60.463s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_attempt_limit (__main__.LongQueries.test_attempt_limit) ... ok
+test_dispatched_write_not_replayed (__main__.LongQueries.test_dispatched_write_not_replayed) ... ok
+test_failed_read_retries_without_partial_results (__main__.LongQueries.test_failed_read_retries_without_partial_results) ... ok
+test_healthy_execution_exceeds_routing_wait (__main__.LongQueries.test_healthy_execution_exceeds_routing_wait) ... ok
+test_interrupted_transaction_not_replayed (__main__.LongQueries.test_interrupted_transaction_not_replayed) ... ok
+test_promoted_backend_drains (__main__.LongQueries.test_promoted_backend_drains) ... ok
+test_total_deadline (__main__.LongQueries.test_total_deadline) ... ok
+test_unrelated_primary_loss_and_promotion (__main__.LongQueries.test_unrelated_primary_loss_and_promotion) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 67.052s
+
+OK
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_actual_backend_retry_promotion_and_transaction_nonreplay (__main__.Metrics.test_actual_backend_retry_promotion_and_transaction_nonreplay) ... ok
+test_connection_capacity_startup_and_independent_backends (__main__.Metrics.test_connection_capacity_startup_and_independent_backends) ... ok
+test_default_disabled_bind_failure_and_passthrough (__main__.Metrics.test_default_disabled_bind_failure_and_passthrough) ... ok
+test_delivery_failure_and_concurrent_client_results (__main__.Metrics.test_delivery_failure_and_concurrent_client_results) ... ok
+test_dispatched_write_failure_is_not_replayed (__main__.Metrics.test_dispatched_write_failure_is_not_replayed) ... ok
+test_http_rejections_deadlines_cap_and_sql_availability (__main__.Metrics.test_http_rejections_deadlines_cap_and_sql_availability) ... ok
+test_inventory_freshness_and_static_cardinality (__main__.Metrics.test_inventory_freshness_and_static_cardinality) ... ok
+test_malformed_full_and_truncated_frames (__main__.Metrics.test_malformed_full_and_truncated_frames) ... ok
+test_q_message_outcomes_and_histograms (__main__.Metrics.test_q_message_outcomes_and_histograms) ... ok
+test_terminal_sessions_clean_disconnect_and_unavailable_startup (__main__.Metrics.test_terminal_sessions_clean_disconnect_and_unavailable_startup) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 88.814s
+
+OK
+
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_100_clients_multirow_null_and_unique_results (__main__.Buffering.test_100_clients_multirow_null_and_unique_results) ... ok
+test_10_clients_multirow_null_and_unique_results (__main__.Buffering.test_10_clients_multirow_null_and_unique_results) ... ok
+test_message_and_result_overflow_discard_before_exposure (__main__.Buffering.test_message_and_result_overflow_discard_before_exposure) ... ok
+test_pipelined_query_error_keeps_later_responses_ordered (__main__.Buffering.test_pipelined_query_error_keeps_later_responses_ordered) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 23.597s
+
+OK

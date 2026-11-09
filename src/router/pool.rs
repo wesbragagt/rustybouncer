@@ -105,11 +105,11 @@ struct State {
     total: usize,
     waiting: usize,
     next: u64,
+    signals: HashMap<u64, Arc<Notify>>,
 }
 struct Inner {
     state: Mutex<State>,
     settings: Settings,
-    changed: Notify,
     metrics: Metrics,
 }
 #[derive(Clone, Default)]
@@ -126,9 +126,9 @@ impl Manager {
                 total: 0,
                 waiting: 0,
                 next: 1,
+                signals: HashMap::new(),
             }),
             settings,
-            changed: Notify::new(),
             metrics,
         }))))
     }
@@ -181,6 +181,7 @@ impl Manager {
             key: key.clone(),
             id,
             active: true,
+            signal: None,
             metrics: inner.metrics.clone(),
         })
     }
@@ -196,15 +197,11 @@ impl Manager {
         result
     }
     async fn acquire_wait(&self, key: Key, deadline: Instant) -> Result<Checkout> {
-        let inner = self.0.as_ref().context("backend pool disabled")?;
         let mut ticket = self.ticket(&key)?;
         loop {
             if Instant::now() >= deadline {
                 return Err(Rejected("backend pool wait timed out").into());
             }
-            let notified = inner.changed.notified();
-            tokio::pin!(notified);
-            notified.as_mut().enable();
             let (decision, garbage, wake) = self.decide(&mut ticket)?;
             drop(garbage); // Slot destructors take the metadata lock.
             if let Some(mut choice) = decision {
@@ -217,6 +214,16 @@ impl Manager {
             if Instant::now() >= deadline {
                 return Err(Rejected("backend pool wait timed out").into());
             }
+            // One stored permit survives a handoff between decide and await.
+            // The uncontended checkout path never allocates a wait signal.
+            let signal = ticket
+                .signal
+                .as_ref()
+                .context("missing pool wait signal")?
+                .clone();
+            let notified = signal.notified_owned();
+            tokio::pin!(notified);
+            notified.as_mut().enable();
             tokio::select! {
                 _=notified=>{},
                 _=tokio::time::sleep_until(wake.min(deadline))=>{},
@@ -234,26 +241,13 @@ impl Manager {
         {
             return Err(Stale.into());
         }
-        let first = state
-            .groups
-            .iter()
-            .filter_map(|(key, group)| {
-                let head = group.waiting.front()?;
-                let limit = inner.settings.size
-                    + if now.duration_since(head.since) >= inner.settings.reserve_delay {
-                        inner.settings.reserve
-                    } else {
-                        0
-                    };
-                (!group.invalid && (!group.idle.is_empty() || group.total < limit))
-                    .then_some((head.id, key.clone()))
-            })
-            .min_by_key(|(id, _)| *id);
+        let first = first_eligible(&state, &inner.settings, now);
         let mut garbage = Vec::new();
         if first.as_ref().is_some_and(|(id, _)| *id == ticket.id) {
             let idle = state.groups.get_mut(&ticket.key).unwrap().idle.pop_front();
             if let Some(backend) = idle {
                 ticket.remove(&mut state);
+                notify_eligible(inner, &state);
                 return Ok((Some(Checkout::Idle(Box::new(backend))), garbage, now));
             }
             if state.total < inner.settings.global {
@@ -271,6 +265,7 @@ impl Manager {
                 inner
                     .metrics
                     .add("pool_backends", &[Phase::Connecting.label()], 1);
+                notify_eligible(inner, &state);
                 return Ok((Some(Checkout::New(slot)), garbage, now));
             }
             // Evict only idle ownership. Active/resetting work is never displaced.
@@ -292,10 +287,17 @@ impl Manager {
                 );
             }
         }
+        if ticket.signal.is_none() {
+            state.signals.try_reserve(1)?;
+            let signal = Arc::new(Notify::new());
+            state.signals.insert(ticket.id, signal.clone());
+            ticket.signal = Some(signal);
+        }
         let wake = state
             .groups
             .get(&ticket.key)
             .and_then(|group| group.waiting.front())
+            .filter(|head| head.id == ticket.id)
             .map(|head| head.since + inner.settings.reserve_delay)
             .filter(|time| *time > now)
             .unwrap_or(now + Duration::from_secs(3600));
@@ -326,8 +328,8 @@ impl Manager {
         }
         backend.slot.as_mut().unwrap().phase(Phase::Idle);
         group.idle.push_back(backend);
+        notify_eligible(inner, &state);
         drop(state);
-        inner.changed.notify_waiters();
         true
     }
     pub fn maintain(&self, topology: &Topology) {
@@ -354,17 +356,58 @@ impl Manager {
                 }
                 group.idle = kept;
             }
+            for group in state.groups.values().filter(|group| group.invalid) {
+                for waiting in &group.waiting {
+                    notify_ticket(&state, waiting.id);
+                }
+            }
+            notify_eligible(inner, &state);
         }
         for _ in 0..garbage.len() {
             inner.metrics.inc("pool_discards_total", &[]);
         }
         drop(garbage);
-        inner.changed.notify_waiters();
     }
     #[cfg(test)]
     fn snapshot(&self) -> (usize, usize) {
         let state = self.0.as_ref().unwrap().state.lock().unwrap();
         (state.total, state.waiting)
+    }
+}
+
+fn first_eligible(state: &State, settings: &Settings, now: Instant) -> Option<(u64, Key)> {
+    state
+        .groups
+        .iter()
+        .filter_map(|(key, group)| {
+            let head = group.waiting.front()?;
+            let limit = settings.size
+                + if now.duration_since(head.since) >= settings.reserve_delay {
+                    settings.reserve
+                } else {
+                    0
+                };
+            (!group.invalid && (!group.idle.is_empty() || group.total < limit))
+                .then_some((head.id, key.clone()))
+        })
+        .min_by_key(|(id, _)| *id)
+}
+fn notify_ticket(state: &State, id: u64) {
+    if let Some(signal) = state.signals.get(&id) {
+        signal.notify_one();
+    }
+}
+fn notify_eligible(inner: &Inner, state: &State) {
+    let Some((id, key)) = first_eligible(state, &inner.settings, Instant::now()) else {
+        return;
+    };
+    // A key below its limit cannot make progress at a full global ceiling
+    // unless it can use an idle backend or retire another idle key.
+    let available = !state.groups[&key].idle.is_empty()
+        || state.total < inner.settings.global
+        || state.groups.values().any(|group| !group.idle.is_empty());
+    if available {
+        notify_ticket(state, id);
     }
 }
 
@@ -437,8 +480,8 @@ impl Drop for Slot {
             if group.total == 0 && group.waiting.is_empty() {
                 state.groups.remove(&self.key);
             }
+            notify_eligible(&inner, &state);
             drop(state);
-            inner.changed.notify_waiters();
         }
     }
 }
@@ -447,20 +490,28 @@ struct Ticket {
     key: Key,
     id: u64,
     active: bool,
+    signal: Option<Arc<Notify>>,
     metrics: Metrics,
 }
 impl Ticket {
     fn remove(&mut self, state: &mut State) {
         if self.active {
             let group = state.groups.get_mut(&self.key).unwrap();
-            if group
+            let was_head = group
                 .waiting
                 .front()
-                .is_some_and(|waiting| waiting.id == self.id)
-            {
+                .is_some_and(|waiting| waiting.id == self.id);
+            if was_head {
                 group.waiting.pop_front();
             } else {
                 group.waiting.retain(|waiting| waiting.id != self.id);
+            }
+            let next = was_head
+                .then(|| group.waiting.front().map(|waiting| waiting.id))
+                .flatten();
+            state.signals.remove(&self.id);
+            if let Some(id) = next {
+                notify_ticket(state, id);
             }
             state.waiting -= 1;
             self.metrics.add("pool_waiters", &[], -1);
@@ -484,8 +535,8 @@ impl Drop for Ticket {
                 {
                     state.groups.remove(&self.key);
                 }
+                notify_eligible(&inner, &state);
                 drop(state);
-                inner.changed.notify_waiters();
             } else {
                 self.metrics.add("pool_waiters", &[], -1);
                 self.active = false;
@@ -545,6 +596,132 @@ impl std::fmt::Debug for Checkout {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::{
+        future::Future,
+        pin::Pin,
+        task::{Context as TaskContext, Poll, Wake, Waker},
+    };
+    #[derive(Default)]
+    struct WakeCount(AtomicUsize);
+    impl Wake for WakeCount {
+        fn wake(self: Arc<Self>) {
+            self.0.fetch_add(1, Ordering::Relaxed);
+        }
+        fn wake_by_ref(self: &Arc<Self>) {
+            self.0.fetch_add(1, Ordering::Relaxed);
+        }
+    }
+    fn poll_once<F: Future>(future: Pin<&mut F>, counter: &Arc<WakeCount>) -> Poll<F::Output> {
+        let waker = Waker::from(counter.clone());
+        future.poll(&mut TaskContext::from_waker(&waker))
+    }
+    #[tokio::test(start_paused = true)]
+    async fn one_returned_reservation_wakes_heads_without_broadcasting_to_a_thousand_waiters() {
+        let manager = manager(1, 1, 0, 1200);
+        let key = key(b"wake-bound");
+        let deadline = Instant::now() + Duration::from_secs(30);
+        let Checkout::New(held) = manager.acquire(key.clone(), deadline).await.unwrap() else {
+            panic!()
+        };
+        assert!(
+            manager
+                .0
+                .as_ref()
+                .unwrap()
+                .state
+                .lock()
+                .unwrap()
+                .signals
+                .is_empty(),
+            "immediate admission allocated a waiting signal"
+        );
+        let mut waiting = (0..1000)
+            .map(|_| Box::pin(manager.acquire(key.clone(), deadline)))
+            .collect::<Vec<_>>();
+        let counts = (0..1000)
+            .map(|_| Arc::new(WakeCount::default()))
+            .collect::<Vec<_>>();
+        for (future, count) in waiting.iter_mut().zip(&counts) {
+            assert!(poll_once(future.as_mut(), count).is_pending());
+        }
+        assert_eq!(manager.snapshot(), (1, 1000));
+        drop(held);
+        assert_eq!(counts[0].0.load(Ordering::Relaxed), 1);
+        assert_eq!(
+            counts
+                .iter()
+                .map(|count| count.0.load(Ordering::Relaxed))
+                .sum::<usize>(),
+            1,
+            "one capacity event broadcast to unrelated waiters"
+        );
+        let Poll::Ready(Ok(Checkout::New(admitted))) = poll_once(waiting[0].as_mut(), &counts[0])
+        else {
+            panic!()
+        };
+        assert!(
+            counts
+                .iter()
+                .map(|count| count.0.load(Ordering::Relaxed))
+                .sum::<usize>()
+                <= 2,
+            "handoff woke more than the eligible/current group heads"
+        );
+        assert!(poll_once(waiting[1].as_mut(), &counts[1]).is_pending());
+        drop(waiting);
+        assert_eq!(manager.snapshot(), (1, 0));
+        assert!(manager
+            .0
+            .as_ref()
+            .unwrap()
+            .state
+            .lock()
+            .unwrap()
+            .signals
+            .is_empty());
+        drop(admitted);
+        assert_eq!(manager.snapshot(), (0, 0));
+    }
+    #[tokio::test(start_paused = true)]
+    async fn topology_invalidation_wakes_every_affected_waiter_without_waiting_for_deadlines() {
+        let manager = manager(1, 1, 0, 1200);
+        let key = key(b"invalidated");
+        let deadline = Instant::now() + Duration::from_secs(30);
+        let held = manager.acquire(key.clone(), deadline).await.unwrap();
+        let mut waiting = (0..1000)
+            .map(|_| Box::pin(manager.acquire(key.clone(), deadline)))
+            .collect::<Vec<_>>();
+        let counts = (0..1000)
+            .map(|_| Arc::new(WakeCount::default()))
+            .collect::<Vec<_>>();
+        for (future, count) in waiting.iter_mut().zip(&counts) {
+            assert!(poll_once(future.as_mut(), count).is_pending());
+        }
+        let changed = Topology {
+            primary: Some(1),
+            generation: 2,
+            ..Topology::default()
+        };
+        manager.maintain(&changed);
+        for (future, count) in waiting.iter_mut().zip(&counts) {
+            assert!(count.0.load(Ordering::Relaxed) > 0);
+            assert!(
+                matches!(poll_once(future.as_mut(),count),Poll::Ready(Err(error)) if error.is::<Stale>())
+            );
+        }
+        assert_eq!(manager.snapshot(), (1, 0));
+        assert!(manager
+            .0
+            .as_ref()
+            .unwrap()
+            .state
+            .lock()
+            .unwrap()
+            .signals
+            .is_empty());
+        drop(held);
+        assert_eq!(manager.snapshot(), (0, 0));
+    }
     fn topology() -> Topology {
         Topology {
             primary: Some(0),
