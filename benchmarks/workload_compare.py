@@ -5,6 +5,7 @@ All 180 arms: five targets, two CPU placements, 10/100 clients, three repetition
 three workloads. Each has 5s warmup and 10s observation (not the original 30s).
 """
 import argparse
+import concurrent.futures
 import contextlib
 import hashlib
 import os
@@ -21,10 +22,18 @@ from benchmarks import compare as c  # noqa: E402
 from benchmarks.performance_profile import Instrumented, dump, process_info  # noqa: E402
 
 WORKLOADS = ('cte', 'large', 'mixed')
+CHECK_ID = r""" \gset
+\if :observed_id != :id OR :observed_client != :client_id OR :payload_length != 128
+SELECT 1/0;
+\endif
+"""
+LOOKUP = ('SELECT id AS observed_id, :client_id::int AS observed_client, '
+          'payload, length(payload) AS payload_length FROM comparison WHERE id = :id')
 SCRIPTS = {
-    'cte': '\\set id random(1, 10000)\nWITH chosen AS (SELECT payload FROM comparison WHERE id = :id) SELECT payload FROM chosen;\n',
+    'cte': ('\\set id random(1, 10000)\nWITH chosen AS (' + LOOKUP
+            + ') SELECT * FROM chosen' + CHECK_ID),
     'large': 'SELECT id, payload FROM comparison WHERE id <= 2048 ORDER BY id;\n',
-    'short': '\\set id random(1, 10000)\nSELECT payload FROM comparison WHERE id = :id;\n',
+    'short': '\\set id random(1, 10000)\n' + LOOKUP + CHECK_ID,
     'long': 'SELECT pg_sleep(0.02);\n',
 }
 
@@ -49,16 +58,42 @@ def oracle(fixture, workload):
             assert client.query(SCRIPTS['long']) == [['']]
 
 
+def workload_preflight(fixture, workload, clients, directory):
+    """Every requested live frontend checks exact bytes and its own identity."""
+    barrier = threading.Barrier(clients, timeout=30)
+
+    def worker(index):
+        with contextlib.closing(fixture.connect()) as client:
+            barrier.wait()
+            if workload == 'large':
+                rows = client.query(f'SELECT id,payload,{index} FROM comparison WHERE id<=2048 ORDER BY id')
+                assert rows == [[str(key), expected(key), str(index)] for key in range(1,2049)]
+            elif workload == 'cte':
+                rows = client.query(f'WITH chosen AS (SELECT id,payload FROM comparison WHERE id={index+1}) '
+                                    f'SELECT id,payload,{index} FROM chosen')
+                assert rows == [[str(index+1), expected(index+1), str(index)]]
+            else:
+                rows = client.query(f'SELECT id,payload,{index} FROM comparison WHERE id={index+1}')
+                assert rows == [[str(index+1), expected(index+1), str(index)]]
+                assert client.query(f'SELECT pg_sleep(0.02),{index}') == [['',str(index)]]
+            return {'client':index,'rows_verified':len(rows),'exact_payload_and_identity':True}
+
+    with concurrent.futures.ThreadPoolExecutor(max_workers=clients) as executor:
+        results = list(executor.map(worker, range(clients)))
+    assert len(results) == clients
+    dump(directory / 'workload-preflight.json', results)
+
+
 def command(fixture, clients, directory, workload, measured):
     seconds = 10 if measured else 5
     argv = ['pgbench', '-h', '127.0.0.1', '-p', str(fixture.proxy_port), '-U', 'postgres',
-            '-d', 'postgres', '-n', '-M', 'simple', '-c', str(clients), '-j', str(clients),
+            '-d', 'postgres', '-n', '--max-tries=1', '--exit-on-abort', '-M', 'simple', '-c', str(clients), '-j', str(clients),
             '-T', str(seconds)]
     scripts = [('short', 9), ('long', 1)] if workload == 'mixed' else [(workload, 1)]
     for name, weight in scripts:
         argv += ['-f', str(directory.parent / f'{name}.sql') + f'@{weight}']
     if measured:
-        argv += ['-l', '--sampling-rate=0.1', '--log-prefix=' + str(directory / 'latency')]
+        argv += ['-l', '--sampling-rate=1.0', '--log-prefix=' + str(directory / 'latency')]
     return argv
 
 
@@ -93,19 +128,25 @@ def load(fixture, clients, directory, workload, measured):
 
 def quantiles(samples):
     assert samples
-    return {'samples': len(samples), **{f'p{int(q*100)}_ms': c.m.percentile(samples,q) for q in (.5,.95,.99)}}
+    return {'samples': len(samples), 'maximum_ms':max(samples)/1000,
+            **{f'p{int(q*100)}_ms': c.m.percentile(samples,q) for q in (.5,.95,.99)}}
 
 
-def latencies(directory, workload):
+def latencies(directory, workload, clients):
     groups = {}
+    by_client = {}
     for path in directory.glob('latency.*'):
         for line in path.read_text().splitlines():
             columns = line.split()
             assert len(columns) >= 6
             groups.setdefault(int(columns[3]), []).append(float(columns[2]))
+            by_client[int(columns[0])] = by_client.get(int(columns[0]),0)+1
     expected_scripts = {0,1} if workload == 'mixed' else {0}
     assert set(groups) == expected_scripts, 'missing workload latency samples'
-    return {'all': quantiles([value for group in groups.values() for value in group]),
+    assert set(by_client)==set(range(clients)), by_client
+    return {'client_completions_min':min(by_client.values()),'client_completions_max':max(by_client.values()),
+            'clients_completed':len(by_client),'sampling':'100%; every successful transaction retained',
+            'all': quantiles([value for group in groups.values() for value in group]),
             'scripts': {str(key): quantiles(values) for key,values in groups.items()}}
 
 
@@ -114,7 +155,7 @@ def arm(fixture, output, clients, repetition, target, workload):
     directory.mkdir()
     fixture.target_pid = None
     fixture.launch(target, directory)
-    c.m.preflight(fixture, clients)
+    workload_preflight(fixture, workload, clients, directory)
     oracle(fixture, workload)
     stop, observations, failures = threading.Event(), [], []
     observer = threading.Thread(target=c.m.observe_connections, args=(fixture,stop,observations,failures))
@@ -132,9 +173,10 @@ def arm(fixture, output, clients, repetition, target, workload):
               if result['measurement_started_monotonic'] <= row['monotonic'] <= result['measurement_finished_monotonic']]
     assert counts and max(counts)>0
     result.update({'clients': clients, 'repetition': repetition, 'target': target,
-                   'workload': workload, 'placement': fixture.mode, 'latencies': latencies(directory, workload),
+                   'workload': workload, 'placement': fixture.mode, 'latencies': latencies(directory, workload, clients),
                    'backend_connections_min': min(counts), 'backend_connections_peak': max(counts),
-                   'correctness': 'complete concurrent preflight plus workload-specific exact row oracle before load; pgbench checks SQL/protocol errors for every transaction'})
+                   'correctness': 'all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after'})
+    assert result['latencies']['all']['samples']==result['transactions'],result
     oracle(fixture, workload)
     fixture.finish(directory, result)
     return result
@@ -156,6 +198,7 @@ def main():
          'command': sys.argv, 'harness_affinity': sorted(os.sched_getaffinity(0)), 'load_start': os.getloadavg(),
          'arm_count': 180, 'warmup_seconds': 5, 'observation_seconds': 10, 'repetitions': 3,
          'mixed_weights': {'short':9,'long_20ms':1}, 'large_rows':2048, 'payload_bytes':128,
+         'latency_logging':'100%, including shared logging overhead for every target',
          'metrics':False,'tls':False,'authentication':'trust in owned loopback fixture',
          'limitation':'shared host; 10s additional observations are not the original 30s comparison or production SLO evidence'})
     results=[]

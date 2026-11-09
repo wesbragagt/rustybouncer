@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""PERF-003 independent Memcheck audit: all four modes/client-count arms."""
+"""PERF-003/005 independent Memcheck audit: eight modes/client-count arms."""
 
 import argparse
 import hashlib
@@ -17,7 +17,10 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from benchmarks import compare as c  # noqa: E402
 from benchmarks.performance_profile import REAL_POPEN, dump  # noqa: E402
-from benchmarks.workload_compare import SCRIPTS, oracle  # noqa: E402
+from benchmarks.workload_compare import SCRIPTS, oracle, workload_preflight  # noqa: E402
+
+TARGETS = ('rustybouncer-session', 'rustybouncer-routed',
+           'rustybouncer-pool-session', 'rustybouncer-pool-transaction')
 
 
 class Checked(c.Fixture):
@@ -51,6 +54,10 @@ class Checked(c.Fixture):
                 "startup_timeout_ms = 5000", "startup_timeout_ms = 30000"
             )
             text = text.replace("wait_timeout_ms = 10000", "wait_timeout_ms = 30000")
+            if '-pool-' in target:
+                text = text.replace('route_selects = false','route_selects = true')
+                mode = 'transaction' if target.endswith('transaction') else 'session'
+                text = f'pool_mode = "{mode}"\npool_size = 16\nmax_pool_backends = 16\n' + text
             config.write_text(text)
             argv = [
                 "valgrind",
@@ -143,7 +150,10 @@ def inspect(path):
 def arm(fixture, clients, target, directory):
     directory.mkdir()
     fixture.launch(target, directory)
-    c.m.preflight(fixture, clients)
+    if '-pool-' in target:
+        workload_preflight(fixture, 'large', clients, directory)
+    else:
+        c.m.preflight(fixture, clients)
     oracle(fixture, "large")
     command = [
         "pgbench",
@@ -185,6 +195,11 @@ def arm(fixture, clients, target, directory):
     # Independent PG observation after every frontend closes. Background workers
     # and discovery use different identities/types and do not count as clients.
     def quiescent():
+        if '-pool-' in target:
+            query = ("SELECT count(*),count(*) FILTER (WHERE state<>'idle') FROM pg_stat_activity WHERE "
+                     "backend_type='client backend' AND usename='postgres' AND pid<>pg_backend_pid()")
+            count, active = map(int, c.m.f.sql(fixture.nodes[0], query).split('|'))
+            return count <= 16 and active == 0
         return (
             c.m.f.sql(
                 fixture.nodes[0],
@@ -198,6 +213,8 @@ def arm(fixture, clients, target, directory):
         quiescent, description="all workload backends closed before allocator audit"
     )
     fixture.finish()
+    assert c.m.f.sql(fixture.nodes[0], "SELECT count(*) FROM pg_stat_activity WHERE "
+                     "backend_type='client backend' AND usename='postgres' AND pid<>pg_backend_pid()") == '0'
     report = inspect(directory / "memcheck.xml")
     result = {
         "clients": clients,
@@ -227,7 +244,7 @@ def main():
             "valgrind": subprocess.check_output(
                 ["valgrind", "--version"], text=True
             ).strip(),
-            "arms": 4,
+            "arms": 8,
             "not_timing_comparable": True,
             "sampling": False,
             "suppressions": False,
@@ -246,15 +263,15 @@ def main():
     try:
         fixture.start()
         for clients in (10, 100):
-            for target in ("rustybouncer-session", "rustybouncer-routed"):
+            for target in TARGETS:
                 results.append(
                     arm(fixture, clients, target, output / f"c{clients}-{target}")
                 )
                 dump(output / "results.json", results)
-                print(f"{len(results)}/4 {clients} {target}", flush=True)
+                print(f"{len(results)}/8 {clients} {target}", flush=True)
     finally:
         fixture.close()
-    assert len(results) == 4
+    assert len(results) == 8
     print(f"complete audit in {time.monotonic() - started:.3f}s", flush=True)
 
 

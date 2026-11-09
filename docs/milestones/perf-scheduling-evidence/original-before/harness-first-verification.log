@@ -1,0 +1,22 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+I001 [*] Import block is un-sorted or un-formatted
+  --> benchmarks/failover_load.py:20:1
+   |
+19 |   sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tests'))
+20 | / import failover as f  # noqa: E402
+21 | | import protocol_support as p  # noqa: E402
+22 | | from metrics_support import MetricsCluster  # noqa: E402
+23 | | from pool_support import Client  # noqa: E402
+   | |_______________________________^
+24 |   sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+25 |   from benchmarks.performance_profile import process_info  # noqa: E402
+   |
+help: Organize imports
+   |
+23 | from pool_support import Client  # noqa: E402
+24 +
+25 | sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+   |
+
+Found 1 error.
+[*] 1 fixable with `--fix`.

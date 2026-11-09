@@ -103,10 +103,11 @@ class WorkloadEvidence(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root=Path(directory)
             (root/'latency.1').write_text('0 1 100 0 1 1\n1 1 20000 1 1 1\n')
-            result=latencies(root,'mixed')
+            result=latencies(root,'mixed',2)
             self.assertEqual(result['scripts']['0']['p99_ms'],.1)
             self.assertEqual(result['scripts']['1']['p99_ms'],20)
             self.assertEqual(result['all']['samples'],2)
+            self.assertEqual(result['clients_completed'],2)
 
     def test_missing_long_workload_cannot_pass(self):
         from benchmarks.workload_compare import latencies
@@ -114,7 +115,15 @@ class WorkloadEvidence(unittest.TestCase):
             root=Path(directory)
             (root/'latency.1').write_text('0 1 100 0 1 1\n')
             with self.assertRaisesRegex(AssertionError,'missing workload'):
-                latencies(root,'mixed')
+                latencies(root,'mixed',1)
+
+    def test_missing_client_completion_cannot_pass(self):
+        from benchmarks.workload_compare import latencies
+        with tempfile.TemporaryDirectory() as directory:
+            root=Path(directory)
+            (root/'latency.1').write_text('0 1 100 0 1 1\n0 2 20000 1 1 1\n')
+            with self.assertRaises(AssertionError):
+                latencies(root,'mixed',2)
 
 
 class HeapEvidence(unittest.TestCase):

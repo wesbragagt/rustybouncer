@@ -1,0 +1,1168 @@
+    PID %CPU COMMAND
+2487752  131 docker-proxy
+2718293  100 rustc
+2715709 99.2 clang
+2716737 98.5 clang
+2719901 66.6 .python3.13-wra
+2719507 48.8 pgbench
+2717269 38.7 pgbouncer
+1792708 25.2 python3.13
+2717306 22.4 postgres
+2717307 22.3 postgres
+2717308 22.3 postgres
+2717300 22.3 postgres
+2717301 22.3 postgres
+2717302 22.3 postgres
+2717297 22.1 postgres
+2717298 22.1 postgres
+2717299 22.1 postgres
+2717286 22.1 postgres
+1801850  9.3 java
+2655406  4.9 nix-daemon
+2717481  4.1 barman-cloud-wa
+2717484  4.1 barman-cloud-wa
+2717483  3.9 barman-cloud-wa
+2717485  3.9 barman-cloud-wa
+2717486  3.9 barman-cloud-wa
+2717487  3.9 barman-cloud-wa
+2717491  3.9 barman-cloud-wa
+2717498  3.9 barman-cloud-wa
+2717482  3.8 barman-cloud-wa
+2715857  2.1 barman-cloud-wa
+  10903  1.9 kube-apiserver
+2763688  1.7 kube-apiserver
+1111846  1.6 kube-apiserver
+2667258  1.4 .cargo-wrapped
+2373164  1.1 ffmpeg
+2765065  1.0 kubelet
+1113222  1.0 kubelet
+2653047  0.9 nix
+ 341254  0.8 .zen-beta-wrapp
+ 341609  0.8 WebExtensions
+1111888  0.8 etcd
+2763740  0.8 etcd
+3452011  0.7 codex
+  11545  0.7 kube-apiserver
+   8545  0.7 kube-apiserver
+  10953  0.7 kube-apiserver
+  10974  0.7 kube-apiserver
+2126625  0.7 kube-controller
+1144817  0.7 cilium-agent
+  10973  0.7 etcd
+2486548  0.6 python3.14
+2957561  0.6 sh
+2926297  0.6 sh
+2563398  0.6 claude.exe
+2939558  0.6 sh
+2126394  0.5 kube-controller
+   9751  0.5 kubelet
+   7372  0.5 kubelet
+  10051  0.5 kubelet
+   9752  0.5 kubelet
+1955544  0.5 omp
+   8728  0.4 kubelet
+2761027  0.4 containerd
+2763720  0.4 kube-controller
+1111978  0.4 kube-controller
+   9750  0.4 kubelet
+   8724  0.4 kubelet
+2716443  0.4 cc_wrapper.sh
+   8726  0.4 kubelet
+  11485  0.4 etcd
+   8552  0.4 etcd
+  10929  0.3 etcd
+  10924  0.3 etcd
+1264930  0.3 electron
+1110132  0.3 containerd
+2301456  0.3 claude.exe
+   2658  0.3 pipewire-pulse
+2717430  0.3 manager
+  18668  0.3 tmux: server
+1264191  0.3 electron
+   3593  0.2 dockerd
+   7116  0.2 containerd
+   2575  0.2 pipewire
+1111897  0.2 kube-scheduler
+2763724  0.2 kube-scheduler
+2158795  0.2 kube-controller
+ 574382  0.2 omp
+1635543  0.2 omp
+1216787  0.2 redis-server
+   2142  0.2 .Hyprland-wrapp
+1222254  0.2 redis-server
+   7115  0.2 containerd
+   7114  0.2 containerd
+    122  0.2 kcompactd0
+  66645  0.2 cilium-agent
+2716303  0.2 envoy
+   8725  0.2 kubelet
+1146643  0.2 cilium-envoy
+  49375  0.2 cilium-agent
+3698064  0.2 electron
+    136  0.2 kswapd0
+2157729  0.2 coredns
+2157050  0.2 coredns
+1711260  0.2 omp
+4120736  0.2 omp
+2158094  0.2 vault-secrets-o
+   1003  0.1 ananicy-cpp
+2713456  0.1 containerd-shim
+1220059  0.1 redis-server
+2157158  0.1 kube-controller
+1219930  0.1 redis-server
+2158765  0.1 kube-controller
+1144058  0.1 cilium-operator
+3251262  0.1 omp
+1236273  0.1 omp
+2559901  0.1 Isolated Web Co
+4034000  0.1 omp
+ 351307  0.1 Isolated Web Co
+   1488  0.1 wpa_supplicant
+2349408  0.1 electron
+3698444  0.1 electron
+1641427  0.1 .tailscaled-wra
+   8083  0.1 containerd
+   7828  0.1 containerd
+3698477  0.1 electron
+2126402  0.1 kube-scheduler
+   7357  0.1 containerd
+   8209  0.1 containerd
+2159378  0.1 vault
+3870041  0.1 omp
+1865931  0.1 omp
+3719754  0.1 redis-server
+   1093  0.1 NetworkManager
+2156396  0.1 kube-scheduler
+2158762  0.1 kube-scheduler
+2156620  0.1 kube-scheduler
+   4798  0.1 redis-server
+2159118  0.1 kube-scheduler
+   3619  0.1 containerd
+1264043  0.1 electron
+2126735  0.1 kyverno
+    728  0.1 systemd-resolve
+2715823  0.1 manager
+   7704  0.1 containerd
+2654763  0.1 slack
+   1007  0.1 dbus-daemon
+   2576  0.1 wireplumber
+1940919  0.1 Isolated Web Co
+2654333  0.0 slack
+2157759  0.0 redis-server
+   7113  0.0 containerd
+2378273  0.0 .quickshell-wra
+2487723  0.0 postgres
+2157723  0.0 background-cont
+1176157  0.0 chromium
+1176014  0.0 chromium
+  15981  0.0 containerd-shim
+  15535  0.0 containerd-shim
+  16210  0.0 containerd-shim
+1893230  0.0 nvim
+  94893  0.0 kyverno
+ 459550  0.0 Isolated Web Co
+2629418  0.0 kworker/u64:0-flush-259:0
+2325044  0.0 kworker/u64:3-ext4-rsv-conversion
+2487695  0.0 containerd-shim
+2645389  0.0 kgateway
+2156992  0.0 kwok
+2155692  0.0 kwok
+2156910  0.0 cleanup-control
+1263206  0.0 electron
+1658881  0.0 Isolated Web Co
+1150773  0.0 coredns
+    873  0.0 systemd-oomd
+2754155  0.0 python3
+2325049  0.0 kworker/u64:15-writeback
+2791452  0.0 coredns
+1134654  0.0 containerd-shim
+2791449  0.0 coredns
+1150408  0.0 containerd-shim
+2791111  0.0 containerd-shim
+1150409  0.0 containerd-shim
+2763434  0.0 containerd-shim
+1111530  0.0 containerd-shim
+2156318  0.0 cilium-operator
+1134658  0.0 containerd-shim
+1134619  0.0 containerd-shim
+2763359  0.0 containerd-shim
+1175881  0.0 chromium
+1111600  0.0 containerd-shim
+1111505  0.0 containerd-shim
+2763368  0.0 containerd-shim
+2774364  0.0 containerd-shim
+ 380963  0.0 nsncd
+1208644  0.0 containerd-shim
+1150414  0.0 containerd-shim
+2774315  0.0 containerd-shim
+2763423  0.0 containerd-shim
+1111603  0.0 containerd-shim
+2169560  0.0 containerd-shim
+2791107  0.0 containerd-shim
+2791106  0.0 containerd-shim
+2645321  0.0 containerd-shim
+2156679  0.0 controller
+1150780  0.0 coredns
+1431707  0.0 kworker/u64:16-flush-259:0
+1596826  0.0 Isolated Web Co
+1916833  0.0 kworker/15:1-events
+   2274  0.0 .swww-daemon-wr
+2157593  0.0 manager
+3689453  0.0 kworker/u64:4-ext4-rsv-conversion
+1658256  0.0 containerd-shim
+1087003  0.0 kworker/u64:13-flush-259:0
+1690990  0.0 kworker/2:1-events
+3353566  0.0 chromium
+1406240  0.0 python3
+2665688  0.0 bash
+3480071  0.0 codex-code-mode
+2651678  0.0 slack
+   1109  0.0 systemd
+3978299  0.0 kworker/u64:8-flush-259:0
+2636693  0.0 kworker/4:1-events
+1175717  0.0 agent-browser-l
+1847823  0.0 kworker/u64:5-flush-259:0
+4089571  0.0 Isolated Web Co
+2143914  0.0 kworker/5:3-events
+  16147  0.0 containerd-shim
+1664846  0.0 lakekeeper
+1860109  0.0 kworker/4:2-events
+1165981  0.0 kworker/6:0-events
+1658349  0.0 application
+2005366  0.0 kworker/12:2-events
+   2404  0.0 .xdg-desktop-po
+1707808  0.0 kworker/11:2-events
+   6030  0.0 node
+1264048  0.0 electron
+ 905945  0.0 agent-browser-l
+2159279  0.0 manager
+2157079  0.0 controller
+1192539  0.0 kworker/10:2-events
+2156209  0.0 coredns
+1673702  0.0 controller
+2157670  0.0 manager
+1863835  0.0 kworker/3:0-inode_switch_wbs
+2065313  0.0 agent-browser-l
+2156184  0.0 coredns
+2156431  0.0 coredns
+2156421  0.0 coredns
+2155717  0.0 coredns
+2158810  0.0 coredns
+2158906  0.0 coredns
+      1  0.0 systemd
+1664824  0.0 containerd-shim
+3538989  0.0 Isolated Web Co
+2640471  0.0 kworker/11:1-events
+2155729  0.0 coredns
+   2750  0.0 .blueman-tray-w
+2659628  0.0 kworker/10:0-events
+     16  0.0 rcu_preempt
+3853430  0.0 agent-browser-l
+1658255  0.0 containerd-shim
+   4195  0.0 containerd-shim
+   4788  0.0 minio
+1350465  0.0 Isolated Web Co
+ 106446  0.0 omp daemon brok
+1082807  0.0 containerd-shim
+   4389  0.0 containerd-shim
+  23053  0.0 agent-browser-l
+3451865  0.0 agent-browser-l
+1778310  0.0 kworker/13:2-events
+2652695  0.0 kworker/12:1-events
+3353506  0.0 agent-browser-l
+    307  0.0 jbd2/nvme0n1p2-8
+   1930  0.0 dbus-daemon
+3247993  0.0 cilium-operator
+2624860  0.0 kworker/13:0-events
+2232291  0.0 kworker/7:1-events
+2620282  0.0 kworker/3:2-events
+2473899  0.0 kworker/0:1-events
+2252198  0.0 kworker/9:1-events
+1209812  0.0 python
+2592147  0.0 kworker/7:0-events
+1981733  0.0 Isolated Web Co
+2559866  0.0 kworker/1:0-events
+2609047  0.0 kworker/8:2-events
+4100482  0.0 Isolated Web Co
+ 551969  0.0 Isolated Web Co
+2169631  0.0 python
+2156937  0.0 cainjector
+2713695  0.0 policy
+ 206552  0.0 tailscaled
+1849010  0.0 Isolated Web Co
+   4163  0.0 containerd-shim
+2173708  0.0 hyprlock
+2423610  0.0 kworker/5:1-events
+    616  0.0 systemd-journal
+     61  0.0 migration/7
+  97681  0.0 syngo
+2501226  0.0 kworker/12:0-events
+2425366  0.0 kworker/8:0-events
+    109  0.0 migration/15
+ 427083  0.0 Isolated Web Co
+2438000  0.0 kworker/3:1-events
+2478021  0.0 kworker/4:0-cgroup_release
+2361656  0.0 Isolated Web Co
+   2384  0.0 polkitd
+  15694  0.0 containerd-shim
+  16177  0.0 kindnetd
+  16222  0.0 kindnetd
+  15947  0.0 kindnetd
+  17473  0.0 kindnetd
+     55  0.0 migration/6
+   6472  0.0 esbuild
+   2541  0.0 .xdg-desktop-po
+   6192  0.0 esbuild
+   6492  0.0 esbuild
+1665045  0.0 postgres
+1665050  0.0 postgres
+1665026  0.0 postgres
+2542207  0.0 omp daemon brok
+ 906032  0.0 chromium
+2312321  0.0 omp daemon brok
+1665048  0.0 postgres
+1665049  0.0 postgres
+2760253  0.0 containerd-shim
+2348996  0.0 electron
+2760477  0.0 docker-proxy
+    103  0.0 migration/14
+2451171  0.0 kworker/14:1-events
+   2138  0.0 .gnome-keyring-
+2158251  0.0 update-master-l
+   2464  0.0 .xdg-document-p
+4073751  0.0 node_exporter
+ 341384  0.0 Socket Process
+2158701  0.0 update-master-l
+2157793  0.0 update-master-l
+2065454  0.0 chromium
+     31  0.0 migration/2
+2649325  0.0 chromium
+2774563  0.0 kube-proxy
+  92241  0.0 kwok
+2654404  0.0 slack
+   4763  0.0 systemd
+    137  0.0 kdamond.0
+3853576  0.0 chromium
+1658337  0.0 postgres
+1948308  0.0 kworker/9:2-events
+2159676  0.0 postgres
+ 620610  0.0 omp daemon brok
+1798552  0.0 containerd-shim
+  23202  0.0 chromium
+   2642  0.0 playerctld
+  92365  0.0 kwok
+  91673  0.0 kwok
+3698451  0.0 electron
+2156778  0.0 webhook
+2774620  0.0 kindnetd
+2760282  0.0 systemd
+3353527  0.0 chromium
+     79  0.0 migration/10
+   1010  0.0 keyd
+     49  0.0 migration/5
+  16486  0.0 containerd-shim
+ 449521  0.0 .swaync-wrapped
+1950891  0.0 kworker/14:0-events
+  14885  0.0 containerd-shim
+2316495  0.0 kubectl
+   2270  0.0 .nwg-dock-hyprl
+     15  0.0 ksoftirqd/0
+2156193  0.0 python3
+     43  0.0 migration/4
+1082830  0.0 postgres
+1841232  0.0 kworker/8:1-events
+  16880  0.0 kube-proxy
+  15663  0.0 kube-proxy
+  12827  0.0 containerd-shim
+  16611  0.0 kube-proxy
+  18769  0.0 kube-proxy
+2728555  0.0 kubectl
+1801767  0.0 docker
+  17794  0.0 kube-proxy
+  12289  0.0 kube-proxy
+  20369  0.0 kube-proxy
+   4680  0.0 traefik
+     26  0.0 ksoftirqd/1
+  12859  0.0 containerd-shim
+  14192  0.0 containerd-shim
+   8372  0.0 containerd-shim
+   8317  0.0 containerd-shim
+  18488  0.0 containerd-shim
+  10217  0.0 containerd-shim
+     97  0.0 migration/13
+     37  0.0 migration/3
+  12053  0.0 containerd-shim
+   1005  0.0 bluetoothd
+  19818  0.0 containerd-shim
+1150703  0.0 local-path-prov
+  16377  0.0 containerd-shim
+  17328  0.0 containerd-shim
+  19100  0.0 kindnetd
+3005236  0.0 containerd-shim
+2158465  0.0 postgres
+3735599  0.0 .gvfsd-dnssd-wr
+  88194  0.0 containerd-shim
+  13516  0.0 containerd-shim
+2791389  0.0 local-path-prov
+  17047  0.0 containerd-shim
+  15337  0.0 containerd-shim
+  14307  0.0 containerd-shim
+  12592  0.0 kindnetd
+  17603  0.0 containerd-shim
+  19995  0.0 containerd-shim
+  15813  0.0 containerd-shim
+  11391  0.0 containerd-shim
+2254043  0.0 containerd-shim
+  20050  0.0 containerd-shim
+  11329  0.0 containerd-shim
+  18969  0.0 containerd-shim
+  16245  0.0 containerd-shim
+  19476  0.0 containerd-shim
+  14997  0.0 containerd-shim
+  13607  0.0 containerd-shim
+  17178  0.0 containerd-shim
+  15163  0.0 containerd-shim
+  14791  0.0 containerd-shim
+   8313  0.0 containerd-shim
+  88193  0.0 containerd-shim
+  14601  0.0 containerd-shim
+  10251  0.0 containerd-shim
+  16208  0.0 containerd-shim
+  10267  0.0 containerd-shim
+  20471  0.0 kindnetd
+  17854  0.0 containerd-shim
+  10532  0.0 containerd-shim
+  17580  0.0 containerd-shim
+  13544  0.0 containerd-shim
+  12145  0.0 containerd-shim
+  15525  0.0 containerd-shim
+  88208  0.0 containerd-shim
+  13735  0.0 containerd-shim
+  15592  0.0 containerd-shim
+  12179  0.0 containerd-shim
+  11786  0.0 containerd-shim
+  17641  0.0 containerd-shim
+  10400  0.0 containerd-shim
+  11238  0.0 containerd-shim
+   6937  0.0 systemd-journal
+  12162  0.0 containerd-shim
+   8389  0.0 containerd-shim
+  12092  0.0 containerd-shim
+  15475  0.0 containerd-shim
+  17180  0.0 containerd-shim
+  10328  0.0 containerd-shim
+  16475  0.0 containerd-shim
+  11808  0.0 containerd-shim
+  10443  0.0 containerd-shim
+  18674  0.0 containerd-shim
+     68  0.0 ksoftirqd/8
+1109426  0.0 containerd-shim
+  10233  0.0 containerd-shim
+  14577  0.0 containerd-shim
+  10250  0.0 containerd-shim
+     74  0.0 ksoftirqd/9
+  17057  0.0 containerd-shim
+  10399  0.0 containerd-shim
+     38  0.0 ksoftirqd/3
+  11351  0.0 containerd-shim
+  14451  0.0 containerd-shim
+   6939  0.0 systemd-journal
+  14875  0.0 containerd-shim
+  10439  0.0 containerd-shim
+  10490  0.0 containerd-shim
+     32  0.0 ksoftirqd/2
+     19  0.0 migration/0
+4118301  0.0 snmp_exporter
+   2496  0.0 rtkit-daemon
+  14342  0.0 containerd-shim
+ 906077  0.0 chromium
+     44  0.0 ksoftirqd/4
+  16323  0.0 containerd-shim
+2349437  0.0 electron
+     86  0.0 ksoftirqd/11
+     18  0.0 rcu_exp_gp_kthread_worker
+     50  0.0 ksoftirqd/5
+     25  0.0 migration/1
+  13690  0.0 containerd-shim
+   4711  0.0 postgres
+     92  0.0 ksoftirqd/12
+     91  0.0 migration/12
+2760887  0.0 systemd-journal
+     56  0.0 ksoftirqd/6
+3705189  0.0 foot
+     98  0.0 ksoftirqd/13
+     80  0.0 ksoftirqd/10
+   4746  0.0 systemd
+     62  0.0 ksoftirqd/7
+    104  0.0 ksoftirqd/14
+1704824  0.0 nginx
+  23425  0.0 chromium
+   4681  0.0 systemd
+    110  0.0 ksoftirqd/15
+2158127  0.0 pgbouncer
+2065647  0.0 chromium
+2649423  0.0 chromium
+2158449  0.0 pgbouncer
+   4713  0.0 systemd
+ 206517  0.0 MainThread
+1109455  0.0 systemd
+   4196  0.0 containerd-shim
+3353614  0.0 chromium
+   6948  0.0 systemd-journal
+2307715  0.0 kworker/10:1-events
+  23293  0.0 chromium
+   4179  0.0 containerd-shim
+   4161  0.0 containerd-shim
+2156364  0.0 local-path-prov
+   4162  0.0 containerd-shim
+    629  0.0 systemd-udevd
+2158885  0.0 local-path-prov
+2156430  0.0 local-path-prov
+2155688  0.0 local-path-prov
+   4176  0.0 containerd-shim
+2156200  0.0 local-path-prov
+3353568  0.0 chromium
+     85  0.0 migration/11
+   4172  0.0 containerd-shim
+3735050  0.0 udisksd
+ 770112  0.0 containerd-shim
+   2328  0.0 Xwayland
+2349426  0.0 electron
+   4170  0.0 containerd-shim
+   4546  0.0 containerd-shim
+1463470  0.0 transcribe
+  16824  0.0 containerd-shim
+   4215  0.0 containerd-shim
+    886  0.0 irq/110-rtw89_pci
+2488567  0.0 postgres
+   4200  0.0 containerd-shim
+3854065  0.0 chromium
+   4475  0.0 containerd-shim
+   4522  0.0 containerd-shim
+   8035  0.0 systemd-journal
+1460382  0.0 earlyoom
+3347698  0.0 containerd-shim
+   4443  0.0 containerd-shim
+   4478  0.0 containerd-shim
+   4194  0.0 containerd-shim
+ 206459  0.0 containerd-shim
+3017047  0.0 zsh
+1594706  0.0 gpg-agent
+   4593  0.0 containerd-shim
+   2273  0.0 .blueman-applet
+1893262  0.0 sm-agent
+  13856  0.0 containerd-shim
+  13763  0.0 containerd-shim
+3003507  0.0 docker
+2157561  0.0 kube-rbac-proxy
+2157280  0.0 manager
+2157804  0.0 manager
+2658647  0.0 slack
+1176005  0.0 chromium
+ 906074  0.0 chromium
+ 341434  0.0 RDD Process
+   7793  0.0 systemd-journal
+2065641  0.0 chromium
+3854060  0.0 chromium
+3347722  0.0 MainThread
+     67  0.0 migration/8
+     73  0.0 migration/9
+2649412  0.0 chromium
+2065732  0.0 chromium
+1176084  0.0 chromium
+ 906105  0.0 chromium
+2649512  0.0 chromium
+3854235  0.0 chromium
+3854889  0.0 chromium
+3353579  0.0 chromium
+  23346  0.0 chromium
+  23285  0.0 chromium
+   4745  0.0 systemd
+ 770504  0.0 MainThread
+   4715  0.0 systemd
+3735011  0.0 .gvfs-udisks2-v
+   4695  0.0 systemd
+3735505  0.0 .gvfsd-trash-wr
+4031322  0.0 .thunar-wrapped
+1675137  0.0 Web Content
+1119001  0.0 gpg-agent
+  60408  0.0 cilium-health-r
+  76308  0.0 cilium-health-r
+1801806  0.0 timeout
+3700478  0.0 Web Content
+   4731  0.0 systemd
+1675131  0.0 Web Content
+   4710  0.0 systemd
+    628  0.0 systemd-timesyn
+   1033  0.0 systemd-logind
+  62723  0.0 postgres
+ 341425  0.0 Privileged Cont
+ 206482  0.0 containerboot
+    118  0.0 khungtaskd
+1665044  0.0 postgres
+   4796  0.0 MainThread
+   1186  0.0 kworker/0:1H-kblockd
+1665016  0.0 postgres
+1082897  0.0 docker-proxy
+3735287  0.0 .gvfs-afc-volum
+    665  0.0 kworker/14:1H-kblockd
+    664  0.0 kworker/13:1H-kblockd
+   3207  0.0 kworker/10:1H-kblockd
+    633  0.0 kworker/6:1H-kblockd
+   2020  0.0 kworker/5:1H-kblockd
+   2022  0.0 kworker/15:1H-kblockd
+    663  0.0 kworker/12:1H-kblockd
+    604  0.0 kworker/4:1H-kblockd
+    632  0.0 kworker/2:1H-kblockd
+   2377  0.0 kworker/7:1H-kblockd
+    299  0.0 kworker/3:1H-kblockd
+   1017  0.0 cron
+    649  0.0 kworker/11:1H-kblockd
+   5447  0.0 postgres
+  70409  0.0 MainThread
+    301  0.0 kworker/1:1H-kblockd
+2037301  0.0 postgres
+    648  0.0 kworker/9:1H-kblockd
+   3177  0.0 kworker/8:1H-kblockd
+   4811  0.0 MailHog
+  62724  0.0 postgres
+1110030  0.0 systemd-journal
+1673564  0.0 Web Content
+   4781  0.0 fixture-site
+1148958  0.0 cilium-health-r
+ 180996  0.0 postgres
+   2321  0.0 hyprsunset
+   1262  0.0 usb-storage
+ 546481  0.0 postgres
+  62722  0.0 postgres
+1950063  0.0 postgres
+   5503  0.0 postgres
+1625326  0.0 zsh
+1899588  0.0 python
+   5505  0.0 postgres
+ 906122  0.0 chromium
+ 906157  0.0 chromium
+2649577  0.0 chromium
+1176137  0.0 chromium
+2065926  0.0 chromium
+2065993  0.0 chromium
+2065863  0.0 chromium
+2649679  0.0 chromium
+1176222  0.0 chromium
+3854724  0.0 chromium
+    124  0.0 khugepaged
+3855032  0.0 chromium
+3353635  0.0 chromium
+  23405  0.0 chromium
+  23465  0.0 chromium
+   5506  0.0 postgres
+3353596  0.0 chromium
+2649605  0.0 chromium
+    119  0.0 oom_reaper
+2158597  0.0 postgres
+1176338  0.0 chromium
+2066058  0.0 chromium
+2649820  0.0 chromium
+3855192  0.0 chromium
+  23616  0.0 chromium
+3353663  0.0 chromium
+1658630  0.0 postgres
+2144173  0.0 electron
+   1146  0.0 nix-daemon
+2160139  0.0 postgres
+   5445  0.0 postgres
+1632429  0.0 chromium
+  62308  0.0 postgres
+ 112075  0.0 chromium
+ 341381  0.0 forkserver
+ 137504  0.0 python
+   4769  0.0 llm-stub
+   7326  0.0 systemd-journal
+2160140  0.0 postgres
+1658608  0.0 postgres
+1658629  0.0 postgres
+   8192  0.0 systemd-journal
+ 341653  0.0 Utility Process
+3765853  0.0 zsh
+3765091  0.0 zsh
+3764357  0.0 zsh
+   6936  0.0 systemd-journal
+1878519  0.0 electron
+2839893  0.0 zsh
+1816827  0.0 zsh
+2159757  0.0 postgres
+3764519  0.0 zsh
+2158596  0.0 postgres
+2160138  0.0 postgres
+   7620  0.0 systemd-journal
+3765968  0.0 zsh
+3765202  0.0 zsh
+1109635  0.0 docker-proxy
+2159753  0.0 postgres
+2645352  0.0 pause
+ 222503  0.0 zsh
+1180718  0.0 zsh
+3005268  0.0 nginx
+ 222660  0.0 zsh
+ 222612  0.0 zsh
+ 220626  0.0 zsh
+2169589  0.0 pause
+   5699  0.0 docker-proxy
+      2  0.0 kthreadd
+2158594  0.0 postgres
+   5197  0.0 docker-proxy
+1658486  0.0 docker-proxy
+1416347  0.0 zsh
+1862177  0.0 zsh
+ 222894  0.0 zsh
+ 220763  0.0 zsh
+   5586  0.0 docker-proxy
+   2394  0.0 .gvfsd-fuse-wra
+   5141  0.0 docker-proxy
+2649834  0.0 zsh
+3154399  0.0 zsh
+   5736  0.0 docker-proxy
+1264981  0.0 ssh-agent
+1521193  0.0 zsh
+   5638  0.0 docker-proxy
+ 507473  0.0 zsh
+   5131  0.0 docker-proxy
+3756448  0.0 zsh
+1198629  0.0 zsh
+  62307  0.0 postgres
+   5325  0.0 docker-proxy
+   5798  0.0 docker-proxy
+1664939  0.0 docker-proxy
+1082889  0.0 docker-proxy
+1892650  0.0 .aws-wrapped
+   5259  0.0 docker-proxy
+   5349  0.0 docker-proxy
+2507240  0.0 zsh
+   5671  0.0 docker-proxy
+   5340  0.0 docker-proxy
+   4936  0.0 docker-proxy
+3705196  0.0 zsh
+3235320  0.0 zsh
+   5028  0.0 docker-proxy
+1658607  0.0 postgres
+1150486  0.0 pause
+1150502  0.0 pause
+1111691  0.0 pause
+1111568  0.0 pause
+1628994  0.0 zsh
+   5866  0.0 docker-proxy
+   5416  0.0 docker-proxy
+   5595  0.0 docker-proxy
+   5357  0.0 docker-proxy
+2791185  0.0 pause
+2774349  0.0 pause
+2763500  0.0 pause
+ 770506  0.0 MainThread
+2158577  0.0 postgres
+3347788  0.0 docker-proxy
+1233786  0.0 zsh
+   4760  0.0 node
+1664931  0.0 docker-proxy
+1658403  0.0 docker-proxy
+1658476  0.0 docker-proxy
+1658413  0.0 docker-proxy
+3347781  0.0 docker-proxy
+1658631  0.0 postgres
+   1501  0.0 sshd
+3347795  0.0 docker-proxy
+2160142  0.0 postgres
+2499087  0.0 autossh
+3346121  0.0 zsh
+   2343  0.0 .gvfsd-wrapped
+3735396  0.0 .gvfs-mtp-volum
+3735334  0.0 .gvfs-gphoto2-v
+2649378  0.0 chrome_crashpad
+4012969  0.0 zsh
+   1241  0.0 .gcr-ssh-agent-
+2065540  0.0 chrome_crashpad
+1175958  0.0 chrome_crashpad
+ 906046  0.0 chrome_crashpad
+3698127  0.0 electron
+  23210  0.0 chrome_crashpad
+    107  0.0 cpuhp/15
+ 573093  0.0 zsh
+3658912  0.0 speech-dispatch
+3899381  0.0 zsh
+    101  0.0 cpuhp/14
+   2269  0.0 wl-paste
+     89  0.0 cpuhp/12
+     95  0.0 cpuhp/13
+ 906053  0.0 chromium
+3735266  0.0 .gvfs-goa-volum
+2654140  0.0 chrome_crashpad
+3698128  0.0 electron
+     77  0.0 cpuhp/10
+     83  0.0 cpuhp/11
+     53  0.0 cpuhp/6
+     59  0.0 cpuhp/7
+     65  0.0 cpuhp/8
+     71  0.0 cpuhp/9
+3353534  0.0 chrome_crashpad
+3853749  0.0 chrome_crashpad
+2159756  0.0 postgres
+     41  0.0 cpuhp/4
+     47  0.0 cpuhp/5
+   3042  0.0 .at-spi-bus-lau
+     23  0.0 cpuhp/1
+     29  0.0 cpuhp/2
+     35  0.0 cpuhp/3
+2065560  0.0 chromium
+1175963  0.0 chromium
+1175964  0.0 chromium
+1263843  0.0 electron
+ 290146  0.0 dconf-service
+2065559  0.0 chromium
+ 906052  0.0 chromium
+ 770138  0.0 sh
+2649383  0.0 chromium
+2649384  0.0 chromium
+2349010  0.0 electron
+2349011  0.0 electron
+3353541  0.0 chromium
+  23216  0.0 chromium
+  23217  0.0 chromium
+3853755  0.0 chromium
+3853756  0.0 chromium
+3735577  0.0 .gvfsd-network-
+3658952  0.0 sd_espeak-ng-mb
+3999834  0.0 login
+3878766  0.0 login
+  88287  0.0 pause
+  88279  0.0 pause
+  19961  0.0 pause
+  19553  0.0 pause
+  19112  0.0 pause
+  18743  0.0 pause
+  18041  0.0 pause
+  18042  0.0 pause
+  18017  0.0 pause
+  17719  0.0 pause
+  17689  0.0 pause
+  17644  0.0 pause
+  17376  0.0 pause
+  17201  0.0 pause
+  17077  0.0 pause
+  16920  0.0 pause
+  16833  0.0 pause
+  16725  0.0 pause
+  16728  0.0 pause
+  16624  0.0 pause
+  16454  0.0 pause
+  16188  0.0 pause
+  16133  0.0 pause
+  15965  0.0 pause
+  16027  0.0 pause
+  16040  0.0 pause
+  16042  0.0 pause
+  16047  0.0 pause
+  15373  0.0 pause
+  14883  0.0 pause
+  14470  0.0 pause
+  14350  0.0 pause
+  13825  0.0 pause
+  13838  0.0 pause
+  12867  0.0 pause
+  12259  0.0 pause
+  12266  0.0 pause
+  12273  0.0 pause
+  12251  0.0 pause
+  11418  0.0 pause
+  10633  0.0 pause
+  10638  0.0 pause
+  10667  0.0 pause
+  10671  0.0 pause
+  10487  0.0 pause
+  10516  0.0 pause
+  10548  0.0 pause
+  10416  0.0 pause
+   8446  0.0 pause
+   4694  0.0 nginx
+   2748  0.0 obexd
+   1982  0.0 sddm
+      3  0.0 pool_workqueue_release
+      4  0.0 kworker/R-rcu_gp
+      5  0.0 kworker/R-sync_wq
+      6  0.0 kworker/R-kvfree_rcu_reclaim
+      7  0.0 kworker/R-slub_flushwq
+      8  0.0 kworker/R-netns
+     10  0.0 kworker/0:0H-kblockd
+     13  0.0 kworker/R-mm_percpu_wq
+     17  0.0 rcu_exp_par_gp_kthread_worker/0
+     20  0.0 kprobe-optimizer
+     21  0.0 idle_inject/0
+     22  0.0 cpuhp/0
+     24  0.0 idle_inject/1
+     28  0.0 kworker/1:0H-kblockd
+     30  0.0 idle_inject/2
+     34  0.0 kworker/2:0H-kblockd
+     36  0.0 idle_inject/3
+     40  0.0 kworker/3:0H-kblockd
+     42  0.0 idle_inject/4
+     46  0.0 kworker/4:0H-kblockd
+     48  0.0 idle_inject/5
+     52  0.0 kworker/5:0H-kblockd
+     54  0.0 idle_inject/6
+     58  0.0 kworker/6:0H-kblockd
+     60  0.0 idle_inject/7
+     64  0.0 kworker/7:0H-kblockd
+     66  0.0 idle_inject/8
+     70  0.0 kworker/8:0H-kblockd
+     72  0.0 idle_inject/9
+     76  0.0 kworker/9:0H-kblockd
+     78  0.0 idle_inject/10
+     82  0.0 kworker/10:0H-kblockd
+     84  0.0 idle_inject/11
+     88  0.0 kworker/11:0H-kblockd
+     90  0.0 idle_inject/12
+     94  0.0 kworker/12:0H-kblockd
+     96  0.0 idle_inject/13
+    100  0.0 kworker/13:0H-kblockd
+    102  0.0 idle_inject/14
+    106  0.0 kworker/14:0H-kblockd
+    108  0.0 idle_inject/15
+    112  0.0 kworker/15:0H
+    113  0.0 kdevtmpfs
+    114  0.0 kworker/R-inet_frag_wq
+    115  0.0 rcu_tasks_kthread
+    116  0.0 rcu_tasks_rude_kthread
+    117  0.0 kauditd
+    121  0.0 kworker/R-writeback
+    123  0.0 ksmd
+    125  0.0 kworker/R-kblockd
+    126  0.0 kworker/R-blkcg_punt_bio
+    127  0.0 kworker/R-kintegrityd
+    129  0.0 irq/9-acpi
+    131  0.0 kworker/R-devfreq_wq
+    133  0.0 kworker/R-quota_events_unbound
+    135  0.0 irq/26-AMD-Vi
+    138  0.0 kworker/R-kthrotld
+    140  0.0 kworker/R-mld
+    141  0.0 kworker/R-ipv6_addrconf
+    142  0.0 kworker/R-kstrp
+    143  0.0 kworker/R-zswap-shrink
+    144  0.0 irq/27-ACPI:Event
+    244  0.0 kworker/R-nvme-wq
+    245  0.0 kworker/R-nvme-reset-wq
+    246  0.0 kworker/R-nvme-delete-wq
+    247  0.0 kworker/R-nvme-auth-wq
+    253  0.0 kworker/R-ata_sff
+    261  0.0 scsi_eh_0
+    262  0.0 kworker/R-scsi_tmf_0
+    263  0.0 scsi_eh_1
+    264  0.0 kworker/R-scsi_tmf_1
+    265  0.0 scsi_eh_2
+    266  0.0 kworker/R-scsi_tmf_2
+    267  0.0 scsi_eh_3
+    268  0.0 kworker/R-scsi_tmf_3
+    269  0.0 scsi_eh_4
+    270  0.0 kworker/R-scsi_tmf_4
+    271  0.0 scsi_eh_5
+    272  0.0 kworker/R-scsi_tmf_5
+    308  0.0 kworker/R-ext4-rsv-conversion
+    574  0.0 kworker/R-tpm_dev_wq
+    650  0.0 psimon
+    720  0.0 kworker/R-acpi_thermal_pm
+    722  0.0 watchdogd
+    791  0.0 kworker/R-cfg80211
+    802  0.0 kworker/R-edac-poller
+    892  0.0 kworker/R-amdgpu-reset-dev
+    911  0.0 kworker/R-ttm
+   1113  0.0 (sd-pam)
+   1260  0.0 scsi_eh_6
+   1261  0.0 kworker/R-scsi_tmf_6
+   1265  0.0 kworker/R-uas
+   1271  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1272  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1273  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1274  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1275  0.0 kworker/R-dm_vblank_control_workqueue
+   1277  0.0 card1-crtc0
+   1278  0.0 card1-crtc1
+   1279  0.0 card1-crtc2
+   1280  0.0 card1-crtc3
+   1290  0.0 kworker/R-gfx_0.0.0
+   1291  0.0 kworker/R-comp_1.0.0
+   1292  0.0 kworker/R-comp_1.1.0
+   1293  0.0 kworker/R-comp_1.0.1
+   1294  0.0 kworker/R-comp_1.1.1
+   1295  0.0 kworker/R-sdma0
+   1296  0.0 kworker/R-sdma1
+   1297  0.0 kworker/R-vcn_unified_0
+   1298  0.0 kworker/R-jpeg_dec
+   1323  0.0 kworker/R-amdgpu-reset-dev
+   1343  0.0 kworker/R-ttm
+   1442  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1443  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1444  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1445  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1446  0.0 kworker/R-amdgpu_dm_hpd_rx_offload_wq
+   1447  0.0 kworker/R-dm_vblank_control_workqueue
+   1451  0.0 card2-crtc0
+   1452  0.0 card2-crtc1
+   1453  0.0 card2-crtc2
+   1454  0.0 card2-crtc3
+   1455  0.0 kworker/R-gfx_0.0.0
+   1456  0.0 kworker/R-gfx_0.1.0
+   1457  0.0 kworker/R-comp_1.0.0
+   1458  0.0 kworker/R-comp_1.1.0
+   1459  0.0 kworker/R-comp_1.2.0
+   1460  0.0 kworker/R-comp_1.3.0
+   1461  0.0 kworker/R-comp_1.0.1
+   1462  0.0 kworker/R-comp_1.1.1
+   1463  0.0 kworker/R-comp_1.2.1
+   1464  0.0 kworker/R-comp_1.3.1
+   1465  0.0 kworker/R-sdma0
+   1466  0.0 kworker/R-vcn_dec_0
+   1467  0.0 kworker/R-vcn_enc_0.0
+   1468  0.0 kworker/R-vcn_enc_0.1
+   1469  0.0 kworker/R-jpeg_dec
+   2110  0.0 sddm-helper
+   2306  0.0 systembus-notif
+   2444  0.0 .xdg-permission
+   2482  0.0 fusermount3
+   2758  0.0 krfcommd
+   3348  0.0 .gnome-keyring-
+   5218  0.0 nginx
+   8395  0.0 pause
+   8408  0.0 pause
+   8439  0.0 pause
+  10455  0.0 pause
+  10604  0.0 pause
+  10620  0.0 pause
+  10650  0.0 pause
+  11267  0.0 pause
+  11435  0.0 pause
+  11437  0.0 pause
+  12033  0.0 pause
+  12052  0.0 pause
+  12228  0.0 pause
+  12894  0.0 pause
+  13752  0.0 pause
+  13759  0.0 pause
+  13779  0.0 pause
+  13841  0.0 pause
+  13910  0.0 pause
+  14450  0.0 pause
+  14760  0.0 pause
+  14808  0.0 pause
+  15002  0.0 pause
+  15395  0.0 pause
+  15869  0.0 pause
+  16165  0.0 pause
+  16756  0.0 pause
+  16940  0.0 pause
+  17396  0.0 pause
+  17779  0.0 pause
+  18902  0.0 pause
+  20130  0.0 pause
+  20165  0.0 pause
+  23212  0.0 chrome_crashpad
+  23250  0.0 chromium
+  88294  0.0 pause
+ 201905  0.0 podman pause
+ 418885  0.0 psimon
+ 680694  0.0 dbus-daemon
+ 681403  0.0 at-spi2-registr
+ 770431  0.0 pnpm
+ 770432  0.0 pnpm
+ 770501  0.0 sh
+ 770502  0.0 sh
+ 770503  0.0 sh
+ 770505  0.0 sh
+ 906049  0.0 chrome_crashpad
+1111576  0.0 pause
+1111689  0.0 pause
+1113159  0.0 psimon
+1119003  0.0 scdaemon
+1134707  0.0 pause
+1134719  0.0 pause
+1134726  0.0 pause
+1146621  0.0 cilium-envoy-st
+1150494  0.0 pause
+1175960  0.0 chrome_crashpad
+1208673  0.0 pause
+1263842  0.0 electron
+1263851  0.0 electron
+1467199  0.0 kworker/u65:0-ttm
+1630737  0.0 kworker/u65:1-ttm
+1726054  0.0 scdaemon
+1798581  0.0 bash
+1801818  0.0 bash
+1801842  0.0 bazel
+1892653  0.0 head
+1892654  0.0 claude.exe
+1927438  0.0 .wl-copy-wrappe
+2037319  0.0 kworker/1:2-events
+2065549  0.0 chrome_crashpad
+2159290  0.0 sh
+2159377  0.0 docker-entrypoi
+2180086  0.0 kworker/0:2-events
+2254124  0.0 pause
+2298095  0.0 kworker/u65:2-ttm
+2325061  0.0 kworker/6:1-events
+2340903  0.0 kworker/11:0-events
+2349013  0.0 electron
+2444870  0.0 kworker/7:2-cgroup_free
+2445178  0.0 kworker/13:1-events
+2452619  0.0 kworker/2:0-cgroup_free
+2488568  0.0 postgres
+2488570  0.0 postgres
+2488571  0.0 postgres
+2488572  0.0 postgres
+2561529  0.0 kworker/15:2-events
+2601209  0.0 kworker/2:2-events
+2649380  0.0 chrome_crashpad
+2651893  0.0 slack
+2651897  0.0 slack
+2651907  0.0 slack
+2653039  0.0 zsh
+2667248  0.0 cargo-auditable
+2672494  0.0 kworker/14:2
+2705915  0.0 kworker/6:2-events
+2713528  0.0 pause
+2715564  0.0 process-wrapper
+2715565  0.0 cc_wrapper.sh
+2715820  0.0 sh
+2716442  0.0 process-wrapper
+2717076  0.0 kworker/u65:3-ttm
+2717077  0.0 kworker/u65:4
+2717429  0.0 sh
+2718210  0.0 cargo-auditable
+2718327  0.0 sleep
+2719600  0.0 sleep
+2719769  0.0 sleep
+2719795  0.0 sleep
+2719886  0.0 zsh
+2719920  0.0 ps
+2763477  0.0 pause
+2763485  0.0 pause
+2763495  0.0 pause
+2765040  0.0 psimon
+2774403  0.0 pause
+2791192  0.0 pause
+2791200  0.0 pause
+3016998  0.0 login
+3353536  0.0 chrome_crashpad
+3353540  0.0 chromium
+3353543  0.0 chromium
+3658934  0.0 sd_voxin
+3658935  0.0 sd_baratinoo
+3658936  0.0 sd_pico
+3658938  0.0 sd_cicero
+3658940  0.0 sd_kali
+3658941  0.0 sd_festival
+3658942  0.0 sd_flite
+3659142  0.0 sd_espeak-ng
+3659177  0.0 sd_dummy
+3659180  0.0 sd_openjtalk
+3659181  0.0 sd_espeak-ng
+3698138  0.0 electron
+3705921  0.0 tmux: client
+3744690  0.0 .gvfsd-metadata
+3853751  0.0 chrome_crashpad
+3853809  0.0 chromium
