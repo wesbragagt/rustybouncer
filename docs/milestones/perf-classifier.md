@@ -114,6 +114,8 @@ nix develop --no-update-lock-file --command python3 benchmarks/attribution.py --
 # with RUSTYBOUNCER_BIN=FROZEN_PRODUCTION and fresh metrics/buffer evidence roots.
 ```
 
-Installed locked Nix verification must pass normally before this milestone commit.
-Task registration records the actual commit and hook log. PERF-005–009 and all
+Implemented/verified as `3b5d9f8`, merged using workmux with the normal locked
+pre-merge gate. Both installed-hook and workmux checks passed.
+[Hook log](perf-classifier-evidence/acceptance-hook.log.gz),
+[workmux log](perf-classifier-evidence/workmux-merge.log.gz). PERF-005–009 and all
 broader canonical acceptance remain open.
