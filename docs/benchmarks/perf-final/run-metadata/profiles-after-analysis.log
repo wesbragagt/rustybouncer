@@ -1,0 +1,2 @@
+error (ignored): SQLite database '/home/publicuser/.cache/nix/eval-cache-v6/446fe6fecc1514db6c1f710d536506de557d16ef66fe414d610bd48d238d6553.sqlite' is busy
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m

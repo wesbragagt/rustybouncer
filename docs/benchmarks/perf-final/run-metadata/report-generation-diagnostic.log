@@ -1,0 +1,1 @@
+First complete-report generation exited 1 in native(): exact ^OK$ assertion did not match Nix-colored \x1b[32mOK\x1b[0m. Raw final-native.log retains all 66 Rust and 73 Python results. Corrected only ANSI terminal-decoration normalization; exact counts and all zero-failure/skip assertions remain. No experiment rerun or data exclusion.

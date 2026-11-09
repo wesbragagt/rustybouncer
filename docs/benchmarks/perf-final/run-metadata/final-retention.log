@@ -1,0 +1,2 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+{"archives": 11, "bytes": 1953139650, "required_scopes": 9, "output": "/home/publicuser/dev/rustybouncer/worktrees/scheduler/docs/benchmarks/perf-final"}

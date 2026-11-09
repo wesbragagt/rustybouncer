@@ -1,0 +1,1098 @@
+[
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      151012.842161,
+      156548.157465,
+      155917.53437
+    ],
+    "tps": 155917.53437,
+    "p99_ms": 0.161,
+    "maximum_latency_ms": 4.008,
+    "client_completions_min": 150741,
+    "tps_cv_percent": 1.9613984090618888
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      126871.661939,
+      122420.574681,
+      129138.964897
+    ],
+    "tps": 126871.661939,
+    "p99_ms": 0.191,
+    "maximum_latency_ms": 4.771,
+    "client_completions_min": 121901,
+    "proxy_cpu_seconds_per_q": 3.412896650710915e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 2.7094772392643405
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      127451.993233,
+      128812.177567,
+      139032.812694
+    ],
+    "tps": 128812.177567,
+    "p99_ms": 0.172,
+    "maximum_latency_ms": 6.779,
+    "client_completions_min": 127321,
+    "proxy_cpu_seconds_per_q": 3.4703190675012e-06,
+    "proxy_rss_observed": 12750848,
+    "tps_cv_percent": 4.804117538933415
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      127996.12266,
+      121135.955665,
+      135671.407975
+    ],
+    "tps": 127996.12266,
+    "p99_ms": 0.188,
+    "maximum_latency_ms": 3.879,
+    "client_completions_min": 120912,
+    "proxy_cpu_seconds_per_q": 7.424550858910678e-06,
+    "proxy_rss_observed": 6963200,
+    "tps_cv_percent": 5.669024265355047
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      78918.677871,
+      73081.493871,
+      81712.837952
+    ],
+    "tps": 78918.677871,
+    "p99_ms": 0.287,
+    "maximum_latency_ms": 3.95,
+    "client_completions_min": 72855,
+    "proxy_cpu_seconds_per_q": 3.456536618754278e-05,
+    "proxy_rss_observed": 11554816,
+    "tps_cv_percent": 5.653302107494429
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      253114.469552,
+      247916.496687,
+      237988.032674
+    ],
+    "tps": 247916.496687,
+    "p99_ms": 2.431,
+    "maximum_latency_ms": 87.45,
+    "client_completions_min": 20401,
+    "tps_cv_percent": 3.1198833803437744
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      124049.798328,
+      128574.883923,
+      121818.793344
+    ],
+    "tps": 124049.798328,
+    "p99_ms": 1.931,
+    "maximum_latency_ms": 39.609,
+    "client_completions_min": 12110,
+    "proxy_cpu_seconds_per_q": 3.3985433891469415e-06,
+    "proxy_rss_observed": 13406208,
+    "tps_cv_percent": 2.7579711040425017
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      124985.929553,
+      128157.809664,
+      124288.646513
+    ],
+    "tps": 124985.929553,
+    "p99_ms": 1.771,
+    "maximum_latency_ms": 13.149,
+    "client_completions_min": 12294,
+    "proxy_cpu_seconds_per_q": 3.437381564577502e-06,
+    "proxy_rss_observed": 13012992,
+    "tps_cv_percent": 1.639174194456427
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      139877.104194,
+      149132.583504,
+      141209.397134
+    ],
+    "tps": 141209.397134,
+    "p99_ms": 2.063,
+    "maximum_latency_ms": 22.121,
+    "client_completions_min": 13726,
+    "proxy_cpu_seconds_per_q": 4.603595967766222e-06,
+    "proxy_rss_observed": 10739712,
+    "tps_cv_percent": 3.4891026110338474
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "cte",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      106401.221676,
+      98643.8644,
+      96544.11916
+    ],
+    "tps": 98643.8644,
+    "p99_ms": 2.58,
+    "maximum_latency_ms": 25.11,
+    "client_completions_min": 9520,
+    "proxy_cpu_seconds_per_q": 2.8491679758400314e-05,
+    "proxy_rss_observed": 16334848,
+    "tps_cv_percent": 5.164749778084237
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      11287.357014,
+      11877.244998,
+      11203.877484
+    ],
+    "tps": 11287.357014,
+    "p99_ms": 1.857,
+    "maximum_latency_ms": 12.94,
+    "client_completions_min": 10577,
+    "tps_cv_percent": 3.203965608977573
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      3538.31547,
+      3620.059439,
+      2987.938161
+    ],
+    "tps": 3538.31547,
+    "p99_ms": 3.758,
+    "maximum_latency_ms": 8.237,
+    "client_completions_min": 2963,
+    "proxy_cpu_seconds_per_q": 0.00015569809827912628,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 10.165153651327484
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      3324.481049,
+      3603.938867,
+      3585.856384
+    ],
+    "tps": 3585.856384,
+    "p99_ms": 3.797,
+    "maximum_latency_ms": 9.119,
+    "client_completions_min": 3290,
+    "proxy_cpu_seconds_per_q": 0.00015419362034351994,
+    "proxy_rss_observed": 12750848,
+    "tps_cv_percent": 4.462123209490126
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      9291.560751,
+      9326.126476,
+      9526.567149
+    ],
+    "tps": 9326.126476,
+    "p99_ms": 2.273,
+    "maximum_latency_ms": 10.212,
+    "client_completions_min": 8986,
+    "proxy_cpu_seconds_per_q": 8.976352619443403e-05,
+    "proxy_rss_observed": 7094272,
+    "tps_cv_percent": 1.3525171525334636
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      9010.310142,
+      8633.724457,
+      8237.742898
+    ],
+    "tps": 8633.724457,
+    "p99_ms": 2.438,
+    "maximum_latency_ms": 8.346,
+    "client_completions_min": 7999,
+    "proxy_cpu_seconds_per_q": 0.0001645079821126532,
+    "proxy_rss_observed": 10502144,
+    "tps_cv_percent": 4.477948227062511
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      14653.171702,
+      15358.601874,
+      15139.255873
+    ],
+    "tps": 15139.255873,
+    "p99_ms": 42.673,
+    "maximum_latency_ms": 347.548,
+    "client_completions_min": 955,
+    "tps_cv_percent": 2.3987639782579064
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      2771.756195,
+      3223.455213,
+      3294.547582
+    ],
+    "tps": 3223.455213,
+    "p99_ms": 42.62,
+    "maximum_latency_ms": 54.736,
+    "client_completions_min": 276,
+    "proxy_cpu_seconds_per_q": 0.0001778288126125008,
+    "proxy_rss_observed": 13164544,
+    "tps_cv_percent": 9.156794435540233
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      2769.103671,
+      3115.26075,
+      3183.299778
+    ],
+    "tps": 3115.26075,
+    "p99_ms": 39.6,
+    "maximum_latency_ms": 68.449,
+    "client_completions_min": 276,
+    "proxy_cpu_seconds_per_q": 0.0001815848572345204,
+    "proxy_rss_observed": 13406208,
+    "tps_cv_percent": 7.348609806089003
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      11001.618065,
+      10450.28811,
+      11269.707487
+    ],
+    "tps": 11001.618065,
+    "p99_ms": 31.617,
+    "maximum_latency_ms": 107.392,
+    "client_completions_min": 957,
+    "proxy_cpu_seconds_per_q": 0.00011566379176874529,
+    "proxy_rss_observed": 11235328,
+    "tps_cv_percent": 3.830392791126902
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "large",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      9567.257377,
+      9989.459371,
+      9704.021198
+    ],
+    "tps": 9704.021198,
+    "p99_ms": 34.315,
+    "maximum_latency_ms": 107.088,
+    "client_completions_min": 895,
+    "proxy_cpu_seconds_per_q": 0.00023545575634262224,
+    "proxy_rss_observed": 35930112,
+    "tps_cv_percent": 2.2086217538924724
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      4893.633973,
+      4780.003302,
+      4923.833606
+    ],
+    "tps": 4893.633973,
+    "p99_ms": 20.154,
+    "maximum_latency_ms": 22.794,
+    "client_completions_min": 4441,
+    "short_p99_ms": 0.143,
+    "long_p99_ms": 20.243,
+    "tps_cv_percent": 1.5586458067337863
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      4982.005625,
+      4880.098119,
+      4844.198863
+    ],
+    "tps": 4880.098119,
+    "p99_ms": 20.171,
+    "maximum_latency_ms": 23.124,
+    "client_completions_min": 4488,
+    "short_p99_ms": 0.154,
+    "long_p99_ms": 20.292,
+    "proxy_cpu_seconds_per_q": 6.1809790670842274e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 1.4583467009993787
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      4831.435701,
+      4899.637884,
+      4896.571152
+    ],
+    "tps": 4896.571152,
+    "p99_ms": 20.171,
+    "maximum_latency_ms": 23.964,
+    "client_completions_min": 4454,
+    "short_p99_ms": 0.155,
+    "long_p99_ms": 20.25,
+    "proxy_cpu_seconds_per_q": 6.52382214429879e-06,
+    "proxy_rss_observed": 12857344,
+    "tps_cv_percent": 0.7900476837902071
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      4871.406881,
+      4897.272533,
+      4761.770227
+    ],
+    "tps": 4871.406881,
+    "p99_ms": 20.171,
+    "maximum_latency_ms": 22.682,
+    "client_completions_min": 4432,
+    "short_p99_ms": 0.154,
+    "long_p99_ms": 20.28,
+    "proxy_cpu_seconds_per_q": 7.5841429918419225e-06,
+    "proxy_rss_observed": 6897664,
+    "tps_cv_percent": 1.4852449929867158
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      4840.42797,
+      4828.096056,
+      4822.306565
+    ],
+    "tps": 4828.096056,
+    "p99_ms": 20.181,
+    "maximum_latency_ms": 21.9,
+    "client_completions_min": 4513,
+    "short_p99_ms": 0.171,
+    "long_p99_ms": 20.283,
+    "proxy_cpu_seconds_per_q": 1.588742623694961e-05,
+    "proxy_rss_observed": 7356416,
+    "tps_cv_percent": 0.19161314679246058
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      48734.025016,
+      48635.643436,
+      49006.354374
+    ],
+    "tps": 48734.025016,
+    "p99_ms": 20.13,
+    "maximum_latency_ms": 56.157,
+    "client_completions_min": 4384,
+    "short_p99_ms": 0.122,
+    "long_p99_ms": 20.335,
+    "tps_cv_percent": 0.3935825098079133
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      48134.573685,
+      47717.121079,
+      48869.898961
+    ],
+    "tps": 48134.573685,
+    "p99_ms": 20.144,
+    "maximum_latency_ms": 45.879,
+    "client_completions_min": 4346,
+    "short_p99_ms": 0.132,
+    "long_p99_ms": 20.265,
+    "proxy_cpu_seconds_per_q": 4.399265015816892e-06,
+    "proxy_rss_observed": 13012992,
+    "tps_cv_percent": 1.20986966002009
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      48377.88049,
+      48752.843987,
+      48018.147968
+    ],
+    "tps": 48377.88049,
+    "p99_ms": 20.139,
+    "maximum_latency_ms": 24.714,
+    "client_completions_min": 4198,
+    "short_p99_ms": 0.129,
+    "long_p99_ms": 20.239,
+    "proxy_cpu_seconds_per_q": 4.476676515355e-06,
+    "proxy_rss_observed": 13275136,
+    "tps_cv_percent": 0.7593052191184111
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      48249.51026,
+      48411.307467,
+      48807.070641
+    ],
+    "tps": 48411.307467,
+    "p99_ms": 20.146,
+    "maximum_latency_ms": 31.404,
+    "client_completions_min": 4377,
+    "short_p99_ms": 0.209,
+    "long_p99_ms": 20.405,
+    "proxy_cpu_seconds_per_q": 6.660047985438902e-06,
+    "proxy_rss_observed": 10371072,
+    "tps_cv_percent": 0.5915635950487905
+  },
+  {
+    "placement": "unrestricted",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      48269.360148,
+      48408.798631,
+      48341.126031
+    ],
+    "tps": 48341.126031,
+    "p99_ms": 20.158,
+    "maximum_latency_ms": 26.442,
+    "client_completions_min": 4153,
+    "short_p99_ms": 0.179,
+    "long_p99_ms": 20.33,
+    "proxy_cpu_seconds_per_q": 1.2951893852402204e-05,
+    "proxy_rss_observed": 10911744,
+    "tps_cv_percent": 0.14424823752548227
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      168919.008139,
+      151599.345309,
+      157297.416516
+    ],
+    "tps": 157297.416516,
+    "p99_ms": 0.161,
+    "maximum_latency_ms": 4.085,
+    "client_completions_min": 151084,
+    "tps_cv_percent": 5.54212117725989
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      136413.98802,
+      97108.269872,
+      136392.81027
+    ],
+    "tps": 136392.81027,
+    "p99_ms": 0.165,
+    "maximum_latency_ms": 5.009,
+    "client_completions_min": 96830,
+    "proxy_cpu_seconds_per_q": 3.1234579759259107e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 18.399133655819906
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      137049.633787,
+      98481.290011,
+      94758.271165
+    ],
+    "tps": 98481.290011,
+    "p99_ms": 0.86,
+    "maximum_latency_ms": 10.498,
+    "client_completions_min": 94587,
+    "proxy_cpu_seconds_per_q": 3.1887406079914064e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 21.268902375322867
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      126428.291406,
+      95802.514384,
+      92721.229718
+    ],
+    "tps": 95802.514384,
+    "p99_ms": 1.069,
+    "maximum_latency_ms": 6.074,
+    "client_completions_min": 92453,
+    "proxy_cpu_seconds_per_q": 3.4307241848793524e-06,
+    "proxy_rss_observed": 6914048,
+    "tps_cv_percent": 17.750403603125754
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      54522.318403,
+      29890.830177,
+      29632.718948
+    ],
+    "tps": 29890.830177,
+    "p99_ms": 3.344,
+    "maximum_latency_ms": 7.484,
+    "client_completions_min": 29570,
+    "proxy_cpu_seconds_per_q": 1.4920529779169472e-05,
+    "proxy_rss_observed": 10059776,
+    "tps_cv_percent": 37.606156595405984
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      235409.390712,
+      238995.092096,
+      240240.319394
+    ],
+    "tps": 238995.092096,
+    "p99_ms": 2.525,
+    "maximum_latency_ms": 91.796,
+    "client_completions_min": 21016,
+    "tps_cv_percent": 1.0529051066693778
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      131268.500709,
+      126502.703597,
+      135058.559525
+    ],
+    "tps": 131268.500709,
+    "p99_ms": 1.859,
+    "maximum_latency_ms": 21.671,
+    "client_completions_min": 12569,
+    "proxy_cpu_seconds_per_q": 3.28538987862598e-06,
+    "proxy_rss_observed": 13537280,
+    "tps_cv_percent": 3.27408310198389
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      133065.125896,
+      133652.883036,
+      93633.336949
+    ],
+    "tps": 133065.125896,
+    "p99_ms": 1.702,
+    "maximum_latency_ms": 19.635,
+    "client_completions_min": 9234,
+    "proxy_cpu_seconds_per_q": 3.319043633758211e-06,
+    "proxy_rss_observed": 13537280,
+    "tps_cv_percent": 19.09595269802627
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      130418.362161,
+      132093.777646,
+      130316.592213
+    ],
+    "tps": 130418.362161,
+    "p99_ms": 1.527,
+    "maximum_latency_ms": 13.074,
+    "client_completions_min": 12880,
+    "proxy_cpu_seconds_per_q": 3.4697725875655965e-06,
+    "proxy_rss_observed": 9101312,
+    "tps_cv_percent": 0.7621475168022993
+  },
+  {
+    "placement": "normalized",
+    "workload": "cte",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      50269.019204,
+      51642.880544,
+      51836.582671
+    ],
+    "tps": 51642.880544,
+    "p99_ms": 3.112,
+    "maximum_latency_ms": 16.648,
+    "client_completions_min": 4968,
+    "proxy_cpu_seconds_per_q": 1.5505290040131338e-05,
+    "proxy_rss_observed": 12550144,
+    "tps_cv_percent": 1.6675712279869872
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      10889.652884,
+      10252.936504,
+      11520.102391
+    ],
+    "tps": 10889.652884,
+    "p99_ms": 1.974,
+    "maximum_latency_ms": 15.416,
+    "client_completions_min": 9683,
+    "tps_cv_percent": 5.819350688175963
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      2278.318974,
+      3443.276676,
+      3326.134341
+    ],
+    "tps": 3326.134341,
+    "p99_ms": 4.529,
+    "maximum_latency_ms": 60.889,
+    "client_completions_min": 2259,
+    "proxy_cpu_seconds_per_q": 0.00016291090719014982,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 21.268944877973077
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      2258.252171,
+      3461.735177,
+      3497.973163
+    ],
+    "tps": 3461.735177,
+    "p99_ms": 4.331,
+    "maximum_latency_ms": 16.943,
+    "client_completions_min": 2240,
+    "proxy_cpu_seconds_per_q": 0.00015892071114159952,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 22.961422192692307
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      4923.22484,
+      4832.498845,
+      6727.764576
+    ],
+    "tps": 4923.22484,
+    "p99_ms": 5.153,
+    "maximum_latency_ms": 22.377,
+    "client_completions_min": 4804,
+    "proxy_cpu_seconds_per_q": 6.850732676546072e-05,
+    "proxy_rss_observed": 6914048,
+    "tps_cv_percent": 19.45591993618657
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      3843.554625,
+      3705.914824,
+      6021.641346
+    ],
+    "tps": 3843.554625,
+    "p99_ms": 5.684,
+    "maximum_latency_ms": 11.866,
+    "client_completions_min": 3674,
+    "proxy_cpu_seconds_per_q": 0.00012061847324536549,
+    "proxy_rss_observed": 9814016,
+    "tps_cv_percent": 28.71709646093612
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      14264.560508,
+      14448.812496,
+      14476.515176
+    ],
+    "tps": 14448.812496,
+    "p99_ms": 46.507,
+    "maximum_latency_ms": 402.059,
+    "client_completions_min": 943,
+    "tps_cv_percent": 0.8002615347018174
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      3218.439016,
+      3154.095505,
+      3142.033819
+    ],
+    "tps": 3154.095505,
+    "p99_ms": 39.352,
+    "maximum_latency_ms": 100.977,
+    "client_completions_min": 311,
+    "proxy_cpu_seconds_per_q": 0.00018250732577398393,
+    "proxy_rss_observed": 13668352,
+    "tps_cv_percent": 1.2951442649962532
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      3152.840591,
+      3118.042941,
+      2969.790752
+    ],
+    "tps": 3118.042941,
+    "p99_ms": 43.704,
+    "maximum_latency_ms": 69.54,
+    "client_completions_min": 296,
+    "proxy_cpu_seconds_per_q": 0.00018160233580389516,
+    "proxy_rss_observed": 13668352,
+    "tps_cv_percent": 3.155886399295788
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      5633.441988,
+      5984.858153,
+      6004.041355
+    ],
+    "tps": 5984.858153,
+    "p99_ms": 21.34,
+    "maximum_latency_ms": 52.16,
+    "client_completions_min": 558,
+    "proxy_cpu_seconds_per_q": 8.803641962910892e-05,
+    "proxy_rss_observed": 9142272,
+    "tps_cv_percent": 3.551999791941618
+  },
+  {
+    "placement": "normalized",
+    "workload": "large",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      5181.512003,
+      5483.667813,
+      5397.46601
+    ],
+    "tps": 5397.46601,
+    "p99_ms": 27.993,
+    "maximum_latency_ms": 62.277,
+    "client_completions_min": 508,
+    "proxy_cpu_seconds_per_q": 0.0001589067512191504,
+    "proxy_rss_observed": 33501184,
+    "tps_cv_percent": 2.9070901425473425
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "direct",
+    "tps_all": [
+      4950.562283,
+      4897.470291,
+      4784.883921
+    ],
+    "tps": 4897.470291,
+    "p99_ms": 20.156,
+    "maximum_latency_ms": 21.773,
+    "client_completions_min": 4284,
+    "short_p99_ms": 0.144,
+    "long_p99_ms": 20.288,
+    "tps_cv_percent": 1.7344621188278557
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      4784.101571,
+      4736.900106,
+      4535.442061
+    ],
+    "tps": 4736.900106,
+    "p99_ms": 20.191,
+    "maximum_latency_ms": 23.814,
+    "client_completions_min": 4262,
+    "short_p99_ms": 0.218,
+    "long_p99_ms": 21.0,
+    "proxy_cpu_seconds_per_q": 5.941639892610361e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 2.81857211372857
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      4873.21536,
+      4786.396895,
+      4865.607177
+    ],
+    "tps": 4865.607177,
+    "p99_ms": 20.188,
+    "maximum_latency_ms": 23.391,
+    "client_completions_min": 4572,
+    "short_p99_ms": 0.199,
+    "long_p99_ms": 20.8,
+    "proxy_cpu_seconds_per_q": 5.939215204390923e-06,
+    "proxy_rss_observed": 12881920,
+    "tps_cv_percent": 0.9930128794307247
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      4492.791009,
+      4934.463932,
+      4818.176326
+    ],
+    "tps": 4818.176326,
+    "p99_ms": 20.19,
+    "maximum_latency_ms": 23.697,
+    "client_completions_min": 4255,
+    "short_p99_ms": 0.193,
+    "long_p99_ms": 21.005,
+    "proxy_cpu_seconds_per_q": 6.66607412674429e-06,
+    "proxy_rss_observed": 6914048,
+    "tps_cv_percent": 4.821275779466459
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      4670.583333,
+      4722.353007,
+      4847.272263
+    ],
+    "tps": 4722.353007,
+    "p99_ms": 20.479,
+    "maximum_latency_ms": 24.593,
+    "client_completions_min": 4445,
+    "short_p99_ms": 1.002,
+    "long_p99_ms": 21.005,
+    "proxy_cpu_seconds_per_q": 1.0370150896277328e-05,
+    "proxy_rss_observed": 7061504,
+    "tps_cv_percent": 1.9135903636222449
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "direct",
+    "tps_all": [
+      48695.099173,
+      49129.115494,
+      48557.775082
+    ],
+    "tps": 48695.099173,
+    "p99_ms": 20.125,
+    "maximum_latency_ms": 24.795,
+    "client_completions_min": 4232,
+    "short_p99_ms": 0.102,
+    "long_p99_ms": 20.182,
+    "tps_cv_percent": 0.6112086203120486
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "tps_all": [
+      46895.35076,
+      48192.704842,
+      48436.635073
+    ],
+    "tps": 48192.704842,
+    "p99_ms": 20.17,
+    "maximum_latency_ms": 34.365,
+    "client_completions_min": 4226,
+    "short_p99_ms": 0.274,
+    "long_p99_ms": 20.96,
+    "proxy_cpu_seconds_per_q": 4.188416860956939e-06,
+    "proxy_rss_observed": 13537280,
+    "tps_cv_percent": 1.7316975265897576
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "tps_all": [
+      47474.13311,
+      47875.815115,
+      47906.892377
+    ],
+    "tps": 47875.815115,
+    "p99_ms": 20.175,
+    "maximum_latency_ms": 25.361,
+    "client_completions_min": 4265,
+    "short_p99_ms": 0.29,
+    "long_p99_ms": 20.703,
+    "proxy_cpu_seconds_per_q": 4.323299241229654e-06,
+    "proxy_rss_observed": 13144064,
+    "tps_cv_percent": 0.5054902117988348
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "tps_all": [
+      47145.656019,
+      47921.968024,
+      48378.487617
+    ],
+    "tps": 47921.968024,
+    "p99_ms": 20.185,
+    "maximum_latency_ms": 38.986,
+    "client_completions_min": 4210,
+    "short_p99_ms": 0.357,
+    "long_p99_ms": 20.998,
+    "proxy_cpu_seconds_per_q": 4.616126635050684e-06,
+    "proxy_rss_observed": 9129984,
+    "tps_cv_percent": 1.3035352782500005
+  },
+  {
+    "placement": "normalized",
+    "workload": "mixed",
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "tps_all": [
+      45898.048816,
+      47911.123484,
+      46446.922361
+    ],
+    "tps": 46446.922361,
+    "p99_ms": 20.3,
+    "maximum_latency_ms": 53.314,
+    "client_completions_min": 4163,
+    "short_p99_ms": 1.088,
+    "long_p99_ms": 22.879,
+    "proxy_cpu_seconds_per_q": 7.587158264359167e-06,
+    "proxy_rss_observed": 9551872,
+    "tps_cv_percent": 2.2258758223284563
+  }
+]

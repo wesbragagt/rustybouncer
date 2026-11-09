@@ -1,0 +1,9 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/benchmarks/pool_profile.py", line 134, in <module>
+    main()
+    ~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/benchmarks/pool_profile.py", line 103, in main
+    assert '.debug_info' in sections,'profile binary must retain debug information'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: profile binary must retain debug information

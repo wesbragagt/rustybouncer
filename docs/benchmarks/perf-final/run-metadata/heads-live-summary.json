@@ -1,0 +1,12 @@
+{
+  "live_cases": 144,
+  "rust_tests": 66,
+  "working_offline_python_tests": 73,
+  "complexity_peak": 27,
+  "complexity_limit": 30,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "expected_failures": 0,
+  "unexpected_successes": 0
+}

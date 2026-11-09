@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+cargo fmt --all -- --check
+cargo check --locked --offline --all-targets --all-features
+cargo clippy --locked --offline --all-targets --all-features -- -D warnings
+cargo test --locked --offline --all-targets --all-features
+ruff check tests benchmarks scripts conformance
+ty check tests benchmarks scripts conformance
+python3 scripts/check_complexity.py
+python3 -m unittest discover -s tests -p 'test_*.py'
+nixfmt --check flake.nix
+shellcheck scripts/verify scripts/install-hooks .githooks/pre-commit deploy/prometheus/check.sh
+
+actionlint .github/workflows/conformance.yml
+bash deploy/prometheus/check.sh
+python3 scripts/check_grafana.py

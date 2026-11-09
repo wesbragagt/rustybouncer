@@ -22,14 +22,59 @@ dashboard and complementary PostgreSQL, CNPG and infrastructure dashboards.
 
 ## PgBouncer comparison
 
-### Latest pool candidate — final acceptance pending
+Latest candidate: runtime `14f077e`, measured on 2026-11-09 with PgBouncer **1.26.1**
+and PostgreSQL 16 on a shared Linux host. All **654 normal timing arms** across
+the before/after lookup, bounded-pool, normalized and additional-workload matrices
+report zero query errors. The [complete comparison](docs/benchmarks/performance-final.md)
+retains all repetitions, ranges, raw profiles and exact reproduction commands;
+the [performance task ledger](docs/tasks/pgbouncer-performance.md) records scoped
+acceptance. Broader conformance and release requirements remain open.
 
-Runtime source `14f077e` has completed all **144 bounded-pool timing arms** with
-zero query errors. Both implementations use a 16-backend ceiling; all requested
-10/100/**1,000** clients finish. Three repetitions use 5s warmup and 10s measurement
-plus complete connection/drain time, with every transaction logged. These are
-multi-command transaction rates, distinct from the historical single-query Q/s.
-Final workload, attribution, fault and deployment acceptance remains pending.
+### Persistent indexed lookup
+
+The unchanged original comparison uses 10,000 rows and a 128-byte payload, three
+30s measurements after 5s warmups, rotated order, trust authentication, TLS/metrics
+off and random 10% latency logs. Quantiles are medians of the three per-run
+quantiles. These original Rust targets use **unshared** routed/passthrough modes;
+they do not measure the new shared pools.
+
+| Target | Clients | Median Q/s | p50 ms | p95 ms | p99 ms | Peak PG backends |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Direct PostgreSQL | 10 | 163,990 | 0.050 | 0.114 | 0.203 | 10 |
+| PgBouncer session | 10 | 134,587 | 0.067 | 0.113 | 0.188 | 10 |
+| PgBouncer transaction | 10 | 124,426 | 0.070 | 0.128 | 0.224 | 10 |
+| Rust passthrough | 10 | 115,749 | 0.075 | 0.152 | 0.273 | 10 |
+| Rust unshared routed | 10 | 104,552 | 0.087 | 0.150 | 0.275 | 10 |
+| Direct PostgreSQL | 100 | 334,233 | 0.203 | 0.804 | 1.723 | 100 |
+| PgBouncer session | 100 | 155,008 | 0.621 | 0.788 | 1.107 | 100 |
+| PgBouncer transaction | 100 | 148,795 | 0.620 | 0.979 | 1.364 | 100 |
+| Rust passthrough | 100 | 182,268 | 0.519 | 0.963 | 1.519 | 100 |
+| Rust unshared routed | 100 | 171,531 | 0.523 | 1.103 | 1.607 | 100 |
+
+At 100 clients, routed Rust has higher throughput and worse p95/p99 than PgBouncer
+session. Passthrough has different semantics and cannot stand in for routed mode.
+These unrestricted results do not establish per-core efficiency: Tokio can use
+multiple CPUs, while one PgBouncer instance uses one. PgBouncer also supports
+multiple instances/SO_REUSEPORT, which this study does not measure.
+[Upstream CPU configuration](https://www.pgbouncer.org/config.html#so_reuseport).
+All targets reach the original 10/100 backend counts; pooling savings belong to
+the separate small-pool experiment below.
+
+With one proxy CPU at 100 clients, PgBouncer session measures **101,322 Q/s**
+versus **60,953 Q/s** for unshared routed Rust; p99 is **4.917ms versus 6.874ms**.
+Proxy CPU per query is **3.00µs versus 6.16µs**. That CPU is shared with other host
+work, so these are measured process costs and rates, not exclusive-core capacity
+or a production efficiency guarantee. All repetitions/ranges/CV remain in the report.
+
+### Shared pools with a 16-backend ceiling
+
+All **144 arms per candidate** provision 10/100/**1,000** actual frontends. Every
+client completes; independent PostgreSQL observations stay <=16 workload backends.
+Three repetitions use 5s warmup +10s measurement with complete connection/drain
+time and 100% transaction logging. Each transaction includes BEGIN, a guarded
+indexed lookup and COMMIT. These TPS values are distinct from single-query Q/s.
+“One CPU” constrains only the proxy and sets one Tokio worker; PostgreSQL and the
+load generator keep their recorded unrestricted placement.
 
 | Workload | Proxy placement | Clients | PgBouncer session TPS | Rust session TPS | PgBouncer transaction TPS | Rust transaction TPS |
 | --- | --- | ---: | ---: | ---: | ---: | ---: |
@@ -43,89 +88,89 @@ medians rose from 4.0k→12.7k TPS (session) and 3.5k→12.1k (transaction); p99
 from 296→104ms and 367→118ms. Proxy CPU per transaction fell, while observed RSS
 rose about 4 MiB. At 1,000 persistent transaction clients, Rust transaction TPS
 rose from 4.1k→21.6k; PgBouncer remains faster. Low-concurrency transaction costs
-and one-CPU gaps also remain. This is not a universal performance win.
+and one-CPU gaps remain.
 
-Every repetition stays included. This shared host showed substantial variation,
-including lower PgBouncer throughput in the later one-CPU batch; before/after
-results do not establish causal isolation, statistical significance or a production
-SLO. Session pooling can keep clients queued until other sessions close, so maximum
-latency and minimum completions per client accompany p99 in the final report.
-The [complete protocol](docs/benchmarks/performance-final.md) defines all mandatory
-measurements and remaining gates; [performance tasks](docs/tasks/pgbouncer-performance.md)
-remain authoritative for scoped acceptance.
+Session pooling can leave clients waiting about ten seconds while active sessions
+hold the 16 backends, even when aggregate p99 is low. Maximum latency and minimum
+completions per client expose that wait. Every repetition stays included, including
+slower native results and substantial control shifts: for example, PgBouncer's
+one-CPU persistent transaction median fell from 41.8k to 26.9k between batches.
+No isolated causal estimate, statistical significance or production SLO is claimed.
 
-### Historical baseline
+### CTE, larger results and mixed durations
 
-Historical baseline `c8997e8`, measured on 2026-11-08: PgBouncer **1.26.1**,
-the Rustybouncer release at that commit,
-and the same PostgreSQL 16 primary. A random indexed lookup over 10,000 rows
-returns a 128-byte payload; clients stay connected and use simple query protocol.
-Each cell summarizes three 30-second runs after 5-second warmups, with rotated
-execution order. Latencies are medians of per-run sampled quantiles (10% random
-sampling); backend peaks are independently observed via PostgreSQL. All 30 arms
-completed with **zero query errors**. TLS and metrics are disabled; authentication
-is trust on an isolated loopback fixture.
+All **180 additional workload arms** complete with exact per-client workload
+preflight, full transaction logs and every client represented. At 100 clients:
 
-| Target | Clients | Median Q/s | p50 ms | p95 ms | p99 ms | Peak PG backends |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Direct PostgreSQL | 10 | 222,569 | 0.039 | 0.072 | 0.116 | 10 |
-| PgBouncer session | 10 | 157,913 | 0.060 | 0.083 | 0.121 | 10 |
-| PgBouncer transaction | 10 | 155,583 | 0.061 | 0.083 | 0.125 | 10 |
-| Rustybouncer passthrough | 10 | 156,937 | 0.058 | 0.092 | 0.155 | 10 |
-| Rustybouncer routed → primary | 10 | 67,520 | 0.124 | 0.268 | 0.426 | 10 |
-| Direct PostgreSQL | 100 | 332,702 | 0.203 | 0.814 | 1.732 | 100 |
-| PgBouncer session | 100 | 152,507 | 0.621 | 0.849 | 1.277 | 100 |
-| PgBouncer transaction | 100 | 152,280 | 0.606 | 0.951 | 1.344 | 100 |
-| Rustybouncer passthrough | 100 | 186,693 | 0.508 | 0.915 | 1.436 | 100 |
-| Rustybouncer routed → primary | 100 | 93,031 | 0.987 | 1.942 | 2.674 | 100 |
+| Workload | Proxy placement | PgBouncer session Q/s | Rust unshared routed Q/s | PgBouncer p99 ms | Rust p99 ms |
+| --- | --- | ---: | ---: | ---: | ---: |
+| CTE lookup | Unrestricted | 124,050 | 98,644 | 1.931 | 2.580 |
+| 2,048-row result | Unrestricted | 3,223 | 9,704 | 42.620 | 34.315 |
+| CTE lookup | One CPU | 131,269 | 51,643 | 1.859 | 3.112 |
+| 2,048-row result | One CPU | 3,154 | 5,397 | 39.352 | 27.993 |
 
-In this historical baseline, routed Rustybouncer is slower than both PgBouncer modes; it
-classifies and buffers each query. Passthrough has different semantics and cannot
-stand in for routed-mode performance. At 100 clients its throughput exceeds the
-single PgBouncer process, but this is **not an equal-core efficiency comparison**:
-Tokio can use multiple cores, while one PgBouncer instance uses one core. The host
-has 16 logical CPUs and also runs other workloads. PgBouncer supports multiple
-instances/SO_REUSEPORT; that setup was not measured.
-[PgBouncer CPU configuration](https://www.pgbouncer.org/config.html#so_reuseport).
+The guarded CTE/short lookup returns four columns; the original lookup returns
+only its payload. Routed Rust is faster for this result size in this fixture,
+with higher proxy memory: roughly **32 MiB versus 13 MiB RSS** on one CPU. Its
+buffered/coalesced response policy is part of the measured mode; this does not
+isolate that policy's marginal cost or benefit. Rust's
+32-MiB response limit and buffering contract still apply; this does not establish
+unlimited streaming capacity or a general large-query advantage.
 
-Use these as local observations, not a production ranking or SLO. All modes target
-one primary with maximum client/pool capacity 256 and PostgreSQL capacity 400.
-All modes reached the same observed backend count here; the benchmark does not
-establish pooling savings for idle clients or connection churn.
-The test does not measure replica read scaling, failover, connection churn,
-prepared statements, writes, TLS or large-result memory pressure.
-[Reproduce, individual runs, ranges and provenance](docs/benchmarks/pgbouncer-comparison.md).
+A 9:1 mix of short lookups and 20ms queries produces similar unrestricted rates
+(~48k Q/s), but short-query p99 is 0.179ms for routed Rust versus 0.132ms for
+PgBouncer session. On one CPU, those short tails are 1.088ms versus 0.274ms.
+Aggregate throughput alone hides that difference. The separate 96-arm shared-pool
+before/after duration mix also retains short/long distributions and maximum waits.
 
-The [performance improvement task backlog](docs/tasks/pgbouncer-performance.md)
-records wire/classifier and shared-pooling acceptance, plus remaining scheduling
-and final comparison work. A final combined comparison remains pending; this table is preserved as
-historical evidence.
+### Recovery and verification
+
+All **24 crash/promotion load cases** complete across both poolers' session and
+transaction modes, 10/100 workers and three repetitions. Independent database rows
+and statement logs verify **741,044 acknowledged writes** survived, with zero
+duplicate INSERT executions or application SQL replays. **53 uncertain committed
+writes** remain explicit. Expected outage errors are retained; every worker
+acknowledges new writes after promotion and continues through the stable phase.
+PgBouncer uses an external host/reload/reconnect adapter and Rust uses discovery;
+these results do not rank every HA deployment or establish replica freshness.
+
+The candidate also passes **144 live regression cases**, **six kind/CNPG cases**,
+**eight independent unsuppressed Memcheck arms**, and **66 Rust +73 Python tests**,
+with zero failures, errors or skips in those required functional scopes. Memcheck
+has no access/definite/indirect/possible leak or private-response findings; retained
+process globals and total RSS are separate. Instrumented profiles and memory
+audits do not substitute for normal timings. See
+[acceptance and limits](docs/milestones/perf-final.md) for complete evidence,
+including the corrected and preserved failed fault-log capture.
 
 ### Advantages and trade-offs
 
 | Area | PgBouncer | Rustybouncer today |
 | --- | --- | --- |
-| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared session/transaction pools; 1,000 frontends with a 16-backend ceiling verified. Default routing keeps per-client caches; current shared-pool CPU/tail costs are documented |
+| Backend capacity | Shared pools and mature limits; lower costs in the measured transaction/CTE workloads | Opt-in shared session/transaction pools; 1,000 frontends with a 16-backend ceiling verified. Default routing keeps per-client caches |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Eligible simple-protocol autocommit SELECT/CTE reads use replicas in unshared/transaction mode, with primary fallback; extended queries and shared session mode stay primary |
-| Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
-| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
-| Response and memory | Streams protocol traffic | Simple Query buffers to ReadyForQuery; extended exchanges buffer to native terminals before client Sync. Limits are 32 MiB/exchange and 16 MiB/message, with a 64-MiB default process bulk-storage budget and separate frontend/runtime overhead |
-| Operations | Administrative console, reload and pool controls | Prometheus/Grafana support and container/CNPG examples; reload, shared-pool controls and graceful draining remain open |
+| Primary changes | Host/DNS and reload/reconnect controls support external HA orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
+| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed/shared mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Passthrough preserves backend protocol/authentication |
+| Response and memory | Streams protocol traffic with low connection overhead | Simple Query buffers to ReadyForQuery; extended exchanges buffer to native terminals before client Sync. Limits: 32 MiB/exchange, 16 MiB/message, 64-MiB default process bulk-storage budget; frontend/runtime memory is separate |
+| Operations | Administrative console, reload and pool controls | Prometheus/Grafana and container/CNPG examples; reload, administrative pool controls and graceful draining remain open |
 
-Choose PgBouncer when your main need is shared connection pooling and established
-protocol/security/administrative features. Transaction pooling requires compatible
-application session behavior; protocol prepared statements need appropriate
-configuration. [Upstream feature map](https://www.pgbouncer.org/features.html).
+PgBouncer fits applications prioritizing established protocol/security/admin
+features and efficient shared pooling. Transaction pooling requires compatible
+session behavior; protocol prepared statements need appropriate configuration.
+[Upstream feature map](https://www.pgbouncer.org/features.html).
 
-Rustybouncer is an experimental option for evaluating role-aware routing and
-buffered read continuity. Both need external promotion, replication and fencing;
-interrupted transactions and uncertain writes require application handling and
-are never transparently replayed by Rustybouncer. Modern PgBouncer host lists and
-DNS selection are connection-level mechanisms, distinct from SQL-aware routing.
+Rustybouncer is experimental, with role-aware routing and buffered read continuity.
+Both need external promotion, replication and fencing. Interrupted transactions
+and uncertain writes require application handling and are never transparently
+replayed by Rustybouncer. Modern PgBouncer host lists and DNS selection are
+connection-level mechanisms, distinct from SQL-aware routing.
 [Host configuration](https://www.pgbouncer.org/config.html#host),
 [failover integration](https://www.pgbouncer.org/faq.html#how-to-failover).
-[FEATURE_COMPLETENESS.md](FEATURE_COMPLETENESS.md) remains authoritative; these
-benchmarks do not establish the full workload or release checklist.
+
+The immutable [historical comparison](docs/benchmarks/pgbouncer-comparison.md),
+reference `c8997e8`, retains its original script, all 30 runs and provenance. These
+new observations do not supersede [FEATURE_COMPLETENESS.md](FEATURE_COMPLETENESS.md)
+or establish its broader conformance/release checklist.
 
 ## Development verification
 

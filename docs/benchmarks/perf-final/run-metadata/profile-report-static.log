@@ -1,0 +1,9 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+All checks passed!
+All checks passed!
+Complexity: 1117 functions checked; maximum 27 (src/main.rs:523, main); limit 30.
+.........................................................................
+----------------------------------------------------------------------
+Ran 73 tests in 0.516s
+
+OK

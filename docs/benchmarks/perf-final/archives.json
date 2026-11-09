@@ -1,0 +1,69 @@
+[
+  {
+    "path": "pools-after.tar.zst",
+    "files": 4473,
+    "bytes": 306605679,
+    "sha256": "095b143d9c58ae6a92c582a7ece89199dd92a36ae94839a44fdb64f829e4dda7"
+  },
+  {
+    "path": "original-after.tar.zst",
+    "files": 1907,
+    "bytes": 147117502,
+    "sha256": "d961ecb64b81e4e64c37c2f109587c47eb03615d720a38a73115ca4087f4444e"
+  },
+  {
+    "path": "workloads-after.tar.zst",
+    "files": 12387,
+    "bytes": 868424370,
+    "sha256": "1c9fc549b49f22403d84dfebb358d08b188a61816719f8d0cfec39092f8d77d2"
+  },
+  {
+    "path": "pool-mixed.tar.zst",
+    "files": 6747,
+    "bytes": 55754710,
+    "sha256": "f93b505f34b777cae001c3781cac18916f5bfb330583f4061c9cc565dc4ea770"
+  },
+  {
+    "path": "normalized-after.tar.zst",
+    "files": 2204,
+    "bytes": 260867746,
+    "sha256": "af8a574372cd8b9ed98032c7210e82606624f9e57e904dcf791f4c5ec356874c"
+  },
+  {
+    "path": "profiles-after.tar.zst",
+    "files": 391,
+    "bytes": 153759557,
+    "sha256": "72b925fb8fd03321cc68befe5d2146897a733b9e8b77da233a9145b627d2a859"
+  },
+  {
+    "path": "memory-after.tar.zst",
+    "files": 80,
+    "bytes": 34273,
+    "sha256": "b21b8e07b3f2d463fa4636f7e121eac5e69234d512ee8779bc47aa0dd5ff457b"
+  },
+  {
+    "path": "failover-load.tar.zst",
+    "files": 507,
+    "bytes": 88344123,
+    "sha256": "4272909b8f1698feabe40d47097a4d489c2a94a1a886d773fea0782b723a5d8c"
+  },
+  {
+    "path": "kind-after.tar.zst",
+    "files": 11,
+    "bytes": 89173,
+    "sha256": "07e4169d8e73ac6155f881f62cc37c6689cfe3e4e77ea03cfcb5f7e11fc22619"
+  },
+  {
+    "path": "frozen-binaries.tar.zst",
+    "files": 5,
+    "bytes": 69935508,
+    "sha256": "d4317a880ce6aabe6d6f603b585088b4f6a079529fc3610b938257dfccee6ecf"
+  },
+  {
+    "path": "diagnostic-fault-journald.tar.zst",
+    "files": 21,
+    "bytes": 2207009,
+    "sha256": "ccd41ed1f481d3b7d3627d316c326f5877dc2730026c30592ac7b208e4c795fe",
+    "diagnostic_only": true
+  }
+]

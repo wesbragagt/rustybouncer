@@ -1,0 +1,2 @@
+{"epoch": 1794205904.2960048, "load_average": [23.57666015625, 15.35546875, 10.3017578125], "note": "Original-before arms 12/13 show large throughput variation; all repetitions retained, shared host uncontrolled. Only code/docs drafting in scheduler worktree; no own compiler/profiler/test jobs."}
+{"epoch": 1794205933.5333047, "load_average": [20.490234375, 15.3740234375, 10.46923828125], "note": "Unrelated clang/cc1 and barman processes observed on shared host; no control over external jobs, no outlier removal."}

@@ -1,0 +1,54 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+Verifying staged snapshot with the locked Nix toolchain...
+evaluating flake...
+checking flake output 'packages'...
+checking derivation packages.x86_64-linux.default...
+derivation evaluated to /nix/store/i45bfi9j1ggbhq0b7jrwrd9ywsy9w8i6-rustybouncer-0.1.0.drv
+checking derivation packages.x86_64-linux.docker...
+derivation evaluated to /nix/store/bqyny2dk74gwnbxh7ypxbcmhag5cjwvx-rustybouncer.tar.gz.drv
+checking flake output 'checks'...
+checking derivation checks.x86_64-linux.verification...
+derivation evaluated to /nix/store/i45bfi9j1ggbhq0b7jrwrd9ywsy9w8i6-rustybouncer-0.1.0.drv
+checking flake output 'formatter'...
+checking derivation formatter.x86_64-linux...
+derivation evaluated to /nix/store/zdil0gc0ivf3k71id8fcfmn2rfkqwzj6-nixfmt-1.5.0.drv
+checking flake output 'devShells'...
+checking derivation devShells.x86_64-linux.default...
+derivation evaluated to /nix/store/114zpnfqx8rx0dqmgrykp3c4iij26b13-nix-shell.drv
+running 1 flake checks...
+building '/nix/store/i45bfi9j1ggbhq0b7jrwrd9ywsy9w8i6-rustybouncer-0.1.0.drv'...
+warning: The check omitted these incompatible systems: aarch64-darwin, aarch64-linux, x86_64-darwin
+Use '--all-systems' to check all.
+[perf/scheduler 14f077e] perf(PERF-005): bound profiled waiter wake work (INCOMPLETE performance acceptance)
+ 34 files changed, 5088 insertions(+), 40 deletions(-)
+ create mode 100644 benchmarks/pool_profile.py
+ create mode 100644 benchmarks/pool_profile_report.py
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/archive.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/build-command.txt
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/build.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/complete-run.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/development-missing-debug.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/environment.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/harness.py
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/manifest.json.gz
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/profiles.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/raw.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/static.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/before/summary.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/archives.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/frozen-source.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-buffering.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-first-native.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-live.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-metrics.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-protocol.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-queues.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-resources.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-second-native.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-sessions.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/heads-transactions.tar.zst
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/manifest.json.gz
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/provenance.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/heads/results.json
+ create mode 100644 docs/milestones/perf-scheduling-heads.md
+ create mode 100644 docs/milestones/perf-scheduling-plan.md

@@ -1,10 +1,41 @@
-# Final performance comparison protocol — PERF-005/009 (in progress)
+# Final performance comparison — PERF-005/009
 
 Authority: [performance tasks](../tasks/pgbouncer-performance.md) and
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md). This protocol is a draft
-until the complete evidence and its acceptance commit are linked below. It does
-not close canonical release requirements. Historical reference `c8997e8` and its
+[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md). This comparison covers
+the scoped performance tasks, not canonical release acceptance. Historical reference `c8997e8` and its
 [original report](pgbouncer-comparison.md) remain unchanged.
+
+## Results and retained evidence
+
+- [Readable complete tables](perf-final/summary.md): every repetition, range, sample
+  CV, throughput, tails, proxy CPU/RSS and independently observed backend counts.
+- [Complete JSON](perf-final/report.json): all matrices, paired before/after ratios,
+  separate CPU/off-CPU/syscall/heap attribution, memory audits, slow-receiver
+  cycles, fault results and strict native/live/kind totals.
+- [Interactive comparison](perf-final/comparison.html): choose placement, pool mode,
+  workload and metric; individual repetitions accompany median/range bars.
+- [Raw archive checksums](perf-final/archives.json) and per-archive compressed
+  manifests: all nine final experiment scopes, frozen before/after ELFs, and the
+  preserved failed fault-log capture. [Harness snapshots](perf-final/harness/)
+  and [run metadata](perf-final/run-metadata/) retain exact source and commands.
+- Before-source evidence: [144 pool arms and full raw archive](perf-pools/),
+  [30 original arms and raw archive](../milestones/perf-scheduling-evidence/original-before/),
+  and [24 pool profiles with matching ELF](../milestones/perf-scheduling-evidence/before/).
+- [144-case live evidence](../milestones/perf-scheduling-evidence/heads/results.json),
+  [complete live log](../milestones/perf-scheduling-evidence/heads/heads-live.log),
+  [final native log](perf-final/run-metadata/final-native.log),
+  and kind's complete result in `kind-after.tar.zst`.
+- [Acceptance, ranked attribution and limitations](../milestones/perf-final.md).
+  The [task ledger](../tasks/pgbouncer-performance.md) records the final milestone
+  commit; broader feature-completeness and release requirements remain open.
+
+All **654 normal timing arms**, **64 attribution arms**, **24 crash/promotion
+experiments**, **eight independent Memcheck arms**, **144 live cases** and
+**six kind/CNPG cases** complete their declared scopes. Normal timings have zero
+query errors; fault experiments explicitly retain expected outage errors and
+require zero unexpected errors. Native verification passes 66 Rust +73 Python
+tests and complexity 28/30. Required functional runs have zero failures, errors,
+skips, expected failures or unexpected successes.
 
 ## Frozen sources and controls
 

@@ -1,0 +1,46 @@
+normalized 1/30 direct 10
+normalized 2/30 pgbouncer-session 10
+normalized 3/30 pgbouncer-transaction 10
+normalized 4/30 rustybouncer-session 10
+normalized 5/30 rustybouncer-routed 10
+normalized 6/30 direct 10
+normalized 7/30 rustybouncer-routed 10
+normalized 8/30 rustybouncer-session 10
+normalized 9/30 pgbouncer-transaction 10
+normalized 10/30 pgbouncer-session 10
+normalized 11/30 pgbouncer-transaction 10
+normalized 12/30 rustybouncer-session 10
+normalized 13/30 rustybouncer-routed 10
+normalized 14/30 direct 10
+normalized 15/30 pgbouncer-session 10
+normalized 16/30 pgbouncer-session 100
+normalized 17/30 pgbouncer-transaction 100
+normalized 18/30 rustybouncer-session 100
+normalized 19/30 rustybouncer-routed 100
+normalized 20/30 direct 100
+normalized 21/30 pgbouncer-session 100
+normalized 22/30 direct 100
+normalized 23/30 rustybouncer-routed 100
+normalized 24/30 rustybouncer-session 100
+normalized 25/30 pgbouncer-transaction 100
+normalized 26/30 rustybouncer-session 100
+normalized 27/30 rustybouncer-routed 100
+normalized 28/30 direct 100
+normalized 29/30 pgbouncer-session 100
+normalized 30/30 pgbouncer-transaction 100
+profile 1/16 cpu rustybouncer-session 10
+profile 2/16 cpu rustybouncer-routed 10
+profile 3/16 cpu rustybouncer-session 100
+profile 4/16 cpu rustybouncer-routed 100
+profile 5/16 offcpu rustybouncer-session 10
+profile 6/16 offcpu rustybouncer-routed 10
+profile 7/16 offcpu rustybouncer-session 100
+profile 8/16 offcpu rustybouncer-routed 100
+profile 9/16 heap rustybouncer-session 10
+profile 10/16 heap rustybouncer-routed 10
+profile 11/16 heap rustybouncer-session 100
+profile 12/16 heap rustybouncer-routed 100
+profile 13/16 syscalls rustybouncer-session 10
+profile 14/16 syscalls rustybouncer-routed 10
+profile 15/16 syscalls rustybouncer-session 100
+profile 16/16 syscalls rustybouncer-routed 100

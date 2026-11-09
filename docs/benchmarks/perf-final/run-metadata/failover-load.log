@@ -1,0 +1,28 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+All checks passed!
+All checks passed!
+Complexity: 1161 functions checked; maximum 28 (benchmarks/final_report.py:75, faults); limit 30.
+1/24 pgbouncer-session c=10 recovery=1.271s
+2/24 pgbouncer-transaction c=10 recovery=1.255s
+3/24 rustybouncer-pool-session c=10 recovery=0.584s
+4/24 rustybouncer-pool-transaction c=10 recovery=0.731s
+5/24 pgbouncer-transaction c=10 recovery=1.099s
+6/24 rustybouncer-pool-session c=10 recovery=0.881s
+7/24 rustybouncer-pool-transaction c=10 recovery=0.827s
+8/24 pgbouncer-session c=10 recovery=1.242s
+9/24 rustybouncer-pool-session c=10 recovery=0.746s
+10/24 rustybouncer-pool-transaction c=10 recovery=1.018s
+11/24 pgbouncer-session c=10 recovery=1.245s
+12/24 pgbouncer-transaction c=10 recovery=1.246s
+13/24 pgbouncer-session c=100 recovery=1.232s
+14/24 pgbouncer-transaction c=100 recovery=1.209s
+15/24 rustybouncer-pool-session c=100 recovery=0.702s
+16/24 rustybouncer-pool-transaction c=100 recovery=0.846s
+17/24 pgbouncer-transaction c=100 recovery=1.330s
+18/24 rustybouncer-pool-session c=100 recovery=0.737s
+19/24 rustybouncer-pool-transaction c=100 recovery=0.971s
+20/24 pgbouncer-session c=100 recovery=1.257s
+21/24 rustybouncer-pool-session c=100 recovery=0.743s
+22/24 rustybouncer-pool-transaction c=100 recovery=0.853s
+23/24 pgbouncer-session c=100 recovery=1.134s
+24/24 pgbouncer-transaction c=100 recovery=1.242s

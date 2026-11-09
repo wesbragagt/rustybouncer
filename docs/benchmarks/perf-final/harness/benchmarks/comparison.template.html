@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rustybouncer pool comparison</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; font: 14px/1.5 system-ui, sans-serif; color: var(--foreground, CanvasText); }
+  h2 { margin: 0 0 8px; font-size: 18px; font-weight: 650; }
+  p { margin: 8px 0 16px; }
+  .muted { color: var(--muted-foreground, GrayText); }
+  .controls { display: flex; flex-wrap: wrap; gap: 16px; margin: 14px 0; }
+  label { display: grid; gap: 4px; font-size: 12px; }
+  select { font: inherit; font-size: 14px; color: inherit; background: var(--card, Field); border: 1px solid var(--border, GrayText); border-radius: 5px; padding: 5px 24px 5px 8px; }
+  .legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 12px; }
+  .key { display: inline-block; width: 9px; height: 9px; margin-right: 5px; border-radius: 2px; }
+  .chart { height: 350px; overflow-x: auto; }
+  svg { display: block; width: 100%; min-width: 620px; height: 350px; }
+  svg text { font: 12px system-ui, sans-serif; fill: var(--foreground, CanvasText); }
+  .grid { stroke: var(--border, GrayText); opacity: .25; }
+  .table-wrap { overflow-x: auto; }
+  table { border-collapse: collapse; font-size: 12px; width: 100%; font-variant-numeric: tabular-nums; }
+  th, td { text-align: right; padding: 7px 6px; border-bottom: 1px solid var(--border, GrayText); white-space: nowrap; }
+  th:nth-child(2), td:nth-child(2), th:nth-child(3), td:nth-child(3) { text-align: left; }
+  a { color: var(--chart-2, LinkText); }
+</style>
+<h2 id="chart-title">Bounded-pool comparison</h2>
+<p class="muted">Every requested client completed; all 144 arms per candidate used a 16-backend ceiling and reported zero query errors.</p>
+<div class="controls">
+  <label>Workload<select id="workload"><option value="churn">Connection churn + transaction</option><option value="transactions">Persistent transactions</option></select></label>
+  <label>Pooling mode<select id="mode"><option value="transaction">Transaction</option><option value="session">Session</option></select></label>
+  <label>Proxy placement<select id="placement"><option value="unrestricted">Unrestricted</option><option value="normalized">One CPU / one Tokio worker</option></select></label>
+  <label>Measurement<select id="metric"><option value="tps">Transactions/s, including connect and drain</option><option value="p99_ms">p99 latency (ms)</option><option value="maximum_latency_ms">Maximum latency (ms)</option><option value="cpu_seconds_per_transaction">Proxy CPU (µs/transaction)</option><option value="rss_peak_bytes_observed">Observed proxy RSS peak (MiB)</option></select></label>
+</div>
+<div id="legend" class="legend"></div>
+<div class="chart"><svg id="chart" viewBox="0 0 900 350" role="img" aria-labelledby="chart-title chart-description"></svg></div>
+<p id="chart-description" class="muted">Bars show medians; whiskers span all three runs and dots show each repetition. Before/after batches ran at different times on a shared host. No repetition was removed. These observations do not establish statistical significance or a production SLO.</p>
+<div class="table-wrap"><table><thead><tr><th>Clients</th><th>Pooler</th><th>Candidate</th><th>All repetitions</th><th>Median</th><th>Min–max</th><th>CV %</th><th>Slowest response, ms</th><th>Least transactions/client</th></tr></thead><tbody id="rows"></tbody></table></div>
+<p class="muted">Session pooling can hold queued clients until active sessions close. Maximum response time and the minimum completions per client expose waiting that aggregate p99 can hide. Latencies include complete transactions; proxy CPU includes connection/drain work. RSS includes runtime and session overhead beyond bulk result buffers.</p>
+<p><a href="report.json">Complete machine-readable report</a> · <a href="summary.md">Methodology and all workloads</a></p>
+<script id="data" type="application/json">__DATA__</script>
+<script>
+const data = JSON.parse(document.getElementById('data').textContent);
+const series = [
+  {version:'before', pooler:'PgBouncer', prefix:'pgbouncer-', color:'var(--chart-5, #8c98a8)'},
+  {version:'after', pooler:'PgBouncer', prefix:'pgbouncer-', color:'var(--chart-2, #367aca)'},
+  {version:'before', pooler:'Rustybouncer', prefix:'rustybouncer-pool-', color:'var(--chart-3, #c17c30)'},
+  {version:'after', pooler:'Rustybouncer', prefix:'rustybouncer-pool-', color:'var(--chart-1, #269478)'}
+];
+const namespace = 'http://www.w3.org/2000/svg';
+function node(tag, attributes, text) {
+  const result=document.createElementNS(namespace,tag);
+  Object.entries(attributes).forEach(([key,value])=>result.setAttribute(key,value));
+  if (text !== undefined) result.textContent=text;
+  return result;
+}
+function draw() {
+  const selected=Object.fromEntries(['workload','mode','placement','metric'].map(name=>[name,document.getElementById(name).value]));
+  const scale=selected.metric==='cpu_seconds_per_transaction'?1e6:selected.metric==='rss_peak_bytes_observed'?1/1048576:1;
+  const format=value=>(value*scale).toLocaleString(undefined,{maximumFractionDigits:selected.metric==='tps'?0:3});
+  const groups=series.map(item=>({item,groups:data[item.version].filter(group=>group.workload===selected.workload && group.placement===selected.placement && group.target===item.prefix+selected.mode)}));
+  const maximum=Math.max(...groups.flatMap(group=>group.groups.map(row=>row.metrics[selected.metric].maximum)))*1.1;
+  const svg=document.getElementById('chart');
+  svg.replaceChildren();
+  const y=value=>290-value/maximum*240;
+  for (let tick=0;tick<=4;tick++) {
+    const value=maximum*tick/4;
+    svg.append(node('line',{x1:80,x2:880,y1:y(value),y2:y(value),class:'grid'}));
+    svg.append(node('text',{x:72,y:y(value)+4,'text-anchor':'end'},format(value)));
+  }
+  const body=document.getElementById('rows'); body.replaceChildren();
+  [10,100,1000].forEach((clients,index)=>{
+    const center=220+index*260;
+    svg.append(node('text',{x:center,y:320,'text-anchor':'middle'},clients.toLocaleString()+' clients'));
+    groups.forEach(({item,groups},seriesIndex)=>{
+      const row=groups.find(group=>group.clients===clients);
+      const metric=row.metrics[selected.metric];
+      const x=center-70+seriesIndex*42;
+      const bar=node('rect',{x:x-13,y:y(metric.median),width:26,height:290-y(metric.median),fill:item.color,rx:2});
+      bar.append(node('title',{},`${item.pooler} ${item.version}, ${clients} clients: ${metric.all.map(format).join(', ')}`));
+      svg.append(bar);
+      svg.append(node('line',{x1:x,x2:x,y1:y(metric.minimum),y2:y(metric.maximum),stroke:'var(--foreground, CanvasText)','stroke-width':1}));
+      [metric.minimum,metric.maximum].forEach(value=>svg.append(node('line',{x1:x-5,x2:x+5,y1:y(value),y2:y(value),stroke:'var(--foreground, CanvasText)'})));
+      metric.all.forEach((value,repetition)=>svg.append(node('circle',{cx:x+(repetition-1)*5,cy:y(value),r:2.8,fill:'var(--foreground, CanvasText)'})));
+      const tr=document.createElement('tr');
+      [clients,item.pooler,item.version,metric.all.map(format).join(' / '),format(metric.median),format(metric.minimum)+'–'+format(metric.maximum),metric.sample_cv_percent.toFixed(2),row.metrics.maximum_latency_ms.maximum.toFixed(3),row.metrics.client_completions_min.minimum].forEach(value=>{
+        const cell=document.createElement('td');cell.textContent=value;tr.append(cell);
+      });body.append(tr);
+    });
+  });
+  document.getElementById('chart-title').textContent=`${selected.mode==='transaction'?'Transaction':'Session'} pools · ${selected.workload==='churn'?'connection churn':'persistent transactions'}`;
+}
+series.forEach(item=>{
+  const label=document.createElement('span');const key=document.createElement('i');key.className='key';key.style.background=item.color;
+  label.append(key,document.createTextNode(item.pooler+' '+item.version));document.getElementById('legend').append(label);
+});
+document.querySelectorAll('select').forEach(select=>select.addEventListener('change',draw));
+draw();
+</script>
+</html>

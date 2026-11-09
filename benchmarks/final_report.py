@@ -112,7 +112,9 @@ def memory(root):
 
 
 def native(log):
-    text=log.read_text()
+    # Nix's build logger can color unittest's terminal OK. Normalize terminal
+    # decoration only; all exact counts and rejection assertions still apply.
+    text=re.sub(r'\x1b\[[0-?]*[ -/]*[@-~]','',log.read_text())
     assert re.search(r'test result: ok\. 66 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out;',text)
     assert re.search(r'^Ran 73 tests in ',text,re.M) and re.search(r'^OK$',text,re.M)
     complexity=re.search(r'Complexity: .*maximum (\d+).*limit (\d+)\.',text)
@@ -238,7 +240,7 @@ def markdown(report):
         summary={'kind':'workloads','groups':report['shared_pool_mixed'][phase],
                  'interpretation':f'Shared-pool short/long mix, {phase} candidate. Full logging and per-client completion; all repetitions retained.'}
         sections+=['',s.markdown(summary).replace('# Additional workloads',f'## Shared-pool duration mix ({phase})',1)]
-    return '\n'.join(sections)+'\n'
+    return '\n'.join(sections).rstrip()+'\n'
 
 
 def main():

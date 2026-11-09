@@ -1,0 +1,13 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+creating owned kind cluster rustybouncer-e3ad13c754
+test_metrics_account_for_replica_queries_and_topology (__main__.CloudNativePG.test_metrics_account_for_replica_queries_and_topology) ... ok
+test_primary_writes (__main__.CloudNativePG.test_primary_writes) ... ok
+test_reads_continue_and_writes_follow_node_failover (__main__.CloudNativePG.test_reads_continue_and_writes_follow_node_failover) ... ok
+test_replica_replacement (__main__.CloudNativePG.test_replica_replacement) ... ok
+test_replica_round_robin_and_ctes (__main__.CloudNativePG.test_replica_round_robin_and_ctes) ... ok
+test_transaction_interruption_is_not_replayed (__main__.CloudNativePG.test_transaction_interruption_is_not_replayed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 592.981s
+
+OK

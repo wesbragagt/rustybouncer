@@ -1,0 +1,48 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+Verifying staged snapshot with the locked Nix toolchain...
+evaluating flake...
+checking flake output 'packages'...
+checking derivation packages.x86_64-linux.default...
+derivation evaluated to /nix/store/rnhbjgdhspqd4r6x44p9agwbblj46bm4-rustybouncer-0.1.0.drv
+checking derivation packages.x86_64-linux.docker...
+derivation evaluated to /nix/store/ykvnkdnp893rsx3vykby1i3nrxnd2l13-rustybouncer.tar.gz.drv
+checking flake output 'checks'...
+checking derivation checks.x86_64-linux.verification...
+derivation evaluated to /nix/store/rnhbjgdhspqd4r6x44p9agwbblj46bm4-rustybouncer-0.1.0.drv
+checking flake output 'formatter'...
+checking derivation formatter.x86_64-linux...
+derivation evaluated to /nix/store/zdil0gc0ivf3k71id8fcfmn2rfkqwzj6-nixfmt-1.5.0.drv
+checking flake output 'devShells'...
+checking derivation devShells.x86_64-linux.default...
+derivation evaluated to /nix/store/114zpnfqx8rx0dqmgrykp3c4iij26b13-nix-shell.drv
+running 1 flake checks...
+building '/nix/store/rnhbjgdhspqd4r6x44p9agwbblj46bm4-rustybouncer-0.1.0.drv'...
+warning: The check omitted these incompatible systems: aarch64-darwin, aarch64-linux, x86_64-darwin
+Use '--all-systems' to check all.
+[perf/scheduler 3dab4cb] test(PERF-005/PERF-009): retain 450 complete timing arms (INCOMPLETE final acceptance)
+ 29 files changed, 42769 insertions(+), 5 deletions(-)
+ create mode 100644 benchmarks/comparison.template.html
+ create mode 100644 benchmarks/final_report.py
+ create mode 100644 docs/benchmarks/performance-final.md
+ create mode 100644 docs/milestones/perf-final-measurements.md
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/final-native.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/mixed-summary.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/original-after/environment.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/original-after/results.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/original-after/run.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pool-mixed/environment.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pool-mixed/results.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pool-mixed/run.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pools-after-summary/summary.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pools-after-summary/summary.md
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pools-after/environment.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pools-after/results.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/pools-after/run.log
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/run-timings.sh
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/timing-matrices.passed
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/workloads-after-summary/summary.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/workloads-after-summary/summary.md
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/workloads-after/environment.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/workloads-after/results.json
+ create mode 100644 docs/milestones/perf-scheduling-evidence/timings/workloads-after/run.log
+ create mode 100644 scripts/retain_performance.py

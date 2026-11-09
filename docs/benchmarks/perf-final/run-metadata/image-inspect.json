@@ -1,0 +1,65 @@
+[
+    {
+        "Id": "sha256:5044d54d185b03222c17ad872a7c9faa6dee4df256c57b70c380e2875c971e47",
+        "RepoTags": [
+            "rustybouncer:latest",
+            "rustybouncer:perf-scheduler-e4e9968"
+        ],
+        "RepoDigests": [],
+        "Parent": "",
+        "Comment": "store paths: ['/nix/store/hsns8baalinqppv80k2gcz20092q3vzs-rustybouncer-customisation-layer']",
+        "Created": "1970-01-01T00:00:01Z",
+        "DockerVersion": "",
+        "Author": "",
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 62489511,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/53d7054cc29cb6c567e01e018188277550de0baacf363f96b06b80dea831468c/diff:/var/lib/docker/overlay2/9b25484807a8174cc2bafaffda49c5324d3e4753a1ec799eae481f1325bc82b9/diff:/var/lib/docker/overlay2/baa53c25209f37056049c3fa40b26104c5d293d8dbdfbfdefa202f194dacb535/diff:/var/lib/docker/overlay2/238b3e6e78f15c49b6e02768df536bee881b8156d5224d854894becc14aca685/diff:/var/lib/docker/overlay2/65109d6e21a77e91b2d822724ffd33dea1fcfdfb34efb45cbf2a0a43d6da0978/diff:/var/lib/docker/overlay2/9b890977765b2e216c26dc4ee8949ff64982f4625063876c21bac49f8329c624/diff:/var/lib/docker/overlay2/4413be56e170a5eea22311ad375aea63ac77244e5431a5d959fae3c26492d41b/diff:/var/lib/docker/overlay2/f103889f6585dc77751806e24455428b6d7664abbf7a57193e23cddd05efc035/diff:/var/lib/docker/overlay2/b620112116ebd2ee1bc364acad20c5aca97a02f7adb3dc972f65d497ea732598/diff:/var/lib/docker/overlay2/aa8c7a87353129b084d876ee3c676de512e53e20994017dcdfe4e180c400e0b2/diff",
+                "MergedDir": "/var/lib/docker/overlay2/0473c9cb88185d1b1663cfa7c89e35031b21e88db1b58a904497317e0e2740cc/merged",
+                "UpperDir": "/var/lib/docker/overlay2/0473c9cb88185d1b1663cfa7c89e35031b21e88db1b58a904497317e0e2740cc/diff",
+                "WorkDir": "/var/lib/docker/overlay2/0473c9cb88185d1b1663cfa7c89e35031b21e88db1b58a904497317e0e2740cc/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:9826ce9ff440474a6e2cf4847f98aab2d4ce6de26bcc53b95a1380e8e5c191e2",
+                "sha256:435fb3d6473c4278701c39141a39c8fd4837415b6fefdcdf04088ba3021d2770",
+                "sha256:3ed01f980262442947b763d9251546fc216bcddad33f274a6158c28b479acf42",
+                "sha256:938904d7401f8b21bc5dacd10232ec8b850cb372dc873414a750c8c74320abf9",
+                "sha256:d36fa29b2c338bd8cc70e45ce1d4a3b2a49cd09eed86e4339ea2b0515605c8a8",
+                "sha256:a3a7867bcf768d8d8d6133497f9d178f763e18e20ec0d1c3ee09d0044a64a489",
+                "sha256:4cf7b17bc2133091292614ab0fde3f8acbf3a60d00b0e069950f68102287d5f5",
+                "sha256:d88c3c9c2163cd1c6dc3868d256a0dbc973b225aad3572c456ce221c7e2dd079",
+                "sha256:38b3c71693ca28cf1afd6aa3fdaa5698524b388e8fd64d2236692026030dffda",
+                "sha256:f8f076b98baa07e2acd64b219572a21be128ea3b40ec43f35463f5b7c460256d",
+                "sha256:1dc69ff234ffc59742fc2609e3a4bd232e0faa904299e115440af98beaad689a"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-11-09T00:46:31.942285672-06:00"
+        },
+        "Config": {
+            "Cmd": [
+                "/etc/rustybouncer/rustybouncer.toml"
+            ],
+            "Entrypoint": [
+                "/nix/store/8pidfx7x2kyy16v5g8z4zyc9g4wh2wq0-rustybouncer-0.1.0/bin/rustybouncer"
+            ],
+            "Env": [
+                "RUST_LOG=rustybouncer=info"
+            ],
+            "ExposedPorts": {
+                "6432/tcp": {}
+            },
+            "Labels": null,
+            "OnBuild": null,
+            "User": "10001:10001",
+            "Volumes": null,
+            "WorkingDir": "/"
+        }
+    }
+]

@@ -1,0 +1,9 @@
+1/8 10 rustybouncer-session
+2/8 10 rustybouncer-routed
+3/8 10 rustybouncer-pool-session
+4/8 10 rustybouncer-pool-transaction
+5/8 100 rustybouncer-session
+6/8 100 rustybouncer-routed
+7/8 100 rustybouncer-pool-session
+8/8 100 rustybouncer-pool-transaction
+complete audit in 31.746s

@@ -1,0 +1,20 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+All checks passed!
+All checks passed!
+Complexity: 1139 functions checked; maximum 27 (src/main.rs:523, main); limit 30.
+.........................................................................
+----------------------------------------------------------------------
+Ran 73 tests in 0.564s
+
+OK
+{"arms": 30, "errors": 0, "files": 1907, "archive_bytes": 123126024}
+10 direct 168480 8.3
+10 pgbouncer-session 130400 8.5
+10 pgbouncer-transaction 132038 3.0
+10 rustybouncer-session 127221 63.8
+10 rustybouncer-routed 106739 34.2
+100 direct 272486 5.3
+100 pgbouncer-session 123215 9.3
+100 pgbouncer-transaction 125824 5.1
+100 rustybouncer-session 138279 10.7
+100 rustybouncer-routed 133547 7.7
