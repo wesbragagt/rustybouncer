@@ -1,0 +1,7572 @@
+{
+  "kind": "pools",
+  "required_arms": 144,
+  "errors": 0,
+  "repetitions": 3,
+  "all_repetitions_retained": true,
+  "groups": [
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            13722,
+            13188,
+            13812
+          ],
+          "median": 13722,
+          "minimum": 13188,
+          "maximum": 13812,
+          "sample_cv_percent": 2.484905351951518
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.7115203364025232e-05,
+            2.9272414521531822e-05,
+            2.642313106883731e-05
+          ],
+          "median": 2.7115203364025232e-05,
+          "minimum": 2.642313106883731e-05,
+          "maximum": 2.9272414521531822e-05,
+          "sample_cv_percent": 5.383717519248029
+        },
+        "maximum_latency_ms": {
+          "all": [
+            8.831,
+            13.842,
+            10.165
+          ],
+          "median": 10.165,
+          "minimum": 8.831,
+          "maximum": 13.842,
+          "sample_cv_percent": 23.709008287378673
+        },
+        "p50_ms": {
+          "all": [
+            0.348,
+            0.386,
+            0.346
+          ],
+          "median": 0.348,
+          "minimum": 0.346,
+          "maximum": 0.386,
+          "sample_cv_percent": 6.2607931497692535
+        },
+        "p95_ms": {
+          "all": [
+            0.726,
+            0.874,
+            0.724
+          ],
+          "median": 0.726,
+          "minimum": 0.724,
+          "maximum": 0.874,
+          "sample_cv_percent": 11.105551053866005
+        },
+        "p99_ms": {
+          "all": [
+            1.313,
+            1.52,
+            1.345
+          ],
+          "median": 1.345,
+          "minimum": 1.313,
+          "maximum": 1.52,
+          "sample_cv_percent": 8.001096358563748
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13078528,
+            13078528,
+            13078528
+          ],
+          "median": 13078528,
+          "minimum": 13078528,
+          "maximum": 13078528,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12943360,
+            12943360,
+            12943360
+          ],
+          "median": 12943360,
+          "minimum": 12943360,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            13782.006885416946,
+            13249.693096581366,
+            13844.878314660404
+          ],
+          "median": 13782.006885416946,
+          "minimum": 13249.693096581366,
+          "maximum": 13844.878314660404,
+          "sample_cv_percent": 2.3998740974044264
+        },
+        "wall_seconds": {
+          "all": [
+            10.007976425113156,
+            10.00385435600765,
+            10.004782768897712
+          ],
+          "median": 10.004782768897712,
+          "minimum": 10.00385435600765,
+          "maximum": 10.007976425113156,
+          "sample_cv_percent": 0.021610876709518674
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            14567,
+            14630,
+            14404
+          ],
+          "median": 14567,
+          "minimum": 14404,
+          "maximum": 14630,
+          "sample_cv_percent": 0.8024749997842667
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.2703338484894077e-05,
+            2.2765845778435155e-05,
+            2.3233527980199795e-05
+          ],
+          "median": 2.2765845778435155e-05,
+          "minimum": 2.2703338484894077e-05,
+          "maximum": 2.3233527980199795e-05,
+          "sample_cv_percent": 1.265239329243482
+        },
+        "maximum_latency_ms": {
+          "all": [
+            6.316,
+            5.788,
+            5.74
+          ],
+          "median": 5.788,
+          "minimum": 5.74,
+          "maximum": 6.316,
+          "sample_cv_percent": 5.373230492384174
+        },
+        "p50_ms": {
+          "all": [
+            0.277,
+            0.28,
+            0.284
+          ],
+          "median": 0.28,
+          "minimum": 0.277,
+          "maximum": 0.284,
+          "sample_cv_percent": 1.252753121623384
+        },
+        "p95_ms": {
+          "all": [
+            0.574,
+            0.586,
+            0.599
+          ],
+          "median": 0.586,
+          "minimum": 0.574,
+          "maximum": 0.599,
+          "sample_cv_percent": 2.1324615501433852
+        },
+        "p99_ms": {
+          "all": [
+            1.065,
+            1.098,
+            1.062
+          ],
+          "median": 1.065,
+          "minimum": 1.062,
+          "maximum": 1.098,
+          "sample_cv_percent": 1.858138079575649
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13111296,
+            13107200,
+            13107200
+          ],
+          "median": 13107200,
+          "minimum": 13107200,
+          "maximum": 13111296,
+          "sample_cv_percent": 0.01804031671251825
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12943360,
+            12943360,
+            12943360
+          ],
+          "median": 12943360,
+          "minimum": 12943360,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            14611.258102768084,
+            14662.68042644152,
+            14494.822568809373
+          ],
+          "median": 14611.258102768084,
+          "minimum": 14494.822568809373,
+          "maximum": 14662.68042644152,
+          "sample_cv_percent": 0.5894731280442327
+        },
+        "wall_seconds": {
+          "all": [
+            10.008309960132465,
+            10.005742178997025,
+            10.006952435011044
+          ],
+          "median": 10.006952435011044,
+          "minimum": 10.005742178997025,
+          "maximum": 10.008309960132465,
+          "sample_cv_percent": 0.012836954487424479
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            9695,
+            9786,
+            9736
+          ],
+          "median": 9736,
+          "minimum": 9695,
+          "maximum": 9786,
+          "sample_cv_percent": 0.4679547742111445
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            5.672517630102435e-05,
+            5.565352115547312e-05,
+            5.601896026347379e-05
+          ],
+          "median": 5.601896026347379e-05,
+          "minimum": 5.565352115547312e-05,
+          "maximum": 5.672517630102435e-05,
+          "sample_cv_percent": 0.9705296636702869
+        },
+        "maximum_latency_ms": {
+          "all": [
+            10.841,
+            7.601,
+            9.938
+          ],
+          "median": 9.938,
+          "minimum": 7.601,
+          "maximum": 10.841,
+          "sample_cv_percent": 17.674984438174484
+        },
+        "p50_ms": {
+          "all": [
+            0.648,
+            0.642,
+            0.639
+          ],
+          "median": 0.642,
+          "minimum": 0.639,
+          "maximum": 0.648,
+          "sample_cv_percent": 0.7126867332746258
+        },
+        "p95_ms": {
+          "all": [
+            0.9,
+            0.883,
+            0.901
+          ],
+          "median": 0.9,
+          "minimum": 0.883,
+          "maximum": 0.901,
+          "sample_cv_percent": 1.1306997694108443
+        },
+        "p99_ms": {
+          "all": [
+            1.146,
+            1.303,
+            1.339
+          ],
+          "median": 1.303,
+          "minimum": 1.146,
+          "maximum": 1.339,
+          "sample_cv_percent": 8.127810736519502
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            7323648,
+            7319552,
+            7335936
+          ],
+          "median": 7323648,
+          "minimum": 7319552,
+          "maximum": 7335936,
+          "sample_cv_percent": 0.11638087958252698
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            7176192,
+            7176192,
+            7176192
+          ],
+          "median": 7176192,
+          "minimum": 7176192,
+          "maximum": 7176192,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            9708.724446428268,
+            9806.45703041861,
+            9743.554405509673
+          ],
+          "median": 9743.554405509673,
+          "minimum": 9708.724446428268,
+          "maximum": 9806.45703041861,
+          "sample_cv_percent": 0.5078862556698592
+        },
+        "wall_seconds": {
+          "all": [
+            10.004918826976791,
+            10.00432671001181,
+            10.003228385001421
+          ],
+          "median": 10.00432671001181,
+          "minimum": 10.003228385001421,
+          "maximum": 10.004918826976791,
+          "sample_cv_percent": 0.00857403600209596
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            8527,
+            8483,
+            8355
+          ],
+          "median": 8483,
+          "minimum": 8355,
+          "maximum": 8527,
+          "sample_cv_percent": 1.0568093626819006
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            7.180340158365739e-05,
+            7.231975916932232e-05,
+            7.325875997896647e-05
+          ],
+          "median": 7.231975916932232e-05,
+          "minimum": 7.180340158365739e-05,
+          "maximum": 7.325875997896647e-05,
+          "sample_cv_percent": 1.0182582496743329
+        },
+        "maximum_latency_ms": {
+          "all": [
+            6.527,
+            7.658,
+            6.037
+          ],
+          "median": 6.527,
+          "minimum": 6.037,
+          "maximum": 7.658,
+          "sample_cv_percent": 12.33341683174936
+        },
+        "p50_ms": {
+          "all": [
+            0.774,
+            0.776,
+            0.787
+          ],
+          "median": 0.776,
+          "minimum": 0.774,
+          "maximum": 0.787,
+          "sample_cv_percent": 0.8985879332477542
+        },
+        "p95_ms": {
+          "all": [
+            1.01,
+            1.023,
+            1.039
+          ],
+          "median": 1.023,
+          "minimum": 1.01,
+          "maximum": 1.039,
+          "sample_cv_percent": 1.4185389693685457
+        },
+        "p99_ms": {
+          "all": [
+            1.197,
+            1.267,
+            1.269
+          ],
+          "median": 1.267,
+          "minimum": 1.197,
+          "maximum": 1.269,
+          "sample_cv_percent": 3.2952637159778724
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            10080256,
+            10100736,
+            10117120
+          ],
+          "median": 10100736,
+          "minimum": 10080256,
+          "maximum": 10117120,
+          "sample_cv_percent": 0.1828815635861658
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            9994240,
+            9994240,
+            9994240
+          ],
+          "median": 9994240,
+          "minimum": 9994240,
+          "maximum": 9994240,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            8534.666383619535,
+            8500.972055294551,
+            8364.84975025916
+          ],
+          "median": 8500.972055294551,
+          "minimum": 8364.84975025916,
+          "maximum": 8534.666383619535,
+          "sample_cv_percent": 1.06190248479456
+        },
+        "wall_seconds": {
+          "all": [
+            10.002968617947772,
+            10.003444246947765,
+            10.003287865081802
+          ],
+          "median": 10.003287865081802,
+          "minimum": 10.002968617947772,
+          "maximum": 10.003444246947765,
+          "sample_cv_percent": 0.0024233896609024206
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1366,
+            1372,
+            1343
+          ],
+          "median": 1366,
+          "minimum": 1343,
+          "maximum": 1372,
+          "sample_cv_percent": 1.1253087481700597
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            3.1158065591351105e-05,
+            3.303557844863185e-05,
+            3.09031235018623e-05
+          ],
+          "median": 3.1158065591351105e-05,
+          "minimum": 3.09031235018623e-05,
+          "maximum": 3.303557844863185e-05,
+          "sample_cv_percent": 3.6738640644044516
+        },
+        "maximum_latency_ms": {
+          "all": [
+            29.159,
+            33.253,
+            33.062
+          ],
+          "median": 33.062,
+          "minimum": 29.159,
+          "maximum": 33.253,
+          "sample_cv_percent": 7.260121728729684
+        },
+        "p50_ms": {
+          "all": [
+            6.221,
+            6.007,
+            6.143
+          ],
+          "median": 6.143,
+          "minimum": 6.007,
+          "maximum": 6.221,
+          "sample_cv_percent": 1.7685816792382287
+        },
+        "p95_ms": {
+          "all": [
+            10.659,
+            11.239,
+            11.827
+          ],
+          "median": 11.239,
+          "minimum": 10.659,
+          "maximum": 11.827,
+          "sample_cv_percent": 5.1949998475213714
+        },
+        "p99_ms": {
+          "all": [
+            13.659,
+            15.62,
+            16.221
+          ],
+          "median": 15.62,
+          "minimum": 13.659,
+          "maximum": 16.221,
+          "sample_cv_percent": 8.833920693113601
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13406208,
+            13406208,
+            13406208
+          ],
+          "median": 13406208,
+          "minimum": 13406208,
+          "maximum": 13406208,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13336576,
+            13336576,
+            13336576
+          ],
+          "median": 13336576,
+          "minimum": 13336576,
+          "maximum": 13336576,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            13783.618480006353,
+            13783.307305894303,
+            13543.868828028133
+          ],
+          "median": 13783.307305894303,
+          "minimum": 13543.868828028133,
+          "maximum": 13783.618480006353,
+          "sample_cv_percent": 1.0094413402375644
+        },
+        "wall_seconds": {
+          "all": [
+            10.012320074019954,
+            10.014505004975945,
+            10.010802800999954
+          ],
+          "median": 10.012320074019954,
+          "minimum": 10.010802800999954,
+          "maximum": 10.014505004975945,
+          "sample_cv_percent": 0.01858777368532888
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1389,
+            1477,
+            1472
+          ],
+          "median": 1472,
+          "minimum": 1389,
+          "maximum": 1477,
+          "sample_cv_percent": 3.4181682866548817
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.686769248127724e-05,
+            2.5326384641973994e-05,
+            2.474668093502324e-05
+          ],
+          "median": 2.5326384641973994e-05,
+          "minimum": 2.474668093502324e-05,
+          "maximum": 2.686769248127724e-05,
+          "sample_cv_percent": 4.274330814361522
+        },
+        "maximum_latency_ms": {
+          "all": [
+            26.234,
+            38.274,
+            33.891
+          ],
+          "median": 33.891,
+          "minimum": 26.234,
+          "maximum": 38.274,
+          "sample_cv_percent": 18.578661702025357
+        },
+        "p50_ms": {
+          "all": [
+            5.641,
+            4.954,
+            4.844
+          ],
+          "median": 4.954,
+          "minimum": 4.844,
+          "maximum": 5.641,
+          "sample_cv_percent": 8.392579156750495
+        },
+        "p95_ms": {
+          "all": [
+            11.273,
+            13.73,
+            13.702
+          ],
+          "median": 13.702,
+          "minimum": 11.273,
+          "maximum": 13.73,
+          "sample_cv_percent": 10.932976513115866
+        },
+        "p99_ms": {
+          "all": [
+            14.879,
+            19.326,
+            19.454
+          ],
+          "median": 19.326,
+          "minimum": 14.879,
+          "maximum": 19.454,
+          "sample_cv_percent": 14.56538492522594
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13529088,
+            13529088,
+            13529088
+          ],
+          "median": 13529088,
+          "minimum": 13529088,
+          "maximum": 13529088,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13467648,
+            13467648,
+            13467648
+          ],
+          "median": 13467648,
+          "minimum": 13467648,
+          "maximum": 13467648,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            14161.377234462081,
+            15018.257976845232,
+            14931.445102844978
+          ],
+          "median": 14931.445102844978,
+          "minimum": 14161.377234462081,
+          "maximum": 15018.257976845232,
+          "sample_cv_percent": 3.207773478553995
+        },
+        "wall_seconds": {
+          "all": [
+            10.013574079144746,
+            10.016874142922461,
+            10.013431316940114
+          ],
+          "median": 10.013574079144746,
+          "minimum": 10.013431316940114,
+          "maximum": 10.016874142922461,
+          "sample_cv_percent": 0.01944968182527206
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            773,
+            770,
+            770
+          ],
+          "median": 770,
+          "minimum": 770,
+          "maximum": 773,
+          "sample_cv_percent": 0.22464991019051586
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            8.267757033379623e-05,
+            8.291788288171933e-05,
+            8.293073604257627e-05
+          ],
+          "median": 8.291788288171933e-05,
+          "minimum": 8.267757033379623e-05,
+          "maximum": 8.293073604257627e-05,
+          "sample_cv_percent": 0.17213452275562033
+        },
+        "maximum_latency_ms": {
+          "all": [
+            21.922,
+            26.146,
+            28.978
+          ],
+          "median": 26.146,
+          "minimum": 21.922,
+          "maximum": 28.978,
+          "sample_cv_percent": 13.826067329948147
+        },
+        "p50_ms": {
+          "all": [
+            11.951,
+            12.094,
+            12.025
+          ],
+          "median": 12.025,
+          "minimum": 11.951,
+          "maximum": 12.094,
+          "sample_cv_percent": 0.5947981753308499
+        },
+        "p95_ms": {
+          "all": [
+            14.437,
+            13.759,
+            13.78
+          ],
+          "median": 13.78,
+          "minimum": 13.759,
+          "maximum": 14.437,
+          "sample_cv_percent": 2.7553195990503014
+        },
+        "p99_ms": {
+          "all": [
+            16.638,
+            16.62,
+            18.895
+          ],
+          "median": 16.638,
+          "minimum": 16.62,
+          "maximum": 18.895,
+          "sample_cv_percent": 7.525779915220013
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            9539584,
+            9510912,
+            9515008
+          ],
+          "median": 9515008,
+          "minimum": 9510912,
+          "maximum": 9539584,
+          "sample_cv_percent": 0.1628594306223193
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            9400320,
+            9334784,
+            9396224
+          ],
+          "median": 9396224,
+          "minimum": 9334784,
+          "maximum": 9400320,
+          "sample_cv_percent": 0.3915063966146987
+        },
+        "tps": {
+          "all": [
+            7770.259107208603,
+            7732.796760031726,
+            7730.568886904721
+          ],
+          "median": 7732.796760031726,
+          "minimum": 7730.568886904721,
+          "maximum": 7770.259107208603,
+          "sample_cv_percent": 0.2879430235428841
+        },
+        "wall_seconds": {
+          "all": [
+            10.008932640077546,
+            10.012677483027801,
+            10.014010758139193
+          ],
+          "median": 10.012677483027801,
+          "minimum": 10.008932640077546,
+          "maximum": 10.014010758139193,
+          "sample_cv_percent": 0.02629644083714416
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            671,
+            677,
+            679
+          ],
+          "median": 677,
+          "minimum": 671,
+          "maximum": 679,
+          "sample_cv_percent": 0.6161813515933299
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00010147314077172993,
+            9.998091406926726e-05,
+            9.989600269514143e-05
+          ],
+          "median": 9.998091406926726e-05,
+          "minimum": 9.989600269514143e-05,
+          "maximum": 0.00010147314077172993,
+          "sample_cv_percent": 0.8830917725622552
+        },
+        "maximum_latency_ms": {
+          "all": [
+            28.261,
+            46.996,
+            24.094
+          ],
+          "median": 28.261,
+          "minimum": 24.094,
+          "maximum": 46.996,
+          "sample_cv_percent": 36.83549080862938
+        },
+        "p50_ms": {
+          "all": [
+            14.011,
+            13.671,
+            13.741
+          ],
+          "median": 13.741,
+          "minimum": 13.671,
+          "maximum": 14.011,
+          "sample_cv_percent": 1.3002663263882597
+        },
+        "p95_ms": {
+          "all": [
+            15.612,
+            15.619,
+            15.602
+          ],
+          "median": 15.612,
+          "minimum": 15.602,
+          "maximum": 15.619,
+          "sample_cv_percent": 0.05473066264375931
+        },
+        "p99_ms": {
+          "all": [
+            16.995,
+            22.794,
+            18.62
+          ],
+          "median": 18.62,
+          "minimum": 16.995,
+          "maximum": 22.794,
+          "sample_cv_percent": 15.36447858441012
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            12292096,
+            12316672,
+            12210176
+          ],
+          "median": 12292096,
+          "minimum": 12210176,
+          "maximum": 12316672,
+          "sample_cv_percent": 0.45434593073005086
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12189696,
+            12222464,
+            12177408
+          ],
+          "median": 12189696,
+          "minimum": 12177408,
+          "maximum": 12222464,
+          "sample_cv_percent": 0.190962969990283
+        },
+        "tps": {
+          "all": [
+            6733.359753123406,
+            6803.919986685383,
+            6819.915440666833
+          ],
+          "median": 6803.919986685383,
+          "minimum": 6733.359753123406,
+          "maximum": 6819.915440666833,
+          "sample_cv_percent": 0.6787064519961281
+        },
+        "wall_seconds": {
+          "all": [
+            10.01090131397359,
+            10.010846707969904,
+            10.010534675093368
+          ],
+          "median": 10.010846707969904,
+          "minimum": 10.010534675093368,
+          "maximum": 10.01090131397359,
+          "sample_cv_percent": 0.0019759636740003745
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            129,
+            141,
+            137
+          ],
+          "median": 137,
+          "minimum": 129,
+          "maximum": 141,
+          "sample_cv_percent": 4.503759896762497
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            3.281233190403737e-05,
+            3.0094461202928723e-05,
+            3.046142885184404e-05
+          ],
+          "median": 3.046142885184404e-05,
+          "minimum": 3.0094461202928723e-05,
+          "maximum": 3.281233190403737e-05,
+          "sample_cv_percent": 4.738297977829699
+        },
+        "maximum_latency_ms": {
+          "all": [
+            115.038,
+            142.305,
+            139.772
+          ],
+          "median": 139.772,
+          "minimum": 115.038,
+          "maximum": 142.305,
+          "sample_cv_percent": 11.380628600054429
+        },
+        "p50_ms": {
+          "all": [
+            75.875,
+            57.798,
+            62.638
+          ],
+          "median": 62.638,
+          "minimum": 57.798,
+          "maximum": 75.875,
+          "sample_cv_percent": 14.3006242603057
+        },
+        "p95_ms": {
+          "all": [
+            94.96,
+            116.737,
+            111.08
+          ],
+          "median": 111.08,
+          "minimum": 94.96,
+          "maximum": 116.737,
+          "sample_cv_percent": 10.502290241856231
+        },
+        "p99_ms": {
+          "all": [
+            106.779,
+            131.617,
+            121.113
+          ],
+          "median": 121.113,
+          "minimum": 106.779,
+          "maximum": 131.617,
+          "sample_cv_percent": 10.404288723077922
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            20795392,
+            20795392,
+            20799488
+          ],
+          "median": 20795392,
+          "minimum": 20795392,
+          "maximum": 20799488,
+          "sample_cv_percent": 0.011371131877421727
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20676608,
+            20721664,
+            20721664
+          ],
+          "median": 20721664,
+          "minimum": 20676608,
+          "maximum": 20721664,
+          "sample_cv_percent": 0.1256267894188161
+        },
+        "tps": {
+          "all": [
+            12956.32826281884,
+            14056.9136262556,
+            13698.853757136641
+          ],
+          "median": 13698.853757136641,
+          "minimum": 12956.32826281884,
+          "maximum": 14056.9136262556,
+          "sample_cv_percent": 4.136656515452361
+        },
+        "wall_seconds": {
+          "all": [
+            10.0440493139904,
+            10.046444315928966,
+            10.04105908703059
+          ],
+          "median": 10.0440493139904,
+          "minimum": 10.04105908703059,
+          "maximum": 10.046444315928966,
+          "sample_cv_percent": 0.02686311637815778
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            136,
+            144,
+            146
+          ],
+          "median": 144,
+          "minimum": 136,
+          "maximum": 146,
+          "sample_cv_percent": 3.7264102972740716
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.801551854377975e-05,
+            2.6806317447596415e-05,
+            2.6497483421999744e-05
+          ],
+          "median": 2.6806317447596415e-05,
+          "minimum": 2.6497483421999744e-05,
+          "maximum": 2.801551854377975e-05,
+          "sample_cv_percent": 2.9597613917903836
+        },
+        "maximum_latency_ms": {
+          "all": [
+            166.422,
+            159.709,
+            149.278
+          ],
+          "median": 159.709,
+          "minimum": 149.278,
+          "maximum": 166.422,
+          "sample_cv_percent": 5.4514735087347495
+        },
+        "p50_ms": {
+          "all": [
+            60.633,
+            57.817,
+            55.34
+          ],
+          "median": 57.817,
+          "minimum": 55.34,
+          "maximum": 60.633,
+          "sample_cv_percent": 4.571566900691189
+        },
+        "p95_ms": {
+          "all": [
+            130.098,
+            112.579,
+            112.28
+          ],
+          "median": 112.579,
+          "minimum": 112.28,
+          "maximum": 130.098,
+          "sample_cv_percent": 8.622460192163537
+        },
+        "p99_ms": {
+          "all": [
+            150.899,
+            131.891,
+            136.959
+          ],
+          "median": 136.959,
+          "minimum": 131.891,
+          "maximum": 150.899,
+          "sample_cv_percent": 7.034945074781102
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            21848064,
+            21852160,
+            21839872
+          ],
+          "median": 21848064,
+          "minimum": 21839872,
+          "maximum": 21852160,
+          "sample_cv_percent": 0.028639308136715457
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            21725184,
+            21594112,
+            21770240
+          ],
+          "median": 21725184,
+          "minimum": 21594112,
+          "maximum": 21770240,
+          "sample_cv_percent": 0.421716214908225
+        },
+        "tps": {
+          "all": [
+            13584.165620941172,
+            14424.820142410168,
+            14593.733884243778
+          ],
+          "median": 14424.820142410168,
+          "minimum": 13584.165620941172,
+          "maximum": 14593.733884243778,
+          "sample_cv_percent": 3.807851780922374
+        },
+        "wall_seconds": {
+          "all": [
+            10.037642635172233,
+            10.034232563804835,
+            10.033689880976453
+          ],
+          "median": 10.034232563804835,
+          "minimum": 10.033689880976453,
+          "maximum": 10.037642635172233,
+          "sample_cv_percent": 0.02135201253693608
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            22,
+            26,
+            25
+          ],
+          "median": 25,
+          "minimum": 22,
+          "maximum": 26,
+          "sample_cv_percent": 8.554791778627942
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00038202647884812553,
+            0.00032940019665683387,
+            0.00033586644091821875
+          ],
+          "median": 0.00033586644091821875,
+          "minimum": 0.00032940019665683387,
+          "maximum": 0.00038202647884812553,
+          "sample_cv_percent": 8.221150022113632
+        },
+        "maximum_latency_ms": {
+          "all": [
+            599.869,
+            415.691,
+            617.322
+          ],
+          "median": 599.869,
+          "minimum": 415.691,
+          "maximum": 617.322,
+          "sample_cv_percent": 20.524719686103467
+        },
+        "p50_ms": {
+          "all": [
+            441.524,
+            389.214,
+            397.779
+          ],
+          "median": 397.779,
+          "minimum": 389.214,
+          "maximum": 441.524,
+          "sample_cv_percent": 6.851539405711536
+        },
+        "p95_ms": {
+          "all": [
+            562.441,
+            407.716,
+            451.941
+          ],
+          "median": 451.941,
+          "minimum": 407.716,
+          "maximum": 562.441,
+          "sample_cv_percent": 16.81172839948707
+        },
+        "p99_ms": {
+          "all": [
+            585.869,
+            412.37,
+            611.487
+          ],
+          "median": 585.869,
+          "minimum": 412.37,
+          "maximum": 611.487,
+          "sample_cv_percent": 20.18820845554286
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            28708864,
+            29028352,
+            28565504
+          ],
+          "median": 28708864,
+          "minimum": 28565504,
+          "maximum": 29028352,
+          "sample_cv_percent": 0.8236473754095391
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            28598272,
+            28520448,
+            28057600
+          ],
+          "median": 28520448,
+          "minimum": 28057600,
+          "maximum": 28598272,
+          "sample_cv_percent": 1.0294867039309965
+        },
+        "tps": {
+          "all": [
+            2195.9752220430787,
+            2593.185455655372,
+            2490.0073891331203
+          ],
+          "median": 2490.0073891331203,
+          "minimum": 2195.9752220430787,
+          "maximum": 2593.185455655372,
+          "sample_cv_percent": 8.494324813127086
+        },
+        "wall_seconds": {
+          "all": [
+            10.215506884967908,
+            10.19672539900057,
+            10.19956812611781
+          ],
+          "median": 10.19956812611781,
+          "minimum": 10.19672539900057,
+          "maximum": 10.215506884967908,
+          "sample_cv_percent": 0.09920833879503865
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            17,
+            25,
+            25
+          ],
+          "median": 25,
+          "minimum": 17,
+          "maximum": 25,
+          "sample_cv_percent": 20.681203672464207
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.0005020091686003736,
+            0.00033959648852610505,
+            0.0003422982885085575
+          ],
+          "median": 0.0003422982885085575,
+          "minimum": 0.00033959648852610505,
+          "maximum": 0.0005020091686003736,
+          "sample_cv_percent": 23.565815754451673
+        },
+        "maximum_latency_ms": {
+          "all": [
+            820.982,
+            421.238,
+            434.287
+          ],
+          "median": 434.287,
+          "minimum": 421.238,
+          "maximum": 820.982,
+          "sample_cv_percent": 40.641485936935304
+        },
+        "p50_ms": {
+          "all": [
+            606.041,
+            395.943,
+            398.611
+          ],
+          "median": 398.611,
+          "minimum": 395.943,
+          "maximum": 606.041,
+          "sample_cv_percent": 25.818455781844023
+        },
+        "p95_ms": {
+          "all": [
+            664.398,
+            415.376,
+            422.95
+          ],
+          "median": 422.95,
+          "minimum": 415.376,
+          "maximum": 664.398,
+          "sample_cv_percent": 28.27607653865171
+        },
+        "p99_ms": {
+          "all": [
+            807.052,
+            418.772,
+            431.031
+          ],
+          "median": 431.031,
+          "minimum": 418.772,
+          "maximum": 807.052,
+          "sample_cv_percent": 39.96484063564721
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            31363072,
+            31596544,
+            31330304
+          ],
+          "median": 31363072,
+          "minimum": 31330304,
+          "maximum": 31596544,
+          "sample_cv_percent": 0.46192171268583215
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            31305728,
+            31498240,
+            31313920
+          ],
+          "median": 31313920,
+          "minimum": 31305728,
+          "maximum": 31498240,
+          "sample_cv_percent": 0.34698754052184955
+        },
+        "tps": {
+          "all": [
+            1701.5636394422247,
+            2546.1167690990246,
+            2526.2272282073704
+          ],
+          "median": 2526.2272282073704,
+          "minimum": 1701.5636394422247,
+          "maximum": 2546.1167690990246,
+          "sample_cv_percent": 21.34501961312975
+        },
+        "wall_seconds": {
+          "all": [
+            10.383978354046121,
+            10.200631925137714,
+            10.19979505892843
+          ],
+          "median": 10.200631925137714,
+          "minimum": 10.19979505892843,
+          "maximum": 10.383978354046121,
+          "sample_cv_percent": 1.0339408850837057
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            54176,
+            51084,
+            51774
+          ],
+          "median": 51774,
+          "minimum": 51084,
+          "maximum": 54176,
+          "sample_cv_percent": 3.1007391527196853
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            8.203838659068743e-06,
+            8.592206087968568e-06,
+            8.346038715596685e-06
+          ],
+          "median": 8.346038715596685e-06,
+          "minimum": 8.203838659068743e-06,
+          "maximum": 8.592206087968568e-06,
+          "sample_cv_percent": 2.344547865784978
+        },
+        "maximum_latency_ms": {
+          "all": [
+            4.399,
+            4.96,
+            4.836
+          ],
+          "median": 4.836,
+          "minimum": 4.399,
+          "maximum": 4.96,
+          "sample_cv_percent": 6.228114678781818
+        },
+        "p50_ms": {
+          "all": [
+            0.178,
+            0.184,
+            0.18
+          ],
+          "median": 0.18,
+          "minimum": 0.178,
+          "maximum": 0.184,
+          "sample_cv_percent": 1.6909873413121197
+        },
+        "p95_ms": {
+          "all": [
+            0.219,
+            0.247,
+            0.236
+          ],
+          "median": 0.236,
+          "minimum": 0.219,
+          "maximum": 0.247,
+          "sample_cv_percent": 6.028519649429864
+        },
+        "p99_ms": {
+          "all": [
+            0.303,
+            0.369,
+            0.354
+          ],
+          "median": 0.354,
+          "minimum": 0.303,
+          "maximum": 0.369,
+          "sample_cv_percent": 10.1162829777814
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13078528,
+            13078528,
+            13078528
+          ],
+          "median": 13078528,
+          "minimum": 13078528,
+          "maximum": 13078528,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12988416,
+            12988416,
+            12988416
+          ],
+          "median": 12988416,
+          "minimum": 12988416,
+          "maximum": 12988416,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            54227.07796986241,
+            51196.35746580092,
+            51865.57961348836
+          ],
+          "median": 51865.57961348836,
+          "minimum": 51196.35746580092,
+          "maximum": 54227.07796986241,
+          "sample_cv_percent": 3.036749592139311
+        },
+        "wall_seconds": {
+          "all": [
+            10.00291773607023,
+            10.00250848592259,
+            10.002953863935545
+          ],
+          "median": 10.00291773607023,
+          "minimum": 10.00250848592259,
+          "maximum": 10.002953863935545,
+          "sample_cv_percent": 0.0024730124961865486
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            51966,
+            52371,
+            53685
+          ],
+          "median": 52371,
+          "minimum": 51966,
+          "maximum": 53685,
+          "sample_cv_percent": 1.7060865102395597
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            8.430634506068521e-06,
+            8.461155862494783e-06,
+            8.356286756495198e-06
+          ],
+          "median": 8.430634506068521e-06,
+          "minimum": 8.356286756495198e-06,
+          "maximum": 8.461155862494783e-06,
+          "sample_cv_percent": 0.6409114466179537
+        },
+        "maximum_latency_ms": {
+          "all": [
+            5.492,
+            5.253,
+            4.296
+          ],
+          "median": 5.253,
+          "minimum": 4.296,
+          "maximum": 5.492,
+          "sample_cv_percent": 12.6235260845461
+        },
+        "p50_ms": {
+          "all": [
+            0.18,
+            0.181,
+            0.179
+          ],
+          "median": 0.18,
+          "minimum": 0.179,
+          "maximum": 0.181,
+          "sample_cv_percent": 0.5555555555555561
+        },
+        "p95_ms": {
+          "all": [
+            0.245,
+            0.238,
+            0.222
+          ],
+          "median": 0.238,
+          "minimum": 0.222,
+          "maximum": 0.245,
+          "sample_cv_percent": 5.016947286192167
+        },
+        "p99_ms": {
+          "all": [
+            0.433,
+            0.353,
+            0.305
+          ],
+          "median": 0.353,
+          "minimum": 0.305,
+          "maximum": 0.433,
+          "sample_cv_percent": 17.78090654882807
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13107200,
+            13107200,
+            13107200
+          ],
+          "median": 13107200,
+          "minimum": 13107200,
+          "maximum": 13107200,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12988416,
+            12988416,
+            12988416
+          ],
+          "median": 12988416,
+          "minimum": 12988416,
+          "maximum": 12988416,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            52059.13216935858,
+            52462.190071924735,
+            53718.89460866357
+          ],
+          "median": 52462.190071924735,
+          "minimum": 52059.13216935858,
+          "maximum": 53718.89460866357,
+          "sample_cv_percent": 1.6412305780884446
+        },
+        "wall_seconds": {
+          "all": [
+            10.002471772022545,
+            10.00246080616489,
+            10.002439624164253
+          ],
+          "median": 10.00246080616489,
+          "minimum": 10.002439624164253,
+          "maximum": 10.002471772022545,
+          "sample_cv_percent": 0.0001633822060059681
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            38140,
+            38843,
+            38603
+          ],
+          "median": 38603,
+          "minimum": 38140,
+          "maximum": 38843,
+          "sample_cv_percent": 0.9274814527603559
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.5979002019641074e-05,
+            1.5636273072489145e-05,
+            1.5742820730890828e-05
+          ],
+          "median": 1.5742820730890828e-05,
+          "minimum": 1.5636273072489145e-05,
+          "maximum": 1.5979002019641074e-05,
+          "sample_cv_percent": 1.1111274500181196
+        },
+        "maximum_latency_ms": {
+          "all": [
+            5.689,
+            8.598,
+            5.61
+          ],
+          "median": 5.689,
+          "minimum": 5.61,
+          "maximum": 8.598,
+          "sample_cv_percent": 25.673852531924524
+        },
+        "p50_ms": {
+          "all": [
+            0.255,
+            0.251,
+            0.252
+          ],
+          "median": 0.252,
+          "minimum": 0.251,
+          "maximum": 0.255,
+          "sample_cv_percent": 0.8238783639048027
+        },
+        "p95_ms": {
+          "all": [
+            0.315,
+            0.306,
+            0.312
+          ],
+          "median": 0.312,
+          "minimum": 0.306,
+          "maximum": 0.315,
+          "sample_cv_percent": 1.473497008024387
+        },
+        "p99_ms": {
+          "all": [
+            0.402,
+            0.376,
+            0.421
+          ],
+          "median": 0.402,
+          "minimum": 0.376,
+          "maximum": 0.421,
+          "sample_cv_percent": 5.652349916549598
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            7204864,
+            7184384,
+            7176192
+          ],
+          "median": 7184384,
+          "minimum": 7176192,
+          "maximum": 7204864,
+          "sample_cv_percent": 0.2054445171204552
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            7045120,
+            7045120,
+            7045120
+          ],
+          "median": 7045120,
+          "minimum": 7045120,
+          "maximum": 7045120,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            38152.7526353583,
+            38937.11514745579,
+            38673.82443730585
+          ],
+          "median": 38673.82443730585,
+          "minimum": 38152.7526353583,
+          "maximum": 38937.11514745579,
+          "sample_cv_percent": 1.0344663601082564
+        },
+        "wall_seconds": {
+          "all": [
+            10.005857340060174,
+            10.002769812941551,
+            10.002708695828915
+          ],
+          "median": 10.002769812941551,
+          "minimum": 10.002708695828915,
+          "maximum": 10.005857340060174,
+          "sample_cv_percent": 0.0179980687028838
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            22533,
+            23466,
+            22993
+          ],
+          "median": 22993,
+          "minimum": 22533,
+          "maximum": 23466,
+          "sample_cv_percent": 2.0285616930910835
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            3.198355637655544e-05,
+            3.064729644023139e-05,
+            3.147985723341989e-05
+          ],
+          "median": 3.147985723341989e-05,
+          "minimum": 3.064729644023139e-05,
+          "maximum": 3.198355637655544e-05,
+          "sample_cv_percent": 2.1512137195210843
+        },
+        "maximum_latency_ms": {
+          "all": [
+            5.907,
+            16.748,
+            8.013
+          ],
+          "median": 8.013,
+          "minimum": 5.907,
+          "maximum": 16.748,
+          "sample_cv_percent": 56.231637298493496
+        },
+        "p50_ms": {
+          "all": [
+            0.431,
+            0.417,
+            0.427
+          ],
+          "median": 0.427,
+          "minimum": 0.417,
+          "maximum": 0.431,
+          "sample_cv_percent": 1.6967300119830553
+        },
+        "p95_ms": {
+          "all": [
+            0.544,
+            0.51,
+            0.521
+          ],
+          "median": 0.521,
+          "minimum": 0.51,
+          "maximum": 0.544,
+          "sample_cv_percent": 3.3046383948376166
+        },
+        "p99_ms": {
+          "all": [
+            0.761,
+            0.652,
+            0.621
+          ],
+          "median": 0.652,
+          "minimum": 0.621,
+          "maximum": 0.761,
+          "sample_cv_percent": 10.845472835604564
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            10055680,
+            10027008,
+            10031104
+          ],
+          "median": 10031104,
+          "minimum": 10027008,
+          "maximum": 10055680,
+          "sample_cv_percent": 0.15448608122416416
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            9994240,
+            9994240,
+            9994240
+          ],
+          "median": 9994240,
+          "minimum": 9994240,
+          "maximum": 9994240,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            22567.040567175674,
+            23487.19229016901,
+            23022.787470361498
+          ],
+          "median": 23022.787470361498,
+          "minimum": 22567.040567175674,
+          "maximum": 23487.19229016901,
+          "sample_cv_percent": 1.9981289636812667
+        },
+        "wall_seconds": {
+          "all": [
+            10.003128204960376,
+            10.00251528993249,
+            10.003393389983103
+          ],
+          "median": 10.003128204960376,
+          "minimum": 10.00251528993249,
+          "maximum": 10.003393389983103,
+          "sample_cv_percent": 0.004502434038861026
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            8.225845796592797e-06,
+            8.102236849196187e-06,
+            8.111139236296516e-06
+          ],
+          "median": 8.111139236296516e-06,
+          "minimum": 8.102236849196187e-06,
+          "maximum": 8.225845796592797e-06,
+          "sample_cv_percent": 0.8462578407658785
+        },
+        "maximum_latency_ms": {
+          "all": [
+            9994.164,
+            9996.13,
+            9994.795
+          ],
+          "median": 9994.795,
+          "minimum": 9994.164,
+          "maximum": 9996.13,
+          "sample_cv_percent": 0.010042871564163633
+        },
+        "p50_ms": {
+          "all": [
+            0.287,
+            0.285,
+            0.285
+          ],
+          "median": 0.285,
+          "minimum": 0.285,
+          "maximum": 0.287,
+          "sample_cv_percent": 0.4042125571922705
+        },
+        "p95_ms": {
+          "all": [
+            0.374,
+            0.354,
+            0.348
+          ],
+          "median": 0.354,
+          "minimum": 0.348,
+          "maximum": 0.374,
+          "sample_cv_percent": 3.795646441758765
+        },
+        "p99_ms": {
+          "all": [
+            0.575,
+            0.511,
+            0.492
+          ],
+          "median": 0.511,
+          "minimum": 0.492,
+          "maximum": 0.575,
+          "sample_cv_percent": 8.267230001961554
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13746176,
+            13746176,
+            13746176
+          ],
+          "median": 13746176,
+          "minimum": 13746176,
+          "maximum": 13746176,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13643776,
+            13643776,
+            13643776
+          ],
+          "median": 13643776,
+          "minimum": 13643776,
+          "maximum": 13643776,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            52848.46399874532,
+            53767.84889827687,
+            54087.058352695385
+          ],
+          "median": 53767.84889827687,
+          "minimum": 52848.46399874532,
+          "maximum": 54087.058352695385,
+          "sample_cv_percent": 1.200489769119047
+        },
+        "wall_seconds": {
+          "all": [
+            10.006364612840116,
+            10.00826722709462,
+            10.006663636071607
+          ],
+          "median": 10.006663636071607,
+          "minimum": 10.006364612840116,
+          "maximum": 10.00826722709462,
+          "sample_cv_percent": 0.010224115790660078
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            4975,
+            4825,
+            5196
+          ],
+          "median": 4975,
+          "minimum": 4825,
+          "maximum": 5196,
+          "sample_cv_percent": 3.733572923847881
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            9.369570364069002e-06,
+            9.561535309383963e-06,
+            8.99356614114518e-06
+          ],
+          "median": 9.369570364069002e-06,
+          "minimum": 8.99356614114518e-06,
+          "maximum": 9.561535309383963e-06,
+          "sample_cv_percent": 3.103829214462038
+        },
+        "maximum_latency_ms": {
+          "all": [
+            13.947,
+            16.975,
+            9.313
+          ],
+          "median": 13.947,
+          "minimum": 9.313,
+          "maximum": 16.975,
+          "sample_cv_percent": 28.773085291760886
+        },
+        "p50_ms": {
+          "all": [
+            1.947,
+            1.969,
+            1.88
+          ],
+          "median": 1.947,
+          "minimum": 1.88,
+          "maximum": 1.969,
+          "sample_cv_percent": 2.3994465810557526
+        },
+        "p95_ms": {
+          "all": [
+            2.352,
+            2.588,
+            2.189
+          ],
+          "median": 2.352,
+          "minimum": 2.189,
+          "maximum": 2.588,
+          "sample_cv_percent": 8.441993409089934
+        },
+        "p99_ms": {
+          "all": [
+            2.973,
+            3.546,
+            2.62
+          ],
+          "median": 2.973,
+          "minimum": 2.62,
+          "maximum": 3.546,
+          "sample_cv_percent": 15.340913259157086
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13869056,
+            13869056,
+            13869056
+          ],
+          "median": 13869056,
+          "minimum": 13869056,
+          "maximum": 13869056,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13774848,
+            13774848,
+            13774848
+          ],
+          "median": 13774848,
+          "minimum": 13774848,
+          "maximum": 13774848,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            49805.974888895114,
+            48292.902212186265,
+            52009.87358516299
+          ],
+          "median": 49805.974888895114,
+          "minimum": 48292.902212186265,
+          "maximum": 52009.87358516299,
+          "sample_cv_percent": 3.735600967058625
+        },
+        "wall_seconds": {
+          "all": [
+            10.007273246068507,
+            10.005321234930307,
+            10.005254082148895
+          ],
+          "median": 10.005321234930307,
+          "minimum": 10.005254082148895,
+          "maximum": 10.007273246068507,
+          "sample_cv_percent": 0.011461891718952821
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.564945226917058e-05,
+            1.5975446604233886e-05,
+            1.570325758516495e-05
+          ],
+          "median": 1.570325758516495e-05,
+          "minimum": 1.564945226917058e-05,
+          "maximum": 1.5975446604233886e-05,
+          "sample_cv_percent": 1.1077786404006411
+        },
+        "maximum_latency_ms": {
+          "all": [
+            9988.571,
+            9991.917,
+            9995.035
+          ],
+          "median": 9991.917,
+          "minimum": 9988.571,
+          "maximum": 9995.035,
+          "sample_cv_percent": 0.03235309793059767
+        },
+        "p50_ms": {
+          "all": [
+            0.403,
+            0.411,
+            0.405
+          ],
+          "median": 0.405,
+          "minimum": 0.403,
+          "maximum": 0.411,
+          "sample_cv_percent": 1.0246100079406657
+        },
+        "p95_ms": {
+          "all": [
+            0.496,
+            0.509,
+            0.495
+          ],
+          "median": 0.496,
+          "minimum": 0.495,
+          "maximum": 0.509,
+          "sample_cv_percent": 1.5620499351813322
+        },
+        "p99_ms": {
+          "all": [
+            0.669,
+            0.648,
+            0.671
+          ],
+          "median": 0.669,
+          "minimum": 0.648,
+          "maximum": 0.671,
+          "sample_cv_percent": 1.922687611027808
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            8376320,
+            8364032,
+            8359936
+          ],
+          "median": 8364032,
+          "minimum": 8359936,
+          "maximum": 8376320,
+          "sample_cv_percent": 0.10190923626629239
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            8290304,
+            8224768,
+            8179712
+          ],
+          "median": 8224768,
+          "minimum": 8179712,
+          "maximum": 8290304,
+          "sample_cv_percent": 0.6755817500221032
+        },
+        "tps": {
+          "all": [
+            38818.91370391162,
+            38090.52587684569,
+            38624.66009374741
+          ],
+          "median": 38624.66009374741,
+          "minimum": 38090.52587684569,
+          "maximum": 38818.91370391162,
+          "sample_cv_percent": 0.9793957960417607
+        },
+        "wall_seconds": {
+          "all": [
+            10.008317155996338,
+            10.008000446949154,
+            10.007699719863012
+          ],
+          "median": 10.008000446949154,
+          "minimum": 10.007699719863012,
+          "maximum": 10.008317155996338,
+          "sample_cv_percent": 0.0030850555577058634
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1093,
+            1001,
+            1060
+          ],
+          "median": 1060,
+          "minimum": 1001,
+          "maximum": 1093,
+          "sample_cv_percent": 4.433255881042082
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            6.790100891943267e-05,
+            7.309255394569983e-05,
+            6.896421774603834e-05
+          ],
+          "median": 6.896421774603834e-05,
+          "minimum": 6.790100891943267e-05,
+          "maximum": 7.309255394569983e-05,
+          "sample_cv_percent": 3.918552705148904
+        },
+        "maximum_latency_ms": {
+          "all": [
+            20.885,
+            58.085,
+            63.267
+          ],
+          "median": 58.085,
+          "minimum": 20.885,
+          "maximum": 63.267,
+          "sample_cv_percent": 48.761559411039634
+        },
+        "p50_ms": {
+          "all": [
+            8.744,
+            9.452,
+            8.891
+          ],
+          "median": 8.891,
+          "minimum": 8.744,
+          "maximum": 9.452,
+          "sample_cv_percent": 4.138104946546381
+        },
+        "p95_ms": {
+          "all": [
+            11.659,
+            13.155,
+            12.077
+          ],
+          "median": 12.077,
+          "minimum": 11.659,
+          "maximum": 13.155,
+          "sample_cv_percent": 6.277005862286314
+        },
+        "p99_ms": {
+          "all": [
+            13.603,
+            18.077,
+            18.434
+          ],
+          "median": 18.077,
+          "minimum": 13.603,
+          "maximum": 18.434,
+          "sample_cv_percent": 16.115535551273908
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            11550720,
+            11595776,
+            11554816
+          ],
+          "median": 11554816,
+          "minimum": 11550720,
+          "maximum": 11595776,
+          "sample_cv_percent": 0.21539527373577264
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            11431936,
+            11595776,
+            11530240
+          ],
+          "median": 11530240,
+          "minimum": 11431936,
+          "maximum": 11595776,
+          "sample_cv_percent": 0.7158785762968589
+        },
+        "tps": {
+          "all": [
+            10927.28466077237,
+            10004.47252479414,
+            10600.51747866021
+          ],
+          "median": 10600.51747866021,
+          "minimum": 10004.47252479414,
+          "maximum": 10927.28466077237,
+          "sample_cv_percent": 4.451707580018243
+        },
+        "wall_seconds": {
+          "all": [
+            10.01383265806362,
+            10.010222902987152,
+            10.012907408876345
+          ],
+          "median": 10.012907408876345,
+          "minimum": 10.010222902987152,
+          "maximum": 10.01383265806362,
+          "sample_cv_percent": 0.018726589047471754
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            8.900257917212802e-06,
+            8.706061595385787e-06,
+            8.472435436544179e-06
+          ],
+          "median": 8.706061595385787e-06,
+          "minimum": 8.472435436544179e-06,
+          "maximum": 8.900257917212802e-06,
+          "sample_cv_percent": 2.464234136527818
+        },
+        "maximum_latency_ms": {
+          "all": [
+            9994.926,
+            9995.248,
+            9988.462
+          ],
+          "median": 9994.926,
+          "minimum": 9988.462,
+          "maximum": 9995.248,
+          "sample_cv_percent": 0.03831060674128707
+        },
+        "p50_ms": {
+          "all": [
+            0.311,
+            0.302,
+            0.296
+          ],
+          "median": 0.302,
+          "minimum": 0.296,
+          "maximum": 0.311,
+          "sample_cv_percent": 2.4916945330926588
+        },
+        "p95_ms": {
+          "all": [
+            0.472,
+            0.454,
+            0.386
+          ],
+          "median": 0.454,
+          "minimum": 0.386,
+          "maximum": 0.472,
+          "sample_cv_percent": 10.371456520228078
+        },
+        "p99_ms": {
+          "all": [
+            0.787,
+            0.794,
+            0.582
+          ],
+          "median": 0.787,
+          "minimum": 0.582,
+          "maximum": 0.794,
+          "sample_cv_percent": 16.702968372489504
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            20791296,
+            20791296,
+            20791296
+          ],
+          "median": 20791296,
+          "minimum": 20791296,
+          "maximum": 20791296,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20721664,
+            20721664,
+            20721664
+          ],
+          "median": 20721664,
+          "minimum": 20721664,
+          "maximum": 20721664,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            47098.69366520621,
+            48488.08917010376,
+            51245.08103453205
+          ],
+          "median": 48488.08917010376,
+          "minimum": 47098.69366520621,
+          "maximum": 51245.08103453205,
+          "sample_cv_percent": 4.311969310162718
+        },
+        "wall_seconds": {
+          "all": [
+            10.043166024144739,
+            10.044054289115593,
+            10.042134573915973
+          ],
+          "median": 10.043166024144739,
+          "minimum": 10.042134573915973,
+          "maximum": 10.044054289115593,
+          "sample_cv_percent": 0.009566223715172954
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            431,
+            415,
+            419
+          ],
+          "median": 419,
+          "minimum": 415,
+          "maximum": 431,
+          "sample_cv_percent": 1.9747029243947505
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.1229607264745515e-05,
+            1.189703655634869e-05,
+            1.1730149344828243e-05
+          ],
+          "median": 1.1730149344828243e-05,
+          "minimum": 1.1229607264745515e-05,
+          "maximum": 1.189703655634869e-05,
+          "sample_cv_percent": 2.9894009059642435
+        },
+        "maximum_latency_ms": {
+          "all": [
+            63.928,
+            73.23,
+            76.978
+          ],
+          "median": 73.23,
+          "minimum": 63.928,
+          "maximum": 76.978,
+          "sample_cv_percent": 9.41330598284394
+        },
+        "p50_ms": {
+          "all": [
+            22.098,
+            22.901,
+            22.732
+          ],
+          "median": 22.732,
+          "minimum": 22.098,
+          "maximum": 22.901,
+          "sample_cv_percent": 1.8751163261825812
+        },
+        "p95_ms": {
+          "all": [
+            30.339,
+            27.752,
+            28.449
+          ],
+          "median": 28.449,
+          "minimum": 27.752,
+          "maximum": 30.339,
+          "sample_cv_percent": 4.640263319852413
+        },
+        "p99_ms": {
+          "all": [
+            37.511,
+            45.535,
+            40.412
+          ],
+          "median": 40.412,
+          "minimum": 37.511,
+          "maximum": 45.535,
+          "sample_cv_percent": 9.872878214357932
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            21839872,
+            21843968,
+            21843968
+          ],
+          "median": 21843968,
+          "minimum": 21839872,
+          "maximum": 21843968,
+          "sample_cv_percent": 0.010826670881165627
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            21770240,
+            21770240,
+            21770240
+          ],
+          "median": 21770240,
+          "minimum": 21770240,
+          "maximum": 21770240,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            43045.482135494,
+            41458.85981162472,
+            41794.03647737494
+          ],
+          "median": 41794.03647737494,
+          "minimum": 41458.85981162472,
+          "maximum": 43045.482135494,
+          "sample_cv_percent": 1.9863546824046956
+        },
+        "wall_seconds": {
+          "all": [
+            10.03343390696682,
+            10.035731852985919,
+            10.035690145101398
+          ],
+          "median": 10.035690145101398,
+          "minimum": 10.03343390696682,
+          "maximum": 10.035731852985919,
+          "sample_cv_percent": 0.013102654739136892
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.6764953213461238e-05,
+            1.672303444142389e-05,
+            1.6914731438236992e-05
+          ],
+          "median": 1.6764953213461238e-05,
+          "minimum": 1.672303444142389e-05,
+          "maximum": 1.6914731438236992e-05,
+          "sample_cv_percent": 0.5998426265571036
+        },
+        "maximum_latency_ms": {
+          "all": [
+            10094.36,
+            10104.417,
+            10096.588
+          ],
+          "median": 10096.588,
+          "minimum": 10094.36,
+          "maximum": 10104.417,
+          "sample_cv_percent": 0.052305551063564444
+        },
+        "p50_ms": {
+          "all": [
+            0.411,
+            0.41,
+            0.414
+          ],
+          "median": 0.411,
+          "minimum": 0.41,
+          "maximum": 0.414,
+          "sample_cv_percent": 0.5056678541213283
+        },
+        "p95_ms": {
+          "all": [
+            0.517,
+            0.516,
+            0.523
+          ],
+          "median": 0.517,
+          "minimum": 0.516,
+          "maximum": 0.523,
+          "sample_cv_percent": 0.7299368053727864
+        },
+        "p99_ms": {
+          "all": [
+            1.067,
+            1.082,
+            1.023
+          ],
+          "median": 1.067,
+          "minimum": 1.023,
+          "maximum": 1.082,
+          "sample_cv_percent": 2.9002069690055365
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            20045824,
+            20049920,
+            20054016
+          ],
+          "median": 20049920,
+          "minimum": 20045824,
+          "maximum": 20054016,
+          "sample_cv_percent": 0.020429009193054137
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            19894272,
+            19943424,
+            19873792
+          ],
+          "median": 19894272,
+          "minimum": 19873792,
+          "maximum": 19943424,
+          "sample_cv_percent": 0.17979616438580268
+        },
+        "tps": {
+          "all": [
+            36671.20149409421,
+            36687.816685152815,
+            36448.28717773471
+          ],
+          "median": 36671.20149409421,
+          "minimum": 36448.28717773471,
+          "maximum": 36687.816685152815,
+          "sample_cv_percent": 0.3654245351749734
+        },
+        "wall_seconds": {
+          "all": [
+            10.182322497945279,
+            10.186923991888762,
+            10.186322286957875
+          ],
+          "median": 10.186322286957875,
+          "minimum": 10.182322497945279,
+          "maximum": 10.186923991888762,
+          "sample_cv_percent": 0.02455660383127678
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            32,
+            32,
+            32
+          ],
+          "median": 32,
+          "minimum": 32,
+          "maximum": 32,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.0002870330745246683,
+            0.00028787322564855606,
+            0.0002890510053948014
+          ],
+          "median": 0.00028787322564855606,
+          "minimum": 0.0002870330745246683,
+          "maximum": 0.0002890510053948014,
+          "sample_cv_percent": 0.3519833693334627
+        },
+        "maximum_latency_ms": {
+          "all": [
+            342.659,
+            337.987,
+            336.33
+          ],
+          "median": 337.987,
+          "minimum": 336.33,
+          "maximum": 342.659,
+          "sample_cv_percent": 0.9681669122063278
+        },
+        "p50_ms": {
+          "all": [
+            312.613,
+            313.612,
+            315.175
+          ],
+          "median": 313.612,
+          "minimum": 312.613,
+          "maximum": 315.175,
+          "sample_cv_percent": 0.41150578512134367
+        },
+        "p95_ms": {
+          "all": [
+            331.789,
+            326.791,
+            327.912
+          ],
+          "median": 327.912,
+          "minimum": 326.791,
+          "maximum": 331.789,
+          "sample_cv_percent": 0.7975493833876114
+        },
+        "p99_ms": {
+          "all": [
+            338.422,
+            331.694,
+            333.317
+          ],
+          "median": 333.317,
+          "minimum": 331.694,
+          "maximum": 338.422,
+          "sample_cv_percent": 1.0496851235901714
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            26562560,
+            26566656,
+            26562560
+          ],
+          "median": 26562560,
+          "minimum": 26562560,
+          "maximum": 26566656,
+          "sample_cv_percent": 0.008902399298770956
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            26464256,
+            26497024,
+            26447872
+          ],
+          "median": 26464256,
+          "minimum": 26447872,
+          "maximum": 26497024,
+          "sample_cv_percent": 0.09454945468521876
+        },
+        "tps": {
+          "all": [
+            3209.0073600327987,
+            3200.4308406968735,
+            3197.6384789678027
+          ],
+          "median": 3200.4308406968735,
+          "minimum": 3197.6384789678027,
+          "maximum": 3209.0073600327987,
+          "sample_cv_percent": 0.1850074209720337
+        },
+        "wall_seconds": {
+          "all": [
+            10.194429719122127,
+            10.213624860858545,
+            10.202529214788228
+          ],
+          "median": 10.202529214788228,
+          "minimum": 10.194429719122127,
+          "maximum": 10.213624860858545,
+          "sample_cv_percent": 0.09444247423496901
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            13778,
+            13694,
+            13923
+          ],
+          "median": 13778,
+          "minimum": 13694,
+          "maximum": 13923,
+          "sample_cv_percent": 0.839566341532385
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.859128219233609e-05,
+            2.9287270236993752e-05,
+            2.8486358040596636e-05
+          ],
+          "median": 2.859128219233609e-05,
+          "minimum": 2.8486358040596636e-05,
+          "maximum": 2.9287270236993752e-05,
+          "sample_cv_percent": 1.5120406708542682
+        },
+        "maximum_latency_ms": {
+          "all": [
+            4.762,
+            6.376,
+            23.69
+          ],
+          "median": 6.376,
+          "minimum": 4.762,
+          "maximum": 23.69,
+          "sample_cv_percent": 90.38625886554341
+        },
+        "p50_ms": {
+          "all": [
+            0.352,
+            0.388,
+            0.35
+          ],
+          "median": 0.352,
+          "minimum": 0.35,
+          "maximum": 0.388,
+          "sample_cv_percent": 5.885877039392827
+        },
+        "p95_ms": {
+          "all": [
+            0.719,
+            0.826,
+            0.695
+          ],
+          "median": 0.719,
+          "minimum": 0.695,
+          "maximum": 0.826,
+          "sample_cv_percent": 9.340817786107666
+        },
+        "p99_ms": {
+          "all": [
+            1.224,
+            1.387,
+            1.154
+          ],
+          "median": 1.224,
+          "minimum": 1.154,
+          "maximum": 1.387,
+          "sample_cv_percent": 9.526162181512433
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13078528,
+            13078528,
+            13078528
+          ],
+          "median": 13078528,
+          "minimum": 13078528,
+          "maximum": 13078528,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12881920,
+            12943360,
+            12943360
+          ],
+          "median": 12943360,
+          "minimum": 12881920,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.27449299644514696
+        },
+        "tps": {
+          "all": [
+            13808.519668946601,
+            13722.052282924962,
+            13967.568067360797
+          ],
+          "median": 13808.519668946601,
+          "minimum": 13722.052282924962,
+          "maximum": 13967.568067360797,
+          "sample_cv_percent": 0.9002798409595935
+        },
+        "wall_seconds": {
+          "all": [
+            10.004982671001926,
+            10.002949789864942,
+            10.002886638976634
+          ],
+          "median": 10.002949789864942,
+          "minimum": 10.002886638976634,
+          "maximum": 10.004982671001926,
+          "sample_cv_percent": 0.011919028839337877
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            13960,
+            14265,
+            14345
+          ],
+          "median": 14265,
+          "minimum": 13960,
+          "maximum": 14345,
+          "sample_cv_percent": 1.4317300672241045
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.4070302374271836e-05,
+            2.425233612200253e-05,
+            2.3817931301885357e-05
+          ],
+          "median": 2.4070302374271836e-05,
+          "minimum": 2.3817931301885357e-05,
+          "maximum": 2.425233612200253e-05,
+          "sample_cv_percent": 0.9071847265265134
+        },
+        "maximum_latency_ms": {
+          "all": [
+            6.195,
+            5.103,
+            16.025
+          ],
+          "median": 6.195,
+          "minimum": 5.103,
+          "maximum": 16.025,
+          "sample_cv_percent": 66.0478384971844
+        },
+        "p50_ms": {
+          "all": [
+            0.283,
+            0.287,
+            0.286
+          ],
+          "median": 0.286,
+          "minimum": 0.283,
+          "maximum": 0.287,
+          "sample_cv_percent": 0.729555840934393
+        },
+        "p95_ms": {
+          "all": [
+            0.681,
+            0.654,
+            0.643
+          ],
+          "median": 0.654,
+          "minimum": 0.643,
+          "maximum": 0.681,
+          "sample_cv_percent": 2.965623736311927
+        },
+        "p99_ms": {
+          "all": [
+            1.256,
+            1.187,
+            1.32
+          ],
+          "median": 1.256,
+          "minimum": 1.187,
+          "maximum": 1.32,
+          "sample_cv_percent": 5.302869703639029
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13107200,
+            13107200,
+            13107200
+          ],
+          "median": 13107200,
+          "minimum": 13107200,
+          "maximum": 13107200,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12943360,
+            12881920,
+            12943360
+          ],
+          "median": 12943360,
+          "minimum": 12881920,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.27449299644514696
+        },
+        "tps": {
+          "all": [
+            14031.735345146431,
+            14297.174414096828,
+            14431.180428432042
+          ],
+          "median": 14297.174414096828,
+          "minimum": 14031.735345146431,
+          "maximum": 14431.180428432042,
+          "sample_cv_percent": 1.4262913204660435
+        },
+        "wall_seconds": {
+          "all": [
+            10.007457847939804,
+            10.007501892047003,
+            10.008121006889269
+          ],
+          "median": 10.007501892047003,
+          "minimum": 10.007457847939804,
+          "maximum": 10.008121006889269,
+          "sample_cv_percent": 0.003705299922207483
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            13538,
+            13492,
+            13349
+          ],
+          "median": 13492,
+          "minimum": 13349,
+          "maximum": 13538,
+          "sample_cv_percent": 0.732271608746267
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00010244257843259911,
+            0.00010161386730424388,
+            0.00010273461962842574
+          ],
+          "median": 0.00010244257843259911,
+          "minimum": 0.00010161386730424388,
+          "maximum": 0.00010273461962842574,
+          "sample_cv_percent": 0.5685274721923569
+        },
+        "maximum_latency_ms": {
+          "all": [
+            4.191,
+            4.213,
+            4.611
+          ],
+          "median": 4.213,
+          "minimum": 4.191,
+          "maximum": 4.611,
+          "sample_cv_percent": 5.448920382499549
+        },
+        "p50_ms": {
+          "all": [
+            0.381,
+            0.386,
+            0.39
+          ],
+          "median": 0.386,
+          "minimum": 0.381,
+          "maximum": 0.39,
+          "sample_cv_percent": 1.1692090975340272
+        },
+        "p95_ms": {
+          "all": [
+            0.756,
+            0.77,
+            0.78
+          ],
+          "median": 0.77,
+          "minimum": 0.756,
+          "maximum": 0.78,
+          "sample_cv_percent": 1.568355708588477
+        },
+        "p99_ms": {
+          "all": [
+            1.125,
+            1.14,
+            1.171
+          ],
+          "median": 1.14,
+          "minimum": 1.125,
+          "maximum": 1.171,
+          "sample_cv_percent": 2.0482407811307257
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            9527296,
+            9433088,
+            9850880
+          ],
+          "median": 9527296,
+          "minimum": 9433088,
+          "maximum": 9850880,
+          "sample_cv_percent": 2.2818074556666503
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            8093696,
+            8486912,
+            8486912
+          ],
+          "median": 8486912,
+          "minimum": 8093696,
+          "maximum": 8486912,
+          "sample_cv_percent": 2.7169424432452978
+        },
+        "tps": {
+          "all": [
+            13582.493366841978,
+            13546.818609521539,
+            13407.955083956098
+          ],
+          "median": 13546.818609521539,
+          "minimum": 13407.955083956098,
+          "maximum": 13582.493366841978,
+          "sample_cv_percent": 0.6824310026755193
+        },
+        "wall_seconds": {
+          "all": [
+            10.004127837950364,
+            10.003308075945824,
+            10.003911794163287
+          ],
+          "median": 10.003911794163287,
+          "minimum": 10.003308075945824,
+          "maximum": 10.004127837950364,
+          "sample_cv_percent": 0.0042472371156342704
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            12028,
+            12477,
+            12350
+          ],
+          "median": 12350,
+          "minimum": 12028,
+          "maximum": 12477,
+          "sample_cv_percent": 1.8840030815610875
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00014279557772952546,
+            0.00014250319693094628,
+            0.00014188458870408312
+          ],
+          "median": 0.00014250319693094628,
+          "minimum": 0.00014188458870408312,
+          "maximum": 0.00014279557772952546,
+          "sample_cv_percent": 0.32664746867977046
+        },
+        "maximum_latency_ms": {
+          "all": [
+            6.374,
+            11.014,
+            5.6
+          ],
+          "median": 6.374,
+          "minimum": 5.6,
+          "maximum": 11.014,
+          "sample_cv_percent": 38.21160018220111
+        },
+        "p50_ms": {
+          "all": [
+            0.461,
+            0.446,
+            0.457
+          ],
+          "median": 0.457,
+          "minimum": 0.446,
+          "maximum": 0.461,
+          "sample_cv_percent": 1.708384193215697
+        },
+        "p95_ms": {
+          "all": [
+            0.927,
+            0.887,
+            0.89
+          ],
+          "median": 0.89,
+          "minimum": 0.887,
+          "maximum": 0.927,
+          "sample_cv_percent": 2.4717314809921542
+        },
+        "p99_ms": {
+          "all": [
+            1.63,
+            1.396,
+            1.309
+          ],
+          "median": 1.396,
+          "minimum": 1.309,
+          "maximum": 1.63,
+          "sample_cv_percent": 11.488931457291391
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13520896,
+            13783040,
+            14495744
+          ],
+          "median": 13783040,
+          "minimum": 13520896,
+          "maximum": 14495744,
+          "sample_cv_percent": 3.6206912545651915
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12353536,
+            12746752,
+            13402112
+          ],
+          "median": 12746752,
+          "minimum": 12353536,
+          "maximum": 13402112,
+          "sample_cv_percent": 4.127440222291793
+        },
+        "tps": {
+          "all": [
+            12061.768320362988,
+            12507.671920293476,
+            12392.203342903114
+          ],
+          "median": 12392.203342903114,
+          "minimum": 12061.768320362988,
+          "maximum": 12507.671920293476,
+          "sample_cv_percent": 1.878381148233458
+        },
+        "wall_seconds": {
+          "all": [
+            10.003674154169858,
+            10.003460339969024,
+            10.004193489206955
+          ],
+          "median": 10.003674154169858,
+          "minimum": 10.003460339969024,
+          "maximum": 10.004193489206955,
+          "sample_cv_percent": 0.003768928735424509
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1365,
+            1362,
+            1371
+          ],
+          "median": 1365,
+          "minimum": 1362,
+          "maximum": 1371,
+          "sample_cv_percent": 0.3354740625882752
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            3.1452022953439384e-05,
+            3.088128186453023e-05,
+            3.084101349204056e-05
+          ],
+          "median": 3.088128186453023e-05,
+          "minimum": 3.084101349204056e-05,
+          "maximum": 3.1452022953439384e-05,
+          "sample_cv_percent": 1.1003106271824314
+        },
+        "maximum_latency_ms": {
+          "all": [
+            29.177,
+            29.794,
+            32.163
+          ],
+          "median": 29.794,
+          "minimum": 29.177,
+          "maximum": 32.163,
+          "sample_cv_percent": 5.189077110076623
+        },
+        "p50_ms": {
+          "all": [
+            6.179,
+            5.974,
+            5.946
+          ],
+          "median": 5.974,
+          "minimum": 5.946,
+          "maximum": 6.179,
+          "sample_cv_percent": 2.1086096598246034
+        },
+        "p95_ms": {
+          "all": [
+            10.915,
+            11.783,
+            11.907
+          ],
+          "median": 11.783,
+          "minimum": 10.915,
+          "maximum": 11.907,
+          "sample_cv_percent": 4.685769128730333
+        },
+        "p99_ms": {
+          "all": [
+            14.83,
+            15.04,
+            15.539
+          ],
+          "median": 15.04,
+          "minimum": 14.83,
+          "maximum": 15.539,
+          "sample_cv_percent": 2.40602838905876
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13406208,
+            13406208,
+            13406208
+          ],
+          "median": 13406208,
+          "minimum": 13406208,
+          "maximum": 13406208,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13074432,
+            13074432,
+            13074432
+          ],
+          "median": 13074432,
+          "minimum": 13074432,
+          "maximum": 13074432,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            13748.187561595352,
+            13719.013207996586,
+            13834.83333388435
+          ],
+          "median": 13748.187561595352,
+          "minimum": 13719.013207996586,
+          "maximum": 13834.83333388435,
+          "sample_cv_percent": 0.437555019048641
+        },
+        "wall_seconds": {
+          "all": [
+            10.01368357706815,
+            10.008008441887796,
+            10.007493162993342
+          ],
+          "median": 10.008008441887796,
+          "minimum": 10.007493162993342,
+          "maximum": 10.01368357706815,
+          "sample_cv_percent": 0.0343162635462818
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1447,
+            1339,
+            1434
+          ],
+          "median": 1434,
+          "minimum": 1339,
+          "maximum": 1447,
+          "sample_cv_percent": 4.191500382503397
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.6024502442769878e-05,
+            2.7543366150961087e-05,
+            2.6401689708141318e-05
+          ],
+          "median": 2.6401689708141318e-05,
+          "minimum": 2.6024502442769878e-05,
+          "maximum": 2.7543366150961087e-05,
+          "sample_cv_percent": 2.9668085158219983
+        },
+        "maximum_latency_ms": {
+          "all": [
+            36.423,
+            32.439,
+            42.119
+          ],
+          "median": 36.423,
+          "minimum": 32.439,
+          "maximum": 42.119,
+          "sample_cv_percent": 13.151349852992947
+        },
+        "p50_ms": {
+          "all": [
+            5.075,
+            6.147,
+            5.287
+          ],
+          "median": 5.287,
+          "minimum": 5.075,
+          "maximum": 6.147,
+          "sample_cv_percent": 10.316266551019758
+        },
+        "p95_ms": {
+          "all": [
+            13.799,
+            11.459,
+            12.49
+          ],
+          "median": 12.49,
+          "minimum": 11.459,
+          "maximum": 13.799,
+          "sample_cv_percent": 9.320353790384683
+        },
+        "p99_ms": {
+          "all": [
+            19.287,
+            14.402,
+            18.889
+          ],
+          "median": 18.889,
+          "minimum": 14.402,
+          "maximum": 19.287,
+          "sample_cv_percent": 15.478558703207055
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13529088,
+            13529088,
+            13529088
+          ],
+          "median": 13529088,
+          "minimum": 13529088,
+          "maximum": 13529088,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13074432,
+            13074432,
+            13205504
+          ],
+          "median": 13074432,
+          "minimum": 13074432,
+          "maximum": 13205504,
+          "sample_cv_percent": 0.5768695445691515
+        },
+        "tps": {
+          "all": [
+            14698.830479219785,
+            13630.350197165464,
+            14565.586867282436
+          ],
+          "median": 14565.586867282436,
+          "minimum": 13630.350197165464,
+          "maximum": 14698.830479219785,
+          "sample_cv_percent": 4.072156208401637
+        },
+        "wall_seconds": {
+          "all": [
+            10.012293169042096,
+            10.01529660099186,
+            10.011543052038178
+          ],
+          "median": 10.012293169042096,
+          "minimum": 10.011543052038178,
+          "maximum": 10.01529660099186,
+          "sample_cv_percent": 0.019837158522582967
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1260,
+            1316,
+            1251
+          ],
+          "median": 1260,
+          "minimum": 1251,
+          "maximum": 1316,
+          "sample_cv_percent": 2.7607812715364908
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00015715884550513093,
+            0.00016095229479524755,
+            0.00015761765825193457
+          ],
+          "median": 0.00015761765825193457,
+          "minimum": 0.00015715884550513093,
+          "maximum": 0.00016095229479524755,
+          "sample_cv_percent": 1.3056490605348203
+        },
+        "maximum_latency_ms": {
+          "all": [
+            26.623,
+            27.2,
+            31.812
+          ],
+          "median": 27.2,
+          "minimum": 26.623,
+          "maximum": 31.812,
+          "sample_cv_percent": 9.963131596088116
+        },
+        "p50_ms": {
+          "all": [
+            6.936,
+            6.819,
+            7.154
+          ],
+          "median": 6.936,
+          "minimum": 6.819,
+          "maximum": 7.154,
+          "sample_cv_percent": 2.4394082896918614
+        },
+        "p95_ms": {
+          "all": [
+            10.549,
+            9.599,
+            10.164
+          ],
+          "median": 10.164,
+          "minimum": 9.599,
+          "maximum": 10.549,
+          "sample_cv_percent": 4.7291533359411115
+        },
+        "p99_ms": {
+          "all": [
+            19.181,
+            12.73,
+            12.866
+          ],
+          "median": 12.866,
+          "minimum": 12.73,
+          "maximum": 19.181,
+          "sample_cv_percent": 24.694736704001865
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            12627968,
+            12435456,
+            12374016
+          ],
+          "median": 12435456,
+          "minimum": 12374016,
+          "maximum": 12627968,
+          "sample_cv_percent": 1.0617202226659195
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12025856,
+            11075584,
+            11370496
+          ],
+          "median": 11370496,
+          "minimum": 11075584,
+          "maximum": 12025856,
+          "sample_cv_percent": 4.232974159355954
+        },
+        "tps": {
+          "all": [
+            12677.526377311331,
+            13252.558496288675,
+            12599.914177646186
+          ],
+          "median": 12677.526377311331,
+          "minimum": 12599.914177646186,
+          "maximum": 13252.558496288675,
+          "sample_cv_percent": 2.7758988072463184
+        },
+        "wall_seconds": {
+          "all": [
+            10.00810380699113,
+            10.009237087098882,
+            10.010226912796497
+          ],
+          "median": 10.009237087098882,
+          "minimum": 10.00810380699113,
+          "maximum": 10.010226912796497,
+          "sample_cv_percent": 0.010613850065775317
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1259,
+            1224,
+            1215
+          ],
+          "median": 1224,
+          "minimum": 1215,
+          "maximum": 1259,
+          "sample_cv_percent": 1.8857548265669162
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00019705440620257445,
+            0.00019606889958355617,
+            0.00019859679966140873
+          ],
+          "median": 0.00019705440620257445,
+          "minimum": 0.00019606889958355617,
+          "maximum": 0.00019859679966140873,
+          "sample_cv_percent": 0.6459806006174055
+        },
+        "maximum_latency_ms": {
+          "all": [
+            22.117,
+            21.305,
+            23.351
+          ],
+          "median": 22.117,
+          "minimum": 21.305,
+          "maximum": 23.351,
+          "sample_cv_percent": 4.628642444654583
+        },
+        "p50_ms": {
+          "all": [
+            7.142,
+            7.381,
+            7.271
+          ],
+          "median": 7.271,
+          "minimum": 7.142,
+          "maximum": 7.381,
+          "sample_cv_percent": 1.6466798953716542
+        },
+        "p95_ms": {
+          "all": [
+            9.912,
+            10.147,
+            10.88
+          ],
+          "median": 10.147,
+          "minimum": 9.912,
+          "maximum": 10.88,
+          "sample_cv_percent": 4.895752931261033
+        },
+        "p99_ms": {
+          "all": [
+            12.422,
+            13.587,
+            13.697
+          ],
+          "median": 13.587,
+          "minimum": 12.422,
+          "maximum": 13.697,
+          "sample_cv_percent": 5.338070183169948
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            16850944,
+            16994304,
+            16789504
+          ],
+          "median": 16850944,
+          "minimum": 16789504,
+          "maximum": 16994304,
+          "sample_cv_percent": 0.6226664098989101
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            15892480,
+            15319040,
+            15540224
+          ],
+          "median": 15540224,
+          "minimum": 15319040,
+          "maximum": 15892480,
+          "sample_cv_percent": 1.855797081454398
+        },
+        "tps": {
+          "all": [
+            12704.843314177746,
+            12330.368655426066,
+            12271.98000618851
+          ],
+          "median": 12330.368655426066,
+          "minimum": 12271.98000618851,
+          "maximum": 12704.843314177746,
+          "sample_cv_percent": 1.8887495665622738
+        },
+        "wall_seconds": {
+          "all": [
+            10.009804674889892,
+            10.009919690899551,
+            10.011587367160246
+          ],
+          "median": 10.009919690899551,
+          "minimum": 10.009804674889892,
+          "maximum": 10.011587367160246,
+          "sample_cv_percent": 0.009966541534266168
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            126,
+            129,
+            126
+          ],
+          "median": 126,
+          "minimum": 126,
+          "maximum": 129,
+          "sample_cv_percent": 1.363819533518801
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            3.3876572134144896e-05,
+            3.366095637170323e-05,
+            3.4100058412137095e-05
+          ],
+          "median": 3.3876572134144896e-05,
+          "minimum": 3.366095637170323e-05,
+          "maximum": 3.4100058412137095e-05,
+          "sample_cv_percent": 0.6480755276539184
+        },
+        "maximum_latency_ms": {
+          "all": [
+            234.624,
+            149.852,
+            160.595
+          ],
+          "median": 160.595,
+          "minimum": 149.852,
+          "maximum": 234.624,
+          "sample_cv_percent": 25.40340350883036
+        },
+        "p50_ms": {
+          "all": [
+            73.471,
+            73.432,
+            75.275
+          ],
+          "median": 73.471,
+          "minimum": 73.432,
+          "maximum": 75.275,
+          "sample_cv_percent": 1.4218043062899617
+        },
+        "p95_ms": {
+          "all": [
+            118.895,
+            110.626,
+            106.703
+          ],
+          "median": 110.626,
+          "minimum": 106.703,
+          "maximum": 118.895,
+          "sample_cv_percent": 5.553226692567078
+        },
+        "p99_ms": {
+          "all": [
+            169.865,
+            133.279,
+            140.064
+          ],
+          "median": 140.064,
+          "minimum": 133.279,
+          "maximum": 169.865,
+          "sample_cv_percent": 13.173656798398733
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            20795392,
+            20795392,
+            20799488
+          ],
+          "median": 20795392,
+          "minimum": 20795392,
+          "maximum": 20799488,
+          "sample_cv_percent": 0.011371131877421727
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20414464,
+            20217856,
+            20152320
+          ],
+          "median": 20217856,
+          "minimum": 20152320,
+          "maximum": 20414464,
+          "sample_cv_percent": 0.6733151480752989
+        },
+        "tps": {
+          "all": [
+            12571.814281393927,
+            12924.980232471406,
+            12593.769128594073
+          ],
+          "median": 12593.769128594073,
+          "minimum": 12571.814281393927,
+          "maximum": 12924.980232471406,
+          "sample_cv_percent": 1.5583968371032098
+        },
+        "wall_seconds": {
+          "all": [
+            10.049543937901035,
+            10.044425419997424,
+            10.059418963966891
+          ],
+          "median": 10.049543937901035,
+          "minimum": 10.044425419997424,
+          "maximum": 10.059418963966891,
+          "sample_cv_percent": 0.07582709829288883
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            132,
+            134,
+            132
+          ],
+          "median": 132,
+          "minimum": 132,
+          "maximum": 134,
+          "sample_cv_percent": 0.8703772902356167
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.937905746573696e-05,
+            2.894816723304385e-05,
+            2.9461088700539367e-05
+          ],
+          "median": 2.937905746573696e-05,
+          "minimum": 2.894816723304385e-05,
+          "maximum": 2.9461088700539367e-05,
+          "sample_cv_percent": 0.9415544976798476
+        },
+        "maximum_latency_ms": {
+          "all": [
+            150.297,
+            162.718,
+            153.947
+          ],
+          "median": 153.947,
+          "minimum": 150.297,
+          "maximum": 162.718,
+          "sample_cv_percent": 4.10141652336938
+        },
+        "p50_ms": {
+          "all": [
+            70.614,
+            61.232,
+            66.76
+          ],
+          "median": 66.76,
+          "minimum": 61.232,
+          "maximum": 70.614,
+          "sample_cv_percent": 7.123387281829209
+        },
+        "p95_ms": {
+          "all": [
+            113.186,
+            123.422,
+            115.436
+          ],
+          "median": 115.436,
+          "minimum": 113.186,
+          "maximum": 123.422,
+          "sample_cv_percent": 4.583967654728809
+        },
+        "p99_ms": {
+          "all": [
+            131.118,
+            138.195,
+            135.304
+          ],
+          "median": 135.304,
+          "minimum": 131.118,
+          "maximum": 138.195,
+          "sample_cv_percent": 2.638193080509435
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            21843968,
+            21843968,
+            21843968
+          ],
+          "median": 21843968,
+          "minimum": 21843968,
+          "maximum": 21843968,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20807680,
+            20807680,
+            21200896
+          ],
+          "median": 20807680,
+          "minimum": 20807680,
+          "maximum": 21200896,
+          "sample_cv_percent": 1.0842258576330999
+        },
+        "tps": {
+          "all": [
+            13253.942122838414,
+            13447.118601967326,
+            13187.60351571048
+          ],
+          "median": 13253.942122838414,
+          "minimum": 13187.60351571048,
+          "maximum": 13447.118601967326,
+          "sample_cv_percent": 1.0140069098860165
+        },
+        "wall_seconds": {
+          "all": [
+            10.041389857186005,
+            10.044456660049036,
+            10.038063385989517
+          ],
+          "median": 10.041389857186005,
+          "minimum": 10.038063385989517,
+          "maximum": 10.044456660049036,
+          "sample_cv_percent": 0.03184363325011719
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            40,
+            40,
+            41
+          ],
+          "median": 40,
+          "minimum": 40,
+          "maximum": 41,
+          "sample_cv_percent": 1.4314469484040306
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00130793478796237,
+            0.0014116210937499998,
+            0.0013764360266545653
+          ],
+          "median": 0.0013764360266545653,
+          "minimum": 0.00130793478796237,
+          "maximum": 0.0014116210937499998,
+          "sample_cv_percent": 3.8618993223204825
+        },
+        "maximum_latency_ms": {
+          "all": [
+            301.007,
+            488.569,
+            284.703
+          ],
+          "median": 301.007,
+          "minimum": 284.703,
+          "maximum": 488.569,
+          "sample_cv_percent": 31.6368121428898
+        },
+        "p50_ms": {
+          "all": [
+            245.663,
+            242.271,
+            241.542
+          ],
+          "median": 242.271,
+          "minimum": 241.542,
+          "maximum": 245.663,
+          "sample_cv_percent": 0.9044434645743998
+        },
+        "p95_ms": {
+          "all": [
+            280.391,
+            263.235,
+            264.654
+          ],
+          "median": 264.654,
+          "minimum": 263.235,
+          "maximum": 280.391,
+          "sample_cv_percent": 3.5341198805446643
+        },
+        "p99_ms": {
+          "all": [
+            295.931,
+            476.334,
+            279.409
+          ],
+          "median": 295.931,
+          "minimum": 279.409,
+          "maximum": 476.334,
+          "sample_cv_percent": 31.16118399372347
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            31027200,
+            30871552,
+            30453760
+          ],
+          "median": 30871552,
+          "minimum": 30453760,
+          "maximum": 31027200,
+          "sample_cv_percent": 0.9632818558615468
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            29851648,
+            29990912,
+            29413376
+          ],
+          "median": 29851648,
+          "minimum": 29413376,
+          "maximum": 29990912,
+          "sample_cv_percent": 1.0130166623848496
+        },
+        "tps": {
+          "all": [
+            4005.982826007443,
+            4042.479472933789,
+            4124.492703044872
+          ],
+          "median": 4042.479472933789,
+          "minimum": 4005.982826007443,
+          "maximum": 4124.492703044872,
+          "sample_cv_percent": 1.4957979265487376
+        },
+        "wall_seconds": {
+          "all": [
+            10.136339011834934,
+            10.132395297056064,
+            10.151309025008231
+          ],
+          "median": 10.136339011834934,
+          "minimum": 10.132395297056064,
+          "maximum": 10.151309025008231,
+          "sample_cv_percent": 0.09840390539026961
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            39,
+            35,
+            35
+          ],
+          "median": 35,
+          "minimum": 35,
+          "maximum": 39,
+          "sample_cv_percent": 6.3561497525463375
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.0013986836507420106,
+            0.0013432669854331147,
+            0.0013723584460303797
+          ],
+          "median": 0.0013723584460303797,
+          "minimum": 0.0013432669854331147,
+          "maximum": 0.0013986836507420106,
+          "sample_cv_percent": 2.0212266558602145
+        },
+        "maximum_latency_ms": {
+          "all": [
+            284.9,
+            476.314,
+            378.683
+          ],
+          "median": 378.683,
+          "minimum": 284.9,
+          "maximum": 476.314,
+          "sample_cv_percent": 25.1900249282743
+        },
+        "p50_ms": {
+          "all": [
+            253.603,
+            277.205,
+            275.965
+          ],
+          "median": 275.965,
+          "minimum": 253.603,
+          "maximum": 277.205,
+          "sample_cv_percent": 4.939360109331205
+        },
+        "p95_ms": {
+          "all": [
+            275.091,
+            319.655,
+            329.689
+          ],
+          "median": 319.655,
+          "minimum": 275.091,
+          "maximum": 329.689,
+          "sample_cv_percent": 9.43124984998064
+        },
+        "p99_ms": {
+          "all": [
+            280.402,
+            445.831,
+            367.225
+          ],
+          "median": 367.225,
+          "minimum": 280.402,
+          "maximum": 445.831,
+          "sample_cv_percent": 22.702793832545453
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            36200448,
+            35778560,
+            35581952
+          ],
+          "median": 35778560,
+          "minimum": 35581952,
+          "maximum": 36200448,
+          "sample_cv_percent": 0.8813941322208166
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            35151872,
+            34635776,
+            33972224
+          ],
+          "median": 34635776,
+          "minimum": 33972224,
+          "maximum": 35151872,
+          "sample_cv_percent": 1.7097881689506342
+        },
+        "tps": {
+          "all": [
+            3938.0125523529723,
+            3545.3366275964886,
+            3546.2676137322856
+          ],
+          "median": 3546.2676137322856,
+          "minimum": 3545.3366275964886,
+          "maximum": 3938.0125523529723,
+          "sample_cv_percent": 6.15914263390644
+        },
+        "wall_seconds": {
+          "all": [
+            10.146996605210006,
+            10.146286172093824,
+            10.154619989916682
+          ],
+          "median": 10.146996605210006,
+          "minimum": 10.146286172093824,
+          "maximum": 10.154619989916682,
+          "sample_cv_percent": 0.04552159024302027
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            45039,
+            43814,
+            45244
+          ],
+          "median": 45039,
+          "minimum": 43814,
+          "maximum": 45244,
+          "sample_cv_percent": 1.7299181244891655
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            9.44932191133608e-06,
+            9.606322872609234e-06,
+            9.439684167576448e-06
+          ],
+          "median": 9.44932191133608e-06,
+          "minimum": 9.439684167576448e-06,
+          "maximum": 9.606322872609234e-06,
+          "sample_cv_percent": 0.9849079319962708
+        },
+        "maximum_latency_ms": {
+          "all": [
+            4.78,
+            6.919,
+            4.445
+          ],
+          "median": 4.78,
+          "minimum": 4.445,
+          "maximum": 6.919,
+          "sample_cv_percent": 24.940870585118816
+        },
+        "p50_ms": {
+          "all": [
+            0.202,
+            0.206,
+            0.203
+          ],
+          "median": 0.203,
+          "minimum": 0.202,
+          "maximum": 0.206,
+          "sample_cv_percent": 1.0220945987558687
+        },
+        "p95_ms": {
+          "all": [
+            0.319,
+            0.341,
+            0.317
+          ],
+          "median": 0.319,
+          "minimum": 0.317,
+          "maximum": 0.341,
+          "sample_cv_percent": 4.089044903876806
+        },
+        "p99_ms": {
+          "all": [
+            0.577,
+            0.602,
+            0.509
+          ],
+          "median": 0.577,
+          "minimum": 0.509,
+          "maximum": 0.602,
+          "sample_cv_percent": 8.553607953662272
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13078528,
+            13078528,
+            13078528
+          ],
+          "median": 13078528,
+          "minimum": 13078528,
+          "maximum": 13078528,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12943360,
+            12746752,
+            12812288
+          ],
+          "median": 12812288,
+          "minimum": 12746752,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.7800128842478026
+        },
+        "tps": {
+          "all": [
+            45071.30890157229,
+            43917.35624871877,
+            45327.92677638941
+          ],
+          "median": 45071.30890157229,
+          "minimum": 43917.35624871877,
+          "maximum": 45327.92677638941,
+          "sample_cv_percent": 1.6781639126711472
+        },
+        "wall_seconds": {
+          "all": [
+            10.002505163196474,
+            10.002742367098108,
+            10.002773836022243
+          ],
+          "median": 10.002742367098108,
+          "minimum": 10.002505163196474,
+          "maximum": 10.002773836022243,
+          "sample_cv_percent": 0.001468399806921954
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            10,
+            10,
+            10
+          ],
+          "median": 10,
+          "minimum": 10,
+          "maximum": 10,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            41469,
+            44185,
+            43641
+          ],
+          "median": 43641,
+          "minimum": 41469,
+          "maximum": 44185,
+          "sample_cv_percent": 3.334284371373423
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            9.933806692451267e-06,
+            9.581054819903286e-06,
+            9.680497801863325e-06
+          ],
+          "median": 9.680497801863325e-06,
+          "minimum": 9.581054819903286e-06,
+          "maximum": 9.933806692451267e-06,
+          "sample_cv_percent": 1.8689562467241374
+        },
+        "maximum_latency_ms": {
+          "all": [
+            5.139,
+            7.605,
+            4.662
+          ],
+          "median": 5.139,
+          "minimum": 4.662,
+          "maximum": 7.605,
+          "sample_cv_percent": 27.22429193209472
+        },
+        "p50_ms": {
+          "all": [
+            0.211,
+            0.204,
+            0.206
+          ],
+          "median": 0.206,
+          "minimum": 0.204,
+          "maximum": 0.211,
+          "sample_cv_percent": 1.7418122103690785
+        },
+        "p95_ms": {
+          "all": [
+            0.391,
+            0.336,
+            0.352
+          ],
+          "median": 0.352,
+          "minimum": 0.336,
+          "maximum": 0.391,
+          "sample_cv_percent": 7.865661684047728
+        },
+        "p99_ms": {
+          "all": [
+            0.674,
+            0.628,
+            0.621
+          ],
+          "median": 0.628,
+          "minimum": 0.621,
+          "maximum": 0.674,
+          "sample_cv_percent": 4.491787846766921
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13107200,
+            13107200,
+            13107200
+          ],
+          "median": 13107200,
+          "minimum": 13107200,
+          "maximum": 13107200,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            12943360,
+            12943360,
+            12943360
+          ],
+          "median": 12943360,
+          "minimum": 12943360,
+          "maximum": 12943360,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            41559.3750332409,
+            44240.13625632783,
+            43684.17060839315
+          ],
+          "median": 43684.17060839315,
+          "minimum": 41559.3750332409,
+          "maximum": 44240.13625632783,
+          "sample_cv_percent": 3.2779939361846333
+        },
+        "wall_seconds": {
+          "all": [
+            10.00380779709667,
+            10.00313374795951,
+            10.002730827080086
+          ],
+          "median": 10.00313374795951,
+          "minimum": 10.002730827080086,
+          "maximum": 10.00380779709667,
+          "sample_cv_percent": 0.005439679647501938
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            34140,
+            35198,
+            33926
+          ],
+          "median": 34140,
+          "minimum": 33926,
+          "maximum": 35198,
+          "sample_cv_percent": 1.9786297034213325
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.94233310039863e-05,
+            2.927260040992543e-05,
+            2.827100194546812e-05
+          ],
+          "median": 2.927260040992543e-05,
+          "minimum": 2.827100194546812e-05,
+          "maximum": 2.94233310039863e-05,
+          "sample_cv_percent": 2.160600845710386
+        },
+        "maximum_latency_ms": {
+          "all": [
+            417.639,
+            524.696,
+            5.315
+          ],
+          "median": 417.639,
+          "minimum": 5.315,
+          "maximum": 524.696,
+          "sample_cv_percent": 86.81526970931913
+        },
+        "p50_ms": {
+          "all": [
+            0.257,
+            0.252,
+            0.267
+          ],
+          "median": 0.257,
+          "minimum": 0.252,
+          "maximum": 0.267,
+          "sample_cv_percent": 2.952690525100415
+        },
+        "p95_ms": {
+          "all": [
+            0.42,
+            0.385,
+            0.476
+          ],
+          "median": 0.42,
+          "minimum": 0.385,
+          "maximum": 0.476,
+          "sample_cv_percent": 10.749899220167212
+        },
+        "p99_ms": {
+          "all": [
+            0.74,
+            0.647,
+            0.854
+          ],
+          "median": 0.74,
+          "minimum": 0.647,
+          "maximum": 0.854,
+          "sample_cv_percent": 13.879167901775391
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            8220672,
+            8290304,
+            8208384
+          ],
+          "median": 8220672,
+          "minimum": 8208384,
+          "maximum": 8290304,
+          "sample_cv_percent": 0.5361620443202464
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            7307264,
+            7307264,
+            7176192
+          ],
+          "median": 7307264,
+          "minimum": 7176192,
+          "maximum": 7307264,
+          "sample_cv_percent": 1.041835072221881
+        },
+        "tps": {
+          "all": [
+            35333.89626623882,
+            36677.13386733122,
+            34015.105694774036
+          ],
+          "median": 35333.89626623882,
+          "minimum": 34015.105694774036,
+          "maximum": 36677.13386733122,
+          "sample_cv_percent": 3.7661453520337997
+        },
+        "wall_seconds": {
+          "all": [
+            10.003453831886873,
+            10.003398884087801,
+            10.003731961129233
+          ],
+          "median": 10.003453831886873,
+          "minimum": 10.003398884087801,
+          "maximum": 10.003731961129233,
+          "sample_cv_percent": 0.0017850327830924635
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            22256,
+            23444,
+            23750
+          ],
+          "median": 23444,
+          "minimum": 22256,
+          "maximum": 23750,
+          "sample_cv_percent": 3.4090695227904892
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            6.567180236597797e-05,
+            6.552884758585767e-05,
+            6.534520409877374e-05
+          ],
+          "median": 6.552884758585767e-05,
+          "minimum": 6.534520409877374e-05,
+          "maximum": 6.567180236597797e-05,
+          "sample_cv_percent": 0.2498974359728781
+        },
+        "maximum_latency_ms": {
+          "all": [
+            8.571,
+            10.442,
+            4.884
+          ],
+          "median": 8.571,
+          "minimum": 4.884,
+          "maximum": 10.442,
+          "sample_cv_percent": 35.50253817925262
+        },
+        "p50_ms": {
+          "all": [
+            0.407,
+            0.389,
+            0.387
+          ],
+          "median": 0.389,
+          "minimum": 0.387,
+          "maximum": 0.407,
+          "sample_cv_percent": 2.7933578430867754
+        },
+        "p95_ms": {
+          "all": [
+            0.729,
+            0.675,
+            0.662
+          ],
+          "median": 0.675,
+          "minimum": 0.662,
+          "maximum": 0.729,
+          "sample_cv_percent": 5.159147716310072
+        },
+        "p99_ms": {
+          "all": [
+            1.306,
+            1.213,
+            1.131
+          ],
+          "median": 1.213,
+          "minimum": 1.131,
+          "maximum": 1.306,
+          "sample_cv_percent": 7.196515075802626
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            12726272,
+            12738560,
+            12742656
+          ],
+          "median": 12738560,
+          "minimum": 12726272,
+          "maximum": 12742656,
+          "sample_cv_percent": 0.0669489493824871
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            11567104,
+            11698176,
+            11567104
+          ],
+          "median": 11567104,
+          "minimum": 11567104,
+          "maximum": 11698176,
+          "sample_cv_percent": 0.6517594760372069
+        },
+        "tps": {
+          "all": [
+            22295.565132021246,
+            23492.16378086654,
+            23804.206193034708
+          ],
+          "median": 23492.16378086654,
+          "minimum": 22295.565132021246,
+          "maximum": 23804.206193034708,
+          "sample_cv_percent": 3.433020608647282
+        },
+        "wall_seconds": {
+          "all": [
+            10.005532431183383,
+            10.003803914878517,
+            10.003274130169302
+          ],
+          "median": 10.003803914878517,
+          "minimum": 10.003274130169302,
+          "maximum": 10.005532431183383,
+          "sample_cv_percent": 0.011804895232932896
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            9.085821509694837e-06,
+            9.265201710220648e-06,
+            8.96095222798015e-06
+          ],
+          "median": 9.085821509694837e-06,
+          "minimum": 8.96095222798015e-06,
+          "maximum": 9.265201710220648e-06,
+          "sample_cv_percent": 1.679883399453096
+        },
+        "maximum_latency_ms": {
+          "all": [
+            9999.242,
+            9998.626,
+            9996.989
+          ],
+          "median": 9998.626,
+          "minimum": 9996.989,
+          "maximum": 9999.242,
+          "sample_cv_percent": 0.011646189661574258
+        },
+        "p50_ms": {
+          "all": [
+            0.319,
+            0.327,
+            0.312
+          ],
+          "median": 0.319,
+          "minimum": 0.312,
+          "maximum": 0.327,
+          "sample_cv_percent": 2.3503820979535934
+        },
+        "p95_ms": {
+          "all": [
+            0.524,
+            0.552,
+            0.472
+          ],
+          "median": 0.524,
+          "minimum": 0.472,
+          "maximum": 0.552,
+          "sample_cv_percent": 7.867357802397076
+        },
+        "p99_ms": {
+          "all": [
+            0.912,
+            0.882,
+            0.772
+          ],
+          "median": 0.882,
+          "minimum": 0.772,
+          "maximum": 0.912,
+          "sample_cv_percent": 8.617827119055331
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13746176,
+            13746176,
+            13746176
+          ],
+          "median": 13746176,
+          "minimum": 13746176,
+          "maximum": 13746176,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13467648,
+            13467648,
+            13467648
+          ],
+          "median": 13467648,
+          "minimum": 13467648,
+          "maximum": 13467648,
+          "sample_cv_percent": 0.0
+        },
+        "tps": {
+          "all": [
+            45530.68787840702,
+            44201.85765197632,
+            47277.874111829406
+          ],
+          "median": 45530.68787840702,
+          "minimum": 44201.85765197632,
+          "maximum": 47277.874111829406,
+          "sample_cv_percent": 3.3780113590749887
+        },
+        "wall_seconds": {
+          "all": [
+            10.007645858917385,
+            10.011253451928496,
+            10.008148819906637
+          ],
+          "median": 10.008148819906637,
+          "minimum": 10.007645858917385,
+          "maximum": 10.011253451928496,
+          "sample_cv_percent": 0.01952143599092002
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            4246,
+            4525,
+            4242
+          ],
+          "median": 4246,
+          "minimum": 4242,
+          "maximum": 4525,
+          "sample_cv_percent": 3.7404384754714797
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.0580194346414372e-05,
+            1.0197707502378361e-05,
+            1.0563115201475543e-05
+          ],
+          "median": 1.0563115201475543e-05,
+          "minimum": 1.0197707502378361e-05,
+          "maximum": 1.0580194346414372e-05,
+          "sample_cv_percent": 2.068223029703316
+        },
+        "maximum_latency_ms": {
+          "all": [
+            11.949,
+            9.569,
+            23.783
+          ],
+          "median": 11.949,
+          "minimum": 9.569,
+          "maximum": 23.783,
+          "sample_cv_percent": 50.41604311856008
+        },
+        "p50_ms": {
+          "all": [
+            2.216,
+            2.094,
+            2.171
+          ],
+          "median": 2.171,
+          "minimum": 2.094,
+          "maximum": 2.216,
+          "sample_cv_percent": 2.8558319129756664
+        },
+        "p95_ms": {
+          "all": [
+            3.175,
+            2.843,
+            3.246
+          ],
+          "median": 3.175,
+          "minimum": 2.843,
+          "maximum": 3.246,
+          "sample_cv_percent": 6.966500801189756
+        },
+        "p99_ms": {
+          "all": [
+            4.591,
+            3.917,
+            5.775
+          ],
+          "median": 4.591,
+          "minimum": 3.917,
+          "maximum": 5.775,
+          "sample_cv_percent": 19.756215704741855
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            13869056,
+            13873152,
+            13869056
+          ],
+          "median": 13869056,
+          "minimum": 13869056,
+          "maximum": 13873152,
+          "sample_cv_percent": 0.017049422261727308
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            13357056,
+            13336576,
+            13336576
+          ],
+          "median": 13336576,
+          "minimum": 13336576,
+          "maximum": 13357056,
+          "sample_cv_percent": 0.08861407999431481
+        },
+        "tps": {
+          "all": [
+            42500.92320071238,
+            45277.399628669016,
+            42477.9458457636
+          ],
+          "median": 42500.92320071238,
+          "minimum": 42477.9458457636,
+          "maximum": 45277.399628669016,
+          "sample_cv_percent": 3.7073226952904723
+        },
+        "wall_seconds": {
+          "all": [
+            10.007382615935057,
+            10.005941235926002,
+            10.006698571145535
+          ],
+          "median": 10.006698571145535,
+          "minimum": 10.005941235926002,
+          "maximum": 10.007382615935057,
+          "sample_cv_percent": 0.007205196050375879
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.3561460261318015e-05,
+            2.352592271520516e-05,
+            2.3927226933536968e-05
+          ],
+          "median": 2.3561460261318015e-05,
+          "minimum": 2.352592271520516e-05,
+          "maximum": 2.3927226933536968e-05,
+          "sample_cv_percent": 0.938452246359767
+        },
+        "maximum_latency_ms": {
+          "all": [
+            9991.738,
+            9991.361,
+            10000.248
+          ],
+          "median": 9991.738,
+          "minimum": 9991.361,
+          "maximum": 10000.248,
+          "sample_cv_percent": 0.05028408943284654
+        },
+        "p50_ms": {
+          "all": [
+            0.404,
+            0.42,
+            0.396
+          ],
+          "median": 0.404,
+          "minimum": 0.396,
+          "maximum": 0.42,
+          "sample_cv_percent": 3.0049676688234968
+        },
+        "p95_ms": {
+          "all": [
+            0.588,
+            0.688,
+            0.605
+          ],
+          "median": 0.605,
+          "minimum": 0.588,
+          "maximum": 0.688,
+          "sample_cv_percent": 8.5338132195673
+        },
+        "p99_ms": {
+          "all": [
+            1.136,
+            1.407,
+            1.368
+          ],
+          "median": 1.368,
+          "minimum": 1.136,
+          "maximum": 1.407,
+          "sample_cv_percent": 11.238080555878195
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            10493952,
+            10498048,
+            10416128
+          ],
+          "median": 10493952,
+          "minimum": 10416128,
+          "maximum": 10498048,
+          "sample_cv_percent": 0.4409009260400878
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            9404416,
+            9666560,
+            9011200
+          ],
+          "median": 9404416,
+          "minimum": 9011200,
+          "maximum": 9666560,
+          "sample_cv_percent": 3.5238433770225197
+        },
+        "tps": {
+          "all": [
+            36386.12669848806,
+            35028.99967056069,
+            37270.59851474243
+          ],
+          "median": 36386.12669848806,
+          "minimum": 35028.99967056069,
+          "maximum": 37270.59851474243,
+          "sample_cv_percent": 3.11652907089161
+        },
+        "wall_seconds": {
+          "all": [
+            10.008045182097703,
+            10.01104808296077,
+            10.013657276052982
+          ],
+          "median": 10.01104808296077,
+          "minimum": 10.008045182097703,
+          "maximum": 10.013657276052982,
+          "sample_cv_percent": 0.02805285210795153
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1808,
+            1741,
+            2045
+          ],
+          "median": 1808,
+          "minimum": 1741,
+          "maximum": 2045,
+          "sample_cv_percent": 8.565917414536816
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.00014580010705988176,
+            0.00014336239560225388,
+            0.00014352665495020504
+          ],
+          "median": 0.00014352665495020504,
+          "minimum": 0.00014336239560225388,
+          "maximum": 0.00014580010705988176,
+          "sample_cv_percent": 0.9446551090999872
+        },
+        "maximum_latency_ms": {
+          "all": [
+            41.49,
+            29.893,
+            15.496
+          ],
+          "median": 29.893,
+          "minimum": 15.496,
+          "maximum": 41.49,
+          "sample_cv_percent": 44.966366151902875
+        },
+        "p50_ms": {
+          "all": [
+            5.217,
+            5.401,
+            4.733
+          ],
+          "median": 5.217,
+          "minimum": 4.733,
+          "maximum": 5.401,
+          "sample_cv_percent": 6.74310972466825
+        },
+        "p95_ms": {
+          "all": [
+            7.767,
+            8.226,
+            6.285
+          ],
+          "median": 7.767,
+          "minimum": 6.285,
+          "maximum": 8.226,
+          "sample_cv_percent": 13.660601894280086
+        },
+        "p99_ms": {
+          "all": [
+            12.12,
+            12.743,
+            8.041
+          ],
+          "median": 12.12,
+          "minimum": 8.041,
+          "maximum": 12.743,
+          "sample_cv_percent": 23.285231905251596
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            15917056,
+            15732736,
+            15753216
+          ],
+          "median": 15753216,
+          "minimum": 15732736,
+          "maximum": 15917056,
+          "sample_cv_percent": 0.639360951652499
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            14974976,
+            14561280,
+            14422016
+          ],
+          "median": 14561280,
+          "minimum": 14422016,
+          "maximum": 14974976,
+          "sample_cv_percent": 1.9628121240149665
+        },
+        "tps": {
+          "all": [
+            18102.2358043728,
+            17429.400494520985,
+            20465.13179102205
+          ],
+          "median": 18102.2358043728,
+          "minimum": 17429.400494520985,
+          "maximum": 20465.13179102205,
+          "sample_cv_percent": 8.541636249464991
+        },
+        "wall_seconds": {
+          "all": [
+            10.010199953103438,
+            10.009122233139351,
+            10.009219686035067
+          ],
+          "median": 10.009219686035067,
+          "minimum": 10.009122233139351,
+          "maximum": 10.010199953103438,
+          "sample_cv_percent": 0.0059551800029656494
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "pgbouncer-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            9.680827538760166e-06,
+            9.857532711444078e-06,
+            9.541015740314334e-06
+          ],
+          "median": 9.680827538760166e-06,
+          "minimum": 9.541015740314334e-06,
+          "maximum": 9.857532711444078e-06,
+          "sample_cv_percent": 1.6363807802260888
+        },
+        "maximum_latency_ms": {
+          "all": [
+            10007.659,
+            9992.614,
+            10000.995
+          ],
+          "median": 10000.995,
+          "minimum": 9992.614,
+          "maximum": 10007.659,
+          "sample_cv_percent": 0.07538492972568747
+        },
+        "p50_ms": {
+          "all": [
+            0.346,
+            0.36,
+            0.341
+          ],
+          "median": 0.346,
+          "minimum": 0.341,
+          "maximum": 0.36,
+          "sample_cv_percent": 2.8220222927782497
+        },
+        "p95_ms": {
+          "all": [
+            0.64,
+            0.69,
+            0.582
+          ],
+          "median": 0.64,
+          "minimum": 0.582,
+          "maximum": 0.69,
+          "sample_cv_percent": 8.480548141719371
+        },
+        "p99_ms": {
+          "all": [
+            1.137,
+            1.331,
+            0.972
+          ],
+          "median": 1.137,
+          "minimum": 0.972,
+          "maximum": 1.331,
+          "sample_cv_percent": 15.67108536258161
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            20791296,
+            20791296,
+            20791296
+          ],
+          "median": 20791296,
+          "minimum": 20791296,
+          "maximum": 20791296,
+          "sample_cv_percent": 0.0
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20414464,
+            20283392,
+            20414464
+          ],
+          "median": 20414464,
+          "minimum": 20283392,
+          "maximum": 20414464,
+          "sample_cv_percent": 0.3714854278968101
+        },
+        "tps": {
+          "all": [
+            40461.457447457105,
+            38378.939312396455,
+            42149.22748296518
+          ],
+          "median": 40461.457447457105,
+          "minimum": 38378.939312396455,
+          "maximum": 42149.22748296518,
+          "sample_cv_percent": 4.6828439820329155
+        },
+        "wall_seconds": {
+          "all": [
+            10.058708352968097,
+            10.044363051885739,
+            10.046091596130282
+          ],
+          "median": 10.046091596130282,
+          "minimum": 10.044363051885739,
+          "maximum": 10.058708352968097,
+          "sample_cv_percent": 0.07792369586245257
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "pgbouncer-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            388,
+            382,
+            388
+          ],
+          "median": 388,
+          "minimum": 382,
+          "maximum": 388,
+          "sample_cv_percent": 0.8974356515900919
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            1.255683382522843e-05,
+            1.2650651221023081e-05,
+            1.2514229475507312e-05
+          ],
+          "median": 1.255683382522843e-05,
+          "minimum": 1.2514229475507312e-05,
+          "maximum": 1.2650651221023081e-05,
+          "sample_cv_percent": 0.5550750756070904
+        },
+        "maximum_latency_ms": {
+          "all": [
+            47.689,
+            54.823,
+            100.092
+          ],
+          "median": 54.823,
+          "minimum": 47.689,
+          "maximum": 100.092,
+          "sample_cv_percent": 42.08240519541372
+        },
+        "p50_ms": {
+          "all": [
+            24.853,
+            25.228,
+            24.514
+          ],
+          "median": 24.853,
+          "minimum": 24.514,
+          "maximum": 25.228,
+          "sample_cv_percent": 1.4363612647227781
+        },
+        "p95_ms": {
+          "all": [
+            31.6,
+            32.393,
+            30.864
+          ],
+          "median": 31.6,
+          "minimum": 30.864,
+          "maximum": 32.393,
+          "sample_cv_percent": 2.4184099940471473
+        },
+        "p99_ms": {
+          "all": [
+            35.21,
+            37.073,
+            48.106
+          ],
+          "median": 37.073,
+          "minimum": 35.21,
+          "maximum": 48.106,
+          "sample_cv_percent": 17.36927070456179
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            21848064,
+            21843968,
+            21843968
+          ],
+          "median": 21843968,
+          "minimum": 21843968,
+          "maximum": 21848064,
+          "sample_cv_percent": 0.010825317547305483
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            20938752,
+            21069824,
+            20938752
+          ],
+          "median": 20938752,
+          "minimum": 20938752,
+          "maximum": 21069824,
+          "sample_cv_percent": 0.3606560765369864
+        },
+        "tps": {
+          "all": [
+            38722.82320875502,
+            38116.17278618353,
+            38768.02483549937
+          ],
+          "median": 38722.82320875502,
+          "minimum": 38116.17278618353,
+          "maximum": 38768.02483549937,
+          "sample_cv_percent": 0.9445811023421936
+        },
+        "wall_seconds": {
+          "all": [
+            10.036277517909184,
+            10.03744531609118,
+            10.038092001108453
+          ],
+          "median": 10.03744531609118,
+          "minimum": 10.036277517909184,
+          "maximum": 10.038092001108453,
+          "sample_cv_percent": 0.00916213977853831
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "rustybouncer-pool-session",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            1,
+            1,
+            1
+          ],
+          "median": 1,
+          "minimum": 1,
+          "maximum": 1,
+          "sample_cv_percent": 0.0
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            2.9870180758298697e-05,
+            3.0571479244761215e-05,
+            2.9397088804299794e-05
+          ],
+          "median": 2.9870180758298697e-05,
+          "minimum": 2.9397088804299794e-05,
+          "maximum": 3.0571479244761215e-05,
+          "sample_cv_percent": 1.973132129917677
+        },
+        "maximum_latency_ms": {
+          "all": [
+            10078.592,
+            10080.292,
+            10076.161
+          ],
+          "median": 10078.592,
+          "minimum": 10076.161,
+          "maximum": 10080.292,
+          "sample_cv_percent": 0.020601108847038176
+        },
+        "p50_ms": {
+          "all": [
+            0.422,
+            0.407,
+            0.405
+          ],
+          "median": 0.407,
+          "minimum": 0.405,
+          "maximum": 0.422,
+          "sample_cv_percent": 2.258891388130687
+        },
+        "p95_ms": {
+          "all": [
+            0.866,
+            0.832,
+            0.782
+          ],
+          "median": 0.832,
+          "minimum": 0.782,
+          "maximum": 0.866,
+          "sample_cv_percent": 5.111274799190586
+        },
+        "p99_ms": {
+          "all": [
+            1.87,
+            1.801,
+            1.767
+          ],
+          "median": 1.801,
+          "minimum": 1.767,
+          "maximum": 1.87,
+          "sample_cv_percent": 2.89527820102458
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            25149440,
+            25387008,
+            24199168
+          ],
+          "median": 25149440,
+          "minimum": 24199168,
+          "maximum": 25387008,
+          "sample_cv_percent": 2.523077540969192
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            24121344,
+            24477696,
+            23166976
+          ],
+          "median": 24121344,
+          "minimum": 23166976,
+          "maximum": 24477696,
+          "sample_cv_percent": 2.833022379109338
+        },
+        "tps": {
+          "all": [
+            32726.54497084577,
+            32816.36755274974,
+            34605.93508816622
+          ],
+          "median": 32816.36755274974,
+          "minimum": 32726.54497084577,
+          "maximum": 34605.93508816622,
+          "sample_cv_percent": 3.175539141016468
+        },
+        "wall_seconds": {
+          "all": [
+            10.137611541198567,
+            10.137106109177694,
+            10.134533255826682
+          ],
+          "median": 10.137106109177694,
+          "minimum": 10.134533255826682,
+          "maximum": 10.137611541198567,
+          "sample_cv_percent": 0.016285849971535496
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "target": "rustybouncer-pool-transaction",
+      "repetitions": [
+        1,
+        2,
+        3
+      ],
+      "metrics": {
+        "backend_connections_peak": {
+          "all": [
+            16,
+            16,
+            16
+          ],
+          "median": 16,
+          "minimum": 16,
+          "maximum": 16,
+          "sample_cv_percent": 0.0
+        },
+        "client_completions_min": {
+          "all": [
+            41,
+            42,
+            39
+          ],
+          "median": 41,
+          "minimum": 39,
+          "maximum": 42,
+          "sample_cv_percent": 3.7562095860293776
+        },
+        "cpu_seconds_per_transaction": {
+          "all": [
+            0.0014587075787736079,
+            0.0015250142126208071,
+            0.001427269736009517
+          ],
+          "median": 0.0014587075787736079,
+          "minimum": 0.001427269736009517,
+          "maximum": 0.0015250142126208071,
+          "sample_cv_percent": 3.3936619244120463
+        },
+        "maximum_latency_ms": {
+          "all": [
+            385.929,
+            269.048,
+            292.314
+          ],
+          "median": 292.314,
+          "minimum": 269.048,
+          "maximum": 385.929,
+          "sample_cv_percent": 19.593282375650343
+        },
+        "p50_ms": {
+          "all": [
+            243.605,
+            240.228,
+            256.423
+          ],
+          "median": 243.605,
+          "minimum": 240.228,
+          "maximum": 256.423,
+          "sample_cv_percent": 3.462521335965748
+        },
+        "p95_ms": {
+          "all": [
+            277.167,
+            258.065,
+            274.735
+          ],
+          "median": 274.735,
+          "minimum": 258.065,
+          "maximum": 277.167,
+          "sample_cv_percent": 3.851207173753139
+        },
+        "p99_ms": {
+          "all": [
+            371.25,
+            265.796,
+            285.268
+          ],
+          "median": 285.268,
+          "minimum": 265.796,
+          "maximum": 371.25,
+          "sample_cv_percent": 18.252098314988334
+        },
+        "rss_lifetime_hwm_bytes": {
+          "all": [
+            31531008,
+            32112640,
+            32370688
+          ],
+          "median": 32112640,
+          "minimum": 31531008,
+          "maximum": 32370688,
+          "sample_cv_percent": 1.3438805812174852
+        },
+        "rss_peak_bytes_observed": {
+          "all": [
+            30019584,
+            31301632,
+            31158272
+          ],
+          "median": 31158272,
+          "minimum": 30019584,
+          "maximum": 31301632,
+          "sample_cv_percent": 2.278795994884164
+        },
+        "tps": {
+          "all": [
+            4056.973349381698,
+            4160.825332500487,
+            3889.411815966304
+          ],
+          "median": 4056.973349381698,
+          "minimum": 3889.411815966304,
+          "maximum": 4160.825332500487,
+          "sample_cv_percent": 3.393365782792724
+        },
+        "wall_seconds": {
+          "all": [
+            10.153874933952466,
+            10.146063972031698,
+            10.158091215183958
+          ],
+          "median": 10.153874933952466,
+          "minimum": 10.146063972031698,
+          "maximum": 10.158091215183958,
+          "sample_cv_percent": 0.06010726034149268
+        }
+      }
+    }
+  ],
+  "paired": [
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.9836313879022873,
+            0.987229776582219,
+            0.9599348304081371
+          ],
+          "median": 0.9836313879022873,
+          "minimum": 0.9599348304081371,
+          "maximum": 0.987229776582219,
+          "sample_cv_percent": 1.517969273156302
+        },
+        "p95_ratio": {
+          "all": [
+            1.051460361613352,
+            0.9322033898305085,
+            1.1223021582733814
+          ],
+          "median": 1.051460361613352,
+          "minimum": 0.9322033898305085,
+          "maximum": 1.1223021582733814,
+          "sample_cv_percent": 9.279377896660169
+        },
+        "p99_ratio": {
+          "all": [
+            0.9191176470588236,
+            0.821917808219178,
+            1.01473136915078
+          ],
+          "median": 0.9191176470588236,
+          "minimum": 0.821917808219178,
+          "maximum": 1.01473136915078,
+          "sample_cv_percent": 10.495213191873502
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 10,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.8596063155178555,
+            0.8748352337340919,
+            0.8587103047016325
+          ],
+          "median": 0.8596063155178555,
+          "minimum": 0.8587103047016325,
+          "maximum": 0.8748352337340919,
+          "sample_cv_percent": 1.048394853478198
+        },
+        "p95_ratio": {
+          "all": [
+            1.3612334801762114,
+            1.356269113149847,
+            1.3841368584758942
+          ],
+          "median": 1.3612334801762114,
+          "minimum": 1.356269113149847,
+          "maximum": 1.3841368584758942,
+          "sample_cv_percent": 1.087252911688592
+        },
+        "p99_ratio": {
+          "all": [
+            1.2977707006369426,
+            1.1760741364785172,
+            0.9916666666666666
+          ],
+          "median": 1.1760741364785172,
+          "minimum": 0.9916666666666666,
+          "maximum": 1.2977707006369426,
+          "sample_cv_percent": 13.34165990449501
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.9221234668579267,
+            0.9659993977237356,
+            0.9107384146642669
+          ],
+          "median": 0.9221234668579267,
+          "minimum": 0.9107384146642669,
+          "maximum": 0.9659993977237356,
+          "sample_cv_percent": 3.1275960479854814
+        },
+        "p95_ratio": {
+          "all": [
+            0.9664681630783326,
+            0.814648222014767,
+            0.8536155202821869
+          ],
+          "median": 0.8536155202821869,
+          "minimum": 0.814648222014767,
+          "maximum": 0.9664681630783326,
+          "sample_cv_percent": 8.97808637059689
+        },
+        "p99_ratio": {
+          "all": [
+            1.293391773432232,
+            0.8464095744680852,
+            0.8279812085719802
+          ],
+          "median": 0.8464095744680852,
+          "minimum": 0.8279812085719802,
+          "maximum": 1.293391773432232,
+          "sample_cv_percent": 26.64072141382659
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 100,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.8643438219210022,
+            0.9046259617005483,
+            0.8425324786434881
+          ],
+          "median": 0.8643438219210022,
+          "minimum": 0.8425324786434881,
+          "maximum": 0.9046259617005483,
+          "sample_cv_percent": 3.6187545909362253
+        },
+        "p95_ratio": {
+          "all": [
+            0.7183129212261758,
+            0.8855048433545685,
+            0.8710968775020016
+          ],
+          "median": 0.8710968775020016,
+          "minimum": 0.7183129212261758,
+          "maximum": 0.8855048433545685,
+          "sample_cv_percent": 11.230639177490021
+        },
+        "p99_ratio": {
+          "all": [
+            0.6440607663192824,
+            0.9434106374114707,
+            0.725131028641008
+          ],
+          "median": 0.725131028641008,
+          "minimum": 0.6440607663192824,
+          "maximum": 0.9434106374114707,
+          "sample_cv_percent": 20.0847976061132
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.3186479482071438,
+            0.3127648476225809,
+            0.3275026452311435
+          ],
+          "median": 0.3186479482071438,
+          "minimum": 0.3127648476225809,
+          "maximum": 0.3275026452311435,
+          "sample_cv_percent": 2.3209537417714374
+        },
+        "p95_ratio": {
+          "all": [
+            2.358307750536188,
+            2.3795039140889123,
+            2.4802864024441673
+          ],
+          "median": 2.3795039140889123,
+          "minimum": 2.358307750536188,
+          "maximum": 2.4802864024441673,
+          "sample_cv_percent": 2.7087360892686396
+        },
+        "p99_ratio": {
+          "all": [
+            1.7421540635210313,
+            3.573961389266126,
+            1.9948666323966187
+          ],
+          "median": 1.9948666323966187,
+          "minimum": 1.7421540635210313,
+          "maximum": 3.573961389266126,
+          "sample_cv_percent": 40.735306074151225
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "churn",
+      "clients": 1000,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.2971200957311576,
+            0.2636502831973091,
+            0.2689091774337614
+          ],
+          "median": 0.2689091774337614,
+          "minimum": 0.2636502831973091,
+          "maximum": 0.2971200957311576,
+          "sample_cv_percent": 6.508102020855537
+        },
+        "p95_ratio": {
+          "all": [
+            2.430433092431926,
+            2.589935343779877,
+            2.8560327800686096
+          ],
+          "median": 2.589935343779877,
+          "minimum": 2.430433092431926,
+          "maximum": 2.8560327800686096,
+          "sample_cv_percent": 8.189519666081802
+        },
+        "p99_ratio": {
+          "all": [
+            2.1385469577022223,
+            3.226100799594776,
+            2.714073493762195
+          ],
+          "median": 2.714073493762195,
+          "minimum": 2.1385469577022223,
+          "maximum": 3.226100799594776,
+          "sample_cv_percent": 20.20440283313244
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.783955405941322,
+            0.8351398399215169,
+            0.7504227109829333
+          ],
+          "median": 0.783955405941322,
+          "minimum": 0.7504227109829333,
+          "maximum": 0.8351398399215169,
+          "sample_cv_percent": 5.401599658082711
+        },
+        "p95_ratio": {
+          "all": [
+            1.316614420062696,
+            1.129032258064516,
+            1.501577287066246
+          ],
+          "median": 1.316614420062696,
+          "minimum": 1.129032258064516,
+          "maximum": 1.501577287066246,
+          "sample_cv_percent": 14.157345829768575
+        },
+        "p99_ratio": {
+          "all": [
+            1.2824956672443675,
+            1.0747508305647842,
+            1.6777996070726915
+          ],
+          "median": 1.2824956672443675,
+          "minimum": 1.0747508305647842,
+          "maximum": 1.6777996070726915,
+          "sample_cv_percent": 22.77646923273195
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 10,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.5364749858290297,
+            0.5310147248361237,
+            0.544916061390465
+          ],
+          "median": 0.5364749858290297,
+          "minimum": 0.5310147248361237,
+          "maximum": 0.544916061390465,
+          "sample_cv_percent": 1.3030955967447224
+        },
+        "p95_ratio": {
+          "all": [
+            1.8644501278772376,
+            2.0089285714285716,
+            1.8806818181818183
+          ],
+          "median": 1.8806818181818183,
+          "minimum": 1.8644501278772376,
+          "maximum": 2.0089285714285716,
+          "sample_cv_percent": 4.126452527458285
+        },
+        "p99_ratio": {
+          "all": [
+            1.9376854599406528,
+            1.9315286624203822,
+            1.821256038647343
+          ],
+          "median": 1.9315286624203822,
+          "minimum": 1.821256038647343,
+          "maximum": 1.9376854599406528,
+          "sample_cv_percent": 3.4539644831563283
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.7991560943612322,
+            0.792477998240748,
+            0.7883306771912773
+          ],
+          "median": 0.792477998240748,
+          "minimum": 0.7883306771912773,
+          "maximum": 0.7991560943612322,
+          "sample_cv_percent": 0.6884711089232172
+        },
+        "p95_ratio": {
+          "all": [
+            1.1221374045801527,
+            1.2463768115942027,
+            1.2817796610169492
+          ],
+          "median": 1.2463768115942027,
+          "minimum": 1.1221374045801527,
+          "maximum": 1.2817796610169492,
+          "sample_cv_percent": 6.890368874692519
+        },
+        "p99_ratio": {
+          "all": [
+            1.2456140350877192,
+            1.5952380952380953,
+            1.7720207253886011
+          ],
+          "median": 1.5952380952380953,
+          "minimum": 1.2456140350877192,
+          "maximum": 1.7720207253886011,
+          "sample_cv_percent": 17.422387581855048
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 100,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.42592570798719454,
+            0.3849470295879124,
+            0.4817825199299997
+          ],
+          "median": 0.42592570798719454,
+          "minimum": 0.3849470295879124,
+          "maximum": 0.4817825199299997,
+          "sample_cv_percent": 11.280934850443193
+        },
+        "p95_ratio": {
+          "all": [
+            2.4462992125984253,
+            2.893422441083363,
+            1.9362292051756007
+          ],
+          "median": 2.4462992125984253,
+          "minimum": 1.9362292051756007,
+          "maximum": 2.893422441083363,
+          "sample_cv_percent": 19.74758190228088
+        },
+        "p99_ratio": {
+          "all": [
+            2.639947723807449,
+            3.2532550421240747,
+            1.3923809523809523
+          ],
+          "median": 2.639947723807449,
+          "minimum": 1.3923809523809523,
+          "maximum": 3.2532550421240747,
+          "sample_cv_percent": 39.04756434756459
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.8088325788398546,
+            0.8550618683239639,
+            0.8210336737998906
+          ],
+          "median": 0.8210336737998906,
+          "minimum": 0.8088325788398546,
+          "maximum": 0.8550618683239639,
+          "sample_cv_percent": 2.8924048375903584
+        },
+        "p95_ratio": {
+          "all": [
+            1.353125,
+            1.2057971014492754,
+            1.343642611683849
+          ],
+          "median": 1.343642611683849,
+          "minimum": 1.2057971014492754,
+          "maximum": 1.353125,
+          "sample_cv_percent": 6.338822918781964
+        },
+        "p99_ratio": {
+          "all": [
+            1.6446789797713282,
+            1.3531179564237414,
+            1.817901234567901
+          ],
+          "median": 1.6446789797713282,
+          "minimum": 1.3531179564237414,
+          "maximum": 1.817901234567901,
+          "sample_cv_percent": 14.632711828650514
+        }
+      }
+    },
+    {
+      "placement": "unrestricted",
+      "workload": "transactions",
+      "clients": 1000,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.10476956516084908,
+            0.10916167674653621,
+            0.10032525083415704
+          ],
+          "median": 0.10476956516084908,
+          "minimum": 0.10032525083415704,
+          "maximum": 0.10916167674653621,
+          "sample_cv_percent": 4.217801787301615
+        },
+        "p95_ratio": {
+          "all": [
+            8.771107594936707,
+            7.966690334331491,
+            8.901470969414204
+          ],
+          "median": 8.771107594936707,
+          "minimum": 7.966690334331491,
+          "maximum": 8.901470969414204,
+          "sample_cv_percent": 5.923843235565085
+        },
+        "p99_ratio": {
+          "all": [
+            10.543879579664868,
+            7.169530385995198,
+            5.929987943291897
+          ],
+          "median": 7.169530385995198,
+          "minimum": 5.929987943291897,
+          "maximum": 10.543879579664868,
+          "sample_cv_percent": 30.29818969214218
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.7044492523582534,
+            0.7401271077704309,
+            0.7037659836411981
+          ],
+          "median": 0.7044492523582534,
+          "minimum": 0.7037659836411981,
+          "maximum": 0.7401271077704309,
+          "sample_cv_percent": 2.9043790209168545
+        },
+        "p95_ratio": {
+          "all": [
+            1.2396694214876034,
+            1.0102974828375286,
+            1.244475138121547
+          ],
+          "median": 1.2396694214876034,
+          "minimum": 1.0102974828375286,
+          "maximum": 1.244475138121547,
+          "sample_cv_percent": 11.48997278216376
+        },
+        "p99_ratio": {
+          "all": [
+            0.8728103579588727,
+            0.8572368421052631,
+            0.995539033457249
+          ],
+          "median": 0.8728103579588727,
+          "minimum": 0.8572368421052631,
+          "maximum": 0.995539033457249,
+          "sample_cv_percent": 8.338138162352884
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 10,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.5841157772719553,
+            0.5797693060243316,
+            0.5770922486667087
+          ],
+          "median": 0.5797693060243316,
+          "minimum": 0.5770922486667087,
+          "maximum": 0.5841157772719553,
+          "sample_cv_percent": 0.6108080937782909
+        },
+        "p95_ratio": {
+          "all": [
+            1.7595818815331012,
+            1.7457337883959043,
+            1.7345575959933222
+          ],
+          "median": 1.7457337883959043,
+          "minimum": 1.7345575959933222,
+          "maximum": 1.7595818815331012,
+          "sample_cv_percent": 0.7177212124177517
+        },
+        "p99_ratio": {
+          "all": [
+            1.123943661971831,
+            1.1539162112932604,
+            1.194915254237288
+          ],
+          "median": 1.1539162112932604,
+          "minimum": 1.123943661971831,
+          "maximum": 1.194915254237288,
+          "sample_cv_percent": 3.0777925121956
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.5637314409477926,
+            0.56102621732339,
+            0.570779958449304
+          ],
+          "median": 0.5637314409477926,
+          "minimum": 0.56102621732339,
+          "maximum": 0.570779958449304,
+          "sample_cv_percent": 0.8909497236620637
+        },
+        "p95_ratio": {
+          "all": [
+            1.3544422553710478,
+            1.224219236586885,
+            1.165130633296694
+          ],
+          "median": 1.224219236586885,
+          "minimum": 1.165130633296694,
+          "maximum": 1.3544422553710478,
+          "sample_cv_percent": 7.761457941650065
+        },
+        "p99_ratio": {
+          "all": [
+            1.2180979573907313,
+            1.064020486555698,
+            1.1648480364959004
+          ],
+          "median": 1.1648480364959004,
+          "minimum": 1.064020486555698,
+          "maximum": 1.2180979573907313,
+          "sample_cv_percent": 6.8106364098517265
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 100,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.4754735109193758,
+            0.45304322226822136,
+            0.4567485192285503
+          ],
+          "median": 0.4567485192285503,
+          "minimum": 0.45304322226822136,
+          "maximum": 0.4754735109193758,
+          "sample_cv_percent": 2.603997236086838
+        },
+        "p95_ratio": {
+          "all": [
+            1.3849019781779472,
+            1.1375819373634377,
+            1.1386658881915048
+          ],
+          "median": 1.1386658881915048,
+          "minimum": 1.1375819373634377,
+          "maximum": 1.3849019781779472,
+          "sample_cv_percent": 11.674890753804036
+        },
+        "p99_ratio": {
+          "all": [
+            1.1422138584582298,
+            1.1794473765911209,
+            0.9571296391487611
+          ],
+          "median": 1.1422138584582298,
+          "minimum": 0.9571296391487611,
+          "maximum": 1.1794473765911209,
+          "sample_cv_percent": 10.894673134486945
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.1694905514508253,
+            0.18447758338728087,
+            0.18176757218361503
+          ],
+          "median": 0.18176757218361503,
+          "minimum": 0.1694905514508253,
+          "maximum": 0.18447758338728087,
+          "sample_cv_percent": 4.472117615486228
+        },
+        "p95_ratio": {
+          "all": [
+            5.922925442291492,
+            3.492603030744323,
+            4.068608210298883
+          ],
+          "median": 4.068608210298883,
+          "minimum": 3.492603030744323,
+          "maximum": 5.922925442291492,
+          "sample_cv_percent": 28.25446255252844
+        },
+        "p99_ratio": {
+          "all": [
+            5.4867436480956,
+            3.133105905772051,
+            5.048896485100691
+          ],
+          "median": 5.048896485100691,
+          "minimum": 3.133105905772051,
+          "maximum": 5.4867436480956,
+          "sample_cv_percent": 27.47370599374584
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "churn",
+      "clients": 1000,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.12526081372411393,
+            0.1765094291618396,
+            0.1731035558305492
+          ],
+          "median": 0.1731035558305492,
+          "minimum": 0.12526081372411393,
+          "maximum": 0.1765094291618396,
+          "sample_cv_percent": 18.103245220944896
+        },
+        "p95_ratio": {
+          "all": [
+            5.106904026195637,
+            3.68964016379609,
+            3.7669219807623797
+          ],
+          "median": 3.7669219807623797,
+          "minimum": 3.68964016379609,
+          "maximum": 5.106904026195637,
+          "sample_cv_percent": 19.028643551185656
+        },
+        "p99_ratio": {
+          "all": [
+            5.348292566551137,
+            3.175137044984116,
+            3.14715352769807
+          ],
+          "median": 3.175137044984116,
+          "minimum": 3.14715352769807,
+          "maximum": 5.348292566551137,
+          "sample_cv_percent": 32.461811991413796
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.7035738244380846,
+            0.7605446378380674,
+            0.7456549165267246
+          ],
+          "median": 0.7456549165267246,
+          "minimum": 0.7035738244380846,
+          "maximum": 0.7605446378380674,
+          "sample_cv_percent": 4.011333326753159
+        },
+        "p95_ratio": {
+          "all": [
+            1.4383561643835616,
+            1.2388663967611335,
+            1.3220338983050848
+          ],
+          "median": 1.3220338983050848,
+          "minimum": 1.2388663967611335,
+          "maximum": 1.4383561643835616,
+          "sample_cv_percent": 7.51662366512929
+        },
+        "p99_ratio": {
+          "all": [
+            1.3267326732673268,
+            1.018970189701897,
+            1.189265536723164
+          ],
+          "median": 1.189265536723164,
+          "minimum": 1.018970189701897,
+          "maximum": 1.3267326732673268,
+          "sample_cv_percent": 13.084086452408211
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 10,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.43348860472281137,
+            0.4476975181167329,
+            0.42857895044341576
+          ],
+          "median": 0.43348860472281137,
+          "minimum": 0.42857895044341576,
+          "maximum": 0.4476975181167329,
+          "sample_cv_percent": 2.274238688685396
+        },
+        "p95_ratio": {
+          "all": [
+            2.220408163265306,
+            2.142857142857143,
+            2.346846846846847
+          ],
+          "median": 2.220408163265306,
+          "minimum": 2.142857142857143,
+          "maximum": 2.346846846846847,
+          "sample_cv_percent": 4.603495976391776
+        },
+        "p99_ratio": {
+          "all": [
+            1.7575057736720554,
+            1.8470254957507084,
+            2.036065573770492
+          ],
+          "median": 1.8470254957507084,
+          "minimum": 1.7575057736720554,
+          "maximum": 2.036065573770492,
+          "sample_cv_percent": 7.563666934672201
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.7345324871661969,
+            0.7084256978349455,
+            0.7141201845713352
+          ],
+          "median": 0.7141201845713352,
+          "minimum": 0.7084256978349455,
+          "maximum": 0.7345324871661969,
+          "sample_cv_percent": 1.9091696188026905
+        },
+        "p95_ratio": {
+          "all": [
+            1.3262032085561497,
+            1.4378531073446328,
+            1.4224137931034484
+          ],
+          "median": 1.4224137931034484,
+          "minimum": 1.3262032085561497,
+          "maximum": 1.4378531073446328,
+          "sample_cv_percent": 4.335300744480326
+        },
+        "p99_ratio": {
+          "all": [
+            1.1634782608695653,
+            1.2681017612524461,
+            1.3638211382113823
+          ],
+          "median": 1.2681017612524461,
+          "minimum": 1.1634782608695653,
+          "maximum": 1.3638211382113823,
+          "sample_cv_percent": 7.920460096010851
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 100,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.21939706400985937,
+            0.2071623792837533,
+            0.2038174051952368
+          ],
+          "median": 0.2071623792837533,
+          "minimum": 0.2038174051952368,
+          "maximum": 0.21939706400985937,
+          "sample_cv_percent": 3.903211638253956
+        },
+        "p95_ratio": {
+          "all": [
+            4.957057823129253,
+            5.08307573415765,
+            5.517131110095934
+          ],
+          "median": 5.08307573415765,
+          "minimum": 4.957057823129253,
+          "maximum": 5.517131110095934,
+          "sample_cv_percent": 5.665826831346427
+        },
+        "p99_ratio": {
+          "all": [
+            4.575512949882274,
+            5.09785673998872,
+            7.03587786259542
+          ],
+          "median": 5.09785673998872,
+          "minimum": 4.575512949882274,
+          "maximum": 7.03587786259542,
+          "sample_cv_percent": 23.27371028619681
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "native": "rustybouncer-pool-session",
+      "reference": "pgbouncer-session",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.7786033675321398,
+            0.7566356462603887,
+            0.7112543573338023
+          ],
+          "median": 0.7566356462603887,
+          "minimum": 0.7112543573338023,
+          "maximum": 0.7786033675321398,
+          "sample_cv_percent": 4.586629507694511
+        },
+        "p95_ratio": {
+          "all": [
+            1.0953389830508475,
+            1.1365638766519823,
+            1.354922279792746
+          ],
+          "median": 1.1365638766519823,
+          "minimum": 1.0953389830508475,
+          "maximum": 1.354922279792746,
+          "sample_cv_percent": 11.667793622176614
+        },
+        "p99_ratio": {
+          "all": [
+            1.3557814485387547,
+            1.36272040302267,
+            1.7577319587628866
+          ],
+          "median": 1.36272040302267,
+          "minimum": 1.3557814485387547,
+          "maximum": 1.7577319587628866,
+          "sample_cv_percent": 15.420728723589445
+        }
+      }
+    },
+    {
+      "placement": "normalized",
+      "workload": "transactions",
+      "clients": 1000,
+      "native": "rustybouncer-pool-transaction",
+      "reference": "pgbouncer-transaction",
+      "paired_repetitions": [
+        1,
+        2,
+        3
+      ],
+      "ratios": {
+        "tps_ratio": {
+          "all": [
+            0.07454922562911076,
+            0.0771953414840294,
+            0.07650944365469063
+          ],
+          "median": 0.07650944365469063,
+          "minimum": 0.07454922562911076,
+          "maximum": 0.0771953414840294,
+          "sample_cv_percent": 1.8048928064445278
+        },
+        "p95_ratio": {
+          "all": [
+            10.936055901644748,
+            11.775403574517153,
+            11.526310239375723
+          ],
+          "median": 11.526310239375723,
+          "minimum": 10.936055901644748,
+          "maximum": 11.775403574517153,
+          "sample_cv_percent": 3.77718525113024
+        },
+        "p99_ratio": {
+          "all": [
+            9.021940230865614,
+            7.284374656857364,
+            8.247970899732753
+          ],
+          "median": 8.247970899732753,
+          "minimum": 7.284374656857364,
+          "maximum": 9.021940230865614,
+          "sample_cv_percent": 10.635686695003843
+        }
+      }
+    }
+  ],
+  "interpretation": "Medians/ranges/CV of three complete repetitions; paired ratios use matching repetition numbers. Shared-host observations are not randomized causal estimates, statistical significance or production SLOs. Quantile medians do not pool raw samples across repetitions. Direct has no proxy CPU/RSS."
+}

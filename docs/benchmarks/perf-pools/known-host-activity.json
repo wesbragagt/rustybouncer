@@ -1,0 +1,6 @@
+{
+  "activity": "headless workmux provisioning of a coordinator-owned scheduler checkout",
+  "approximate_observed_completion_utc": "2026-11-09 05:12:34 UTC",
+  "scope": "Git checkout and hook installation; no compiler, profiler or functional suite ran during the timing matrix",
+  "limitation": "shared-host activity can add noise; all repetitions remain retained, with no exclusions"
+}

@@ -164,7 +164,7 @@ class Instrumented(c.Fixture):
         # Only wrap the real target launch; no metrics, query or result is mocked.
         # Readiness remains a real wire-protocol operation against that process.
         with patch.object(c.subprocess, 'Popen', side_effect=spawn):
-            super().launch(target, directory)
+            self.launch_target(target, directory)
         if target == 'direct':
             return
         assert self.process is not None
@@ -189,6 +189,10 @@ class Instrumented(c.Fixture):
                 assert sum(t['name'].startswith(('tokio-rt-worker', 'tokio-runtime')) for t in first['threads']) == 1
         self.resource_worker = threading.Thread(target=self.resources)
         self.resource_worker.start()
+
+    def launch_target(self, target, directory):
+        """Template seam for declared fixture configurations, never wire mocks."""
+        super().launch(target, directory)
 
     def postgres_affinity(self):
         pid = int(c.m.f.docker('inspect', self.nodes[0], '--format', '{{.State.Pid}}'))

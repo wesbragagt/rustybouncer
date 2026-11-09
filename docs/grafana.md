@@ -47,8 +47,12 @@ moving latest revision at startup.
 
 ## Reading the panels correctly
 
-- Throughput is frontend Query messages per second. A Q message may contain
-  several statements; this is not a committed-transaction rate.
+- Throughput is frontend **simple Query** messages per second. A Q message may
+  contain several statements; this is not a committed-transaction rate. Shared
+  pools expose extended frame/cycle/exchange metrics separately; the shipped
+  query panels do not include them. Use the [extended metrics contract](metrics.md)
+  for prepared-driver traffic, and keep cycle duration (including client think
+  time) distinct from execution latency.
 - Latency quantiles include failed queries, route waits, setup, retries and client
   backpressure. They do not measure only successful PostgreSQL execution.
 - A retry may recover a logical query. Compare attempt failures/retry amplification
@@ -56,8 +60,10 @@ moving latest revision at startup.
   visible separately. Amplification can exceed 100%.
 - With routing disabled, query panels show no observations. No traffic or no data
   is not proof of availability. A separate end-to-end SQL probe is necessary.
-- Backend streams are cached per client, not shared pool capacity. Discovery probes
-  are excluded. Use PostgreSQL/CNPG dashboards for replication/WAL/lag, and host or
+- Backend streams include cached connections in unshared mode and leased, idle
+  or resetting shared connections in pooled modes; they are not active SQL counts.
+  Use the separate pool reservation/phase/waiter metrics for capacity. Discovery
+  probes are excluded. Use PostgreSQL/CNPG dashboards for replication/WAL/lag, and host or
   Kubernetes dashboards for CPU/memory/storage.
 - Each router independently observes the same primary and replicas. Do not sum
   primary counts across routers or treat transition counters as failover duration.

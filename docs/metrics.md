@@ -120,6 +120,11 @@ Shared pools instrument extended work separately from simple Query metrics:
 | `extended_cycle_duration_seconds` | histogram | Logical cycle duration, including frontend think time between frames |
 | `extended_backend_exchanges_total` | counter, `outcome=ok\|sql_error\|error\|aborted` | Native exchanges, including private Parse restoration, Describe type/shape validation and cancellation Sync fences |
 
+An extended cycle abandoned before its Sync boundary is `aborted`, including
+frontend close between exchanges; a completed delivery failure is `delivery_error`.
+This cycle disposition is distinct from the simple-Q rule that reserves aborted
+query observations for external task cancellation.
+
 Extended exchanges never increment simple `queries_total` or
 `query_attempts_total`. A frontend Execute ignored after a native Bind error has
 no native exchange. Cycle and frame counters therefore are not SQL transaction
