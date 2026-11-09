@@ -1,0 +1,17 @@
+{
+  "binary": {
+    "production": "4dea55a0cdb615f3bcad2276c3fedb5a841eb0e7f6cfb5ca2fbfeca23c041ebb",
+    "profile": "886eb7f74cb081009a48e6f73ef967ea18e7e3c6ac3ab6b3fd49e07dd2001d8b"
+  },
+  "runtime_sources": {
+    "src/main.rs": "56f56bc6ea0fef16a16dba175ca251c7c99e5e766f708691c1b2dde0673b424b",
+    "src/router.rs": "7d62a83a54f4a00efb19bf63e5b7f1f493280ea3e1f29709a51176d1a167c96e",
+    "src/metrics.rs": "bcff24628c6ad8c6b773914dc95858565a41db2b3f482816f64caee60fcf8352",
+    "src/router/wire.rs": "4d11e8a22f90b2ffbbca2f1f925de115fe7a03e99b75d9b455959bd2956e3637",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "src/router/classifier_reference.rs": "a05f7792cd5522e88f04231bd674c210078f6ff36b0bbb28a47ec4db84907c30",
+    "src/router/classification.rs": "de7ce02e53f5349a31ce01c898e4b5cd1f8993849df063f0c4472b2a99b75125"
+  },
+  "evidence_root": "/home/publicuser/dev/rustybouncer-evidence/perf-classifier-20261108",
+  "scope": "all 30 original +30 equal-core +16 accepted attribution +29 runtime; failed initial attribution retained"
+}
