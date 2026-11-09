@@ -1,0 +1,27 @@
+[
+  {
+    "path": "resources.tar.zst",
+    "bytes": 61360,
+    "sha256": "9edd151d479e16f582b9fd732d7c9579b7604b088f231e8de79be04237bd94fe"
+  },
+  {
+    "path": "metrics.tar.zst",
+    "bytes": 31367,
+    "sha256": "9e20ad70935a1f3927aec9a917a608a4a719769e2bbf325695ac9ac8f83dad32"
+  },
+  {
+    "path": "buffering.tar.zst",
+    "bytes": 28254,
+    "sha256": "547f590c45fa53bed6a54272eec1f171f628f33cbf9bcb6111807007e48889f3"
+  },
+  {
+    "path": "memcheck.tar.zst",
+    "bytes": 24529,
+    "sha256": "a139ec8c9a52fcb19bfd15efb1536c3bb9c5846709aad607538f31b721070421"
+  },
+  {
+    "path": "original-comparison.tar.zst",
+    "bytes": 155196520,
+    "sha256": "5ba47be4e77e6e1d78e774ab342d433a6fdef1c23b4a5ce84c31f64c80ac8ec0"
+  }
+]

@@ -1,5 +1,9 @@
 # PERF-006 — INCOMPLETE aggregate-memory and cancellation checkpoint
 
+Historical checkpoint; final combined acceptance is recorded in
+[PERF-006 acceptance](perf-resources-acceptance.md). The open gates below describe
+this checkpoint at `fe98354`, not the later acceptance.
+
 Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-006, and
 [canonical checklist](../../FEATURE_COMPLETENESS.md), L01/L03–L07, Q01/Q04–Q08, S11.
 This preserves an implemented and functionally verified candidate. PERF-006 is

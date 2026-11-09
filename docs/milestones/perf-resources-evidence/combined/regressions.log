@@ -1,0 +1,57 @@
+error (ignored): SQLite database '/home/publicuser/.cache/nix/eval-cache-v6/58ab766cda03055dc5228fb3ff6d921a7b2bb63a95bf2e8cbb99142a0b7b4177.sqlite' is busy
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/resources/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss. ... ok
+test_02_unsent_write_waits_then_continues_on_same_connection (__main__.FailoverContinuity.test_02_unsent_write_waits_then_continues_on_same_connection)
+An autocommit statement received during the leader gap waits safely. ... ok
+test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes. ... ok
+test_04_interrupted_transaction_fails_without_replay (__main__.FailoverContinuity.test_04_interrupted_transaction_fails_without_replay)
+Transactions cannot migrate: rollback and uncertain outcomes stay explicit. ... ok
+test_05_failed_replica_leaves_rotation_without_disrupting_reads (__main__.FailoverContinuity.test_05_failed_replica_leaves_rotation_without_disrupting_reads)
+A replica failure is removed; same-client reads survive primary loss too. ... ok
+test_06_read_only_ctes_round_robin_and_continue_through_failover (__main__.FailoverContinuity.test_06_read_only_ctes_round_robin_and_continue_through_failover) ... ok
+test_07_data_modifying_ctes_execute_on_primary (__main__.FailoverContinuity.test_07_data_modifying_ctes_execute_on_primary) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 59.910s
+
+OK
+test_attempt_limit (__main__.LongQueries.test_attempt_limit) ... ok
+test_dispatched_write_not_replayed (__main__.LongQueries.test_dispatched_write_not_replayed) ... ok
+test_failed_read_retries_without_partial_results (__main__.LongQueries.test_failed_read_retries_without_partial_results) ... ok
+test_healthy_execution_exceeds_routing_wait (__main__.LongQueries.test_healthy_execution_exceeds_routing_wait) ... ok
+test_interrupted_transaction_not_replayed (__main__.LongQueries.test_interrupted_transaction_not_replayed) ... ok
+test_promoted_backend_drains (__main__.LongQueries.test_promoted_backend_drains) ... ok
+test_total_deadline (__main__.LongQueries.test_total_deadline) ... ok
+test_unrelated_primary_loss_and_promotion (__main__.LongQueries.test_unrelated_primary_loss_and_promotion) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 65.241s
+
+OK
+test_actual_backend_retry_promotion_and_transaction_nonreplay (__main__.Metrics.test_actual_backend_retry_promotion_and_transaction_nonreplay) ... ok
+test_connection_capacity_startup_and_independent_backends (__main__.Metrics.test_connection_capacity_startup_and_independent_backends) ... ok
+test_default_disabled_bind_failure_and_passthrough (__main__.Metrics.test_default_disabled_bind_failure_and_passthrough) ... ok
+test_delivery_failure_and_concurrent_client_results (__main__.Metrics.test_delivery_failure_and_concurrent_client_results) ... ok
+test_dispatched_write_failure_is_not_replayed (__main__.Metrics.test_dispatched_write_failure_is_not_replayed) ... ok
+test_http_rejections_deadlines_cap_and_sql_availability (__main__.Metrics.test_http_rejections_deadlines_cap_and_sql_availability) ... ok
+test_inventory_freshness_and_static_cardinality (__main__.Metrics.test_inventory_freshness_and_static_cardinality) ... ok
+test_malformed_full_and_truncated_frames (__main__.Metrics.test_malformed_full_and_truncated_frames) ... ok
+test_q_message_outcomes_and_histograms (__main__.Metrics.test_q_message_outcomes_and_histograms) ... ok
+test_terminal_sessions_clean_disconnect_and_unavailable_startup (__main__.Metrics.test_terminal_sessions_clean_disconnect_and_unavailable_startup) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 82.638s
+
+OK
+
+test_100_clients_multirow_null_and_unique_results (__main__.Buffering.test_100_clients_multirow_null_and_unique_results) ... ok
+test_10_clients_multirow_null_and_unique_results (__main__.Buffering.test_10_clients_multirow_null_and_unique_results) ... ok
+test_message_and_result_overflow_discard_before_exposure (__main__.Buffering.test_message_and_result_overflow_discard_before_exposure) ... ok
+test_pipelined_query_error_keeps_later_responses_ordered (__main__.Buffering.test_pipelined_query_error_keeps_later_responses_ordered) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 21.441s
+
+OK

@@ -1,0 +1,21 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/resources/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_100_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_100_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_10_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_10_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_cancel_admission_remains_available_at_sql_client_capacity (__main__.Resources.test_cancel_admission_remains_available_at_sql_client_capacity) ... ok
+test_cancel_during_backend_handshake_releases_connect_ownership (__main__.Resources.test_cancel_during_backend_handshake_releases_connect_ownership) ... ok
+test_cancel_during_no_route_wait_does_not_dispatch_or_retry (__main__.Resources.test_cancel_during_no_route_wait_does_not_dispatch_or_retry) ... ok
+test_cancel_during_partial_delivery_closes_without_replaying (__main__.Resources.test_cancel_during_partial_delivery_closes_without_replaying) ... ok
+test_cancel_preserves_savepoint_and_prior_transaction_write (__main__.Resources.test_cancel_preserves_savepoint_and_prior_transaction_write) ... ok
+test_cancel_ready_races_cannot_cancel_the_next_query (__main__.Resources.test_cancel_ready_races_cannot_cancel_the_next_query) ... ok
+test_disconnect_cancels_active_read_and_refunds_every_charge (__main__.Resources.test_disconnect_cancels_active_read_and_refunds_every_charge) ... ok
+test_dispatched_primary_write_cancellation_is_not_replayed (__main__.Resources.test_dispatched_primary_write_cancellation_is_not_replayed) ... ok
+test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running (__main__.Resources.test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running) ... ok
+test_replica_cancel_stops_retry_and_preserves_connection (__main__.Resources.test_replica_cancel_stops_retry_and_preserves_connection) ... ok
+test_shutdown_during_connection_churn_reaps_all_backend_owners (__main__.Resources.test_shutdown_during_connection_churn_reaps_all_backend_owners) ... ok
+test_slow_receiver_delivery_deadline_refunds_capacity (__main__.Resources.test_slow_receiver_delivery_deadline_refunds_capacity) ... ok
+test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client (__main__.Resources.test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 117.157s
+
+OK
