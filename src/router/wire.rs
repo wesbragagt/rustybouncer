@@ -3,6 +3,23 @@ use super::*;
 use std::io::{Error, ErrorKind, IoSlice};
 use tokio::io::{AsyncRead, AsyncWrite};
 
+#[derive(Debug)]
+pub(super) struct Limit;
+impl std::fmt::Display for Limit {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("routed response limit exceeded")
+    }
+}
+impl std::error::Error for Limit {}
+#[derive(Debug)]
+pub(super) struct CopyUnsupported;
+impl std::fmt::Display for CopyUnsupported {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("COPY is unsupported in routed mode")
+    }
+}
+impl std::error::Error for CopyUnsupported {}
+
 const MAX_RESULT: usize = 32 * 1024 * 1024;
 
 pub(super) async fn send<W: AsyncWrite + Unpin>(
@@ -47,7 +64,7 @@ impl Response {
             .checked_add(length)
             .context("result length overflow")?;
         if end > MAX_RESULT {
-            bail!("routed result exceeds 32 MiB limit");
+            return Err(Limit.into());
         }
         Ok(end)
     }
@@ -174,7 +191,107 @@ pub(super) async fn response<R: AsyncRead + Unpin>(
     reader: &mut R,
     pool: &buffers::Pool,
 ) -> Result<(Response, u8)> {
-    let mut result = Response {
+    let reply = receive(reader, pool, Boundary::Simple).await?;
+    Ok((
+        reply.response,
+        reply.status.context("missing Ready status")?,
+    ))
+}
+
+pub(super) async fn send_parse<W: AsyncWrite + Unpin>(
+    writer: &mut W,
+    prefix: &[u8],
+    types: &[u8],
+) -> Result<()> {
+    let length = u32::try_from(
+        prefix
+            .len()
+            .checked_add(types.len())
+            .and_then(|n| n.checked_add(4))
+            .context("Parse size overflow")?,
+    )?;
+    let mut header = [b'P', 0, 0, 0, 0];
+    header[1..].copy_from_slice(&length.to_be_bytes());
+    let mut parts = [
+        IoSlice::new(&header),
+        IoSlice::new(prefix),
+        IoSlice::new(types),
+    ];
+    let mut remaining = &mut parts[..];
+    while !remaining.is_empty() {
+        let count = writer.write_vectored(remaining).await?;
+        if count == 0 {
+            bail!("Parse write made no progress");
+        }
+        IoSlice::advance_slices(&mut remaining, count);
+    }
+    Ok(())
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub(super) enum Boundary {
+    Simple,
+    Parse,
+    Bind,
+    DescribeStatement,
+    DescribePortal,
+    Execute,
+    Close,
+    Sync,
+}
+impl Boundary {
+    fn terminal(self, tag: u8, size: usize, parameters: &mut bool) -> Result<bool> {
+        if self == Self::Simple {
+            return Ok(tag == b'Z');
+        }
+        if matches!(tag, b'N' | b'S' | b'A') {
+            return Ok(false);
+        }
+        if tag == b'E' {
+            return Ok(self != Self::Sync);
+        }
+        let allowed = match self {
+            Self::Parse => tag == b'1',
+            Self::Bind => tag == b'2',
+            Self::Close => tag == b'3',
+            Self::DescribeStatement => {
+                if tag == b't' && !*parameters {
+                    *parameters = true;
+                    return Ok(false);
+                }
+                *parameters && matches!(tag, b'T' | b'n')
+            }
+            Self::DescribePortal => matches!(tag, b'T' | b'n'),
+            Self::Execute => {
+                if tag == b'D' {
+                    return Ok(false);
+                }
+                matches!(tag, b'C' | b'I' | b's')
+            }
+            Self::Sync => tag == b'Z',
+            Self::Simple => unreachable!(),
+        };
+        if !allowed {
+            bail!("unexpected extended-protocol backend message");
+        }
+        if matches!(tag, b'1' | b'2' | b'3' | b'n' | b'I' | b's') && size != 4 {
+            bail!("nonempty extended completion message");
+        }
+        Ok(true)
+    }
+}
+
+pub(super) struct Reply {
+    pub response: Response,
+    pub status: Option<u8>,
+}
+
+pub(super) async fn receive<R: AsyncRead + Unpin>(
+    reader: &mut R,
+    pool: &buffers::Pool,
+    boundary: Boundary,
+) -> Result<Reply> {
+    let mut response = Response {
         small: [0; buffers::SMALL_BYTES],
         small_len: 0,
         bulk: Vec::new(),
@@ -182,6 +299,7 @@ pub(super) async fn response<R: AsyncRead + Unpin>(
         sql_error: false,
     };
     let mut work = 0usize;
+    let mut parameters = false;
     loop {
         let tag = reader.read_u8().await?;
         let size = reader.read_u32().await? as usize;
@@ -189,38 +307,159 @@ pub(super) async fn response<R: AsyncRead + Unpin>(
             bail!("invalid or oversized protocol message");
         }
         if matches!(tag, b'G' | b'H' | b'W') {
-            bail!("COPY is unsupported in routed mode");
+            return Err(CopyUnsupported.into());
         }
         if tag == b'Z' && size != 5 {
             bail!("invalid ReadyForQuery transaction status");
         }
-        result.reserve_frame(size + 1)?;
+        let terminal = boundary.terminal(tag, size, &mut parameters)?;
+        response.reserve_frame(size + 1)?;
         let mut header = [0u8; 5];
         header[0] = tag;
         header[1..].copy_from_slice(&(size as u32).to_be_bytes());
-        result.append(&header, pool)?;
+        response.append(&header, pool)?;
+        work += 5;
         let mut remaining = size - 4;
         while remaining > 0 {
-            let target = result.writable(remaining, pool)?;
+            let target = response.writable(remaining, pool)?;
             let count = target.len();
             reader.read_exact(target).await?;
             remaining -= count;
             work += count;
-            // A large buffered packet must not monopolize a runtime worker.
-            // The quantum is a work bound, not a latency/performance SLO.
             if work >= 256 * 1024 {
                 tokio::task::yield_now().await;
                 work = 0;
             }
         }
-        result.sql_error |= tag == b'E';
-        if tag == b'Z' {
-            let status = result.last_byte();
-            if !matches!(status, b'I' | b'T' | b'E') {
-                bail!("invalid ReadyForQuery transaction status");
-            }
-            return Ok((result, status));
+        if work >= 256 * 1024 {
+            tokio::task::yield_now().await;
+            work = 0;
         }
+        response.sql_error |= tag == b'E';
+        if terminal {
+            let status = if tag == b'Z' {
+                let value = response.last_byte();
+                if !matches!(value, b'I' | b'T' | b'E') {
+                    bail!("invalid ReadyForQuery transaction status");
+                }
+                Some(value)
+            } else {
+                None
+            };
+            return Ok(Reply { response, status });
+        }
+    }
+}
+
+#[derive(Debug)]
+pub(super) struct ChangedShape;
+impl std::fmt::Display for ChangedShape {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str("prepared result description changed; reconnect required")
+    }
+}
+impl std::error::Error for ChangedShape {}
+
+fn word<const N: usize>(bytes: &mut impl Iterator<Item = u8>) -> Result<[u8; N]> {
+    let mut result = [0; N];
+    for byte in &mut result {
+        *byte = bytes.next().context("truncated statement description")?;
+    }
+    Ok(result)
+}
+fn result_shape(bytes: &mut impl Iterator<Item = u8>) -> Result<Vec<u8>> {
+    let count = word::<2>(bytes)?;
+    let mut result = vec![b'T', count[0], count[1]];
+    for _ in 0..u16::from_be_bytes(count) {
+        loop {
+            let byte = bytes.next().context("unterminated result column name")?;
+            if result.len() >= 1024 * 1024 {
+                return Err(Limit.into());
+            }
+            result.push(byte);
+            if byte == 0 {
+                break;
+            }
+        }
+        // Native result compatibility depends on names/types, not source OIDs
+        // or attribute numbers (a same-shaped table may have been recreated).
+        word::<6>(bytes)?;
+        result.extend(word::<10>(bytes)?);
+        word::<2>(bytes)?;
+        if result.len() > 1024 * 1024 {
+            return Err(Limit.into());
+        }
+    }
+    if bytes.next().is_some() {
+        bail!("trailing result description bytes");
+    }
+    Ok(result)
+}
+
+impl Response {
+    fn bytes(&self) -> impl Iterator<Item = u8> + '_ {
+        self.small[..self.small_len]
+            .iter()
+            .chain(self.bulk.iter().flat_map(|slab| slab.data().iter()))
+            .copied()
+    }
+    pub(super) fn shape(&self) -> Result<Vec<u8>> {
+        let mut bytes = self.bytes();
+        while let Some(tag) = bytes.next() {
+            let size = u32::from_be_bytes(word::<4>(&mut bytes)?) as usize;
+            if size < 4 {
+                bail!("invalid description frame");
+            }
+            let mut body = bytes.by_ref().take(size - 4);
+            if tag == b'n' {
+                if size != 4 {
+                    bail!("nonempty NoData");
+                }
+                return Ok(vec![b'n']);
+            }
+            if tag == b'T' {
+                return result_shape(&mut body);
+            }
+            for _ in 0..size - 4 {
+                body.next().context("truncated private description frame")?;
+            }
+        }
+        bail!("missing prepared result description")
+    }
+    pub(super) fn parameter_types(&self) -> Result<Vec<u32>> {
+        let mut bytes = self.bytes();
+        while let Some(tag) = bytes.next() {
+            let mut word = [0u8; 4];
+            for value in &mut word {
+                *value = bytes.next().context("truncated internal response")?;
+            }
+            let size = u32::from_be_bytes(word) as usize;
+            if size < 4 {
+                bail!("invalid internal response");
+            }
+            if tag == b't' {
+                let count = u16::from_be_bytes([
+                    bytes.next().context("missing parameter count")?,
+                    bytes.next().context("missing parameter count")?,
+                ]) as usize;
+                if size != 6 + count * 4 {
+                    bail!("invalid parameter description length");
+                }
+                let mut types = Vec::new();
+                types.try_reserve_exact(count)?;
+                for _ in 0..count {
+                    for value in &mut word {
+                        *value = bytes.next().context("truncated parameter OID")?;
+                    }
+                    types.push(u32::from_be_bytes(word));
+                }
+                return Ok(types);
+            }
+            for _ in 0..size - 4 {
+                bytes.next().context("truncated internal response")?;
+            }
+        }
+        bail!("missing parameter description")
     }
 }
 
@@ -231,6 +470,75 @@ mod tests {
         pin::Pin,
         task::{Context as TaskContext, Poll},
     };
+
+    #[test]
+    fn prepared_result_shape_preserves_names_and_types_without_binding_source_oids() {
+        fn column(table: u32, oid: u32) -> Vec<u8> {
+            let mut body = vec![0, 1];
+            body.extend(b"value\0");
+            body.extend(table.to_be_bytes());
+            body.extend(1u16.to_be_bytes());
+            body.extend(oid.to_be_bytes());
+            body.extend(4u16.to_be_bytes());
+            body.extend((-1i32).to_be_bytes());
+            body.extend(0u16.to_be_bytes());
+            body
+        }
+        let first = result_shape(&mut column(1, 23).into_iter()).unwrap();
+        assert_eq!(
+            first,
+            result_shape(&mut column(999, 23).into_iter()).unwrap()
+        );
+        assert_ne!(first, result_shape(&mut column(1, 20).into_iter()).unwrap());
+        assert!(result_shape(&mut b"\0\x01unterminated".iter().copied()).is_err());
+        let mut truncated = column(1, 23);
+        truncated.pop();
+        assert!(result_shape(&mut truncated.into_iter()).is_err());
+    }
+
+    #[tokio::test]
+    async fn parse_restoration_handles_partial_writes_without_changing_sql_or_types() {
+        let mut writer = Fragmented {
+            bytes: Vec::new(),
+            maximum: 1,
+            fail_after: None,
+            defer: false,
+        };
+        send_parse(
+            &mut writer,
+            b"named\0SELECT $1::int\0",
+            &[0, 1, 0, 0, 0, 23],
+        )
+        .await
+        .unwrap();
+        let body = b"named\0SELECT $1::int\0\0\x01\0\0\0\x17";
+        let mut expected = vec![b'P'];
+        expected.extend(((body.len() + 4) as u32).to_be_bytes());
+        expected.extend(body);
+        assert_eq!(writer.bytes, expected);
+    }
+    #[tokio::test]
+    async fn extended_terminals_do_not_accept_early_ready_or_incomplete_describe() {
+        for (boundary, bytes, valid) in [
+            (Boundary::Parse, &b"1\0\0\0\x04"[..], true),
+            (Boundary::Parse, &b"Z\0\0\0\x05I"[..], false),
+            (Boundary::DescribeStatement, &b"n\0\0\0\x04"[..], false),
+            (
+                Boundary::DescribeStatement,
+                &b"t\0\0\0\x06\0\0n\0\0\0\x04"[..],
+                true,
+            ),
+            (Boundary::Sync, &b"Z\0\0\0\x05x"[..], false),
+        ] {
+            let mut reader = bytes;
+            assert_eq!(
+                receive(&mut reader, &buffers::Pool::default(), boundary)
+                    .await
+                    .is_ok(),
+                valid
+            );
+        }
+    }
 
     struct Fragmented {
         bytes: Vec<u8>,

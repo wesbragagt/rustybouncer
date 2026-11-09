@@ -1,0 +1,8 @@
+{
+  "ready_frontends": 1000,
+  "physical_backends_at_barrier": 1,
+  "cycles": 3,
+  "correct_results": 3000,
+  "errors": 0,
+  "reconnects": 0
+}

@@ -1,0 +1,103 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_1000_prepared_clients (__main__.SessionProtocol.test_1000_prepared_clients) ... ok
+test_100_prepared_clients (__main__.SessionProtocol.test_100_prepared_clients) ... ok
+test_10_prepared_clients (__main__.SessionProtocol.test_10_prepared_clients) ... ok
+test_bound_portal_outlives_close_statement_until_transaction_end (__main__.SessionProtocol.test_bound_portal_outlives_close_statement_until_transaction_end) ... ok
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.SessionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ok
+test_cancellation_during_partial_execute_delivery_closes_and_refunds (__main__.SessionProtocol.test_cancellation_during_partial_execute_delivery_closes_and_refunds) ... ok
+test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner (__main__.SessionProtocol.test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.SessionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ok
+test_duplicate_names_close_and_independent_clients (__main__.SessionProtocol.test_duplicate_names_close_and_independent_clients) ... ok
+test_extended_large_result_and_error_limit_do_not_expose_partial_rows (__main__.SessionProtocol.test_extended_large_result_and_error_limit_do_not_expose_partial_rows) ... ok
+test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames (__main__.SessionProtocol.test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames) ... ok
+test_extended_session_effects_and_deallocation_keep_native_namespace (__main__.SessionProtocol.test_extended_session_effects_and_deallocation_keep_native_namespace) ... ok
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.SessionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ok
+test_libpq_pipeline_repeated_parameterized_statements (__main__.SessionProtocol.test_libpq_pipeline_repeated_parameterized_statements) ... ok
+test_malformed_extended_frame_is_protocol_error_before_dispatch (__main__.SessionProtocol.test_malformed_extended_frame_is_protocol_error_before_dispatch) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.SessionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ok
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.SessionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... ok
+test_portal_suspension_transaction_lifetime_and_close (__main__.SessionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ok
+test_real_primary_promotion_fences_partial_write_and_recovers_new_work (__main__.SessionProtocol.test_real_primary_promotion_fences_partial_write_and_recovers_new_work) ... ok
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.SessionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ok
+test_slow_execute_receiver_delivery_deadline_refunds_ownership (__main__.SessionProtocol.test_slow_execute_receiver_delivery_deadline_refunds_ownership) ... ok
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.SessionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ok
+test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.SessionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute) ... FAIL
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.SessionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ok
+test_1000_prepared_clients (__main__.TransactionProtocol.test_1000_prepared_clients) ... ok
+test_100_prepared_clients (__main__.TransactionProtocol.test_100_prepared_clients) ... ok
+test_10_prepared_clients (__main__.TransactionProtocol.test_10_prepared_clients) ... ok
+test_bound_portal_outlives_close_statement_until_transaction_end (__main__.TransactionProtocol.test_bound_portal_outlives_close_statement_until_transaction_end) ... ok
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.TransactionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ok
+test_cancellation_during_partial_execute_delivery_closes_and_refunds (__main__.TransactionProtocol.test_cancellation_during_partial_execute_delivery_closes_and_refunds) ... ok
+test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner (__main__.TransactionProtocol.test_copy_rejection_is_explicit_and_does_not_contaminate_next_owner) ... ok
+test_count_and_byte_limits_fail_closed_without_committing_prior_write (__main__.TransactionProtocol.test_count_and_byte_limits_fail_closed_without_committing_prior_write) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.TransactionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ok
+test_duplicate_names_close_and_independent_clients (__main__.TransactionProtocol.test_duplicate_names_close_and_independent_clients) ... ok
+test_extended_large_result_and_error_limit_do_not_expose_partial_rows (__main__.TransactionProtocol.test_extended_large_result_and_error_limit_do_not_expose_partial_rows) ... ok
+test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames (__main__.TransactionProtocol.test_extended_metrics_are_separate_from_simple_queries_and_count_ignored_frames) ... ok
+test_extended_session_effects_and_deallocation_keep_native_namespace (__main__.TransactionProtocol.test_extended_session_effects_and_deallocation_keep_native_namespace) ... ok
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.TransactionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ok
+test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions (__main__.TransactionProtocol.test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions) ... ok
+test_libpq_pipeline_repeated_parameterized_statements (__main__.TransactionProtocol.test_libpq_pipeline_repeated_parameterized_statements) ... ok
+test_malformed_extended_frame_is_protocol_error_before_dispatch (__main__.TransactionProtocol.test_malformed_extended_frame_is_protocol_error_before_dispatch) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.TransactionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ok
+test_original_inferred_parameter_types_survive_schema_change (__main__.TransactionProtocol.test_original_inferred_parameter_types_survive_schema_change) ... ok
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.TransactionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... ok
+test_portal_count_is_bounded_even_after_its_statement_name_closes (__main__.TransactionProtocol.test_portal_count_is_bounded_even_after_its_statement_name_closes) ... ok
+test_portal_suspension_transaction_lifetime_and_close (__main__.TransactionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ok
+test_real_primary_promotion_fences_partial_write_and_recovers_new_work (__main__.TransactionProtocol.test_real_primary_promotion_fences_partial_write_and_recovers_new_work) ... ok
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.TransactionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ok
+test_slow_execute_receiver_delivery_deadline_refunds_ownership (__main__.TransactionProtocol.test_slow_execute_receiver_delivery_deadline_refunds_ownership) ... ok
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.TransactionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ok
+test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.TransactionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute) ... FAIL
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.TransactionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ok
+test_waiting_parse_cancellation_and_eof_refund_without_dispatch (__main__.TransactionProtocol.test_waiting_parse_cancellation_and_eof_refund_without_dispatch) ... ok
+
+======================================================================
+FAIL: test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.SessionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/protocol_pool.py", line 341, in test_unknown_function_planning_effect_keeps_session_affinity_before_execute
+    self.assertEqual([tag for tag,_ in replies],[b'2',b'Z'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [b'2', b'S', b'Z'] != [b'2', b'Z']
+
+First differing element 1:
+b'S'
+b'Z'
+
+First list contains 1 additional elements.
+First extra element 2:
+b'Z'
+
+- [b'2', b'S', b'Z']
+?        ------
+
++ [b'2', b'Z']
+
+======================================================================
+FAIL: test_unknown_function_planning_effect_keeps_session_affinity_before_execute (__main__.TransactionProtocol.test_unknown_function_planning_effect_keeps_session_affinity_before_execute)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/protocol_pool.py", line 341, in test_unknown_function_planning_effect_keeps_session_affinity_before_execute
+    self.assertEqual([tag for tag,_ in replies],[b'2',b'Z'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [b'2', b'S', b'Z'] != [b'2', b'Z']
+
+First differing element 1:
+b'S'
+b'Z'
+
+First list contains 1 additional elements.
+First extra element 2:
+b'Z'
+
+- [b'2', b'S', b'Z']
+?        ------
+
++ [b'2', b'Z']
+
+----------------------------------------------------------------------
+Ran 53 tests in 144.317s
+
+FAILED (failures=2)

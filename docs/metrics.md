@@ -108,11 +108,29 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | `probes_total` | counter, `node,outcome=ok\|error` | Completed individual discovery probes; failure/timeout is error |
 | `probe_duration_seconds` | histogram, `node` | Individual probe wall time, including timeout |
 
+Shared pools instrument extended work separately from simple Query metrics:
+
+| Name | Type / labels | Meaning |
+| --- | --- | --- |
+| `extended_frames_total` | counter, `kind=parse\|bind\|describe\|execute\|close\|flush\|sync\|malformed`, `outcome=ok\|sql_error\|router_error\|delivery_error\|aborted` | Fully received non-Q protocol frames; ignored frames in a failed cycle count sql_error without native dispatch |
+| `extended_frames_in_flight` | gauge | Active/queued fully framed extended messages |
+| `extended_frame_duration_seconds` | histogram | Receipt through handling/delivery or terminal rejection, including frontend queue time |
+| `extended_cycles_total` | counter, same five outcomes | Logical cycles through real Sync/Ready or terminal failure |
+| `extended_cycles_in_flight` | gauge | Logical extended work including lease waiting and cleanup |
+| `extended_cycle_duration_seconds` | histogram | Logical cycle duration, including frontend think time between frames |
+| `extended_backend_exchanges_total` | counter, `outcome=ok\|sql_error\|error\|aborted` | Native exchanges, including private Parse restoration, Describe type/shape validation and cancellation Sync fences |
+
+Extended exchanges never increment simple `queries_total` or
+`query_attempts_total`. A frontend Execute ignored after a native Bind error has
+no native exchange. Cycle and frame counters therefore are not SQL transaction
+or commit counters. A complete returned Execute reply may precede commit or a
+later rollback. SQL/prepared names and parameter values never become labels.
+
 Histogram boundaries in seconds: 0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25,
 0.5, 1, 2.5, 5, 10, 30, 60, 120, 300, 600 plus +Inf. Counters are monotonic
 within one process lifetime; process restarts reset counters. Every completed discovery round updates freshness and node eligibility, even
 when no topology change is published. Preinitialize all three per-node roles.
-With N configured nodes, the inventory has 184 + 29*N exposed sample series
+With N configured nodes, the inventory has 275 + 29*N exposed sample series
 (including histogram buckets/sum/count; excluding HELP/TYPE). Disable implicit
 library collectors/created timestamps or explicitly revise and test this budget.
 Cross-family scrape snapshots are not atomic; reconciliation assertions run after quiescence.
@@ -336,7 +354,7 @@ configured footprint; cached storage is not treated as free budget. Capacity err
 result exposure; they never trigger a read retry or imply a dispatched write
 rolled back. Allocator-retained pages are not an RSS hard limit.
 
-A bounded reader remains active during execution/delivery: at most eight queued
+A bounded reader remains active during execution/delivery: at most 256 queued
 frames and 16 MiB of active-plus-queued bodies per frontend, plus one incoming
 16-MiB frame. Fully received Q messages begin accounting immediately, including
 queued messages later rejected on disconnect/overflow. Internal cancellation and

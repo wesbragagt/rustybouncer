@@ -585,6 +585,7 @@ mod tests {
         (
             Backend {
                 stream: BufReader::new(stream),
+                installed: HashMap::new(),
                 _live: Metrics::default().guard(Event::Backend("node".into())),
                 generation: 1,
                 buffers: buffers::Pool::default(),

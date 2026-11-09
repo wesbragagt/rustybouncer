@@ -1,0 +1,42 @@
+[
+  {
+    "path": "protocol-ownership-accepted.tar.zst",
+    "bytes": 60788,
+    "sha256": "fafc3a432b72fdb9545d421b1ff408eceae894f96ae56d380de125e97beeaa1f"
+  },
+  {
+    "path": "protocol-ownership-accepted-queues.tar.zst",
+    "bytes": 29478,
+    "sha256": "4a96848ab9b33b545af67162c1ff93cd865ea669ababea3f4752f9ef11682ef4"
+  },
+  {
+    "path": "protocol-ownership-accepted-transactions.tar.zst",
+    "bytes": 13394,
+    "sha256": "ff05134d0292efeab37af841e4bb6bb208a11cc8bd0bf1cce9c47324f207ee9e"
+  },
+  {
+    "path": "protocol-ownership-accepted-sessions.tar.zst",
+    "bytes": 60301,
+    "sha256": "11b55119973474afe90cad2c9e5e5650c48a64add679e4a42c8440d12201bff5"
+  },
+  {
+    "path": "protocol-ownership-accepted-resources.tar.zst",
+    "bytes": 65759,
+    "sha256": "c957af63945bc418db780ea6981f9a7968d7164cb489ea9597916fb6ba8d96a6"
+  },
+  {
+    "path": "protocol-ownership-accepted-metrics.tar.zst",
+    "bytes": 37263,
+    "sha256": "58ad146c68aa1c73f194bec3b485a64472b9ebfbb3d60b88d1d5aad62f4b314e"
+  },
+  {
+    "path": "protocol-ownership-accepted-buffering.tar.zst",
+    "bytes": 28496,
+    "sha256": "5212ec70a5a67556611defa3af6c1e01fd3e12b6b2584b85c4f039e1afa5a91d"
+  },
+  {
+    "path": "frozen-source.tar.zst",
+    "bytes": 128432,
+    "sha256": "faab48829e8dc99692d545df4d1dc04b5eb4439204959036b03b6996ec9f7a90"
+  }
+]

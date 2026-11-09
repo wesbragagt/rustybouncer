@@ -1,0 +1,213 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_1000_prepared_clients (__main__.SessionProtocol.test_1000_prepared_clients) ... ok
+test_100_prepared_clients (__main__.SessionProtocol.test_100_prepared_clients) ... ok
+test_10_prepared_clients (__main__.SessionProtocol.test_10_prepared_clients) ... ok
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.SessionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.SessionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ok
+test_duplicate_names_close_and_independent_clients (__main__.SessionProtocol.test_duplicate_names_close_and_independent_clients) ... ok
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.SessionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.SessionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ok
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.SessionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... FAIL
+test_portal_suspension_transaction_lifetime_and_close (__main__.SessionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ok
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.SessionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ok
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.SessionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ok
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.SessionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ok
+test_1000_prepared_clients (__main__.TransactionProtocol.test_1000_prepared_clients) ... ERROR
+test_100_prepared_clients (__main__.TransactionProtocol.test_100_prepared_clients) ... ERROR
+test_10_prepared_clients (__main__.TransactionProtocol.test_10_prepared_clients) ... ERROR
+test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.TransactionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence) ... ERROR
+test_count_and_byte_limits_fail_closed_without_committing_prior_write (__main__.TransactionProtocol.test_count_and_byte_limits_fail_closed_without_committing_prior_write) ... ok
+test_disconnect_before_sync_rolls_back_executed_write (__main__.TransactionProtocol.test_disconnect_before_sync_rolls_back_executed_write) ... ERROR
+test_duplicate_names_close_and_independent_clients (__main__.TransactionProtocol.test_duplicate_names_close_and_independent_clients) ... ERROR
+test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.TransactionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary) ... ERROR
+test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions (__main__.TransactionProtocol.test_forced_reassignment_retains_resolved_types_and_all_seventeen_definitions) ... ok
+test_named_unnamed_binary_null_parameter_and_describe (__main__.TransactionProtocol.test_named_unnamed_binary_null_parameter_and_describe) ... ERROR
+test_pipeline_twelve_statements_response_order_and_error_sync (__main__.TransactionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync) ... ERROR
+test_portal_suspension_transaction_lifetime_and_close (__main__.TransactionProtocol.test_portal_suspension_transaction_lifetime_and_close) ... ERROR
+test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.TransactionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit) ... ERROR
+test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.TransactionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard) ... ERROR
+test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.TransactionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres) ... ERROR
+test_waiting_parse_cancellation_and_eof_refund_without_dispatch (__main__.TransactionProtocol.test_waiting_parse_cancellation_and_eof_refund_without_dispatch) ... ok
+
+======================================================================
+ERROR: test_1000_prepared_clients (__main__.TransactionProtocol.test_1000_prepared_clients)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_1000_prepared_clients'
+
+======================================================================
+ERROR: test_100_prepared_clients (__main__.TransactionProtocol.test_100_prepared_clients)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_100_prepared_clients'
+
+======================================================================
+ERROR: test_10_prepared_clients (__main__.TransactionProtocol.test_10_prepared_clients)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_10_prepared_clients'
+
+======================================================================
+ERROR: test_cancel_active_execute_savepoint_and_unnamed_sync_fence (__main__.TransactionProtocol.test_cancel_active_execute_savepoint_and_unnamed_sync_fence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_cancel_active_execute_savepoint_and_unnamed_sync_fence'
+
+======================================================================
+ERROR: test_disconnect_before_sync_rolls_back_executed_write (__main__.TransactionProtocol.test_disconnect_before_sync_rolls_back_executed_write)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_disconnect_before_sync_rolls_back_executed_write'
+
+======================================================================
+ERROR: test_duplicate_names_close_and_independent_clients (__main__.TransactionProtocol.test_duplicate_names_close_and_independent_clients)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_duplicate_names_close_and_independent_clients'
+
+======================================================================
+ERROR: test_flush_before_sync_preserves_implicit_transaction_commit_boundary (__main__.TransactionProtocol.test_flush_before_sync_preserves_implicit_transaction_commit_boundary)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_flush_before_sync_preserves_implicit_transaction_commit_boundary'
+
+======================================================================
+ERROR: test_named_unnamed_binary_null_parameter_and_describe (__main__.TransactionProtocol.test_named_unnamed_binary_null_parameter_and_describe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_named_unnamed_binary_null_parameter_and_describe'
+
+======================================================================
+ERROR: test_pipeline_twelve_statements_response_order_and_error_sync (__main__.TransactionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_pipeline_twelve_statements_response_order_and_error_sync'
+
+======================================================================
+ERROR: test_portal_suspension_transaction_lifetime_and_close (__main__.TransactionProtocol.test_portal_suspension_transaction_lifetime_and_close)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_portal_suspension_transaction_lifetime_and_close'
+
+======================================================================
+ERROR: test_simple_query_inside_extended_cycle_has_no_early_commit (__main__.TransactionProtocol.test_simple_query_inside_extended_cycle_has_no_early_commit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_simple_query_inside_extended_cycle_has_no_early_commit'
+
+======================================================================
+ERROR: test_sql_and_protocol_namespace_visibility_deallocation_and_discard (__main__.TransactionProtocol.test_sql_and_protocol_namespace_visibility_deallocation_and_discard)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_sql_and_protocol_namespace_visibility_deallocation_and_discard'
+
+======================================================================
+ERROR: test_unnamed_replacement_error_and_simple_query_match_postgres (__main__.TransactionProtocol.test_unnamed_replacement_error_and_simple_query_match_postgres)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 39, in setUp
+    self.output.mkdir(parents=True)
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/pathlib/__init__.py", line 1011, in mkdir
+    os.mkdir(self, mode)
+    ~~~~~~~~^^^^^^^^^^^^
+FileExistsError: [Errno 17] File exists: '/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-dev-first/test_unnamed_replacement_error_and_simple_query_match_postgres'
+
+======================================================================
+FAIL: test_pipeline_twelve_statements_response_order_and_error_sync (__main__.SessionProtocol.test_pipeline_twelve_statements_response_order_and_error_sync)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/protocol_pool.py", line 68, in test_pipeline_twelve_statements_response_order_and_error_sync
+    self.assertEqual([tag for tag, _ in replies], [b'1', b'2', b'E', b'Z'])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [b'1', b'E', b'Z'] != [b'1', b'2', b'E', b'Z']
+
+First differing element 1:
+b'E'
+b'2'
+
+Second list contains 1 additional elements.
+First extra element 3:
+b'Z'
+
+- [b'1', b'E', b'Z']
++ [b'1', b'2', b'E', b'Z']
+?        ++++++
+
+
+----------------------------------------------------------------------
+Ran 29 tests in 21.640s
+
+FAILED (failures=1, errors=13)

@@ -8,6 +8,8 @@ mod classifier_reference;
 mod cte;
 mod frontend;
 pub(crate) mod pool;
+mod prepared;
+mod protocol;
 use classification::{allowed_function, classify};
 mod wire;
 use std::{
@@ -49,6 +51,7 @@ async fn message_body<R: AsyncRead + Unpin>(stream: &mut R, tag: u8) -> Result<(
 
 struct Backend {
     stream: BufReader<TcpStream>,
+    installed: HashMap<Vec<u8>, u64>,
     _live: Guard,
     generation: u64,
     buffers: buffers::Pool,
@@ -111,6 +114,7 @@ async fn handshake(
             return Ok((
                 Backend {
                     stream: BufReader::new(stream),
+                    installed: HashMap::new(),
                     generation,
                     buffers,
                     status: b'I',
@@ -227,6 +231,8 @@ struct SessionState {
     status: u8,
     pinned: bool,
     primary_generation: u64,
+    unsynchronized: bool,
+    protocol: protocol::State,
 }
 
 impl SessionState {
@@ -311,7 +317,7 @@ async fn receive_query(
     topology: &mut watch::Receiver<Topology>,
     state: &SessionState,
 ) -> Result<Option<frontend::Incoming>> {
-    if state.transaction || state.pinned {
+    if state.transaction || state.pinned || state.unsynchronized {
         tokio::select! {
             incoming = client.recv() => Ok(incoming),
             changed = primary_changed(topology, state.primary_generation) => { changed?; bail!("primary changed during pinned session or transaction"); }
@@ -478,6 +484,20 @@ async fn ensure_backend(
     }
 }
 
+fn routing_exhausted(
+    config: &Config,
+    read: bool,
+    attempts: usize,
+    total: Instant,
+    route: Instant,
+) -> bool {
+    if read {
+        attempts >= config.read_max_attempts || Instant::now() >= total
+    } else {
+        Instant::now() >= route
+    }
+}
+
 async fn route_query(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
@@ -487,7 +507,8 @@ async fn route_query(
     kind: Kind,
     operation: &cancel::Operation,
 ) -> Result<Option<Response>> {
-    let read = state.read_eligible(kind, config.pool_mode);
+    let native = protocol::needs_native(state, body, kind);
+    let read = protocol::simple_read_eligible(state, kind, config.pool_mode, native);
     let routing_deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     // One wall-clock budget spans routing, setup and all buffered read attempts.
     // Each new routing phase has its own wait limit; healthy execution does not.
@@ -496,10 +517,7 @@ async fn route_query(
     let mut failed = HashSet::new();
     loop {
         operation.check()?;
-        if read && (attempts >= config.read_max_attempts || Instant::now() >= total_deadline) {
-            return Ok(None);
-        }
-        if !read && Instant::now() >= routing_deadline {
+        if routing_exhausted(config, read, attempts, total_deadline, routing_deadline) {
             return Ok(None);
         }
         let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
@@ -551,6 +569,7 @@ async fn route_query(
         if config.pool_mode == pool::Mode::Session {
             state.pinned = true;
         }
+        protocol::simple_backend(config, topology, state, node, operation, native).await?;
         match execute_query(
             state.backends.get_mut(&node).unwrap(),
             body,
@@ -596,7 +615,7 @@ pub(super) async fn session(
     client.set_nodelay(true)?;
     let registration = config.cancellations.register()?;
     let (reader, mut client) = client.into_split();
-    let (sender, mut incoming) = mpsc::channel(8);
+    let (sender, mut incoming) = mpsc::channel(256);
     let ready = std::sync::atomic::AtomicBool::new(false);
     let result = {
         let reading = frontend::read(reader, sender, registration.control.clone(), config.clone());
@@ -686,13 +705,20 @@ async fn session_work(
         status: b'I',
         pinned: false,
         primary_generation: topology.borrow().generation,
+        unsynchronized: false,
+        protocol: protocol::State::new(config.pool_mode == pool::Mode::Session),
     };
     let result = async {
         loop {
             let Some(mut frame) = receive_query(incoming, topology, &state).await? else { return Ok::<_, anyhow::Error>(()); };
             if frame.tag == b'X' { return Ok(()); }
+            if config.pool_mode != pool::Mode::None && (frame.tag != b'Q' || state.protocol.active()) {
+                protocol::dispatch(client, config, topology, &mut state, &registration.control, &mut frame).await?;
+                continue;
+            }
             if frame.tag != b'Q' {
-                pg_error(client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
+                frame.reject();
+                pg_error(client, "0A000", "rustybouncer unshared routed mode supports simple Query protocol only; use a shared pool for extended queries").await?;
                 bail!("session rejected");
             }
             handle_query(client, config, topology, packet, &mut state,
@@ -700,7 +726,7 @@ async fn session_work(
                 &registration.control).await?;
         }
     }.await;
-    if config.pool_mode != pool::Mode::None && result.is_ok() {
+    if config.pool_mode != pool::Mode::None && result.is_ok() && !state.unsynchronized {
         for backend in std::mem::take(&mut state.backends).into_values() {
             release_backend(config, backend, topology).await;
         }
@@ -988,6 +1014,7 @@ async fn release_backend(
                 bail!("replica reset failed");
             }
         }
+        backend.installed.clear();
         if !backend.healthy_idle() {
             bail!("unexpected backend data after reset");
         }
@@ -1041,6 +1068,7 @@ mod tests {
             let (mut peer, stream) = crate::tests::socket_pair().await;
             let backend = Backend {
                 stream: BufReader::new(stream),
+                installed: HashMap::new(),
                 _live: Metrics::default().guard(Event::Backend("test".into())),
                 generation: 1,
                 buffers: buffers::Pool::default(),
@@ -1058,6 +1086,8 @@ mod tests {
                 status,
                 pinned,
                 primary_generation: 1,
+                unsynchronized: false,
+                protocol: protocol::State::new(false),
             };
             state.discard_unassigned(mode);
             if close {
@@ -1114,6 +1144,8 @@ mod tests {
             status: b'I',
             pinned: false,
             primary_generation: 0,
+            unsynchronized: false,
+            protocol: protocol::State::new(false),
         };
         let registration = c.cancellations.register().unwrap();
         let (_reader, mut server) = server.into_split();
@@ -1138,6 +1170,7 @@ mod tests {
             let (stream, mut server) = crate::tests::socket_pair().await;
             let mut backend = Backend {
                 stream: BufReader::new(stream),
+                installed: HashMap::new(),
                 generation: 0,
                 buffers: c.result_buffers.clone(),
                 cancel_identity: (1, 2),
@@ -1190,6 +1223,7 @@ mod tests {
             let (stream, mut server) = crate::tests::socket_pair().await;
             let backend = Backend {
                 stream: BufReader::new(stream),
+                installed: HashMap::new(),
                 generation: 0,
                 buffers: c.result_buffers.clone(),
                 cancel_identity: (1, 2),

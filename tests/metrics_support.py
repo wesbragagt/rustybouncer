@@ -31,15 +31,18 @@ DOMAINS = {
     'pooling_mode': {'mode': {'none','session','transaction'}},
     'pool_resets_total': {'outcome': {'ok','error','aborted'}},
     'pool_waits_total': {'outcome': {'ok','error','aborted'}},
+    'extended_frames_total': {'kind': {'parse','bind','describe','execute','close','flush','sync','malformed'}, 'outcome': {'ok','sql_error','router_error','delivery_error','aborted'}},
+    'extended_cycles_total': {'outcome': {'ok','sql_error','router_error','delivery_error','aborted'}},
+    'extended_backend_exchanges_total': {'outcome': {'ok','sql_error','error','aborted'}},
     'pool_backends': {'phase': {'connecting','leased','resetting','idle'}},
 }
-HISTOGRAMS = {'session_duration_seconds': {}, 'query_duration_seconds': {},
+HISTOGRAMS = {'extended_frame_duration_seconds': {}, 'extended_cycle_duration_seconds': {}, 'session_duration_seconds': {}, 'query_duration_seconds': {},
               'route_wait_duration_seconds': {}, 'pool_reset_duration_seconds': {}, 'pool_wait_duration_seconds': {}, 'probe_duration_seconds': {'node': None}}
-COUNTERS = {'clients_accepted_total', 'clients_rejected_total', 'sessions_completed_total',
+COUNTERS = {'extended_frames_total','extended_cycles_total','extended_backend_exchanges_total','clients_accepted_total', 'clients_rejected_total', 'sessions_completed_total',
             'backend_connects_total', 'queries_total', 'query_attempts_total', 'read_retries_total',
             'topology_changes_total', 'primary_changes_total', 'probes_total', 'control_requests_total', 'result_buffer_rejections_total',
             'pool_reuses_total','pool_discards_total','pool_resets_total','pool_waits_total'}
-GAUGES = {'routing_enabled', 'build_info', 'clients_active', 'client_capacity',
+GAUGES = {'extended_frames_in_flight','extended_cycles_in_flight','routing_enabled', 'build_info', 'clients_active', 'client_capacity',
           'backend_connections_active', 'queries_in_flight', 'topology_nodes', 'node_role',
           'topology_ambiguous', 'topology_discovery_completed', 'topology_last_completed_timestamp_seconds', 'result_buffer_limit_bytes',
           'result_buffer_reserved_bytes', 'result_buffer_highwater_bytes', 'result_buffer_allocated_bytes','pooling_enabled','pooling_mode','pool_backend_capacity','pool_size','pool_reserve_size','pool_backend_reservations','pool_backends','pool_waiters'}
@@ -110,7 +113,7 @@ class Snapshot:
                     **dict.fromkeys(HISTOGRAMS, 'histogram')}
         assert self.types == expected, (self.types, expected)
         assert self.help == set(expected)
-        assert len(self.samples) == 184 + 29 * len(nodes), len(self.samples)
+        assert len(self.samples) == 275 + 29 * len(nodes), len(self.samples)
         for (name, pairs), _ in self.samples.items():
             base = re.sub(r'_(bucket|sum|count)$', '', name) if name not in expected else name
             domains = dict(DOMAINS.get(base, HISTOGRAMS.get(base, {})))

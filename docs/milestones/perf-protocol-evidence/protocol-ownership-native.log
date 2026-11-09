@@ -1,0 +1,128 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+    Checking rustybouncer v0.1.0 (/home/publicuser/dev/rustybouncer/worktrees/pools)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.51s
+    Checking rustybouncer v0.1.0 (/home/publicuser/dev/rustybouncer/worktrees/pools)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.57s
+   Compiling rustybouncer v0.1.0 (/home/publicuser/dev/rustybouncer/worktrees/pools)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 3.51s
+     Running unittests src/main.rs (target/debug/deps/rustybouncer-759f07f54af424cd)
+
+running 64 tests
+test buffers::tests::invalid_budget_is_rejected_before_queries ... ok
+test buffers::tests::reused_bytes_are_private_until_initialized_for_the_next_owner ... ok
+test buffers::tests::saturation_refunds_live_ownership_and_reuses_charged_capacity ... ok
+test metrics::tests::disabled_is_empty_and_guards_are_noops ... ok
+test cancel::tests::dropped_delivery_and_aborted_operation_cannot_publish_reusable_capacity ... ok
+test cancel::tests::idle_cancel_is_not_saved_for_the_next_operation_and_cancel_stops_retries ... ok
+test cancel::tests::delivery_watches_new_requests_and_disconnect_after_native_cancel ... ok
+test buffers::tests::aborted_future_returns_every_slab_without_detaching_cleanup ... ok
+test cancel::tests::registration_is_bounded_and_wrong_or_stale_secrets_do_nothing ... ok
+test cancel::tests::accepted_native_delivery_is_fenced_before_completion_and_next_operation ... ok
+test metrics::tests::bind_conflict_and_unexpected_listener_exit_are_fatal ... ok
+test metrics::tests::explicit_terminal_outcomes_are_once_only ... ok
+test metrics::tests::finite_series_budget_and_escaped_configured_labels ... ok
+test metrics::tests::parses_request_without_using_untrusted_labels ... ok
+test router::classification::tests::unsafe_inputs_never_become_retryable_reads ... ok
+test metrics::tests::abort_reconciles_session_query_and_backend_lifetimes ... ok
+test router::affinity::tests::dml_releases_at_idle_but_explicit_session_functions_retain_state ... ok
+test router::affinity::tests::primary_only_observations_and_local_state_do_not_become_retryable_reads ... ok
+test router::affinity::tests::unknown_session_effects_and_quoted_function_names_retain_affinity ... ok
+test router::pool::tests::full_wait_queue_and_expired_deadline_are_terminal_and_refund_tickets ... ok
+test router::pool::tests::reserve_delay_and_independent_identity_progress_use_real_admission_state ... ok
+test router::prepared::tests::retained_original_parse_and_resolved_types_have_independent_charge_ownership ... ok
+test router::pool::tests::generation_retirement_and_unexpected_idle_bytes_discard_ownership ... ok
+test router::pool::tests::aborted_waiter_leaves_no_ticket_or_capacity_reservation ... ok
+test router::tests::malformed_query_body_labels_are_finite ... ok
+test router::pool::tests::fifo_reuse_and_weak_idle_ownership_do_not_leak_the_manager ... ok
+test router::tests::pure_read_allowlist ... ok
+test metrics::tests::pool_configuration_and_reset_completion_have_finite_explicit_accounting ... ok
+test metrics::tests::slow_headers_are_timed_out ... ok
+test router::tests::read_only_ctes_route_to_replicas ... ok
+test router::tests::unsafe_selects_are_pinned ... ok
+test router::tests::writes_and_transactions_stay_primary ... ok
+test metrics::tests::unchanged_rounds_refresh_eligibility_and_discovery ... ok
+test router::tests::unsafe_and_unrecognized_ctes_stay_on_primary ... ok
+test router::prepared::tests::malformed_extended_lengths_targets_nulls_and_trailing_bytes_are_rejected ... ok
+test router::prepared::tests::replacing_unnamed_retains_portal_definition_until_its_transaction_ends ... ok
+test router::wire::tests::prepared_result_shape_preserves_names_and_types_without_binding_source_oids ... ok
+test router::frontend::tests::overflow_counts_all_complete_queries_and_returns_all_queue_capacity ... ok
+test router::wire::tests::private_response_preserves_binary_null_error_and_pipeline_order ... ok
+test router::wire::tests::saturated_bulk_capacity_keeps_small_results_live_and_all_paths_refund ... ok
+test router::wire::tests::vectored_frames_survive_every_header_split_and_empty_body ... ok
+test router::wire::tests::zero_write_and_disconnect_do_not_duplicate_or_finish_a_frame ... ok
+test router::wire::tests::parse_restoration_handles_partial_writes_without_changing_sql_or_types ... ok
+test router::wire::tests::invalid_ready_copy_oversize_and_truncation_discard_private_output ... ok
+test tests::primary_selection_fails_closed ... ok
+test tests::startup_declines_tls_and_preserves_packet ... ok
+test router::tests::obsolete_undispatched_leases_close_without_discarding_session_or_transaction_state ... ok
+test tests::startup_rejects_oversized_packet ... ok
+test tests::validates_config ... ok
+test router::tests::framing_boundary_excludes_truncated_and_oversized_queries ... ok
+test router::tests::topology_dropped_dispatch_is_error_external_abort_is_aborted ... ok
+test metrics::tests::scrape_capacity_is_bounded_without_an_accept_queue ... ok
+test router::wire::tests::extended_terminals_do_not_accept_early_ready_or_incomplete_describe ... ok
+test router::wire::tests::reset_parameter_validation_is_exact_across_storage_chunks ... ok
+test tests::tcp_connect_failure_has_no_live_backend_and_one_error ... ok
+test router::pool::tests::phase_and_queue_gauges_refund_on_every_owner_drop ... ok
+test router::frontend::tests::clean_eof_and_truncated_or_oversized_frames_are_distinct ... ok
+test metrics::tests::endpoint_status_content_type_and_header_limit ... ok
+test router::classification::tests::adversarial_mutations_preserve_the_frozen_classifier_contract ... ok
+test router::tests::dispatch_sql_error_and_deadline_are_distinct ... ok
+test tests::fatal_startup_is_session_error_even_after_successful_delivery ... ok
+test tests::backend_wait_is_bounded ... ok
+test router::wire::tests::exact_message_and_result_boundaries_keep_capacity_bounded ... ok
+test router::classification::tests::record_literal_and_cte_classification_cost_without_a_performance_budget ... ok
+
+test result: ok. 64 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 2.65s
+
+All checks passed!
+All checks passed!
+Complexity: 1082 functions checked; maximum 27 (src/main.rs:523, main); limit 30.
+........................................................................
+----------------------------------------------------------------------
+Ran 72 tests in 0.573s
+
+OK
+promtool, version 3.15.1 (branch: unknown, revision: unknown)
+  build user:       nix@nixpkgs
+  build date:       unknown
+  go version:       go1.26.10
+  platform:         linux/amd64
+  tags:             builtinassets
++ promtool check config deploy/prometheus/prometheus.yml
+Checking deploy/prometheus/prometheus.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check config deploy/prometheus/prometheus.compose.yml
+Checking deploy/prometheus/prometheus.compose.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.compose.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check config deploy/prometheus/prometheus.cnpg.yml
+Checking deploy/prometheus/prometheus.cnpg.yml
+  SUCCESS: 1 rule files found
+ SUCCESS: deploy/prometheus/prometheus.cnpg.yml is valid prometheus config file syntax
+
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool check rules deploy/prometheus/rules.yml
+Checking deploy/prometheus/rules.yml
+  SUCCESS: 24 rules found
+
++ promtool test rules deploy/prometheus/rules.test.yml
+  SUCCESS
+
+Checking /tmp/nix-shell.n3PVXE/rustybouncer-dashboard-_8nmt13a/queries.json
+  SUCCESS: 22 rules found
+
+Grafana: 22 PromQL targets validated.
+   Compiling rustybouncer v0.1.0 (/home/publicuser/dev/rustybouncer/worktrees/pools)
+    Finished `release` profile [optimized] target(s) in 12.08s

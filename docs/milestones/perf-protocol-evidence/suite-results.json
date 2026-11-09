@@ -1,0 +1,82 @@
+{
+  "live_cases": 144,
+  "suites": [
+    {
+      "suite": "protocol-ownership-accepted",
+      "tests": 55,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-queues",
+      "tests": 13,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-transactions",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-sessions",
+      "tests": 16,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-resources",
+      "tests": 15,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-metrics",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "expected_failures": 0,
+      "unexpected_successes": 0
+    },
+    {
+      "suite": "protocol-ownership-accepted-buffering",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "failover",
+      "tests": 7,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "long_queries",
+      "tests": 8,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "rust_tests": 64,
+  "offline_python_tests": 72,
+  "complexity_limit": 30,
+  "complexity_peak": 27
+}

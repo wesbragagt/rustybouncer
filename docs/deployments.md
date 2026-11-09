@@ -60,7 +60,8 @@ and same-connection continuity have [retained evidence](milestones/kind-cnpg.md)
 ## Configuration, operations and current limits
 
 - `route_selects = true` enables conservative SELECT/read-only CTE routing; trust
-  authentication and simple Query protocol are required. Omit it or set `false`
+  authentication is required; unshared routing uses simple Query protocol. Shared
+  pools also support extended/prepared work on the primary. Omit it or set `false`
   for session passthrough. Session mode closes on leadership changes and does not
   automatically route reads/replay queries.
 - `wait_timeout_ms` bounds routing/setup waiting. `query_timeout_ms` bounds each

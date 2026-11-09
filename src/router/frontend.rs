@@ -39,8 +39,12 @@ pub(super) async fn read(
                 Err(error) => return Err(error.into()),
             };
             let (_, body) = message_body(&mut stream, tag).await?;
-            let mut accounting =
-                (tag == b'Q').then(|| config.metrics.guard(Event::Query("malformed")));
+            let mut accounting = if tag == b'Q' {
+                Some(config.metrics.guard(Event::Query("malformed")))
+            } else {
+                protocol::frame_label(tag)
+                    .map(|kind| config.metrics.guard(Event::ExtendedFrame(kind)))
+            };
             let kind = (tag == b'Q').then(|| query_kind(&body)).flatten();
             if let Some(guard) = &mut accounting {
                 guard.classify_query(kind.map(Kind::label).unwrap_or("malformed"));
@@ -104,7 +108,7 @@ mod tests {
             let registration = c.cancellations.register().unwrap();
             let (mut client, server) = crate::tests::socket_pair().await;
             let (reader, _writer) = server.into_split();
-            let (sender, _receiver) = mpsc::channel(8);
+            let (sender, _receiver) = mpsc::channel(256);
             client.write_all(&bytes).await.unwrap();
             client.shutdown().await.unwrap();
             let result = read(reader, sender, registration.control.clone(), c).await;
@@ -120,8 +124,8 @@ mod tests {
         let registration = c.cancellations.register().unwrap();
         let (mut client, server) = crate::tests::socket_pair().await;
         let (reader, _writer) = server.into_split();
-        let (sender, mut receiver) = mpsc::channel(8);
-        for _ in 0..9 {
+        let (sender, mut receiver) = mpsc::channel(256);
+        for _ in 0..257 {
             send(&mut client, b'Q', b"SELECT 1\0").await.unwrap();
         }
         let result = read(reader, sender, registration.control.clone(), c.clone()).await;
@@ -131,10 +135,10 @@ mod tests {
             frame.reject();
             count += 1;
         }
-        assert_eq!(count, 8);
+        assert_eq!(count, 256);
         let text = String::from_utf8(c.metrics.render().unwrap()).unwrap();
         assert!(
-            text.contains("rustybouncer_queries_total{kind=\"read\",outcome=\"router_error\"} 9")
+            text.contains("rustybouncer_queries_total{kind=\"read\",outcome=\"router_error\"} 257")
         );
         assert!(text.contains("rustybouncer_queries_in_flight 0"));
         assert!(text.contains("rustybouncer_queries_total{kind=\"read\",outcome=\"aborted\"} 0"));

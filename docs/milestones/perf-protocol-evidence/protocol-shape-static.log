@@ -1,0 +1,94 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+    Checking rustybouncer v0.1.0 (/home/publicuser/dev/rustybouncer/worktrees/pools)
+error[E0501]: cannot borrow `*backend` as mutable because previous closure requires unique access
+   --> src/router/protocol.rs:438:50
+    |
+416 |     let restoring = async {
+    |                     ----- coroutine construction occurs here
+417 |         wire::send_parse(
+418 |             &mut backend.stream,
+    |                  -------------- first borrow occurs due to use of `backend.stream` in coroutine
+...
+438 |     let description = describe(config, topology, backend, cycle, definition.name()).await?;
+    |                                                  ^^^^^^^ second borrow occurs here
+...
+449 | }
+    | - first borrow might be used here, when `restoring` is dropped and runs the destructor for coroutine
+
+error[E0501]: cannot borrow `*backend` as mutable because previous closure requires unique access
+   --> src/router/protocol.rs:729:51
+    |
+704 |     let restoring = async {
+    |                     ----- coroutine construction occurs here
+705 |         wire::send_parse(
+706 |             &mut backend.stream,
+    |                  -------------- first borrow occurs due to use of `backend.stream` in coroutine
+...
+729 |     let reply = describe_simple(config, topology, backend, operation, node, &description).await?;
+    |                                                   ^^^^^^^ second borrow occurs here
+...
+737 | }
+    | - first borrow might be used here, when `restoring` is dropped and runs the destructor for coroutine
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src/router/protocol.rs:781:28
+    |
+781 |     let definition = cache.insert(std::mem::take(body), reply.response.parameter_types()?)?;
+    |                            ^^^^^^--------------------------------------------------------- argument #3 of type `std::vec::Vec<u8>` is missing
+    |
+note: method defined here
+   --> src/router/prepared.rs:246:12
+    |
+246 |     pub fn insert(
+    |            ^^^^^^
+...
+250 |         shape: Vec<u8>,
+    |         --------------
+help: provide the argument
+    |
+781 |     let definition = cache.insert(std::mem::take(body), reply.response.parameter_types()?, /* Vec<u8> */)?;
+    |                                                                                          +++++++++++++++
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src/router/prepared.rs:363:14
+    |
+363 |             .insert(parse_body(b"", b"SELECT $1::int"), vec![23])
+    |              ^^^^^^---------------------------------------------- argument #3 of type `std::vec::Vec<u8>` is missing
+    |
+note: method defined here
+   --> src/router/prepared.rs:246:12
+    |
+246 |     pub fn insert(
+    |            ^^^^^^
+...
+250 |         shape: Vec<u8>,
+    |         --------------
+help: provide the argument
+    |
+363 |             .insert(parse_body(b"", b"SELECT $1::int"), vec![23], /* Vec<u8> */)
+    |                                                                 +++++++++++++++
+
+error[E0061]: this method takes 3 arguments but 2 arguments were supplied
+   --> src/router/prepared.rs:368:14
+    |
+368 |             .insert(parse_body(b"", b"SELECT $1::text"), vec![25])
+    |              ^^^^^^----------------------------------------------- argument #3 of type `std::vec::Vec<u8>` is missing
+    |
+note: method defined here
+   --> src/router/prepared.rs:246:12
+    |
+246 |     pub fn insert(
+    |            ^^^^^^
+...
+250 |         shape: Vec<u8>,
+    |         --------------
+help: provide the argument
+    |
+368 |             .insert(parse_body(b"", b"SELECT $1::text"), vec![25], /* Vec<u8> */)
+    |                                                                  +++++++++++++++
+
+Some errors have detailed explanations: E0061, E0501.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `rustybouncer` (bin "rustybouncer") due to 3 previous errors
+warning: build failed, waiting for other jobs to finish...
+error: could not compile `rustybouncer` (bin "rustybouncer" test) due to 5 previous errors

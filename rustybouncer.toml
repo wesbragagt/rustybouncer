@@ -2,11 +2,12 @@ listen = "127.0.0.1:6432"
 max_clients = 100
 # Optional private Prometheus endpoint; absent means instrumentation is disabled.
 # metrics_listen = "127.0.0.1:9090"
-# Opt-in simple-query routing; requires trusted, trust-authenticated backends.
+# Opt-in routing; requires trusted, trust-authenticated backends.
 # Set false for the original transparent-authentication session router.
 route_selects = true
 # Shared primary session reuse is opt-in and still uses routed trust authentication.
-# none keeps historical per-client caches; transaction is a partial PERF-008 prototype.
+# none keeps historical simple-query caches; shared pools add nonretryable extended protocol.
+# PERF-008 comparison/combined acceptance remains incomplete.
 pool_mode = "none"
 pool_size = 16
 max_pool_backends = 64

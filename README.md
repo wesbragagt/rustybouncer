@@ -74,8 +74,8 @@ historical evidence.
 | Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared primary session reuse; default routed mode caches per-client connections. Transaction leases are an experimental partial slice; PERF-008 acceptance remains open |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
-| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
-| Response and memory | Streams protocol traffic | Routed results buffered to ReadyForQuery, capped at 32 MiB/result and 16 MiB/message; a 64-MiB default process-wide slab footprint bounds retained bulk results, with separate frontend/runtime overhead |
+| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
+| Response and memory | Streams protocol traffic | Simple Query buffers to ReadyForQuery; extended exchanges buffer to native terminals before client Sync. Limits are 32 MiB/exchange and 16 MiB/message, with a 64-MiB default process bulk-storage budget and separate frontend/runtime overhead |
 | Operations | Administrative console, reload and pool controls | Prometheus/Grafana support and container/CNPG examples; reload, shared-pool controls and graceful draining remain open |
 
 Choose PgBouncer when your main need is shared connection pooling and established
@@ -142,7 +142,7 @@ fresh per frontend and cannot target a later owner of a reused backend.
 
 Pool settings in [rustybouncer.toml](rustybouncer.toml) include bounded wait,
 reserve delay and retirement/reset timeouts. `pool_mode = "transaction"` currently
-implements the first simple-query lease slice: hold actual T/E transactions,
+implements transaction leases: hold actual T/E transactions,
 release after verified idle and cancellation fencing, and retain explicitly
 recognized session state. Savepoints, rollback, isolation and serialization errors
 keep PostgreSQL semantics. Known primary-only observations such as pg_backend_pid()
@@ -155,10 +155,10 @@ A reader remains active during metadata bootstrap, including pipelined input.
 Explicit pool phase/queue metrics distinguish backend saturation from frontend
 admission. Positive tests provision all 10/100/1,000 frontend levels.
 
-**PERF-008 is incomplete:** prepared/extended protocol and the complete PgBouncer
-comparison remain required work. This partial prototype must not be treated as
+**PERF-008 is incomplete:** full combined protocol verification and the complete
+PgBouncer comparison remain required work. This partial prototype must not be treated as
 full transaction-pool conformance.
-Shared pooling uses the same routed trust, simple-query and buffering restrictions
+Shared pooling uses routed trust authentication and the bounded response contract
 described below. The historical benchmark
 above did not measure this feature; final comparisons remain pending.
 
@@ -171,9 +171,36 @@ AuthenticationOk; any backend requesting a password/SCRAM challenge is rejected.
 Probe credentials never execute client queries. Do not expose this listener to
 untrusted users, and configure PostgreSQL `pg_hba.conf` for the proxy source IP.
 
-Clients must use PostgreSQL's **simple Query protocol**. `psql` works; drivers that
-use extended queries/prepared statements must disable those features or select
-opaque passthrough with `route_selects = false` and `pool_mode = "none"`. Extended-protocol messages and COPY receive explicit unsupported errors.
+With `pool_mode = "none"`, routed clients use PostgreSQL's **simple Query
+protocol**. Shared `session` and `transaction` pools additionally support
+Parse/Bind/Describe/Execute/Close/Flush/Sync and named/unnamed prepared statements.
+Extended work always uses the primary and is never replayed. Preparatory and
+Execute responses may reach the client before its Sync; the implicit transaction
+commits only at the real native boundary. Each exchange stays privately buffered
+through its native terminal (32 MiB maximum), using the shared result-storage
+budget. Simple Query still waits for a validated ReadyForQuery before exposure.
+COPY remains unsupported. Opaque passthrough uses `route_selects = false` and
+`pool_mode = "none"`.
+
+Transaction pools retain up to 128 statement names and 128 portals per frontend,
+with a 1-MiB combined retained SQL/type/name byte allowance. Limits fail closed
+with FATAL 54000; names are never silently evicted. Resolved parameter types and
+exact original SQL survive backend reassignment. Restore checks the original
+result names/types; a changed result shape closes with FATAL 0A000 so a driver
+cannot decode binary data using stale metadata. Reconnect and prepare again after
+such a schema change. Portals retain their exclusive
+backend until actual transaction completion. SQL namespace/session operations
+materialize protocol definitions and retain native session affinity, preserving
+SQL PREPARE/EXECUTE/DEALLOCATE/DISCARD and `from_sql` semantics. Session pools use
+their permanently assigned backend's native prepared namespace.
+
+An active Execute cancellation drains its native response through the client's
+Sync before reuse; a private extra Sync fences accepted native cancellation.
+Cancellation between exchanges closes/discards conservatively. Partial-delivery
+cancellation or delivery timeout closes without replay or inserting error bytes
+into a partially delivered frame. EOF before Sync rolls back unfinished work.
+The frontend queue is bounded at 256 frames and 16 MiB of active/queued bodies,
+plus one incoming frame; overflow closes explicitly.
 Routed clients receive virtual cancellation credentials. Cancellation stops read
 retries and drains the active backend before the next query; transaction/savepoint
 state is preserved. Cancellation during partial response delivery closes the

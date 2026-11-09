@@ -34,6 +34,16 @@ const QUERY_OUTCOMES: &[&str] = &[
     "delivery_error",
     "aborted",
 ];
+pub const EXTENDED_KINDS: &[&str] = &[
+    "parse",
+    "bind",
+    "describe",
+    "execute",
+    "close",
+    "flush",
+    "sync",
+    "malformed",
+];
 const ROLES: &[&str] = &["primary", "replica", "unavailable"];
 #[derive(Clone, Default)]
 pub struct Metrics(Option<Arc<Inner>>);
@@ -64,6 +74,9 @@ impl Metrics {
             ("clients_rejected_total", &[][..]),
             ("sessions_completed_total", &["outcome"][..]),
             ("backend_connects_total", &["node", "outcome"][..]),
+            ("extended_frames_total", &["kind", "outcome"][..]),
+            ("extended_cycles_total", &["outcome"][..]),
+            ("extended_backend_exchanges_total", &["outcome"][..]),
             ("queries_total", &["kind", "outcome"][..]),
             ("query_attempts_total", &["route", "outcome"][..]),
             ("read_retries_total", &[][..]),
@@ -99,6 +112,8 @@ impl Metrics {
             ("clients_active", &[][..]),
             ("client_capacity", &[][..]),
             ("backend_connections_active", &["node"][..]),
+            ("extended_frames_in_flight", &[][..]),
+            ("extended_cycles_in_flight", &[][..]),
             ("queries_in_flight", &[][..]),
             ("topology_nodes", &["role"][..]),
             ("node_role", &["node", "role"][..]),
@@ -114,6 +129,8 @@ impl Metrics {
             ("session_duration_seconds", &[][..]),
             ("pool_reset_duration_seconds", &[][..]),
             ("pool_wait_duration_seconds", &[][..]),
+            ("extended_frame_duration_seconds", &[][..]),
+            ("extended_cycle_duration_seconds", &[][..]),
             ("query_duration_seconds", &[][..]),
             ("route_wait_duration_seconds", &[][..]),
             ("probe_duration_seconds", &["node"][..]),
@@ -162,6 +179,15 @@ impl Metrics {
             for outcome in QUERY_OUTCOMES {
                 self.counter("queries_total", &[*kind, *outcome]);
             }
+        }
+        for outcome in QUERY_OUTCOMES {
+            self.counter("extended_cycles_total", &[*outcome]);
+            for kind in EXTENDED_KINDS {
+                self.counter("extended_frames_total", &[*kind, *outcome]);
+            }
+        }
+        for outcome in ["ok", "sql_error", "error", "aborted"] {
+            self.counter("extended_backend_exchanges_total", &[outcome]);
         }
         for route in ["primary", "replica"] {
             for outcome in ["ok", "sql_error", "error", "aborted"] {
@@ -284,6 +310,8 @@ impl Metrics {
         }
         let live = match &event {
             Event::Session => Some(("clients_active", vec![])),
+            Event::ExtendedFrame(_) => Some(("extended_frames_in_flight", vec![])),
+            Event::ExtendedCycle => Some(("extended_cycles_in_flight", vec![])),
             Event::Query(_) => Some(("queries_in_flight", vec![])),
             Event::Backend(node) => Some(("backend_connections_active", vec![node.as_str()])),
             _ => None,
@@ -332,6 +360,9 @@ pub enum Event {
     Session,
     PoolReset,
     PoolWait,
+    ExtendedFrame(&'static str),
+    ExtendedCycle,
+    ExtendedExchange,
     Query(&'static str),
     Attempt(&'static str),
     Connect(String),
@@ -377,6 +408,17 @@ impl Drop for Guard {
         let outcome = r.outcome.label();
         let duration = r.start.elapsed().as_secs_f64();
         match r.event {
+            Event::ExtendedFrame(kind) => {
+                m.add("extended_frames_in_flight", &[], -1);
+                m.inc("extended_frames_total", &[kind, outcome]);
+                m.observe("extended_frame_duration_seconds", &[], duration);
+            }
+            Event::ExtendedCycle => {
+                m.add("extended_cycles_in_flight", &[], -1);
+                m.inc("extended_cycles_total", &[outcome]);
+                m.observe("extended_cycle_duration_seconds", &[], duration);
+            }
+            Event::ExtendedExchange => m.inc("extended_backend_exchanges_total", &[outcome]),
             Event::PoolWait => {
                 m.inc("pool_waits_total", &[outcome]);
                 m.observe("pool_wait_duration_seconds", &[], duration);
@@ -530,7 +572,7 @@ mod tests {
             text.lines()
                 .filter(|l| !l.starts_with('#') && !l.is_empty())
                 .count(),
-            184 + 29 * c.nodes.len()
+            275 + 29 * c.nodes.len()
         );
         assert!(text.contains("node=\"quote\\\"slash\\\\line\\nend\""));
         assert!(text.contains("rustybouncer_routing_enabled 0\n"));
