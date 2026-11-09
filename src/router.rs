@@ -1,6 +1,7 @@
 //! Conservative, simple-query-only routing. Backend identity is always the
 //! client's original startup identity; no privileged probe credentials are used.
 use super::*;
+mod affinity;
 mod classification;
 #[cfg(test)]
 mod classifier_reference;
@@ -231,6 +232,31 @@ struct SessionState {
 impl SessionState {
     fn read_eligible(&self, kind: Kind, mode: pool::Mode) -> bool {
         kind == Kind::Read && !self.transaction && !self.pinned && mode != pool::Mode::Session
+    }
+    fn record_result(
+        &mut self,
+        config: &Config,
+        body: &[u8],
+        kind: Kind,
+        read: bool,
+        generation: u64,
+        status: u8,
+    ) -> Result<()> {
+        self.transaction = status != b'I';
+        self.status = status;
+        self.pinned |= if config.pool_mode == pool::Mode::Transaction {
+            let sql = std::str::from_utf8(
+                body.strip_suffix(b"\0")
+                    .context("invalid query terminator")?,
+            )?;
+            affinity::session_required(sql, kind)
+        } else {
+            kind == Kind::Stateful
+        };
+        if !read {
+            self.primary_generation = generation;
+        }
+        Ok(())
     }
     fn validate_backend(&mut self, node: usize, selected: &Topology) -> Result<()> {
         if (self.transaction || self.pinned) && selected.generation != self.primary_generation {
@@ -489,12 +515,7 @@ async fn route_query(
         .await
         {
             Ok((messages, status)) => {
-                state.transaction = status != b'I';
-                state.status = status;
-                state.pinned |= kind == Kind::Stateful;
-                if !read {
-                    state.primary_generation = selected.generation;
-                }
+                state.record_result(config, body, kind, read, selected.generation, status)?;
                 return Ok(Some(messages));
             }
             Err(error) if operation.interrupted().is_some() => {
@@ -682,9 +703,24 @@ async fn handle_query(
             accounting.finish(Outcome::RouterError);
             Err(error)
         }
-        (Ok(()), Ok(())) => Ok(()),
+        (Ok(()), Ok(())) => {
+            release_idle_transaction(config, topology, state).await;
+            Ok(())
+        }
     }
 }
+async fn release_idle_transaction(
+    config: &Config,
+    topology: &watch::Receiver<Topology>,
+    state: &mut SessionState,
+) {
+    if config.pool_mode == pool::Mode::Transaction && state.status == b'I' && !state.pinned {
+        for backend in std::mem::take(&mut state.backends).into_values() {
+            release_backend(config, backend, topology).await;
+        }
+    }
+}
+
 async fn deliver_query(
     client: &mut OwnedWriteHalf,
     config: &Config,

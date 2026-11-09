@@ -1,0 +1,39 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_aborted_transaction_cannot_donate_backend_until_rollback (__main__.Transactions.test_aborted_transaction_cannot_donate_backend_until_rollback) ... ok
+test_autocommit_errors_release_and_next_queries_remain_correct (__main__.Transactions.test_autocommit_errors_release_and_next_queries_remain_correct) ... ok
+test_cancelled_transaction_preserves_savepoint_before_release (__main__.Transactions.test_cancelled_transaction_preserves_savepoint_before_release) ... ok
+test_commit_and_rollback_chain_retain_actual_nonidle_status (__main__.Transactions.test_commit_and_rollback_chain_retain_actual_nonidle_status) ... ok
+test_disconnect_with_open_or_aborted_transaction_rolls_back (__main__.Transactions.test_disconnect_with_open_or_aborted_transaction_rolls_back) ... ok
+test_exclusive_concurrent_transactions_and_local_state (__main__.Transactions.test_exclusive_concurrent_transactions_and_local_state) ... ok
+test_multistatement_transaction_releases_only_after_final_idle (__main__.Transactions.test_multistatement_transaction_releases_only_after_final_idle) ... ok
+test_pin_commit_visibility_and_capacity_release (__main__.Transactions.test_pin_commit_visibility_and_capacity_release) ... ok
+test_read_committed_and_read_uncommitted_hide_dirty_writes (__main__.Transactions.test_read_committed_and_read_uncommitted_hide_dirty_writes) ... ok
+test_read_only_transaction_rejection_does_not_leak_state (__main__.Transactions.test_read_only_transaction_rejection_does_not_leak_state) ... ok
+test_repeatable_read_snapshot_matches_direct_postgres (__main__.Transactions.test_repeatable_read_snapshot_matches_direct_postgres) ... ok
+test_rollback_discards_writes_and_releases_capacity (__main__.Transactions.test_rollback_discards_writes_and_releases_capacity) ... ok
+test_savepoint_error_abort_and_recovery_keep_same_backend (__main__.Transactions.test_savepoint_error_abort_and_recovery_keep_same_backend) ... ok
+test_serializable_conflict_is_native_and_not_replayed (__main__.Transactions.test_serializable_conflict_is_native_and_not_replayed) ... ok
+test_session_state_is_pinned_and_reset_only_at_frontend_close (__main__.Transactions.test_session_state_is_pinned_and_reset_only_at_frontend_close) ... ok
+test_stateless_primary_observations_do_not_permanently_pin (__main__.Transactions.test_stateless_primary_observations_do_not_permanently_pin) ... ERROR
+
+======================================================================
+ERROR: test_stateless_primary_observations_do_not_permanently_pin (__main__.Transactions.test_stateless_primary_observations_do_not_permanently_pin)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/transaction_pool.py", line 152, in test_stateless_primary_observations_do_not_permanently_pin
+    self.assert_pool_free()
+    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/transaction_pool.py", line 29, in assert_pool_free
+    holder.query('BEGIN')
+    ~~~~~~~~~~~~^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 124, in query
+    return self.read_cycle()
+           ~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 102, in read_cycle
+    raise error
+failover.PgError: 53300: rustybouncer: backend pool capacity/wait deadline exhausted
+
+----------------------------------------------------------------------
+Ran 16 tests in 29.127s
+
+FAILED (errors=1)

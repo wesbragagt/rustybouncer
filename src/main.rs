@@ -149,9 +149,6 @@ impl Config {
         if self.pool_mode != router::pool::Mode::None && !self.route_selects {
             bail!("shared pools require routed trust-authenticated mode");
         }
-        if self.pool_mode == router::pool::Mode::Transaction {
-            bail!("transaction pooling implementation remains pending PERF-008");
-        }
         if self.pool_reset_timeout_ms == 0 {
             bail!("pool reset timeout must be positive");
         }

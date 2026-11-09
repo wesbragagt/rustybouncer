@@ -6,7 +6,7 @@ max_clients = 100
 # Set false for the original transparent-authentication session router.
 route_selects = true
 # Shared primary session reuse is opt-in and still uses routed trust authentication.
-# none keeps the historical per-client routed caches; transaction is pending PERF-008.
+# none keeps historical per-client caches; transaction is a partial PERF-008 prototype.
 pool_mode = "none"
 pool_size = 16
 max_pool_backends = 64

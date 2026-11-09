@@ -72,7 +72,7 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | `session_duration_seconds` | histogram | Admission until session exit, including startup and abort |
 | `backend_connections_active` | gauge, `node` | Live locally owned TCP backend connections, including setup, active leases, resets and shared idle backends; counts locally held streams, not proven live PostgreSQL sessions; excludes probes; passthrough and routed caches both counted |
 | `pooling_enabled` | gauge | 1 for an enabled shared pool, 0 for none |
-| `pooling_mode` | gauge, `mode=none\|session\|transaction` | One-hot configured mode; transaction is reserved and rejected until PERF-008 |
+| `pooling_mode` | gauge, `mode=none\|session\|transaction` | One-hot configured mode; transaction identifies the partial simple-query lease prototype; PERF-008 remains incomplete |
 | `pool_backend_capacity` | gauge | Process-wide physical backend reservation limit; 0 when pooling is disabled |
 | `pool_size` | gauge | Base per-exact-identity/node/generation capacity; 0 when disabled; reserve capacity is configured separately |
 | `pool_reuses_total` | counter | Healthy idle backend checkouts across frontend owners |

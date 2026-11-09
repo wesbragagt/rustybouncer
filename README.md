@@ -71,7 +71,7 @@ historical evidence.
 
 | Area | PgBouncer | Rustybouncer today |
 | --- | --- | --- |
-| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared primary session reuse; default routed mode caches per-client connections. Transaction pooling remains pending PERF-008 |
+| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared primary session reuse; default routed mode caches per-client connections. Transaction leases are an experimental partial slice; PERF-008 acceptance remains open |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
 | Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
@@ -141,9 +141,19 @@ idle/lifetime limits or stale generations discard. Cancellation credentials are
 fresh per frontend and cannot target a later owner of a reused backend.
 
 Pool settings in [rustybouncer.toml](rustybouncer.toml) include bounded wait,
-reserve delay and retirement/reset timeouts. `pool_mode = "transaction"` remains
-rejected until PERF-008 is verified. Shared pooling uses the same routed trust,
-simple-query and buffering restrictions described below. The historical benchmark
+reserve delay and retirement/reset timeouts. `pool_mode = "transaction"` currently
+implements the first simple-query lease slice: hold actual T/E transactions,
+release after verified idle and cancellation fencing, and retain explicitly
+recognized session state. Savepoints, rollback, isolation and serialization errors
+keep PostgreSQL semantics. Known primary-only observations such as pg_backend_pid()
+can release a lease without becoming retryable replica reads. Internal DISCARD ALL
+runs before reuse; its failure discards the backend and preserves known user outcomes.
+
+**PERF-008 is incomplete:** prepared/extended protocol, full queue lifecycle,
+phase metrics and the 1,000-client comparison are required remaining work. This
+partial prototype must not be treated as full transaction-pool conformance.
+Shared pooling uses the same routed trust, simple-query and buffering restrictions
+described below. The historical benchmark
 above did not measure this feature; final comparisons remain pending.
 
 ## Query-routing mode
@@ -249,7 +259,7 @@ leave unknown outcomes; guaranteed business retries require application idempote
 `max_clients` bounds accepted session tasks, including waiting clients; excess
 SQL startup is rejected; bounded reserve startup slots keep cancellation available. `startup_timeout_ms` bounds startup packets (64 KiB
 maximum). `wait_timeout_ms` bounds routing and backend setup. TLS, Unix
-sockets, hot reload and shared transaction pooling
+sockets, hot reload and full transaction-pool acceptance
 are not implemented. All traffic is unencrypted.
 
 ## Original session mode

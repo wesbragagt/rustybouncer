@@ -1,0 +1,29 @@
+{
+  "base": "e8befe17f86e2a7019461c9db7cf996b0b178485",
+  "state": "uncommitted PERF-008 slice1 candidate; final feature remains incomplete",
+  "production": "b08cc320fb117977ac46fef7e07e023120cd2cb000460137f1e0f32238710fc7",
+  "sources": {
+    "src/buffers.rs": "57b5df6f6c11705c9819acbca36547bf210c63dd053c9962a4fd1c439fab942d",
+    "src/cancel.rs": "ac33b87b741ed155c70ed872cbd9912ba33ec157a565d492365dde9646b51c0f",
+    "src/main.rs": "d73172db0fd50b1408a798d6611d7c893f39c8cebd2ef7f84fd8215f0fa48696",
+    "src/metrics.rs": "9cfbdb96697c505dc3448fa3b3bc383999511d0ebc04ced0bc9a8fcb2f47bfc3",
+    "src/router/affinity.rs": "39a29195c6166565f48a24f347e691eeab9897415daaa5f4b61201ffbea6acf7",
+    "src/router/classification.rs": "de7ce02e53f5349a31ce01c898e4b5cd1f8993849df063f0c4472b2a99b75125",
+    "src/router/classifier_reference.rs": "a05f7792cd5522e88f04231bd674c210078f6ff36b0bbb28a47ec4db84907c30",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "src/router/frontend.rs": "3b65552ba41a82b07fdcb7e6178547af42ff40b525313e5379f4ed96d46f531b",
+    "src/router/pool.rs": "29058bd319caca8d5ad723fd8401483ce354ff4a9ba7ef97ae2835c62b6dd3ed",
+    "src/router/wire.rs": "4a56851a72a8f0c6f95124437ab7450195776d8ff65e866229635516e4837e62",
+    "src/router.rs": "3830a6cb65e15aba4bf770bb6b6a3aca73e12079a61036f6a82c15de9f8eb536",
+    "tests/pool_support.py": "2356b3cb2782a79ef19f14c77da7e95dd0e16729b88c74e3b4aefe7765334dc3",
+    "tests/transaction_pool.py": "e5af663e38fe45915f702b42e67ab4f706b5099d89c914e84bb5cb01dba21f76",
+    "tests/session_pool.py": "bcaf1cf22c1f84c8d52431d86654472d31f6607bff1f2cd0f0518bb99834d817",
+    "Cargo.lock": "c967ab42461deead8c3861edc18c192fc9ff6ccfa9facfdca8228e2d0d662f8d"
+  },
+  "post_verification_formatting": {
+    "tests/pool_support.py": {
+      "sha256": "020e0b4330d37b184692709920cc7b8ad4ceea039d0c90c74a3269ff54ff1a5a",
+      "change": "remove extra blank line at EOF only; normal staged-snapshot hook rerun for amended commit"
+    }
+  }
+}

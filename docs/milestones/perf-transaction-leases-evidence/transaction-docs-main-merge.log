@@ -1,0 +1,26 @@
+Updating e8befe1..fd38c9d
+Fast-forward
+ docs/milestones/perf-session-comparison.md         |  65 ++
+ .../original-comparison/archive.json               |   5 +
+ .../original-comparison/environment.json           |  25 +
+ .../original-comparison/manifest.json.gz           | Bin 0 -> 90963 bytes
+ .../original-comparison/raw.tar.zst                | Bin 0 -> 139811421 bytes
+ .../original-comparison/results.json               | 512 ++++++++++++
+ .../original-comparison/run.log                    |  30 +
+ .../original-comparison/summary.json               | 872 +++++++++++++++++++++
+ .../perf-session-evidence/session-commit-hook.log  |  43 +
+ .../perf-session-evidence/session-main-merge.log   |  40 +
+ .../session-workmux-merge.log                      |  24 +
+ docs/tasks/pgbouncer-performance.md                |  31 +-
+ 12 files changed, 1639 insertions(+), 8 deletions(-)
+ create mode 100644 docs/milestones/perf-session-comparison.md
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/archive.json
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/environment.json
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/manifest.json.gz
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/raw.tar.zst
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/results.json
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/run.log
+ create mode 100644 docs/milestones/perf-session-evidence/original-comparison/summary.json
+ create mode 100644 docs/milestones/perf-session-evidence/session-commit-hook.log
+ create mode 100644 docs/milestones/perf-session-evidence/session-main-merge.log
+ create mode 100644 docs/milestones/perf-session-evidence/session-workmux-merge.log
