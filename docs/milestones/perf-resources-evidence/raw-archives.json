@@ -1,0 +1,32 @@
+[
+  {
+    "path": "raw/slab-resources.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/slab-resources",
+    "bytes": 64483,
+    "sha256": "c9297861795c20fbd3f6d68df562524dc8c3970c0274af4835e52a6b9b72855f"
+  },
+  {
+    "path": "raw/slab-regressions.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/slab-regressions",
+    "bytes": 59421,
+    "sha256": "f4356412187021519cd18135359228911dbf8fcb26256e94706dfe7c4ee51af5"
+  },
+  {
+    "path": "raw/slab-memcheck.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/slab-memcheck",
+    "bytes": 27769,
+    "sha256": "3b9ba6ffb105d659398dd8cccc4eec2d1d7621faf50a17293f2b2814817ca5c6"
+  },
+  {
+    "path": "raw/slab-large-profile.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/slab-large-profile",
+    "bytes": 268885,
+    "sha256": "0bec27748f0f1fa2521bb4739b08d5e55993c3673c41b7388dff5345de73b20d"
+  },
+  {
+    "path": "raw/final-resources.tar.zst",
+    "source": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/final-resources",
+    "bytes": 59609,
+    "sha256": "c27b306d594edf6931d8e73d2722dbb741b1e3d25438b6cf2b9fe90327643fbd"
+  }
+]

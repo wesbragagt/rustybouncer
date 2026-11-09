@@ -24,11 +24,13 @@ class MemoryAudit(unittest.TestCase):
                 self.report('<status><state>FINISHED</state></status><error><kind>' + kind + '</kind></error>')
 
     def test_even_reachable_private_response_storage_is_rejected(self):
-        with self.assertRaisesRegex(AssertionError, 'retained private response storage'):
-            self.report('''<status><state>FINISHED</state></status>
+        for function,file,directory in [('router::wire::response','wire.rs','/source/src/router'),
+                                        ('rustybouncer::buffers::Pool::try_get','buffers.rs','/source/src')]:
+            with self.subTest(function=function), self.assertRaisesRegex(AssertionError, 'retained private response storage'):
+                self.report(f'''<status><state>FINISHED</state></status>
 <error><kind>Leak_StillReachable</kind><xwhat><leakedbytes>65536</leakedbytes>
-<leakedblocks>1</leakedblocks></xwhat><stack><frame><fn>router::wire::response</fn>
-<file>wire.rs</file><dir>/source/src/router</dir></frame></stack></error>''')
+<leakedblocks>1</leakedblocks></xwhat><stack><frame><fn>{function}</fn>
+<file>{file}</file><dir>{directory}</dir></frame></stack></error>''')
 
     def test_runtime_globals_remain_visible(self):
         result = self.report('''<status><state>FINISHED</state></status>

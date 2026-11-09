@@ -1,0 +1,50 @@
+[
+  {
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "queries": 100,
+    "errors": 0,
+    "audit": {
+      "definite_indirect_possible_or_access_errors": 0,
+      "private_response_findings": 0,
+      "other_still_reachable_bytes": 67864,
+      "other_still_reachable_blocks": 84
+    }
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "queries": 100,
+    "errors": 0,
+    "audit": {
+      "definite_indirect_possible_or_access_errors": 0,
+      "private_response_findings": 0,
+      "other_still_reachable_bytes": 67864,
+      "other_still_reachable_blocks": 84
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "queries": 1000,
+    "errors": 0,
+    "audit": {
+      "definite_indirect_possible_or_access_errors": 0,
+      "private_response_findings": 0,
+      "other_still_reachable_bytes": 67864,
+      "other_still_reachable_blocks": 84
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "queries": 1000,
+    "errors": 0,
+    "audit": {
+      "definite_indirect_possible_or_access_errors": 0,
+      "private_response_findings": 0,
+      "other_still_reachable_bytes": 67864,
+      "other_still_reachable_blocks": 84
+    }
+  }
+]

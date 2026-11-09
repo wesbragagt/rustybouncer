@@ -6,7 +6,7 @@
     "auth_rejection": false,
     "backend_reuse": false,
     "backend_terminate": true,
-    "cancel": false,
+    "cancel": true,
     "certificate_validation": false,
     "client_limits": true,
     "drain": false,

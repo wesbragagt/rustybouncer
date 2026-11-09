@@ -106,11 +106,22 @@ class Instrumented(c.Fixture):
             else:
                 os.killpg(self.process.pid, signal.SIGINT)
             try:
-                self.process.wait(timeout=20)
-            except subprocess.TimeoutExpired:
-                os.killpg(self.process.pid, signal.SIGKILL)
                 self.process.wait(timeout=5)
-                raise AssertionError('owned profiler group did not finish cleanly')
+            except subprocess.TimeoutExpired:
+                # A fresh ctrl_c() receiver per select iteration in older
+                # candidates can miss SIGINT between listener registrations.
+                # Re-signal the owned group within the original 20-second bound.
+                if self.target_pid and self.target_pid != self.process.pid and self.target_pid in children(self.process.pid):
+                    with contextlib.suppress(ProcessLookupError):
+                        os.kill(self.target_pid,signal.SIGINT)
+                else:
+                    os.killpg(self.process.pid, signal.SIGINT)
+                try:
+                    self.process.wait(timeout=15)
+                except subprocess.TimeoutExpired:
+                    os.killpg(self.process.pid, signal.SIGKILL)
+                    self.process.wait(timeout=5)
+                    raise AssertionError('owned profiler group did not finish cleanly') from None
         if self.process is not None:
             status = self.process.poll()
             assert status == 0, f'owned workload/profiler exited with status {status}'

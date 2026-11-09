@@ -64,7 +64,7 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | --- | --- | --- |
 | `routing_enabled` | gauge | 1 when route_selects is enabled, otherwise 0; gates query panels and alerts |
 | `build_info` | gauge, `version` | Constant 1 with compile-time package version |
-| `clients_accepted_total` | counter | Every accepted PostgreSQL TCP socket, before admission |
+| `clients_accepted_total` | counter | SQL admission sockets, including startup; reserved control-only sockets are excluded unless rejected as excess SQL clients |
 | `clients_rejected_total` | counter | Accepted socket rejected for configured client capacity |
 | `clients_active` | gauge | Admitted session tasks, including startup; RAII lifetime |
 | `client_capacity` | gauge | Configured max_clients; no claim of backend pool size |
@@ -74,8 +74,14 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | `backend_connects_total` | counter, `node,outcome=ok\|error\|aborted` | TCP connection attempts completed or failed, including timeouts; externally dropped unfinished attempts are aborted; ok means TCP connected, not authenticated |
 | `queries_total` | counter, `kind=read\|write\|transaction\|stateful\|unsupported\|malformed`, `outcome=ok\|sql_error\|router_error\|delivery_error\|aborted` | Exactly once per fully received, validly framed routed Q message, including rejected COPY/malformed input; successful retry counts once; no passthrough series increments |
 | `queries_in_flight` | gauge | Observed routed Q messages without terminal outcome |
-| `query_duration_seconds` | histogram | Full routed Q receipt through final response delivery or terminal failure; quantiles mix all outcomes; includes routing/setup/retries and client backpressure |
+| `query_duration_seconds` | histogram | Full routed Q receipt through final response delivery or terminal failure, including bounded frontend queue wait; quantiles mix all outcomes; includes routing/setup/retries and client backpressure |
 | `query_attempts_total` | counter, `route=primary\|replica`, `outcome=ok\|sql_error\|error\|aborted` | Dispatch attempts, starting immediately before sending frontend query bytes; internal SET excluded; role at dispatch; SQL ErrorResponse is sql_error even if ReadyForQuery is received |
+| `control_requests_total` | counter | Parsed CancelRequest packets, including unknown/wrong identities; no credential labels |
+| `result_buffer_limit_bytes` | gauge | Configured process-wide bulk result capacity; excludes documented fixed frontend allowance/runtime overhead |
+| `result_buffer_reserved_bytes` | gauge | Leased slab capacities, including slabs being allocated; zero after cleanup |
+| `result_buffer_allocated_bytes` | gauge | Lazily allocated slab capacity, including leased and cached storage; retained within the limit after warmup |
+| `result_buffer_highwater_bytes` | gauge | Largest observed leased slab capacity since startup; never exceeds limit |
+| `result_buffer_rejections_total` | counter | Fail-fast bulk capacity rejections; no backend retry |
 | `read_retries_total` | counter | Second and later eligible read selections actually begun, including setup failure; does not count merely deciding a retry is possible |
 | `route_wait_duration_seconds` | histogram | Each wait_route/wait_backend selection phase, both successes and errors; excludes backend setup/execution |
 | `topology_nodes` | gauge, `role=primary\|replica\|unavailable` | Last completed probe-round classification; one primary only when unambiguous; unavailable includes noneligible nodes |
@@ -92,7 +98,7 @@ Histogram boundaries in seconds: 0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25,
 0.5, 1, 2.5, 5, 10, 30, 60, 120, 300, 600 plus +Inf. Counters are monotonic
 within one process lifetime; process restarts reset counters. Every completed discovery round updates freshness and node eligibility, even
 when no topology change is published. Preinitialize all three per-node roles.
-With N configured nodes, the inventory has 117 + 29*N exposed sample series
+With N configured nodes, the inventory has 123 + 29*N exposed sample series
 (including histogram buckets/sum/count; excluding HELP/TYPE). Disable implicit
 library collectors/created timestamps or explicitly revise and test this budget.
 Cross-family scrape snapshots are not atomic; reconciliation assertions run after quiescence.
@@ -304,3 +310,44 @@ Synthetic timestamps start at Unix zero, matching promtool's test clock.
 See [operations evidence](milestones/metrics-operations.md) for exact results and
 live integration limitations. These checks validate configuration/PromQL, not the
 future runtime endpoint or deployment reachability.
+
+## Cancellation and bounded result storage
+
+PERF-006 adds a 64-MiB default bulk-result capacity (`result_buffer_bytes`, minimum
+64 KiB, a whole slab multiple), 30-second frontend delivery deadline (`delivery_timeout_ms`) and five-second
+cancellation cleanup deadline (`cancel_cleanup_timeout_ms`). These are positive
+configuration values, independent of route/execution/retry budgets. Bulk storage uses reusable 64-KiB slabs: allocated includes both leased and cached
+storage, while reserved counts currently leased slabs. Both remain within the
+configured footprint; cached storage is not treated as free budget. Capacity errors return FATAL 53200 and discard the backend before any
+result exposure; they never trigger a read retry or imply a dispatched write
+rolled back. Allocator-retained pages are not an RSS hard limit.
+
+A bounded reader remains active during execution/delivery: at most eight queued
+frames and 16 MiB of active-plus-queued bodies per frontend, plus one incoming
+16-MiB frame. Fully received Q messages begin accounting immediately, including
+queued messages later rejected on disconnect/overflow. Internal cancellation and
+protocol rejection finalize explicit outcomes; external task abort remains
+`aborted`. Two 256-byte private response allowances per frontend cover ordinary
+small output and the cancellation synchronization barrier. Backend read buffers,
+startup/configuration data, queue metadata, allocator/runtime/socket overhead and
+probe tasks are separate fixed bounds; see [result ownership](design/result-memory.md).
+
+Routed clients receive virtual PID/secret credentials. Cancellation targets only
+their active operation, stops retries, and awaits native cancel EOF plus the
+original response drain and a private synchronization cycle before another user
+command. Actual PostgreSQL I/T/E status is retained; a canceled transaction is
+never moved to a fresh backend. Cleanup failure closes the session. Cancellation
+after response delivery starts closes the stream instead of appending an error
+inside a frame or replaying the query. A completed query may win the cancel race.
+A packet arriving during a later query on the same frontend has the same native
+PostgreSQL ambiguity; operation epochs fence accepted earlier sends and backend
+handoff, not a query identifier absent from the wire protocol.
+
+SQL admission remains bounded by max_clients. Up to 32 separately bounded startup
+slots recognize cancellation when SQL capacity is full; excess SQL startup is
+rejected without acquiring a SQL permit. These control-only tasks are excluded
+from clients_active/session duration. Cancel packets admitted through an available
+SQL slot retain ordinary session accounting. Both paths increment
+control_requests_total. Pending native sends remain owned by bounded connection
+tasks. Opaque passthrough has no virtual mapping and does not gain routed
+cancellation support from these changes.

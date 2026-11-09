@@ -121,7 +121,9 @@ def inspect(path):
         for r in findings
         if any(
             "router::wire::" in f["function"]
+            or "rustybouncer::buffers::" in f["function"]
             or (f["file"] == "wire.rs" and f["directory"].endswith("/router"))
+            or (f["file"] == "buffers.rs" and f["directory"].endswith("/src"))
             for f in r["frames"]
         )
     ]

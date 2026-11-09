@@ -67,6 +67,8 @@ impl Metrics {
             ("queries_total", &["kind", "outcome"][..]),
             ("query_attempts_total", &["route", "outcome"][..]),
             ("read_retries_total", &[][..]),
+            ("control_requests_total", &[][..]),
+            ("result_buffer_rejections_total", &[][..]),
             ("topology_changes_total", &[][..]),
             ("primary_changes_total", &[][..]),
             ("probes_total", &["node", "outcome"][..]),
@@ -77,6 +79,10 @@ impl Metrics {
         }
         for (name, labels) in [
             ("routing_enabled", &[][..]),
+            ("result_buffer_limit_bytes", &[][..]),
+            ("result_buffer_reserved_bytes", &[][..]),
+            ("result_buffer_highwater_bytes", &[][..]),
+            ("result_buffer_allocated_bytes", &[][..]),
             ("build_info", &["version"][..]),
             ("clients_active", &[][..]),
             ("client_capacity", &[][..]),
@@ -309,6 +315,13 @@ impl Guard {
             *label = kind;
         }
     }
+    pub fn finish_if_unfinished(&mut self, outcome: Outcome) {
+        if let Some(r) = &mut self.0 {
+            if matches!(r.outcome, Outcome::Aborted) {
+                r.outcome = outcome;
+            }
+        }
+    }
     pub fn finish(&mut self, outcome: Outcome) {
         if let Some(r) = &mut self.0 {
             r.outcome = outcome;
@@ -469,7 +482,7 @@ mod tests {
             text.lines()
                 .filter(|l| !l.starts_with('#') && !l.is_empty())
                 .count(),
-            117 + 29 * c.nodes.len()
+            123 + 29 * c.nodes.len()
         );
         assert!(text.contains("node=\"quote\\\"slash\\\\line\\nend\""));
         assert!(text.contains("rustybouncer_routing_enabled 0\n"));

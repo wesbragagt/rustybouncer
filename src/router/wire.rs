@@ -26,37 +26,118 @@ pub(super) async fn send<W: AsyncWrite + Unpin>(
     Ok(())
 }
 
-#[derive(Debug)]
 pub(super) struct Response {
-    pub(super) bytes: Vec<u8>,
+    small: [u8; buffers::SMALL_BYTES],
+    small_len: usize,
+    bulk: Vec<buffers::Slab>,
+    len: usize,
     pub(super) sql_error: bool,
 }
-
+impl std::fmt::Debug for Response {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("Response")
+            .field("length", &self.len)
+            .finish()
+    }
+}
 impl Response {
-    fn reserve_frame(&mut self, length: usize) -> Result<usize> {
+    fn reserve_frame(&self, length: usize) -> Result<usize> {
         let end = self
-            .bytes
-            .len()
+            .len
             .checked_add(length)
             .context("result length overflow")?;
         if end > MAX_RESULT {
             bail!("routed result exceeds 32 MiB limit");
         }
-        if self.bytes.capacity() < end {
-            // Bound capacity as well as encoded length; Vec's default growth
-            // could otherwise overshoot the limit after a large first frame.
-            let capacity = end.next_power_of_two().min(MAX_RESULT);
-            self.bytes.try_reserve_exact(capacity - self.bytes.len())?;
-        }
         Ok(end)
+    }
+    fn writable(&mut self, wanted: usize, pool: &buffers::Pool) -> Result<&mut [u8]> {
+        if self.bulk.is_empty() && self.small_len < buffers::SMALL_BYTES {
+            let count = wanted.min(buffers::SMALL_BYTES - self.small_len);
+            let start = self.small_len;
+            self.small_len += count;
+            self.len += count;
+            return Ok(&mut self.small[start..self.small_len]);
+        }
+        if self.bulk.last().is_none_or(|slab| slab.remaining() == 0) {
+            if self.bulk.len() == self.bulk.capacity() {
+                let capacity = (self.bulk.len() + 1)
+                    .next_power_of_two()
+                    .min(MAX_RESULT / buffers::SLAB_BYTES);
+                self.bulk.try_reserve_exact(capacity - self.bulk.len())?;
+            }
+            let mut slab = pool.try_get()?;
+            if self.bulk.is_empty() {
+                slab.reserve(self.small_len)
+                    .copy_from_slice(&self.small[..self.small_len]);
+                self.small_len = 0;
+            }
+            self.bulk.push(slab);
+        }
+        let slab = self.bulk.last_mut().unwrap();
+        let count = wanted.min(slab.remaining());
+        self.len += count;
+        Ok(slab.reserve(count))
+    }
+    fn append(&mut self, mut bytes: &[u8], pool: &buffers::Pool) -> Result<()> {
+        while !bytes.is_empty() {
+            let target = self.writable(bytes.len(), pool)?;
+            let count = target.len();
+            target.copy_from_slice(&bytes[..count]);
+            bytes = &bytes[count..];
+        }
+        Ok(())
+    }
+    pub(super) async fn write_to<W: AsyncWrite + Unpin>(&self, writer: &mut W) -> Result<()> {
+        if self.bulk.is_empty() {
+            writer.write_all(&self.small[..self.small_len]).await?;
+        } else {
+            for slab in &self.bulk {
+                writer.write_all(slab.data()).await?;
+            }
+        }
+        Ok(())
+    }
+    fn last_byte(&self) -> u8 {
+        self.bulk
+            .last()
+            .map(|slab| *slab.data().last().unwrap())
+            .unwrap_or_else(|| self.small[self.small_len - 1])
+    }
+    #[cfg(test)]
+    fn encoded(&self) -> Vec<u8> {
+        if self.bulk.is_empty() {
+            self.small[..self.small_len].to_vec()
+        } else {
+            self.bulk
+                .iter()
+                .flat_map(|slab| slab.data())
+                .copied()
+                .collect()
+        }
+    }
+    #[cfg(test)]
+    fn capacity(&self) -> usize {
+        if self.bulk.is_empty() {
+            buffers::SMALL_BYTES
+        } else {
+            self.bulk.len() * buffers::SLAB_BYTES
+        }
     }
 }
 
-pub(super) async fn response<R: AsyncRead + Unpin>(reader: &mut R) -> Result<(Response, u8)> {
+pub(super) async fn response<R: AsyncRead + Unpin>(
+    reader: &mut R,
+    pool: &buffers::Pool,
+) -> Result<(Response, u8)> {
     let mut result = Response {
-        bytes: Vec::with_capacity(256),
+        small: [0; buffers::SMALL_BYTES],
+        small_len: 0,
+        bulk: Vec::new(),
+        len: 0,
         sql_error: false,
     };
+    let mut work = 0usize;
     loop {
         let tag = reader.read_u8().await?;
         let size = reader.read_u32().await? as usize;
@@ -66,21 +147,34 @@ pub(super) async fn response<R: AsyncRead + Unpin>(reader: &mut R) -> Result<(Re
         if matches!(tag, b'G' | b'H' | b'W') {
             bail!("COPY is unsupported in routed mode");
         }
-        let offset = result.bytes.len();
-        let end = result.reserve_frame(size + 1)?;
-        result.bytes.push(tag);
-        result.bytes.extend_from_slice(&(size as u32).to_be_bytes());
-        result.bytes.resize(end, 0);
-        reader
-            .read_exact(&mut result.bytes[offset + 5..end])
-            .await?;
+        if tag == b'Z' && size != 5 {
+            bail!("invalid ReadyForQuery transaction status");
+        }
+        result.reserve_frame(size + 1)?;
+        let mut header = [0u8; 5];
+        header[0] = tag;
+        header[1..].copy_from_slice(&(size as u32).to_be_bytes());
+        result.append(&header, pool)?;
+        let mut remaining = size - 4;
+        while remaining > 0 {
+            let target = result.writable(remaining, pool)?;
+            let count = target.len();
+            reader.read_exact(target).await?;
+            remaining -= count;
+            work += count;
+            // A large buffered packet must not monopolize a runtime worker.
+            // The quantum is a work bound, not a latency/performance SLO.
+            if work >= 256 * 1024 {
+                tokio::task::yield_now().await;
+                work = 0;
+            }
+        }
         result.sql_error |= tag == b'E';
         if tag == b'Z' {
-            let body = &result.bytes[offset + 5..end];
-            if body.len() != 1 || !matches!(body[0], b'I' | b'T' | b'E') {
+            let status = result.last_byte();
+            if !matches!(status, b'I' | b'T' | b'E') {
                 bail!("invalid ReadyForQuery transaction status");
             }
-            let status = body[0];
             return Ok((result, status));
         }
     }
@@ -204,8 +298,12 @@ mod tests {
         let (mut writer, reader) = tokio::io::duplex(16);
         let task = tokio::spawn(async move {
             let mut reader = BufReader::new(reader);
-            let first = response(&mut reader).await.unwrap();
-            let second = response(&mut reader).await.unwrap();
+            let first = response(&mut reader, &buffers::Pool::default())
+                .await
+                .unwrap();
+            let second = response(&mut reader, &buffers::Pool::default())
+                .await
+                .unwrap();
             (first, second)
         });
         let mut first = frame(b'T', b"row description");
@@ -223,10 +321,10 @@ mod tests {
         second.extend(frame(b'Z', b"T"));
         writer.write_all(&second).await.unwrap();
         let ((a, sa), (b, sb)) = task.await.unwrap();
-        assert_eq!(a.bytes, first);
+        assert_eq!(a.encoded(), first);
         assert!(a.sql_error);
         assert_eq!(sa, b'I');
-        assert_eq!(b.bytes, second);
+        assert_eq!(b.encoded(), second);
         assert!(!b.sql_error);
         assert_eq!(sb, b'T');
     }
@@ -242,15 +340,42 @@ mod tests {
             vec![b'D', 0, 0, 0, 9, b'x'],
         ] {
             let mut reader = &bytes[..];
-            assert!(response(&mut reader).await.is_err(), "accepted {bytes:?}");
+            assert!(
+                response(&mut reader, &buffers::Pool::default())
+                    .await
+                    .is_err(),
+                "accepted {bytes:?}"
+            );
         }
+    }
+    #[tokio::test]
+    async fn saturated_bulk_capacity_keeps_small_results_live_and_all_paths_refund() {
+        let pool = buffers::Pool::new(buffers::SLAB_BYTES, Metrics::default()).unwrap();
+        let mut encoded = frame(b'D', &[7; 300]);
+        encoded.extend(frame(b'Z', b"I"));
+        let (large, _) = response(&mut encoded.as_slice(), &pool).await.unwrap();
+        assert_eq!(pool.snapshot().0, buffers::SLAB_BYTES);
+        let error = response(&mut encoded.as_slice(), &pool).await.unwrap_err();
+        assert!(error.is::<buffers::Exhausted>());
+        assert_eq!(pool.snapshot().0, buffers::SLAB_BYTES);
+        let small = frame(b'Z', b"I");
+        let (small, _) = response(&mut small.as_slice(), &pool).await.unwrap();
+        assert_eq!(pool.snapshot().0, buffers::SLAB_BYTES);
+        drop(large);
+        drop(small);
+        assert_eq!(pool.snapshot().0, 0);
+        encoded.truncate(encoded.len() - 8);
+        assert!(response(&mut encoded.as_slice(), &pool).await.is_err());
+        assert_eq!(pool.snapshot().0, 0);
     }
     #[tokio::test]
     async fn exact_message_and_result_boundaries_keep_capacity_bounded() {
         let (mut writer, reader) = tokio::io::duplex(8192);
         let task = tokio::spawn(async move {
             let mut reader = BufReader::new(reader);
-            response(&mut reader).await.unwrap()
+            response(&mut reader, &buffers::Pool::default())
+                .await
+                .unwrap()
         });
         let body = vec![0; MAX_MESSAGE - 4];
         send(&mut writer, b'D', &body).await.unwrap();
@@ -262,9 +387,9 @@ mod tests {
         send(&mut writer, b'Z', b"I").await.unwrap();
         let (result, status) = task.await.unwrap();
         assert_eq!(status, b'I');
-        assert_eq!(result.bytes.len(), MAX_RESULT);
-        assert!(result.bytes.capacity() <= MAX_RESULT);
-        let mut result = result;
+        assert_eq!(result.len, MAX_RESULT);
+        assert!(result.capacity() <= MAX_RESULT);
+        let result = result;
         assert!(result.reserve_frame(1).is_err());
     }
 }

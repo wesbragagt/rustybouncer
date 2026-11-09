@@ -1,0 +1,16 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/frozen/slab-production",
+  "sha256": "1a164ae334aaacc95a5df7e5afb7754901b1d12b988dcc922bdf0a64c63d78d9",
+  "sources": {
+    "src/main.rs": "7c7f0af3aadbf6cebff1a56ab6c8a3a75d155956a1a6d25bdb093e1f6eb2ad5c",
+    "src/cancel.rs": "ac33b87b741ed155c70ed872cbd9912ba33ec157a565d492365dde9646b51c0f",
+    "src/router.rs": "ab4cd11e3d5c9580a04183edc628f01062459e432476c94a4da40460154fb218",
+    "src/buffers.rs": "57b5df6f6c11705c9819acbca36547bf210c63dd053c9962a4fd1c439fab942d",
+    "src/metrics.rs": "e3fdda7cbdc5251a746a0f7b86ef89e678d8d8de240ab98f99de1b147bec7490",
+    "src/router/frontend.rs": "3b65552ba41a82b07fdcb7e6178547af42ff40b525313e5379f4ed96d46f531b",
+    "src/router/wire.rs": "40b839f9db0242d60d7814691fda9ce19ba5868f52fd16b738153c30b1474a3a",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c"
+  },
+  "required": "slab-resources 15 cases +slab-regressions 29 cases; original comparison remains pending",
+  "previous_candidate": "frozen/production and final-* retain contiguous ledger evidence, not slab acceptance"
+}

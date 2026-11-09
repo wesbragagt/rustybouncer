@@ -94,6 +94,8 @@ class Pg:
             if not 4 <= length <= 16 * 1024 * 1024:
                 raise RuntimeError(f"invalid PostgreSQL frame size {length}")
             body = self.exact(length - 4)
+            if kind == b"K":
+                self.cancel_key = struct.unpack("!II", body)
             if kind == b"E":
                 error = PgError(body)
                 if error.severity in ("FATAL", "PANIC"):
@@ -108,6 +110,7 @@ class Pg:
                     offset += max(size, 0)
                 rows.append(row)
             if kind == b"Z":
+                self.transaction_status = body
                 if error:
                     raise error
                 return rows

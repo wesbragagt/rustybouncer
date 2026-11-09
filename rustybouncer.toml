@@ -20,6 +20,11 @@ probe_database = "postgres"
 # Optional: read the probe password from this environment variable.
 # probe_password_env = "RUSTYBOUNCER_PROBE_PASSWORD"
 
+# Routed result storage and cleanup. Slab capacity includes cached storage.
+result_buffer_bytes = 67108864
+delivery_timeout_ms = 30000
+cancel_cleanup_timeout_ms = 5000
+
 [[nodes]]
 name = "node-a"
 host = "127.0.0.1"

@@ -2,7 +2,7 @@ use anyhow::{bail, Context, Result};
 use serde::Deserialize;
 use std::{collections::HashSet, env, sync::Arc, time::Duration};
 use tokio::{
-    io::{AsyncReadExt, AsyncWriteExt},
+    io::{AsyncReadExt, AsyncWrite, AsyncWriteExt},
     net::{TcpListener, TcpStream},
     sync::{watch, Semaphore},
     task::JoinSet,
@@ -10,6 +10,8 @@ use tokio::{
 };
 use tokio_postgres::NoTls;
 use tracing::{info, warn};
+mod buffers;
+mod cancel;
 mod metrics;
 mod router;
 use metrics::{Event, Guard, Metrics, Outcome};
@@ -30,6 +32,16 @@ struct Config {
     #[serde(skip)]
     metrics: Metrics,
     max_clients: usize,
+    #[serde(default = "default_result_buffer_bytes")]
+    result_buffer_bytes: usize,
+    #[serde(skip)]
+    result_buffers: buffers::Pool,
+    #[serde(skip)]
+    cancellations: cancel::Registry,
+    #[serde(default = "default_cancel_cleanup")]
+    cancel_cleanup_timeout_ms: u64,
+    #[serde(default = "default_delivery_timeout")]
+    delivery_timeout_ms: u64,
     probe_interval_ms: u64,
     probe_timeout_ms: u64,
     wait_timeout_ms: u64,
@@ -47,6 +59,15 @@ struct Config {
     #[serde(default)]
     route_selects: bool,
 }
+fn default_cancel_cleanup() -> u64 {
+    5000
+}
+fn default_result_buffer_bytes() -> usize {
+    buffers::DEFAULT_LIMIT
+}
+fn default_delivery_timeout() -> u64 {
+    30_000
+}
 fn default_query_timeout() -> u64 {
     300_000
 }
@@ -59,7 +80,11 @@ fn default_read_attempts() -> usize {
 
 impl Config {
     fn validate(&self) -> Result<()> {
-        if self.nodes.is_empty() || self.max_clients == 0 || self.read_max_attempts == 0 {
+        if self.nodes.is_empty()
+            || self.max_clients == 0
+            || self.max_clients > Semaphore::MAX_PERMITS
+            || self.read_max_attempts == 0
+        {
             bail!("at least one node and a positive max_clients are required");
         }
         if [
@@ -73,6 +98,10 @@ impl Config {
         .contains(&0)
         {
             bail!("timeouts and probe interval must be positive");
+        }
+        buffers::Pool::new(self.result_buffer_bytes, Metrics::default())?;
+        if self.delivery_timeout_ms == 0 || self.cancel_cleanup_timeout_ms == 0 {
+            bail!("delivery timeout must be positive");
         }
         let mut names = HashSet::new();
         let mut addresses = HashSet::new();
@@ -211,7 +240,7 @@ async fn discover(config: Arc<Config>, password: Option<String>, tx: watch::Send
     }
 }
 
-async fn pg_error(client: &mut TcpStream, code: &str, message: &str) -> Result<()> {
+async fn pg_error<W: AsyncWrite + Unpin>(client: &mut W, code: &str, message: &str) -> Result<()> {
     let mut body = Vec::new();
     for (key, value) in [(b'S', "FATAL"), (b'C', code), (b'M', message)] {
         body.push(key);
@@ -240,9 +269,7 @@ async fn startup(client: &mut TcpStream) -> Result<Vec<u8>> {
         match (code, length) {
             (80877103 | 80877104, 8) => client.write_all(b"N").await?,
             (80877102, 16) => {
-                // Backend PID/secret belongs to a specific server. Routing it to
-                // the current primary would be incorrect after a failover.
-                bail!("cancel requests are unsupported in this prototype");
+                return Ok(packet);
             }
             (196608, _) if packet.last() == Some(&0) => return Ok(packet),
             _ => bail!("unsupported PostgreSQL startup packet"),
@@ -318,14 +345,18 @@ async fn session(
     config: Arc<Config>,
     mut topology: watch::Receiver<Topology>,
 ) -> Result<()> {
-    if config.route_selects {
-        return router::session(client, config, topology).await;
-    }
     let packet = timeout(
         Duration::from_millis(config.startup_timeout_ms),
         startup(&mut client),
     )
     .await??;
+    if cancel_request(&packet) {
+        deliver_cancel(&config, &packet).await?;
+        return Ok(());
+    }
+    if config.route_selects {
+        return router::session(client, config, topology, packet).await;
+    }
     // An outer deadline bounds the entire wait, including slow DNS/connects.
     let mut ticket = None;
     let backend = timeout(
@@ -373,6 +404,41 @@ async fn session(
     Ok(())
 }
 
+fn cancel_request(packet: &[u8]) -> bool {
+    packet.len() == 16 && packet[4..8] == 80877102u32.to_be_bytes()
+}
+async fn deliver_cancel(config: &Config, packet: &[u8]) -> Result<()> {
+    config.metrics.inc("control_requests_total", &[]);
+    let pid = u32::from_be_bytes(packet[8..12].try_into().unwrap());
+    let secret = u32::from_be_bytes(packet[12..16].try_into().unwrap());
+    config
+        .cancellations
+        .request(
+            pid,
+            secret,
+            Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms),
+        )
+        .await?;
+    Ok(())
+}
+// Reserved handshake slots let cancellation work at full SQL-client capacity.
+// Overflow never consumes SQL capacity or creates an unbounded task queue.
+async fn control_session(mut stream: TcpStream, config: Arc<Config>) -> Result<()> {
+    let incoming = timeout(
+        Duration::from_millis(config.startup_timeout_ms),
+        startup(&mut stream),
+    )
+    .await;
+    match incoming {
+        Ok(Ok(packet)) if cancel_request(&packet) => deliver_cancel(&config, &packet).await,
+        _ => {
+            config.metrics.inc("clients_accepted_total", &[]);
+            config.metrics.inc("clients_rejected_total", &[]);
+            Ok(())
+        }
+    }
+}
+
 async fn accounted_session(
     mut accounting: Guard,
     stream: TcpStream,
@@ -414,6 +480,8 @@ async fn main() -> Result<()> {
         config.route_selects,
         config.max_clients,
     )?;
+    config.cancellations = cancel::Registry::new(config.max_clients);
+    config.result_buffers = buffers::Pool::new(config.result_buffer_bytes, config.metrics.clone())?;
     let metrics_listener = match &config.metrics_listen {
         Some(address) => Some(
             TcpListener::bind(address)
@@ -427,26 +495,36 @@ async fn main() -> Result<()> {
         .map(|listener| tokio::spawn(metrics::serve(listener, config.metrics.clone())));
     let listener = TcpListener::bind(&config.listen).await?;
     let permits = Arc::new(Semaphore::new(config.max_clients));
+    let control_permits = Arc::new(Semaphore::new(32));
     let (tx, rx) = watch::channel(Topology::default());
     let discovery = tokio::spawn(discover(config.clone(), password, tx));
     info!(listen = %config.listen, "rustybouncer ready");
     let mut sessions = JoinSet::new();
+    // Keep one registered receiver across admission/completion selections.
+    let shutdown = tokio::signal::ctrl_c();
+    tokio::pin!(shutdown);
     loop {
+        while let Some(result) = sessions.try_join_next() {
+            if let Err(error) = result {
+                warn!(%error,"session task failed");
+            }
+        }
         tokio::select! {
             result = async { metrics_task.as_mut().unwrap().await }, if metrics_task.is_some() => {
                 discovery.abort();
                 sessions.abort_all();
                 return metrics::listener_exit(result);
             }
-            _ = tokio::signal::ctrl_c() => break,
+            _ = &mut shutdown => break,
             result = sessions.join_next(), if !sessions.is_empty() => {
                 if let Some(Err(error)) = result { warn!(%error, "session task failed"); }
             }
             accepted = listener.accept() => {
                 let (stream, peer) = accepted?;
-                config.metrics.inc("clients_accepted_total", &[]);
+
                 match permits.clone().try_acquire_owned() {
                     Ok(permit) => {
+                        config.metrics.inc("clients_accepted_total", &[]);
                         let config = config.clone();
                         let topology = rx.clone();
                         let accounting = config.metrics.guard(Event::Session);
@@ -457,7 +535,18 @@ async fn main() -> Result<()> {
                             }
                         });
                     }
-                    Err(_) => { config.metrics.inc("clients_rejected_total", &[]); warn!(%peer, "client capacity reached; connection closed"); }
+                    Err(_) => {
+                        if let Ok(permit)=control_permits.clone().try_acquire_owned() {
+                            let config=config.clone();
+                            sessions.spawn(async move {
+                                let _permit=permit;
+                                if let Err(error)=control_session(stream,config).await {warn!(%peer,%error,"control connection ended");}
+                            });
+                        } else {
+                            config.metrics.inc("clients_accepted_total",&[]);
+                            config.metrics.inc("clients_rejected_total",&[]);
+                        }
+                    }
                 }
             }
         }
@@ -523,6 +612,19 @@ mod tests {
         let config: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
         config.validate().unwrap();
         assert_eq!(config.read_max_attempts, 3);
+        assert_eq!(config.result_buffer_bytes, buffers::DEFAULT_LIMIT);
+        assert_eq!(config.delivery_timeout_ms, 30_000);
+        assert_eq!(config.cancel_cleanup_timeout_ms, 5_000);
+        for change in [0, 1, 2, 3] {
+            let mut bad = config.clone();
+            match change {
+                0 => bad.result_buffer_bytes = 511,
+                1 => bad.delivery_timeout_ms = 0,
+                2 => bad.cancel_cleanup_timeout_ms = 0,
+                _ => bad.max_clients = usize::MAX,
+            }
+            assert!(bad.validate().is_err());
+        }
         let legacy = include_str!("../rustybouncer.toml")
             .lines()
             .filter(|line| {

@@ -2,12 +2,17 @@
 //! client's original startup identity; no privileged probe credentials are used.
 use super::*;
 mod cte;
+mod frontend;
 mod wire;
 use std::{
     collections::HashMap,
     sync::atomic::{AtomicUsize, Ordering},
 };
-use tokio::io::BufReader;
+use tokio::{
+    io::{AsyncRead, BufReader},
+    net::tcp::OwnedWriteHalf,
+    sync::mpsc,
+};
 use wire::{send, Response};
 
 const MAX_MESSAGE: usize = 16 * 1024 * 1024;
@@ -167,8 +172,11 @@ fn classify(sql: &str) -> Kind {
     }
 }
 
-async fn message(stream: &mut TcpStream) -> Result<(u8, Vec<u8>)> {
+async fn message<R: AsyncRead + Unpin>(stream: &mut R) -> Result<(u8, Vec<u8>)> {
     let tag = stream.read_u8().await?;
+    message_body(stream, tag).await
+}
+async fn message_body<R: AsyncRead + Unpin>(stream: &mut R, tag: u8) -> Result<(u8, Vec<u8>)> {
     let size = stream.read_u32().await? as usize;
     if !(4..=MAX_MESSAGE).contains(&size) {
         bail!("invalid or oversized protocol message");
@@ -182,6 +190,8 @@ struct Backend {
     stream: BufReader<TcpStream>,
     _live: Guard,
     generation: u64,
+    buffers: buffers::Pool,
+    cancel_identity: (u32, u32),
 }
 
 async fn handshake(
@@ -189,10 +199,12 @@ async fn handshake(
     packet: &[u8],
     generation: u64,
     live: Guard,
+    buffers: buffers::Pool,
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
     stream.set_nodelay(true)?;
     stream.write_all(packet).await?;
     let mut startup = Vec::new();
+    let mut cancel_identity = None;
     let mut total = 0;
     loop {
         let (tag, body) = message(&mut stream).await?;
@@ -207,14 +219,25 @@ async fn handshake(
             bail!("backend rejected startup");
         }
         let ready = tag == b'Z';
-        if tag != b'K' {
+        if tag == b'K' {
+            if body.len() != 8 || cancel_identity.is_some() {
+                bail!("invalid backend cancellation identity");
+            }
+            cancel_identity = Some((
+                u32::from_be_bytes(body[..4].try_into().unwrap()),
+                u32::from_be_bytes(body[4..].try_into().unwrap()),
+            ));
+        } else {
             startup.push((tag, body));
-        } // cancellation is unsupported
+        }
         if ready {
             return Ok((
                 Backend {
                     stream: BufReader::new(stream),
                     generation,
+                    buffers,
+                    cancel_identity: cancel_identity
+                        .context("missing backend cancellation identity")?,
                     _live: live,
                 },
                 startup,
@@ -232,7 +255,14 @@ async fn connect(
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
     timeout(Duration::from_millis(config.probe_timeout_ms), async {
         let (stream, live) = connect_tcp(config, node, ticket).await?;
-        handshake(stream, packet, generation, live).await
+        handshake(
+            stream,
+            packet,
+            generation,
+            live,
+            config.result_buffers.clone(),
+        )
+        .await
     })
     .await
     .context("backend handshake timed out")?
@@ -240,7 +270,7 @@ async fn connect(
 
 async fn result(backend: &mut Backend, query: &[u8]) -> Result<(Response, u8)> {
     send(&mut backend.stream, b'Q', query).await?;
-    wire::response(&mut backend.stream).await
+    wire::response(&mut backend.stream, &backend.buffers).await
 }
 
 async fn primary_changed(topology: &mut watch::Receiver<Topology>, generation: u64) -> Result<()> {
@@ -309,8 +339,25 @@ type QueryResult = (Response, u8);
 struct SessionState {
     backends: HashMap<usize, Backend>,
     transaction: bool,
+    status: u8,
     pinned: bool,
     primary_generation: u64,
+}
+
+impl SessionState {
+    fn validate_backend(&mut self, node: usize, selected: &Topology) -> Result<()> {
+        if (self.transaction || self.pinned) && selected.generation != self.primary_generation {
+            bail!("primary changed during pinned session or transaction");
+        }
+        if self
+            .backends
+            .get(&node)
+            .is_some_and(|b| b.generation != selected.generation)
+        {
+            self.backends.remove(&node);
+        }
+        Ok(())
+    }
 }
 
 async fn initial_backend(
@@ -323,7 +370,13 @@ async fn initial_backend(
         let (stream, selected, live) = wait_backend(config, topology, ticket).await?;
         let (backend, messages) = timeout(
             Duration::from_millis(config.startup_timeout_ms),
-            handshake(stream, packet, selected.generation, live),
+            handshake(
+                stream,
+                packet,
+                selected.generation,
+                live,
+                config.result_buffers.clone(),
+            ),
         )
         .await??;
         if topology.borrow().generation == selected.generation {
@@ -333,17 +386,17 @@ async fn initial_backend(
 }
 
 async fn receive_query(
-    client: &mut TcpStream,
+    client: &mut mpsc::Receiver<frontend::Incoming>,
     topology: &mut watch::Receiver<Topology>,
     state: &SessionState,
-) -> Result<(u8, Vec<u8>)> {
+) -> Result<Option<frontend::Incoming>> {
     if state.transaction || state.pinned {
         tokio::select! {
-            incoming = message(client) => incoming,
+            incoming = client.recv() => Ok(incoming),
             changed = primary_changed(topology, state.primary_generation) => { changed?; bail!("primary changed during pinned session or transaction"); }
         }
     } else {
-        message(client).await
+        Ok(client.recv().await)
     }
 }
 
@@ -379,30 +432,48 @@ async fn execute_query(
     selected: &Topology,
     node: usize,
     timing: (bool, Instant),
-    metrics: &Metrics,
+    context: (&Config, &cancel::Operation),
 ) -> Result<QueryResult> {
     let (read, deadline) = timing;
+    let (config, operation) = context;
+    let node_config = &config.nodes[node];
+    operation.publish(Arc::new(cancel::Target {
+        host: Arc::from(node_config.host.as_str()),
+        port: node_config.port,
+        pid: backend.cancel_identity.0,
+        secret: backend.cancel_identity.1,
+    }))?;
     let mut ticket = None;
-    let execution = async {
-        ticket = Some(
-            metrics.guard(Event::Attempt(if selected.replicas.contains(&node) {
-                "replica"
-            } else {
-                "primary"
-            })),
-        );
-        result(backend, body).await
-    };
-    let response = if read {
-        tokio::select! {
-            response = timeout(deadline.saturating_duration_since(Instant::now()), execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
-            unavailable = read_backend_unavailable(topology, node) => { Err(unavailable.err().unwrap_or_else(|| anyhow::anyhow!("read backend unavailable or topology ambiguous"))) }
-        }
-    } else {
-        tokio::select! {
-            response = execution => response,
-            changed = primary_changed(topology, selected.generation) => { Err(changed.err().unwrap_or_else(|| anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown"))) }
-        }
+    let response = {
+        let execution = async {
+            ticket = Some(config.metrics.guard(Event::Attempt(
+                if selected.replicas.contains(&node) {
+                    "replica"
+                } else {
+                    "primary"
+                },
+            )));
+            result(backend, body).await
+        };
+        tokio::pin!(execution);
+        let response = if read {
+            tokio::select! {
+                response = timeout(deadline.saturating_duration_since(Instant::now()), &mut execution) => response.map_err(anyhow::Error::from).and_then(|r| r),
+                _reason = operation.cancelled() => {
+                    timeout(Duration::from_millis(config.cancel_cleanup_timeout_ms), &mut execution).await.context("cancelled read did not drain").and_then(|r|r)
+                }
+                unavailable = read_backend_unavailable(topology, node) => { Err(unavailable.err().unwrap_or_else(|| anyhow::anyhow!("read backend unavailable or topology ambiguous"))) }
+            }
+        } else {
+            tokio::select! {
+                response = &mut execution => response,
+                _reason = operation.cancelled() => {
+                    timeout(Duration::from_millis(config.cancel_cleanup_timeout_ms), &mut execution).await.context("cancelled query did not drain").and_then(|r|r)
+                }
+                changed = primary_changed(topology, selected.generation) => { Err(changed.err().unwrap_or_else(|| anyhow::anyhow!("primary changed after query dispatch; outcome may be unknown"))) }
+            }
+        };
+        response
     };
     let outcome = match &response {
         Ok((messages, _)) if messages.sql_error => Outcome::SqlError,
@@ -410,6 +481,24 @@ async fn execute_query(
         Err(_) => Outcome::Error,
     };
     finish_ticket(&mut ticket, outcome);
+    let cancelled = operation
+        .retire(Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms))
+        .await?;
+    if cancelled && response.is_ok() {
+        // Awaited CancelRequest EOF precedes this private barrier. It cannot
+        // cancel a subsequent user command or a lease handed to another client.
+        let (_, barrier_status) = timeout(
+            Duration::from_millis(config.cancel_cleanup_timeout_ms),
+            result(backend, b"\0"),
+        )
+        .await??;
+        if response
+            .as_ref()
+            .is_ok_and(|(_, status)| *status != barrier_status)
+        {
+            bail!("transaction state changed during cancellation cleanup");
+        }
+    }
     response
 }
 
@@ -420,6 +509,7 @@ async fn route_query(
     state: &mut SessionState,
     body: &[u8],
     kind: Kind,
+    operation: &cancel::Operation,
 ) -> Result<Option<Response>> {
     let read = kind == Kind::Read && !state.transaction && !state.pinned;
     let routing_deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
@@ -429,6 +519,7 @@ async fn route_query(
     let mut attempts = 0;
     let mut failed = HashSet::new();
     loop {
+        operation.check()?;
         if read && (attempts >= config.read_max_attempts || Instant::now() >= total_deadline) {
             return Ok(None);
         }
@@ -438,25 +529,15 @@ async fn route_query(
         } else {
             routing_deadline
         };
-        let (node, selected) = match timeout(
-            deadline.saturating_duration_since(Instant::now()),
-            wait_route(config, topology, read, &failed),
-        )
-        .await
-        {
+        let routed = tokio::select! {
+            routed=timeout(deadline.saturating_duration_since(Instant::now()),wait_route(config,topology,read,&failed))=>routed,
+            reason=operation.cancelled()=>return Err(cancel::Interrupted(reason).into()),
+        };
+        let (node, selected) = match routed {
             Ok(Ok(value)) => value,
             _ => return Ok(None),
         };
-        if (state.transaction || state.pinned) && selected.generation != state.primary_generation {
-            bail!("primary changed during pinned session or transaction");
-        }
-        if state
-            .backends
-            .get(&node)
-            .is_some_and(|b| b.generation != selected.generation)
-        {
-            state.backends.remove(&node);
-        }
+        state.validate_backend(node, &selected)?;
         // Count selections, including handshake failures and pre-dispatch races.
         if read && attempts > 0 {
             config.metrics.inc("read_retries_total", &[]);
@@ -464,11 +545,13 @@ async fn route_query(
         attempts += 1;
         if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
             let mut ticket = None;
-            let prepared = timeout(
-                deadline.saturating_duration_since(Instant::now()),
-                prepare_backend(config, node, packet, &selected, read, deadline, &mut ticket),
-            )
-            .await;
+            let prepared = tokio::select! {
+                prepared=timeout(deadline.saturating_duration_since(Instant::now()),prepare_backend(config,node,packet,&selected,read,deadline,&mut ticket))=>prepared,
+                reason=operation.cancelled()=>{
+                    finish_ticket(&mut ticket,Outcome::Error);
+                    return Err(cancel::Interrupted(reason).into());
+                },
+            };
             finish_ticket(&mut ticket, Outcome::Error);
             match prepared {
                 Ok(Ok(backend)) => {
@@ -499,17 +582,25 @@ async fn route_query(
                     Instant::now() + Duration::from_millis(config.query_timeout_ms)
                 },
             ),
-            &config.metrics,
+            (config, operation),
         )
         .await
         {
             Ok((messages, status)) => {
                 state.transaction = status != b'I';
+                state.status = status;
                 state.pinned |= kind == Kind::Stateful;
                 if !read {
                     state.primary_generation = selected.generation;
                 }
                 return Ok(Some(messages));
+            }
+            Err(error) if operation.interrupted().is_some() => {
+                return Err(error);
+            }
+            Err(error) if error.is::<buffers::Exhausted>() => {
+                state.backends.remove(&node);
+                return Err(error);
             }
             Err(error) if read => {
                 warn!(node, %error, "retrying buffered pure read on another eligible backend");
@@ -528,13 +619,9 @@ pub(super) async fn session(
     mut client: TcpStream,
     config: Arc<Config>,
     mut topology: watch::Receiver<Topology>,
+    packet: Vec<u8>,
 ) -> Result<()> {
     client.set_nodelay(true)?;
-    let packet = timeout(
-        Duration::from_millis(config.startup_timeout_ms),
-        startup(&mut client),
-    )
-    .await??;
     let mut ticket = None;
     let initial = timeout(
         Duration::from_millis(config.wait_timeout_ms),
@@ -549,34 +636,79 @@ pub(super) async fn session(
             bail!("session rejected");
         }
     };
+    let registration = config.cancellations.register()?;
+    let (pid, secret) = registration.identity();
     for (tag, body) in messages {
+        if tag == b'Z' {
+            let mut identity = [0u8; 8];
+            identity[..4].copy_from_slice(&pid.to_be_bytes());
+            identity[4..].copy_from_slice(&secret.to_be_bytes());
+            send(&mut client, b'K', &identity).await?;
+        }
         send(&mut client, tag, &body).await?;
     }
     let mut state = SessionState {
         backends: HashMap::from([(primary, backend)]),
         transaction: false,
+        status: b'I',
         pinned: false,
         primary_generation: topology.borrow().generation,
     };
-    loop {
-        let (tag, body) = receive_query(&mut client, &mut topology, &state).await?;
-        if tag == b'X' {
-            return Ok(());
+    let (reader, mut client) = client.into_split();
+    let (sender, mut incoming) = mpsc::channel(8);
+    let result = {
+        let reading = frontend::read(reader, sender, registration.control.clone(), config.clone());
+        let work = async {
+            loop {
+                let Some(mut frame) = receive_query(&mut incoming, &mut topology, &state).await?
+                else {
+                    return Ok::<_, anyhow::Error>(());
+                };
+                let tag = frame.tag;
+                let body = &frame.body;
+                if tag == b'X' {
+                    return Ok(());
+                }
+                if tag != b'Q' {
+                    pg_error(&mut client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
+                    bail!("session rejected");
+                }
+                handle_query(
+                    &mut client,
+                    &config,
+                    &mut topology,
+                    &packet,
+                    &mut state,
+                    (
+                        body,
+                        frame.kind,
+                        frame
+                            .accounting
+                            .take()
+                            .context("missing query accounting")?,
+                    ),
+                    &registration.control,
+                )
+                .await?;
+            }
+        };
+        tokio::pin!(reading, work);
+        tokio::select! {
+            result=&mut work=>result,
+            end=&mut reading=>{
+                let cleanup=timeout(Duration::from_millis(config.cancel_cleanup_timeout_ms),&mut work).await;
+                match end {
+                    Ok(true)=>cleanup.context("frontend termination cleanup timed out")?,
+                    Ok(false)=>cleanup.context("frontend disconnect cleanup timed out")?,
+                    Err(error)=>Err(error),
+                }
+            }
         }
-        if tag != b'Q' {
-            pg_error(&mut client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
-            bail!("session rejected");
-        }
-        handle_query(
-            &mut client,
-            &config,
-            &mut topology,
-            &packet,
-            &mut state,
-            &body,
-        )
-        .await?;
+    };
+    while let Ok(mut frame) = incoming.try_recv() {
+        frame.reject();
     }
+    result
 }
 fn query_kind(body: &[u8]) -> Option<Kind> {
     let sql = body
@@ -599,36 +731,58 @@ impl Kind {
     }
 }
 async fn handle_query(
-    client: &mut TcpStream,
+    client: &mut OwnedWriteHalf,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
     state: &mut SessionState,
-    body: &[u8],
+    query: (&[u8], Option<Kind>, Guard),
+    control: &Arc<cancel::Control>,
 ) -> Result<()> {
-    let mut accounting = config.metrics.guard(Event::Query("malformed"));
-    let kind = query_kind(body);
-    accounting.classify_query(kind.map(Kind::label).unwrap_or("malformed"));
-    deliver_query(
+    let (body, kind, mut accounting) = query;
+    let operation = match control.begin() {
+        Ok(operation) => operation,
+        Err(error) => {
+            accounting.finish(Outcome::RouterError);
+            return Err(error);
+        }
+    };
+    let result = deliver_query(
         client,
         config,
         topology,
         packet,
         state,
         (body, kind),
-        &mut accounting,
+        (&mut accounting, &operation),
     )
-    .await
+    .await;
+    // finish also fences senders accepted immediately before completion.
+    let completion = operation
+        .finish(Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms))
+        .await;
+    match (result, completion) {
+        (Err(error), _) => {
+            accounting.finish_if_unfinished(Outcome::RouterError);
+            Err(error)
+        }
+        (Ok(()), Err(error)) => {
+            accounting.finish(Outcome::RouterError);
+            Err(error)
+        }
+        (Ok(()), Ok(())) => Ok(()),
+    }
 }
 async fn deliver_query(
-    client: &mut TcpStream,
+    client: &mut OwnedWriteHalf,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
     state: &mut SessionState,
     query: (&[u8], Option<Kind>),
-    accounting: &mut Guard,
+    context: (&mut Guard, &cancel::Operation),
 ) -> Result<()> {
+    let (accounting, operation) = context;
     let (body, kind) = query;
     let Some(kind) = kind else {
         accounting.finish(Outcome::RouterError);
@@ -644,9 +798,31 @@ async fn deliver_query(
         .await?;
         bail!("unsupported query");
     }
-    let routed = match route_query(config, topology, packet, state, body, kind).await {
+    let routed = match route_query(config, topology, packet, state, body, kind, operation).await {
         Ok(value) => value,
         Err(error) => {
+            if matches!(operation.interrupted(), Some(cancel::Reason::User))
+                && error.is::<cancel::Interrupted>()
+            {
+                operation
+                    .retire(
+                        Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms),
+                    )
+                    .await?;
+                send(
+                    client,
+                    b'E',
+                    b"SERROR\0C57014\0Mcanceling statement due to user request\0\0",
+                )
+                .await?;
+                send(client, b'Z', &[state.status]).await?;
+                accounting.finish(Outcome::SqlError);
+                return Ok(());
+            }
+            if error.is::<buffers::Exhausted>() {
+                fatal_query(client,"53200","rustybouncer: result capacity exhausted; dispatched statement outcome may be unknown; not replayed",accounting).await?;
+                return Err(error);
+            }
             accounting.finish(Outcome::RouterError);
             return Err(error);
         }
@@ -662,9 +838,18 @@ async fn deliver_query(
         bail!("routing budget exhausted");
     };
     let sql_error = messages.sql_error;
-    if let Err(error) = client.write_all(&messages.bytes).await {
+    operation
+        .retire(Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms))
+        .await?;
+    let sequence = operation.sequence();
+    let delivery = tokio::select! {
+        biased;
+        result=timeout(Duration::from_millis(config.delivery_timeout_ms),messages.write_to(client))=>result.context("frontend delivery timed out").and_then(|r|r),
+        reason=operation.delivery_interrupted(sequence)=>Err(cancel::Interrupted(reason).into()),
+    };
+    if let Err(error) = delivery {
         accounting.finish(Outcome::DeliveryError);
-        return Err(error.into());
+        return Err(error);
     }
     accounting.finish(if sql_error {
         Outcome::SqlError
@@ -673,13 +858,16 @@ async fn deliver_query(
     });
     Ok(())
 }
-async fn fatal_query(
-    client: &mut TcpStream,
+async fn fatal_query<W: tokio::io::AsyncWrite + Unpin>(
+    client: &mut W,
     code: &str,
     message: &str,
     accounting: &mut Guard,
 ) -> Result<()> {
-    let result = pg_error(client, code, message).await;
+    let result = timeout(Duration::from_secs(1), pg_error(client, code, message))
+        .await
+        .context("fatal error delivery timed out")
+        .and_then(|r| r);
     accounting.finish(if result.is_ok() {
         Outcome::RouterError
     } else {
@@ -695,6 +883,7 @@ mod tests {
     fn measured_config() -> Config {
         let mut c: Config = toml::from_str(include_str!("../rustybouncer.toml")).unwrap();
         c.metrics = Metrics::new(true, &c.nodes, true, c.max_clients).unwrap();
+        c.cancellations = cancel::Registry::new(c.max_clients);
         c
     }
     fn text(m: &Metrics) -> String {
@@ -734,14 +923,23 @@ mod tests {
         let mut state = SessionState {
             backends: HashMap::new(),
             transaction: false,
+            status: b'I',
             pinned: false,
             primary_generation: 0,
         };
-        assert!(
-            handle_query(&mut server, &c, &mut rx, &[], &mut state, &body)
-                .await
-                .is_err()
-        );
+        let registration = c.cancellations.register().unwrap();
+        let (_reader, mut server) = server.into_split();
+        assert!(handle_query(
+            &mut server,
+            &c,
+            &mut rx,
+            &[],
+            &mut state,
+            (&body, None, c.metrics.guard(Event::Query("malformed"))),
+            &registration.control
+        )
+        .await
+        .is_err());
         assert!(text(&c.metrics)
             .contains("rustybouncer_queries_total{kind=\"malformed\",outcome=\"router_error\"} 1"));
     }
@@ -753,6 +951,8 @@ mod tests {
             let mut backend = Backend {
                 stream: BufReader::new(stream),
                 generation: 0,
+                buffers: c.result_buffers.clone(),
+                cancel_identity: (1, 2),
                 _live: c.metrics.guard(Event::Backend("node-a".into())),
             };
             let topology = Topology {
@@ -769,6 +969,8 @@ mod tests {
                     std::future::pending::<()>().await;
                 }
             });
+            let registration = c.cancellations.register().unwrap();
+            let operation = registration.control.begin().unwrap();
             let response = execute_query(
                 &mut backend,
                 b"SELECT 1\0",
@@ -776,7 +978,7 @@ mod tests {
                 &topology,
                 0,
                 (true, Instant::now() + Duration::from_millis(20)),
-                &c.metrics,
+                (&c, &operation),
             )
             .await;
             assert_eq!(response.is_ok(), sql_error);
@@ -796,6 +998,8 @@ mod tests {
             let backend = Backend {
                 stream: BufReader::new(stream),
                 generation: 0,
+                buffers: c.result_buffers.clone(),
+                cancel_identity: (1, 2),
                 _live: m.guard(Event::Backend("node-a".into())),
             };
             let selected = Topology {
@@ -805,6 +1009,8 @@ mod tests {
             let (tx, mut rx) = watch::channel(selected.clone());
             let task = tokio::spawn(async move {
                 let mut backend = backend;
+                let registration = c.cancellations.register().unwrap();
+                let operation = registration.control.begin().unwrap();
                 execute_query(
                     &mut backend,
                     b"SELECT 1\0",
@@ -812,7 +1018,7 @@ mod tests {
                     &selected,
                     0,
                     (true, Instant::now() + Duration::from_secs(60)),
-                    &m,
+                    (&c, &operation),
                 )
                 .await
             });
@@ -825,7 +1031,7 @@ mod tests {
                 assert!(task.await.unwrap().is_err());
             }
             let outcome = if abort { "aborted" } else { "error" };
-            assert!(text(&c.metrics).contains(&format!(
+            assert!(text(&m).contains(&format!(
                 "rustybouncer_query_attempts_total{{outcome=\"{outcome}\",route=\"primary\"}} 1"
             )));
         }

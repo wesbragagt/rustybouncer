@@ -1,0 +1,17 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-resources-20261108/frozen/production",
+  "sha256": "8d64f64037eddd0709db93d3e9fd32906b11184ed5baf2b55c1935f647c0ad94",
+  "sources": {
+    "src/main.rs": "8f3c5466a085e8860ab9d41b115088acaabccf995370fce25b1311070ea552b2",
+    "src/cancel.rs": "ac33b87b741ed155c70ed872cbd9912ba33ec157a565d492365dde9646b51c0f",
+    "src/router.rs": "35626cf4fd9902df66c3351d50363493af12d5a1c3c0d2c401c3b2bd29eec107",
+    "src/buffers.rs": "8014de0b0cb8c527348db89cc4e8f79fccdb1c1bd70bb85161676decccccfe71",
+    "src/metrics.rs": "1a9947ec7f38cbeca4bb8b57fdf62ecdd0ee8bc3e62ec298f1101d855924cf1e",
+    "src/router/frontend.rs": "3b65552ba41a82b07fdcb7e6178547af42ff40b525313e5379f4ed96d46f531b",
+    "src/router/wire.rs": "f6d1440e01643a57c9f0c9c90210b97c8a49c7dca7c009702aa7cc41f8cbd1f6",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c"
+  },
+  "base": "088b3e763eeb5187a64e0e4dab2169ffad4f6b23",
+  "dependency_sync": "fast-forward to main 088b3e7; local runtime source preserved; no merge commit created",
+  "scope": "final-resources plus final-regressions required after receipt/protocol accounting corrections; prior developmental logs retained"
+}

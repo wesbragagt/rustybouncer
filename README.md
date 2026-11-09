@@ -22,7 +22,8 @@ dashboard and complementary PostgreSQL, CNPG and infrastructure dashboards.
 
 ## PgBouncer comparison
 
-Measured on 2026-11-08: PgBouncer **1.26.1**, this optimized Rustybouncer release,
+Historical baseline `c8997e8`, measured on 2026-11-08: PgBouncer **1.26.1**,
+the Rustybouncer release at that commit,
 and the same PostgreSQL 16 primary. A random indexed lookup over 10,000 rows
 returns a 128-byte payload; clients stay connected and use simple query protocol.
 Each cell summarizes three 30-second runs after 5-second warmups, with rotated
@@ -44,7 +45,7 @@ is trust on an isolated loopback fixture.
 | Rustybouncer passthrough | 100 | 186,693 | 0.508 | 0.915 | 1.436 | 100 |
 | Rustybouncer routed → primary | 100 | 93,031 | 0.987 | 1.942 | 2.674 | 100 |
 
-Routed Rustybouncer is slower than both PgBouncer modes on this workload; it
+In this historical baseline, routed Rustybouncer is slower than both PgBouncer modes; it
 classifies and buffers each query. Passthrough has different semantics and cannot
 stand in for routed-mode performance. At 100 clients its throughput exceeds the
 single PgBouncer process, but this is **not an equal-core efficiency comparison**:
@@ -62,7 +63,9 @@ prepared statements, writes, TLS or large-result memory pressure.
 [Reproduce, individual runs, ranges and provenance](docs/benchmarks/pgbouncer-comparison.md).
 
 The [performance improvement task backlog](docs/tasks/pgbouncer-performance.md)
-prioritizes profiling, routed-path optimizations, tail latency and shared pooling.
+records later wire/classifier studies and the remaining tail-latency/shared-pooling
+work. A final combined comparison remains pending; this table is preserved as
+historical evidence.
 
 ### Advantages and trade-offs
 
@@ -71,8 +74,8 @@ prioritizes profiling, routed-path optimizations, tail latency and shared poolin
 | Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Backends belong to each client; routed sessions can cache a connection per node. No shared transaction pool |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
-| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY, cancellation routing or TLS. Passthrough preserves backend protocol/authentication |
-| Response and memory | Streams protocol traffic | Routed results buffered to ReadyForQuery, capped at 32 MiB/result and 16 MiB/message; memory grows with concurrent results |
+| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
+| Response and memory | Streams protocol traffic | Routed results buffered to ReadyForQuery, capped at 32 MiB/result and 16 MiB/message; a 64-MiB default process-wide slab footprint bounds retained bulk results, with separate frontend/runtime overhead |
 | Operations | Administrative console, reload and pool controls | Prometheus/Grafana support and container/CNPG examples; reload, shared-pool controls and graceful draining remain open |
 
 Choose PgBouncer when your main need is shared connection pooling and established
@@ -132,7 +135,10 @@ untrusted users, and configure PostgreSQL `pg_hba.conf` for the proxy source IP.
 Clients must use PostgreSQL's **simple Query protocol**. `psql` works; drivers that
 use extended queries/prepared statements must disable those features or use session
 mode. Extended-protocol messages and COPY receive explicit unsupported errors.
-Cancellation packets are dropped and backend cancellation keys are not exposed.
+Routed clients receive virtual cancellation credentials. Cancellation stops read
+retries and drains the active backend before the next query; transaction/savepoint
+state is preserved. Cancellation during partial response delivery closes the
+connection. Opaque passthrough cancellation remains unsupported.
 
 On a persistent client connection:
 
@@ -194,8 +200,13 @@ returned unchanged. Healthy reads can finish when an unrelated primary changes
 or their replica becomes the unique primary.
 A response is limited to 32 MiB and an individual protocol message to 16 MiB.
 Oversized results close the connection. Writes have no automatic execution timeout;
-set PostgreSQL-side statement timeouts as needed. Memory use can grow with the number
-of concurrent buffered results.
+set PostgreSQL-side statement timeouts as needed. `result_buffer_bytes` defaults to
+64 MiB of reusable bulk storage, including cached slabs. Small results use fixed
+inline storage. Capacity exhaustion returns FATAL 53200 before result exposure and
+does not trigger retries. `delivery_timeout_ms` defaults to 30 seconds;
+`cancel_cleanup_timeout_ms` defaults to 5 seconds. These limits do not bound total
+process RSS. See [memory ownership](docs/design/result-memory.md) and
+[metrics](docs/metrics.md) for accounting and overhead.
 
 ## Discovery and failure boundaries
 
@@ -213,9 +224,9 @@ fencing and replication durability remain necessary. Disconnects during COMMIT c
 leave unknown outcomes; guaranteed business retries require application idempotency.
 
 `max_clients` bounds accepted session tasks, including waiting clients; excess
-connections close immediately. `startup_timeout_ms` bounds startup packets (64 KiB
+SQL startup is rejected; bounded reserve startup slots keep cancellation available. `startup_timeout_ms` bounds startup packets (64 KiB
 maximum). `wait_timeout_ms` bounds routing and backend setup. TLS, Unix
-sockets, hot reload, cancellation routing, and shared transaction pooling
+sockets, hot reload and shared transaction pooling
 are not implemented. All traffic is unencrypted.
 
 ## Original session mode
