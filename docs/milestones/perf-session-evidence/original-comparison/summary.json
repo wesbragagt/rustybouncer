@@ -1,0 +1,872 @@
+[
+  {
+    "clients": 10,
+    "target": "direct",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.004592776997015,
+        "transactions": 6722835,
+        "errors": 0,
+        "tps": 224111.973264,
+        "measurement_started_monotonic": 1162452.355526544,
+        "measurement_finished_monotonic": 1162482.360119321,
+        "target": "direct",
+        "clients": 10,
+        "repetition": 1,
+        "sample_count": 670882,
+        "p50_ms": 0.039,
+        "p95_ms": 0.07,
+        "p99_ms": 0.112,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.00391640421003,
+        "transactions": 6271740,
+        "errors": 0,
+        "tps": 209079.563072,
+        "measurement_started_monotonic": 1162628.912747305,
+        "measurement_finished_monotonic": 1162658.916663709,
+        "target": "direct",
+        "clients": 10,
+        "repetition": 2,
+        "sample_count": 626403,
+        "p50_ms": 0.042,
+        "p95_ms": 0.078,
+        "p99_ms": 0.127,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.006423300132155,
+        "transactions": 6304041,
+        "errors": 0,
+        "tps": 210160.227462,
+        "measurement_started_monotonic": 1162911.45180834,
+        "measurement_finished_monotonic": 1162941.45823164,
+        "target": "direct",
+        "clients": 10,
+        "repetition": 3,
+        "sample_count": 631403,
+        "p50_ms": 0.041,
+        "p95_ms": 0.079,
+        "p99_ms": 0.13,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      }
+    ],
+    "tps": {
+      "median": 210160.227462,
+      "min": 209079.563072,
+      "max": 224111.973264,
+      "sample_cv": 0.0390972768924837
+    },
+    "p50_ms": {
+      "median": 0.041,
+      "min": 0.039,
+      "max": 0.042,
+      "sample_cv": 0.037562095860293805
+    },
+    "p95_ms": {
+      "median": 0.078,
+      "min": 0.07,
+      "max": 0.079,
+      "sample_cv": 0.06519228452400322
+    },
+    "p99_ms": {
+      "median": 0.127,
+      "min": 0.112,
+      "max": 0.13,
+      "sample_cv": 0.07840366472351996
+    },
+    "backend_connections_peak": {
+      "median": 10,
+      "min": 10,
+      "max": 10,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 10,
+    "target": "pgbouncer-session",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.00234234589152,
+        "transactions": 4639056,
+        "errors": 0,
+        "tps": 154636.540183,
+        "measurement_started_monotonic": 1162487.718574956,
+        "measurement_finished_monotonic": 1162517.720917302,
+        "target": "pgbouncer-session",
+        "clients": 10,
+        "repetition": 1,
+        "sample_count": 464626,
+        "p50_ms": 0.061,
+        "p95_ms": 0.085,
+        "p99_ms": 0.13,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.002235619118437,
+        "transactions": 4365675,
+        "errors": 0,
+        "tps": 145524.115318,
+        "measurement_started_monotonic": 1162770.216475972,
+        "measurement_finished_monotonic": 1162800.218711591,
+        "target": "pgbouncer-session",
+        "clients": 10,
+        "repetition": 2,
+        "sample_count": 437757,
+        "p50_ms": 0.063,
+        "p95_ms": 0.09,
+        "p99_ms": 0.139,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.003068829886615,
+        "transactions": 4658648,
+        "errors": 0,
+        "tps": 155286.558515,
+        "measurement_started_monotonic": 1162946.804316906,
+        "measurement_finished_monotonic": 1162976.807385736,
+        "target": "pgbouncer-session",
+        "clients": 10,
+        "repetition": 3,
+        "sample_count": 466236,
+        "p50_ms": 0.061,
+        "p95_ms": 0.084,
+        "p99_ms": 0.129,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      }
+    ],
+    "tps": {
+      "median": 154636.540183,
+      "min": 145524.115318,
+      "max": 155286.558515,
+      "sample_cv": 0.035954043763026
+    },
+    "p50_ms": {
+      "median": 0.061,
+      "min": 0.061,
+      "max": 0.063,
+      "sample_cv": 0.01872487359533923
+    },
+    "p95_ms": {
+      "median": 0.085,
+      "min": 0.084,
+      "max": 0.09,
+      "sample_cv": 0.03723417282236656
+    },
+    "p99_ms": {
+      "median": 0.13,
+      "min": 0.129,
+      "max": 0.139,
+      "sample_cv": 0.0415143508589405
+    },
+    "backend_connections_peak": {
+      "median": 10,
+      "min": 10,
+      "max": 10,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 10,
+    "target": "pgbouncer-transaction",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.00236990605481,
+        "transactions": 4672420,
+        "errors": 0,
+        "tps": 155749.37365,
+        "measurement_started_monotonic": 1162523.053685283,
+        "measurement_finished_monotonic": 1162553.056055189,
+        "target": "pgbouncer-transaction",
+        "clients": 10,
+        "repetition": 1,
+        "sample_count": 467045,
+        "p50_ms": 0.061,
+        "p95_ms": 0.082,
+        "p99_ms": 0.118,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.002234561135992,
+        "transactions": 4444290,
+        "errors": 0,
+        "tps": 148144.427125,
+        "measurement_started_monotonic": 1162734.832394206,
+        "measurement_finished_monotonic": 1162764.834628767,
+        "target": "pgbouncer-transaction",
+        "clients": 10,
+        "repetition": 2,
+        "sample_count": 444655,
+        "p50_ms": 0.063,
+        "p95_ms": 0.091,
+        "p99_ms": 0.148,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.002254755003378,
+        "transactions": 4369233,
+        "errors": 0,
+        "tps": 145642.624393,
+        "measurement_started_monotonic": 1162805.615621146,
+        "measurement_finished_monotonic": 1162835.617875901,
+        "target": "pgbouncer-transaction",
+        "clients": 10,
+        "repetition": 3,
+        "sample_count": 436825,
+        "p50_ms": 0.064,
+        "p95_ms": 0.09,
+        "p99_ms": 0.136,
+        "backend_connections_min": 10,
+        "backend_connections_peak": 10
+      }
+    ],
+    "tps": {
+      "median": 148144.427125,
+      "min": 145642.624393,
+      "max": 155749.37365,
+      "sample_cv": 0.035127666635430155
+    },
+    "p50_ms": {
+      "median": 0.063,
+      "min": 0.061,
+      "max": 0.064,
+      "sample_cv": 0.024375402632743855
+    },
+    "p95_ms": {
+      "median": 0.09,
+      "min": 0.082,
+      "max": 0.091,
+      "sample_cv": 0.05626862580588871
+    },
+    "p99_ms": {
+      "median": 0.136,
+      "min": 0.118,
+      "max": 0.148,
+      "sample_cv": 0.11268409604881716
+    },
+    "backend_connections_peak": {
+      "median": 10,
+      "min": 10,
+      "max": 10,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-session",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.005050945095718,
+        "transactions": 4625888,
+        "errors": 0,
+        "tps": 154202.486167,
+        "measurement_started_monotonic": 1162558.43129299,
+        "measurement_finished_monotonic": 1162588.436343935,
+        "target": "rustybouncer-session",
+        "clients": 10,
+        "repetition": 1,
+        "sample_count": 462506,
+        "p50_ms": 0.058,
+        "p95_ms": 0.095,
+        "p99_ms": 0.171,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.00432526995428,
+        "transactions": 4690059,
+        "errors": 0,
+        "tps": 156351.685657,
+        "measurement_started_monotonic": 1162699.512517943,
+        "measurement_finished_monotonic": 1162729.516843213,
+        "target": "rustybouncer-session",
+        "clients": 10,
+        "repetition": 2,
+        "sample_count": 469168,
+        "p50_ms": 0.059,
+        "p95_ms": 0.092,
+        "p99_ms": 0.152,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.004952889867127,
+        "transactions": 3908379,
+        "errors": 0,
+        "tps": 130288.081417,
+        "measurement_started_monotonic": 1162841.00851,
+        "measurement_finished_monotonic": 1162871.01346289,
+        "target": "rustybouncer-session",
+        "clients": 10,
+        "repetition": 3,
+        "sample_count": 391078,
+        "p50_ms": 0.064,
+        "p95_ms": 0.138,
+        "p99_ms": 0.27,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      }
+    ],
+    "tps": {
+      "median": 154202.486167,
+      "min": 130288.081417,
+      "max": 156351.685657,
+      "sample_cv": 0.09845271977781593
+    },
+    "p50_ms": {
+      "median": 0.059,
+      "min": 0.058,
+      "max": 0.064,
+      "sample_cv": 0.05327983845852462
+    },
+    "p95_ms": {
+      "median": 0.095,
+      "min": 0.092,
+      "max": 0.138,
+      "sample_cv": 0.23756157719332455
+    },
+    "p99_ms": {
+      "median": 0.171,
+      "min": 0.152,
+      "max": 0.27,
+      "sample_cv": 0.3205333903356635
+    },
+    "backend_connections_peak": {
+      "median": 10,
+      "min": 10,
+      "max": 10,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 10,
+    "target": "rustybouncer-routed",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.00740902707912,
+        "transactions": 4044790,
+        "errors": 0,
+        "tps": 134832.796319,
+        "measurement_started_monotonic": 1162593.709072853,
+        "measurement_finished_monotonic": 1162623.71648188,
+        "target": "rustybouncer-routed",
+        "clients": 10,
+        "repetition": 1,
+        "sample_count": 404793,
+        "p50_ms": 0.065,
+        "p95_ms": 0.113,
+        "p99_ms": 0.182,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.004993820097297,
+        "transactions": 3959534,
+        "errors": 0,
+        "tps": 131996.777566,
+        "measurement_started_monotonic": 1162664.253117831,
+        "measurement_finished_monotonic": 1162694.258111651,
+        "target": "rustybouncer-routed",
+        "clients": 10,
+        "repetition": 2,
+        "sample_count": 396260,
+        "p50_ms": 0.068,
+        "p95_ms": 0.115,
+        "p99_ms": 0.175,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      },
+      {
+        "wall_seconds": 30.00416586897336,
+        "transactions": 3303236,
+        "errors": 0,
+        "tps": 110120.185445,
+        "measurement_started_monotonic": 1162876.266742501,
+        "measurement_finished_monotonic": 1162906.27090837,
+        "target": "rustybouncer-routed",
+        "clients": 10,
+        "repetition": 3,
+        "sample_count": 330191,
+        "p50_ms": 0.083,
+        "p95_ms": 0.141,
+        "p99_ms": 0.25,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 10
+      }
+    ],
+    "tps": {
+      "median": 131996.777566,
+      "min": 110120.185445,
+      "max": 134832.796319,
+      "sample_cv": 0.1076299269677592
+    },
+    "p50_ms": {
+      "median": 0.068,
+      "min": 0.065,
+      "max": 0.083,
+      "sample_cv": 0.13393959390267993
+    },
+    "p95_ms": {
+      "median": 0.115,
+      "min": 0.113,
+      "max": 0.141,
+      "sample_cv": 0.12699592968953902
+    },
+    "p99_ms": {
+      "median": 0.182,
+      "min": 0.175,
+      "max": 0.25,
+      "sample_cv": 0.20475446555335905
+    },
+    "backend_connections_peak": {
+      "median": 10,
+      "min": 10,
+      "max": 10,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 100,
+    "target": "direct",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.017649692017585,
+        "transactions": 7423017,
+        "errors": 0,
+        "tps": 247675.226485,
+        "measurement_started_monotonic": 1163123.974814103,
+        "measurement_finished_monotonic": 1163153.992463795,
+        "target": "direct",
+        "clients": 100,
+        "repetition": 1,
+        "sample_count": 741425,
+        "p50_ms": 0.254,
+        "p95_ms": 1.098,
+        "p99_ms": 2.797,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.014373678946868,
+        "transactions": 8132334,
+        "errors": 0,
+        "tps": 271318.423266,
+        "measurement_started_monotonic": 1163195.199500506,
+        "measurement_finished_monotonic": 1163225.213874185,
+        "target": "direct",
+        "clients": 100,
+        "repetition": 2,
+        "sample_count": 813192,
+        "p50_ms": 0.237,
+        "p95_ms": 1.011,
+        "p99_ms": 2.439,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.018774830037728,
+        "transactions": 8161846,
+        "errors": 0,
+        "tps": 272448.528305,
+        "measurement_started_monotonic": 1163407.574069546,
+        "measurement_finished_monotonic": 1163437.592844376,
+        "target": "direct",
+        "clients": 100,
+        "repetition": 3,
+        "sample_count": 815239,
+        "p50_ms": 0.233,
+        "p95_ms": 1.008,
+        "p99_ms": 2.378,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      }
+    ],
+    "tps": {
+      "median": 271318.423266,
+      "min": 247675.226485,
+      "max": 272448.528305,
+      "sample_cv": 0.05302240787645031
+    },
+    "p50_ms": {
+      "median": 0.237,
+      "min": 0.233,
+      "max": 0.254,
+      "sample_cv": 0.04620367039689981
+    },
+    "p95_ms": {
+      "median": 1.011,
+      "min": 1.008,
+      "max": 1.098,
+      "sample_cv": 0.04919876003515718
+    },
+    "p99_ms": {
+      "median": 2.439,
+      "min": 2.378,
+      "max": 2.797,
+      "sample_cv": 0.08919020878880494
+    },
+    "backend_connections_peak": {
+      "median": 100,
+      "min": 100,
+      "max": 100,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 100,
+    "target": "pgbouncer-session",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.00392211205326,
+        "transactions": 4285472,
+        "errors": 0,
+        "tps": 142921.222828,
+        "measurement_started_monotonic": 1162982.299252132,
+        "measurement_finished_monotonic": 1163012.303174244,
+        "target": "pgbouncer-session",
+        "clients": 100,
+        "repetition": 1,
+        "sample_count": 428437,
+        "p50_ms": 0.655,
+        "p95_ms": 0.962,
+        "p99_ms": 1.458,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.0061511232052,
+        "transactions": 3653170,
+        "errors": 0,
+        "tps": 121837.106,
+        "measurement_started_monotonic": 1163159.662239974,
+        "measurement_finished_monotonic": 1163189.668391097,
+        "target": "pgbouncer-session",
+        "clients": 100,
+        "repetition": 2,
+        "sample_count": 364986,
+        "p50_ms": 0.743,
+        "p95_ms": 1.31,
+        "p99_ms": 2.047,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.0044821461197,
+        "transactions": 3700625,
+        "errors": 0,
+        "tps": 123414.384659,
+        "measurement_started_monotonic": 1163443.188931295,
+        "measurement_finished_monotonic": 1163473.193413441,
+        "target": "pgbouncer-session",
+        "clients": 100,
+        "repetition": 3,
+        "sample_count": 369174,
+        "p50_ms": 0.735,
+        "p95_ms": 1.272,
+        "p99_ms": 1.977,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      }
+    ],
+    "tps": {
+      "median": 123414.384659,
+      "min": 121837.106,
+      "max": 142921.222828,
+      "sample_cv": 0.09076456092827791
+    },
+    "p50_ms": {
+      "median": 0.735,
+      "min": 0.655,
+      "max": 0.743,
+      "sample_cv": 0.06844177249280695
+    },
+    "p95_ms": {
+      "median": 1.272,
+      "min": 0.962,
+      "max": 1.31,
+      "sample_cv": 0.16159379146416103
+    },
+    "p99_ms": {
+      "median": 1.977,
+      "min": 1.458,
+      "max": 2.047,
+      "sample_cv": 0.17608243270042753
+    },
+    "backend_connections_peak": {
+      "median": 100,
+      "min": 100,
+      "max": 100,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 100,
+    "target": "pgbouncer-transaction",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.005652746884152,
+        "transactions": 3830568,
+        "errors": 0,
+        "tps": 127763.51445,
+        "measurement_started_monotonic": 1163017.870559452,
+        "measurement_finished_monotonic": 1163047.876212199,
+        "target": "pgbouncer-transaction",
+        "clients": 100,
+        "repetition": 1,
+        "sample_count": 383103,
+        "p50_ms": 0.705,
+        "p95_ms": 1.328,
+        "p99_ms": 2.003,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.004467368125916,
+        "transactions": 3715804,
+        "errors": 0,
+        "tps": 123900.851283,
+        "measurement_started_monotonic": 1163301.501624364,
+        "measurement_finished_monotonic": 1163331.506091732,
+        "target": "pgbouncer-transaction",
+        "clients": 100,
+        "repetition": 2,
+        "sample_count": 371274,
+        "p50_ms": 0.738,
+        "p95_ms": 1.339,
+        "p99_ms": 2.015,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.004572121892124,
+        "transactions": 3829904,
+        "errors": 0,
+        "tps": 127720.412941,
+        "measurement_started_monotonic": 1163478.806999006,
+        "measurement_finished_monotonic": 1163508.811571128,
+        "target": "pgbouncer-transaction",
+        "clients": 100,
+        "repetition": 3,
+        "sample_count": 382408,
+        "p50_ms": 0.721,
+        "p95_ms": 1.274,
+        "p99_ms": 1.853,
+        "backend_connections_min": 100,
+        "backend_connections_peak": 100
+      }
+    ],
+    "tps": {
+      "median": 127720.412941,
+      "min": 123900.851283,
+      "max": 127763.51445,
+      "sample_cv": 0.017537118936095233
+    },
+    "p50_ms": {
+      "median": 0.721,
+      "min": 0.705,
+      "max": 0.738,
+      "sample_cv": 0.022877807383524167
+    },
+    "p95_ms": {
+      "median": 1.328,
+      "min": 1.274,
+      "max": 1.339,
+      "sample_cv": 0.026483008318983266
+    },
+    "p99_ms": {
+      "median": 2.003,
+      "min": 1.853,
+      "max": 2.015,
+      "sample_cv": 0.04612482001592956
+    },
+    "backend_connections_peak": {
+      "median": 100,
+      "min": 100,
+      "max": 100,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-session",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.01615305710584,
+        "transactions": 4318481,
+        "errors": 0,
+        "tps": 144078.941662,
+        "measurement_started_monotonic": 1163053.259584067,
+        "measurement_finished_monotonic": 1163083.275737124,
+        "target": "rustybouncer-session",
+        "clients": 100,
+        "repetition": 1,
+        "sample_count": 432155,
+        "p50_ms": 0.614,
+        "p95_ms": 1.401,
+        "p99_ms": 2.329,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.01260589621961,
+        "transactions": 4407442,
+        "errors": 0,
+        "tps": 147055.146489,
+        "measurement_started_monotonic": 1163266.151876771,
+        "measurement_finished_monotonic": 1163296.164482667,
+        "target": "rustybouncer-session",
+        "clients": 100,
+        "repetition": 2,
+        "sample_count": 440230,
+        "p50_ms": 0.609,
+        "p95_ms": 1.347,
+        "p99_ms": 2.225,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.012658417923376,
+        "transactions": 4510625,
+        "errors": 0,
+        "tps": 150487.307804,
+        "measurement_started_monotonic": 1163336.875596753,
+        "measurement_finished_monotonic": 1163366.888255171,
+        "target": "rustybouncer-session",
+        "clients": 100,
+        "repetition": 3,
+        "sample_count": 451044,
+        "p50_ms": 0.602,
+        "p95_ms": 1.287,
+        "p99_ms": 2.092,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      }
+    ],
+    "tps": {
+      "median": 147055.146489,
+      "min": 144078.941662,
+      "max": 150487.307804,
+      "sample_cv": 0.021784850622241645
+    },
+    "p50_ms": {
+      "median": 0.609,
+      "min": 0.602,
+      "max": 0.614,
+      "sample_cv": 0.009908570586315146
+    },
+    "p95_ms": {
+      "median": 1.347,
+      "min": 1.287,
+      "max": 1.401,
+      "sample_cv": 0.0423987432844112
+    },
+    "p99_ms": {
+      "median": 2.225,
+      "min": 2.092,
+      "max": 2.329,
+      "sample_cv": 0.05362413882968725
+    },
+    "backend_connections_peak": {
+      "median": 100,
+      "min": 100,
+      "max": 100,
+      "sample_cv": 0.0
+    }
+  },
+  {
+    "clients": 100,
+    "target": "rustybouncer-routed",
+    "all_repetitions": [
+      {
+        "wall_seconds": 30.020817884942517,
+        "transactions": 3857012,
+        "errors": 0,
+        "tps": 128657.740353,
+        "measurement_started_monotonic": 1163088.658277603,
+        "measurement_finished_monotonic": 1163118.679095488,
+        "target": "rustybouncer-routed",
+        "clients": 100,
+        "repetition": 1,
+        "sample_count": 386531,
+        "p50_ms": 0.681,
+        "p95_ms": 1.556,
+        "p99_ms": 2.358,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.019082895945758,
+        "transactions": 4174510,
+        "errors": 0,
+        "tps": 139237.811809,
+        "measurement_started_monotonic": 1163230.76160052,
+        "measurement_finished_monotonic": 1163260.780683416,
+        "target": "rustybouncer-routed",
+        "clients": 100,
+        "repetition": 2,
+        "sample_count": 417784,
+        "p50_ms": 0.637,
+        "p95_ms": 1.399,
+        "p99_ms": 2.1,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      },
+      {
+        "wall_seconds": 30.02008462115191,
+        "transactions": 4076588,
+        "errors": 0,
+        "tps": 135976.201326,
+        "measurement_started_monotonic": 1163372.253822038,
+        "measurement_finished_monotonic": 1163402.273906659,
+        "target": "rustybouncer-routed",
+        "clients": 100,
+        "repetition": 3,
+        "sample_count": 407295,
+        "p50_ms": 0.65,
+        "p95_ms": 1.44,
+        "p99_ms": 2.155,
+        "backend_connections_min": 0,
+        "backend_connections_peak": 100
+      }
+    ],
+    "tps": {
+      "median": 135976.201326,
+      "min": 128657.740353,
+      "max": 139237.811809,
+      "sample_cv": 0.0402463105210137
+    },
+    "p50_ms": {
+      "median": 0.65,
+      "min": 0.637,
+      "max": 0.681,
+      "sample_cv": 0.03445931266907721
+    },
+    "p95_ms": {
+      "median": 1.44,
+      "min": 1.399,
+      "max": 1.556,
+      "sample_cv": 0.055584267813067696
+    },
+    "p99_ms": {
+      "median": 2.155,
+      "min": 2.1,
+      "max": 2.358,
+      "sample_cv": 0.061647159051386104
+    },
+    "backend_connections_peak": {
+      "median": 100,
+      "min": 100,
+      "max": 100,
+      "sample_cv": 0.0
+    }
+  }
+]
