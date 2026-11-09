@@ -25,11 +25,22 @@ class ProfilingSafety(unittest.TestCase):
             fixture = Instrumented(Path(directory), Path('/unused'), mode='cpu', cpu=0)
             fixture.process = Mock(pid=123)
             fixture.process.poll.return_value = None
-            fixture.process.wait.side_effect = [subprocess.TimeoutExpired('owned',20),0]
+            fixture.process.wait.side_effect = [subprocess.TimeoutExpired('owned',5),subprocess.TimeoutExpired('owned',15),0]
             with patch('os.killpg') as kill, self.assertRaisesRegex(AssertionError,'did not finish cleanly'):
                 fixture.stop_group()
-            self.assertEqual(kill.call_args_list,[call(123,signal.SIGINT),call(123,signal.SIGKILL)])
-            self.assertEqual(fixture.process.wait.call_args_list,[call(timeout=20),call(timeout=5)])
+            self.assertEqual(kill.call_args_list,[call(123,signal.SIGINT),call(123,signal.SIGINT),call(123,signal.SIGKILL)])
+            self.assertEqual(fixture.process.wait.call_args_list,[call(timeout=5),call(timeout=15),call(timeout=5)])
+
+    def test_repeated_group_signal_keeps_the_original_shutdown_bound(self):
+        with tempfile.TemporaryDirectory() as directory:
+            fixture=Instrumented(Path(directory),Path('/unused'),mode='cpu',cpu=0)
+            fixture.process=Mock(pid=123)
+            fixture.process.poll.side_effect=[None,0]
+            fixture.process.wait.side_effect=[subprocess.TimeoutExpired('owned',5),0]
+            with patch('os.killpg') as kill:
+                fixture.stop_group()
+            self.assertEqual(kill.call_args_list,[call(123,signal.SIGINT),call(123,signal.SIGINT)])
+            self.assertEqual(fixture.process.wait.call_args_list,[call(timeout=5),call(timeout=15)])
 
     def test_failed_resource_collection_retains_evidence_and_fails(self):
         with tempfile.TemporaryDirectory() as directory:

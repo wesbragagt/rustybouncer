@@ -1,0 +1,14 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-classifier-20261108/frozen/profile",
+  "sha256": "886eb7f74cb081009a48e6f73ef967ea18e7e3c6ac3ab6b3fd49e07dd2001d8b",
+  "command": [
+    "benchmarks/attribution.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-classifier-20261108/attribution-retry",
+    "--binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-classifier-20261108/frozen/profile"
+  ],
+  "clock": "perf --clockid mono = Python CLOCK_MONOTONIC",
+  "attribution_arms": 16,
+  "not_timing_comparable": true
+}
