@@ -1,0 +1,40 @@
+Merge made by the 'ort' strategy.
+ docs/milestones/perf-resources-acceptance.md       | 114 +++
+ .../perf-resources-evidence/combined/archives.json |  27 +
+ .../combined/buffering.tar.zst                     | Bin 0 -> 28254 bytes
+ .../combined/combined-merge-hook.log               |  22 +
+ .../combined/comparison-environment.json           |  25 +
+ .../combined/comparison-results.json               | 512 ++++++++++++
+ .../combined/comparison-summary.json               | 872 +++++++++++++++++++++
+ .../combined/manifest.json.gz                      | Bin 0 -> 111868 bytes
+ .../perf-resources-evidence/combined/memcheck.log  |   5 +
+ .../combined/memcheck.tar.zst                      | Bin 0 -> 24529 bytes
+ .../combined/metrics.tar.zst                       | Bin 0 -> 31367 bytes
+ .../combined/original-comparison.log               |  30 +
+ .../combined/original-comparison.tar.zst           | Bin 0 -> 155196520 bytes
+ .../combined/provenance.json                       |  20 +
+ .../combined/regressions.log                       |  57 ++
+ .../perf-resources-evidence/combined/resources.log |  21 +
+ .../combined/resources.tar.zst                     | Bin 0 -> 61360 bytes
+ .../combined/workmux-merge-retry.log               |  23 +
+ docs/milestones/perf-resources.md                  |   4 +
+ docs/tasks/pgbouncer-performance.md                |  18 +-
+ 20 files changed, 1747 insertions(+), 3 deletions(-)
+ create mode 100644 docs/milestones/perf-resources-acceptance.md
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/archives.json
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/buffering.tar.zst
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/combined-merge-hook.log
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/comparison-environment.json
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/comparison-results.json
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/comparison-summary.json
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/manifest.json.gz
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/memcheck.log
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/memcheck.tar.zst
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/metrics.tar.zst
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/original-comparison.log
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/original-comparison.tar.zst
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/provenance.json
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/regressions.log
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/resources.log
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/resources.tar.zst
+ create mode 100644 docs/milestones/perf-resources-evidence/combined/workmux-merge-retry.log
