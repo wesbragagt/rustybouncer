@@ -10,10 +10,12 @@ import asyncio
 import contextlib
 import hashlib
 import json
+import re
 import shutil
 import subprocess
 import sys
 import time
+from collections import Counter
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tests'))
@@ -93,8 +95,16 @@ probe_database = "postgres"
         # Both standbys must durably acknowledge every primary commit. Without
         # this, async WAL loss would be a database policy, not a pooler failure.
         f.eventually(lambda: f.sql(self.nodes[0], "SELECT count(*) FROM pg_stat_replication WHERE state='streaming'") == '2')
+        # Native SQL execution evidence catches hidden proxy retries even if a
+        # duplicate INSERT would fail on the primary key. Owned fixture SQL only.
+        for node in self.nodes:
+            f.sql(node, "ALTER SYSTEM SET log_statement='all'")
+            f.sql(node, 'SELECT pg_reload_conf()')
+            f.eventually(lambda node=node:f.sql(node,'SHOW log_statement')=='all')
         f.sql(self.nodes[0], "ALTER SYSTEM SET synchronous_standby_names='ANY 2 (*)'")
         f.sql(self.nodes[0], 'SELECT pg_reload_conf()')
+        f.eventually(lambda:f.sql(self.nodes[0], "SELECT count(*) FROM pg_stat_replication "
+                                 "WHERE state='streaming' AND sync_state='quorum'")=='2')
         self.configure()
         if self.target.startswith('pgbouncer'):
             executable=shutil.which('pgbouncer')
@@ -126,6 +136,7 @@ probe_database = "postgres"
 
     def close(self):
         self.stop_proxy()
+        dump(self.evidence / 'fault-events.json', self.events)
         if self.log_path.exists():
             shutil.copyfile(self.log_path, self.evidence / 'pooler.log')
         for index, node in enumerate(self.nodes):
@@ -146,6 +157,7 @@ async def wait_until(predicate, timeout, message):
     while not predicate():
         assert time.monotonic() < deadline, message
         await asyncio.sleep(.02)
+    assert time.monotonic() <= deadline, message
 
 
 async def observe(cluster, stop, rows):
@@ -265,16 +277,37 @@ async def database_oracle(cluster,events):
     committed = await asyncio.to_thread(f.sql, cluster.nodes[1], 'SELECT id,payload FROM continuity ORDER BY id')
     raw_rows=[line.split('|',1) for line in committed.splitlines()]
     actual=dict(raw_rows)
-    assert len(raw_rows)==len(actual), 'duplicate committed identities'
     acknowledged = {str(event['id']): event['token'] for event in events if event['write'] and event['outcome'] == 'ok'}
     submitted = {str(event['id']): event['token'] for event in events if event['write']}
+    dump(cluster.evidence / 'database-row-snapshot.json', {'raw_rows':raw_rows,
+         'acknowledged':acknowledged,'submitted':submitted})
+    assert len(raw_rows)==len(actual), 'duplicate committed identities'
     assert all(actual.get(key) == value for key, value in acknowledged.items()), 'acknowledged synchronous write lost or corrupted'
     assert all(submitted.get(key) == value for key, value in actual.items()), 'unsubmitted/cross-client write found'
     assert len(actual) == len(set(actual))
+    def logged():
+        executions=statement_evidence(cluster)
+        duplicates=[{'id':key,'token':value,'executions':count} for (key,value),count in executions.items() if count!=1]
+        assert not duplicates, {'expected_executions_per_unique_insert':1,'actual_duplicates':duplicates}
+        return executions if all(executions[(key,value)]==1 for key,value in acknowledged.items()) else None
+    executions=await asyncio.to_thread(f.eventually,logged,15,'all acknowledged writes present once in database statement logs')
+    assert all(submitted.get(key)==value for key,value in executions),'unsubmitted backend INSERT'
+    assert all(executions[(key,value)]==1 for key,value in actual.items())
     dump(cluster.evidence / 'database-oracle.json', {'committed': actual, 'acknowledged': acknowledged,
-        'uncertain_committed_ids': sorted(set(actual) - set(acknowledged)), 'submitted_write_count': len(submitted)})
+        'uncertain_committed_ids': sorted(set(actual) - set(acknowledged)), 'submitted_write_count': len(submitted),
+        'backend_insert_executions':[{'id':key,'token':value,'count':count} for (key,value),count in executions.items()]})
     return {'acknowledged_writes':len(acknowledged),'actual_committed_writes':len(actual),
-            'uncertain_committed_writes':len(set(actual)-set(acknowledged))}
+            'uncertain_committed_writes':len(set(actual)-set(acknowledged)),
+            'duplicate_backend_insert_executions':0,'logged_backend_insert_executions':sum(executions.values())}
+
+
+def statement_evidence(cluster):
+    executions=Counter()
+    for index,node in enumerate(cluster.nodes):
+        text=f.docker('logs',node)
+        (cluster.evidence/f'database-statements-{index}.log').write_text(text)
+        executions.update(re.findall(r"statement: INSERT INTO continuity VALUES\((\d+),'([^']+)'\) RETURNING id,payload\s*$",text,re.M))
+    return executions
 
 
 def main():
@@ -290,6 +323,9 @@ def main():
         'command': sys.argv, 'targets': TARGETS, 'clients': [10,100], 'repetitions': 3, 'arms': 24,
         'postgres_image': f.docker('image', 'inspect', f.IMAGE, '--format', '{{json .RepoDigests}}'),
         'replication': 'ANY 2 (*) synchronous acknowledgements before primary crash',
+        'statement_logging':'all on owned database nodes; every acknowledged/committed INSERT must appear once, no duplicate SQL execution',
+        'read_oracle':'distinct per-operation literals; committed writes independently checked on promoted primary',
+        'replica_reparenting':False,'read_freshness_claim':False,
         'reference_adapter': 'after real promotion, rewrite PgBouncer backend and issue RELOAD + RECONNECT postgres',
         'rust_adapter': 'no pooler restart, reload or endpoint rewrite; topology discovery',
         'placement': 'unrestricted shared host; functional fault experiment, not normal throughput comparison',

@@ -60,6 +60,9 @@ def measurements(row,kind):
     if kind=='pools':
         result['maximum_latency_ms']=row['maximum_latency_ms']
         result['client_completions_min']=row['client_completions_min']
+    else:
+        result['maximum_latency_ms']=row['latencies']['all']['maximum_ms']
+        result['client_completions_min']=row['latencies']['client_completions_min']
     if row['target']!='direct':
         result['cpu_seconds_per_transaction']=row['cpu_seconds_per_transaction'] if kind=='pools' else row['cpu_seconds_per_q_including_connect']
         result['rss_peak_bytes_observed']=row['rss_peak_bytes_observed']

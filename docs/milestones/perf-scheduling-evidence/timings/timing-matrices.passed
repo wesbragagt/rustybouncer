@@ -1,0 +1,12 @@
+{
+  "completed_utc": "2026-11-09T08:56:42.999984+00:00",
+  "driver_exit_code": 0,
+  "arms": {
+    "pools-after": 144,
+    "original-after": 30,
+    "workloads-after": 180,
+    "pool-mixed": 96
+  },
+  "total": 450,
+  "query_errors": 0
+}

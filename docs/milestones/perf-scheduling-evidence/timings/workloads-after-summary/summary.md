@@ -1,0 +1,66 @@
+# Additional workloads
+
+Medians/ranges/CV of three complete repetitions; paired ratios use matching repetition numbers. Shared-host observations are not randomized causal estimates, statistical significance or production SLOs. Quantile medians do not pool raw samples across repetitions. Direct has no proxy CPU/RSS.
+
+| Placement | Workload | Clients | Target | Median TPS | TPS min–max | TPS CV % | p95 ms | p99 ms | Peak backends |
+| --- | --- | ---: | --- | ---: | ---: | ---: | ---: | ---: | ---: |
+| normalized | cte | 10 | direct | 157,297.4 | 151,599.3–168,919.0 | 5.54 | 0.103 | 0.161 | 10 |
+| normalized | cte | 10 | pgbouncer-session | 136,392.8 | 97,108.3–136,414.0 | 18.40 | 0.104 | 0.165 | 10 |
+| normalized | cte | 10 | pgbouncer-transaction | 98,481.3 | 94,758.3–137,049.6 | 21.27 | 0.143 | 0.860 | 10 |
+| normalized | cte | 10 | rustybouncer-routed | 29,890.8 | 29,632.7–54,522.3 | 37.61 | 0.457 | 3.344 | 10 |
+| normalized | cte | 10 | rustybouncer-session | 95,802.5 | 92,721.2–126,428.3 | 17.75 | 0.138 | 1.069 | 10 |
+| normalized | cte | 100 | direct | 238,995.1 | 235,409.4–240,240.3 | 1.05 | 1.011 | 2.525 | 100 |
+| normalized | cte | 100 | pgbouncer-session | 131,268.5 | 126,502.7–135,058.6 | 3.27 | 1.066 | 1.859 | 100 |
+| normalized | cte | 100 | pgbouncer-transaction | 133,065.1 | 93,633.3–133,652.9 | 19.10 | 1.144 | 1.702 | 100 |
+| normalized | cte | 100 | rustybouncer-routed | 51,642.9 | 50,269.0–51,836.6 | 1.67 | 2.644 | 3.112 | 100 |
+| normalized | cte | 100 | rustybouncer-session | 130,418.4 | 130,316.6–132,093.8 | 0.76 | 1.026 | 1.527 | 100 |
+| normalized | large | 10 | direct | 10,889.7 | 10,252.9–11,520.1 | 5.82 | 1.494 | 1.974 | 10 |
+| normalized | large | 10 | pgbouncer-session | 3,326.1 | 2,278.3–3,443.3 | 21.27 | 3.624 | 4.529 | 10 |
+| normalized | large | 10 | pgbouncer-transaction | 3,461.7 | 2,258.3–3,498.0 | 22.96 | 3.339 | 4.331 | 10 |
+| normalized | large | 10 | rustybouncer-routed | 3,843.6 | 3,705.9–6,021.6 | 28.72 | 4.997 | 5.684 | 10 |
+| normalized | large | 10 | rustybouncer-session | 4,923.2 | 4,832.5–6,727.8 | 19.46 | 4.587 | 5.153 | 10 |
+| normalized | large | 100 | direct | 14,448.8 | 14,264.6–14,476.5 | 0.80 | 21.170 | 46.507 | 100 |
+| normalized | large | 100 | pgbouncer-session | 3,154.1 | 3,142.0–3,218.4 | 1.30 | 35.532 | 39.352 | 100 |
+| normalized | large | 100 | pgbouncer-transaction | 3,118.0 | 2,969.8–3,152.8 | 3.16 | 35.568 | 43.704 | 100 |
+| normalized | large | 100 | rustybouncer-routed | 5,397.5 | 5,181.5–5,483.7 | 2.91 | 23.867 | 27.993 | 100 |
+| normalized | large | 100 | rustybouncer-session | 5,984.9 | 5,633.4–6,004.0 | 3.55 | 18.615 | 21.340 | 100 |
+| normalized | mixed | 10 | direct | 4,897.5 | 4,784.9–4,950.6 | 1.73 | 20.118 | 20.156 | 10 |
+| normalized | mixed | 10 | pgbouncer-session | 4,736.9 | 4,535.4–4,784.1 | 2.82 | 20.136 | 20.191 | 10 |
+| normalized | mixed | 10 | pgbouncer-transaction | 4,865.6 | 4,786.4–4,873.2 | 0.99 | 20.135 | 20.188 | 10 |
+| normalized | mixed | 10 | rustybouncer-routed | 4,722.4 | 4,670.6–4,847.3 | 1.91 | 20.170 | 20.479 | 10 |
+| normalized | mixed | 10 | rustybouncer-session | 4,818.2 | 4,492.8–4,934.5 | 4.82 | 20.133 | 20.190 | 10 |
+| normalized | mixed | 100 | direct | 48,695.1 | 48,557.8–49,129.1 | 0.61 | 20.106 | 20.125 | 100 |
+| normalized | mixed | 100 | pgbouncer-session | 48,192.7 | 46,895.4–48,436.6 | 1.73 | 20.124 | 20.170 | 100 |
+| normalized | mixed | 100 | pgbouncer-transaction | 47,875.8 | 47,474.1–47,906.9 | 0.51 | 20.131 | 20.175 | 100 |
+| normalized | mixed | 100 | rustybouncer-routed | 46,446.9 | 45,898.0–47,911.1 | 2.23 | 20.155 | 20.300 | 100 |
+| normalized | mixed | 100 | rustybouncer-session | 47,922.0 | 47,145.7–48,378.5 | 1.30 | 20.131 | 20.185 | 100 |
+| unrestricted | cte | 10 | direct | 155,917.5 | 151,012.8–156,548.2 | 1.96 | 0.104 | 0.161 | 10 |
+| unrestricted | cte | 10 | pgbouncer-session | 126,871.7 | 122,420.6–129,139.0 | 2.71 | 0.117 | 0.191 | 10 |
+| unrestricted | cte | 10 | pgbouncer-transaction | 128,812.2 | 127,452.0–139,032.8 | 4.80 | 0.112 | 0.172 | 10 |
+| unrestricted | cte | 10 | rustybouncer-routed | 78,918.7 | 73,081.5–81,712.8 | 5.65 | 0.205 | 0.287 | 10 |
+| unrestricted | cte | 10 | rustybouncer-session | 127,996.1 | 121,136.0–135,671.4 | 5.67 | 0.118 | 0.188 | 10 |
+| unrestricted | cte | 100 | direct | 247,916.5 | 237,988.0–253,114.5 | 3.12 | 0.961 | 2.431 | 100 |
+| unrestricted | cte | 100 | pgbouncer-session | 124,049.8 | 121,818.8–128,574.9 | 2.76 | 1.202 | 1.931 | 100 |
+| unrestricted | cte | 100 | pgbouncer-transaction | 124,985.9 | 124,288.6–128,157.8 | 1.64 | 1.233 | 1.771 | 100 |
+| unrestricted | cte | 100 | rustybouncer-routed | 98,643.9 | 96,544.1–106,401.2 | 5.16 | 1.837 | 2.580 | 100 |
+| unrestricted | cte | 100 | rustybouncer-session | 141,209.4 | 139,877.1–149,132.6 | 3.49 | 1.349 | 2.063 | 100 |
+| unrestricted | large | 10 | direct | 11,287.4 | 11,203.9–11,877.2 | 3.20 | 1.431 | 1.857 | 10 |
+| unrestricted | large | 10 | pgbouncer-session | 3,538.3 | 2,987.9–3,620.1 | 10.17 | 3.235 | 3.758 | 10 |
+| unrestricted | large | 10 | pgbouncer-transaction | 3,585.9 | 3,324.5–3,603.9 | 4.46 | 3.175 | 3.797 | 10 |
+| unrestricted | large | 10 | rustybouncer-routed | 8,633.7 | 8,237.7–9,010.3 | 4.48 | 1.779 | 2.438 | 10 |
+| unrestricted | large | 10 | rustybouncer-session | 9,326.1 | 9,291.6–9,526.6 | 1.35 | 1.652 | 2.273 | 10 |
+| unrestricted | large | 100 | direct | 15,139.3 | 14,653.2–15,358.6 | 2.40 | 18.461 | 42.673 | 100 |
+| unrestricted | large | 100 | pgbouncer-session | 3,223.5 | 2,771.8–3,294.5 | 9.16 | 34.627 | 42.620 | 100 |
+| unrestricted | large | 100 | pgbouncer-transaction | 3,115.3 | 2,769.1–3,183.3 | 7.35 | 35.588 | 39.600 | 100 |
+| unrestricted | large | 100 | rustybouncer-routed | 9,704.0 | 9,567.3–9,989.5 | 2.21 | 22.800 | 34.315 | 100 |
+| unrestricted | large | 100 | rustybouncer-session | 11,001.6 | 10,450.3–11,269.7 | 3.83 | 20.037 | 31.617 | 100 |
+| unrestricted | mixed | 10 | direct | 4,893.6 | 4,780.0–4,923.8 | 1.56 | 20.118 | 20.154 | 10 |
+| unrestricted | mixed | 10 | pgbouncer-session | 4,880.1 | 4,844.2–4,982.0 | 1.46 | 20.133 | 20.171 | 10 |
+| unrestricted | mixed | 10 | pgbouncer-transaction | 4,896.6 | 4,831.4–4,899.6 | 0.79 | 20.134 | 20.171 | 10 |
+| unrestricted | mixed | 10 | rustybouncer-routed | 4,828.1 | 4,822.3–4,840.4 | 0.19 | 20.140 | 20.181 | 10 |
+| unrestricted | mixed | 10 | rustybouncer-session | 4,871.4 | 4,761.8–4,897.3 | 1.49 | 20.133 | 20.171 | 10 |
+| unrestricted | mixed | 100 | direct | 48,734.0 | 48,635.6–49,006.4 | 0.39 | 20.108 | 20.130 | 100 |
+| unrestricted | mixed | 100 | pgbouncer-session | 48,134.6 | 47,717.1–48,869.9 | 1.21 | 20.120 | 20.144 | 100 |
+| unrestricted | mixed | 100 | pgbouncer-transaction | 48,377.9 | 48,018.1–48,752.8 | 0.76 | 20.118 | 20.139 | 100 |
+| unrestricted | mixed | 100 | rustybouncer-routed | 48,341.1 | 48,269.4–48,408.8 | 0.14 | 20.130 | 20.158 | 100 |
+| unrestricted | mixed | 100 | rustybouncer-session | 48,411.3 | 48,249.5–48,807.1 | 0.59 | 20.120 | 20.146 | 100 |

@@ -22,6 +22,40 @@ dashboard and complementary PostgreSQL, CNPG and infrastructure dashboards.
 
 ## PgBouncer comparison
 
+### Latest pool candidate — final acceptance pending
+
+Runtime source `14f077e` has completed all **144 bounded-pool timing arms** with
+zero query errors. Both implementations use a 16-backend ceiling; all requested
+10/100/**1,000** clients finish. Three repetitions use 5s warmup and 10s measurement
+plus complete connection/drain time, with every transaction logged. These are
+multi-command transaction rates, distinct from the historical single-query Q/s.
+Final workload, attribution, fault and deployment acceptance remains pending.
+
+| Workload | Proxy placement | Clients | PgBouncer session TPS | Rust session TPS | PgBouncer transaction TPS | Rust transaction TPS |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| Connection churn | Unrestricted | 1,000 | 12,841 | 12,671 | 13,443 | 12,135 |
+| Persistent transactions | Unrestricted | 1,000 | 42,665 | 34,165 | 39,034 | 21,624 |
+| Connection churn | One CPU | 1,000 | 12,840 | 5,545 | 13,277 | 7,213 |
+| Persistent transactions | One CPU | 1,000 | 32,923 | 21,512 | 26,914 | 9,677 |
+
+Compared with the pre-scheduler candidate, unrestricted 1,000-client Rust churn
+medians rose from 4.0k→12.7k TPS (session) and 3.5k→12.1k (transaction); p99 fell
+from 296→104ms and 367→118ms. Proxy CPU per transaction fell, while observed RSS
+rose about 4 MiB. At 1,000 persistent transaction clients, Rust transaction TPS
+rose from 4.1k→21.6k; PgBouncer remains faster. Low-concurrency transaction costs
+and one-CPU gaps also remain. This is not a universal performance win.
+
+Every repetition stays included. This shared host showed substantial variation,
+including lower PgBouncer throughput in the later one-CPU batch; before/after
+results do not establish causal isolation, statistical significance or a production
+SLO. Session pooling can keep clients queued until other sessions close, so maximum
+latency and minimum completions per client accompany p99 in the final report.
+The [complete protocol](docs/benchmarks/performance-final.md) defines all mandatory
+measurements and remaining gates; [performance tasks](docs/tasks/pgbouncer-performance.md)
+remain authoritative for scoped acceptance.
+
+### Historical baseline
+
 Historical baseline `c8997e8`, measured on 2026-11-08: PgBouncer **1.26.1**,
 the Rustybouncer release at that commit,
 and the same PostgreSQL 16 primary. A random indexed lookup over 10,000 rows
@@ -72,7 +106,7 @@ historical evidence.
 | Area | PgBouncer | Rustybouncer today |
 | --- | --- | --- |
 | Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared session/transaction pools; 1,000 frontends with a 16-backend ceiling verified. Default routing keeps per-client caches; current shared-pool CPU/tail costs are documented |
-| Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
+| Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Eligible simple-protocol autocommit SELECT/CTE reads use replicas in unshared/transaction mode, with primary fallback; extended queries and shared session mode stay primary |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
 | Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
 | Response and memory | Streams protocol traffic | Simple Query buffers to ReadyForQuery; extended exchanges buffer to native terminals before client Sync. Limits are 32 MiB/exchange and 16 MiB/message, with a 64-MiB default process bulk-storage budget and separate frontend/runtime overhead |

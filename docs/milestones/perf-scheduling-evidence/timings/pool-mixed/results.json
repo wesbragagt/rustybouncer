@@ -1,0 +1,4994 @@
+[
+  {
+    "measurement_started_monotonic": 1186207.005390411,
+    "measurement_finished_monotonic": 1186217.020468764,
+    "wall_seconds": 10.01507835299708,
+    "transactions": 48383,
+    "errors": 0,
+    "tps": 4833.094757,
+    "cpu_seconds_per_q_including_connect": 5.580472480003306e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4423,
+      "client_completions_max": 5204,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48383,
+        "maximum_ms": 22.411,
+        "p50_ms": 0.044,
+        "p95_ms": 20.133,
+        "p99_ms": 20.181
+      },
+      "scripts": {
+        "0": {
+          "samples": 43533,
+          "maximum_ms": 1.725,
+          "p50_ms": 0.042,
+          "p95_ms": 0.116,
+          "p99_ms": 0.178
+        },
+        "1": {
+          "samples": 4850,
+          "maximum_ms": 22.411,
+          "p50_ms": 20.133,
+          "p95_ms": 20.216,
+          "p99_ms": 20.306
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.26999999999999996,
+    "rss_peak_bytes_observed": 12701696,
+    "observed_cpu_window_seconds": 9.764274742919952,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186222.345446178,
+    "measurement_finished_monotonic": 1186232.36555018,
+    "wall_seconds": 10.020104001974687,
+    "transactions": 48542,
+    "errors": 0,
+    "tps": 4845.978313,
+    "cpu_seconds_per_q_including_connect": 6.3862222405339706e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4413,
+      "client_completions_max": 5399,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48542,
+        "maximum_ms": 22.675,
+        "p50_ms": 0.046,
+        "p95_ms": 20.135,
+        "p99_ms": 20.171
+      },
+      "scripts": {
+        "0": {
+          "samples": 43696,
+          "maximum_ms": 3.168,
+          "p50_ms": 0.044,
+          "p95_ms": 0.121,
+          "p99_ms": 0.153
+        },
+        "1": {
+          "samples": 4846,
+          "maximum_ms": 22.675,
+          "p50_ms": 20.135,
+          "p95_ms": 20.184,
+          "p99_ms": 20.243
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.31,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764783243881539,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186237.695631083,
+    "measurement_finished_monotonic": 1186247.711105044,
+    "wall_seconds": 10.015473960898817,
+    "transactions": 47245,
+    "errors": 0,
+    "tps": 4718.918463,
+    "cpu_seconds_per_q_including_connect": 1.5239707905598477e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4500,
+      "client_completions_max": 5094,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47245,
+        "maximum_ms": 33.255,
+        "p50_ms": 0.055,
+        "p95_ms": 20.143,
+        "p99_ms": 20.203
+      },
+      "scripts": {
+        "1": {
+          "samples": 4817,
+          "maximum_ms": 33.255,
+          "p50_ms": 20.142,
+          "p95_ms": 20.242,
+          "p99_ms": 20.582
+        },
+        "0": {
+          "samples": 42428,
+          "maximum_ms": 14.787,
+          "p50_ms": 0.052,
+          "p95_ms": 0.136,
+          "p99_ms": 0.215
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7000000000000001,
+    "rss_peak_bytes_observed": 7716864,
+    "observed_cpu_window_seconds": 9.786177137168124,
+    "rss_lifetime_hwm_bytes": 8798208,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186252.927944146,
+    "measurement_finished_monotonic": 1186262.951273116,
+    "wall_seconds": 10.023328969953582,
+    "transactions": 48433,
+    "errors": 0,
+    "tps": 4833.930393,
+    "cpu_seconds_per_q_including_connect": 1.899531311296017e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4425,
+      "client_completions_max": 5328,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48433,
+        "maximum_ms": 22.013,
+        "p50_ms": 0.064,
+        "p95_ms": 20.17,
+        "p99_ms": 20.22
+      },
+      "scripts": {
+        "0": {
+          "samples": 43635,
+          "maximum_ms": 2.956,
+          "p50_ms": 0.061,
+          "p95_ms": 0.144,
+          "p99_ms": 0.187
+        },
+        "1": {
+          "samples": 4798,
+          "maximum_ms": 22.013,
+          "p50_ms": 20.17,
+          "p95_ms": 20.241,
+          "p99_ms": 20.357
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.8999999999999999,
+    "rss_peak_bytes_observed": 11173888,
+    "observed_cpu_window_seconds": 9.786771659972146,
+    "rss_lifetime_hwm_bytes": 12288000,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186268.135595927,
+    "measurement_finished_monotonic": 1186278.155822963,
+    "wall_seconds": 10.020227035973221,
+    "transactions": 48303,
+    "errors": 0,
+    "tps": 4822.200632,
+    "cpu_seconds_per_q_including_connect": 6.210794360598721e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4584,
+      "client_completions_max": 5225,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48303,
+        "maximum_ms": 22.23,
+        "p50_ms": 0.047,
+        "p95_ms": 20.136,
+        "p99_ms": 20.184
+      },
+      "scripts": {
+        "0": {
+          "samples": 43465,
+          "maximum_ms": 3.135,
+          "p50_ms": 0.045,
+          "p95_ms": 0.123,
+          "p99_ms": 0.183
+        },
+        "1": {
+          "samples": 4838,
+          "maximum_ms": 22.23,
+          "p50_ms": 20.136,
+          "p95_ms": 20.229,
+          "p99_ms": 20.483
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27999999999999997,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764763849088922,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186283.484813072,
+    "measurement_finished_monotonic": 1186293.501906394,
+    "wall_seconds": 10.017093322006986,
+    "transactions": 49776,
+    "errors": 0,
+    "tps": 4970.880364,
+    "cpu_seconds_per_q_including_connect": 1.8683702989392478e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4696,
+      "client_completions_max": 5197,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 49776,
+        "maximum_ms": 21.623,
+        "p50_ms": 0.063,
+        "p95_ms": 20.163,
+        "p99_ms": 20.218
+      },
+      "scripts": {
+        "0": {
+          "samples": 44981,
+          "maximum_ms": 10.867,
+          "p50_ms": 0.06,
+          "p95_ms": 0.142,
+          "p99_ms": 0.199
+        },
+        "1": {
+          "samples": 4795,
+          "maximum_ms": 21.623,
+          "p50_ms": 20.164,
+          "p95_ms": 20.246,
+          "p99_ms": 20.404
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.9099999999999999,
+    "rss_peak_bytes_observed": 11173888,
+    "observed_cpu_window_seconds": 9.78599032992497,
+    "rss_lifetime_hwm_bytes": 12374016,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186298.71543541,
+    "measurement_finished_monotonic": 1186308.736560995,
+    "wall_seconds": 10.021125585073605,
+    "transactions": 47783,
+    "errors": 0,
+    "tps": 4769.925442,
+    "cpu_seconds_per_q_including_connect": 1.5277399912102633e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4493,
+      "client_completions_max": 5370,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47783,
+        "maximum_ms": 117.755,
+        "p50_ms": 0.054,
+        "p95_ms": 20.138,
+        "p99_ms": 20.18
+      },
+      "scripts": {
+        "0": {
+          "samples": 42959,
+          "maximum_ms": 117.755,
+          "p50_ms": 0.052,
+          "p95_ms": 0.129,
+          "p99_ms": 0.17
+        },
+        "1": {
+          "samples": 4824,
+          "maximum_ms": 36.53,
+          "p50_ms": 20.138,
+          "p95_ms": 20.199,
+          "p99_ms": 20.282
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7000000000000001,
+    "rss_peak_bytes_observed": 7847936,
+    "observed_cpu_window_seconds": 9.786073942901567,
+    "rss_lifetime_hwm_bytes": 8716288,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186313.954058033,
+    "measurement_finished_monotonic": 1186323.974082906,
+    "wall_seconds": 10.020024873083457,
+    "transactions": 47823,
+    "errors": 0,
+    "tps": 4774.209624,
+    "cpu_seconds_per_q_including_connect": 6.273132174894926e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4318,
+      "client_completions_max": 5022,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47823,
+        "maximum_ms": 21.844,
+        "p50_ms": 0.048,
+        "p95_ms": 20.132,
+        "p99_ms": 20.171
+      },
+      "scripts": {
+        "0": {
+          "samples": 42976,
+          "maximum_ms": 1.792,
+          "p50_ms": 0.046,
+          "p95_ms": 0.121,
+          "p99_ms": 0.157
+        },
+        "1": {
+          "samples": 4847,
+          "maximum_ms": 21.844,
+          "p50_ms": 20.132,
+          "p95_ms": 20.192,
+          "p99_ms": 20.313
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.30000000000000004,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765462636947632,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186329.306118556,
+    "measurement_finished_monotonic": 1186339.325406186,
+    "wall_seconds": 10.01928762998432,
+    "transactions": 48262,
+    "errors": 0,
+    "tps": 4818.643885,
+    "cpu_seconds_per_q_including_connect": 1.5125771828767977e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4382,
+      "client_completions_max": 5245,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48262,
+        "maximum_ms": 23.852,
+        "p50_ms": 0.054,
+        "p95_ms": 20.149,
+        "p99_ms": 20.208
+      },
+      "scripts": {
+        "0": {
+          "samples": 43447,
+          "maximum_ms": 7.052,
+          "p50_ms": 0.051,
+          "p95_ms": 0.139,
+          "p99_ms": 0.245
+        },
+        "1": {
+          "samples": 4815,
+          "maximum_ms": 23.852,
+          "p50_ms": 20.149,
+          "p95_ms": 20.261,
+          "p99_ms": 20.815
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7200000000000001,
+    "rss_peak_bytes_observed": 7782400,
+    "observed_cpu_window_seconds": 9.789832830196247,
+    "rss_lifetime_hwm_bytes": 8744960,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186344.532403152,
+    "measurement_finished_monotonic": 1186354.548587835,
+    "wall_seconds": 10.016184682957828,
+    "transactions": 48987,
+    "errors": 0,
+    "tps": 4892.341424,
+    "cpu_seconds_per_q_including_connect": 1.816808541041501e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4472,
+      "client_completions_max": 5204,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48987,
+        "maximum_ms": 27.504,
+        "p50_ms": 0.062,
+        "p95_ms": 20.161,
+        "p99_ms": 20.212
+      },
+      "scripts": {
+        "0": {
+          "samples": 44185,
+          "maximum_ms": 4.972,
+          "p50_ms": 0.059,
+          "p95_ms": 0.135,
+          "p99_ms": 0.178
+        },
+        "1": {
+          "samples": 4802,
+          "maximum_ms": 27.504,
+          "p50_ms": 20.162,
+          "p95_ms": 20.235,
+          "p99_ms": 20.368
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.8700000000000001,
+    "rss_peak_bytes_observed": 11108352,
+    "observed_cpu_window_seconds": 9.784152469132096,
+    "rss_lifetime_hwm_bytes": 12406784,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186359.771172859,
+    "measurement_finished_monotonic": 1186369.790664129,
+    "wall_seconds": 10.019491269951686,
+    "transactions": 48995,
+    "errors": 0,
+    "tps": 4891.306084,
+    "cpu_seconds_per_q_including_connect": 5.918971323604449e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4513,
+      "client_completions_max": 5316,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48995,
+        "maximum_ms": 24.221,
+        "p50_ms": 0.045,
+        "p95_ms": 20.136,
+        "p99_ms": 20.189
+      },
+      "scripts": {
+        "0": {
+          "samples": 44164,
+          "maximum_ms": 3.98,
+          "p50_ms": 0.043,
+          "p95_ms": 0.124,
+          "p99_ms": 0.24
+        },
+        "1": {
+          "samples": 4831,
+          "maximum_ms": 24.221,
+          "p50_ms": 20.137,
+          "p95_ms": 20.228,
+          "p99_ms": 20.86
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.29,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.76433408097364,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186375.137168045,
+    "measurement_finished_monotonic": 1186385.154474206,
+    "wall_seconds": 10.017306161113083,
+    "transactions": 49550,
+    "errors": 0,
+    "tps": 4947.986724,
+    "cpu_seconds_per_q_including_connect": 6.659939455095862e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4494,
+      "client_completions_max": 5418,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 49550,
+        "maximum_ms": 22.307,
+        "p50_ms": 0.047,
+        "p95_ms": 20.133,
+        "p99_ms": 20.17
+      },
+      "scripts": {
+        "0": {
+          "samples": 44706,
+          "maximum_ms": 0.707,
+          "p50_ms": 0.045,
+          "p95_ms": 0.12,
+          "p99_ms": 0.15
+        },
+        "1": {
+          "samples": 4844,
+          "maximum_ms": 22.307,
+          "p50_ms": 20.133,
+          "p95_ms": 20.183,
+          "p99_ms": 20.248
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.30999999999999994,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765526233939454,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186390.648151321,
+    "measurement_finished_monotonic": 1186400.677294541,
+    "wall_seconds": 10.029143219813704,
+    "transactions": 76532,
+    "errors": 0,
+    "tps": 7644.764767,
+    "cpu_seconds_per_q_including_connect": 7.970522134531962e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 733,
+      "client_completions_max": 799,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76532,
+        "maximum_ms": 41.468,
+        "p50_ms": 15.928,
+        "p95_ms": 34.693,
+        "p99_ms": 39.298
+      },
+      "scripts": {
+        "0": {
+          "samples": 68761,
+          "maximum_ms": 31.329,
+          "p50_ms": 14.302,
+          "p95_ms": 19.726,
+          "p99_ms": 20.377
+        },
+        "1": {
+          "samples": 7771,
+          "maximum_ms": 41.468,
+          "p50_ms": 34.288,
+          "p95_ms": 39.754,
+          "p99_ms": 40.382
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.5900000000000001,
+    "rss_peak_bytes_observed": 13012992,
+    "observed_cpu_window_seconds": 9.7654358970467,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186406.319356878,
+    "measurement_finished_monotonic": 1186416.348937806,
+    "wall_seconds": 10.029580927919596,
+    "transactions": 77192,
+    "errors": 0,
+    "tps": 7712.810708,
+    "cpu_seconds_per_q_including_connect": 1.5157011089232044e-05,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5197,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77192,
+        "maximum_ms": 10007.766,
+        "p50_ms": 0.054,
+        "p95_ms": 20.137,
+        "p99_ms": 20.181
+      },
+      "scripts": {
+        "0": {
+          "samples": 69470,
+          "maximum_ms": 9987.543,
+          "p50_ms": 0.052,
+          "p95_ms": 0.126,
+          "p99_ms": 0.175
+        },
+        "1": {
+          "samples": 7722,
+          "maximum_ms": 10007.766,
+          "p50_ms": 20.137,
+          "p95_ms": 20.198,
+          "p99_ms": 20.355
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.1400000000000001,
+    "rss_peak_bytes_observed": 10072064,
+    "observed_cpu_window_seconds": 9.788706019055098,
+    "rss_lifetime_hwm_bytes": 11120640,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186421.758677492,
+    "measurement_finished_monotonic": 1186431.795395084,
+    "wall_seconds": 10.036717592040077,
+    "transactions": 74245,
+    "errors": 0,
+    "tps": 7412.199455,
+    "cpu_seconds_per_q_including_connect": 0.00019071991379890902,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 719,
+      "client_completions_max": 781,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74245,
+        "maximum_ms": 46.141,
+        "p50_ms": 11.989,
+        "p95_ms": 31.434,
+        "p99_ms": 37.283
+      },
+      "scripts": {
+        "0": {
+          "samples": 66761,
+          "maximum_ms": 26.751,
+          "p50_ms": 11.307,
+          "p95_ms": 18.611,
+          "p99_ms": 20.829
+        },
+        "1": {
+          "samples": 7484,
+          "maximum_ms": 46.141,
+          "p50_ms": 31.389,
+          "p95_ms": 38.791,
+          "p99_ms": 40.906
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 13.889999999999999,
+    "rss_peak_bytes_observed": 14123008,
+    "observed_cpu_window_seconds": 9.78393236384727,
+    "rss_lifetime_hwm_bytes": 15056896,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186437.184356114,
+    "measurement_finished_monotonic": 1186447.217451542,
+    "wall_seconds": 10.033095428021625,
+    "transactions": 76695,
+    "errors": 0,
+    "tps": 7658.995687,
+    "cpu_seconds_per_q_including_connect": 5.476237042831998e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5065,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76695,
+        "maximum_ms": 10013.285,
+        "p50_ms": 0.045,
+        "p95_ms": 20.126,
+        "p99_ms": 20.167
+      },
+      "scripts": {
+        "0": {
+          "samples": 68929,
+          "maximum_ms": 9994.544,
+          "p50_ms": 0.043,
+          "p95_ms": 0.109,
+          "p99_ms": 0.153
+        },
+        "1": {
+          "samples": 7766,
+          "maximum_ms": 10013.285,
+          "p50_ms": 20.126,
+          "p95_ms": 20.187,
+          "p99_ms": 20.325
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.41000000000000003,
+    "rss_peak_bytes_observed": 13012992,
+    "observed_cpu_window_seconds": 9.765108614927158,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186452.900481644,
+    "measurement_finished_monotonic": 1186462.94236456,
+    "wall_seconds": 10.041882915887982,
+    "transactions": 77335,
+    "errors": 0,
+    "tps": 7715.468179,
+    "cpu_seconds_per_q_including_connect": 8.017068597659533e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 742,
+      "client_completions_max": 809,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77335,
+        "maximum_ms": 44.338,
+        "p50_ms": 12.089,
+        "p95_ms": 31.022,
+        "p99_ms": 38.468
+      },
+      "scripts": {
+        "0": {
+          "samples": 69554,
+          "maximum_ms": 24.279,
+          "p50_ms": 10.987,
+          "p95_ms": 19.314,
+          "p99_ms": 20.288
+        },
+        "1": {
+          "samples": 7781,
+          "maximum_ms": 44.338,
+          "p50_ms": 30.951,
+          "p95_ms": 39.326,
+          "p99_ms": 40.231
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.61,
+    "rss_peak_bytes_observed": 13406208,
+    "observed_cpu_window_seconds": 9.765898930840194,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186468.592429832,
+    "measurement_finished_monotonic": 1186478.621110522,
+    "wall_seconds": 10.028680689865723,
+    "transactions": 76885,
+    "errors": 0,
+    "tps": 7680.792325,
+    "cpu_seconds_per_q_including_connect": 5.8528971841061335e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5157,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76885,
+        "maximum_ms": 10009.613,
+        "p50_ms": 0.047,
+        "p95_ms": 20.131,
+        "p99_ms": 20.173
+      },
+      "scripts": {
+        "0": {
+          "samples": 69135,
+          "maximum_ms": 9989.675,
+          "p50_ms": 0.045,
+          "p95_ms": 0.116,
+          "p99_ms": 0.158
+        },
+        "1": {
+          "samples": 7750,
+          "maximum_ms": 10009.613,
+          "p50_ms": 20.13,
+          "p95_ms": 20.192,
+          "p99_ms": 20.289
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.44000000000000006,
+    "rss_peak_bytes_observed": 13406208,
+    "observed_cpu_window_seconds": 9.764775899006054,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186484.364264672,
+    "measurement_finished_monotonic": 1186494.397875256,
+    "wall_seconds": 10.033610583981499,
+    "transactions": 74999,
+    "errors": 0,
+    "tps": 7490.156056,
+    "cpu_seconds_per_q_including_connect": 0.00019853598047973973,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 722,
+      "client_completions_max": 781,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74999,
+        "maximum_ms": 44.054,
+        "p50_ms": 11.979,
+        "p95_ms": 31.339,
+        "p99_ms": 37.201
+      },
+      "scripts": {
+        "0": {
+          "samples": 67515,
+          "maximum_ms": 26.512,
+          "p50_ms": 11.353,
+          "p95_ms": 18.525,
+          "p99_ms": 20.462
+        },
+        "1": {
+          "samples": 7484,
+          "maximum_ms": 44.054,
+          "p50_ms": 31.354,
+          "p95_ms": 38.512,
+          "p99_ms": 40.449
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 14.23,
+    "rss_peak_bytes_observed": 14647296,
+    "observed_cpu_window_seconds": 9.53303869208321,
+    "rss_lifetime_hwm_bytes": 15712256,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186499.794341049,
+    "measurement_finished_monotonic": 1186509.83053614,
+    "wall_seconds": 10.036195090971887,
+    "transactions": 76855,
+    "errors": 0,
+    "tps": 7681.955546,
+    "cpu_seconds_per_q_including_connect": 1.574393338104222e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5224,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76855,
+        "maximum_ms": 10004.368,
+        "p50_ms": 0.054,
+        "p95_ms": 20.137,
+        "p99_ms": 20.174
+      },
+      "scripts": {
+        "0": {
+          "samples": 69215,
+          "maximum_ms": 9985.455,
+          "p50_ms": 0.052,
+          "p95_ms": 0.126,
+          "p99_ms": 0.163
+        },
+        "1": {
+          "samples": 7640,
+          "maximum_ms": 10004.368,
+          "p50_ms": 20.136,
+          "p95_ms": 20.186,
+          "p99_ms": 20.258
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.1600000000000001,
+    "rss_peak_bytes_observed": 9662464,
+    "observed_cpu_window_seconds": 9.787738031009212,
+    "rss_lifetime_hwm_bytes": 10895360,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186515.253298246,
+    "measurement_finished_monotonic": 1186525.282197485,
+    "wall_seconds": 10.028899238910526,
+    "transactions": 74698,
+    "errors": 0,
+    "tps": 7464.121297,
+    "cpu_seconds_per_q_including_connect": 0.00019197301132560442,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 715,
+      "client_completions_max": 770,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74698,
+        "maximum_ms": 45.177,
+        "p50_ms": 11.841,
+        "p95_ms": 31.353,
+        "p99_ms": 37.144
+      },
+      "scripts": {
+        "0": {
+          "samples": 67195,
+          "maximum_ms": 26.692,
+          "p50_ms": 11.241,
+          "p95_ms": 18.434,
+          "p99_ms": 20.387
+        },
+        "1": {
+          "samples": 7503,
+          "maximum_ms": 45.177,
+          "p50_ms": 31.33,
+          "p95_ms": 38.468,
+          "p99_ms": 40.342
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 14.059999999999999,
+    "rss_peak_bytes_observed": 14516224,
+    "observed_cpu_window_seconds": 9.782967303879559,
+    "rss_lifetime_hwm_bytes": 15638528,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186530.673156825,
+    "measurement_finished_monotonic": 1186540.718859372,
+    "wall_seconds": 10.045702547067776,
+    "transactions": 77567,
+    "errors": 0,
+    "tps": 7738.927553,
+    "cpu_seconds_per_q_including_connect": 5.930356981706139e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5158,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77567,
+        "maximum_ms": 10022.316,
+        "p50_ms": 0.046,
+        "p95_ms": 20.132,
+        "p99_ms": 20.177
+      },
+      "scripts": {
+        "0": {
+          "samples": 69831,
+          "maximum_ms": 10002.678,
+          "p50_ms": 0.044,
+          "p95_ms": 0.121,
+          "p99_ms": 0.211
+        },
+        "1": {
+          "samples": 7736,
+          "maximum_ms": 10022.316,
+          "p50_ms": 20.132,
+          "p95_ms": 20.203,
+          "p99_ms": 20.672
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.45000000000000007,
+    "rss_peak_bytes_observed": 13406208,
+    "observed_cpu_window_seconds": 9.765232421923429,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186546.360926674,
+    "measurement_finished_monotonic": 1186556.394081103,
+    "wall_seconds": 10.033154428936541,
+    "transactions": 79098,
+    "errors": 0,
+    "tps": 7900.996709,
+    "cpu_seconds_per_q_including_connect": 8.091228602493109e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 762,
+      "client_completions_max": 817,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 79098,
+        "maximum_ms": 59.46,
+        "p50_ms": 12.848,
+        "p95_ms": 30.798,
+        "p99_ms": 39.36
+      },
+      "scripts": {
+        "0": {
+          "samples": 71342,
+          "maximum_ms": 42.379,
+          "p50_ms": 10.823,
+          "p95_ms": 19.761,
+          "p99_ms": 20.505
+        },
+        "1": {
+          "samples": 7756,
+          "maximum_ms": 59.46,
+          "p50_ms": 31.03,
+          "p95_ms": 39.827,
+          "p99_ms": 40.592
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.6200000000000001,
+    "rss_peak_bytes_observed": 13012992,
+    "observed_cpu_window_seconds": 9.76635834411718,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186562.066208368,
+    "measurement_finished_monotonic": 1186572.097473589,
+    "wall_seconds": 10.031265221070498,
+    "transactions": 76042,
+    "errors": 0,
+    "tps": 7596.739242,
+    "cpu_seconds_per_q_including_connect": 1.4991715104810502e-05,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5075,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76042,
+        "maximum_ms": 10009.363,
+        "p50_ms": 0.055,
+        "p95_ms": 20.147,
+        "p99_ms": 20.21
+      },
+      "scripts": {
+        "0": {
+          "samples": 68336,
+          "maximum_ms": 9989.29,
+          "p50_ms": 0.052,
+          "p95_ms": 0.131,
+          "p99_ms": 0.238
+        },
+        "1": {
+          "samples": 7706,
+          "maximum_ms": 10009.363,
+          "p50_ms": 20.146,
+          "p95_ms": 20.253,
+          "p99_ms": 20.728
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.1099999999999999,
+    "rss_peak_bytes_observed": 9306112,
+    "observed_cpu_window_seconds": 9.785708960145712,
+    "rss_lifetime_hwm_bytes": 10670080,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186578.436625069,
+    "measurement_finished_monotonic": 1186588.450366032,
+    "wall_seconds": 10.013740963069722,
+    "transactions": 47863,
+    "errors": 0,
+    "tps": 4781.144969,
+    "cpu_seconds_per_q_including_connect": 6.476819254956857e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4308,
+      "client_completions_max": 5174,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47863,
+        "maximum_ms": 23.673,
+        "p50_ms": 0.047,
+        "p95_ms": 20.152,
+        "p99_ms": 20.276
+      },
+      "scripts": {
+        "0": {
+          "samples": 43063,
+          "maximum_ms": 4.597,
+          "p50_ms": 0.044,
+          "p95_ms": 0.153,
+          "p99_ms": 0.446
+        },
+        "1": {
+          "samples": 4800,
+          "maximum_ms": 23.673,
+          "p50_ms": 20.152,
+          "p95_ms": 20.495,
+          "p99_ms": 21.774
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.29000000000000004,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764737125951797,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186593.789312615,
+    "measurement_finished_monotonic": 1186603.799543387,
+    "wall_seconds": 10.010230771964416,
+    "transactions": 47449,
+    "errors": 0,
+    "tps": 4741.53588,
+    "cpu_seconds_per_q_including_connect": 6.111825328247171e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4576,
+      "client_completions_max": 5102,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47449,
+        "maximum_ms": 23.782,
+        "p50_ms": 0.049,
+        "p95_ms": 20.151,
+        "p99_ms": 20.308
+      },
+      "scripts": {
+        "0": {
+          "samples": 42648,
+          "maximum_ms": 3.971,
+          "p50_ms": 0.046,
+          "p95_ms": 0.147,
+          "p99_ms": 0.342
+        },
+        "1": {
+          "samples": 4801,
+          "maximum_ms": 23.782,
+          "p50_ms": 20.15,
+          "p95_ms": 20.609,
+          "p99_ms": 21.82
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.29000000000000004,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765208210097626,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186609.120961441,
+    "measurement_finished_monotonic": 1186619.139988902,
+    "wall_seconds": 10.01902746106498,
+    "transactions": 47752,
+    "errors": 0,
+    "tps": 4767.861308,
+    "cpu_seconds_per_q_including_connect": 1.0889596247277602e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4416,
+      "client_completions_max": 5059,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47752,
+        "maximum_ms": 24.22,
+        "p50_ms": 0.056,
+        "p95_ms": 20.161,
+        "p99_ms": 20.347
+      },
+      "scripts": {
+        "0": {
+          "samples": 42998,
+          "maximum_ms": 3.816,
+          "p50_ms": 0.052,
+          "p95_ms": 0.228,
+          "p99_ms": 0.733
+        },
+        "1": {
+          "samples": 4754,
+          "maximum_ms": 24.22,
+          "p50_ms": 20.162,
+          "p95_ms": 20.622,
+          "p99_ms": 21.963
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.51,
+    "rss_peak_bytes_observed": 7602176,
+    "observed_cpu_window_seconds": 9.766615367028862,
+    "rss_lifetime_hwm_bytes": 7659520,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186624.343988202,
+    "measurement_finished_monotonic": 1186634.362047603,
+    "wall_seconds": 10.018059400841594,
+    "transactions": 47179,
+    "errors": 0,
+    "tps": 4711.07977,
+    "cpu_seconds_per_q_including_connect": 1.6320820704126833e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4505,
+      "client_completions_max": 4998,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47179,
+        "maximum_ms": 24.173,
+        "p50_ms": 0.067,
+        "p95_ms": 20.177,
+        "p99_ms": 20.377
+      },
+      "scripts": {
+        "0": {
+          "samples": 42431,
+          "maximum_ms": 5.748,
+          "p50_ms": 0.063,
+          "p95_ms": 0.189,
+          "p99_ms": 0.556
+        },
+        "1": {
+          "samples": 4748,
+          "maximum_ms": 24.173,
+          "p50_ms": 20.176,
+          "p95_ms": 20.604,
+          "p99_ms": 21.788
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.75,
+    "rss_peak_bytes_observed": 10584064,
+    "observed_cpu_window_seconds": 9.767629941925406,
+    "rss_lifetime_hwm_bytes": 10768384,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186639.584272595,
+    "measurement_finished_monotonic": 1186649.602562541,
+    "wall_seconds": 10.01828994601965,
+    "transactions": 47353,
+    "errors": 0,
+    "tps": 4728.218075,
+    "cpu_seconds_per_q_including_connect": 5.9130361328743686e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4425,
+      "client_completions_max": 4975,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47353,
+        "maximum_ms": 22.97,
+        "p50_ms": 0.049,
+        "p95_ms": 20.133,
+        "p99_ms": 20.186
+      },
+      "scripts": {
+        "0": {
+          "samples": 42520,
+          "maximum_ms": 4.167,
+          "p50_ms": 0.047,
+          "p95_ms": 0.126,
+          "p99_ms": 0.188
+        },
+        "1": {
+          "samples": 4833,
+          "maximum_ms": 22.97,
+          "p50_ms": 20.132,
+          "p95_ms": 20.237,
+          "p99_ms": 21.043
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27999999999999997,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765016156015918,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186654.917577679,
+    "measurement_finished_monotonic": 1186664.938968001,
+    "wall_seconds": 10.021390321897343,
+    "transactions": 47665,
+    "errors": 0,
+    "tps": 4757.98701,
+    "cpu_seconds_per_q_including_connect": 1.5944613448022657e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4417,
+      "client_completions_max": 4971,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47665,
+        "maximum_ms": 23.806,
+        "p50_ms": 0.069,
+        "p95_ms": 20.164,
+        "p99_ms": 20.297
+      },
+      "scripts": {
+        "0": {
+          "samples": 42918,
+          "maximum_ms": 4.35,
+          "p50_ms": 0.065,
+          "p95_ms": 0.189,
+          "p99_ms": 0.833
+        },
+        "1": {
+          "samples": 4747,
+          "maximum_ms": 23.806,
+          "p50_ms": 20.165,
+          "p95_ms": 20.444,
+          "p99_ms": 21.058
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7399999999999999,
+    "rss_peak_bytes_observed": 10584064,
+    "observed_cpu_window_seconds": 9.766824558144435,
+    "rss_lifetime_hwm_bytes": 10764288,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186670.144757311,
+    "measurement_finished_monotonic": 1186680.167130551,
+    "wall_seconds": 10.022373239975423,
+    "transactions": 47854,
+    "errors": 0,
+    "tps": 4776.150507,
+    "cpu_seconds_per_q_including_connect": 1.0448447360722196e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4486,
+      "client_completions_max": 5316,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47854,
+        "maximum_ms": 23.7,
+        "p50_ms": 0.051,
+        "p95_ms": 20.138,
+        "p99_ms": 20.187
+      },
+      "scripts": {
+        "0": {
+          "samples": 43028,
+          "maximum_ms": 2.917,
+          "p50_ms": 0.049,
+          "p95_ms": 0.13,
+          "p99_ms": 0.207
+        },
+        "1": {
+          "samples": 4826,
+          "maximum_ms": 23.7,
+          "p50_ms": 20.138,
+          "p95_ms": 20.234,
+          "p99_ms": 20.952
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.49,
+    "rss_peak_bytes_observed": 7602176,
+    "observed_cpu_window_seconds": 9.767040760954842,
+    "rss_lifetime_hwm_bytes": 7684096,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186685.380464334,
+    "measurement_finished_monotonic": 1186695.402348867,
+    "wall_seconds": 10.021884532878175,
+    "transactions": 47483,
+    "errors": 0,
+    "tps": 4739.576809,
+    "cpu_seconds_per_q_including_connect": 6.1074489817408335e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4558,
+      "client_completions_max": 4996,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47483,
+        "maximum_ms": 23.575,
+        "p50_ms": 0.048,
+        "p95_ms": 20.133,
+        "p99_ms": 20.191
+      },
+      "scripts": {
+        "1": {
+          "samples": 4834,
+          "maximum_ms": 23.575,
+          "p50_ms": 20.132,
+          "p95_ms": 20.257,
+          "p99_ms": 20.776
+        },
+        "0": {
+          "samples": 42649,
+          "maximum_ms": 8.232,
+          "p50_ms": 0.046,
+          "p95_ms": 0.127,
+          "p99_ms": 0.227
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.28,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765432053944096,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186700.730383275,
+    "measurement_finished_monotonic": 1186710.748562672,
+    "wall_seconds": 10.01817939686589,
+    "transactions": 47849,
+    "errors": 0,
+    "tps": 4778.094083,
+    "cpu_seconds_per_q_including_connect": 1.0658529958828815e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4412,
+      "client_completions_max": 5212,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47849,
+        "maximum_ms": 23.2,
+        "p50_ms": 0.054,
+        "p95_ms": 20.142,
+        "p99_ms": 20.203
+      },
+      "scripts": {
+        "0": {
+          "samples": 43034,
+          "maximum_ms": 3.09,
+          "p50_ms": 0.051,
+          "p95_ms": 0.137,
+          "p99_ms": 0.243
+        },
+        "1": {
+          "samples": 4815,
+          "maximum_ms": 23.2,
+          "p50_ms": 20.142,
+          "p95_ms": 20.273,
+          "p99_ms": 20.694
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.5,
+    "rss_peak_bytes_observed": 7602176,
+    "observed_cpu_window_seconds": 9.766661722911522,
+    "rss_lifetime_hwm_bytes": 7675904,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186715.952395378,
+    "measurement_finished_monotonic": 1186725.966049326,
+    "wall_seconds": 10.013653947971761,
+    "transactions": 46013,
+    "errors": 0,
+    "tps": 4596.492528,
+    "cpu_seconds_per_q_including_connect": 1.6299741377436815e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4443,
+      "client_completions_max": 4887,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 46013,
+        "maximum_ms": 22.223,
+        "p50_ms": 0.091,
+        "p95_ms": 20.206,
+        "p99_ms": 20.503
+      },
+      "scripts": {
+        "0": {
+          "samples": 41344,
+          "maximum_ms": 2.202,
+          "p50_ms": 0.084,
+          "p95_ms": 0.442,
+          "p99_ms": 0.99
+        },
+        "1": {
+          "samples": 4669,
+          "maximum_ms": 22.223,
+          "p50_ms": 20.205,
+          "p95_ms": 20.612,
+          "p99_ms": 21.007
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7400000000000001,
+    "rss_peak_bytes_observed": 10584064,
+    "observed_cpu_window_seconds": 9.765107418876141,
+    "rss_lifetime_hwm_bytes": 10764288,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186731.183620022,
+    "measurement_finished_monotonic": 1186741.204971687,
+    "wall_seconds": 10.021351665025577,
+    "transactions": 45396,
+    "errors": 0,
+    "tps": 4531.10418,
+    "cpu_seconds_per_q_including_connect": 5.947660586835845e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4133,
+      "client_completions_max": 5022,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 45396,
+        "maximum_ms": 22.909,
+        "p50_ms": 0.087,
+        "p95_ms": 20.174,
+        "p99_ms": 20.653
+      },
+      "scripts": {
+        "0": {
+          "samples": 40784,
+          "maximum_ms": 3.77,
+          "p50_ms": 0.077,
+          "p95_ms": 0.993,
+          "p99_ms": 1.003
+        },
+        "1": {
+          "samples": 4612,
+          "maximum_ms": 22.909,
+          "p50_ms": 20.173,
+          "p95_ms": 21.001,
+          "p99_ms": 21.018
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764932265970856,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186746.574084407,
+    "measurement_finished_monotonic": 1186756.593866281,
+    "wall_seconds": 10.019781874027103,
+    "transactions": 47207,
+    "errors": 0,
+    "tps": 4712.761354,
+    "cpu_seconds_per_q_including_connect": 5.931323744359946e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4405,
+      "client_completions_max": 5145,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47207,
+        "maximum_ms": 22.207,
+        "p50_ms": 0.074,
+        "p95_ms": 20.174,
+        "p99_ms": 20.636
+      },
+      "scripts": {
+        "0": {
+          "samples": 42526,
+          "maximum_ms": 3.836,
+          "p50_ms": 0.068,
+          "p95_ms": 0.411,
+          "p99_ms": 1.0
+        },
+        "1": {
+          "samples": 4681,
+          "maximum_ms": 22.207,
+          "p50_ms": 20.174,
+          "p95_ms": 20.846,
+          "p99_ms": 21.027
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.26,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.763758822111413,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186762.106985184,
+    "measurement_finished_monotonic": 1186772.144693798,
+    "wall_seconds": 10.03770861402154,
+    "transactions": 75659,
+    "errors": 0,
+    "tps": 7549.356341,
+    "cpu_seconds_per_q_including_connect": 7.269459020076923e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 730,
+      "client_completions_max": 783,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75659,
+        "maximum_ms": 45.112,
+        "p50_ms": 11.821,
+        "p95_ms": 31.232,
+        "p99_ms": 37.533
+      },
+      "scripts": {
+        "1": {
+          "samples": 7612,
+          "maximum_ms": 45.112,
+          "p50_ms": 31.186,
+          "p95_ms": 38.997,
+          "p99_ms": 40.583
+        },
+        "0": {
+          "samples": 68047,
+          "maximum_ms": 34.322,
+          "p50_ms": 11.106,
+          "p95_ms": 18.874,
+          "p99_ms": 20.526
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.54,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.764636364998296,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186777.81254041,
+    "measurement_finished_monotonic": 1186787.843393726,
+    "wall_seconds": 10.030853315955028,
+    "transactions": 76409,
+    "errors": 0,
+    "tps": 7636.467794,
+    "cpu_seconds_per_q_including_connect": 9.815597639021579e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5167,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76409,
+        "maximum_ms": 10005.491,
+        "p50_ms": 0.051,
+        "p95_ms": 20.137,
+        "p99_ms": 20.199
+      },
+      "scripts": {
+        "0": {
+          "samples": 68698,
+          "maximum_ms": 9986.866,
+          "p50_ms": 0.049,
+          "p95_ms": 0.13,
+          "p99_ms": 0.247
+        },
+        "1": {
+          "samples": 7711,
+          "maximum_ms": 10005.491,
+          "p50_ms": 20.136,
+          "p95_ms": 20.247,
+          "p99_ms": 20.694
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7300000000000001,
+    "rss_peak_bytes_observed": 8781824,
+    "observed_cpu_window_seconds": 9.767849839990959,
+    "rss_lifetime_hwm_bytes": 8867840,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186793.300013965,
+    "measurement_finished_monotonic": 1186803.349528229,
+    "wall_seconds": 10.049514264101163,
+    "transactions": 62429,
+    "errors": 0,
+    "tps": 6227.789514,
+    "cpu_seconds_per_q_including_connect": 4.4850950679972454e-05,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 598,
+      "client_completions_max": 646,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 62429,
+        "maximum_ms": 66.408,
+        "p50_ms": 14.126,
+        "p95_ms": 33.981,
+        "p99_ms": 41.017
+      },
+      "scripts": {
+        "0": {
+          "samples": 56153,
+          "maximum_ms": 57.719,
+          "p50_ms": 13.481,
+          "p95_ms": 22.102,
+          "p99_ms": 27.588
+        },
+        "1": {
+          "samples": 6276,
+          "maximum_ms": 66.408,
+          "p50_ms": 33.721,
+          "p95_ms": 42.516,
+          "p99_ms": 48.517
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 2.7299999999999995,
+    "rss_peak_bytes_observed": 12144640,
+    "observed_cpu_window_seconds": 9.765561314998195,
+    "rss_lifetime_hwm_bytes": 12328960,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186808.736157251,
+    "measurement_finished_monotonic": 1186818.768209423,
+    "wall_seconds": 10.032052171882242,
+    "transactions": 75471,
+    "errors": 0,
+    "tps": 7537.764479,
+    "cpu_seconds_per_q_including_connect": 5.300049025453485e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5089,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75471,
+        "maximum_ms": 10012.005,
+        "p50_ms": 0.074,
+        "p95_ms": 20.167,
+        "p99_ms": 20.519
+      },
+      "scripts": {
+        "0": {
+          "samples": 67951,
+          "maximum_ms": 9991.967,
+          "p50_ms": 0.068,
+          "p95_ms": 0.397,
+          "p99_ms": 0.993
+        },
+        "1": {
+          "samples": 7520,
+          "maximum_ms": 10012.005,
+          "p50_ms": 20.166,
+          "p95_ms": 20.682,
+          "p99_ms": 20.997
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.39999999999999997,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.763857607031241,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186824.459709493,
+    "measurement_finished_monotonic": 1186834.497965459,
+    "wall_seconds": 10.03825596603565,
+    "transactions": 76271,
+    "errors": 0,
+    "tps": 7611.823831,
+    "cpu_seconds_per_q_including_connect": 7.211128738314692e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 723,
+      "client_completions_max": 799,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76271,
+        "maximum_ms": 47.465,
+        "p50_ms": 11.704,
+        "p95_ms": 30.993,
+        "p99_ms": 37.943
+      },
+      "scripts": {
+        "0": {
+          "samples": 68704,
+          "maximum_ms": 27.432,
+          "p50_ms": 11.013,
+          "p95_ms": 19.285,
+          "p99_ms": 20.531
+        },
+        "1": {
+          "samples": 7567,
+          "maximum_ms": 47.465,
+          "p50_ms": 31.03,
+          "p95_ms": 39.461,
+          "p99_ms": 40.561
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.54,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.763486120849848,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186840.147639427,
+    "measurement_finished_monotonic": 1186850.185465103,
+    "wall_seconds": 10.037825675914064,
+    "transactions": 74176,
+    "errors": 0,
+    "tps": 7407.914892,
+    "cpu_seconds_per_q_including_connect": 5.392579810181191e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 4992,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74176,
+        "maximum_ms": 10012.64,
+        "p50_ms": 0.076,
+        "p95_ms": 20.174,
+        "p99_ms": 20.629
+      },
+      "scripts": {
+        "0": {
+          "samples": 66688,
+          "maximum_ms": 9995.451,
+          "p50_ms": 0.069,
+          "p95_ms": 0.487,
+          "p99_ms": 0.998
+        },
+        "1": {
+          "samples": 7488,
+          "maximum_ms": 10012.64,
+          "p50_ms": 20.171,
+          "p95_ms": 20.821,
+          "p99_ms": 21.018
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.39,
+    "rss_peak_bytes_observed": 13537280,
+    "observed_cpu_window_seconds": 9.763968240004033,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186855.9098441,
+    "measurement_finished_monotonic": 1186866.003175949,
+    "wall_seconds": 10.093331848969683,
+    "transactions": 55878,
+    "errors": 0,
+    "tps": 5550.016046,
+    "cpu_seconds_per_q_including_connect": 4.581409499266258e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 541,
+      "client_completions_max": 575,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 55878,
+        "maximum_ms": 132.835,
+        "p50_ms": 15.551,
+        "p95_ms": 37.049,
+        "p99_ms": 50.12
+      },
+      "scripts": {
+        "1": {
+          "samples": 5618,
+          "maximum_ms": 132.835,
+          "p50_ms": 35.163,
+          "p95_ms": 44.848,
+          "p99_ms": 64.211
+        },
+        "0": {
+          "samples": 50260,
+          "maximum_ms": 112.782,
+          "p50_ms": 14.802,
+          "p95_ms": 24.332,
+          "p99_ms": 42.409
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 2.51,
+    "rss_peak_bytes_observed": 12156928,
+    "observed_cpu_window_seconds": 9.766354093095288,
+    "rss_lifetime_hwm_bytes": 12320768,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186871.395140797,
+    "measurement_finished_monotonic": 1186881.433944618,
+    "wall_seconds": 10.03880382119678,
+    "transactions": 76667,
+    "errors": 0,
+    "tps": 7657.771039,
+    "cpu_seconds_per_q_including_connect": 1.0043434593762634e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5053,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76667,
+        "maximum_ms": 10011.207,
+        "p50_ms": 0.051,
+        "p95_ms": 20.133,
+        "p99_ms": 20.177
+      },
+      "scripts": {
+        "0": {
+          "samples": 68943,
+          "maximum_ms": 9991.355,
+          "p50_ms": 0.049,
+          "p95_ms": 0.124,
+          "p99_ms": 0.197
+        },
+        "1": {
+          "samples": 7724,
+          "maximum_ms": 10011.207,
+          "p50_ms": 20.132,
+          "p95_ms": 20.201,
+          "p99_ms": 20.636
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7699999999999999,
+    "rss_peak_bytes_observed": 8912896,
+    "observed_cpu_window_seconds": 10.017391462111846,
+    "rss_lifetime_hwm_bytes": 8916992,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186886.885743281,
+    "measurement_finished_monotonic": 1186896.921779934,
+    "wall_seconds": 10.03603665297851,
+    "transactions": 70656,
+    "errors": 0,
+    "tps": 7057.759535,
+    "cpu_seconds_per_q_including_connect": 4.4440670289855075e-05,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 679,
+      "client_completions_max": 732,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 70656,
+        "maximum_ms": 48.182,
+        "p50_ms": 12.445,
+        "p95_ms": 31.952,
+        "p99_ms": 37.813
+      },
+      "scripts": {
+        "0": {
+          "samples": 63581,
+          "maximum_ms": 29.41,
+          "p50_ms": 11.753,
+          "p95_ms": 19.277,
+          "p99_ms": 21.693
+        },
+        "1": {
+          "samples": 7075,
+          "maximum_ms": 48.182,
+          "p50_ms": 31.946,
+          "p95_ms": 39.314,
+          "p99_ms": 41.796
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 3.0800000000000005,
+    "rss_peak_bytes_observed": 12156928,
+    "observed_cpu_window_seconds": 9.765619226032868,
+    "rss_lifetime_hwm_bytes": 12345344,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186902.306032486,
+    "measurement_finished_monotonic": 1186912.336601581,
+    "wall_seconds": 10.030569094931707,
+    "transactions": 78048,
+    "errors": 0,
+    "tps": 7799.997542,
+    "cpu_seconds_per_q_including_connect": 5.765682656826568e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5087,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 78048,
+        "maximum_ms": 10005.897,
+        "p50_ms": 0.047,
+        "p95_ms": 20.127,
+        "p99_ms": 20.172
+      },
+      "scripts": {
+        "0": {
+          "samples": 70309,
+          "maximum_ms": 9986.642,
+          "p50_ms": 0.045,
+          "p95_ms": 0.118,
+          "p99_ms": 0.18
+        },
+        "1": {
+          "samples": 7739,
+          "maximum_ms": 10005.897,
+          "p50_ms": 20.127,
+          "p95_ms": 20.201,
+          "p99_ms": 20.585
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.43000000000000005,
+    "rss_peak_bytes_observed": 13537280,
+    "observed_cpu_window_seconds": 9.76495244493708,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186918.026909387,
+    "measurement_finished_monotonic": 1186928.059311702,
+    "wall_seconds": 10.032402314944193,
+    "transactions": 76643,
+    "errors": 0,
+    "tps": 7655.975658,
+    "cpu_seconds_per_q_including_connect": 7.1761282830786885e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 744,
+      "client_completions_max": 791,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76643,
+        "maximum_ms": 52.497,
+        "p50_ms": 15.294,
+        "p95_ms": 32.86,
+        "p99_ms": 39.555
+      },
+      "scripts": {
+        "0": {
+          "samples": 68886,
+          "maximum_ms": 26.505,
+          "p50_ms": 12.242,
+          "p95_ms": 19.869,
+          "p99_ms": 20.425
+        },
+        "1": {
+          "samples": 7757,
+          "maximum_ms": 52.497,
+          "p50_ms": 32.514,
+          "p95_ms": 39.992,
+          "p99_ms": 40.531
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.5399999999999999,
+    "rss_peak_bytes_observed": 13537280,
+    "observed_cpu_window_seconds": 9.764492376009002,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186933.727147614,
+    "measurement_finished_monotonic": 1186943.75946768,
+    "wall_seconds": 10.032320066122338,
+    "transactions": 78008,
+    "errors": 0,
+    "tps": 7791.56855,
+    "cpu_seconds_per_q_including_connect": 9.486206542918677e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5330,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 78008,
+        "maximum_ms": 10011.684,
+        "p50_ms": 0.048,
+        "p95_ms": 20.131,
+        "p99_ms": 20.181
+      },
+      "scripts": {
+        "0": {
+          "samples": 70273,
+          "maximum_ms": 9991.858,
+          "p50_ms": 0.046,
+          "p95_ms": 0.119,
+          "p99_ms": 0.195
+        },
+        "1": {
+          "samples": 7735,
+          "maximum_ms": 10011.684,
+          "p50_ms": 20.13,
+          "p95_ms": 20.214,
+          "p99_ms": 20.828
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7100000000000001,
+    "rss_peak_bytes_observed": 8781824,
+    "observed_cpu_window_seconds": 9.765929517103359,
+    "rss_lifetime_hwm_bytes": 8880128,
+    "candidate": "before",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186950.027163084,
+    "measurement_finished_monotonic": 1186960.041016403,
+    "wall_seconds": 10.013853318989277,
+    "transactions": 48130,
+    "errors": 0,
+    "tps": 4807.659171,
+    "cpu_seconds_per_q_including_connect": 5.609806773322253e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4580,
+      "client_completions_max": 4965,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48130,
+        "maximum_ms": 21.546,
+        "p50_ms": 0.048,
+        "p95_ms": 20.128,
+        "p99_ms": 20.168
+      },
+      "scripts": {
+        "1": {
+          "samples": 4850,
+          "maximum_ms": 21.546,
+          "p50_ms": 20.128,
+          "p95_ms": 20.188,
+          "p99_ms": 20.297
+        },
+        "0": {
+          "samples": 43280,
+          "maximum_ms": 1.587,
+          "p50_ms": 0.046,
+          "p95_ms": 0.116,
+          "p99_ms": 0.152
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765077342977747,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186965.412965035,
+    "measurement_finished_monotonic": 1186975.435425294,
+    "wall_seconds": 10.022460259031504,
+    "transactions": 48156,
+    "errors": 0,
+    "tps": 4806.41686,
+    "cpu_seconds_per_q_including_connect": 6.437411745161558e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4448,
+      "client_completions_max": 5097,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48156,
+        "maximum_ms": 21.821,
+        "p50_ms": 0.046,
+        "p95_ms": 20.133,
+        "p99_ms": 20.168
+      },
+      "scripts": {
+        "1": {
+          "samples": 4849,
+          "maximum_ms": 21.821,
+          "p50_ms": 20.132,
+          "p95_ms": 20.182,
+          "p99_ms": 20.23
+        },
+        "0": {
+          "samples": 43307,
+          "maximum_ms": 1.481,
+          "p50_ms": 0.045,
+          "p95_ms": 0.119,
+          "p99_ms": 0.152
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.3,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.76505667483434,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186980.768845871,
+    "measurement_finished_monotonic": 1186990.789592654,
+    "wall_seconds": 10.020746782887727,
+    "transactions": 48257,
+    "errors": 0,
+    "tps": 4817.538127,
+    "cpu_seconds_per_q_including_connect": 1.4298443749093397e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4514,
+      "client_completions_max": 5207,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48257,
+        "maximum_ms": 21.3,
+        "p50_ms": 0.05,
+        "p95_ms": 20.139,
+        "p99_ms": 20.18
+      },
+      "scripts": {
+        "0": {
+          "samples": 43418,
+          "maximum_ms": 1.239,
+          "p50_ms": 0.048,
+          "p95_ms": 0.124,
+          "p99_ms": 0.161
+        },
+        "1": {
+          "samples": 4839,
+          "maximum_ms": 21.3,
+          "p50_ms": 20.139,
+          "p95_ms": 20.199,
+          "p99_ms": 20.255
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.67,
+    "rss_peak_bytes_observed": 7307264,
+    "observed_cpu_window_seconds": 9.785881945863366,
+    "rss_lifetime_hwm_bytes": 8372224,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1186996.009674153,
+    "measurement_finished_monotonic": 1187006.031699486,
+    "wall_seconds": 10.022025333018973,
+    "transactions": 47143,
+    "errors": 0,
+    "tps": 4705.616725,
+    "cpu_seconds_per_q_including_connect": 2.0151454086502768e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4512,
+      "client_completions_max": 5054,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47143,
+        "maximum_ms": 23.252,
+        "p50_ms": 0.068,
+        "p95_ms": 20.17,
+        "p99_ms": 20.224
+      },
+      "scripts": {
+        "0": {
+          "samples": 42347,
+          "maximum_ms": 3.547,
+          "p50_ms": 0.064,
+          "p95_ms": 0.148,
+          "p99_ms": 0.195
+        },
+        "1": {
+          "samples": 4796,
+          "maximum_ms": 23.252,
+          "p50_ms": 20.17,
+          "p95_ms": 20.25,
+          "p99_ms": 20.391
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.9299999999999999,
+    "rss_peak_bytes_observed": 10797056,
+    "observed_cpu_window_seconds": 9.786494236905128,
+    "rss_lifetime_hwm_bytes": 11911168,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187011.22927299,
+    "measurement_finished_monotonic": 1187021.251308438,
+    "wall_seconds": 10.022035447880626,
+    "transactions": 47650,
+    "errors": 0,
+    "tps": 4755.93139,
+    "cpu_seconds_per_q_including_connect": 6.505771248688353e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4446,
+      "client_completions_max": 5121,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47650,
+        "maximum_ms": 21.692,
+        "p50_ms": 0.048,
+        "p95_ms": 20.133,
+        "p99_ms": 20.169
+      },
+      "scripts": {
+        "1": {
+          "samples": 4849,
+          "maximum_ms": 21.692,
+          "p50_ms": 20.132,
+          "p95_ms": 20.183,
+          "p99_ms": 20.249
+        },
+        "0": {
+          "samples": 42801,
+          "maximum_ms": 1.91,
+          "p50_ms": 0.046,
+          "p95_ms": 0.12,
+          "p99_ms": 0.152
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.29000000000000004,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765283470973372,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187026.589377196,
+    "measurement_finished_monotonic": 1187036.61174233,
+    "wall_seconds": 10.022365133976564,
+    "transactions": 49227,
+    "errors": 0,
+    "tps": 4913.498001,
+    "cpu_seconds_per_q_including_connect": 1.8892071424218416e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4595,
+      "client_completions_max": 5239,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 49227,
+        "maximum_ms": 23.375,
+        "p50_ms": 0.062,
+        "p95_ms": 20.166,
+        "p99_ms": 20.22
+      },
+      "scripts": {
+        "1": {
+          "samples": 4796,
+          "maximum_ms": 23.375,
+          "p50_ms": 20.167,
+          "p95_ms": 20.248,
+          "p99_ms": 20.383
+        },
+        "0": {
+          "samples": 44431,
+          "maximum_ms": 3.519,
+          "p50_ms": 0.059,
+          "p95_ms": 0.142,
+          "p99_ms": 0.201
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.8899999999999999,
+    "rss_peak_bytes_observed": 10534912,
+    "observed_cpu_window_seconds": 9.785391117911786,
+    "rss_lifetime_hwm_bytes": 11767808,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187041.827103391,
+    "measurement_finished_monotonic": 1187051.849853428,
+    "wall_seconds": 10.022750037023798,
+    "transactions": 48112,
+    "errors": 0,
+    "tps": 4801.72859,
+    "cpu_seconds_per_q_including_connect": 1.4549384768872633e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4481,
+      "client_completions_max": 5110,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48112,
+        "maximum_ms": 23.281,
+        "p50_ms": 0.052,
+        "p95_ms": 20.14,
+        "p99_ms": 20.186
+      },
+      "scripts": {
+        "0": {
+          "samples": 43279,
+          "maximum_ms": 1.867,
+          "p50_ms": 0.049,
+          "p95_ms": 0.127,
+          "p99_ms": 0.174
+        },
+        "1": {
+          "samples": 4833,
+          "maximum_ms": 23.281,
+          "p50_ms": 20.139,
+          "p95_ms": 20.208,
+          "p99_ms": 20.395
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.68,
+    "rss_peak_bytes_observed": 7061504,
+    "observed_cpu_window_seconds": 9.784639494959265,
+    "rss_lifetime_hwm_bytes": 8339456,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187057.05483278,
+    "measurement_finished_monotonic": 1187067.076878016,
+    "wall_seconds": 10.022045236080885,
+    "transactions": 48542,
+    "errors": 0,
+    "tps": 4844.868299,
+    "cpu_seconds_per_q_including_connect": 5.768200733385521e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4567,
+      "client_completions_max": 5121,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48542,
+        "maximum_ms": 24.421,
+        "p50_ms": 0.044,
+        "p95_ms": 20.129,
+        "p99_ms": 20.169
+      },
+      "scripts": {
+        "1": {
+          "samples": 4850,
+          "maximum_ms": 24.421,
+          "p50_ms": 20.129,
+          "p95_ms": 20.199,
+          "p99_ms": 20.356
+        },
+        "0": {
+          "samples": 43692,
+          "maximum_ms": 2.676,
+          "p50_ms": 0.042,
+          "p95_ms": 0.113,
+          "p99_ms": 0.159
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27999999999999997,
+    "rss_peak_bytes_observed": 12726272,
+    "observed_cpu_window_seconds": 9.764414767967537,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187072.40598936,
+    "measurement_finished_monotonic": 1187082.422644464,
+    "wall_seconds": 10.016655104001984,
+    "transactions": 48367,
+    "errors": 0,
+    "tps": 4830.354363,
+    "cpu_seconds_per_q_including_connect": 1.5092935265780389e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4473,
+      "client_completions_max": 5060,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48367,
+        "maximum_ms": 21.607,
+        "p50_ms": 0.054,
+        "p95_ms": 20.144,
+        "p99_ms": 20.194
+      },
+      "scripts": {
+        "0": {
+          "samples": 43538,
+          "maximum_ms": 1.172,
+          "p50_ms": 0.051,
+          "p95_ms": 0.129,
+          "p99_ms": 0.179
+        },
+        "1": {
+          "samples": 4829,
+          "maximum_ms": 21.607,
+          "p50_ms": 20.144,
+          "p95_ms": 20.22,
+          "p99_ms": 20.318
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7100000000000001,
+    "rss_peak_bytes_observed": 7503872,
+    "observed_cpu_window_seconds": 9.786784550873563,
+    "rss_lifetime_hwm_bytes": 8310784,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187087.641654469,
+    "measurement_finished_monotonic": 1187097.662762199,
+    "wall_seconds": 10.021107729990035,
+    "transactions": 47852,
+    "errors": 0,
+    "tps": 4776.865802,
+    "cpu_seconds_per_q_including_connect": 2.027083507481401e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4606,
+      "client_completions_max": 5116,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47852,
+        "maximum_ms": 23.081,
+        "p50_ms": 0.069,
+        "p95_ms": 20.171,
+        "p99_ms": 20.22
+      },
+      "scripts": {
+        "0": {
+          "samples": 43064,
+          "maximum_ms": 1.914,
+          "p50_ms": 0.065,
+          "p95_ms": 0.148,
+          "p99_ms": 0.194
+        },
+        "1": {
+          "samples": 4788,
+          "maximum_ms": 23.081,
+          "p50_ms": 20.171,
+          "p95_ms": 20.244,
+          "p99_ms": 20.338
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.95,
+    "rss_peak_bytes_observed": 10403840,
+    "observed_cpu_window_seconds": 9.787966856034473,
+    "rss_lifetime_hwm_bytes": 11857920,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187102.871460096,
+    "measurement_finished_monotonic": 1187112.893488032,
+    "wall_seconds": 10.02202793606557,
+    "transactions": 48014,
+    "errors": 0,
+    "tps": 4792.327645,
+    "cpu_seconds_per_q_including_connect": 6.456450202024409e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4482,
+      "client_completions_max": 5054,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48014,
+        "maximum_ms": 21.069,
+        "p50_ms": 0.048,
+        "p95_ms": 20.134,
+        "p99_ms": 20.171
+      },
+      "scripts": {
+        "0": {
+          "samples": 43168,
+          "maximum_ms": 1.094,
+          "p50_ms": 0.046,
+          "p95_ms": 0.123,
+          "p99_ms": 0.153
+        },
+        "1": {
+          "samples": 4846,
+          "maximum_ms": 21.069,
+          "p50_ms": 20.134,
+          "p95_ms": 20.185,
+          "p99_ms": 20.229
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.31,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765133535023779,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187118.231378311,
+    "measurement_finished_monotonic": 1187128.251293312,
+    "wall_seconds": 10.019915001001209,
+    "transactions": 48272,
+    "errors": 0,
+    "tps": 4818.898003,
+    "cpu_seconds_per_q_including_connect": 6.214782896917467e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 4650,
+      "client_completions_max": 5200,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48272,
+        "maximum_ms": 24.267,
+        "p50_ms": 0.044,
+        "p95_ms": 20.13,
+        "p99_ms": 20.166
+      },
+      "scripts": {
+        "0": {
+          "samples": 43418,
+          "maximum_ms": 2.109,
+          "p50_ms": 0.042,
+          "p95_ms": 0.113,
+          "p99_ms": 0.15
+        },
+        "1": {
+          "samples": 4854,
+          "maximum_ms": 24.267,
+          "p50_ms": 20.13,
+          "p95_ms": 20.182,
+          "p99_ms": 20.264
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.29,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.76480294810608,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187133.742223283,
+    "measurement_finished_monotonic": 1187143.768663643,
+    "wall_seconds": 10.026440359884873,
+    "transactions": 77280,
+    "errors": 0,
+    "tps": 7722.613477,
+    "cpu_seconds_per_q_including_connect": 7.763975155279503e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 741,
+      "client_completions_max": 795,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77280,
+        "maximum_ms": 56.675,
+        "p50_ms": 16.21,
+        "p95_ms": 33.821,
+        "p99_ms": 39.543
+      },
+      "scripts": {
+        "0": {
+          "samples": 69512,
+          "maximum_ms": 36.311,
+          "p50_ms": 13.808,
+          "p95_ms": 19.859,
+          "p99_ms": 20.351
+        },
+        "1": {
+          "samples": 7768,
+          "maximum_ms": 56.675,
+          "p50_ms": 33.585,
+          "p95_ms": 39.914,
+          "p99_ms": 40.397
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.58,
+    "rss_peak_bytes_observed": 13307904,
+    "observed_cpu_window_seconds": 9.765580801060423,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187149.419300159,
+    "measurement_finished_monotonic": 1187159.446410457,
+    "wall_seconds": 10.027110297931358,
+    "transactions": 77947,
+    "errors": 0,
+    "tps": 7790.603701,
+    "cpu_seconds_per_q_including_connect": 1.3855568527332676e-05,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5339,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77947,
+        "maximum_ms": 10005.03,
+        "p50_ms": 0.051,
+        "p95_ms": 20.134,
+        "p99_ms": 20.17
+      },
+      "scripts": {
+        "0": {
+          "samples": 70216,
+          "maximum_ms": 9985.215,
+          "p50_ms": 0.049,
+          "p95_ms": 0.117,
+          "p99_ms": 0.155
+        },
+        "1": {
+          "samples": 7731,
+          "maximum_ms": 10005.03,
+          "p50_ms": 20.134,
+          "p95_ms": 20.182,
+          "p99_ms": 20.245
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.06,
+    "rss_peak_bytes_observed": 9273344,
+    "observed_cpu_window_seconds": 9.78433626005426,
+    "rss_lifetime_hwm_bytes": 10158080,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187164.839498915,
+    "measurement_finished_monotonic": 1187174.867557544,
+    "wall_seconds": 10.028058629017323,
+    "transactions": 78256,
+    "errors": 0,
+    "tps": 7820.211093,
+    "cpu_seconds_per_q_including_connect": 2.2490288284604372e-05,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 755,
+      "client_completions_max": 813,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 78256,
+        "maximum_ms": 48.831,
+        "p50_ms": 11.764,
+        "p95_ms": 30.96,
+        "p99_ms": 37.474
+      },
+      "scripts": {
+        "0": {
+          "samples": 70614,
+          "maximum_ms": 30.381,
+          "p50_ms": 10.912,
+          "p95_ms": 18.639,
+          "p99_ms": 20.541
+        },
+        "1": {
+          "samples": 7642,
+          "maximum_ms": 48.831,
+          "p50_ms": 31.15,
+          "p95_ms": 38.779,
+          "p99_ms": 40.578
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.71,
+    "rss_peak_bytes_observed": 13774848,
+    "observed_cpu_window_seconds": 9.784802774898708,
+    "rss_lifetime_hwm_bytes": 14651392,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187180.254357114,
+    "measurement_finished_monotonic": 1187190.29278197,
+    "wall_seconds": 10.038424856029451,
+    "transactions": 77614,
+    "errors": 0,
+    "tps": 7749.877482,
+    "cpu_seconds_per_q_including_connect": 6.184451258793516e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5163,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77614,
+        "maximum_ms": 10014.218,
+        "p50_ms": 0.046,
+        "p95_ms": 20.129,
+        "p99_ms": 20.163
+      },
+      "scripts": {
+        "1": {
+          "samples": 7757,
+          "maximum_ms": 10014.218,
+          "p50_ms": 20.129,
+          "p95_ms": 20.175,
+          "p99_ms": 20.263
+        },
+        "0": {
+          "samples": 69857,
+          "maximum_ms": 9994.011,
+          "p50_ms": 0.045,
+          "p95_ms": 0.115,
+          "p99_ms": 0.147
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.47,
+    "rss_peak_bytes_observed": 13238272,
+    "observed_cpu_window_seconds": 9.765490408055484,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187195.979647842,
+    "measurement_finished_monotonic": 1187206.011556482,
+    "wall_seconds": 10.031908639939502,
+    "transactions": 77713,
+    "errors": 0,
+    "tps": 7766.164236,
+    "cpu_seconds_per_q_including_connect": 7.592037368265285e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 755,
+      "client_completions_max": 810,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77713,
+        "maximum_ms": 58.212,
+        "p50_ms": 16.281,
+        "p95_ms": 34.845,
+        "p99_ms": 39.412
+      },
+      "scripts": {
+        "0": {
+          "samples": 69942,
+          "maximum_ms": 38.524,
+          "p50_ms": 14.36,
+          "p95_ms": 19.731,
+          "p99_ms": 20.41
+        },
+        "1": {
+          "samples": 7771,
+          "maximum_ms": 58.212,
+          "p50_ms": 34.74,
+          "p95_ms": 39.853,
+          "p99_ms": 40.524
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.5800000000000001,
+    "rss_peak_bytes_observed": 13406208,
+    "observed_cpu_window_seconds": 9.765036982949823,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187211.667246764,
+    "measurement_finished_monotonic": 1187221.697445258,
+    "wall_seconds": 10.03019849397242,
+    "transactions": 76312,
+    "errors": 0,
+    "tps": 7623.706659,
+    "cpu_seconds_per_q_including_connect": 6.027885522591466e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5089,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76312,
+        "maximum_ms": 10009.555,
+        "p50_ms": 0.048,
+        "p95_ms": 20.128,
+        "p99_ms": 20.165
+      },
+      "scripts": {
+        "0": {
+          "samples": 68554,
+          "maximum_ms": 9992.725,
+          "p50_ms": 0.046,
+          "p95_ms": 0.114,
+          "p99_ms": 0.149
+        },
+        "1": {
+          "samples": 7758,
+          "maximum_ms": 10009.555,
+          "p50_ms": 20.127,
+          "p95_ms": 20.179,
+          "p99_ms": 20.275
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.44999999999999996,
+    "rss_peak_bytes_observed": 13406208,
+    "observed_cpu_window_seconds": 9.76515175611712,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187227.382686792,
+    "measurement_finished_monotonic": 1187237.417459679,
+    "wall_seconds": 10.034772887127474,
+    "transactions": 76725,
+    "errors": 0,
+    "tps": 7665.571856,
+    "cpu_seconds_per_q_including_connect": 2.333007494297817e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 734,
+      "client_completions_max": 801,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76725,
+        "maximum_ms": 58.063,
+        "p50_ms": 11.878,
+        "p95_ms": 31.141,
+        "p99_ms": 38.123
+      },
+      "scripts": {
+        "0": {
+          "samples": 69090,
+          "maximum_ms": 37.771,
+          "p50_ms": 10.897,
+          "p95_ms": 19.246,
+          "p99_ms": 20.702
+        },
+        "1": {
+          "samples": 7635,
+          "maximum_ms": 58.063,
+          "p50_ms": 31.172,
+          "p95_ms": 39.246,
+          "p99_ms": 40.871
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.73,
+    "rss_peak_bytes_observed": 13455360,
+    "observed_cpu_window_seconds": 9.786769613157958,
+    "rss_lifetime_hwm_bytes": 14700544,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187242.816302208,
+    "measurement_finished_monotonic": 1187252.848974533,
+    "wall_seconds": 10.032672324916348,
+    "transactions": 77736,
+    "errors": 0,
+    "tps": 7766.092518,
+    "cpu_seconds_per_q_including_connect": 1.517958217556859e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5263,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77736,
+        "maximum_ms": 10009.281,
+        "p50_ms": 0.056,
+        "p95_ms": 20.136,
+        "p99_ms": 20.175
+      },
+      "scripts": {
+        "0": {
+          "samples": 70019,
+          "maximum_ms": 9991.042,
+          "p50_ms": 0.053,
+          "p95_ms": 0.125,
+          "p99_ms": 0.164
+        },
+        "1": {
+          "samples": 7717,
+          "maximum_ms": 10009.281,
+          "p50_ms": 20.136,
+          "p95_ms": 20.188,
+          "p99_ms": 20.273
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.13,
+    "rss_peak_bytes_observed": 8880128,
+    "observed_cpu_window_seconds": 9.787551243789494,
+    "rss_lifetime_hwm_bytes": 10190848,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187258.23125927,
+    "measurement_finished_monotonic": 1187268.267726477,
+    "wall_seconds": 10.036467206897214,
+    "transactions": 78204,
+    "errors": 0,
+    "tps": 7808.280767,
+    "cpu_seconds_per_q_including_connect": 2.2888854790036315e-05,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 749,
+      "client_completions_max": 810,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 78204,
+        "maximum_ms": 48.86,
+        "p50_ms": 11.608,
+        "p95_ms": 30.765,
+        "p99_ms": 37.364
+      },
+      "scripts": {
+        "0": {
+          "samples": 70553,
+          "maximum_ms": 33.262,
+          "p50_ms": 10.77,
+          "p95_ms": 18.512,
+          "p99_ms": 20.311
+        },
+        "1": {
+          "samples": 7651,
+          "maximum_ms": 48.86,
+          "p50_ms": 30.919,
+          "p95_ms": 38.674,
+          "p99_ms": 40.638
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.73,
+    "rss_peak_bytes_observed": 13041664,
+    "observed_cpu_window_seconds": 9.7860832659062,
+    "rss_lifetime_hwm_bytes": 14176256,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187273.665690867,
+    "measurement_finished_monotonic": 1187283.695425861,
+    "wall_seconds": 10.029734994051978,
+    "transactions": 79070,
+    "errors": 0,
+    "tps": 7897.139631,
+    "cpu_seconds_per_q_including_connect": 5.944100164411282e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5299,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 79070,
+        "maximum_ms": 10012.018,
+        "p50_ms": 0.046,
+        "p95_ms": 20.128,
+        "p99_ms": 20.164
+      },
+      "scripts": {
+        "0": {
+          "samples": 71315,
+          "maximum_ms": 9991.828,
+          "p50_ms": 0.044,
+          "p95_ms": 0.112,
+          "p99_ms": 0.146
+        },
+        "1": {
+          "samples": 7755,
+          "maximum_ms": 10012.018,
+          "p50_ms": 20.128,
+          "p95_ms": 20.177,
+          "p99_ms": 20.255
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.45,
+    "rss_peak_bytes_observed": 13012992,
+    "observed_cpu_window_seconds": 9.765285129891708,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187289.333816724,
+    "measurement_finished_monotonic": 1187299.360373076,
+    "wall_seconds": 10.02655635215342,
+    "transactions": 77223,
+    "errors": 0,
+    "tps": 7716.490254,
+    "cpu_seconds_per_q_including_connect": 7.899201015241575e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 734,
+      "client_completions_max": 798,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77223,
+        "maximum_ms": 51.189,
+        "p50_ms": 14.664,
+        "p95_ms": 33.047,
+        "p99_ms": 39.319
+      },
+      "scripts": {
+        "0": {
+          "samples": 69459,
+          "maximum_ms": 33.0,
+          "p50_ms": 12.567,
+          "p95_ms": 19.745,
+          "p99_ms": 20.357
+        },
+        "1": {
+          "samples": 7764,
+          "maximum_ms": 51.189,
+          "p50_ms": 32.952,
+          "p95_ms": 39.743,
+          "p99_ms": 40.393
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.6000000000000001,
+    "rss_peak_bytes_observed": 13012992,
+    "observed_cpu_window_seconds": 9.765391554916278,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187305.023933714,
+    "measurement_finished_monotonic": 1187315.061156201,
+    "wall_seconds": 10.037222486920655,
+    "transactions": 76017,
+    "errors": 0,
+    "tps": 7590.22055,
+    "cpu_seconds_per_q_including_connect": 1.552284357446361e-05,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "unrestricted",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5087,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76017,
+        "maximum_ms": 10014.934,
+        "p50_ms": 0.057,
+        "p95_ms": 20.138,
+        "p99_ms": 20.176
+      },
+      "scripts": {
+        "0": {
+          "samples": 68294,
+          "maximum_ms": 9996.129,
+          "p50_ms": 0.054,
+          "p95_ms": 0.127,
+          "p99_ms": 0.164
+        },
+        "1": {
+          "samples": 7723,
+          "maximum_ms": 10014.934,
+          "p50_ms": 20.137,
+          "p95_ms": 20.189,
+          "p99_ms": 20.244
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.1400000000000001,
+    "rss_peak_bytes_observed": 9011200,
+    "observed_cpu_window_seconds": 9.787389647914097,
+    "rss_lifetime_hwm_bytes": 10092544,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187321.374301394,
+    "measurement_finished_monotonic": 1187331.395743647,
+    "wall_seconds": 10.021442252909765,
+    "transactions": 47669,
+    "errors": 0,
+    "tps": 4758.069024,
+    "cpu_seconds_per_q_including_connect": 5.873838343577586e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4471,
+      "client_completions_max": 5126,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47669,
+        "maximum_ms": 23.715,
+        "p50_ms": 0.048,
+        "p95_ms": 20.136,
+        "p99_ms": 20.177
+      },
+      "scripts": {
+        "0": {
+          "samples": 42834,
+          "maximum_ms": 4.243,
+          "p50_ms": 0.046,
+          "p95_ms": 0.126,
+          "p99_ms": 0.18
+        },
+        "1": {
+          "samples": 4835,
+          "maximum_ms": 23.715,
+          "p50_ms": 20.136,
+          "p95_ms": 20.21,
+          "p99_ms": 20.848
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27999999999999997,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764836556976661,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187336.726970093,
+    "measurement_finished_monotonic": 1187346.749756461,
+    "wall_seconds": 10.022786367917433,
+    "transactions": 47372,
+    "errors": 0,
+    "tps": 4727.924285,
+    "cpu_seconds_per_q_including_connect": 6.121759689267922e-06,
+    "clients": 10,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4189,
+      "client_completions_max": 5200,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47372,
+        "maximum_ms": 22.934,
+        "p50_ms": 0.047,
+        "p95_ms": 20.135,
+        "p99_ms": 20.187
+      },
+      "scripts": {
+        "0": {
+          "samples": 42538,
+          "maximum_ms": 7.029,
+          "p50_ms": 0.045,
+          "p95_ms": 0.127,
+          "p99_ms": 0.21
+        },
+        "1": {
+          "samples": 4834,
+          "maximum_ms": 22.934,
+          "p50_ms": 20.134,
+          "p95_ms": 20.23,
+          "p99_ms": 20.718
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.28,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765110147884116,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187352.08405794,
+    "measurement_finished_monotonic": 1187362.101795032,
+    "wall_seconds": 10.0177370919846,
+    "transactions": 47524,
+    "errors": 0,
+    "tps": 4745.727033,
+    "cpu_seconds_per_q_including_connect": 1.0100159919198721e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4437,
+      "client_completions_max": 4940,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47524,
+        "maximum_ms": 23.332,
+        "p50_ms": 0.053,
+        "p95_ms": 20.137,
+        "p99_ms": 20.19
+      },
+      "scripts": {
+        "1": {
+          "samples": 4829,
+          "maximum_ms": 23.332,
+          "p50_ms": 20.136,
+          "p95_ms": 20.23,
+          "p99_ms": 20.559
+        },
+        "0": {
+          "samples": 42695,
+          "maximum_ms": 3.177,
+          "p50_ms": 0.05,
+          "p95_ms": 0.131,
+          "p99_ms": 0.2
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.47,
+    "rss_peak_bytes_observed": 7258112,
+    "observed_cpu_window_seconds": 9.766607344150543,
+    "rss_lifetime_hwm_bytes": 7340032,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187367.310177795,
+    "measurement_finished_monotonic": 1187377.332105772,
+    "wall_seconds": 10.021927977213636,
+    "transactions": 48174,
+    "errors": 0,
+    "tps": 4808.587782,
+    "cpu_seconds_per_q_including_connect": 1.5983725661145013e-05,
+    "clients": 10,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4464,
+      "client_completions_max": 5246,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48174,
+        "maximum_ms": 23.806,
+        "p50_ms": 0.063,
+        "p95_ms": 20.162,
+        "p99_ms": 20.217
+      },
+      "scripts": {
+        "0": {
+          "samples": 43373,
+          "maximum_ms": 1.268,
+          "p50_ms": 0.06,
+          "p95_ms": 0.142,
+          "p99_ms": 0.204
+        },
+        "1": {
+          "samples": 4801,
+          "maximum_ms": 23.806,
+          "p50_ms": 20.162,
+          "p95_ms": 20.255,
+          "p99_ms": 20.649
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7499999999999999,
+    "rss_peak_bytes_observed": 10223616,
+    "observed_cpu_window_seconds": 9.766317639034241,
+    "rss_lifetime_hwm_bytes": 10231808,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187382.556491231,
+    "measurement_finished_monotonic": 1187392.572965849,
+    "wall_seconds": 10.016474617877975,
+    "transactions": 47387,
+    "errors": 0,
+    "tps": 4732.39314,
+    "cpu_seconds_per_q_including_connect": 5.697765209867685e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4533,
+      "client_completions_max": 5029,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47387,
+        "maximum_ms": 23.196,
+        "p50_ms": 0.052,
+        "p95_ms": 20.143,
+        "p99_ms": 20.281
+      },
+      "scripts": {
+        "0": {
+          "samples": 42607,
+          "maximum_ms": 2.772,
+          "p50_ms": 0.048,
+          "p95_ms": 0.181,
+          "p99_ms": 0.99
+        },
+        "1": {
+          "samples": 4780,
+          "maximum_ms": 23.196,
+          "p50_ms": 20.142,
+          "p95_ms": 20.466,
+          "p99_ms": 21.149
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.26,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765233139041811,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187397.907704964,
+    "measurement_finished_monotonic": 1187407.926801355,
+    "wall_seconds": 10.019096391042694,
+    "transactions": 47718,
+    "errors": 0,
+    "tps": 4764.176841,
+    "cpu_seconds_per_q_including_connect": 1.3831258644536654e-05,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4380,
+      "client_completions_max": 5103,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47718,
+        "maximum_ms": 23.67,
+        "p50_ms": 0.056,
+        "p95_ms": 20.153,
+        "p99_ms": 20.261
+      },
+      "scripts": {
+        "0": {
+          "samples": 42941,
+          "maximum_ms": 4.253,
+          "p50_ms": 0.054,
+          "p95_ms": 0.136,
+          "p99_ms": 0.311
+        },
+        "1": {
+          "samples": 4777,
+          "maximum_ms": 23.67,
+          "p50_ms": 20.153,
+          "p95_ms": 20.433,
+          "p99_ms": 21.333
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.65,
+    "rss_peak_bytes_observed": 10223616,
+    "observed_cpu_window_seconds": 9.766708177048713,
+    "rss_lifetime_hwm_bytes": 10231808,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187413.127356222,
+    "measurement_finished_monotonic": 1187423.147768932,
+    "wall_seconds": 10.020412710029632,
+    "transactions": 45516,
+    "errors": 0,
+    "tps": 4544.723379,
+    "cpu_seconds_per_q_including_connect": 9.227524387028739e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4302,
+      "client_completions_max": 4715,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 45516,
+        "maximum_ms": 24.091,
+        "p50_ms": 0.057,
+        "p95_ms": 20.148,
+        "p99_ms": 20.71
+      },
+      "scripts": {
+        "0": {
+          "samples": 40941,
+          "maximum_ms": 4.356,
+          "p50_ms": 0.053,
+          "p95_ms": 0.993,
+          "p99_ms": 1.007
+        },
+        "1": {
+          "samples": 4575,
+          "maximum_ms": 24.091,
+          "p50_ms": 20.148,
+          "p95_ms": 21.001,
+          "p99_ms": 21.762
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.42000000000000004,
+    "rss_peak_bytes_observed": 7258112,
+    "observed_cpu_window_seconds": 9.767059393925592,
+    "rss_lifetime_hwm_bytes": 7340032,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187428.339844411,
+    "measurement_finished_monotonic": 1187438.361576997,
+    "wall_seconds": 10.021732585970312,
+    "transactions": 48274,
+    "errors": 0,
+    "tps": 4818.286212,
+    "cpu_seconds_per_q_including_connect": 6.2145254174089566e-06,
+    "clients": 10,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4393,
+      "client_completions_max": 5586,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 48274,
+        "maximum_ms": 23.205,
+        "p50_ms": 0.048,
+        "p95_ms": 20.135,
+        "p99_ms": 20.18
+      },
+      "scripts": {
+        "0": {
+          "samples": 43438,
+          "maximum_ms": 3.828,
+          "p50_ms": 0.046,
+          "p95_ms": 0.126,
+          "p99_ms": 0.174
+        },
+        "1": {
+          "samples": 4836,
+          "maximum_ms": 23.205,
+          "p50_ms": 20.135,
+          "p95_ms": 20.216,
+          "p99_ms": 20.682
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.3,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.765518254134804,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187443.700988109,
+    "measurement_finished_monotonic": 1187453.72452158,
+    "wall_seconds": 10.023533470928669,
+    "transactions": 47218,
+    "errors": 0,
+    "tps": 4712.928854,
+    "cpu_seconds_per_q_including_connect": 1.0800965733406752e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4361,
+      "client_completions_max": 5350,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47218,
+        "maximum_ms": 23.37,
+        "p50_ms": 0.059,
+        "p95_ms": 20.153,
+        "p99_ms": 20.274
+      },
+      "scripts": {
+        "0": {
+          "samples": 42437,
+          "maximum_ms": 3.16,
+          "p50_ms": 0.055,
+          "p95_ms": 0.173,
+          "p99_ms": 0.651
+        },
+        "1": {
+          "samples": 4781,
+          "maximum_ms": 23.37,
+          "p50_ms": 20.153,
+          "p95_ms": 20.421,
+          "p99_ms": 20.834
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.49,
+    "rss_peak_bytes_observed": 7258112,
+    "observed_cpu_window_seconds": 9.76714883511886,
+    "rss_lifetime_hwm_bytes": 7315456,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187458.922086313,
+    "measurement_finished_monotonic": 1187468.941494317,
+    "wall_seconds": 10.01940800412558,
+    "transactions": 46589,
+    "errors": 0,
+    "tps": 4651.327174,
+    "cpu_seconds_per_q_including_connect": 1.609822061001524e-05,
+    "clients": 10,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4357,
+      "client_completions_max": 4863,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 46589,
+        "maximum_ms": 22.624,
+        "p50_ms": 0.094,
+        "p95_ms": 20.208,
+        "p99_ms": 20.54
+      },
+      "scripts": {
+        "0": {
+          "samples": 41951,
+          "maximum_ms": 2.808,
+          "p50_ms": 0.086,
+          "p95_ms": 0.551,
+          "p99_ms": 0.999
+        },
+        "1": {
+          "samples": 4638,
+          "maximum_ms": 22.624,
+          "p50_ms": 20.208,
+          "p95_ms": 20.735,
+          "p99_ms": 21.02
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7300000000000001,
+    "rss_peak_bytes_observed": 10223616,
+    "observed_cpu_window_seconds": 9.765126765938476,
+    "rss_lifetime_hwm_bytes": 10223616,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187474.148841344,
+    "measurement_finished_monotonic": 1187484.169515902,
+    "wall_seconds": 10.020674557890743,
+    "transactions": 45348,
+    "errors": 0,
+    "tps": 4526.724324,
+    "cpu_seconds_per_q_including_connect": 5.9539560730351945e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4152,
+      "client_completions_max": 4814,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 45348,
+        "maximum_ms": 22.611,
+        "p50_ms": 0.081,
+        "p95_ms": 20.171,
+        "p99_ms": 20.607
+      },
+      "scripts": {
+        "0": {
+          "samples": 40723,
+          "maximum_ms": 4.608,
+          "p50_ms": 0.072,
+          "p95_ms": 0.992,
+          "p99_ms": 1.012
+        },
+        "1": {
+          "samples": 4625,
+          "maximum_ms": 22.611,
+          "p50_ms": 20.169,
+          "p95_ms": 21.001,
+          "p99_ms": 21.071
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.763690470019355,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187489.538876768,
+    "measurement_finished_monotonic": 1187499.560921428,
+    "wall_seconds": 10.022044660057873,
+    "transactions": 47395,
+    "errors": 0,
+    "tps": 4730.79392,
+    "cpu_seconds_per_q_including_connect": 5.907796181031754e-06,
+    "clients": 10,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 4514,
+      "client_completions_max": 4909,
+      "clients_completed": 10,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 47395,
+        "maximum_ms": 21.343,
+        "p50_ms": 0.077,
+        "p95_ms": 20.176,
+        "p99_ms": 20.525
+      },
+      "scripts": {
+        "0": {
+          "samples": 42736,
+          "maximum_ms": 1.872,
+          "p50_ms": 0.07,
+          "p95_ms": 0.608,
+          "p99_ms": 1.0
+        },
+        "1": {
+          "samples": 4659,
+          "maximum_ms": 21.343,
+          "p50_ms": 20.178,
+          "p95_ms": 20.67,
+          "p99_ms": 21.013
+        }
+      }
+    },
+    "backend_connections_min": 10,
+    "backend_connections_peak": 10,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.27999999999999997,
+    "rss_peak_bytes_observed": 12881920,
+    "observed_cpu_window_seconds": 9.764889194862917,
+    "rss_lifetime_hwm_bytes": 13082624,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187505.074867022,
+    "measurement_finished_monotonic": 1187515.10903276,
+    "wall_seconds": 10.034165737917647,
+    "transactions": 75342,
+    "errors": 0,
+    "tps": 7523.004265,
+    "cpu_seconds_per_q_including_connect": 7.0345889410952725e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 727,
+      "client_completions_max": 787,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75342,
+        "maximum_ms": 47.401,
+        "p50_ms": 11.895,
+        "p95_ms": 31.371,
+        "p99_ms": 37.5
+      },
+      "scripts": {
+        "0": {
+          "samples": 67838,
+          "maximum_ms": 28.301,
+          "p50_ms": 11.192,
+          "p95_ms": 18.84,
+          "p99_ms": 21.276
+        },
+        "1": {
+          "samples": 7504,
+          "maximum_ms": 47.401,
+          "p50_ms": 31.393,
+          "p95_ms": 39.028,
+          "p99_ms": 41.707
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.52,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.764527403982356,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187520.755472186,
+    "measurement_finished_monotonic": 1187530.788795532,
+    "wall_seconds": 10.033323345938697,
+    "transactions": 76080,
+    "errors": 0,
+    "tps": 7604.606824,
+    "cpu_seconds_per_q_including_connect": 9.59516298633018e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5050,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76080,
+        "maximum_ms": 10004.253,
+        "p50_ms": 0.051,
+        "p95_ms": 20.132,
+        "p99_ms": 20.185
+      },
+      "scripts": {
+        "0": {
+          "samples": 68359,
+          "maximum_ms": 9985.566,
+          "p50_ms": 0.049,
+          "p95_ms": 0.125,
+          "p99_ms": 0.207
+        },
+        "1": {
+          "samples": 7721,
+          "maximum_ms": 10004.253,
+          "p50_ms": 20.131,
+          "p95_ms": 20.225,
+          "p99_ms": 20.859
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7200000000000001,
+    "rss_peak_bytes_observed": 8437760,
+    "observed_cpu_window_seconds": 9.766405209898949,
+    "rss_lifetime_hwm_bytes": 8527872,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187536.165815939,
+    "measurement_finished_monotonic": 1187546.205573861,
+    "wall_seconds": 10.039757922058925,
+    "transactions": 76835,
+    "errors": 0,
+    "tps": 7668.394031,
+    "cpu_seconds_per_q_including_connect": 1.730981974360643e-05,
+    "clients": 100,
+    "repetition": 1,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 737,
+      "client_completions_max": 794,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 76835,
+        "maximum_ms": 44.174,
+        "p50_ms": 11.91,
+        "p95_ms": 31.16,
+        "p99_ms": 37.701
+      },
+      "scripts": {
+        "0": {
+          "samples": 69181,
+          "maximum_ms": 26.449,
+          "p50_ms": 11.038,
+          "p95_ms": 18.969,
+          "p99_ms": 20.503
+        },
+        "1": {
+          "samples": 7654,
+          "maximum_ms": 44.174,
+          "p50_ms": 31.2,
+          "p95_ms": 38.953,
+          "p99_ms": 40.502
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.2799999999999998,
+    "rss_peak_bytes_observed": 11665408,
+    "observed_cpu_window_seconds": 9.766017829999328,
+    "rss_lifetime_hwm_bytes": 11784192,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187551.601766854,
+    "measurement_finished_monotonic": 1187561.64017375,
+    "wall_seconds": 10.03840689593926,
+    "transactions": 74802,
+    "errors": 0,
+    "tps": 7465.635292,
+    "cpu_seconds_per_q_including_connect": 5.347450602925056e-06,
+    "clients": 100,
+    "repetition": 1,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 4993,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74802,
+        "maximum_ms": 10018.886,
+        "p50_ms": 0.073,
+        "p95_ms": 20.164,
+        "p99_ms": 20.591
+      },
+      "scripts": {
+        "0": {
+          "samples": 67285,
+          "maximum_ms": 9998.733,
+          "p50_ms": 0.067,
+          "p95_ms": 0.402,
+          "p99_ms": 1.0
+        },
+        "1": {
+          "samples": 7517,
+          "maximum_ms": 10018.886,
+          "p50_ms": 20.162,
+          "p95_ms": 20.786,
+          "p99_ms": 21.021
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.39,
+    "rss_peak_bytes_observed": 13537280,
+    "observed_cpu_window_seconds": 9.763573897071183,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187567.275292003,
+    "measurement_finished_monotonic": 1187577.308788856,
+    "wall_seconds": 10.033496852964163,
+    "transactions": 75813,
+    "errors": 0,
+    "tps": 7572.793481,
+    "cpu_seconds_per_q_including_connect": 7.2546924669911486e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 708,
+      "client_completions_max": 786,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75813,
+        "maximum_ms": 47.204,
+        "p50_ms": 12.004,
+        "p95_ms": 31.258,
+        "p99_ms": 38.398
+      },
+      "scripts": {
+        "0": {
+          "samples": 68247,
+          "maximum_ms": 27.485,
+          "p50_ms": 11.133,
+          "p95_ms": 19.535,
+          "p99_ms": 20.974
+        },
+        "1": {
+          "samples": 7566,
+          "maximum_ms": 47.204,
+          "p50_ms": 31.273,
+          "p95_ms": 39.737,
+          "p99_ms": 41.029
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.54,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.763751677935943,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187582.978440777,
+    "measurement_finished_monotonic": 1187593.015199223,
+    "wall_seconds": 10.036758446134627,
+    "transactions": 75618,
+    "errors": 0,
+    "tps": 7552.67335,
+    "cpu_seconds_per_q_including_connect": 5.686476764791452e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5105,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75618,
+        "maximum_ms": 10011.456,
+        "p50_ms": 0.076,
+        "p95_ms": 20.17,
+        "p99_ms": 20.565
+      },
+      "scripts": {
+        "0": {
+          "samples": 68106,
+          "maximum_ms": 9991.202,
+          "p50_ms": 0.07,
+          "p95_ms": 0.325,
+          "p99_ms": 0.995
+        },
+        "1": {
+          "samples": 7512,
+          "maximum_ms": 10011.456,
+          "p50_ms": 20.169,
+          "p95_ms": 20.738,
+          "p99_ms": 21.012
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.43000000000000005,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 10.014178398996592,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187598.66348022,
+    "measurement_finished_monotonic": 1187608.698193481,
+    "wall_seconds": 10.03471326106228,
+    "transactions": 74052,
+    "errors": 0,
+    "tps": 7398.366129,
+    "cpu_seconds_per_q_including_connect": 1.7825311942959e-05,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 719,
+      "client_completions_max": 771,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 74052,
+        "maximum_ms": 51.466,
+        "p50_ms": 12.104,
+        "p95_ms": 31.699,
+        "p99_ms": 37.844
+      },
+      "scripts": {
+        "0": {
+          "samples": 66637,
+          "maximum_ms": 31.898,
+          "p50_ms": 11.361,
+          "p95_ms": 19.213,
+          "p99_ms": 20.976
+        },
+        "1": {
+          "samples": 7415,
+          "maximum_ms": 51.466,
+          "p50_ms": 31.686,
+          "p95_ms": 39.193,
+          "p99_ms": 41.16
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.2799999999999998,
+    "rss_peak_bytes_observed": 11796480,
+    "observed_cpu_window_seconds": 9.765909830108285,
+    "rss_lifetime_hwm_bytes": 11796480,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187614.090444898,
+    "measurement_finished_monotonic": 1187624.129234333,
+    "wall_seconds": 10.03878943505697,
+    "transactions": 75287,
+    "errors": 0,
+    "tps": 7514.799125,
+    "cpu_seconds_per_q_including_connect": 9.563404040538209e-06,
+    "clients": 100,
+    "repetition": 2,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5159,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75287,
+        "maximum_ms": 10018.1,
+        "p50_ms": 0.054,
+        "p95_ms": 20.139,
+        "p99_ms": 20.486
+      },
+      "scripts": {
+        "0": {
+          "samples": 67730,
+          "maximum_ms": 9998.479,
+          "p50_ms": 0.051,
+          "p95_ms": 0.5,
+          "p99_ms": 0.999
+        },
+        "1": {
+          "samples": 7557,
+          "maximum_ms": 10018.1,
+          "p50_ms": 20.138,
+          "p95_ms": 20.527,
+          "p99_ms": 21.274
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7000000000000001,
+    "rss_peak_bytes_observed": 8437760,
+    "observed_cpu_window_seconds": 9.766731190960854,
+    "rss_lifetime_hwm_bytes": 8544256,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187629.502498006,
+    "measurement_finished_monotonic": 1187639.529604273,
+    "wall_seconds": 10.027106266934425,
+    "transactions": 75776,
+    "errors": 0,
+    "tps": 7581.431656,
+    "cpu_seconds_per_q_including_connect": 1.7023859797297296e-05,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 732,
+      "client_completions_max": 786,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75776,
+        "maximum_ms": 45.658,
+        "p50_ms": 12.949,
+        "p95_ms": 31.486,
+        "p99_ms": 38.911
+      },
+      "scripts": {
+        "0": {
+          "samples": 68141,
+          "maximum_ms": 32.922,
+          "p50_ms": 11.462,
+          "p95_ms": 19.693,
+          "p99_ms": 20.774
+        },
+        "1": {
+          "samples": 7635,
+          "maximum_ms": 45.658,
+          "p50_ms": 31.398,
+          "p95_ms": 39.764,
+          "p99_ms": 40.865
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 1.26,
+    "rss_peak_bytes_observed": 11665408,
+    "observed_cpu_window_seconds": 9.766371179139242,
+    "rss_lifetime_hwm_bytes": 11763712,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187644.92008957,
+    "measurement_finished_monotonic": 1187654.953246764,
+    "wall_seconds": 10.033157193800434,
+    "transactions": 78974,
+    "errors": 0,
+    "tps": 7886.717441,
+    "cpu_seconds_per_q_including_connect": 5.571453896219008e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5150,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 78974,
+        "maximum_ms": 10012.971,
+        "p50_ms": 0.046,
+        "p95_ms": 20.126,
+        "p99_ms": 20.169
+      },
+      "scripts": {
+        "0": {
+          "samples": 71230,
+          "maximum_ms": 9993.105,
+          "p50_ms": 0.044,
+          "p95_ms": 0.115,
+          "p99_ms": 0.176
+        },
+        "1": {
+          "samples": 7744,
+          "maximum_ms": 10012.971,
+          "p50_ms": 20.126,
+          "p95_ms": 20.2,
+          "p99_ms": 20.696
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.42000000000000004,
+    "rss_peak_bytes_observed": 13537280,
+    "observed_cpu_window_seconds": 9.764668703079224,
+    "rss_lifetime_hwm_bytes": 13750272,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187660.653573686,
+    "measurement_finished_monotonic": 1187670.690526787,
+    "wall_seconds": 10.036953100934625,
+    "transactions": 75930,
+    "errors": 0,
+    "tps": 7582.392233,
+    "cpu_seconds_per_q_including_connect": 7.770314763598051e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "pgbouncer-transaction",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 719,
+      "client_completions_max": 783,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 75930,
+        "maximum_ms": 48.227,
+        "p50_ms": 12.129,
+        "p95_ms": 31.317,
+        "p99_ms": 38.395
+      },
+      "scripts": {
+        "0": {
+          "samples": 68290,
+          "maximum_ms": 37.411,
+          "p50_ms": 11.186,
+          "p95_ms": 19.442,
+          "p99_ms": 20.583
+        },
+        "1": {
+          "samples": 7640,
+          "maximum_ms": 48.227,
+          "p50_ms": 31.272,
+          "p95_ms": 39.551,
+          "p99_ms": 40.624
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.57,
+    "rss_peak_bytes_observed": 13144064,
+    "observed_cpu_window_seconds": 9.764302517985925,
+    "rss_lifetime_hwm_bytes": 13336576,
+    "candidate": "after",
+    "pool_size": 16
+  },
+  {
+    "measurement_started_monotonic": 1187676.339674184,
+    "measurement_finished_monotonic": 1187686.374632338,
+    "wall_seconds": 10.034958153963089,
+    "transactions": 77178,
+    "errors": 0,
+    "tps": 7716.883234,
+    "cpu_seconds_per_q_including_connect": 9.717795226618986e-06,
+    "clients": 100,
+    "repetition": 3,
+    "target": "rustybouncer-pool-session",
+    "workload": "mixed",
+    "placement": "normalized",
+    "latencies": {
+      "client_completions_min": 1,
+      "client_completions_max": 5428,
+      "clients_completed": 100,
+      "sampling": "100%; every successful transaction retained",
+      "all": {
+        "samples": 77178,
+        "maximum_ms": 10000.74,
+        "p50_ms": 0.077,
+        "p95_ms": 20.174,
+        "p99_ms": 20.548
+      },
+      "scripts": {
+        "0": {
+          "samples": 69691,
+          "maximum_ms": 9981.045,
+          "p50_ms": 0.07,
+          "p95_ms": 0.33,
+          "p99_ms": 0.998
+        },
+        "1": {
+          "samples": 7487,
+          "maximum_ms": 10000.74,
+          "p50_ms": 20.175,
+          "p95_ms": 20.777,
+          "p99_ms": 21.009
+        }
+      }
+    },
+    "backend_connections_min": 16,
+    "backend_connections_peak": 16,
+    "correctness": "all clients concurrently verify exact workload rows and distinct identity before load; measured CTE/short lookups guard id/client/length, all pgbench transactions check SQL/protocol errors; full large rows verified before/after",
+    "cpu_seconds_observed": 0.7400000000000001,
+    "rss_peak_bytes_observed": 8437760,
+    "observed_cpu_window_seconds": 9.76921572885476,
+    "rss_lifetime_hwm_bytes": 8536064,
+    "candidate": "after",
+    "pool_size": 16
+  }
+]

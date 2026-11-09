@@ -1,0 +1,49 @@
+{
+  "binary": "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/heads-frozen/production",
+  "binary_sha256": "103fb7c79cb53baebb629446b32481952fe3124a4cf3a7fc6e86bbd94c9b3e1f",
+  "command": [
+    "benchmarks/workload_compare.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/workloads-after",
+    "--binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/heads-frozen/production"
+  ],
+  "harness_affinity": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+  ],
+  "load_start": [
+    29.7177734375,
+    35.6484375,
+    24.96630859375
+  ],
+  "arm_count": 180,
+  "warmup_seconds": 5,
+  "observation_seconds": 10,
+  "repetitions": 3,
+  "mixed_weights": {
+    "short": 9,
+    "long_20ms": 1
+  },
+  "large_rows": 2048,
+  "payload_bytes": 128,
+  "latency_logging": "100%, including shared logging overhead for every target",
+  "metrics": false,
+  "tls": false,
+  "authentication": "trust in owned loopback fixture",
+  "limitation": "shared host; 10s additional observations are not the original 30s comparison or production SLO evidence"
+}

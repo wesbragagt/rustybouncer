@@ -24,6 +24,14 @@ TARGETS = ('rustybouncer-session', 'rustybouncer-routed',
 
 
 class Checked(c.Fixture):
+    shared = False
+
+    def connect(self):
+        client=super().connect()
+        if self.shared:
+            client.sock.settimeout(60)
+        return client
+
     def finish(self):
         if self.process:
             if self.process.poll() is None:
@@ -42,6 +50,7 @@ class Checked(c.Fixture):
 
     def launch(self, target, directory):
         self.finish()
+        self.shared = '-pool-' in target
 
         def spawn(command, **kwargs):
             # These are instrumentation-only budgets, chosen before running the
@@ -54,8 +63,9 @@ class Checked(c.Fixture):
                 "startup_timeout_ms = 5000", "startup_timeout_ms = 30000"
             )
             text = text.replace("wait_timeout_ms = 10000", "wait_timeout_ms = 30000")
-            if '-pool-' in target:
+            if self.shared:
                 text = text.replace('route_selects = false','route_selects = true')
+                text = text.replace('wait_timeout_ms = 30000','wait_timeout_ms = 180000')
                 mode = 'transaction' if target.endswith('transaction') else 'session'
                 text = f'pool_mode = "{mode}"\npool_size = 16\nmax_pool_backends = 16\n' + text
             config.write_text(text)
@@ -252,6 +262,8 @@ def main():
                 "probe": 10000,
                 "startup": 30000,
                 "route": 30000,
+                "shared_route": 180000,
+                "shared_wire_read": 60000,
             },
             "limitation": "VM audit only; no throughput/latency/RSS comparison with native timing",
         },

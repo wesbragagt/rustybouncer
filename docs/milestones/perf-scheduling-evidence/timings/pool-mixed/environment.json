@@ -1,0 +1,36 @@
+{
+  "command": [
+    "benchmarks/pool_mixed.py",
+    "--output",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/pool-mixed",
+    "--before-binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-pools-20261109/protocol-ownership-frozen/production",
+    "--after-binary",
+    "/home/publicuser/dev/rustybouncer-evidence/perf-scheduler-20261109/heads-frozen/production"
+  ],
+  "arms": 96,
+  "pool_size": 16,
+  "client_capacity": 1200,
+  "clients": [
+    10,
+    100
+  ],
+  "repetitions": 3,
+  "binary_sha256": {
+    "before": "208e98670db9a76d3ce4ca2528cedda4b8e4f1a27e1b162fcfe747ae7efef9b3",
+    "after": "103fb7c79cb53baebb629446b32481952fe3124a4cf3a7fc6e86bbd94c9b3e1f"
+  },
+  "placements": [
+    "unrestricted",
+    "normalized"
+  ],
+  "warmup_seconds": 5,
+  "measurement_seconds": 10,
+  "mixed_weights": {
+    "indexed_lookup": 9,
+    "pg_sleep_20ms": 1
+  },
+  "logging": "100%; all clients must complete; short/long distributions and maximum latency separate",
+  "safety": "no SQL retry, every frontend independently verifies full bytes and identity before timing",
+  "limitation": "shared host, three repetitions; before/after is not interleaved in time or causal significance"
+}
