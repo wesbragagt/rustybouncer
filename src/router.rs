@@ -6,6 +6,7 @@ mod classification;
 mod classifier_reference;
 mod cte;
 mod frontend;
+pub(crate) mod pool;
 use classification::{allowed_function, classify};
 mod wire;
 use std::{
@@ -51,6 +52,19 @@ struct Backend {
     generation: u64,
     buffers: buffers::Pool,
     cancel_identity: (u32, u32),
+    status: u8,
+    startup_metadata: Option<Arc<Messages>>,
+    idle_since: Instant,
+    slot: Option<pool::Slot>,
+    pool_owner: Option<pool::Manager>,
+}
+impl Backend {
+    fn healthy_idle(&self) -> bool {
+        if !self.stream.buffer().is_empty() {
+            return false;
+        }
+        matches!(self.stream.get_ref().try_read(&mut [0u8;1]),Err(error) if error.kind()==std::io::ErrorKind::WouldBlock)
+    }
 }
 
 async fn handshake(
@@ -78,6 +92,9 @@ async fn handshake(
             bail!("backend rejected startup");
         }
         let ready = tag == b'Z';
+        if ready && body != *b"I" {
+            bail!("invalid backend startup transaction status");
+        }
         if tag == b'K' {
             if body.len() != 8 || cancel_identity.is_some() {
                 bail!("invalid backend cancellation identity");
@@ -95,6 +112,11 @@ async fn handshake(
                     stream: BufReader::new(stream),
                     generation,
                     buffers,
+                    status: b'I',
+                    startup_metadata: None,
+                    idle_since: Instant::now(),
+                    slot: None,
+                    pool_owner: None,
                     cancel_identity: cancel_identity
                         .context("missing backend cancellation identity")?,
                     _live: live,
@@ -129,7 +151,9 @@ async fn connect(
 
 async fn result(backend: &mut Backend, query: &[u8]) -> Result<(Response, u8)> {
     send(&mut backend.stream, b'Q', query).await?;
-    wire::response(&mut backend.stream, &backend.buffers).await
+    let response = wire::response(&mut backend.stream, &backend.buffers).await?;
+    backend.status = response.1;
+    Ok(response)
 }
 
 async fn primary_changed(topology: &mut watch::Receiver<Topology>, generation: u64) -> Result<()> {
@@ -197,6 +221,7 @@ type QueryResult = (Response, u8);
 
 struct SessionState {
     backends: HashMap<usize, Backend>,
+    identity: Arc<[u8]>,
     transaction: bool,
     status: u8,
     pinned: bool,
@@ -204,6 +229,9 @@ struct SessionState {
 }
 
 impl SessionState {
+    fn read_eligible(&self, kind: Kind, mode: pool::Mode) -> bool {
+        kind == Kind::Read && !self.transaction && !self.pinned && mode != pool::Mode::Session
+    }
     fn validate_backend(&mut self, node: usize, selected: &Topology) -> Result<()> {
         if (self.transaction || self.pinned) && selected.generation != self.primary_generation {
             bail!("primary changed during pinned session or transaction");
@@ -224,7 +252,10 @@ async fn initial_backend(
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
     ticket: &mut Option<Guard>,
-) -> Result<(usize, Backend, Messages)> {
+) -> Result<(usize, Option<Backend>, Arc<Messages>)> {
+    if config.pool_mode != pool::Mode::None {
+        return pooled_startup(config, topology, packet, ticket).await;
+    }
     loop {
         let (stream, selected, live) = wait_backend(config, topology, ticket).await?;
         let (backend, messages) = timeout(
@@ -239,7 +270,7 @@ async fn initial_backend(
         )
         .await??;
         if topology.borrow().generation == selected.generation {
-            return Ok((selected.primary.unwrap(), backend, messages));
+            return Ok((selected.primary.unwrap(), Some(backend), Arc::new(messages)));
         }
     }
 }
@@ -262,13 +293,19 @@ async fn receive_query(
 async fn prepare_backend(
     config: &Config,
     node: usize,
-    packet: &[u8],
+    packet: &Arc<[u8]>,
     selected: &Topology,
     read: bool,
     deadline: Instant,
     ticket: &mut Option<Guard>,
 ) -> Result<Backend> {
-    let (mut backend, _) = connect(config, node, packet, selected.generation, ticket).await?;
+    let mut backend = if config.pool_mode == pool::Mode::None {
+        connect(config, node, packet, selected.generation, ticket)
+            .await?
+            .0
+    } else {
+        pooled_backend(config, node, packet.clone(), selected, deadline, ticket).await?
+    };
     if read && selected.replicas.contains(&node) {
         let (messages, status) = timeout(
             deadline
@@ -361,16 +398,25 @@ async fn execute_query(
     response
 }
 
+fn execution_deadline(config: &Config, read: bool, total: Instant) -> Instant {
+    let deadline = Instant::now() + Duration::from_millis(config.query_timeout_ms);
+    if read {
+        deadline.min(total)
+    } else {
+        deadline
+    }
+}
+
 async fn route_query(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
-    packet: &[u8],
+    _packet: &[u8],
     state: &mut SessionState,
     body: &[u8],
     kind: Kind,
     operation: &cancel::Operation,
 ) -> Result<Option<Response>> {
-    let read = kind == Kind::Read && !state.transaction && !state.pinned;
+    let read = state.read_eligible(kind, config.pool_mode);
     let routing_deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     // One wall-clock budget spans routing, setup and all buffered read attempts.
     // Each new routing phase has its own wait limit; healthy execution does not.
@@ -405,7 +451,7 @@ async fn route_query(
         if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
             let mut ticket = None;
             let prepared = tokio::select! {
-                prepared=timeout(deadline.saturating_duration_since(Instant::now()),prepare_backend(config,node,packet,&selected,read,deadline,&mut ticket))=>prepared,
+                prepared=timeout(deadline.saturating_duration_since(Instant::now()),prepare_backend(config,node,&state.identity,&selected,read,deadline,&mut ticket))=>prepared,
                 reason=operation.cancelled()=>{
                     finish_ticket(&mut ticket,Outcome::Error);
                     return Err(cancel::Interrupted(reason).into());
@@ -416,6 +462,8 @@ async fn route_query(
                 Ok(Ok(backend)) => {
                     entry.insert(backend);
                 }
+                Ok(Err(error)) if error.is::<pool::Stale>() => continue,
+                Ok(Err(error)) if error.is::<pool::Rejected>() => return Err(error),
                 _ => {
                     failed.insert(node);
                     continue;
@@ -426,21 +474,16 @@ async fn route_query(
         if *topology.borrow() != selected {
             continue;
         }
+        if config.pool_mode == pool::Mode::Session {
+            state.pinned = true;
+        }
         match execute_query(
             state.backends.get_mut(&node).unwrap(),
             body,
             topology,
             &selected,
             node,
-            (
-                read,
-                if read {
-                    (Instant::now() + Duration::from_millis(config.query_timeout_ms))
-                        .min(total_deadline)
-                } else {
-                    Instant::now() + Duration::from_millis(config.query_timeout_ms)
-                },
-            ),
+            (read, execution_deadline(config, read, total_deadline)),
             (config, operation),
         )
         .await
@@ -480,6 +523,7 @@ pub(super) async fn session(
     mut topology: watch::Receiver<Topology>,
     packet: Vec<u8>,
 ) -> Result<()> {
+    let packet: Arc<[u8]> = packet.into();
     client.set_nodelay(true)?;
     let mut ticket = None;
     let initial = timeout(
@@ -497,17 +541,21 @@ pub(super) async fn session(
     };
     let registration = config.cancellations.register()?;
     let (pid, secret) = registration.identity();
-    for (tag, body) in messages {
-        if tag == b'Z' {
+    for (tag, body) in messages.iter() {
+        if *tag == b'Z' {
             let mut identity = [0u8; 8];
             identity[..4].copy_from_slice(&pid.to_be_bytes());
             identity[4..].copy_from_slice(&secret.to_be_bytes());
             send(&mut client, b'K', &identity).await?;
         }
-        send(&mut client, tag, &body).await?;
+        send(&mut client, *tag, body).await?;
     }
+    drop(messages);
     let mut state = SessionState {
-        backends: HashMap::from([(primary, backend)]),
+        backends: backend
+            .map(|backend| HashMap::from([(primary, backend)]))
+            .unwrap_or_default(),
+        identity: packet.clone(),
         transaction: false,
         status: b'I',
         pinned: false,
@@ -566,6 +614,11 @@ pub(super) async fn session(
     };
     while let Ok(mut frame) = incoming.try_recv() {
         frame.reject();
+    }
+    if config.pool_mode != pool::Mode::None && result.is_ok() {
+        for backend in std::mem::take(&mut state.backends).into_values() {
+            release_backend(&config, backend, &topology).await;
+        }
     }
     result
 }
@@ -678,6 +731,16 @@ async fn deliver_query(
                 accounting.finish(Outcome::SqlError);
                 return Ok(());
             }
+            if error.is::<pool::Rejected>() {
+                fatal_query(
+                    client,
+                    "53300",
+                    "rustybouncer: backend pool capacity/wait deadline exhausted",
+                    accounting,
+                )
+                .await?;
+                return Err(error);
+            }
             if error.is::<buffers::Exhausted>() {
                 fatal_query(client,"53200","rustybouncer: result capacity exhausted; dispatched statement outcome may be unknown; not replayed",accounting).await?;
                 return Err(error);
@@ -735,6 +798,102 @@ async fn fatal_query<W: tokio::io::AsyncWrite + Unpin>(
     result
 }
 
+async fn pooled_backend(
+    config: &Config,
+    node: usize,
+    packet: Arc<[u8]>,
+    selected: &Topology,
+    deadline: Instant,
+    ticket: &mut Option<Guard>,
+) -> Result<Backend> {
+    pool::checkout(config, node, packet, selected, deadline, ticket).await
+}
+
+async fn pooled_startup(
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &[u8],
+    ticket: &mut Option<Guard>,
+) -> Result<(usize, Option<Backend>, Arc<Messages>)> {
+    loop {
+        let (node, selected) = wait_route(config, topology, false, &HashSet::new()).await?;
+        let key = pool::Key::new(node, &selected, Arc::from(packet));
+        let messages = if let Some(metadata) = config.pools.metadata(&key) {
+            metadata
+        } else {
+            let backend = pooled_backend(
+                config,
+                node,
+                Arc::from(packet),
+                &selected,
+                Instant::now() + Duration::from_millis(config.wait_timeout_ms),
+                ticket,
+            )
+            .await?;
+            let metadata = backend
+                .startup_metadata
+                .clone()
+                .context("missing startup metadata")?;
+            release_backend(config, backend, topology).await;
+            metadata
+        };
+        if *topology.borrow() == selected {
+            return Ok((node, None, messages));
+        }
+    }
+}
+
+async fn release_backend(
+    config: &Config,
+    mut backend: Backend,
+    topology: &watch::Receiver<Topology>,
+) {
+    let Some(slot) = &backend.slot else {
+        return;
+    };
+    let key = slot.key.clone();
+    let mut accounting = config.metrics.guard(Event::PoolReset);
+    let resetting = async {
+        if backend.status != b'I' {
+            let (response, status) = result(&mut backend, b"ROLLBACK\0").await?;
+            if status != b'I' || response.sql_error {
+                bail!("backend rollback failed");
+            }
+        }
+        let (response, status) = result(&mut backend, b"DISCARD ALL\0").await?;
+        let baseline = backend
+            .startup_metadata
+            .as_ref()
+            .context("missing reset baseline")?;
+        if status != b'I' || response.sql_error || !response.reset_parameters_match(baseline) {
+            bail!("backend reset did not restore baseline");
+        }
+        if key.replica() {
+            let (response, status) =
+                result(&mut backend, b"SET default_transaction_read_only = on\0").await?;
+            if status != b'I' || response.sql_error {
+                bail!("replica reset failed");
+            }
+        }
+        if !backend.healthy_idle() {
+            bail!("unexpected backend data after reset");
+        }
+        Ok::<_, anyhow::Error>(())
+    };
+    let outcome = timeout(
+        Duration::from_millis(config.pool_reset_timeout_ms),
+        resetting,
+    )
+    .await;
+    let good = matches!(outcome, Ok(Ok(())));
+    accounting.finish(if good { Outcome::Ok } else { Outcome::Error });
+    if good {
+        config.pools.put(&key, backend, &topology.borrow());
+    } else {
+        config.metrics.inc("pool_discards_total", &[]);
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -781,6 +940,7 @@ mod tests {
         let (_tx, mut rx) = watch::channel(Topology::default());
         let mut state = SessionState {
             backends: HashMap::new(),
+            identity: Arc::from(&b""[..]),
             transaction: false,
             status: b'I',
             pinned: false,
@@ -812,6 +972,11 @@ mod tests {
                 generation: 0,
                 buffers: c.result_buffers.clone(),
                 cancel_identity: (1, 2),
+                status: b'I',
+                startup_metadata: None,
+                idle_since: Instant::now(),
+                slot: None,
+                pool_owner: None,
                 _live: c.metrics.guard(Event::Backend("node-a".into())),
             };
             let topology = Topology {
@@ -859,6 +1024,11 @@ mod tests {
                 generation: 0,
                 buffers: c.result_buffers.clone(),
                 cancel_identity: (1, 2),
+                status: b'I',
+                startup_metadata: None,
+                idle_since: Instant::now(),
+                slot: None,
+                pool_owner: None,
                 _live: m.guard(Event::Backend("node-a".into())),
             };
             let selected = Topology {

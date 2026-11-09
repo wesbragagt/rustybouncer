@@ -104,6 +104,50 @@ impl Response {
             .map(|slab| *slab.data().last().unwrap())
             .unwrap_or_else(|| self.small[self.small_len - 1])
     }
+    pub(super) fn reset_parameters_match(&self, baseline: &Messages) -> bool {
+        let mut bytes = self.small[..self.small_len]
+            .iter()
+            .chain(self.bulk.iter().flat_map(|slab| slab.data()));
+        while let Some(&tag) = bytes.next() {
+            let mut encoded = [0u8; 4];
+            for value in &mut encoded {
+                let Some(&byte) = bytes.next() else {
+                    return false;
+                };
+                *value = byte;
+            }
+            let size = u32::from_be_bytes(encoded) as usize;
+            if size < 4 {
+                return false;
+            }
+            if tag == b'S' {
+                let mut candidates = baseline
+                    .iter()
+                    .filter(|(kind, body)| *kind == b'S' && body.len() == size - 4)
+                    .map(|(_, body)| body.as_slice())
+                    .collect::<Vec<_>>();
+                for index in 0..size - 4 {
+                    let Some(&byte) = bytes.next() else {
+                        return false;
+                    };
+                    candidates.retain(|body| body[index] == byte);
+                    if candidates.is_empty() {
+                        return false;
+                    }
+                }
+            } else {
+                if !matches!(tag, b'C' | b'Z' | b'N' | b'A') {
+                    return false;
+                }
+                for _ in 0..size - 4 {
+                    if bytes.next().is_none() {
+                        return false;
+                    }
+                }
+            }
+        }
+        true
+    }
     #[cfg(test)]
     fn encoded(&self) -> Vec<u8> {
         if self.bulk.is_empty() {
@@ -367,6 +411,32 @@ mod tests {
         encoded.truncate(encoded.len() - 8);
         assert!(response(&mut encoded.as_slice(), &pool).await.is_err());
         assert_eq!(pool.snapshot().0, 0);
+    }
+    #[tokio::test]
+    async fn reset_parameter_validation_is_exact_across_storage_chunks() {
+        let mut value = b"application_name\0".to_vec();
+        value.extend(vec![b'x'; 70_000]);
+        value.push(0);
+        let baseline = vec![(b'S', value.clone())];
+        for valid in [true, false] {
+            let mut changed = value.clone();
+            if !valid {
+                changed[65_540] = b'y';
+            }
+            let mut encoded = frame(b'S', &changed);
+            encoded.extend(frame(b'C', b"DISCARD ALL\0"));
+            encoded.extend(frame(b'Z', b"I"));
+            let (response, _) = response(&mut encoded.as_slice(), &buffers::Pool::default())
+                .await
+                .unwrap();
+            assert_eq!(response.reset_parameters_match(&baseline), valid);
+        }
+        let mut encoded = frame(b'S', b"unknown\0value\0");
+        encoded.extend(frame(b'Z', b"I"));
+        let (response, _) = response(&mut encoded.as_slice(), &buffers::Pool::default())
+            .await
+            .unwrap();
+        assert!(!response.reset_parameters_match(&baseline));
     }
     #[tokio::test]
     async fn exact_message_and_result_boundaries_keep_capacity_bounded() {

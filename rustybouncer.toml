@@ -5,6 +5,16 @@ max_clients = 100
 # Opt-in simple-query routing; requires trusted, trust-authenticated backends.
 # Set false for the original transparent-authentication session router.
 route_selects = true
+# Shared primary session reuse is opt-in and still uses routed trust authentication.
+# none keeps the historical per-client routed caches; transaction is pending PERF-008.
+pool_mode = "none"
+pool_size = 16
+max_pool_backends = 64
+reserve_pool_size = 0
+reserve_pool_delay_ms = 1000
+pool_idle_timeout_ms = 30000
+pool_server_lifetime_ms = 300000
+pool_reset_timeout_ms = 5000
 probe_interval_ms = 500
 probe_timeout_ms = 1000
 wait_timeout_ms = 10000

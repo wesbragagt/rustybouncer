@@ -32,6 +32,25 @@ struct Config {
     #[serde(skip)]
     metrics: Metrics,
     max_clients: usize,
+    #[serde(default)]
+    pool_mode: router::pool::Mode,
+    #[serde(default = "default_pool_size")]
+    pool_size: usize,
+    #[serde(default = "default_pool_backends")]
+    max_pool_backends: usize,
+    #[serde(default)]
+    reserve_pool_size: usize,
+    #[serde(default = "default_pool_delay")]
+    reserve_pool_delay_ms: u64,
+    #[serde(default = "default_pool_idle")]
+    pool_idle_timeout_ms: u64,
+    #[serde(default = "default_pool_lifetime")]
+    pool_server_lifetime_ms: u64,
+    #[serde(default = "default_cancel_cleanup")]
+    pool_reset_timeout_ms: u64,
+    #[serde(skip)]
+    pools: router::pool::Manager,
+
     #[serde(default = "default_result_buffer_bytes")]
     result_buffer_bytes: usize,
     #[serde(skip)]
@@ -59,6 +78,21 @@ struct Config {
     #[serde(default)]
     route_selects: bool,
 }
+fn default_pool_size() -> usize {
+    16
+}
+fn default_pool_backends() -> usize {
+    64
+}
+fn default_pool_delay() -> u64 {
+    1000
+}
+fn default_pool_idle() -> u64 {
+    30000
+}
+fn default_pool_lifetime() -> u64 {
+    300000
+}
 fn default_cancel_cleanup() -> u64 {
     5000
 }
@@ -79,6 +113,18 @@ fn default_read_attempts() -> usize {
 }
 
 impl Config {
+    fn pool_settings(&self) -> router::pool::Settings {
+        router::pool::Settings {
+            mode: self.pool_mode,
+            size: self.pool_size,
+            global: self.max_pool_backends,
+            reserve: self.reserve_pool_size,
+            reserve_delay: Duration::from_millis(self.reserve_pool_delay_ms),
+            waiters: self.max_clients,
+            idle: Duration::from_millis(self.pool_idle_timeout_ms),
+            lifetime: Duration::from_millis(self.pool_server_lifetime_ms),
+        }
+    }
     fn validate(&self) -> Result<()> {
         if self.nodes.is_empty()
             || self.max_clients == 0
@@ -98,6 +144,16 @@ impl Config {
         .contains(&0)
         {
             bail!("timeouts and probe interval must be positive");
+        }
+        self.pool_settings().validate()?;
+        if self.pool_mode != router::pool::Mode::None && !self.route_selects {
+            bail!("shared pools require routed trust-authenticated mode");
+        }
+        if self.pool_mode == router::pool::Mode::Transaction {
+            bail!("transaction pooling implementation remains pending PERF-008");
+        }
+        if self.pool_reset_timeout_ms == 0 {
+            bail!("pool reset timeout must be positive");
         }
         buffers::Pool::new(self.result_buffer_bytes, Metrics::default())?;
         if self.delivery_timeout_ms == 0 || self.cancel_cleanup_timeout_ms == 0 {
@@ -480,6 +536,12 @@ async fn main() -> Result<()> {
         config.route_selects,
         config.max_clients,
     )?;
+    config.pools = router::pool::Manager::new(config.pool_settings(), config.metrics.clone())?;
+    config.metrics.configure_pool(
+        config.pool_mode.label(),
+        config.max_pool_backends,
+        config.pool_size,
+    );
     config.cancellations = cancel::Registry::new(config.max_clients);
     config.result_buffers = buffers::Pool::new(config.result_buffer_bytes, config.metrics.clone())?;
     let metrics_listener = match &config.metrics_listen {
@@ -498,6 +560,18 @@ async fn main() -> Result<()> {
     let control_permits = Arc::new(Semaphore::new(32));
     let (tx, rx) = watch::channel(Topology::default());
     let discovery = tokio::spawn(discover(config.clone(), password, tx));
+    let maintenance = if config.pool_mode != router::pool::Mode::None {
+        let pools = config.pools.clone();
+        let topology = rx.clone();
+        Some(tokio::spawn(async move {
+            loop {
+                pools.maintain(&topology.borrow());
+                sleep(Duration::from_millis(100)).await;
+            }
+        }))
+    } else {
+        None
+    };
     info!(listen = %config.listen, "rustybouncer ready");
     let mut sessions = JoinSet::new();
     // Keep one registered receiver across admission/completion selections.
@@ -512,6 +586,7 @@ async fn main() -> Result<()> {
         tokio::select! {
             result = async { metrics_task.as_mut().unwrap().await }, if metrics_task.is_some() => {
                 discovery.abort();
+                if let Some(task)=&maintenance {task.abort();}
                 sessions.abort_all();
                 return metrics::listener_exit(result);
             }
@@ -555,6 +630,10 @@ async fn main() -> Result<()> {
         task.abort();
     }
     discovery.abort();
+    if let Some(task) = maintenance {
+        task.abort();
+        let _ = task.await;
+    }
     sessions.abort_all();
     while sessions.join_next().await.is_some() {}
     Ok(())

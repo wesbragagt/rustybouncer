@@ -1,0 +1,96 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_backend_transport_failure_during_reset_discards_connection (__main__.SessionPool.test_backend_transport_failure_during_reset_discards_connection) ... ok
+test_declared_sequential_connection_churn_reuses_one_backend (__main__.SessionPool.test_declared_sequential_connection_churn_reuses_one_backend) ... ok
+test_disconnect_aborted_transaction_does_not_contaminate_next_client (__main__.SessionPool.test_disconnect_aborted_transaction_does_not_contaminate_next_client) ... ok
+test_disconnect_open_transaction_rolls_back_before_reuse (__main__.SessionPool.test_disconnect_open_transaction_rolls_back_before_reuse) ... ok
+test_idle_and_lifetime_retirement_release_capacity (__main__.SessionPool.test_idle_and_lifetime_retirement_release_capacity) ... ok
+test_idle_frontends_share_startup_metadata_without_backend_leases (__main__.SessionPool.test_idle_frontends_share_startup_metadata_without_backend_leases) ... ok
+test_killed_idle_backend_is_retired_without_restarting_pooler (__main__.SessionPool.test_killed_idle_backend_is_retired_without_restarting_pooler) ... ok
+test_reset_temporary_state_sql_prepared_locks_listen_and_settings (__main__.SessionPool.test_reset_temporary_state_sql_prepared_locks_listen_and_settings) ... ok
+test_saturated_session_pool_waits_then_hands_off_exclusively (__main__.SessionPool.test_saturated_session_pool_waits_then_hands_off_exclusively) ... ok
+test_session_affinity_exclusive_ownership_and_reuse (__main__.SessionPool.test_session_affinity_exclusive_ownership_and_reuse) ... ok
+test_stale_virtual_cancel_does_not_hit_next_owner (__main__.SessionPool.test_stale_virtual_cancel_does_not_hit_next_owner) ... ok
+test_startup_parameters_partition_and_restore_original_defaults (__main__.SessionPool.test_startup_parameters_partition_and_restore_original_defaults) ... ok
+test_topology_generation_retires_old_backends (__main__.SessionPool.test_topology_generation_retires_old_backends) ... ok
+test_unpooled_churn_opens_one_backend_per_client (__main__.SessionPool.test_unpooled_churn_opens_one_backend_per_client) ... ok
+test_user_and_database_identity_never_uses_privileged_probe (__main__.SessionPool.test_user_and_database_identity_never_uses_privileged_probe) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 25.942s
+
+OK
+test_100_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_100_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_10_clients_mixed_sizes_saturation_and_small_query_progress (__main__.Resources.test_10_clients_mixed_sizes_saturation_and_small_query_progress) ... ok
+test_cancel_admission_remains_available_at_sql_client_capacity (__main__.Resources.test_cancel_admission_remains_available_at_sql_client_capacity) ... ok
+test_cancel_during_backend_handshake_releases_connect_ownership (__main__.Resources.test_cancel_during_backend_handshake_releases_connect_ownership) ... ok
+test_cancel_during_no_route_wait_does_not_dispatch_or_retry (__main__.Resources.test_cancel_during_no_route_wait_does_not_dispatch_or_retry) ... ok
+test_cancel_during_partial_delivery_closes_without_replaying (__main__.Resources.test_cancel_during_partial_delivery_closes_without_replaying) ... ok
+test_cancel_preserves_savepoint_and_prior_transaction_write (__main__.Resources.test_cancel_preserves_savepoint_and_prior_transaction_write) ... ok
+test_cancel_ready_races_cannot_cancel_the_next_query (__main__.Resources.test_cancel_ready_races_cannot_cancel_the_next_query) ... ok
+test_disconnect_cancels_active_read_and_refunds_every_charge (__main__.Resources.test_disconnect_cancels_active_read_and_refunds_every_charge) ... ok
+test_dispatched_primary_write_cancellation_is_not_replayed (__main__.Resources.test_dispatched_primary_write_cancellation_is_not_replayed) ... ok
+test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running (__main__.Resources.test_pipelined_disconnect_does_not_hide_eof_or_leave_work_running) ... ok
+test_replica_cancel_stops_retry_and_preserves_connection (__main__.Resources.test_replica_cancel_stops_retry_and_preserves_connection) ... ok
+test_shutdown_during_connection_churn_reaps_all_backend_owners (__main__.Resources.test_shutdown_during_connection_churn_reaps_all_backend_owners) ... ok
+test_slow_receiver_delivery_deadline_refunds_capacity (__main__.Resources.test_slow_receiver_delivery_deadline_refunds_capacity) ... ok
+test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client (__main__.Resources.test_wrong_and_stale_frontend_secrets_do_not_cancel_another_client) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 121.570s
+
+OK
+test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss. ... ok
+test_02_unsent_write_waits_then_continues_on_same_connection (__main__.FailoverContinuity.test_02_unsent_write_waits_then_continues_on_same_connection)
+An autocommit statement received during the leader gap waits safely. ... ok
+test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes. ... ok
+test_04_interrupted_transaction_fails_without_replay (__main__.FailoverContinuity.test_04_interrupted_transaction_fails_without_replay)
+Transactions cannot migrate: rollback and uncertain outcomes stay explicit. ... ok
+test_05_failed_replica_leaves_rotation_without_disrupting_reads (__main__.FailoverContinuity.test_05_failed_replica_leaves_rotation_without_disrupting_reads)
+A replica failure is removed; same-client reads survive primary loss too. ... ok
+test_06_read_only_ctes_round_robin_and_continue_through_failover (__main__.FailoverContinuity.test_06_read_only_ctes_round_robin_and_continue_through_failover) ... ok
+test_07_data_modifying_ctes_execute_on_primary (__main__.FailoverContinuity.test_07_data_modifying_ctes_execute_on_primary) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 60.946s
+
+OK
+test_attempt_limit (__main__.LongQueries.test_attempt_limit) ... ok
+test_dispatched_write_not_replayed (__main__.LongQueries.test_dispatched_write_not_replayed) ... ok
+test_failed_read_retries_without_partial_results (__main__.LongQueries.test_failed_read_retries_without_partial_results) ... ok
+test_healthy_execution_exceeds_routing_wait (__main__.LongQueries.test_healthy_execution_exceeds_routing_wait) ... ok
+test_interrupted_transaction_not_replayed (__main__.LongQueries.test_interrupted_transaction_not_replayed) ... ok
+test_promoted_backend_drains (__main__.LongQueries.test_promoted_backend_drains) ... ok
+test_total_deadline (__main__.LongQueries.test_total_deadline) ... ok
+test_unrelated_primary_loss_and_promotion (__main__.LongQueries.test_unrelated_primary_loss_and_promotion) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 69.151s
+
+OK
+test_actual_backend_retry_promotion_and_transaction_nonreplay (__main__.Metrics.test_actual_backend_retry_promotion_and_transaction_nonreplay) ... ok
+test_connection_capacity_startup_and_independent_backends (__main__.Metrics.test_connection_capacity_startup_and_independent_backends) ... ok
+test_default_disabled_bind_failure_and_passthrough (__main__.Metrics.test_default_disabled_bind_failure_and_passthrough) ... ok
+test_delivery_failure_and_concurrent_client_results (__main__.Metrics.test_delivery_failure_and_concurrent_client_results) ... ok
+test_dispatched_write_failure_is_not_replayed (__main__.Metrics.test_dispatched_write_failure_is_not_replayed) ... ok
+test_http_rejections_deadlines_cap_and_sql_availability (__main__.Metrics.test_http_rejections_deadlines_cap_and_sql_availability) ... ok
+test_inventory_freshness_and_static_cardinality (__main__.Metrics.test_inventory_freshness_and_static_cardinality) ... ok
+test_malformed_full_and_truncated_frames (__main__.Metrics.test_malformed_full_and_truncated_frames) ... ok
+test_q_message_outcomes_and_histograms (__main__.Metrics.test_q_message_outcomes_and_histograms) ... ok
+test_terminal_sessions_clean_disconnect_and_unavailable_startup (__main__.Metrics.test_terminal_sessions_clean_disconnect_and_unavailable_startup) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 88.919s
+
+OK
+
+test_100_clients_multirow_null_and_unique_results (__main__.Buffering.test_100_clients_multirow_null_and_unique_results) ... ok
+test_10_clients_multirow_null_and_unique_results (__main__.Buffering.test_10_clients_multirow_null_and_unique_results) ... ok
+test_message_and_result_overflow_discard_before_exposure (__main__.Buffering.test_message_and_result_overflow_discard_before_exposure) ... ok
+test_pipelined_query_error_keeps_later_responses_ordered (__main__.Buffering.test_pipelined_query_error_keeps_later_responses_ordered) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 25.179s
+
+OK

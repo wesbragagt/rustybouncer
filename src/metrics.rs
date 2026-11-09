@@ -68,6 +68,9 @@ impl Metrics {
             ("query_attempts_total", &["route", "outcome"][..]),
             ("read_retries_total", &[][..]),
             ("control_requests_total", &[][..]),
+            ("pool_reuses_total", &[][..]),
+            ("pool_discards_total", &[][..]),
+            ("pool_resets_total", &["outcome"][..]),
             ("result_buffer_rejections_total", &[][..]),
             ("topology_changes_total", &[][..]),
             ("primary_changes_total", &[][..]),
@@ -79,6 +82,10 @@ impl Metrics {
         }
         for (name, labels) in [
             ("routing_enabled", &[][..]),
+            ("pooling_enabled", &[][..]),
+            ("pooling_mode", &["mode"][..]),
+            ("pool_backend_capacity", &[][..]),
+            ("pool_size", &[][..]),
             ("result_buffer_limit_bytes", &[][..]),
             ("result_buffer_reserved_bytes", &[][..]),
             ("result_buffer_highwater_bytes", &[][..]),
@@ -100,6 +107,7 @@ impl Metrics {
         }
         for (name, labels) in [
             ("session_duration_seconds", &[][..]),
+            ("pool_reset_duration_seconds", &[][..]),
             ("query_duration_seconds", &[][..]),
             ("route_wait_duration_seconds", &[][..]),
             ("probe_duration_seconds", &["node"][..]),
@@ -116,6 +124,7 @@ impl Metrics {
         m.set("routing_enabled", &[], i64::from(routing));
         m.set("client_capacity", &[], capacity as i64);
         m.set("build_info", &[env!("CARGO_PKG_VERSION")], 1);
+        m.configure_pool("none", 0, 0);
         Ok(m)
     }
     fn initialize(&self, nodes: &[super::Node]) {
@@ -136,6 +145,7 @@ impl Metrics {
             }
         }
         for outcome in OUTCOMES {
+            self.counter("pool_resets_total", &[*outcome]);
             self.counter("sessions_completed_total", &[*outcome]);
         }
         for kind in KINDS {
@@ -163,6 +173,19 @@ impl Metrics {
                 self.set("node_role", &[&node.name, *role], 0);
             }
             i.histograms["probe_duration_seconds"].with_label_values(&[&node.name]);
+        }
+    }
+    pub fn configure_pool(&self, mode: &str, capacity: usize, size: usize) {
+        let enabled = mode != "none";
+        self.set("pooling_enabled", &[], i64::from(enabled));
+        self.set(
+            "pool_backend_capacity",
+            &[],
+            if enabled { capacity as i64 } else { 0 },
+        );
+        self.set("pool_size", &[], if enabled { size as i64 } else { 0 });
+        for value in ["none", "session", "transaction"] {
+            self.set("pooling_mode", &[value], i64::from(mode == value));
         }
     }
     fn counter(&self, name: &str, labels: &[&str]) {
@@ -292,6 +315,7 @@ impl Outcome {
 }
 pub enum Event {
     Session,
+    PoolReset,
     Query(&'static str),
     Attempt(&'static str),
     Connect(String),
@@ -337,6 +361,10 @@ impl Drop for Guard {
         let outcome = r.outcome.label();
         let duration = r.start.elapsed().as_secs_f64();
         match r.event {
+            Event::PoolReset => {
+                m.inc("pool_resets_total", &[outcome]);
+                m.observe("pool_reset_duration_seconds", &[], duration);
+            }
             Event::Session => {
                 m.add("clients_active", &[], -1);
                 m.inc("sessions_completed_total", &[outcome]);
@@ -482,7 +510,7 @@ mod tests {
             text.lines()
                 .filter(|l| !l.starts_with('#') && !l.is_empty())
                 .count(),
-            123 + 29 * c.nodes.len()
+            154 + 29 * c.nodes.len()
         );
         assert!(text.contains("node=\"quote\\\"slash\\\\line\\nend\""));
         assert!(text.contains("rustybouncer_routing_enabled 0\n"));
@@ -531,6 +559,31 @@ mod tests {
             "rustybouncer_backend_connections_active{node=\"node-a\"} 0",
             "rustybouncer_session_duration_seconds_count 1",
             "rustybouncer_query_duration_seconds_count 1",
+        ] {
+            assert!(text.contains(expected), "{expected}\n{text}");
+        }
+    }
+    #[test]
+    fn pool_configuration_and_reset_completion_have_finite_explicit_accounting() {
+        let m = enabled();
+        m.configure_pool("session", 8, 2);
+        {
+            let mut reset = m.guard(Event::PoolReset);
+            reset.finish(Outcome::Ok);
+        }
+        {
+            let _reset = m.guard(Event::PoolReset);
+        }
+        let text = exposition(&m);
+        for expected in [
+            "rustybouncer_pooling_enabled 1",
+            "rustybouncer_pooling_mode{mode=\"session\"} 1",
+            "rustybouncer_pooling_mode{mode=\"none\"} 0",
+            "rustybouncer_pool_backend_capacity 8",
+            "rustybouncer_pool_size 2",
+            "rustybouncer_pool_resets_total{outcome=\"ok\"} 1",
+            "rustybouncer_pool_resets_total{outcome=\"aborted\"} 1",
+            "rustybouncer_pool_reset_duration_seconds_count 2",
         ] {
             assert!(text.contains(expected), "{expected}\n{text}");
         }

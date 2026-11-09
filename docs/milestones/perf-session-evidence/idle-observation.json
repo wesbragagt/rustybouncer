@@ -1,0 +1,6 @@
+{
+  "frontends": 100,
+  "postgres_backends": 1,
+  "assigned_session_backends_after_two_queries": 2,
+  "startup": "completed for all clients; no application SQL before observation"
+}

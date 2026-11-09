@@ -1,0 +1,22 @@
+[
+  {
+    "path": "session-promotion-final.tar.zst",
+    "bytes": 50999,
+    "sha256": "a9a132907d0148fa3f6e46e6f507e9a89b39ae8cba5617036d9442148b2b1ddf"
+  },
+  {
+    "path": "session-resources.tar.zst",
+    "bytes": 63083,
+    "sha256": "82cb882be714aa37073a2c95d844df9a8a4a5b010216bbf1e4051061478e5807"
+  },
+  {
+    "path": "session-metrics.tar.zst",
+    "bytes": 33280,
+    "sha256": "243037e7c02222ff2112da2911c9d49797b60cdf2d40c176cbff0577a8fd2c69"
+  },
+  {
+    "path": "session-buffering.tar.zst",
+    "bytes": 28670,
+    "sha256": "169acee60a4b3eb03168fee6ed2a9900f0d114485bde1f20f2741540fb936ba3"
+  }
+]

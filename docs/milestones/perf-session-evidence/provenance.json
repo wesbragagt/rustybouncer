@@ -1,0 +1,21 @@
+{
+  "base": "9682be20c3898c01b049a5d39f4e0ce87924682a",
+  "state": "session runtime frozen before all final live tests; final 16-case file hash recorded after the additional promotion case; acceptance source included in this milestone",
+  "production": "c3b6bb8e7efec3cc615d48b1229e5b1b4c8c0ef71059c8e98232e61cacce39e7",
+  "sources": {
+    "src/buffers.rs": "57b5df6f6c11705c9819acbca36547bf210c63dd053c9962a4fd1c439fab942d",
+    "src/cancel.rs": "ac33b87b741ed155c70ed872cbd9912ba33ec157a565d492365dde9646b51c0f",
+    "src/main.rs": "3ce11b56407e8836a0ede2921cf947deab85aff96102d4015fdeb1e06a0b48fc",
+    "src/metrics.rs": "9cfbdb96697c505dc3448fa3b3bc383999511d0ebc04ced0bc9a8fcb2f47bfc3",
+    "src/router/classification.rs": "de7ce02e53f5349a31ce01c898e4b5cd1f8993849df063f0c4472b2a99b75125",
+    "src/router/classifier_reference.rs": "a05f7792cd5522e88f04231bd674c210078f6ff36b0bbb28a47ec4db84907c30",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "src/router/frontend.rs": "3b65552ba41a82b07fdcb7e6178547af42ff40b525313e5379f4ed96d46f531b",
+    "src/router/pool.rs": "29058bd319caca8d5ad723fd8401483ce354ff4a9ba7ef97ae2835c62b6dd3ed",
+    "src/router/wire.rs": "4a56851a72a8f0c6f95124437ab7450195776d8ff65e866229635516e4837e62",
+    "src/router.rs": "05e7e303c5db7ff5352c1d19f140a1a1ebbf5ad8875cefc88a8d042252dfe260",
+    "Cargo.lock": "c967ab42461deead8c3861edc18c192fc9ff6ccfa9facfdca8228e2d0d662f8d",
+    "rustybouncer.toml": "d202f9c1b5602f14c68652d8f7691556565e963b6312e0f62102baccf72f5e80",
+    "tests/session_pool.py": "8f6b81e7306a149b19b6396e9497d0b9ac4cbf3f0f2cad66b1277d8092c90ff6"
+  }
+}

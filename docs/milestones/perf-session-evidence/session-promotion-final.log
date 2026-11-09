@@ -1,0 +1,22 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_backend_transport_failure_during_reset_discards_connection (__main__.SessionPool.test_backend_transport_failure_during_reset_discards_connection) ... ok
+test_declared_sequential_connection_churn_reuses_one_backend (__main__.SessionPool.test_declared_sequential_connection_churn_reuses_one_backend) ... ok
+test_disconnect_aborted_transaction_does_not_contaminate_next_client (__main__.SessionPool.test_disconnect_aborted_transaction_does_not_contaminate_next_client) ... ok
+test_disconnect_open_transaction_rolls_back_before_reuse (__main__.SessionPool.test_disconnect_open_transaction_rolls_back_before_reuse) ... ok
+test_idle_and_lifetime_retirement_release_capacity (__main__.SessionPool.test_idle_and_lifetime_retirement_release_capacity) ... ok
+test_idle_frontends_share_startup_metadata_without_backend_leases (__main__.SessionPool.test_idle_frontends_share_startup_metadata_without_backend_leases) ... ok
+test_killed_idle_backend_is_retired_without_restarting_pooler (__main__.SessionPool.test_killed_idle_backend_is_retired_without_restarting_pooler) ... ok
+test_physical_promotion_fences_session_and_reuses_only_new_primary (__main__.SessionPool.test_physical_promotion_fences_session_and_reuses_only_new_primary) ... ok
+test_reset_temporary_state_sql_prepared_locks_listen_and_settings (__main__.SessionPool.test_reset_temporary_state_sql_prepared_locks_listen_and_settings) ... ok
+test_saturated_session_pool_waits_then_hands_off_exclusively (__main__.SessionPool.test_saturated_session_pool_waits_then_hands_off_exclusively) ... ok
+test_session_affinity_exclusive_ownership_and_reuse (__main__.SessionPool.test_session_affinity_exclusive_ownership_and_reuse) ... ok
+test_stale_virtual_cancel_does_not_hit_next_owner (__main__.SessionPool.test_stale_virtual_cancel_does_not_hit_next_owner) ... ok
+test_startup_parameters_partition_and_restore_original_defaults (__main__.SessionPool.test_startup_parameters_partition_and_restore_original_defaults) ... ok
+test_topology_generation_retires_old_backends (__main__.SessionPool.test_topology_generation_retires_old_backends) ... ok
+test_unpooled_churn_opens_one_backend_per_client (__main__.SessionPool.test_unpooled_churn_opens_one_backend_per_client) ... ok
+test_user_and_database_identity_never_uses_privileged_probe (__main__.SessionPool.test_user_and_database_identity_never_uses_privileged_probe) ... ok
+
+----------------------------------------------------------------------
+Ran 16 tests in 37.394s
+
+OK

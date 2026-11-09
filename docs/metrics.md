@@ -70,7 +70,15 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | `client_capacity` | gauge | Configured max_clients; no claim of backend pool size |
 | `sessions_completed_total` | counter, `outcome=ok\|error\|aborted` | One terminal classification per admitted session; explicit proxy FATAL/rejection is error even when the handler returns Ok; ok is normal session termination, not query success |
 | `session_duration_seconds` | histogram | Admission until session exit, including startup and abort |
-| `backend_connections_active` | gauge, `node` | Live frontend-owned TCP backend connections, including setup; counts locally held streams, not proven live PostgreSQL sessions; excludes probes; passthrough and routed caches both counted |
+| `backend_connections_active` | gauge, `node` | Live locally owned TCP backend connections, including setup, active leases, resets and shared idle backends; counts locally held streams, not proven live PostgreSQL sessions; excludes probes; passthrough and routed caches both counted |
+| `pooling_enabled` | gauge | 1 for an enabled shared pool, 0 for none |
+| `pooling_mode` | gauge, `mode=none\|session\|transaction` | One-hot configured mode; transaction is reserved and rejected until PERF-008 |
+| `pool_backend_capacity` | gauge | Process-wide physical backend reservation limit; 0 when pooling is disabled |
+| `pool_size` | gauge | Base per-exact-identity/node/generation capacity; 0 when disabled; reserve capacity is configured separately |
+| `pool_reuses_total` | counter | Healthy idle backend checkouts across frontend owners |
+| `pool_discards_total` | counter | Explicit unhealthy idle/return/reset discard decisions; does not count every task-abort socket close |
+| `pool_resets_total` | counter, `outcome=ok\|error\|aborted` | Owned rollback/DISCARD/initialization reset attempts; setup/role failures never replay frontend work |
+| `pool_reset_duration_seconds` | histogram | Reset wall time, including failed/aborted resets; excludes user execution |
 | `backend_connects_total` | counter, `node,outcome=ok\|error\|aborted` | TCP connection attempts completed or failed, including timeouts; externally dropped unfinished attempts are aborted; ok means TCP connected, not authenticated |
 | `queries_total` | counter, `kind=read\|write\|transaction\|stateful\|unsupported\|malformed`, `outcome=ok\|sql_error\|router_error\|delivery_error\|aborted` | Exactly once per fully received, validly framed routed Q message, including rejected COPY/malformed input; successful retry counts once; no passthrough series increments |
 | `queries_in_flight` | gauge | Observed routed Q messages without terminal outcome |
@@ -98,7 +106,7 @@ Histogram boundaries in seconds: 0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25,
 0.5, 1, 2.5, 5, 10, 30, 60, 120, 300, 600 plus +Inf. Counters are monotonic
 within one process lifetime; process restarts reset counters. Every completed discovery round updates freshness and node eligibility, even
 when no topology change is published. Preinitialize all three per-node roles.
-With N configured nodes, the inventory has 123 + 29*N exposed sample series
+With N configured nodes, the inventory has 154 + 29*N exposed sample series
 (including histogram buckets/sum/count; excluding HELP/TYPE). Disable implicit
 library collectors/created timestamps or explicitly revise and test this budget.
 Cross-family scrape snapshots are not atomic; reconciliation assertions run after quiescence.
@@ -230,7 +238,7 @@ Useful queries (seconds unless otherwise stated):
 | Mixed-outcome p95 | rustybouncer:q_duration_p95_seconds:rate5m |
 | Mixed-outcome p99 | rustybouncer:q_duration_p99_seconds:rate5m |
 | Admitted clients / max_clients | rustybouncer:client_utilization:ratio |
-| Frontend-owned backend streams | rustybouncer:backend_connections:sum |
+| Locally owned backend streams | rustybouncer:backend_connections:sum |
 | Attempts per Q (not always >=1) | rustybouncer:attempts_per_q_message:rate5m |
 | Additional read selections / read Q | rustybouncer:read_retry_amplification:rate5m |
 | Failed/aborted attempts / all attempts | rustybouncer:attempt_failure_ratio:rate5m |
@@ -351,3 +359,10 @@ SQL slot retain ordinary session accounting. Both paths increment
 control_requests_total. Pending native sends remain owned by bounded connection
 tasks. Opaque passthrough has no virtual mapping and does not gain routed
 cancellation support from these changes.
+
+Shared session pools use the same backend stream gauge for idle and active ownership.
+Do not infer active leases from that total. The transaction slice PERF-008 adds
+separate queue/lease/phase accounting before claiming capacity/queue acceptance.
+Exact startup identities stay out of labels. Internal reset commands do not
+increment logical-Q/attempt counters. Pool reset failure discards the connection
+without rewriting a previously known frontend result.

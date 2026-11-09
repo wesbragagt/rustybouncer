@@ -71,7 +71,7 @@ historical evidence.
 
 | Area | PgBouncer | Rustybouncer today |
 | --- | --- | --- |
-| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Backends belong to each client; routed sessions can cache a connection per node. No shared transaction pool |
+| Backend capacity | Shared pools reuse connections across clients; transaction mode can release them after each transaction | Opt-in shared primary session reuse; default routed mode caches per-client connections. Transaction pooling remains pending PERF-008 |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Conservative SELECT/read-only CTE routing to replicas, with primary fallback |
 | Primary changes | Integrates with external host/DNS/reload/reconnect orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
 | Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed mode requires trust and simple Query protocol; no extended/COPY or TLS. Routed cancellation uses virtual frontend identities. Passthrough preserves backend protocol/authentication |
@@ -122,6 +122,29 @@ which preserves the original session router. `RUST_LOG=rustybouncer=debug` chang
 logging. Ctrl-C stops discovery and closes active sessions. Configuration changes
 require a restart. Probe authentication may use a password via the environment
 variable named by `probe_password_env`; never put secrets in the TOML file.
+
+## Shared session reuse
+
+Set `pool_mode = "session"` with `route_selects = true` to reuse primary backends
+across successive clients. The first SQL command assigns an exclusive backend
+until disconnect, preserving session affinity. Idle frontends can finish startup
+from verified exact-identity metadata without holding a backend. This mode sends
+all SQL to the primary; `pool_mode = "none"` retains replica round robin.
+
+`pool_size` (default 16) bounds each exact startup identity/node/generation;
+`max_pool_backends` (64) bounds the process, including connect/reset/idle ownership.
+Startup user, database, application name and options partition pools without
+normalization. Client work always uses its original identity, never probe credentials.
+On clean close, rollback open/aborted transactions, DISCARD ALL, verify idle state
+and baseline parameters before reuse. Reset errors, unexpected idle bytes, expired
+idle/lifetime limits or stale generations discard. Cancellation credentials are
+fresh per frontend and cannot target a later owner of a reused backend.
+
+Pool settings in [rustybouncer.toml](rustybouncer.toml) include bounded wait,
+reserve delay and retirement/reset timeouts. `pool_mode = "transaction"` remains
+rejected until PERF-008 is verified. Shared pooling uses the same routed trust,
+simple-query and buffering restrictions described below. The historical benchmark
+above did not measure this feature; final comparisons remain pending.
 
 ## Query-routing mode
 
