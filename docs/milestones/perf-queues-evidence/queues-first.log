@@ -1,0 +1,80 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/pools/.envrc is blocked. Run `direnv allow` to approve its content[0m
+test_1000_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_1000_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_1000_frontend_admission_limit (__main__.Queues.test_1000_frontend_admission_limit) ... ERROR
+test_100_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_100_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_100_frontend_admission_limit (__main__.Queues.test_100_frontend_admission_limit) ... ERROR
+test_10_clients_cancel_disconnect_and_repeated_saturation (__main__.Queues.test_10_clients_cancel_disconnect_and_repeated_saturation) ... ok
+test_10_frontend_admission_limit (__main__.Queues.test_10_frontend_admission_limit) ... ERROR
+test_bootstrap_disconnect_with_queued_bytes_immediately_refunds_ticket (__main__.Queues.test_bootstrap_disconnect_with_queued_bytes_immediately_refunds_ticket) ... ok
+test_fair_queue_order_observed_before_each_capacity_handoff (__main__.Queues.test_fair_queue_order_observed_before_each_capacity_handoff) ... ok
+test_independent_user_and_database_pools_progress_under_saturation (__main__.Queues.test_independent_user_and_database_pools_progress_under_saturation) ... ok
+test_reserve_creation_waits_for_delay_and_respects_global_limit (__main__.Queues.test_reserve_creation_waits_for_delay_and_respects_global_limit) ... ok
+test_wait_deadline_is_terminal_without_read_retry_or_dispatch (__main__.Queues.test_wait_deadline_is_terminal_without_read_retry_or_dispatch) ... ok
+
+======================================================================
+ERROR: test_1000_frontend_admission_limit (__main__.Queues.test_1000_frontend_admission_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 139, in test_1000_frontend_admission_limit
+    self.maximum_clients(1000)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 121, in maximum_clients
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 72, in connect
+    return Client(self.fixture.proxy_port, **parameters)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 27, in __init__
+    self.read_cycle()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 92, in read_cycle
+    kind = self.exact(1)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 85, in exact
+    raise OSError("connection closed")
+OSError: connection closed
+
+======================================================================
+ERROR: test_100_frontend_admission_limit (__main__.Queues.test_100_frontend_admission_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 136, in test_100_frontend_admission_limit
+    self.maximum_clients(100)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 121, in maximum_clients
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 72, in connect
+    return Client(self.fixture.proxy_port, **parameters)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 27, in __init__
+    self.read_cycle()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 92, in read_cycle
+    kind = self.exact(1)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 85, in exact
+    raise OSError("connection closed")
+OSError: connection closed
+
+======================================================================
+ERROR: test_10_frontend_admission_limit (__main__.Queues.test_10_frontend_admission_limit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 133, in test_10_frontend_admission_limit
+    self.maximum_clients(10)
+    ~~~~~~~~~~~~~~~~~~~~^^^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/queue_pool.py", line 121, in maximum_clients
+    self.connect()
+    ~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 72, in connect
+    return Client(self.fixture.proxy_port, **parameters)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/pool_support.py", line 27, in __init__
+    self.read_cycle()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 92, in read_cycle
+    kind = self.exact(1)
+  File "/home/publicuser/dev/rustybouncer/worktrees/pools/tests/failover.py", line 85, in exact
+    raise OSError("connection closed")
+OSError: connection closed
+
+----------------------------------------------------------------------
+Ran 11 tests in 21.015s
+
+FAILED (errors=3)

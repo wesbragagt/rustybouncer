@@ -1,0 +1,32 @@
+[
+  {
+    "cycle": 0,
+    "actual_frontends": 1000,
+    "held_backends": 2,
+    "maximum_waiters": 998,
+    "final_waiters": 0.0,
+    "final_reservations": 2.0,
+    "cancelled_and_disconnected_writes": "independently absent; zero dispatch attempts before release",
+    "all_surviving_results": "exact client/cycle values; no retries"
+  },
+  {
+    "cycle": 1,
+    "actual_frontends": 1000,
+    "held_backends": 2,
+    "maximum_waiters": 998,
+    "final_waiters": 0.0,
+    "final_reservations": 2.0,
+    "cancelled_and_disconnected_writes": "independently absent; zero dispatch attempts before release",
+    "all_surviving_results": "exact client/cycle values; no retries"
+  },
+  {
+    "cycle": 2,
+    "actual_frontends": 1000,
+    "held_backends": 2,
+    "maximum_waiters": 998,
+    "final_waiters": 0.0,
+    "final_reservations": 2.0,
+    "cancelled_and_disconnected_writes": "independently absent; zero dispatch attempts before release",
+    "all_surviving_results": "exact client/cycle values; no retries"
+  }
+]

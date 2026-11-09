@@ -484,9 +484,21 @@ async fn control_session(mut stream: TcpStream, config: Arc<Config>) -> Result<(
     .await;
     match incoming {
         Ok(Ok(packet)) if cancel_request(&packet) => deliver_cancel(&config, &packet).await,
-        _ => {
+        rejected => {
             config.metrics.inc("clients_accepted_total", &[]);
             config.metrics.inc("clients_rejected_total", &[]);
+            if matches!(rejected, Ok(Ok(_))) {
+                timeout(
+                    Duration::from_secs(1),
+                    pg_error(
+                        &mut stream,
+                        "53300",
+                        "rustybouncer: maximum client capacity exhausted",
+                    ),
+                )
+                .await
+                .context("client rejection delivery timed out")??;
+            }
             Ok(())
         }
     }
@@ -538,6 +550,7 @@ async fn main() -> Result<()> {
         config.pool_mode.label(),
         config.max_pool_backends,
         config.pool_size,
+        config.reserve_pool_size,
     );
     config.cancellations = cancel::Registry::new(config.max_clients);
     config.result_buffers = buffers::Pool::new(config.result_buffer_bytes, config.metrics.clone())?;
@@ -647,6 +660,7 @@ mod tests {
             c.route_selects = routed;
             c.wait_timeout_ms = 10;
             c.metrics = Metrics::new(true, &c.nodes, routed, c.max_clients).unwrap();
+            c.cancellations = cancel::Registry::new(c.max_clients);
             let m = c.metrics.clone();
             let (_tx, rx) = watch::channel(Topology::default());
             let (mut client, server) = socket_pair().await;

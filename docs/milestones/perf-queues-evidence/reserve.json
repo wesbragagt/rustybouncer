@@ -1,0 +1,8 @@
+{
+  "base": 2,
+  "reserve": 1,
+  "global_limit": 3,
+  "creation_delay_seconds": 0.5,
+  "observed_seconds": 0.5029565070290118,
+  "maximum_observed_postgres_connections": 3
+}

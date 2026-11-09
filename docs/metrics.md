@@ -75,6 +75,12 @@ values, not formatted error strings. No unlisted labels may be added implicitly.
 | `pooling_mode` | gauge, `mode=none\|session\|transaction` | One-hot configured mode; transaction identifies the partial simple-query lease prototype; PERF-008 remains incomplete |
 | `pool_backend_capacity` | gauge | Process-wide physical backend reservation limit; 0 when pooling is disabled |
 | `pool_size` | gauge | Base per-exact-identity/node/generation capacity; 0 when disabled; reserve capacity is configured separately |
+| `pool_reserve_size` | gauge | Additional per-key creation capacity after configured delay; 0 when disabled |
+| `pool_backend_reservations` | gauge | Owned shared physical slots, including before TCP connect, leases, reset and idle |
+| `pool_backends` | gauge, `phase=connecting\|leased\|resetting\|idle` | Exclusive shared ownership phases; sum equals reservations at quiescence; connecting includes setup before authenticated lease |
+| `pool_waiters` | gauge | Current owned admission tickets; canceled/disconnected/expired tickets are removed before reuse; immediate acquisitions can appear briefly |
+| `pool_waits_total` | counter, `outcome=ok\|error\|aborted` | All shared admission attempts, including metadata bootstrap and immediate success; externally dropped futures include cancellation/owner deadlines |
+| `pool_wait_duration_seconds` | histogram | Admission wait only, excluding subsequent TCP/auth/reset; includes all terminal outcomes |
 | `pool_reuses_total` | counter | Healthy idle backend checkouts across frontend owners |
 | `pool_discards_total` | counter | Explicit unhealthy idle/return/reset discard decisions; does not count every task-abort socket close |
 | `pool_resets_total` | counter, `outcome=ok\|error\|aborted` | Owned rollback/DISCARD/initialization reset attempts; setup/role failures never replay frontend work |
@@ -106,7 +112,7 @@ Histogram boundaries in seconds: 0.001, 0.005, 0.01, 0.025, 0.05, 0.1, 0.25,
 0.5, 1, 2.5, 5, 10, 30, 60, 120, 300, 600 plus +Inf. Counters are monotonic
 within one process lifetime; process restarts reset counters. Every completed discovery round updates freshness and node eligibility, even
 when no topology change is published. Preinitialize all three per-node roles.
-With N configured nodes, the inventory has 154 + 29*N exposed sample series
+With N configured nodes, the inventory has 184 + 29*N exposed sample series
 (including histogram buckets/sum/count; excluding HELP/TYPE). Disable implicit
 library collectors/created timestamps or explicitly revise and test this budget.
 Cross-family scrape snapshots are not atomic; reconciliation assertions run after quiescence.
@@ -361,8 +367,27 @@ tasks. Opaque passthrough has no virtual mapping and does not gain routed
 cancellation support from these changes.
 
 Shared session pools use the same backend stream gauge for idle and active ownership.
-Do not infer active leases from that total. The transaction slice PERF-008 adds
-separate queue/lease/phase accounting before claiming capacity/queue acceptance.
+Do not infer active leases from that total. `pool_backends{phase="leased"}` and
+`pool_waiters` now distinguish exclusive ownership and pending admission. Phase
+updates and cross-family scrapes are not atomic; reconcile at quiescent barriers.
+Connecting reservations can precede established TCP streams. These gauges do not
+include opaque/default unshared backend caches; use `pooling_enabled` to gate panels.
 Exact startup identities stay out of labels. Internal reset commands do not
 increment logical-Q/attempt counters. Pool reset failure discards the connection
 without rewriting a previously known frontend result.
+
+For shared-pool performance, graph `pool_waiters`, leased/resetting/idle phases,
+`pool_backend_reservations / clamp_min(pool_backend_capacity, 1)` and admission
+latency separately from frontend admission. A queued per-key pool can coexist with
+unused global capacity; exact user/database/startup identities are deliberately
+not exposed as labels. The p95 wait expression is:
+
+```promql
+histogram_quantile(0.95,
+  sum by (job, instance, le) (rate(rustybouncer_pool_wait_duration_seconds_bucket[5m])))
+```
+
+Wait histograms mix successful, rejected and externally dropped admission. They
+are not backend execution latency. Frontend `query_duration_seconds` also includes
+input queueing, setup, retries and delivery; reset duration is a separate internal
+cost. Reset/phase/admission events never count as user Q/dispatch attempts.

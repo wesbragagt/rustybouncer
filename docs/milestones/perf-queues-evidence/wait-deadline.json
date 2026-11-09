@@ -1,0 +1,11 @@
+{
+  "configured_seconds": 0.5,
+  "observed_seconds": 0.5011178711429238,
+  "tolerance": [
+    0.35,
+    1.5
+  ],
+  "sqlstate": "53300",
+  "retries": 0,
+  "dispatches": 0
+}

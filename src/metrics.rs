@@ -71,6 +71,7 @@ impl Metrics {
             ("pool_reuses_total", &[][..]),
             ("pool_discards_total", &[][..]),
             ("pool_resets_total", &["outcome"][..]),
+            ("pool_waits_total", &["outcome"][..]),
             ("result_buffer_rejections_total", &[][..]),
             ("topology_changes_total", &[][..]),
             ("primary_changes_total", &[][..]),
@@ -86,6 +87,10 @@ impl Metrics {
             ("pooling_mode", &["mode"][..]),
             ("pool_backend_capacity", &[][..]),
             ("pool_size", &[][..]),
+            ("pool_reserve_size", &[][..]),
+            ("pool_backend_reservations", &[][..]),
+            ("pool_backends", &["phase"][..]),
+            ("pool_waiters", &[][..]),
             ("result_buffer_limit_bytes", &[][..]),
             ("result_buffer_reserved_bytes", &[][..]),
             ("result_buffer_highwater_bytes", &[][..]),
@@ -108,6 +113,7 @@ impl Metrics {
         for (name, labels) in [
             ("session_duration_seconds", &[][..]),
             ("pool_reset_duration_seconds", &[][..]),
+            ("pool_wait_duration_seconds", &[][..]),
             ("query_duration_seconds", &[][..]),
             ("route_wait_duration_seconds", &[][..]),
             ("probe_duration_seconds", &["node"][..]),
@@ -124,7 +130,7 @@ impl Metrics {
         m.set("routing_enabled", &[], i64::from(routing));
         m.set("client_capacity", &[], capacity as i64);
         m.set("build_info", &[env!("CARGO_PKG_VERSION")], 1);
-        m.configure_pool("none", 0, 0);
+        m.configure_pool("none", 0, 0, 0);
         Ok(m)
     }
     fn initialize(&self, nodes: &[super::Node]) {
@@ -146,7 +152,11 @@ impl Metrics {
         }
         for outcome in OUTCOMES {
             self.counter("pool_resets_total", &[*outcome]);
+            self.counter("pool_waits_total", &[*outcome]);
             self.counter("sessions_completed_total", &[*outcome]);
+        }
+        for phase in ["connecting", "leased", "resetting", "idle"] {
+            self.set("pool_backends", &[phase], 0);
         }
         for kind in KINDS {
             for outcome in QUERY_OUTCOMES {
@@ -175,7 +185,7 @@ impl Metrics {
             i.histograms["probe_duration_seconds"].with_label_values(&[&node.name]);
         }
     }
-    pub fn configure_pool(&self, mode: &str, capacity: usize, size: usize) {
+    pub fn configure_pool(&self, mode: &str, capacity: usize, size: usize, reserve: usize) {
         let enabled = mode != "none";
         self.set("pooling_enabled", &[], i64::from(enabled));
         self.set(
@@ -184,6 +194,11 @@ impl Metrics {
             if enabled { capacity as i64 } else { 0 },
         );
         self.set("pool_size", &[], if enabled { size as i64 } else { 0 });
+        self.set(
+            "pool_reserve_size",
+            &[],
+            if enabled { reserve as i64 } else { 0 },
+        );
         for value in ["none", "session", "transaction"] {
             self.set("pooling_mode", &[value], i64::from(mode == value));
         }
@@ -203,7 +218,7 @@ impl Metrics {
             i.gauges[name].with_label_values(labels).set(value);
         }
     }
-    fn add(&self, name: &str, labels: &[&str], value: i64) {
+    pub(crate) fn add(&self, name: &str, labels: &[&str], value: i64) {
         if let Some(i) = &self.0 {
             i.gauges[name].with_label_values(labels).add(value);
         }
@@ -316,6 +331,7 @@ impl Outcome {
 pub enum Event {
     Session,
     PoolReset,
+    PoolWait,
     Query(&'static str),
     Attempt(&'static str),
     Connect(String),
@@ -361,6 +377,10 @@ impl Drop for Guard {
         let outcome = r.outcome.label();
         let duration = r.start.elapsed().as_secs_f64();
         match r.event {
+            Event::PoolWait => {
+                m.inc("pool_waits_total", &[outcome]);
+                m.observe("pool_wait_duration_seconds", &[], duration);
+            }
             Event::PoolReset => {
                 m.inc("pool_resets_total", &[outcome]);
                 m.observe("pool_reset_duration_seconds", &[], duration);
@@ -510,7 +530,7 @@ mod tests {
             text.lines()
                 .filter(|l| !l.starts_with('#') && !l.is_empty())
                 .count(),
-            154 + 29 * c.nodes.len()
+            184 + 29 * c.nodes.len()
         );
         assert!(text.contains("node=\"quote\\\"slash\\\\line\\nend\""));
         assert!(text.contains("rustybouncer_routing_enabled 0\n"));
@@ -566,7 +586,7 @@ mod tests {
     #[test]
     fn pool_configuration_and_reset_completion_have_finite_explicit_accounting() {
         let m = enabled();
-        m.configure_pool("session", 8, 2);
+        m.configure_pool("session", 8, 2, 1);
         {
             let mut reset = m.guard(Event::PoolReset);
             reset.finish(Outcome::Ok);

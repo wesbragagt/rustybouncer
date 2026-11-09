@@ -1,0 +1,6 @@
+{
+  "reset_network_timeout_seconds": 5,
+  "cleanup_after_topology_publication_seconds": 0.03904031892307103,
+  "available_new_primary_capacity": true,
+  "old_transaction_replayed": false
+}

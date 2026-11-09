@@ -233,6 +233,11 @@ impl SessionState {
     fn read_eligible(&self, kind: Kind, mode: pool::Mode) -> bool {
         kind == Kind::Read && !self.transaction && !self.pinned && mode != pool::Mode::Session
     }
+    fn discard_unassigned(&mut self, mode: pool::Mode) {
+        if mode != pool::Mode::None && !self.transaction && !self.pinned && self.status == b'I' {
+            self.backends.clear();
+        }
+    }
     fn record_result(
         &mut self,
         config: &Config,
@@ -433,6 +438,46 @@ fn execution_deadline(config: &Config, read: bool, total: Instant) -> Instant {
     }
 }
 
+enum Setup {
+    Ready,
+    Stale,
+    Failed,
+}
+async fn ensure_backend(
+    config: &Config,
+    state: &mut SessionState,
+    selected: (usize, &Topology),
+    timing: (bool, Instant),
+    operation: &cancel::Operation,
+) -> Result<Setup> {
+    let (node, selected) = selected;
+    let (read, deadline) = timing;
+    if state.backends.contains_key(&node) {
+        return Ok(Setup::Ready);
+    }
+    let mut ticket = None;
+    let prepared = tokio::select! {
+        prepared=timeout(deadline.saturating_duration_since(Instant::now()),prepare_backend(config,node,&state.identity,selected,read,deadline,&mut ticket))=>prepared,
+        reason=operation.cancelled()=>{
+            finish_ticket(&mut ticket,Outcome::Error);
+            return Err(cancel::Interrupted(reason).into());
+        },
+    };
+    finish_ticket(&mut ticket, Outcome::Error);
+    match prepared {
+        Ok(Ok(backend)) => {
+            state.backends.insert(node, backend);
+            Ok(Setup::Ready)
+        }
+        Ok(Err(error)) if error.is::<pool::Stale>() => Ok(Setup::Stale),
+        Ok(Err(error)) if error.is::<pool::Rejected>() => Err(error),
+        Err(_) if config.pool_mode != pool::Mode::None => {
+            Err(pool::Rejected("backend lease/setup deadline exhausted").into())
+        }
+        _ => Ok(Setup::Failed),
+    }
+}
+
 async fn route_query(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
@@ -452,6 +497,9 @@ async fn route_query(
     loop {
         operation.check()?;
         if read && (attempts >= config.read_max_attempts || Instant::now() >= total_deadline) {
+            return Ok(None);
+        }
+        if !read && Instant::now() >= routing_deadline {
             return Ok(None);
         }
         let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
@@ -474,30 +522,30 @@ async fn route_query(
             config.metrics.inc("read_retries_total", &[]);
         }
         attempts += 1;
-        if let std::collections::hash_map::Entry::Vacant(entry) = state.backends.entry(node) {
-            let mut ticket = None;
-            let prepared = tokio::select! {
-                prepared=timeout(deadline.saturating_duration_since(Instant::now()),prepare_backend(config,node,&state.identity,&selected,read,deadline,&mut ticket))=>prepared,
-                reason=operation.cancelled()=>{
-                    finish_ticket(&mut ticket,Outcome::Error);
-                    return Err(cancel::Interrupted(reason).into());
-                },
-            };
-            finish_ticket(&mut ticket, Outcome::Error);
-            match prepared {
-                Ok(Ok(backend)) => {
-                    entry.insert(backend);
-                }
-                Ok(Err(error)) if error.is::<pool::Stale>() => continue,
-                Ok(Err(error)) if error.is::<pool::Rejected>() => return Err(error),
-                _ => {
-                    failed.insert(node);
-                    continue;
-                }
+        match ensure_backend(
+            config,
+            state,
+            (node, &selected),
+            (read, deadline),
+            operation,
+        )
+        .await?
+        {
+            Setup::Ready => {}
+            Setup::Stale => continue,
+            Setup::Failed => {
+                failed.insert(node);
+                continue;
             }
+        }
+        // A ready inner future must not bypass an already elapsed outer timeout.
+        if Instant::now() >= deadline {
+            return Ok(None);
         }
         // Revalidate before the first query byte, including split-brain state.
         if *topology.borrow() != selected {
+            state.discard_unassigned(config.pool_mode);
+            tokio::task::yield_now().await;
             continue;
         }
         if config.pool_mode == pool::Mode::Session {
@@ -539,38 +587,95 @@ async fn route_query(
 }
 
 pub(super) async fn session(
-    mut client: TcpStream,
+    client: TcpStream,
     config: Arc<Config>,
     mut topology: watch::Receiver<Topology>,
     packet: Vec<u8>,
 ) -> Result<()> {
     let packet: Arc<[u8]> = packet.into();
     client.set_nodelay(true)?;
+    let registration = config.cancellations.register()?;
+    let (reader, mut client) = client.into_split();
+    let (sender, mut incoming) = mpsc::channel(8);
+    let ready = std::sync::atomic::AtomicBool::new(false);
+    let result = {
+        let reading = frontend::read(reader, sender, registration.control.clone(), config.clone());
+        let work = session_work(
+            &mut client,
+            &config,
+            &mut topology,
+            &packet,
+            &mut incoming,
+            (&registration, &ready),
+        );
+        tokio::pin!(reading, work);
+        tokio::select! {
+            result=&mut work=>result,
+            end=&mut reading=>{
+                if !ready.load(Ordering::Relaxed) {
+                    // Dropping the owned setup future removes its queue ticket and
+                    // connecting reservation immediately, even with unread Q frames.
+                    match end {
+                        Ok(true)=>Ok(()),
+                        Ok(false)=>Err(anyhow::anyhow!("frontend disconnected during startup")),
+                        Err(error)=>Err(error),
+                    }
+                } else {
+                    let cleanup=timeout(Duration::from_millis(config.cancel_cleanup_timeout_ms),&mut work).await;
+                    match end {
+                        Ok(true)=>cleanup.context("frontend termination cleanup timed out")?,
+                        Ok(false)=>cleanup.context("frontend disconnect cleanup timed out")?,
+                        Err(error)=>Err(error),
+                    }
+                }
+            }
+        }
+    };
+    while let Ok(mut frame) = incoming.try_recv() {
+        frame.reject();
+    }
+    result
+}
+
+async fn session_work(
+    client: &mut OwnedWriteHalf,
+    config: &Config,
+    topology: &mut watch::Receiver<Topology>,
+    packet: &Arc<[u8]>,
+    incoming: &mut mpsc::Receiver<frontend::Incoming>,
+    context: (&cancel::Registration, &std::sync::atomic::AtomicBool),
+) -> Result<()> {
+    let (registration, ready) = context;
     let mut ticket = None;
     let initial = timeout(
         Duration::from_millis(config.wait_timeout_ms),
-        initial_backend(&config, &mut topology, &packet, &mut ticket),
+        initial_backend(config, topology, packet, &mut ticket),
     )
     .await;
     finish_ticket(&mut ticket, Outcome::Error);
     let (primary, backend, messages) = match initial {
         Ok(Ok(value)) => value,
         _ => {
-            pg_error(&mut client, "08006", "rustybouncer: startup unavailable; routed mode requires trust-authenticated backends").await?;
+            pg_error(client, "08006", "rustybouncer: startup unavailable; routed mode requires trust-authenticated backends").await?;
             bail!("session rejected");
         }
     };
-    let registration = config.cancellations.register()?;
     let (pid, secret) = registration.identity();
-    for (tag, body) in messages.iter() {
-        if *tag == b'Z' {
-            let mut identity = [0u8; 8];
-            identity[..4].copy_from_slice(&pid.to_be_bytes());
-            identity[4..].copy_from_slice(&secret.to_be_bytes());
-            send(&mut client, b'K', &identity).await?;
+    timeout(Duration::from_millis(config.startup_timeout_ms), async {
+        for (tag, body) in messages.iter() {
+            if *tag == b'Z' {
+                let mut identity = [0u8; 8];
+                identity[..4].copy_from_slice(&pid.to_be_bytes());
+                identity[4..].copy_from_slice(&secret.to_be_bytes());
+                send(client, b'K', &identity).await?;
+            }
+            send(client, *tag, body).await?;
         }
-        send(&mut client, *tag, body).await?;
-    }
+        Ok::<_, anyhow::Error>(())
+    })
+    .await
+    .context("frontend startup delivery timed out")??;
+    ready.store(true, Ordering::Relaxed);
     drop(messages);
     let mut state = SessionState {
         backends: backend
@@ -582,67 +687,27 @@ pub(super) async fn session(
         pinned: false,
         primary_generation: topology.borrow().generation,
     };
-    let (reader, mut client) = client.into_split();
-    let (sender, mut incoming) = mpsc::channel(8);
-    let result = {
-        let reading = frontend::read(reader, sender, registration.control.clone(), config.clone());
-        let work = async {
-            loop {
-                let Some(mut frame) = receive_query(&mut incoming, &mut topology, &state).await?
-                else {
-                    return Ok::<_, anyhow::Error>(());
-                };
-                let tag = frame.tag;
-                let body = &frame.body;
-                if tag == b'X' {
-                    return Ok(());
-                }
-                if tag != b'Q' {
-                    pg_error(&mut client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
-                    bail!("session rejected");
-                }
-                handle_query(
-                    &mut client,
-                    &config,
-                    &mut topology,
-                    &packet,
-                    &mut state,
-                    (
-                        body,
-                        frame.kind,
-                        frame
-                            .accounting
-                            .take()
-                            .context("missing query accounting")?,
-                    ),
-                    &registration.control,
-                )
-                .await?;
+    let result = async {
+        loop {
+            let Some(mut frame) = receive_query(incoming, topology, &state).await? else { return Ok::<_, anyhow::Error>(()); };
+            if frame.tag == b'X' { return Ok(()); }
+            if frame.tag != b'Q' {
+                pg_error(client, "0A000", "rustybouncer routed mode supports simple Query protocol only; disable prepared/extended queries").await?;
+                bail!("session rejected");
             }
-        };
-        tokio::pin!(reading, work);
-        tokio::select! {
-            result=&mut work=>result,
-            end=&mut reading=>{
-                let cleanup=timeout(Duration::from_millis(config.cancel_cleanup_timeout_ms),&mut work).await;
-                match end {
-                    Ok(true)=>cleanup.context("frontend termination cleanup timed out")?,
-                    Ok(false)=>cleanup.context("frontend disconnect cleanup timed out")?,
-                    Err(error)=>Err(error),
-                }
-            }
+            handle_query(client, config, topology, packet, &mut state,
+                (&frame.body, frame.kind, frame.accounting.take().context("missing query accounting")?),
+                &registration.control).await?;
         }
-    };
-    while let Ok(mut frame) = incoming.try_recv() {
-        frame.reject();
-    }
+    }.await;
     if config.pool_mode != pool::Mode::None && result.is_ok() {
         for backend in std::mem::take(&mut state.backends).into_values() {
-            release_backend(&config, backend, &topology).await;
+            release_backend(config, backend, topology).await;
         }
     }
     result
 }
+
 fn query_kind(body: &[u8]) -> Option<Kind> {
     let sql = body
         .strip_suffix(&[0])
@@ -851,21 +916,27 @@ async fn pooled_startup(
     packet: &[u8],
     ticket: &mut Option<Guard>,
 ) -> Result<(usize, Option<Backend>, Arc<Messages>)> {
+    let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     loop {
+        if Instant::now() >= deadline {
+            bail!("startup routing budget exhausted");
+        }
         let (node, selected) = wait_route(config, topology, false, &HashSet::new()).await?;
         let key = pool::Key::new(node, &selected, Arc::from(packet));
         let messages = if let Some(metadata) = config.pools.metadata(&key) {
             metadata
         } else {
-            let backend = pooled_backend(
-                config,
-                node,
-                Arc::from(packet),
-                &selected,
-                Instant::now() + Duration::from_millis(config.wait_timeout_ms),
-                ticket,
-            )
-            .await?;
+            let backend =
+                match pooled_backend(config, node, Arc::from(packet), &selected, deadline, ticket)
+                    .await
+                {
+                    Ok(backend) => backend,
+                    Err(error) if error.is::<pool::Stale>() || *topology.borrow() != selected => {
+                        tokio::task::yield_now().await;
+                        continue;
+                    }
+                    Err(error) => return Err(error),
+                };
             let metadata = backend
                 .startup_metadata
                 .clone()
@@ -876,6 +947,7 @@ async fn pooled_startup(
         if *topology.borrow() == selected {
             return Ok((node, None, messages));
         }
+        tokio::task::yield_now().await;
     }
 }
 
@@ -888,6 +960,11 @@ async fn release_backend(
         return;
     };
     let key = slot.key.clone();
+    if !key.eligible(&topology.borrow()) {
+        config.metrics.inc("pool_discards_total", &[]);
+        return;
+    }
+    backend.slot.as_mut().unwrap().phase(pool::Phase::Resetting);
     let mut accounting = config.metrics.guard(Event::PoolReset);
     let resetting = async {
         if backend.status != b'I' {
@@ -916,12 +993,21 @@ async fn release_backend(
         }
         Ok::<_, anyhow::Error>(())
     };
-    let outcome = timeout(
-        Duration::from_millis(config.pool_reset_timeout_ms),
-        resetting,
-    )
-    .await;
-    let good = matches!(outcome, Ok(Ok(())));
+    let invalidated = async {
+        let mut changed = topology.clone();
+        loop {
+            if !key.eligible(&changed.borrow_and_update()) {
+                return;
+            }
+            if changed.changed().await.is_err() {
+                return;
+            }
+        }
+    };
+    let good = tokio::select! {
+        outcome=timeout(Duration::from_millis(config.pool_reset_timeout_ms), resetting)=>matches!(outcome, Ok(Ok(()))),
+        _=invalidated=>false,
+    };
     accounting.finish(if good { Outcome::Ok } else { Outcome::Error });
     if good {
         config.pools.put(&key, backend, &topology.borrow());
@@ -942,6 +1028,53 @@ mod tests {
     }
     fn text(m: &Metrics) -> String {
         String::from_utf8(m.render().unwrap()).unwrap()
+    }
+    #[tokio::test]
+    async fn obsolete_undispatched_leases_close_without_discarding_session_or_transaction_state() {
+        for (mode, transaction, pinned, status, close) in [
+            (pool::Mode::None, false, false, b'I', false),
+            (pool::Mode::Session, false, true, b'I', false),
+            (pool::Mode::Transaction, true, false, b'T', false),
+            (pool::Mode::Transaction, false, false, b'E', false),
+            (pool::Mode::Transaction, false, false, b'I', true),
+        ] {
+            let (mut peer, stream) = crate::tests::socket_pair().await;
+            let backend = Backend {
+                stream: BufReader::new(stream),
+                _live: Metrics::default().guard(Event::Backend("test".into())),
+                generation: 1,
+                buffers: buffers::Pool::default(),
+                cancel_identity: (1, 2),
+                status,
+                startup_metadata: None,
+                idle_since: Instant::now(),
+                slot: None,
+                pool_owner: None,
+            };
+            let mut state = SessionState {
+                backends: HashMap::from([(0, backend)]),
+                identity: Arc::from(&b"startup"[..]),
+                transaction,
+                status,
+                pinned,
+                primary_generation: 1,
+            };
+            state.discard_unassigned(mode);
+            if close {
+                assert_eq!(
+                    timeout(Duration::from_secs(1), peer.read(&mut [0u8; 1]))
+                        .await
+                        .unwrap()
+                        .unwrap(),
+                    0
+                );
+            } else {
+                assert!(
+                    matches!(peer.try_read(&mut [0u8;1]),Err(error) if error.kind()==std::io::ErrorKind::WouldBlock)
+                );
+                assert_eq!(state.backends.len(), 1);
+            }
+        }
     }
     #[test]
     fn malformed_query_body_labels_are_finite() {

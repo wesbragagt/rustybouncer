@@ -1,0 +1,25 @@
+{
+  "base": "8fa5330e885044a74e9a26311d7664c26bbc5ace",
+  "state": "uncommitted PERF-008 queue/fencing candidate; final protocol/benchmark acceptance pending",
+  "production": "242a078baeaf14d3246e0cd27cbf67b03c903ef1285aff7c479d6651c5037c79",
+  "sources": {
+    "src/buffers.rs": "57b5df6f6c11705c9819acbca36547bf210c63dd053c9962a4fd1c439fab942d",
+    "src/cancel.rs": "ac33b87b741ed155c70ed872cbd9912ba33ec157a565d492365dde9646b51c0f",
+    "src/main.rs": "5a466e2ed64e0942d0a1ebbac337c0731b6601756addde8b0d5ff6bbaeee9c31",
+    "src/metrics.rs": "8b3d0af70920672d32fe4e80349cb14386586be8196aaa2dc936359069de0dc9",
+    "src/router/affinity.rs": "39a29195c6166565f48a24f347e691eeab9897415daaa5f4b61201ffbea6acf7",
+    "src/router/classification.rs": "de7ce02e53f5349a31ce01c898e4b5cd1f8993849df063f0c4472b2a99b75125",
+    "src/router/classifier_reference.rs": "a05f7792cd5522e88f04231bd674c210078f6ff36b0bbb28a47ec4db84907c30",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "src/router/frontend.rs": "3b65552ba41a82b07fdcb7e6178547af42ff40b525313e5379f4ed96d46f531b",
+    "src/router/pool.rs": "d1ab96c2be5a2093ab6dc9ee689bc8f3d3bd3e9c60ab201d264b9eac2cf378da",
+    "src/router/wire.rs": "4a56851a72a8f0c6f95124437ab7450195776d8ff65e866229635516e4837e62",
+    "src/router.rs": "061ae91c58257dad170ecf9846a80b45b9b85c408068035adf3663aa4c3d5ddf",
+    "tests/pool_support.py": "020e0b4330d37b184692709920cc7b8ad4ceea039d0c90c74a3269ff54ff1a5a",
+    "tests/queue_pool.py": "cb3ba386987a9b8764ee40ca83e4629eeaf61a74ee4d64a420a46c82dadf7769",
+    "tests/transaction_pool.py": "e5af663e38fe45915f702b42e67ab4f706b5099d89c914e84bb5cb01dba21f76",
+    "tests/session_pool.py": "bcaf1cf22c1f84c8d52431d86654472d31f6607bff1f2cd0f0518bb99834d817",
+    "tests/metrics_support.py": "bc67ee0783b93a99c806cd16c4d0eac218987e9425675be5e3713cabab508e54",
+    "Cargo.lock": "c967ab42461deead8c3861edc18c192fc9ff6ccfa9facfdca8228e2d0d662f8d"
+  }
+}

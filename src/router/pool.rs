@@ -77,7 +77,7 @@ impl Key {
     pub fn replica(&self) -> bool {
         self.replica
     }
-    fn eligible(&self, topology: &Topology) -> bool {
+    pub(super) fn eligible(&self, topology: &Topology) -> bool {
         !topology.ambiguous
             && self.generation == topology.generation
             && if self.replica {
@@ -175,14 +175,27 @@ impl Manager {
             since: Instant::now(),
         });
         state.waiting += 1;
+        inner.metrics.add("pool_waiters", &[], 1);
         Ok(Ticket {
             owner: Arc::downgrade(inner),
             key: key.clone(),
             id,
             active: true,
+            metrics: inner.metrics.clone(),
         })
     }
     pub(super) async fn acquire(&self, key: Key, deadline: Instant) -> Result<Checkout> {
+        let inner = self.0.as_ref().context("backend pool disabled")?;
+        let mut accounting = inner.metrics.guard(Event::PoolWait);
+        let result = self.acquire_wait(key, deadline).await;
+        accounting.finish(if result.is_ok() {
+            Outcome::Ok
+        } else {
+            Outcome::Error
+        });
+        result
+    }
+    async fn acquire_wait(&self, key: Key, deadline: Instant) -> Result<Checkout> {
         let inner = self.0.as_ref().context("backend pool disabled")?;
         let mut ticket = self.ticket(&key)?;
         loop {
@@ -196,6 +209,7 @@ impl Manager {
             drop(garbage); // Slot destructors take the metadata lock.
             if let Some(mut choice) = decision {
                 if let Checkout::Idle(backend) = &mut choice {
+                    backend.slot.as_mut().unwrap().phase(Phase::Leased);
                     backend.pool_owner = Some(self.clone());
                 }
                 return Ok(choice);
@@ -250,7 +264,13 @@ impl Manager {
                     owner: Arc::downgrade(inner),
                     key: ticket.key.clone(),
                     created: now,
+                    phase: Phase::Connecting,
+                    metrics: inner.metrics.clone(),
                 };
+                inner.metrics.add("pool_backend_reservations", &[], 1);
+                inner
+                    .metrics
+                    .add("pool_backends", &[Phase::Connecting.label()], 1);
                 return Ok((Some(Checkout::New(slot)), garbage, now));
             }
             // Evict only idle ownership. Active/resetting work is never displaced.
@@ -304,6 +324,7 @@ impl Manager {
             inner.metrics.inc("pool_discards_total", &[]);
             return false;
         }
+        backend.slot.as_mut().unwrap().phase(Phase::Idle);
         group.idle.push_back(backend);
         drop(state);
         inner.changed.notify_waiters();
@@ -368,13 +389,43 @@ pub(super) enum Checkout {
     Idle(Box<Backend>),
     New(Slot),
 }
+#[derive(Clone, Copy, PartialEq, Eq)]
+pub(super) enum Phase {
+    Connecting,
+    Leased,
+    Resetting,
+    Idle,
+}
+impl Phase {
+    fn label(self) -> &'static str {
+        match self {
+            Self::Connecting => "connecting",
+            Self::Leased => "leased",
+            Self::Resetting => "resetting",
+            Self::Idle => "idle",
+        }
+    }
+}
 pub(super) struct Slot {
     owner: Weak<Inner>,
     pub key: Key,
     created: Instant,
+    phase: Phase,
+    metrics: Metrics,
+}
+impl Slot {
+    pub(super) fn phase(&mut self, phase: Phase) {
+        if phase != self.phase {
+            self.metrics.add("pool_backends", &[self.phase.label()], -1);
+            self.metrics.add("pool_backends", &[phase.label()], 1);
+            self.phase = phase;
+        }
+    }
 }
 impl Drop for Slot {
     fn drop(&mut self) {
+        self.metrics.add("pool_backends", &[self.phase.label()], -1);
+        self.metrics.add("pool_backend_reservations", &[], -1);
         if let Some(inner) = self.owner.upgrade() {
             let mut state = inner
                 .state
@@ -396,6 +447,7 @@ struct Ticket {
     key: Key,
     id: u64,
     active: bool,
+    metrics: Metrics,
 }
 impl Ticket {
     fn remove(&mut self, state: &mut State) {
@@ -411,6 +463,7 @@ impl Ticket {
                 group.waiting.retain(|waiting| waiting.id != self.id);
             }
             state.waiting -= 1;
+            self.metrics.add("pool_waiters", &[], -1);
             self.active = false;
         }
     }
@@ -433,6 +486,9 @@ impl Drop for Ticket {
                 }
                 drop(state);
                 inner.changed.notify_waiters();
+            } else {
+                self.metrics.add("pool_waiters", &[], -1);
+                self.active = false;
             }
         }
     }
@@ -461,6 +517,7 @@ pub(super) async fn checkout(
                 let (mut backend, messages) =
                     connect(config, node, &packet, selected.generation, ticket).await?;
                 backend.slot = Some(slot);
+                backend.slot.as_mut().unwrap().phase(Phase::Leased);
                 backend.pool_owner = Some(config.pools.clone());
                 let metadata: Arc<Messages> = Arc::new(
                     messages
@@ -589,6 +646,56 @@ mod tests {
             "idle ownership formed a strong manager cycle"
         );
         assert_eq!(peer.read(&mut [0u8; 1]).await.unwrap(), 0);
+    }
+    #[tokio::test]
+    async fn phase_and_queue_gauges_refund_on_every_owner_drop() {
+        let mut config: Config = toml::from_str(include_str!("../../rustybouncer.toml")).unwrap();
+        config.pool_mode = Mode::Session;
+        config.pool_size = 1;
+        config.max_pool_backends = 2;
+        config.max_clients = 2;
+        let metrics = Metrics::new(true, &config.nodes, true, 2).unwrap();
+        metrics.configure_pool("session", 2, 1, 0);
+        let manager = Manager::new(config.pool_settings(), metrics.clone()).unwrap();
+        let key = key(b"measured");
+        let text = || String::from_utf8(metrics.render().unwrap()).unwrap();
+        let ticket = manager.ticket(&key).unwrap();
+        assert!(text().contains("rustybouncer_pool_waiters 1\n"));
+        drop(ticket);
+        assert!(text().contains("rustybouncer_pool_waiters 0\n"));
+        let Checkout::New(mut slot) = manager
+            .acquire(key.clone(), Instant::now() + Duration::from_secs(1))
+            .await
+            .unwrap()
+        else {
+            panic!()
+        };
+        assert!(text().contains("rustybouncer_pool_backend_reservations 1\n"));
+        assert!(text().contains("rustybouncer_pool_backends{phase=\"connecting\"} 1\n"));
+        slot.phase(Phase::Leased);
+        let (mut backend, mut peer) = fake(&manager, slot).await;
+        assert!(text().contains("rustybouncer_pool_backends{phase=\"leased\"} 1\n"));
+        backend.slot.as_mut().unwrap().phase(Phase::Resetting);
+        assert!(text().contains("rustybouncer_pool_backends{phase=\"resetting\"} 1\n"));
+        assert!(manager.put(&key, backend, &topology()));
+        assert!(text().contains("rustybouncer_pool_backends{phase=\"idle\"} 1\n"));
+        let ticket = manager.ticket(&key).unwrap();
+        drop(manager);
+        drop(ticket); // Its weak manager is gone; metric ownership still refunds.
+        assert!(text().contains("rustybouncer_pool_waiters 0\n"));
+        assert!(text().contains("rustybouncer_pool_backend_reservations 0\n"));
+        for phase in ["connecting", "leased", "resetting", "idle"] {
+            assert!(text().contains(&format!(
+                "rustybouncer_pool_backends{{phase=\"{phase}\"}} 0\n"
+            )));
+        }
+        assert_eq!(
+            timeout(Duration::from_secs(1), peer.read(&mut [0u8; 1]))
+                .await
+                .unwrap()
+                .unwrap(),
+            0
+        );
     }
     #[tokio::test]
     async fn aborted_waiter_leaves_no_ticket_or_capacity_reservation() {

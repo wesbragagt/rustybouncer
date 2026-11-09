@@ -1,0 +1,32 @@
+[
+  {
+    "path": "queues-accepted.tar.zst",
+    "bytes": 27858,
+    "sha256": "af84d80933cea85b85e0336ef406fd6b3b922fb4440fff43ff4e5b007f2d4d78"
+  },
+  {
+    "path": "queues-accepted-transactions.tar.zst",
+    "bytes": 12297,
+    "sha256": "efd9e5b0f23b95f15db7fac4dbe67f1a3062bd791f47553a8a0e9ae4bd4818ea"
+  },
+  {
+    "path": "queues-accepted-sessions.tar.zst",
+    "bytes": 56162,
+    "sha256": "5f73b72d4f32c02280fce12c11c30c0fdb4ab7d5a9399c0341edb0e1252f2e14"
+  },
+  {
+    "path": "queues-accepted-resources.tar.zst",
+    "bytes": 64424,
+    "sha256": "6f9a9cb5fc79a9a23b33040476ffb5502ef9c1549cd618be92e8ba575810ec98"
+  },
+  {
+    "path": "queues-accepted-metrics.tar.zst",
+    "bytes": 31647,
+    "sha256": "0b594669980c1fe993fb43b152db8e7051a9ce3fd69fc23983a1cc2aba5b375a"
+  },
+  {
+    "path": "queues-accepted-buffering.tar.zst",
+    "bytes": 28727,
+    "sha256": "0af42c6325c694b8e0a14cccea6068ab5eb49fb12653c0e73a33dee872d2cfe3"
+  }
+]

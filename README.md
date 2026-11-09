@@ -149,9 +149,15 @@ keep PostgreSQL semantics. Known primary-only observations such as pg_backend_pi
 can release a lease without becoming retryable replica reads. Internal DISCARD ALL
 runs before reuse; its failure discards the backend and preserves known user outcomes.
 
-**PERF-008 is incomplete:** prepared/extended protocol, full queue lifecycle,
-phase metrics and the 1,000-client comparison are required remaining work. This
-partial prototype must not be treated as full transaction-pool conformance.
+The capacity/queue slice adds bounded FIFO admission, cancellation/disconnect
+removal, reserve creation after its configured delay and independent-key progress.
+A reader remains active during metadata bootstrap, including pipelined input.
+Explicit pool phase/queue metrics distinguish backend saturation from frontend
+admission. Positive tests provision all 10/100/1,000 frontend levels.
+
+**PERF-008 is incomplete:** prepared/extended protocol and the complete PgBouncer
+comparison remain required work. This partial prototype must not be treated as
+full transaction-pool conformance.
 Shared pooling uses the same routed trust, simple-query and buffering restrictions
 described below. The historical benchmark
 above did not measure this feature; final comparisons remain pending.
@@ -166,8 +172,8 @@ Probe credentials never execute client queries. Do not expose this listener to
 untrusted users, and configure PostgreSQL `pg_hba.conf` for the proxy source IP.
 
 Clients must use PostgreSQL's **simple Query protocol**. `psql` works; drivers that
-use extended queries/prepared statements must disable those features or use session
-mode. Extended-protocol messages and COPY receive explicit unsupported errors.
+use extended queries/prepared statements must disable those features or select
+opaque passthrough with `route_selects = false` and `pool_mode = "none"`. Extended-protocol messages and COPY receive explicit unsupported errors.
 Routed clients receive virtual cancellation credentials. Cancellation stops read
 retries and drains the active backend before the next query; transaction/savepoint
 state is preserved. Cancellation during partial response delivery closes the

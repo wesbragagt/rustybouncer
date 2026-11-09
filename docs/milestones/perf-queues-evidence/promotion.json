@@ -1,0 +1,6 @@
+{
+  "queued_startup_connections": 1,
+  "client_reconnects": 0,
+  "new_primary": "b",
+  "uncommitted_rows_replayed": 0
+}
