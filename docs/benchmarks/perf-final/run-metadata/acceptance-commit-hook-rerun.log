@@ -1,0 +1,176 @@
+[31mdirenv: error /home/publicuser/dev/rustybouncer/worktrees/scheduler/.envrc is blocked. Run `direnv allow` to approve its content[0m
+Verifying staged snapshot with the locked Nix toolchain...
+evaluating flake...
+checking flake output 'packages'...
+checking derivation packages.x86_64-linux.default...
+derivation evaluated to /nix/store/0gbmzx1g7sylpxfnhcqgk1m60xic78cs-rustybouncer-0.1.0.drv
+checking derivation packages.x86_64-linux.docker...
+derivation evaluated to /nix/store/ca0smz3iwxqnmlfdmgsr8s9xh6cmsfdk-rustybouncer.tar.gz.drv
+checking flake output 'checks'...
+checking derivation checks.x86_64-linux.verification...
+derivation evaluated to /nix/store/0gbmzx1g7sylpxfnhcqgk1m60xic78cs-rustybouncer-0.1.0.drv
+checking flake output 'formatter'...
+checking derivation formatter.x86_64-linux...
+derivation evaluated to /nix/store/zdil0gc0ivf3k71id8fcfmn2rfkqwzj6-nixfmt-1.5.0.drv
+checking flake output 'devShells'...
+checking derivation devShells.x86_64-linux.default...
+derivation evaluated to /nix/store/114zpnfqx8rx0dqmgrykp3c4iij26b13-nix-shell.drv
+running 1 flake checks...
+building '/nix/store/0gbmzx1g7sylpxfnhcqgk1m60xic78cs-rustybouncer-0.1.0.drv'...
+warning: The check omitted these incompatible systems: aarch64-darwin, aarch64-linux, x86_64-darwin
+Use '--all-systems' to check all.
+[perf/scheduler b8293da] perf(PERF-005,PERF-009): accept bounded scheduling and complete comparison
+ 156 files changed, 116412 insertions(+), 88 deletions(-)
+ create mode 100644 docs/benchmarks/perf-final/archives.json
+ create mode 100644 docs/benchmarks/perf-final/comparison.html
+ create mode 100644 docs/benchmarks/perf-final/diagnostic-fault-journald-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/diagnostic-fault-journald.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/failover-load-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/failover-load.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/frozen-binaries-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/frozen-binaries.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/generator.sha256
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/README.md
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/attribution.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/compare.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/comparison.template.html
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/concurrency.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/failover_load.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/final_report.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/large_profile.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/memory_audit.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/metrics.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/performance_profile.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/performance_summary.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/pool_compare.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/pool_mixed.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/pool_profile.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/pool_profile_report.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/profile_report.py
+ create mode 100644 docs/benchmarks/perf-final/harness/benchmarks/workload_compare.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/__init__.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/__main__.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/base.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/client.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/concurrency.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/config.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/lifecycle.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/limits.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/pooling.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/protocol.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/recovery.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/reporting.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/security.py
+ create mode 100644 docs/benchmarks/perf-final/harness/conformance/transactions.py
+ create mode 100644 docs/benchmarks/perf-final/harness/flake.lock
+ create mode 100644 docs/benchmarks/perf-final/harness/flake.nix
+ create mode 100644 docs/benchmarks/perf-final/harness/pyproject.toml
+ create mode 100644 docs/benchmarks/perf-final/harness/scripts/check_complexity.py
+ create mode 100644 docs/benchmarks/perf-final/harness/scripts/check_grafana.py
+ create mode 100644 docs/benchmarks/perf-final/harness/scripts/retain_performance.py
+ create mode 100755 docs/benchmarks/perf-final/harness/scripts/verify
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/buffering.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/container_image.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/deadline_integration.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/failover.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/kind_cluster.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/kind_cnpg.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/long_queries.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/metrics.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/metrics_support.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/pool_support.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/prometheus_smoke.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/protocol_pool.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/protocol_support.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/queue_pool.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/resources.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/session_pool.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_comparison_benchmark.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_conformance_deadlines.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_conformance_harness.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_conformance_reporting.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_kind_cluster.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_memory_audit.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_metrics_benchmark.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_metrics_contract.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_profiling.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/test_quality.py
+ create mode 100644 docs/benchmarks/perf-final/harness/tests/transaction_pool.py
+ create mode 100644 docs/benchmarks/perf-final/kind-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/kind-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/memory-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/memory-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/normalized-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/normalized-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/original-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/original-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/pool-mixed-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/pool-mixed.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/pools-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/pools-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/profiles-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/profiles-after.tar.zst
+ create mode 100644 docs/benchmarks/perf-final/report.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/acceptance-first-hook-diagnostic.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/attribution-recovery-driver.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/diagnostic-fault-journald.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/failover-load.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/fault-commit-hook.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/fault-full-nix-check.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/fault-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/final-native-timings.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/final-native.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/final-profile-analysis.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/final-profile-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/final-retention.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/harness-commit-hook.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/harness-first-verification.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/harness-full-nix-check.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/harness-verification.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/heads-commit-hook.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/heads-first-native.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/heads-live-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/heads-live.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/heads-second-native.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/host-observations.jsonl
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/image-build.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/image-inspect.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/image-load.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/kind-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/logging-fix-native.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/memory-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/mixed-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/normalized-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/normalized-quick-analysis.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/original-after-quick-analysis.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/original-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/original-before.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/pool-mixed.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/pools-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/pools-quick-analysis.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profile-after-build.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profile-before-analysis.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profile-before-build.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profile-before-debug-build.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profile-report-static.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-after-analysis.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-after-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-before-debug.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-before-summary.json
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/profiles-before.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/publication-corrections.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/publication-native.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/report-generation-diagnostic.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/run-attribution-recovery.sh
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/run-timings.sh
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/timings-commit-hook.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/timings-driver.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/timings-full-nix-check.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/visual-validation.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/workloads-after.log
+ create mode 100644 docs/benchmarks/perf-final/run-metadata/workloads-quick-analysis.json
+ create mode 100644 docs/benchmarks/perf-final/summary.md
+ create mode 100644 docs/benchmarks/perf-final/workloads-after-manifest.json.gz
+ create mode 100644 docs/benchmarks/perf-final/workloads-after.tar.zst
+ create mode 100644 docs/milestones/perf-final.md
