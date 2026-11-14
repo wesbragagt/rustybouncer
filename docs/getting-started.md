@@ -9,7 +9,7 @@ Shared session and transaction pools support TLS, rotating PEM credentials and
 SCRAM authentication through `auth_query`. The local Compose example uses trust
 authentication on an isolated network. Follow the CNPG guide for the secured setup.
 Dispatched writes and interrupted transactions are never replayed automatically.
-This is experimental software; broader production acceptance remains incomplete.
+Broader production acceptance remains incomplete.
 
 ## Start PostgreSQL and rustybouncer with Compose
 

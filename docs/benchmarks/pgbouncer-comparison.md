@@ -95,7 +95,7 @@ its session-state restrictions; protocol prepared statements require suitable
 configuration. See the [upstream feature map](https://www.pgbouncer.org/features.html)
 and [configuration](https://www.pgbouncer.org/config.html).
 
-Rustybouncer is an experimental role-aware router. Routed mode can choose replicas
+RustyBouncer is a role-aware router. Routed mode can choose replicas
 for conservative SELECT/CTEs, discover a changed primary and retry eligible buffered
 reads before exposing results. It has no shared cross-client pool. Routed mode
 currently requires trusted PostgreSQL authentication and simple queries; it rejects

@@ -3,7 +3,7 @@ name = "rustybouncer"
 version = "1.0.1"
 edition = "2021"
 license = "Apache-2.0"
-description = "Experimental failover-aware PostgreSQL session router"
+description = "Failover-aware PostgreSQL connection pooler and router"
 
 [dependencies]
 getrandom = "0.4.3"

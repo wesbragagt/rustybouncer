@@ -16,7 +16,7 @@ and database roles to decide where work belongs:
 - **Validate the integration:** real CloudNativePG tests in kind exercise routing,
   failover, TLS, certificate rotation, and authentication.
 
-Version **1.0.1** is experimental. RustyBouncer does not promote PostgreSQL nodes
+Version **1.0.1** does not promote PostgreSQL nodes
 or replay dispatched writes or interrupted transactions. It is not a complete
 PgBouncer replacement.
 
