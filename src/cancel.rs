@@ -20,11 +20,19 @@ pub struct Target {
     pub port: u16,
     pub pid: u32,
     pub secret: u32,
+    pub tls: Option<crate::transport::Tls>,
+    pub tls_server_name: Option<String>,
 }
 impl Target {
     async fn deliver(&self, deadline: Instant) -> Result<()> {
         timeout_at(deadline, async {
-            let mut socket = TcpStream::connect((self.host.as_ref(), self.port)).await?;
+            let socket = TcpStream::connect((self.host.as_ref(), self.port)).await?;
+            let mut socket = crate::transport::backend(
+                socket,
+                self.tls_server_name.as_deref().unwrap_or(&self.host),
+                self.tls.as_ref(),
+            )
+            .await?;
             let mut packet = [0u8; 16];
             for (index, value) in [16, 80877102, self.pid, self.secret]
                 .into_iter()
@@ -483,6 +491,8 @@ mod tests {
                 port: listener.local_addr().unwrap().port(),
                 pid: 123,
                 secret: 456,
+                tls: None,
+                tls_server_name: None,
             }))
             .unwrap();
         let request = tokio::spawn(async move { registry.request(pid, secret, deadline()).await });
@@ -524,6 +534,8 @@ mod tests {
                 port: 1,
                 pid: 1,
                 secret: 2,
+                tls: None,
+                tls_server_name: None,
             }))
             .unwrap();
         let delivery = control.interrupt(Reason::User).unwrap();

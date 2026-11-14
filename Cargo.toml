@@ -16,6 +16,13 @@ tokio-postgres = "0.7"
 toml = "0.8"
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+base64 = "0.23.1"
+hmac = "0.13.0"
+sha2 = "0.11.1"
+subtle = "2.6.1"
+rustls-pemfile = "2.2.0"
+tokio-rustls = { version = "0.26.6", default-features = false, features = ["ring", "tls12"] }
 
 [dev-dependencies]
+postgres-protocol = "0.6.12"
 tokio = { version = "1", features = ["test-util"] }

@@ -20,7 +20,7 @@ pub(super) struct State {
     last_sql_error: bool,
 }
 pub(super) struct Context<'a> {
-    pub client: &'a mut OwnedWriteHalf,
+    pub client: &'a mut WriteHalf<transport::Stream>,
     pub config: &'a Config,
     pub topology: &'a mut watch::Receiver<Topology>,
     pub session: &'a mut SessionState,
@@ -286,7 +286,7 @@ impl State {
 fn cleanup_deadline(config: &Config) -> Instant {
     Instant::now() + Duration::from_millis(config.cancel_cleanup_timeout_ms)
 }
-async fn error_reply(client: &mut OwnedWriteHalf) -> Result<()> {
+async fn error_reply(client: &mut WriteHalf<transport::Stream>) -> Result<()> {
     send(
         client,
         b'E',
@@ -354,6 +354,8 @@ async fn exchange(
             port: node.port,
             pid: backend.cancel_identity.0,
             secret: backend.cancel_identity.1,
+            tls: config.backend_tls.clone(),
+            tls_server_name: node.tls_server_name.clone(),
         }))?;
     } else if !matches!(boundary, Boundary::Sync) {
         bail!("cancellation between extended exchanges; backend discarded");
@@ -411,6 +413,8 @@ async fn restore(
         port: node.port,
         pid: backend.cancel_identity.0,
         secret: backend.cancel_identity.1,
+        tls: config.backend_tls.clone(),
+        tls_server_name: node.tls_server_name.clone(),
     }))?;
     let mut accounting = config.metrics.guard(Event::ExtendedExchange);
     let reply = {
@@ -536,7 +540,7 @@ fn before_native(cache: &mut prepared::Cache, backend: &mut Backend, message: &M
 }
 
 pub(super) async fn dispatch(
-    client: &mut OwnedWriteHalf,
+    client: &mut WriteHalf<transport::Stream>,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     session: &mut SessionState,
@@ -701,6 +705,8 @@ async fn restore_simple(
         port: target.port,
         pid: backend.cancel_identity.0,
         secret: backend.cancel_identity.1,
+        tls: config.backend_tls.clone(),
+        tls_server_name: target.tls_server_name.clone(),
     }))?;
     let mut accounting = config.metrics.guard(Event::ExtendedExchange);
     let reply = {
@@ -803,7 +809,7 @@ fn finish_exchange(accounting: &mut Guard, result: &Result<Reply>) {
 
 async fn deliver(
     config: &Config,
-    client: &mut OwnedWriteHalf,
+    client: &mut WriteHalf<transport::Stream>,
     response: &Response,
     operation: &cancel::Operation,
 ) -> Result<()> {
@@ -870,6 +876,8 @@ async fn describe_simple(
         port: target.port,
         pid: backend.cancel_identity.0,
         secret: backend.cancel_identity.1,
+        tls: config.backend_tls.clone(),
+        tls_server_name: target.tls_server_name.clone(),
     }))?;
     let mut accounting = config.metrics.guard(Event::ExtendedExchange);
     let reading = async {

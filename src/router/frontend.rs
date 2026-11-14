@@ -2,7 +2,7 @@
 //! Both futures belong to the session task; abort drops both, never detaches work.
 use super::*;
 use tokio::{
-    net::tcp::OwnedReadHalf,
+    io::ReadHalf,
     sync::{mpsc, OwnedSemaphorePermit},
 };
 
@@ -23,7 +23,7 @@ impl Incoming {
 }
 
 pub(super) async fn read(
-    mut stream: OwnedReadHalf,
+    mut stream: ReadHalf<transport::Stream>,
     sender: mpsc::Sender<Incoming>,
     control: Arc<cancel::Control>,
     config: Arc<Config>,
@@ -107,7 +107,7 @@ mod tests {
             let c = config();
             let registration = c.cancellations.register().unwrap();
             let (mut client, server) = crate::tests::socket_pair().await;
-            let (reader, _writer) = server.into_split();
+            let (reader, _writer) = tokio::io::split(transport::Stream::from(server));
             let (sender, _receiver) = mpsc::channel(256);
             client.write_all(&bytes).await.unwrap();
             client.shutdown().await.unwrap();
@@ -123,7 +123,7 @@ mod tests {
         let c = config();
         let registration = c.cancellations.register().unwrap();
         let (mut client, server) = crate::tests::socket_pair().await;
-        let (reader, _writer) = server.into_split();
+        let (reader, _writer) = tokio::io::split(transport::Stream::from(server));
         let (sender, mut receiver) = mpsc::channel(256);
         for _ in 0..257 {
             send(&mut client, b'Q', b"SELECT 1\0").await.unwrap();

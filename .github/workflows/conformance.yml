@@ -26,6 +26,9 @@ jobs:
             ${{ runner.temp }}/conformance-docker
 
   kind-cnpg:
+    strategy:
+      matrix:
+        suite: [kind_cnpg, kind_cnpg_security]
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
@@ -35,15 +38,15 @@ jobs:
         run: nix build .#docker --no-update-lock-file --out-link result-image
       - name: Load image into Docker
         run: docker load -i result-image
-      - name: Real kind and CloudNativePG routing, metrics and failover
-        run: nix develop --command python3 -m tests.kind_cnpg --output "$RUNNER_TEMP/kind-cnpg"
+      - name: Real kind and CloudNativePG acceptance
+        run: nix develop --command python3 -m tests.${{ matrix.suite }} --output "$RUNNER_TEMP/${{ matrix.suite }}"
       - uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: kind-cnpg
+          name: ${{ matrix.suite }}
           path: |
-            ${{ runner.temp }}/kind-cnpg/results.json
-            ${{ runner.temp }}/kind-cnpg/junit.xml
-            ${{ runner.temp }}/kind-cnpg/events.jsonl
-            ${{ runner.temp }}/kind-cnpg/metrics-*.prom
-            ${{ runner.temp }}/kind-cnpg/*.log
+            ${{ runner.temp }}/${{ matrix.suite }}/results.json
+            ${{ runner.temp }}/${{ matrix.suite }}/junit.xml
+            ${{ runner.temp }}/${{ matrix.suite }}/events.jsonl
+            ${{ runner.temp }}/${{ matrix.suite }}/metrics-*.prom
+            ${{ runner.temp }}/${{ matrix.suite }}/*.log

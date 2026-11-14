@@ -95,3 +95,29 @@ Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md), especially
 H06, F11 and G07. See [milestone evidence](../../docs/milestones/kind-cnpg.md) for
 actual execution results and remaining coverage. This suite does not replace the
 complete PgBouncer/target conformance or deployment acceptance matrix.
+
+
+## TLS, auth_query and certificate rotation in real CNPG
+
+```sh
+nix build .#docker --no-update-lock-file --out-link result-image
+docker load -i result-image
+nix develop --command python3 -m tests.kind_cnpg_security --output /tmp/rustybouncer-cnpg-security-run
+```
+
+This separate required security suite creates an owned four-node kind cluster with
+three real CNPG PostgreSQL instances. It removes all network trust rules, installs
+a restricted SECURITY DEFINER auth-query function, and uses CNPG-CA-signed client
+certificates for lookup/discovery and SCRAM for application roles. It asserts TLS
+on both connection legs, wrong credentials/expired and NOLOGIN roles, unauthorized
+database denial, plaintext/CA/hostname rejection, prepared queries, transaction
+pool reuse and cross-user isolation, password rotation, live projected client and
+server Secret rotation without a pod restart, and primary crash/promotion recovery.
+The security adapter uses kind port mappings to a NodePort so a reset from one
+TLS rejection cannot destroy a shared port-forward tunnel. JSON/JUnit reports and
+Kubernetes diagnostics are retained. Private keys and the
+owned kubeconfig are removed during cleanup; fixture passwords are redacted from
+command logs. Failures and missing infrastructure fail the suite; no skips.
+
+This advances [A01–A04/A06–A09/P09](../../FEATURE_COMPLETENESS.md); it does not
+replace the complete conformance or deployment acceptance matrix.

@@ -1,0 +1,60 @@
+these 8 derivations will be built:
+  /nix/store/sr72230mz1gzhyji0zwh6garb98409gf-cargo-vendor-dir.drv
+  /nix/store/g5m6nnph0dvyl8sd51zr7grvwrway0h1-rustybouncer-0.1.0.drv
+  /nix/store/vhnzm1nc81imb02ib95dbd2d3jyx2y87-rustybouncer-base.json.drv
+  /nix/store/ch1jx2g7skgcddjq100w7akzlvfjn3cx-excludePaths.drv
+  /nix/store/8mv9id2bw1g470zlwqdyrmc41gvgk8hl-layers.json.drv
+  /nix/store/14js21h3ddskdm9yh7j1qs07f2v1jjyn-rustybouncer-conf.json.drv
+  /nix/store/582rynyyqqw9m8qxpmha0rlz0czx0d10-stream-rustybouncer.drv
+  /nix/store/4l26gmgjw1ab1jjkqvmzqsppj3g9rnii-rustybouncer.tar.gz.drv
+building '/nix/store/sr72230mz1gzhyji0zwh6garb98409gf-cargo-vendor-dir.drv'...
+building '/nix/store/g5m6nnph0dvyl8sd51zr7grvwrway0h1-rustybouncer-0.1.0.drv'...
+error: Cannot build '/nix/store/g5m6nnph0dvyl8sd51zr7grvwrway0h1-rustybouncer-0.1.0.drv'.
+       Reason: builder failed with exit code 1.
+       Output paths:
+         /nix/store/dvzs0ikwlk763vsk7bjv2p5zyk7h9lsr-rustybouncer-0.1.0
+       Last 25 log lines:
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/benchmarks/perf-final/workloads-after.tar.zst' to 'source/docs/benchmarks/perf-final/workloads-after.tar.zst': No space left on device
+       > cp: cannot create directory 'source/docs/benchmarks/perf-pools': No space left on device
+       > cp: cannot create directory 'source/docs/benchmarks/perf-wire': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/benchmarks/performance-final.md' to 'source/docs/benchmarks/performance-final.md': No space left on device
+       > cp: cannot create directory 'source/docs/benchmarks/pgbouncer-comparison': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/benchmarks/pgbouncer-comparison.md' to 'source/docs/benchmarks/pgbouncer-comparison.md': No space left on device
+       > cp: cannot create directory 'source/docs/conformance': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/deployments.md' to 'source/docs/deployments.md': No space left on device
+       > cp: cannot create directory 'source/docs/design': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/development.md' to 'source/docs/development.md': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/getting-started.md' to 'source/docs/getting-started.md': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/grafana.md' to 'source/docs/grafana.md': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/metrics.md' to 'source/docs/metrics.md': No space left on device
+       > cp: cannot create directory 'source/docs/milestones': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/docs/parallel-milestones.md' to 'source/docs/parallel-milestones.md': No space left on device
+       > cp: cannot create directory 'source/docs/plans': No space left on device
+       > cp: cannot create directory 'source/docs/tasks': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/flake.lock' to 'source/flake.lock': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/flake.nix' to 'source/flake.nix': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/pyproject.toml' to 'source/pyproject.toml': No space left on device
+       > cp: error copying '/nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source/rustybouncer.toml' to 'source/rustybouncer.toml': No space left on device
+       > cp: cannot create directory 'source/scripts': No space left on device
+       > cp: cannot create directory 'source/src': No space left on device
+       > cp: cannot create directory 'source/tests': No space left on device
+       > do not know how to unpack source archive /nix/store/his6v541gj0ga3lm3wa3x8jynzdi0lyc-source
+       For full logs, run:
+         nix log /nix/store/g5m6nnph0dvyl8sd51zr7grvwrway0h1-rustybouncer-0.1.0.drv
+       note: build failure may have been caused by lack of free disk space
+error: Cannot build '/nix/store/vhnzm1nc81imb02ib95dbd2d3jyx2y87-rustybouncer-base.json.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/1kxzdr92fffnlrq9y4i5596r60r54afk-rustybouncer-base.json
+error: Cannot build '/nix/store/14js21h3ddskdm9yh7j1qs07f2v1jjyn-rustybouncer-conf.json.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/szigv9vadyc5igsqd08zbvnp3yavgf1x-rustybouncer-conf.json
+error: Cannot build '/nix/store/582rynyyqqw9m8qxpmha0rlz0czx0d10-stream-rustybouncer.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/58j7c2kj2avzcrivnypyb18k934k2ds7-stream-rustybouncer
+error: Cannot build '/nix/store/4l26gmgjw1ab1jjkqvmzqsppj3g9rnii-rustybouncer.tar.gz.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/l28cf5wwrk1zcjy1iffw3rg8jqbvjhcr-rustybouncer.tar.gz

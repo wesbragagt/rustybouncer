@@ -152,7 +152,7 @@ including the corrected and preserved failed fault-log capture.
 | Backend capacity | Shared pools and mature limits; lower costs in the measured transaction/CTE workloads | Opt-in shared session/transaction pools; 1,000 frontends with a 16-backend ceiling verified. Default routing keeps per-client caches |
 | Read routing | Host/DNS selection chooses connection destinations; no SQL purity classifier | Eligible simple-protocol autocommit SELECT/CTE reads use replicas in unshared/transaction mode, with primary fallback; extended queries and shared session mode stay primary |
 | Primary changes | Host/DNS and reload/reconnect controls support external HA orchestration | Probes PostgreSQL roles, waits for a unique primary, and retries eligible buffered reads before exposing results |
-| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed/shared mode requires trust; shared pools support extended queries, while unshared routing supports simple Query only. No COPY or TLS. Passthrough preserves backend protocol/authentication |
+| Protocol and security | Authentication/TLS and broad protocol support; transaction pooling has session-state restrictions | Routed/shared mode supports TLS and SCRAM via auth_query; shared pools support extended queries, while unshared routing supports simple Query only. No routed COPY. Passthrough preserves backend protocol/authentication |
 | Response and memory | Streams protocol traffic with low connection overhead | Simple Query buffers to ReadyForQuery; extended exchanges buffer to native terminals before client Sync. Limits: 32 MiB/exchange, 16 MiB/message, 64-MiB default process bulk-storage budget; frontend/runtime memory is separate |
 | Operations | Administrative console, reload and pool controls | Prometheus/Grafana and container/CNPG examples; reload, administrative pool controls and graceful draining remain open |
 
@@ -242,18 +242,30 @@ all 144 bounded-pool comparison arms passed, including actual 1,000-client scope
 savings and the current high-concurrency CPU/tail gap. Scheduling improvement and
 the final combined comparison remain open; broader canonical conformance is
 tracked separately.
-Shared pooling uses routed trust authentication and the bounded response contract
+Shared pooling supports routed SCRAM authentication through `auth_query`, or legacy
+trust authentication, and the bounded response contract
 described below. The historical benchmark
 above did not measure this feature; final comparisons remain pending.
 
 ## Query-routing mode
 
-**Requires trusted local networking and PostgreSQL trust authentication for client
-backend connections.** This mode does not authenticate clients itself. It forwards
-the original startup user, database and parameters to each backend and only accepts
-AuthenticationOk; any backend requesting a password/SCRAM challenge is rejected.
-Probe credentials never execute client queries. Do not expose this listener to
-untrusted users, and configure PostgreSQL `pg_hba.conf` for the proxy source IP.
+Configure `frontend_tls`, `backend_tls` and `auth_query` for encrypted,
+authenticated routing and shared pools. Clients prove their PostgreSQL password
+with SCRAM-SHA-256; a certificate-authenticated lookup retrieves the SCRAM verifier
+using a bound username parameter. Backend connections authenticate as the original
+client role, preserving database permissions. Probe/lookup roles never execute
+application queries. CA and hostname verification are mandatory for backend TLS.
+
+PEM files are reread for every new connection, including probes and auth queries,
+so projected Kubernetes Secrets can rotate without restarting the router. Existing
+TLS sessions retain their original negotiated credentials until closed; pool
+idle/lifetime limits retire existing backend connections. This reloads certificate
+files, not TOML configuration. See the [CNPG setup](deploy/cnpg/README.md) and
+[real kind security suite](tests/kubernetes/README.md).
+
+Without `auth_query`, routed mode retains legacy trust behavior and requires a
+trusted network and trust-authenticated backends. Only configured TLS listeners
+reject plaintext. Do not expose a trust listener to untrusted clients.
 
 With `pool_mode = "none"`, routed clients use PostgreSQL's **simple Query
 protocol**. Shared `session` and `transaction` pools additionally support
@@ -375,9 +387,9 @@ leave unknown outcomes; guaranteed business retries require application idempote
 
 `max_clients` bounds accepted session tasks, including waiting clients; excess
 SQL startup is rejected; bounded reserve startup slots keep cancellation available. `startup_timeout_ms` bounds startup packets (64 KiB
-maximum). `wait_timeout_ms` bounds routing and backend setup. TLS, Unix
-sockets, hot reload and full transaction-pool acceptance
-are not implemented. All traffic is unencrypted.
+maximum) and each authentication exchange. `wait_timeout_ms` bounds routing and
+backend setup. Unix sockets, TOML hot reload and full transaction-pool acceptance
+remain open. TLS is enabled through explicit frontend/backend configuration.
 
 ## Original session mode
 

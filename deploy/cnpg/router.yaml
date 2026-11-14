@@ -44,6 +44,8 @@ data:
     listen = "0.0.0.0:6432"
     max_clients = 100
     route_selects = true
+    pool_mode = "transaction"
+    pool_size = 16
     probe_interval_ms = 500
     probe_timeout_ms = 1000
     wait_timeout_ms = 180000
@@ -51,23 +53,40 @@ data:
     query_timeout_ms = 300000
     read_retry_timeout_ms = 600000
     read_max_attempts = 3
-    probe_user = "app"
+    probe_user = "rustybouncer_auth"
     probe_database = "app"
+
+    [frontend_tls]
+    cert_file = "/tls/server/tls.crt"
+    key_file = "/tls/server/tls.key"
+
+    [backend_tls]
+    ca_file = "/tls/ca/ca.crt"
+    cert_file = "/tls/client/tls.crt"
+    key_file = "/tls/client/tls.key"
+
+    [auth_query]
+    user = "rustybouncer_auth"
+    database = "app"
+    query = "SELECT username::text, password FROM pooler.auth_query($1::name)"
 
     [[nodes]]
     name = "postgres-1"
     host = "postgres-1"
     port = 5432
+    tls_server_name = "postgres-rw"
 
     [[nodes]]
     name = "postgres-2"
     host = "postgres-2"
     port = 5432
+    tls_server_name = "postgres-rw"
 
     [[nodes]]
     name = "postgres-3"
     host = "postgres-3"
     port = 5432
+    tls_server_name = "postgres-rw"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -110,7 +129,28 @@ spec:
             - name: config
               mountPath: /config
               readOnly: true
+            - name: server-tls
+              mountPath: /tls/server
+              readOnly: true
+            - name: client-tls
+              mountPath: /tls/client
+              readOnly: true
+            - name: backend-ca
+              mountPath: /tls/ca
+              readOnly: true
       volumes:
+        - name: server-tls
+          secret:
+            secretName: rustybouncer-server-tls
+        - name: client-tls
+          secret:
+            secretName: rustybouncer-client-tls
+        - name: backend-ca
+          secret:
+            secretName: postgres-ca
+            items:
+              - key: ca.crt
+                path: ca.crt
         - name: config
           configMap:
             name: rustybouncer

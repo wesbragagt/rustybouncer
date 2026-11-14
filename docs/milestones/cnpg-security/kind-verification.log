@@ -1,0 +1,36 @@
+All checks passed!
+All checks passed!
+...
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+Complexity: 1246 functions checked; maximum 29 (src/main.rs:136, validate); limit 30.
+creating owned kind cluster rustybouncer-b8c5413587
+test_mounted_client_and_server_certificates_rotate_without_restart (__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart) ... ok
+test_password_rotation_uses_fresh_auth_query (__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query) ... ok
+test_plaintext_is_rejected_before_sql (__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql) ... ok
+test_scram_and_encryption_preserve_database_identity (__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity) ... ok
+test_secure_shared_pool_recovers_after_cnpg_promotion (__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion) ... ok
+test_tls_cancellation_preserves_the_authenticated_session (__main__.CloudNativePGSecurity.test_tls_cancellation_preserves_the_authenticated_session) ... ok
+test_transaction_pool_reuses_backend_and_isolates_users (__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users) ... ok
+test_unauthorized_database_rejected_before_sql (__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql) ... ok
+test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) ... ok
+test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 563.999s
+
+OK
+creating owned kind cluster rustybouncer-c05d9cb8c6
+test_metrics_account_for_replica_queries_and_topology (__main__.CloudNativePG.test_metrics_account_for_replica_queries_and_topology) ... ok
+test_primary_writes (__main__.CloudNativePG.test_primary_writes) ... ok
+test_reads_continue_and_writes_follow_node_failover (__main__.CloudNativePG.test_reads_continue_and_writes_follow_node_failover) ... ok
+test_replica_replacement (__main__.CloudNativePG.test_replica_replacement) ... ok
+test_replica_round_robin_and_ctes (__main__.CloudNativePG.test_replica_round_robin_and_ctes) ... ok
+test_transaction_interruption_is_not_replayed (__main__.CloudNativePG.test_transaction_interruption_is_not_replayed) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 620.478s
+
+OK

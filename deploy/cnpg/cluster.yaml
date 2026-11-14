@@ -27,6 +27,7 @@ spec:
       database: app
       owner: app
   postgresql:
-    # Demo only: replace this CIDR with your cluster's actual Pod CIDR.
     pg_hba:
-      - host app app 10.244.0.0/16 trust
+      - hostssl app rustybouncer_auth 10.244.0.0/16 cert
+      - hostssl app all 10.244.0.0/16 scram-sha-256
+      - hostnossl all all 10.244.0.0/16 reject

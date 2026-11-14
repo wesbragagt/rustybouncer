@@ -1,0 +1,138 @@
+test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss. ... ERROR
+test_02_unsent_write_waits_then_continues_on_same_connection (__main__.FailoverContinuity.test_02_unsent_write_waits_then_continues_on_same_connection)
+An autocommit statement received during the leader gap waits safely. ... ok
+test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes. ... ERROR
+
+--- rustybouncer log ---
+2026-11-14T13:37:13.296691Z  INFO rustybouncer: rustybouncer ready listen=127.0.0.1:39437
+2026-11-14T13:37:13.303342Z  INFO rustybouncer: topology changed next=Topology { primary: Some(0), replicas: [1, 2], ambiguous: false, generation: 1 }
+2026-11-14T13:37:13.706450Z  INFO rustybouncer: topology changed next=Topology { primary: None, replicas: [1, 2], ambiguous: false, generation: 2 }
+2026-11-14T13:37:18.097429Z  WARN rustybouncer: session ended peer=127.0.0.1:37542 error=routing budget exhausted
+2026-11-14T13:37:18.097471Z  WARN rustybouncer: session ended peer=127.0.0.1:37550 error=routing budget exhausted
+2026-11-14T13:37:18.097479Z  WARN rustybouncer: session ended peer=127.0.0.1:37532 error=routing budget exhausted
+2026-11-14T13:37:18.097510Z  WARN rustybouncer: session ended peer=127.0.0.1:37568 error=routing budget exhausted
+2026-11-14T13:37:18.097430Z  WARN rustybouncer: session ended peer=127.0.0.1:37548 error=routing budget exhausted
+2026-11-14T13:37:18.097547Z  WARN rustybouncer: session ended peer=127.0.0.1:37552 error=routing budget exhausted
+
+
+--- rustybouncer-test-d8328775-a log ---
+2026-11-14 13:37:03.208 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-14 13:37:03.208 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-14 13:37:03.208 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-14 13:37:03.209 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-14 13:37:03.216 UTC [129] LOG:  database system was shut down at 2026-11-14 13:37:03 UTC
+2026-11-14 13:37:03.219 UTC [1] LOG:  database system is ready to accept connections
+2026-11-14 13:37:03.338 UTC [1] LOG:  received SIGHUP, reloading configuration files
+2026-11-14 13:37:04.368 UTC [127] LOG:  checkpoint starting: force wait
+2026-11-14 13:37:08.332 UTC [127] LOG:  checkpoint complete: wrote 40 buffers (0.2%); 0 WAL file(s) added, 0 removed, 1 recycled; write=3.746 s, sync=0.003 s, total=3.964 s; sync files=36, longest=0.001 s, average=0.001 s; distance=11317 kB, estimate=11317 kB; lsn=0/2000060, redo lsn=0/2000028
+2026-11-14 13:37:08.332 UTC [127] LOG:  checkpoint starting: force wait
+2026-11-14 13:37:08.340 UTC [127] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.009 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=10185 kB; lsn=0/2000110, redo lsn=0/20000D8
+
+--- rustybouncer-test-d8328775-b log ---
+2026-11-14 13:37:13.101 UTC [489] LOG:  redo starts at 0/2000028
+2026-11-14 13:37:13.102 UTC [489] LOG:  completed backup recovery with redo LSN 0/2000028 and end LSN 0/20001B0
+2026-11-14 13:37:13.102 UTC [489] LOG:  consistent recovery state reached at 0/20001B0
+2026-11-14 13:37:13.102 UTC [1] LOG:  database system is ready to accept read-only connections
+2026-11-14 13:37:13.106 UTC [504] LOG:  started streaming WAL from primary at 0/3000000 on timeline 1
+2026-11-14 13:37:14.534 UTC [489] LOG:  received promote request
+2026-11-14 13:37:14.536 UTC [504] FATAL:  terminating walreceiver process due to administrator command
+2026-11-14 13:37:14.536 UTC [489] LOG:  redo done at 0/3000050 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 1.43 s
+2026-11-14 13:37:15.564 UTC [489] LOG:  selected new timeline ID: 2
+2026-11-14 13:37:18.955 UTC [489] LOG:  archive recovery complete
+2026-11-14 13:37:18.957 UTC [487] LOG:  checkpoint starting: force
+2026-11-14 13:37:18.959 UTC [1] LOG:  database system is ready to accept connections
+
+--- rustybouncer-test-d8328775-c log ---
+2026-11-14 13:37:12.880 UTC [1] LOG:  starting PostgreSQL 16.15 (Debian 16.15-1.pgdg13+2) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-11-14 13:37:12.880 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-11-14 13:37:12.880 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-11-14 13:37:12.881 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-11-14 13:37:12.884 UTC [11] LOG:  database system was interrupted; last known up at 2026-11-14 13:37:08 UTC
+2026-11-14 13:37:13.099 UTC [11] LOG:  entering standby mode
+2026-11-14 13:37:13.099 UTC [11] LOG:  starting backup recovery with redo LSN 0/20000D8, checkpoint LSN 0/2000110, on timeline ID 1
+2026-11-14 13:37:13.101 UTC [11] LOG:  redo starts at 0/20000D8
+2026-11-14 13:37:13.102 UTC [11] LOG:  completed backup recovery with redo LSN 0/20000D8 and end LSN 0/3000050
+2026-11-14 13:37:13.102 UTC [11] LOG:  consistent recovery state reached at 0/3000050
+2026-11-14 13:37:13.102 UTC [1] LOG:  database system is ready to accept read-only connections
+2026-11-14 13:37:13.106 UTC [12] LOG:  started streaming WAL from primary at 0/4000000 on timeline 1
+test_04_interrupted_transaction_fails_without_replay (__main__.FailoverContinuity.test_04_interrupted_transaction_fails_without_replay)
+Transactions cannot migrate: rollback and uncertain outcomes stay explicit. ... ok
+test_05_failed_replica_leaves_rotation_without_disrupting_reads (__main__.FailoverContinuity.test_05_failed_replica_leaves_rotation_without_disrupting_reads)
+A replica failure is removed; same-client reads survive primary loss too. ... ok
+test_06_read_only_ctes_round_robin_and_continue_through_failover (__main__.FailoverContinuity.test_06_read_only_ctes_round_robin_and_continue_through_failover) ... ok
+test_07_data_modifying_ctes_execute_on_primary (__main__.FailoverContinuity.test_07_data_modifying_ctes_execute_on_primary) ... ok
+
+======================================================================
+ERROR: test_01_same_connection_reads_round_robin_through_primary_failover (__main__.FailoverContinuity.test_01_same_connection_reads_round_robin_through_primary_failover)
+No client retries/reconnects: reads continue throughout leader loss.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 252, in setUp
+    self.cluster.start()
+    ~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 145, in start
+    docker("run", "-d", "--name", primary, "--network", self.prefix,
+    ~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           "-p", "127.0.0.1::5432", "-e", "POSTGRES_HOST_AUTH_METHOD=trust",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           IMAGE, "-c", "wal_level=replica", "-c", "max_wal_senders=10",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+           "-c", "cluster_name=a")
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 29, in docker
+    return subprocess.check_output(
+           ~~~~~~~~~~~~~~~~~~~~~~~^
+        ["docker", *args], text=True, stderr=subprocess.STDOUT, timeout=30
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ).strip()
+    ^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/subprocess.py", line 473, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+               **kwargs).stdout
+               ^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/subprocess.py", line 557, in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/subprocess.py", line 1221, in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/subprocess.py", line 2154, in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/subprocess.py", line 1268, in _check_timeout
+    raise TimeoutExpired(
+    ...<2 lines>...
+            stderr=b''.join(stderr_seq) if stderr_seq else None)
+subprocess.TimeoutExpired: Command '['docker', 'run', '-d', '--name', 'rustybouncer-test-5fb04785-a', '--network', 'rustybouncer-test-5fb04785', '-p', '127.0.0.1::5432', '-e', 'POSTGRES_HOST_AUTH_METHOD=trust', 'postgres:16', '-c', 'wal_level=replica', '-c', 'max_wal_senders=10', '-c', 'cluster_name=a']' timed out after 30 seconds
+
+======================================================================
+ERROR: test_03_concurrent_writes_recover_and_split_brain_is_refused (__main__.FailoverContinuity.test_03_concurrent_writes_recover_and_split_brain_is_refused)
+Concurrent queued clients resume once; ambiguous leaders cannot accept writes.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 340, in test_03_concurrent_writes_recover_and_split_brain_is_refused
+    self.assertEqual(future.result(timeout=WAIT_SECONDS + 3), [[str(index)]])
+                     ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/_base.py", line 447, in result
+    return self.__get_result()
+           ~~~~~~~~~~~~~~~~~^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/_base.py", line 396, in __get_result
+    raise self._exception
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/thread.py", line 86, in run
+    result = ctx.run(self.task)
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/concurrent/futures/thread.py", line 73, in run
+    return fn(*args, **kwargs)
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 124, in query
+    return self.read_cycle()
+           ~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/failover.py", line 102, in read_cycle
+    raise error
+PgError: 08006: rustybouncer: routing or read retry budget exhausted
+
+----------------------------------------------------------------------
+Ran 7 tests in 190.772s
+
+FAILED (errors=2)

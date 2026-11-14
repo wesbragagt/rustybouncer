@@ -1,0 +1,96 @@
+{
+  "contract": {
+    "suite": "kind-cnpg-security",
+    "image": "rustybouncer:latest"
+  },
+  "results": [
+    {
+      "test": "__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 215.49290734319948,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.9272687309421599,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.0008560039568692446,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.013076146133244038,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 93.76885622087866,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_tls_cancellation_preserves_the_authenticated_session",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.11980893299914896,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.028625570004805923,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.11551495105959475,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.004187881015241146,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.023401544196531177,
+      "evidence": []
+    }
+  ],
+  "summary": {
+    "passed": 10,
+    "skipped": 0,
+    "failed": 0,
+    "error": 0,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "diagnostic_counts": {
+    "failed": 0,
+    "error": 0,
+    "skipped": 0,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "accepted": true,
+  "scope": "full inventory",
+  "acceptance": "declared-contract results only; see release acceptance checklist"
+}

@@ -1,0 +1,144 @@
+creating owned kind cluster rustybouncer-be98e55b0a
+test_mounted_client_and_server_certificates_rotate_without_restart (__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart) ... ERROR
+test_password_rotation_uses_fresh_auth_query (__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query) ... ok
+test_plaintext_is_rejected_before_sql (__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql) ... ok
+test_scram_and_encryption_preserve_database_identity (__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity) ... ERROR
+test_secure_shared_pool_recovers_after_cnpg_promotion (__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion) ... ERROR
+test_transaction_pool_reuses_backend_and_isolates_users (__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users) ... ERROR
+test_unauthorized_database_rejected_before_sql (__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql) ... FAIL
+test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) ... 
+  test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'host': 'wrong-hostname'}) ... FAIL
+test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) ... ok
+
+======================================================================
+ERROR: test_mounted_client_and_server_certificates_rotate_without_restart (__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 99, in test_mounted_client_and_server_certificates_rotate_without_restart
+    old = self.peer_certificate()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 91, in peer_certificate
+    with context.wrap_socket(sock, server_hostname='rustybouncer') as secure:
+         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py", line 469, in wrap_socket
+    return self.sslsocket_class._create(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        sock=sock,
+        ^^^^^^^^^^
+    ...<5 lines>...
+        session=session
+        ^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py", line 1087, in _create
+    self.do_handshake()
+    ~~~~~~~~~~~~~~~~~^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py", line 1383, in do_handshake
+    self._sslobj.do_handshake()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+ssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: CA cert does not include key usage extension (_ssl.c:1082)
+
+======================================================================
+ERROR: test_scram_and_encryption_preserve_database_identity (__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 33, in test_scram_and_encryption_preserve_database_identity
+    self.assertTrue(client.info.ssl_in_use)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ConnectionInfo' object has no attribute 'ssl_in_use'
+
+======================================================================
+ERROR: test_secure_shared_pool_recovers_after_cnpg_promotion (__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 129, in test_secure_shared_pool_recovers_after_cnpg_promotion
+    client.execute('INSERT INTO secure_promotion VALUES (47)')
+    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 304, in execute
+    raise ex.with_traceback(None)
+psycopg.OperationalError: consuming input failed: SSL error: unexpected eof while reading
+
+======================================================================
+ERROR: test_transaction_pool_reuses_backend_and_isolates_users (__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 66, in test_transaction_pool_reuses_backend_and_isolates_users
+    with self.cluster.connect() as first, self.cluster.connect() as second:
+         ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 125, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 51847 failed: FATAL:  rustybouncer: password authentication failed
+
+======================================================================
+FAIL: test_unauthorized_database_rejected_before_sql (__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 50, in test_unauthorized_database_rejected_before_sql
+    self.assertIn('startup unavailable', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'startup unavailable' not found in 'connection failed: connection to server at "127.0.0.1", port 51847 failed: FATAL:  rustybouncer: password authentication failed'
+
+======================================================================
+FAIL: test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'host': 'wrong-hostname'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 63, in test_untrusted_ca_and_wrong_hostname_rejected
+    self.assertIn('certificate verify failed', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'certificate verify failed' not found in 'connection failed: connection to server at "127.0.0.1", port 51847 failed: server certificate for "rustybouncer" does not match host name "wrong-hostname"'
+
+----------------------------------------------------------------------
+Ran 9 tests in 315.922s
+
+FAILED (failures=2, errors=4)

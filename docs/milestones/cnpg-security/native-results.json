@@ -1,0 +1,85 @@
+{
+  "suites": [
+    {
+      "suite": "failover.log",
+      "tests": 7,
+      "seconds": 106.764,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "long_queries.log",
+      "tests": 8,
+      "seconds": 105.856,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "buffering-verified.log",
+      "tests": 4,
+      "seconds": 24.926,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "resources-verified.log",
+      "tests": 15,
+      "seconds": 201.841,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "metrics-verified.log",
+      "tests": 10,
+      "seconds": 127.874,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "session_pool-verified.log",
+      "tests": 16,
+      "seconds": 39.545,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "transaction_pool-verified.log",
+      "tests": 16,
+      "seconds": 23.215,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "protocol_pool-verified.log",
+      "tests": 55,
+      "seconds": 101.758,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "queue_pool-verified.log",
+      "tests": 13,
+      "seconds": 42.008,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    },
+    {
+      "suite": "deadlines.log",
+      "tests": 5,
+      "seconds": 0.781,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0
+    }
+  ],
+  "total": 149
+}

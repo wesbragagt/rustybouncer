@@ -49,10 +49,13 @@ class KindCluster:
         completed = subprocess.run(argv, input=data, text=True, capture_output=True,
                                    timeout=seconds, env={**os.environ, 'KIND_EXPERIMENTAL_PROVIDER': 'docker'})
         with (self.output / 'commands.log').open('a') as log:
-            log.write(f'$ {argv!r}\n{completed.stdout}{completed.stderr}\n')
+            log.write(self.redact(f'$ {argv!r}\n{completed.stdout}{completed.stderr}\n'))
         if completed.returncode:
             raise RuntimeError(f'{argv[:3]} exit {completed.returncode}: {completed.stdout}{completed.stderr}')
         return completed.stdout.strip()
+
+    def redact(self, value):
+        return value
 
     def kube(self, *args, data=None, seconds=30):
         return self.run('kubectl', '--kubeconfig', str(self.kubeconfig),
@@ -61,12 +64,15 @@ class KindCluster:
     def apply(self, *resources):
         return self.kube('apply', '-f', '-', data=json.dumps({'apiVersion': 'v1', 'kind': 'List', 'items': resources}))
 
+    def kind_config(self):
+        return FIXTURES / 'kind.yaml'
+
     def start(self):
         print(f'creating owned kind cluster {self.name}', flush=True)
         # Mark ownership before creation so partially created nodes are removed too.
         self.created = True
         self.run('kind', 'create', 'cluster', '--name', self.name, '--image', self.pins['node_image'],
-                 '--config', str(FIXTURES / 'kind.yaml'), '--kubeconfig', str(self.kubeconfig),
+                 '--config', str(self.kind_config()), '--kubeconfig', str(self.kubeconfig),
                  '--wait', '180s', seconds=360)
         self.run('kind', 'load', 'docker-image', '--name', self.name, self.image, seconds=180)
         with urllib.request.urlopen(self.pins['operator_url'], timeout=30) as response:
@@ -132,9 +138,10 @@ class KindCluster:
                              'metadata': {'name': name, 'namespace': 'rustybouncer-test'},
                              'spec': {'publishNotReadyAddresses': True, 'selector': {'cnpg.io/instanceName': name},
                                       'ports': [{'port': 5432}]}})
+        config = self.router_config(config)
         self.apply(*services, {'apiVersion': 'v1', 'kind': 'ConfigMap',
                               'metadata': {'name': 'router', 'namespace': 'rustybouncer-test'}, 'data': {'config.toml': config}})
-        self.apply({'apiVersion': 'apps/v1', 'kind': 'Deployment',
+        deployment = {'apiVersion': 'apps/v1', 'kind': 'Deployment',
                     'metadata': {'name': 'rustybouncer', 'namespace': 'rustybouncer-test'},
                     'spec': {'replicas': 1, 'selector': {'matchLabels': {'app': 'rustybouncer'}}, 'template': {
                         'metadata': {'labels': {'app': 'rustybouncer'}}, 'spec': {
@@ -146,8 +153,16 @@ class KindCluster:
                                             'securityContext': {'readOnlyRootFilesystem': True, 'allowPrivilegeEscalation': False, 'capabilities': {'drop': ['ALL']}},
                                             'readinessProbe': {'tcpSocket': {'port': 6432}, 'periodSeconds': 1},
                                             'volumeMounts': [{'name': 'config', 'mountPath': '/config', 'readOnly': True}]}],
-                            'volumes': [{'name': 'config', 'configMap': {'name': 'router'}}]}}}})
+                            'volumes': [{'name': 'config', 'configMap': {'name': 'router'}}]}}}}
+        self.apply(self.router_deployment(deployment))
         self.kube('-n', 'rustybouncer-test', 'rollout', 'status', 'deployment/rustybouncer', '--timeout=120s', seconds=140)
+        self.expose_router()
+        def connected():
+            with self.connect() as client:
+                return client.execute('SELECT 1').fetchone() == (1,)
+        wait_for(connected, 'SQL through in-cluster rustybouncer')
+
+    def expose_router(self):
         with socket.socket() as probe, socket.socket() as metrics_probe:
             probe.bind(('127.0.0.1', 0))
             metrics_probe.bind(('127.0.0.1', 0))
@@ -159,10 +174,11 @@ class KindCluster:
                                              'port-forward', 'deployment/rustybouncer', f'{self.port}:6432', f'{self.metrics_port}:9090'], stdout=log, stderr=subprocess.STDOUT)
         finally:
             log.close()
-        def connected():
-            with self.connect() as client:
-                return client.execute('SELECT 1').fetchone() == (1,)
-        wait_for(connected, 'SQL through in-cluster rustybouncer')
+    def router_config(self, config):
+        return config
+
+    def router_deployment(self, deployment):
+        return deployment
 
     def connect(self):
         return psycopg.connect(host='127.0.0.1', port=self.port, user='app', dbname='app', sslmode='disable',

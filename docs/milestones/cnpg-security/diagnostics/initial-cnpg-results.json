@@ -1,0 +1,89 @@
+{
+  "contract": {
+    "suite": "kind-cnpg-security",
+    "image": "rustybouncer:latest"
+  },
+  "results": [
+    {
+      "test": "__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 669, in run\n    self._callTestMethod(testMethod)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 615, in _callTestMethod\n    result = method()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 99, in test_mounted_client_and_server_certificates_rotate_without_restart\n    old = self.peer_certificate()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 91, in peer_certificate\n    with context.wrap_socket(sock, server_hostname='rustybouncer') as secure:\n         ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py\", line 469, in wrap_socket\n    return self.sslsocket_class._create(\n           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^\n        sock=sock,\n        ^^^^^^^^^^\n    ...<5 lines>...\n        session=session\n        ^^^^^^^^^^^^^^^\n    )\n    ^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py\", line 1087, in _create\n    self.do_handshake()\n    ~~~~~~~~~~~~~~~~~^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/ssl.py\", line 1383, in do_handshake\n    self._sslobj.do_handshake()\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^\nssl.SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: CA cert does not include key usage extension (_ssl.c:1082)\n",
+      "duration_s": 0.03434662101790309,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.22416134108789265,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.0015352899208664894,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 669, in run\n    self._callTestMethod(testMethod)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 615, in _callTestMethod\n    result = method()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 33, in test_scram_and_encryption_preserve_database_identity\n    self.assertTrue(client.info.ssl_in_use)\n                    ^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'ConnectionInfo' object has no attribute 'ssl_in_use'\n",
+      "duration_s": 0.01022364804521203,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 669, in run\n    self._callTestMethod(testMethod)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 615, in _callTestMethod\n    result = method()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 129, in test_secure_shared_pool_recovers_after_cnpg_promotion\n    client.execute('INSERT INTO secure_promotion VALUES (47)')\n    ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py\", line 304, in execute\n    raise ex.with_traceback(None)\npsycopg.OperationalError: consuming input failed: SSL error: unexpected eof while reading\n",
+      "duration_s": 95.28862876282074,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users",
+      "status": "error",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 669, in run\n    self._callTestMethod(testMethod)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 615, in _callTestMethod\n    result = method()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 66, in test_transaction_pool_reuses_backend_and_isolates_users\n    with self.cluster.connect() as first, self.cluster.connect() as second:\n         ~~~~~~~~~~~~~~~~~~~~^^\n  File \"/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py\", line 125, in connect\n    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)\n           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py\", line 126, in connect\n    raise last_ex.with_traceback(None)\npsycopg.OperationalError: connection failed: connection to server at \"127.0.0.1\", port 51847 failed: FATAL:  rustybouncer: password authentication failed\n",
+      "duration_s": 0.013362627942115068,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql",
+      "status": "failed",
+      "detail": "Traceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 669, in run\n    self._callTestMethod(testMethod)\n    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 615, in _callTestMethod\n    result = method()\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 50, in test_unauthorized_database_rejected_before_sql\n    self.assertIn('startup unavailable', str(error.exception))\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 1192, in assertIn\n    self.fail(self._formatMessage(msg, standardMsg))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 750, in fail\n    raise self.failureException(msg)\nAssertionError: 'startup unavailable' not found in 'connection failed: connection to server at \"127.0.0.1\", port 51847 failed: FATAL:  rustybouncer: password authentication failed'\n",
+      "duration_s": 0.010494641959667206,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected",
+      "status": "failed",
+      "detail": "__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected (changes={'host': 'wrong-hostname'}):\nTraceback (most recent call last):\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 58, in testPartExecutor\n    yield\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 565, in subTest\n    yield\n  File \"/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py\", line 63, in test_untrusted_ca_and_wrong_hostname_rejected\n    self.assertIn('certificate verify failed', str(error.exception))\n    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 1192, in assertIn\n    self.fail(self._formatMessage(msg, standardMsg))\n    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py\", line 750, in fail\n    raise self.failureException(msg)\nAssertionError: 'certificate verify failed' not found in 'connection failed: connection to server at \"127.0.0.1\", port 51847 failed: server certificate for \"rustybouncer\" does not match host name \"wrong-hostname\"'\n",
+      "duration_s": 0.009747555945068598,
+      "evidence": []
+    },
+    {
+      "test": "__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected",
+      "status": "passed",
+      "detail": "",
+      "duration_s": 0.028045888990163803,
+      "evidence": []
+    }
+  ],
+  "summary": {
+    "passed": 3,
+    "skipped": 0,
+    "failed": 2,
+    "error": 4,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "diagnostic_counts": {
+    "failed": 2,
+    "error": 4,
+    "skipped": 0,
+    "expected_failure": 0,
+    "unexpected_success": 0
+  },
+  "accepted": false,
+  "scope": "full inventory",
+  "acceptance": "declared-contract results only; see release acceptance checklist"
+}

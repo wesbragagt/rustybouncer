@@ -1,0 +1,49 @@
+test_100_clients_multirow_null_and_unique_results (__main__.Buffering.test_100_clients_multirow_null_and_unique_results) ... ERROR
+test_10_clients_multirow_null_and_unique_results (__main__.Buffering.test_10_clients_multirow_null_and_unique_results) ... ERROR
+test_message_and_result_overflow_discard_before_exposure (__main__.Buffering.test_message_and_result_overflow_discard_before_exposure) ... ERROR
+test_pipelined_query_error_keeps_later_responses_ordered (__main__.Buffering.test_pipelined_query_error_keeps_later_responses_ordered) ... ERROR
+
+======================================================================
+ERROR: test_100_clients_multirow_null_and_unique_results (__main__.Buffering.test_100_clients_multirow_null_and_unique_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/buffering.py", line 26, in setUp
+    self.output, Path(os.environ["RUSTYBOUNCER_BIN"]).resolve()
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 709, in __getitem__
+KeyError: 'RUSTYBOUNCER_BIN'
+
+======================================================================
+ERROR: test_10_clients_multirow_null_and_unique_results (__main__.Buffering.test_10_clients_multirow_null_and_unique_results)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/buffering.py", line 26, in setUp
+    self.output, Path(os.environ["RUSTYBOUNCER_BIN"]).resolve()
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 709, in __getitem__
+KeyError: 'RUSTYBOUNCER_BIN'
+
+======================================================================
+ERROR: test_message_and_result_overflow_discard_before_exposure (__main__.Buffering.test_message_and_result_overflow_discard_before_exposure)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/buffering.py", line 26, in setUp
+    self.output, Path(os.environ["RUSTYBOUNCER_BIN"]).resolve()
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 709, in __getitem__
+KeyError: 'RUSTYBOUNCER_BIN'
+
+======================================================================
+ERROR: test_pipelined_query_error_keeps_later_responses_ordered (__main__.Buffering.test_pipelined_query_error_keeps_later_responses_ordered)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/publicuser/dev/rustybouncer/tests/buffering.py", line 26, in setUp
+    self.output, Path(os.environ["RUSTYBOUNCER_BIN"]).resolve()
+                      ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "<frozen os>", line 709, in __getitem__
+KeyError: 'RUSTYBOUNCER_BIN'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+FAILED (errors=4)

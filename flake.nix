@@ -111,6 +111,7 @@
               strace
               util-linux
               valgrind
+              openssl
             ];
           shellHook = ''
             bash scripts/install-hooks

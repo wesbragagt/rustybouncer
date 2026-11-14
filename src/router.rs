@@ -11,14 +11,14 @@ pub(crate) mod pool;
 mod prepared;
 mod protocol;
 use classification::{allowed_function, classify};
-mod wire;
+pub(crate) mod wire;
 use std::{
     collections::HashMap,
     sync::atomic::{AtomicUsize, Ordering},
 };
 use tokio::{
+    io::WriteHalf,
     io::{AsyncRead, BufReader},
-    net::tcp::OwnedWriteHalf,
     sync::mpsc,
 };
 use wire::{send, Response};
@@ -50,7 +50,7 @@ async fn message_body<R: AsyncRead + Unpin>(stream: &mut R, tag: u8) -> Result<(
 }
 
 struct Backend {
-    stream: BufReader<TcpStream>,
+    stream: BufReader<transport::Stream>,
     installed: HashMap<Vec<u8>, u64>,
     _live: Guard,
     generation: u64,
@@ -63,25 +63,30 @@ struct Backend {
     pool_owner: Option<pool::Manager>,
 }
 impl Backend {
-    fn healthy_idle(&self) -> bool {
+    fn healthy_idle(&mut self) -> bool {
         if !self.stream.buffer().is_empty() {
             return false;
         }
-        matches!(self.stream.get_ref().try_read(&mut [0u8;1]),Err(error) if error.kind()==std::io::ErrorKind::WouldBlock)
+        self.stream.get_mut().healthy_idle()
     }
 }
 
 async fn handshake(
-    mut stream: TcpStream,
+    mut stream: transport::Stream,
     packet: &[u8],
     generation: u64,
     live: Guard,
-    buffers: buffers::Pool,
+    config: &Config,
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
-    stream.set_nodelay(true)?;
     stream.write_all(packet).await?;
+    let mut authentication = config
+        .auth_keys
+        .clone()
+        .map(auth::BackendAuth::new)
+        .transpose()?;
     let mut startup = Vec::new();
     let mut cancel_identity = None;
+    let mut authenticated = false;
     let mut total = 0;
     loop {
         let (tag, body) = message(&mut stream).await?;
@@ -90,13 +95,24 @@ async fn handshake(
             bail!("oversized backend startup");
         }
         if tag == b'R' && body != [0, 0, 0, 0] {
-            bail!("routed mode requires trust-authenticated backend connections");
+            authentication
+                .as_mut()
+                .context("backend requires authentication; configure auth_query")?
+                .respond(&mut stream, &body)
+                .await?;
+            continue;
+        }
+        if tag == b'R' {
+            if authentication.as_ref().is_some_and(|auth| !auth.verified()) {
+                bail!("backend did not verify SCRAM authentication");
+            }
+            authenticated = true;
         }
         if tag == b'E' {
             bail!("backend rejected startup");
         }
         let ready = tag == b'Z';
-        if ready && body != *b"I" {
+        if ready && (!authenticated || body != *b"I") {
             bail!("invalid backend startup transaction status");
         }
         if tag == b'K' {
@@ -116,7 +132,7 @@ async fn handshake(
                     stream: BufReader::new(stream),
                     installed: HashMap::new(),
                     generation,
-                    buffers,
+                    buffers: config.result_buffers.clone(),
                     status: b'I',
                     startup_metadata: None,
                     idle_since: Instant::now(),
@@ -141,14 +157,7 @@ async fn connect(
 ) -> Result<(Backend, Vec<(u8, Vec<u8>)>)> {
     timeout(Duration::from_millis(config.probe_timeout_ms), async {
         let (stream, live) = connect_tcp(config, node, ticket).await?;
-        handshake(
-            stream,
-            packet,
-            generation,
-            live,
-            config.result_buffers.clone(),
-        )
-        .await
+        handshake(stream, packet, generation, live, config).await
     })
     .await
     .context("backend handshake timed out")?
@@ -297,13 +306,7 @@ async fn initial_backend(
         let (stream, selected, live) = wait_backend(config, topology, ticket).await?;
         let (backend, messages) = timeout(
             Duration::from_millis(config.startup_timeout_ms),
-            handshake(
-                stream,
-                packet,
-                selected.generation,
-                live,
-                config.result_buffers.clone(),
-            ),
+            handshake(stream, packet, selected.generation, live, config),
         )
         .await??;
         if topology.borrow().generation == selected.generation {
@@ -375,6 +378,8 @@ async fn execute_query(
         port: node_config.port,
         pid: backend.cancel_identity.0,
         secret: backend.cancel_identity.1,
+        tls: config.backend_tls.clone(),
+        tls_server_name: node_config.tls_server_name.clone(),
     }))?;
     let mut ticket = None;
     let response = {
@@ -606,15 +611,14 @@ async fn route_query(
 }
 
 pub(super) async fn session(
-    client: TcpStream,
+    client: transport::Stream,
     config: Arc<Config>,
     mut topology: watch::Receiver<Topology>,
     packet: Vec<u8>,
 ) -> Result<()> {
     let packet: Arc<[u8]> = packet.into();
-    client.set_nodelay(true)?;
     let registration = config.cancellations.register()?;
-    let (reader, mut client) = client.into_split();
+    let (reader, mut client) = tokio::io::split(client);
     let (sender, mut incoming) = mpsc::channel(256);
     let ready = std::sync::atomic::AtomicBool::new(false);
     let result = {
@@ -657,7 +661,7 @@ pub(super) async fn session(
 }
 
 async fn session_work(
-    client: &mut OwnedWriteHalf,
+    client: &mut WriteHalf<transport::Stream>,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &Arc<[u8]>,
@@ -675,7 +679,12 @@ async fn session_work(
     let (primary, backend, messages) = match initial {
         Ok(Ok(value)) => value,
         _ => {
-            pg_error(client, "08006", "rustybouncer: startup unavailable; routed mode requires trust-authenticated backends").await?;
+            pg_error(
+                client,
+                "08006",
+                "rustybouncer: startup unavailable; backend connection or authentication failed",
+            )
+            .await?;
             bail!("session rejected");
         }
     };
@@ -755,7 +764,7 @@ impl Kind {
     }
 }
 async fn handle_query(
-    client: &mut OwnedWriteHalf,
+    client: &mut WriteHalf<transport::Stream>,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
@@ -813,7 +822,7 @@ async fn release_idle_transaction(
 }
 
 async fn deliver_query(
-    client: &mut OwnedWriteHalf,
+    client: &mut WriteHalf<transport::Stream>,
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     packet: &[u8],
@@ -1067,7 +1076,7 @@ mod tests {
         ] {
             let (mut peer, stream) = crate::tests::socket_pair().await;
             let backend = Backend {
-                stream: BufReader::new(stream),
+                stream: BufReader::new(stream.into()),
                 installed: HashMap::new(),
                 _live: Metrics::default().guard(Event::Backend("test".into())),
                 generation: 1,
@@ -1148,7 +1157,7 @@ mod tests {
             protocol: protocol::State::new(false),
         };
         let registration = c.cancellations.register().unwrap();
-        let (_reader, mut server) = server.into_split();
+        let (_reader, mut server) = tokio::io::split(transport::Stream::from(server));
         assert!(handle_query(
             &mut server,
             &c,
@@ -1169,7 +1178,7 @@ mod tests {
             let c = measured_config();
             let (stream, mut server) = crate::tests::socket_pair().await;
             let mut backend = Backend {
-                stream: BufReader::new(stream),
+                stream: BufReader::new(stream.into()),
                 installed: HashMap::new(),
                 generation: 0,
                 buffers: c.result_buffers.clone(),
@@ -1222,7 +1231,7 @@ mod tests {
             let m = c.metrics.clone();
             let (stream, mut server) = crate::tests::socket_pair().await;
             let backend = Backend {
-                stream: BufReader::new(stream),
+                stream: BufReader::new(stream.into()),
                 installed: HashMap::new(),
                 generation: 0,
                 buffers: c.result_buffers.clone(),

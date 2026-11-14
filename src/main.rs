@@ -10,10 +10,12 @@ use tokio::{
 };
 use tokio_postgres::NoTls;
 use tracing::{info, warn};
+mod auth;
 mod buffers;
 mod cancel;
 mod metrics;
 mod router;
+mod transport;
 use metrics::{Event, Guard, Metrics, Outcome};
 
 #[derive(Clone, Debug, Deserialize)]
@@ -21,6 +23,7 @@ use metrics::{Event, Guard, Metrics, Outcome};
 struct Node {
     name: String,
     host: String,
+    tls_server_name: Option<String>,
     port: u16,
 }
 
@@ -28,6 +31,11 @@ struct Node {
 #[serde(deny_unknown_fields)]
 struct Config {
     listen: String,
+    frontend_tls: Option<transport::ServerTls>,
+    backend_tls: Option<transport::Tls>,
+    auth_query: Option<auth::Query>,
+    #[serde(skip)]
+    auth_keys: Option<auth::Keys>,
     metrics_listen: Option<String>,
     #[serde(skip)]
     metrics: Metrics,
@@ -147,7 +155,7 @@ impl Config {
         }
         self.pool_settings().validate()?;
         if self.pool_mode != router::pool::Mode::None && !self.route_selects {
-            bail!("shared pools require routed trust-authenticated mode");
+            bail!("shared pools require routed mode");
         }
         if self.pool_reset_timeout_ms == 0 {
             bail!("pool reset timeout must be positive");
@@ -155,6 +163,20 @@ impl Config {
         buffers::Pool::new(self.result_buffer_bytes, Metrics::default())?;
         if self.delivery_timeout_ms == 0 || self.cancel_cleanup_timeout_ms == 0 {
             bail!("delivery timeout must be positive");
+        }
+        if let Some(tls) = &self.backend_tls {
+            tls.connector()?;
+        }
+        if let Some(tls) = &self.frontend_tls {
+            tls.acceptor()?;
+        }
+        if let Some(query) = &self.auth_query {
+            if !self.route_selects || self.frontend_tls.is_none() || self.backend_tls.is_none() {
+                bail!("auth_query requires routed mode and frontend/backend TLS");
+            }
+            if query.user.is_empty() || query.query.is_empty() {
+                bail!("auth_query user and query must be nonempty");
+            }
         }
         let mut names = HashSet::new();
         let mut addresses = HashSet::new();
@@ -187,33 +209,26 @@ fn unique_primary(writable: &[usize]) -> Option<usize> {
 
 async fn probe(node: &Node, config: &Config, password: Option<&str>) -> Option<(bool, bool)> {
     let result = timeout(Duration::from_millis(config.probe_timeout_ms), async {
-        let mut pg = tokio_postgres::Config::new();
-        pg.host(&node.host)
-            .port(node.port)
-            .user(&config.probe_user)
-            .dbname(&config.probe_database)
-            .connect_timeout(Duration::from_millis(config.probe_timeout_ms));
-        if let Some(password) = password {
-            pg.password(password);
-        }
-        let (client, connection) = pg.connect(NoTls).await?;
-        // Abort on timeout too: dropping JoinHandle alone would detach the driver.
-        struct Driver(tokio::task::JoinHandle<()>);
-        impl Drop for Driver {
-            fn drop(&mut self) {
-                self.0.abort();
-            }
-        }
-        let _driver = Driver(tokio::spawn(async move {
-            let _ = connection.await;
-        }));
+        let index = config
+            .nodes
+            .iter()
+            .position(|candidate| candidate.name == node.name)
+            .unwrap();
+        let (client, _driver) = auth::database(
+            config,
+            index,
+            &config.probe_user,
+            &config.probe_database,
+            password,
+        )
+        .await?;
         let row = client
             .query_one(
                 "SELECT pg_is_in_recovery(), current_setting('transaction_read_only') = 'off'",
                 &[],
             )
             .await?;
-        Ok::<(bool, bool), tokio_postgres::Error>((row.get(0), row.get(1)))
+        Ok::<(bool, bool), anyhow::Error>((row.get(0), row.get(1)))
     })
     .await;
     result.ok().and_then(|result| result.ok())
@@ -307,35 +322,11 @@ async fn pg_error<W: AsyncWrite + Unpin>(client: &mut W, code: &str, message: &s
     Ok(())
 }
 
-// Consume only the startup negotiation; authentication and all later protocol
-// messages pass through untouched, including extended queries and COPY.
-async fn startup(client: &mut TcpStream) -> Result<Vec<u8>> {
-    for _ in 0..3 {
-        let length = client.read_u32().await?;
-        if !(8..=65536).contains(&length) {
-            bail!("invalid startup packet length");
-        }
-        let mut packet = vec![0; length as usize];
-        packet[..4].copy_from_slice(&length.to_be_bytes());
-        client.read_exact(&mut packet[4..]).await?;
-        let code = u32::from_be_bytes(packet[4..8].try_into().unwrap());
-        match (code, length) {
-            (80877103 | 80877104, 8) => client.write_all(b"N").await?,
-            (80877102, 16) => {
-                return Ok(packet);
-            }
-            (196608, _) if packet.last() == Some(&0) => return Ok(packet),
-            _ => bail!("unsupported PostgreSQL startup packet"),
-        }
-    }
-    bail!("too many encryption negotiation requests")
-}
-
 async fn connect_tcp(
     config: &Config,
     index: usize,
     ticket: &mut Option<Guard>,
-) -> Result<(TcpStream, Guard)> {
+) -> Result<(transport::Stream, Guard)> {
     let node = &config.nodes[index];
     *ticket = Some(config.metrics.guard(Event::Connect(node.name.clone())));
     let result = timeout(
@@ -352,6 +343,12 @@ async fn connect_tcp(
         },
     );
     let stream = result??;
+    let stream = transport::backend(
+        stream,
+        node.tls_server_name.as_deref().unwrap_or(&node.host),
+        config.backend_tls.as_ref(),
+    )
+    .await?;
     Ok((
         stream,
         config.metrics.guard(Event::Backend(node.name.clone())),
@@ -367,7 +364,7 @@ async fn wait_backend(
     config: &Config,
     topology: &mut watch::Receiver<Topology>,
     ticket: &mut Option<Guard>,
-) -> Result<(TcpStream, Topology, Guard)> {
+) -> Result<(transport::Stream, Topology, Guard)> {
     let mut wait = Some(config.metrics.timer("route_wait_duration_seconds"));
     let deadline = Instant::now() + Duration::from_millis(config.wait_timeout_ms);
     loop {
@@ -394,19 +391,27 @@ async fn wait_backend(
 }
 
 async fn session(
-    mut client: TcpStream,
+    client: TcpStream,
     config: Arc<Config>,
     mut topology: watch::Receiver<Topology>,
 ) -> Result<()> {
-    let packet = timeout(
+    let (mut client, packet) = timeout(
         Duration::from_millis(config.startup_timeout_ms),
-        startup(&mut client),
+        transport::accept(client, config.frontend_tls.as_ref()),
     )
     .await??;
     if cancel_request(&packet) {
         deliver_cancel(&config, &packet).await?;
         return Ok(());
     }
+    let config = if config.auth_query.is_some() {
+        let keys = auth::authenticate(&mut client, &config, &mut topology, &packet).await?;
+        let mut session = (*config).clone();
+        session.auth_keys = Some(keys);
+        Arc::new(session)
+    } else {
+        config
+    };
     if config.route_selects {
         return router::session(client, config, topology, packet).await;
     }
@@ -433,8 +438,6 @@ async fn session(
             bail!("startup unavailable");
         }
     };
-    client.set_nodelay(true)?;
-    backend.set_nodelay(true)?;
     // From this point on, never retry: even a partial write has uncertain outcome.
     tokio::select! {
         result = async {
@@ -476,18 +479,18 @@ async fn deliver_cancel(config: &Config, packet: &[u8]) -> Result<()> {
 }
 // Reserved handshake slots let cancellation work at full SQL-client capacity.
 // Overflow never consumes SQL capacity or creates an unbounded task queue.
-async fn control_session(mut stream: TcpStream, config: Arc<Config>) -> Result<()> {
+async fn control_session(stream: TcpStream, config: Arc<Config>) -> Result<()> {
     let incoming = timeout(
         Duration::from_millis(config.startup_timeout_ms),
-        startup(&mut stream),
+        transport::accept(stream, config.frontend_tls.as_ref()),
     )
     .await;
     match incoming {
-        Ok(Ok(packet)) if cancel_request(&packet) => deliver_cancel(&config, &packet).await,
+        Ok(Ok((_, packet))) if cancel_request(&packet) => deliver_cancel(&config, &packet).await,
         rejected => {
             config.metrics.inc("clients_accepted_total", &[]);
             config.metrics.inc("clients_rejected_total", &[]);
-            if matches!(rejected, Ok(Ok(_))) {
+            if let Ok(Ok((mut stream, _))) = rejected {
                 timeout(
                     Duration::from_secs(1),
                     pg_error(
@@ -750,8 +753,8 @@ mod tests {
 
     #[tokio::test]
     async fn startup_declines_tls_and_preserves_packet() {
-        let (mut client, mut server) = socket_pair().await;
-        let task = tokio::spawn(async move { startup(&mut server).await.unwrap() });
+        let (mut client, server) = socket_pair().await;
+        let task = tokio::spawn(async move { transport::accept(server, None).await.unwrap().1 });
         client
             .write_all(&[0, 0, 0, 8, 4, 210, 22, 47])
             .await
@@ -764,9 +767,9 @@ mod tests {
 
     #[tokio::test]
     async fn startup_rejects_oversized_packet() {
-        let (mut client, mut server) = socket_pair().await;
+        let (mut client, server) = socket_pair().await;
         client.write_u32(65537).await.unwrap();
-        assert!(startup(&mut server).await.is_err());
+        assert!(transport::accept(server, None).await.is_err());
     }
 
     #[tokio::test]

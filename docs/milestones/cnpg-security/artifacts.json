@@ -1,0 +1,45 @@
+{
+  "runtime_source_sha256": {
+    "Cargo.lock": "74793bdfd20d907a4c4f89c51e5def5738c6f64f8a6c498bd16eaafddfa7c682",
+    "Cargo.toml": "6834d42341da5226f7f0d8b6ca1cdc3f4f58e0d614c3a4b60f6855183d3fed0e",
+    "flake.lock": "ebdc0d1b06b2404edbb5e7458fdaa16354c28bdaf7ba4465fd80091c13dd70f5",
+    "src/auth.rs": "ff7dced9c46a0ae0be4431e938a727ad018ef902da7dcd31adecbc8ecc328d7b",
+    "src/buffers.rs": "57b5df6f6c11705c9819acbca36547bf210c63dd053c9962a4fd1c439fab942d",
+    "src/cancel.rs": "0761773500dfcaae22363edfeca815d48ce24b2f06e23f282c0849bb52341a72",
+    "src/main.rs": "0bc685d79ddafc1de7a7448faf24087e591dffa9e244145f99a7a5e7a2e358c1",
+    "src/metrics.rs": "aaac79f0dc2c502983fa60da1366e97467da67ea5126dae18bb752ede082f28d",
+    "src/router/affinity.rs": "39a29195c6166565f48a24f347e691eeab9897415daaa5f4b61201ffbea6acf7",
+    "src/router/classification.rs": "de7ce02e53f5349a31ce01c898e4b5cd1f8993849df063f0c4472b2a99b75125",
+    "src/router/classifier_reference.rs": "a05f7792cd5522e88f04231bd674c210078f6ff36b0bbb28a47ec4db84907c30",
+    "src/router/cte.rs": "d2beec25caee4f0ec7bcfaa913d1a633096d3796b0289560397b93d67aad288c",
+    "src/router/frontend.rs": "d97b1ccc2f1e872385b6fd80c2c7b75446d4f99ae1a99d9001e871ef75d15bc7",
+    "src/router/pool.rs": "9f83b71f72a899f83ac72562192489d8a59f5b5fc5328ef8a9b300a0559c5ada",
+    "src/router/prepared.rs": "fba8d3a3e4ad420596b822f34442f8ff24fcaeb6a28f0cefd359b421aed08498",
+    "src/router/protocol.rs": "73ce13d961f70d6ef6018e276c5c9531ac5716fa0c07df8fe49f63c6cbecfc9b",
+    "src/router/wire.rs": "c5c416e1bf06cc9c3fde28b7feaab6f7c7cd0e11455e0ccb1d0f0349b1165660",
+    "src/router.rs": "80a5bd33665d28cb53a14e3042f40a50af10c1b069e0ddd1aecdcdde173c3962",
+    "src/transport.rs": "39bef72eb5463003438fbaec23665c69a45e08ff40486f56650b04bb8d4ad39b"
+  },
+  "debug_binary_sha256": "4de67742cb97e2fc78b7d5a28163c588da9df07b037e64f840fbfe869226f873",
+  "image_id": "sha256:c88a1cd3d96deff2325c66bf9eaa7580befa8c8fd2bdd5a6e002ebbc146500b0",
+  "image_archive": "/nix/store/kkp025nwp8xyw33a9xmgk97xkfdv6lp0-rustybouncer.tar.gz",
+  "kind_fixture_sha256": {
+    "tests/cnpg_security_support.py": "8985567d62daef100c2b96d8f0d014a7be1d975d3868ff71a07ed7c7d26d544e",
+    "tests/kind_cluster.py": "5b513f1d9b1fcb7a3c2c4c881f8dc4cf2bb7667459d21f49c17883f1c00d3fef",
+    "tests/kind_cnpg_security.py": "1f047417818cb868ef01aeda48367a0971527d7c859e7c4c7e2e5210a91c3bed",
+    "tests/kubernetes/README.md": "f321f34e78a9fae8533d46a301e63ae2d8bad3de8b611f1e485bbd779af296ed",
+    "tests/kubernetes/kind.yaml": "89bcc1cc8eec62ce8df88b2b52125be38e70fb403923817359731b8e3e86cb50",
+    "tests/kubernetes/pins.json": "aa0a36cb1a1d7bda8afd2cf8f14ee840dec504dc1fcfe1f2e2ed9713b9e4f388",
+    "tests/kubernetes/postgres.yaml": "3a8828b6b34eb302a1962911acb0a68ec0e64c0c54db7c27cd71e91900289f63"
+  },
+  "native_postgres": {
+    "image_id": "sha256:6b7038c60456795649816e6ad91b015284a75af3bca7d236b7c6124b56a1d9a3",
+    "repo_digests": [
+      "postgres@sha256:63e83b5a3dc36a917dccb76fe1bd2ac51f1ec9c1deb47ff20d4f04233bf6eae9"
+    ],
+    "version": [
+      "PG_MAJOR=16",
+      "PG_VERSION=16.16-1.pgdg13+1"
+    ]
+  }
+}

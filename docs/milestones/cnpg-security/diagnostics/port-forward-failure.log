@@ -1,0 +1,303 @@
+All checks passed!
+All checks passed!
+Complexity: 1242 functions checked; maximum 29 (src/main.rs:136, validate); limit 30.
+creating owned kind cluster rustybouncer-d62136a842
+test_mounted_client_and_server_certificates_rotate_without_restart (__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart) ... FAIL
+test_password_rotation_uses_fresh_auth_query (__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query) ... ERROR
+test_plaintext_is_rejected_before_sql (__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql) ... FAIL
+test_scram_and_encryption_preserve_database_identity (__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity) ... ERROR
+test_secure_shared_pool_recovers_after_cnpg_promotion (__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion) ... ERROR
+test_tls_cancellation_preserves_the_authenticated_session (__main__.CloudNativePGSecurity.test_tls_cancellation_preserves_the_authenticated_session) ... ERROR
+test_transaction_pool_reuses_backend_and_isolates_users (__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users) ... ERROR
+test_unauthorized_database_rejected_before_sql (__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql) ... FAIL
+test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) ... 
+  test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'host': 'wrong-hostname'}) ... FAIL
+  test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'sslrootcert': '/tmp/nix-shell.bT9lGU/rustybouncer-cnpg-tls-1xz464xn/backend-ca.crt'}) ... FAIL
+test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) ... 
+  test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='pool_app') ... FAIL
+  test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='absent_app') ... FAIL
+  test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='expired_app') ... FAIL
+  test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='nologin_app') ... FAIL
+
+======================================================================
+ERROR: test_password_rotation_uses_fresh_auth_query (__main__.CloudNativePGSecurity.test_password_rotation_uses_fresh_auth_query)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 96, in test_password_rotation_uses_fresh_auth_query
+    with self.cluster.connect(password=rotated) as client:
+         ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 130, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+======================================================================
+ERROR: test_scram_and_encryption_preserve_database_identity (__main__.CloudNativePGSecurity.test_scram_and_encryption_preserve_database_identity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 33, in test_scram_and_encryption_preserve_database_identity
+    with self.cluster.connect() as client:
+         ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 130, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+======================================================================
+ERROR: test_secure_shared_pool_recovers_after_cnpg_promotion (__main__.CloudNativePGSecurity.test_secure_shared_pool_recovers_after_cnpg_promotion)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 140, in test_secure_shared_pool_recovers_after_cnpg_promotion
+    with self.cluster.connect() as client:
+         ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 130, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+======================================================================
+ERROR: test_tls_cancellation_preserves_the_authenticated_session (__main__.CloudNativePGSecurity.test_tls_cancellation_preserves_the_authenticated_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 40, in test_tls_cancellation_preserves_the_authenticated_session
+    with self.cluster.connect() as client, concurrent.futures.ThreadPoolExecutor(max_workers=1) as executor:
+         ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 130, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+======================================================================
+ERROR: test_transaction_pool_reuses_backend_and_isolates_users (__main__.CloudNativePGSecurity.test_transaction_pool_reuses_backend_and_isolates_users)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 79, in test_transaction_pool_reuses_backend_and_isolates_users
+    with self.cluster.connect() as first, self.cluster.connect() as second:
+         ~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/publicuser/dev/rustybouncer/tests/cnpg_security_support.py", line 130, in connect
+    return psycopg.connect(make_conninfo(**options), autocommit=True, prepare_threshold=None)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/site-packages/psycopg/connection.py", line 126, in connect
+    raise last_ex.with_traceback(None)
+psycopg.OperationalError: connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused
+	Is the server running on that host and accepting TCP/IP connections?
+
+======================================================================
+FAIL: test_mounted_client_and_server_certificates_rotate_without_restart (__main__.CloudNativePGSecurity.test_mounted_client_and_server_certificates_rotate_without_restart)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 125, in test_mounted_client_and_server_certificates_rotate_without_restart
+    wait_for(rejected, 'wrong client certificate to fail auth_query', seconds=180)
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cluster.py", line 30, in wait_for
+    raise AssertionError(f'expected {description} within {seconds}s; actual last error: {last}')
+AssertionError: expected wrong client certificate to fail auth_query within 180s; actual last error: None
+
+======================================================================
+FAIL: test_plaintext_is_rejected_before_sql (__main__.CloudNativePGSecurity.test_plaintext_is_rejected_before_sql)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 68, in test_plaintext_is_rejected_before_sql
+    self.assertIn('TLS required', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'TLS required' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_unauthorized_database_rejected_before_sql (__main__.CloudNativePGSecurity.test_unauthorized_database_rejected_before_sql)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 669, in run
+    self._callTestMethod(testMethod)
+    ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 615, in _callTestMethod
+    result = method()
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 62, in test_unauthorized_database_rejected_before_sql
+    self.assertIn('startup unavailable', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'startup unavailable' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'host': 'wrong-hostname'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 76, in test_untrusted_ca_and_wrong_hostname_rejected
+    self.assertIn(reason, str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'does not match host name' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_untrusted_ca_and_wrong_hostname_rejected (__main__.CloudNativePGSecurity.test_untrusted_ca_and_wrong_hostname_rejected) (changes={'sslrootcert': '/tmp/nix-shell.bT9lGU/rustybouncer-cnpg-tls-1xz464xn/backend-ca.crt'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 76, in test_untrusted_ca_and_wrong_hostname_rejected
+    self.assertIn(reason, str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'certificate verify failed' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='pool_app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 57, in test_wrong_missing_expired_and_nologin_passwords_rejected
+    self.assertIn('password authentication failed', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'password authentication failed' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='absent_app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 57, in test_wrong_missing_expired_and_nologin_passwords_rejected
+    self.assertIn('password authentication failed', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'password authentication failed' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='expired_app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 57, in test_wrong_missing_expired_and_nologin_passwords_rejected
+    self.assertIn('password authentication failed', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'password authentication failed' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+======================================================================
+FAIL: test_wrong_missing_expired_and_nologin_passwords_rejected (__main__.CloudNativePGSecurity.test_wrong_missing_expired_and_nologin_passwords_rejected) (user='nologin_app')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 58, in testPartExecutor
+    yield
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 565, in subTest
+    yield
+  File "/home/publicuser/dev/rustybouncer/tests/kind_cnpg_security.py", line 57, in test_wrong_missing_expired_and_nologin_passwords_rejected
+    self.assertIn('password authentication failed', str(error.exception))
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 1192, in assertIn
+    self.fail(self._formatMessage(msg, standardMsg))
+    ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/nix/store/jrrkgb9h9l25kxkx3pbpz9xp8kh53888-python3-3.14.8-env/lib/python3.14/unittest/case.py", line 750, in fail
+    raise self.failureException(msg)
+AssertionError: 'password authentication failed' not found in 'connection failed: connection to server at "127.0.0.1", port 50875 failed: Connection refused\n\tIs the server running on that host and accepting TCP/IP connections?'
+
+----------------------------------------------------------------------
+Ran 10 tests in 468.255s
+
+FAILED (failures=9, errors=5)

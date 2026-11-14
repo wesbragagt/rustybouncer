@@ -22,7 +22,7 @@ impl std::error::Error for CopyUnsupported {}
 
 const MAX_RESULT: usize = 32 * 1024 * 1024;
 
-pub(super) async fn send<W: AsyncWrite + Unpin>(
+pub(crate) async fn send<W: AsyncWrite + Unpin>(
     writer: &mut W,
     tag: u8,
     body: &[u8],

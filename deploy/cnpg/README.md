@@ -1,6 +1,7 @@
 # CloudNativePG deployment
 
-This retained demo runs a three-instance CNPG cluster and the distroless router.
+This retained demo runs a three-instance CNPG cluster and the distroless router
+with transaction pooling, TLS on both legs and SCRAM client authentication.
 It is separate from the [automated kind suite](../../tests/kubernetes/README.md),
 which injects failures and deletes its cluster afterwards. These manifests leave
 the cluster and database running until you explicitly clean them up.
@@ -68,21 +69,16 @@ cover operator upgrades and supported Kubernetes versions.
 
 ## Deploy PostgreSQL and the router
 
-Review [cluster.yaml](cluster.yaml) first. It uses a narrow trust rule for the `app`
-role/database on `10.244.0.0/16`, kind's Pod CIDR. **Change that CIDR for another
-cluster.** Routing mode currently requires trust authentication for backend client
-connections and has no frontend authentication/TLS. Use this example only on an
-isolated test network; CNPG's default SCRAM configuration alone is not compatible
-with query-routing mode.
+Review [cluster.yaml](cluster.yaml) first. It requires client certificates for the
+lookup role and SCRAM over TLS for application roles on `10.244.0.0/16`, kind's Pod
+CIDR. Change that CIDR for another cluster. After PostgreSQL is ready, provision
+the lookup function and certificate Secrets described below before applying the
+router Deployment.
 
 ```sh
 nix develop --command kubectl apply -f deploy/cnpg/cluster.yaml
 nix develop --command kubectl -n rustybouncer-demo wait cluster/postgres \
   --for=condition=Ready --timeout=360s
-nix develop --command kubectl apply -f deploy/cnpg/router.yaml
-nix develop --command kubectl -n rustybouncer-demo rollout status \
-  deployment/rustybouncer --timeout=120s
-nix develop --command kubectl -n rustybouncer-demo get cluster,pods,services
 ```
 
 [router.yaml](router.yaml) includes per-instance Services for `postgres-1`, `-2`
@@ -98,6 +94,59 @@ addresses with the `-rw` Service when you want replica balancing. Scaling or
 rebuilding CNPG members can change instance names; update the configured membership
 and restart the router. There is no dynamic Kubernetes membership discovery.
 
+## Authentication and certificates
+
+Before deploying the router, apply [auth.sql](auth.sql) as a superuser in `app`.
+The function returns only login roles and nulls expired passwords. Restrict
+execution to the lookup role; do not grant application users access to it. Existing
+CNPG pooler auth-query functions can also be used: set `auth_query.user`, `query`
+and `database` to match the function and certificate identity already provisioned.
+The query must accept one bound username parameter and return exactly one row with
+two text columns: username and PostgreSQL SCRAM-SHA-256 verifier. Missing/null rows
+fail authentication. SCRAM iteration counts must be between 1 and 100,000.
+The advertised mechanism is SCRAM-SHA-256; SCRAM-SHA-256-PLUS channel binding,
+MD5 verifiers and plaintext password files are unsupported.
+
+Create these Secrets in `rustybouncer-demo` before applying `router.yaml`:
+
+- `rustybouncer-server-tls`: `tls.crt` and `tls.key`, for the listener. Include
+  `rustybouncer` (and any client-used service DNS names) in the certificate SANs.
+- `rustybouncer-client-tls`: `tls.crt` and `tls.key`, signed by the CNPG client CA
+  with CN `rustybouncer_auth`. Mount the whole Secret directory so Kubernetes can
+  update its symlinks; avoid `subPath` mounts, which do not receive rotation.
+- `postgres-ca`: `ca.crt`, the CNPG server CA. Change the manifest if your cluster
+  uses a separate server CA Secret name. The volume projects only `ca.crt`;
+  the pooler must never receive the CA signing key.
+
+Use your existing certificate issuer/CNPG certificate tooling to issue these
+credentials. The automated test issues client certificates from its throwaway
+CNPG CA and never retains private keys. The backend `tls_server_name` is
+`postgres-rw`, a DNS identity in CNPG's shared server certificate; individual node
+Services still determine which instance receives the connection. Change it when
+your server certificate has different SANs. Hostnames and CA chains are always
+verified; there is no insecure TLS mode or plaintext fallback.
+
+Application roles must have SCRAM passwords and PostgreSQL CONNECT/SQL permissions.
+CNPG retains responsibility for certificate issuance/renewal. RustyBouncer rereads
+mounted CA, certificate and key files for new probes, auth queries, backends and
+frontend TLS handshakes. Existing sessions are not interrupted by renewal; configure
+`pool_server_lifetime_ms` to bound the lifetime of existing pooled connections.
+`auth_query` runs for every new client, so password changes require no pooler reload.
+Its certificate role is used only for discovery/lookup. SQL executes as the client.
+
+This is an independent Deployment; CNPG's `Pooler` CRD still manages PgBouncer,
+not RustyBouncer. CNPG's TLS and certificate-authenticated auth-query contract is
+documented in [connection pooling](https://cloudnative-pg.io/docs/1.30/connection_pooling/).
+
+After the function and Secrets exist, deploy the router:
+
+```sh
+nix develop --command kubectl apply -f deploy/cnpg/router.yaml
+nix develop --command kubectl -n rustybouncer-demo rollout status \
+  deployment/rustybouncer --timeout=120s
+nix develop --command kubectl -n rustybouncer-demo get cluster,pods,services
+```
+
 ## Connect and verify
 
 Keep port forwarding open in one terminal:
@@ -110,7 +159,7 @@ In another terminal, connect through the forwarded listener:
 
 ```sh
 nix develop --command psql \
-  'host=127.0.0.1 port=6432 user=app dbname=app sslmode=disable'
+  'host=rustybouncer hostaddr=127.0.0.1 port=6432 user=app dbname=app sslmode=verify-full sslrootcert=/path/to/frontend-ca.crt'
 ```
 
 Send separate statements on the same connection:

@@ -342,7 +342,7 @@ impl Manager {
             for (key, group) in &mut state.groups {
                 group.invalid = !key.eligible(topology);
                 let mut kept = VecDeque::new();
-                while let Some(backend) = group.idle.pop_front() {
+                while let Some(mut backend) = group.idle.pop_front() {
                     let expired = backend.idle_since.elapsed() >= inner.settings.idle
                         || backend
                             .slot
@@ -556,7 +556,7 @@ pub(super) async fn checkout(
     let key = Key::new(node, selected, packet.clone());
     loop {
         match config.pools.acquire(key.clone(), deadline).await? {
-            Checkout::Idle(backend) => {
+            Checkout::Idle(mut backend) => {
                 if backend.healthy_idle() {
                     config.metrics.inc("pool_reuses_total", &[]);
                     return Ok(*backend);
@@ -761,7 +761,7 @@ mod tests {
         let (stream, peer) = crate::tests::socket_pair().await;
         (
             Backend {
-                stream: BufReader::new(stream),
+                stream: BufReader::new(stream.into()),
                 installed: HashMap::new(),
                 _live: Metrics::default().guard(Event::Backend("node".into())),
                 generation: 1,
@@ -988,9 +988,11 @@ mod tests {
         else {
             panic!()
         };
-        let (backend, mut peer) = fake(&manager, slot).await;
+        let (mut backend, mut peer) = fake(&manager, slot).await;
         peer.write_all(b"unexpected").await.unwrap();
-        backend.stream.get_ref().readable().await.unwrap();
+        tokio::io::AsyncBufReadExt::fill_buf(&mut backend.stream)
+            .await
+            .unwrap();
         assert!(!backend.healthy_idle());
         drop(backend);
         assert_eq!(manager.snapshot(), (0, 0));
