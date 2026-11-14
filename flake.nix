@@ -21,7 +21,7 @@
       {
         packages.default = pkgs.rustPlatform.buildRustPackage {
           pname = "rustybouncer";
-          version = "0.1.0";
+          version = "1.0.1";
           src = pkgs.lib.cleanSourceWith {
             src = ./.;
             filter =

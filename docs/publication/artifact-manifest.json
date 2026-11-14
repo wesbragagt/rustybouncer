@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "release": "evidence-publication-20261114",
+  "release": "v1.0.1",
   "artifacts": [
     {
       "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c1.latency.1.gz",
@@ -1281,7 +1281,7 @@
       "public_sha256": "ba04d9a58fab999f686641a225f0874563ea94230da98207e51583fcf49639de",
       "public_bytes": 261965615,
       "asset": "a4b725a57e350d31-normalized-after.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/a4b725a57e350d31-normalized-after.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/a4b725a57e350d31-normalized-after.tar.zst"
     },
     {
       "path": "docs/benchmarks/perf-final/original-after-manifest.json.gz",
@@ -1298,7 +1298,7 @@
       "public_sha256": "10a879aebbe942b853bfed79a0e277fe62635548fe89ee5cea29c0e7a9155b21",
       "public_bytes": 148040274,
       "asset": "d0fef391743729d8-original-after.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/d0fef391743729d8-original-after.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/d0fef391743729d8-original-after.tar.zst"
     },
     {
       "path": "docs/benchmarks/perf-final/pool-mixed-manifest.json.gz",
@@ -1331,7 +1331,7 @@
       "public_sha256": "9fd431b93881ce57244b9da39dd99517b83208398a307e38876e17eb7f230ebf",
       "public_bytes": 308804493,
       "asset": "ca6a534793dc3761-pools-after.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/ca6a534793dc3761-pools-after.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/ca6a534793dc3761-pools-after.tar.zst"
     },
     {
       "path": "docs/benchmarks/perf-final/profiles-after-manifest.json.gz",
@@ -1348,7 +1348,7 @@
       "public_sha256": "36e58e7f81c5c197b2b3b688d8407e353c3bc89e0f0981ff8e0e51ff0ef1e432",
       "public_bytes": 154331724,
       "asset": "ea54b2103ba01854-profiles-after.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/ea54b2103ba01854-profiles-after.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/ea54b2103ba01854-profiles-after.tar.zst"
     },
     {
       "path": "docs/benchmarks/perf-final/workloads-after-manifest.json.gz",
@@ -1365,7 +1365,7 @@
       "public_sha256": "05a97759baf79da3394c9d47fbd8707f603b1b2bb5c9a476366fd923deb868de",
       "public_bytes": 874783557,
       "asset": "b306f85eb0654063-workloads-after.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/b306f85eb0654063-workloads-after.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/b306f85eb0654063-workloads-after.tar.zst"
     },
     {
       "path": "docs/benchmarks/perf-pools/manifest.json.gz",
@@ -1382,7 +1382,7 @@
       "public_sha256": "fa710695456f10beee93c713b4eefac28093e297c98282a8c0a460e2e3106bf0",
       "public_bytes": 317151987,
       "asset": "29f916737a5320ca-raw.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/29f916737a5320ca-raw.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/29f916737a5320ca-raw.tar.zst"
     },
     {
       "path": "docs/benchmarks/pgbouncer-comparison/raw-manifest.json.gz",
@@ -2247,7 +2247,7 @@
       "public_sha256": "f96b097a7962cdea5607d4440a7d50d84c3ecdb5f57781b878b107bed2790571",
       "public_bytes": 156176218,
       "asset": "26d5ad7ab98584a4-original-comparison.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/26d5ad7ab98584a4-original-comparison.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/26d5ad7ab98584a4-original-comparison.tar.zst"
     },
     {
       "path": "docs/milestones/perf-resources-evidence/combined/resources.tar.zst",
@@ -2400,7 +2400,7 @@
       "public_sha256": "d6fb447808f562ee84d532e75e882b048198a31712a3baf9f4bf5ab62810098a",
       "public_bytes": 1173182646,
       "asset": "cf0fde328b108edf-raw.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/cf0fde328b108edf-raw.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/cf0fde328b108edf-raw.tar.zst"
     },
     {
       "path": "docs/milestones/perf-scheduling-evidence/heads/frozen-source.tar.zst",
@@ -2489,7 +2489,7 @@
       "public_sha256": "a398d6d1240ce2d5c3db4c2df2dc281d8e7bdf9ecebc7e7dafd8b65f2ee84be5",
       "public_bytes": 123910405,
       "asset": "b68c6e2c417f368d-raw.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/b68c6e2c417f368d-raw.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/b68c6e2c417f368d-raw.tar.zst"
     },
     {
       "path": "docs/milestones/perf-session-evidence/manifest.json.gz",
@@ -2514,7 +2514,7 @@
       "public_sha256": "763940dc0345c7da6b92fa79f8a41a7ea94dbee2f6b0f1a18082770183aa0276",
       "public_bytes": 140684728,
       "asset": "875f56f3443b5b5c-raw.tar.zst",
-      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/875f56f3443b5b5c-raw.tar.zst"
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/875f56f3443b5b5c-raw.tar.zst"
     },
     {
       "path": "docs/milestones/perf-session-evidence/session-buffering.tar.zst",

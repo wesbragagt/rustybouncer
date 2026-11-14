@@ -86,5 +86,6 @@
     "skips": 0,
     "required_commit_hook": "normal installed .githooks/pre-commit"
   },
-  "outstanding": "Canonical feature/release acceptance remains open; this is publication, not release completeness."
+  "outstanding": "Canonical feature/release acceptance remains open; this is publication, not release completeness.",
+  "publication_version": "1.0.1"
 }
