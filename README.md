@@ -2,7 +2,8 @@
 
 Keep connection pooling and database-aware routing in one process. RustyBouncer
 adds automatic primary discovery, query-level replica routing, and bounded failover
-waiting to a PostgreSQL pooler built for CloudNativePG.
+waiting to a PostgreSQL pooler. It works with standard PostgreSQL deployments;
+CloudNativePG is a supported integration, not a dependency.
 
 [PgBouncer](https://www.pgbouncer.org/config.html#databases) pools connections to configured targets. RustyBouncer also inspects SQL
 and database roles to decide where work belongs:
@@ -15,10 +16,6 @@ and database roles to decide where work belongs:
   SCRAM through `auth_query`, and rotating PEM certificates without a restart.
 - **Validate the integration:** real CloudNativePG tests in kind exercise routing,
   failover, TLS, certificate rotation, and authentication.
-
-Version **1.0.1** does not promote PostgreSQL nodes
-or replay dispatched writes or interrupted transactions. It is not a complete
-PgBouncer replacement.
 
 ## Getting started with Docker Compose
 
