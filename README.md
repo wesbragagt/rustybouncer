@@ -3,7 +3,9 @@
 Experimental Rust PostgreSQL router with automatic primary discovery, failover
 waiting, and opt-in round-robin routing of conservative SELECTs to replicas.
 
-Source: [wesbragagt/rustybouncer on Forgejo](https://forgejo.example.invalidxxxxxxx/wesbragagt/rustybouncer).
+Source: [wesbragagt/rustybouncer on GitHub](https://github.com/wesbragagt/rustybouncer).
+Public history and evidence: [publication and audit notes](PUBLICATION.md).
+Contributions: [issues only](CONTRIBUTING.md). License: [Apache 2.0](LICENSE).
 
 See [design.md](design.md) for the architecture, routing decisions, failover
 boundaries, and implementation tradeoffs.

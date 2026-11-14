@@ -1,0 +1,3024 @@
+{
+  "schema": 1,
+  "release": "evidence-publication-20261114",
+  "artifacts": [
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c1.latency.1.gz",
+      "original_git_blob": "4a4666eca166b0437626be256122f476c883235a",
+      "original_sha256": "a9306953b8b0131de16c34fa54e31ea9d33802c99e2dbd636f75b81e24a6b954",
+      "public_sha256": "560375e8a638b5db3c5b5d44ce7b5890fe2e6fe387e68aa8989920c160f449d5",
+      "public_bytes": 107941,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.1.gz",
+      "original_git_blob": "ea50e27a20e47b0cf57db19ea73f86c750d67871",
+      "original_sha256": "c1979257dd973321b140b8e03759882d18130ee8dad24550309e85de465fb97c",
+      "public_sha256": "59effedf9e1faf29690ee92629d41e50c5c08bfd525e740eeefe07dbb89192e5",
+      "public_bytes": 78302,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.2.gz",
+      "original_git_blob": "84b7140fe101ea72036298094395dd89bd575cc3",
+      "original_sha256": "b5c95d6a0f171dd91615c1ffc4fa56ffc3b21d963a5189b8b4703ef6c3f84eaf",
+      "public_sha256": "920ef62cadfcf8db63496a0819a53d3557de6a78032363830f53c59303ca5d21",
+      "public_bytes": 79284,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.3.gz",
+      "original_git_blob": "6aa1218d5c6aa65086451db3cd477cc84beba7b8",
+      "original_sha256": "199d769918dd4d50fb514df392efb7ecdb164b75676013583340be7c080957f3",
+      "public_sha256": "952838c40ab32cf2fa5157eaa557624b6957aff17666a465e7465932521c90a8",
+      "public_bytes": 80233,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.4.gz",
+      "original_git_blob": "17bc3be9a0c52e47ef03884484d32554984700cb",
+      "original_sha256": "a753f01a91918fbd3db873671b425c648c35534d227fc23435b675b4fb884f48",
+      "public_sha256": "62dce422c1e18815be3986ed12da15d033051615ff295a30247ad358db0dd97c",
+      "public_bytes": 80279,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.5.gz",
+      "original_git_blob": "045ca1af5c8374537cad65d67081b3dd6069b6f6",
+      "original_sha256": "9508e5de44979398f1a99ba1a7e4ab9a1ac25787f4cd4940eb54d9244bde51f2",
+      "public_sha256": "ade6e2fe4c0ed9b3b0acaeda963d31d939cfc32962a71240d2e1df5e2806f336",
+      "public_bytes": 79207,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.6.gz",
+      "original_git_blob": "19690d8754dee4e6246b0e077c134d9f30e93e91",
+      "original_sha256": "cc485d2d1784709c0caa5bb28121483149f6123bc6daf78c50cc46638f097d3a",
+      "public_sha256": "e98f303daa508e0929da61579f738d10495a35a5a5727fef6dd1527c2d7875b1",
+      "public_bytes": 80126,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.7.gz",
+      "original_git_blob": "5d5970dbbfe674b55dc53ada29c055fea3248cc1",
+      "original_sha256": "12d14e8af189cb628842c7445f05db6cf849cd2008e3fa0ac9a64e1cfc0f5b8e",
+      "public_sha256": "31dfa5856c8d1f59bb4e2026208d3108e065123353f4a014342c4a1f73cab634",
+      "public_bytes": 81189,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c16.latency.1.gz",
+      "original_git_blob": "028e86467f80978860e20b7da8ce81648b14f589",
+      "original_sha256": "8ca717feee7037d04f1bf573ee0c4024b350bffbb7f1eb5224cdaba0e33faee0",
+      "public_sha256": "335e443f34a02853ab942b858c8f45fae20f5c6bea394cb55c0848c30117a137",
+      "public_bytes": 79327,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.1.gz",
+      "original_git_blob": "abe5c5cec7a6985bf1501ed6a88e452a7bf9d72c",
+      "original_sha256": "6c8dd25ecb64a59b0f5e281fae207c774edf70412482eb07ffd7ff131bacda06",
+      "public_sha256": "2fa63a77e6d3c96ba47a5b763a4f3d94bebefef096f372ca640e4f11b9ff8ef4",
+      "public_bytes": 103381,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.2.gz",
+      "original_git_blob": "2370972c094886039480e9f0eb560219a89bc65d",
+      "original_sha256": "d4d03b6b968e71c83e45ed31db874400a133da24d32f5acb1453319916a71f4a",
+      "public_sha256": "b5074155734b916f7de236c6d0910784a4a08d8f2fcae24d31fed8a01bb78128",
+      "public_bytes": 103784,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.3.gz",
+      "original_git_blob": "ef37c0f2fa13a2dcfb886f22c31c7681b664cd3c",
+      "original_sha256": "807da61fb0b2ed3a92f16a21eaa1aa162dc8c3bfcd6f7e91c26afe4cb7c00c97",
+      "public_sha256": "0bf5e6f5b03a44c5300e49850d4af20efac9dcd493e7f409e3503cb386cd2b92",
+      "public_bytes": 105443,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.4.gz",
+      "original_git_blob": "2ecbfb7e74af981d1bb5732a09e1ff66e6441376",
+      "original_sha256": "f4ae4c4d5508b7dca1919d5f1d737b702a612f9fdce7c57a4d27ac327e2a5399",
+      "public_sha256": "b8f1c04b17146f3c0c8df3159b8274543be139fc31da34e936ce56612a111e6f",
+      "public_bytes": 106128,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.5.gz",
+      "original_git_blob": "8013b3f44ac362db800af52f7dea8f7b60ddf413",
+      "original_sha256": "0eebb17a4ac96e6aabf03624604ca5bf3a692c6b2f5df13c57beffd236258e7d",
+      "public_sha256": "2395ec9e054e150c5b2236e96bfb90255ea23e3788e4880891d903758af1a19b",
+      "public_bytes": 105699,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.6.gz",
+      "original_git_blob": "fde6f584093050b82880df1a6ed2ffb51a432c05",
+      "original_sha256": "612ff78e8e1e512d8c2f1efcd22c688dd83eff3c0bc0a0c2c04293a238aa010a",
+      "public_sha256": "1e349d3d267bf42e482984fc9a8f2341442b435e23120b907141cb156dd6e181",
+      "public_bytes": 107078,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.7.gz",
+      "original_git_blob": "bce76546b6c89ab0a7b77193b6f45dc5c438690d",
+      "original_sha256": "b272cdbae003b3f8481e9afc09da8b34ac5247f9f1ee9dfb09d2e40be5119ec4",
+      "public_sha256": "737b620df0031f8051b947e23dfbe8ed390b02daaa6051afdcacefb176feb764",
+      "public_bytes": 106538,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c32.latency.1.gz",
+      "original_git_blob": "da588a51e73416a475886695de12766d85bfa197",
+      "original_sha256": "5cdacee5490ff64a172d531a77bb6db2b5b55b8d84d9af69737fcf232f90b7dd",
+      "public_sha256": "313c8f11b1895a480b98b222a9fc72e49617ef24cb70239765d372ad72f05c78",
+      "public_bytes": 104367,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c4.latency.1.1.gz",
+      "original_git_blob": "7d23ff83fa614eac69f7c52d03a967d5cc646aec",
+      "original_sha256": "c5a054539180329954027e06f72222c205376c8a6e2ba29ae7b59faecec55fef",
+      "public_sha256": "a2cdd176ae4704650196a4a9d0e8584dabf0160c5fc065b6a2d713ca7c8f3398",
+      "public_bytes": 88657,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c4.latency.1.2.gz",
+      "original_git_blob": "bc1f3f38f5a7c06aa13a91ad77cac22feff1acf3",
+      "original_sha256": "8f993bbb9020cf454c7e1dee211a0ed907cdadf093126e4b5601923360953654",
+      "public_sha256": "6aa0c6d0f98736fae8849f504b455e499323334575faf9f902650964dabebbc3",
+      "public_bytes": 86870,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c4.latency.1.3.gz",
+      "original_git_blob": "8624bd2813abb188b4e7b8714525d6f9d2b80d7f",
+      "original_sha256": "7305b94b1ceb178226d79159fa33719198ec906f3d4a5108d83bfdf548609dd1",
+      "public_sha256": "688248def7190e284c80420958b5bd2f60f656af74212ff8b4c3f8bb8788cbf1",
+      "public_bytes": 87641,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c4.latency.1.gz",
+      "original_git_blob": "9661f56e213fe5489ad6b0b918e655730dce30f3",
+      "original_sha256": "61e6b23c8dcbb86ae2f69d97cc4cabff59ae6a2d3cc976a769b68050aba184b8",
+      "public_sha256": "a68cac8f9b5f15e68569b6ce435b897da5683ea38acc4119c40e2f67837f056b",
+      "public_bytes": 86258,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.1.gz",
+      "original_git_blob": "4176ba10f8ad0becfa2d94d3ff446205d7ebab0c",
+      "original_sha256": "ef6fc0f697e18a04fa79838e7e0a36f8239fb8c2f9e17dc8389e2dd8a47c406e",
+      "public_sha256": "73d27e73feb647885870bd7e89fdf56cd1752f7a0ac5290f7eb83ca8020771c2",
+      "public_bytes": 122648,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.2.gz",
+      "original_git_blob": "45866ca8a84bd2c7865ec81d4ab8bb66b1ea7524",
+      "original_sha256": "14527dca1fb7566a2315abbd0238226312e44f411e30cd8bd7946fc012aca31a",
+      "public_sha256": "13f693cb4111aebdafd1f49d323b753b3d23108a6e6169c8bc55197800018984",
+      "public_bytes": 122877,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.3.gz",
+      "original_git_blob": "6573bae56ee53548c3f261edb8bfaa6478005dbf",
+      "original_sha256": "2861c79ce8c94ade7b637000ac9f22c385982be7b9d06b8eb3d1119a1912b4b1",
+      "public_sha256": "87269eee1b5cc9d5e0fd366601e51d18b8311b6222c21e62303b963c4f8f6991",
+      "public_bytes": 121768,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.4.gz",
+      "original_git_blob": "584e3bf1a259ba5ee39b135d1e4f6fe5f9f8642b",
+      "original_sha256": "fd884bd828af8888741252ff5d6caf766db235a871a8989067bdc7abcec3ad6c",
+      "public_sha256": "9e7b5b1a5e72925a9c9f1925340dc1dbaa96522bc28bc5f9b95c15a417034b31",
+      "public_bytes": 128535,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.5.gz",
+      "original_git_blob": "cfbd8933a56a7ea4aa9e0c03b5e2faa1ff61e5b1",
+      "original_sha256": "c4f265c765143e3d8cc1237941a3d729464cb4bc4bba9f5a5a12d8bb1d4fe8ed",
+      "public_sha256": "8aa25ad0b11b8f1e1143c1c88eea5e60c71505d4cddf3e2889ce8d02ccda221b",
+      "public_bytes": 129208,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.6.gz",
+      "original_git_blob": "74c04ab5275dd475dce99ba27e35be2ae9ae3b22",
+      "original_sha256": "5c66f5c0712719d4075818761a3607506a95cc13b4cb3d9e274547eab38255aa",
+      "public_sha256": "d88f2855a4248c9018d28d959a40f502a3eb7345d91b4cd60db1b94c249fa75f",
+      "public_bytes": 124565,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.7.gz",
+      "original_git_blob": "99cf7d37a19022717d305e4b3bda7e7cb4513bbf",
+      "original_sha256": "c29a47fe9620e4e92bca2c1a8cb5a5dff6fb8ddb9e6f26934747fa572cc123cd",
+      "public_sha256": "4ab0fc88c104be3dfb39922dc52e940d49f43d6ff884dc07cac594bb635894db",
+      "public_bytes": 122916,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c64.latency.1.gz",
+      "original_git_blob": "dc423429a9ef8bb2727313f46bbe13c007c9e022",
+      "original_sha256": "3ce48254c2572634e66384f37ceff906a37a1d146d656b74852b01d24927beea",
+      "public_sha256": "77bd90412808fa05b377015d0c740a186939b5c46517604a83042836d8c287a0",
+      "public_bytes": 123876,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.1.gz",
+      "original_git_blob": "e7d9d4df1abf417a5d756e1f5274ea2334ada90b",
+      "original_sha256": "4991380321a953e507e0a1f4e964cebc4bec09bcba39c3527037bf08421dac41",
+      "public_sha256": "3a06353cf80669b35ffdc8458c1babcbdd18788d7d02e154ed6ef718f4c349d7",
+      "public_bytes": 65935,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.2.gz",
+      "original_git_blob": "ece7db86768d368fe7e54f9fdc76a95c1ea5e373",
+      "original_sha256": "b06c30e66e7c23f44a8b712657def2abe16d8262a9e8d63aa2932e4cc64d4a14",
+      "public_sha256": "40bb16f4c2ca83c5612c6c193fb8522ed9705ff1bad91a6c2073d00dbfcb7735",
+      "public_bytes": 65511,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.3.gz",
+      "original_git_blob": "66790f92ace9ecea78fe6cdb7ee5849b4dad7a35",
+      "original_sha256": "6974e267113b713946c58c99f1a16f9a519742bc7e02a6a442e98e87de989bc2",
+      "public_sha256": "36cf797050d979b9663d1dd7dc9b962bcf3180b2c3124221e6ad27414accd0f3",
+      "public_bytes": 66442,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.4.gz",
+      "original_git_blob": "1dc954f2de96ffbb7cc0c25177ca5956350ab23c",
+      "original_sha256": "a421bc67a481493b1159e7d205475e401f8d917b76ce729f8f738fd7841be976",
+      "public_sha256": "09b0843fd2608b1998b35205207068718d5990e656e4bce63cea3ab0fc453c63",
+      "public_bytes": 65183,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.5.gz",
+      "original_git_blob": "1386f46925fb5e6383f0068ca50a156b68ccede8",
+      "original_sha256": "a54ed81996651728426607472af2590bb2a248c4ad28d2417588d01d8442b829",
+      "public_sha256": "1e5a3b55a845db302ddf4fdaf375f11ea4a3d8a5116c61b91e2da28fe215944c",
+      "public_bytes": 66324,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.6.gz",
+      "original_git_blob": "2bedcbbd73b5cb78df85b888826485617df68344",
+      "original_sha256": "feb2fdd1586c80b131d1eaae6c48d3bf71b817c88d2d902cb246121f7265fd97",
+      "public_sha256": "f9666367d3f9371deca07420ce1069c93384d44d5f35fd969c952c7653fa5e7c",
+      "public_bytes": 63989,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.7.gz",
+      "original_git_blob": "1b2db808d8cd3a0f2b1396ccc19e208321c8ba84",
+      "original_sha256": "c7fdc451c931aae6c58a32b3ab2498a0b89fc338758f805c2a969aed85cf73c7",
+      "public_sha256": "e2feb3370fb8dba69ddcb78de591edcd57c586200ff37b5ef430b1040faa264e",
+      "public_bytes": 65420,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-cte-c8.latency.1.gz",
+      "original_git_blob": "cf649fdfffa22fa062c5f634e75032dcaee63060",
+      "original_sha256": "972e53fb4b098ce9323e39cf31f668b6e3bae74109e8ceafd4ebe9bf8df93739",
+      "public_sha256": "b73ef89b5e192f2b83930969f0d453af73909761f04cd2bc39220fdd480e915d",
+      "public_bytes": 66669,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c1.latency.1.gz",
+      "original_git_blob": "447db6992691155e5ed2911cb49a52b68dd873b0",
+      "original_sha256": "0dc3e55d3f82bf8d33a8c71060ecedb46398ea93ea6ca12bb0392d14925b43f1",
+      "public_sha256": "35de92d3badf1a5804c9200f112e9fc681cfb316e663c9e63dd295ae26dbdf1b",
+      "public_bytes": 121431,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.1.gz",
+      "original_git_blob": "73155ef95ca0006b1ebfeb8b6076b1dacb1a03bf",
+      "original_sha256": "c7e8aacbcf8e792aadf3e99b41ac07672c9b9b81fb7ed0ddc0fc6d31b5ae4943",
+      "public_sha256": "0b92feb34cc2d054c72ecaa8e29b5846f1a2e91c46e6a08516cc2242bd5c049c",
+      "public_bytes": 88175,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.2.gz",
+      "original_git_blob": "024455d7e193773677de5617b30b5360247866ec",
+      "original_sha256": "f31ea0444a589965b091e57af3ff2043caa62e2b09ce589084469314840a8a27",
+      "public_sha256": "d84a16049fab7141751e9c55071dfbe5c4cb2d77c16ae7c7e1d55e287d11dd88",
+      "public_bytes": 90007,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.3.gz",
+      "original_git_blob": "396eef33c9f4e026c6b0c676d28fd1f2ce1bd967",
+      "original_sha256": "e67f0a57ebbabfaab399d460f72d695ec3ee984ade2b253e6f2fe7c032c5abdb",
+      "public_sha256": "19b756a19b1a3725fba52f749fe09683b78bb8ceecc69f19e87c32f5381cc707",
+      "public_bytes": 89484,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.4.gz",
+      "original_git_blob": "22bb200f8306332b1645299168041996553f0371",
+      "original_sha256": "24368efd515ebca00dc9eb4874ca3eaaa9db03292ef8090174ea0d9cb7530526",
+      "public_sha256": "be02b1f05a3050e1094339deddf4b040db372b8ccab3fc0ac8526aaceb9f6d9c",
+      "public_bytes": 88704,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.5.gz",
+      "original_git_blob": "2aae98e541920defd0405ded7a13988c8f785b7b",
+      "original_sha256": "265cfe85e2924831e48ad860fad15143aa6cc729095d11b741d69f5a998c8f9a",
+      "public_sha256": "f8e9dec232af01858cb986a7dd97291fa3926630af3ac3efbf9f64329d3e120e",
+      "public_bytes": 90104,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.6.gz",
+      "original_git_blob": "0155c531a05a6c18bf0e1a35db052d0b7d01682e",
+      "original_sha256": "323172904e9a0991ecbffa66eb4066c40c1e7966fbf42d4509d31fdd77bf2c74",
+      "public_sha256": "209b0214d2769e890d1721d9b0bf1eadef2c0cec91fc0ab5998103d05cc19bc7",
+      "public_bytes": 89878,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.7.gz",
+      "original_git_blob": "fa06800ba5c8bf5a2063982bf818c8a066edc86f",
+      "original_sha256": "ab885695cc46bfab809fca1035caa71114eda6ab0891f1260b312ba6b6acdf05",
+      "public_sha256": "60ef6b124bfc3d2cbcf82d9513239ad1476693f54d176bc817ced7d01e6bf363",
+      "public_bytes": 90341,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c16.latency.1.gz",
+      "original_git_blob": "4fb20bdc2664e8629d9f17e203a6b61ac62b23b1",
+      "original_sha256": "75cff7c3e9bb6a025b8eb3da4c6b02be5f4b20e7008927c2cc825457d3544660",
+      "public_sha256": "6ed5e00157a16b83435677c1abfe420e3329a8383f10aba4445891ad1a44c02d",
+      "public_bytes": 88787,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.1.gz",
+      "original_git_blob": "e2ddea952ab660b46d8f6a43aa17260ca61c1d1c",
+      "original_sha256": "778c708ad968b11f9ef06ce38b2aa3ae9cc123f9745a0239803d6001ecdfb8e8",
+      "public_sha256": "423cc04ff7c99bc9f5e728b71ee141453433e33a7868b7f25ae240e7e2c14a8f",
+      "public_bytes": 115302,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.2.gz",
+      "original_git_blob": "8161f6fd711b088d6a5d35f78a977ba54e097eaf",
+      "original_sha256": "455ae73c78250fad125225f7cb6d37f00a18938655b6902b92fb9b84d656699f",
+      "public_sha256": "3566402795efea1545f99f987ea44a3ab00da6f0ee65ab21d773c75a76aab704",
+      "public_bytes": 118806,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.3.gz",
+      "original_git_blob": "e9cad352dda64cdc3f54ef09638a7979859dca17",
+      "original_sha256": "6e34e37890d67064341d131796e082ac604f7e24e7719f0c0df47cbbf90a8a5a",
+      "public_sha256": "c8cc63b0b0626adf3a6b66c91994e02cdc7f2c732f1f2dc07860a3d3eb23e697",
+      "public_bytes": 120906,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.4.gz",
+      "original_git_blob": "90f7894ad35c8f6d28bfd7fcf7f4adaaf3c12545",
+      "original_sha256": "649cc8554d6d27412f941bc87b19fa207a6a77e8c9aa53745034a3a06c5b67e2",
+      "public_sha256": "01332101e0f84688e58265ddffddb5998e956c58f39af3725a1ca804a2dfff74",
+      "public_bytes": 119377,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.5.gz",
+      "original_git_blob": "c7f377fe5d5ef8da7ec36cd8c29f98ff1083c832",
+      "original_sha256": "b7bb22bcacc588d1314e22733385c266ca95e4cd31b3bdd59bf59265c8f856a0",
+      "public_sha256": "dc68083331b71c20df02277bbf90a0e0783266177c7855895317ef2db28fe942",
+      "public_bytes": 118857,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.6.gz",
+      "original_git_blob": "7d392dc95dbf1a79091bb80d319ac5a65262ce31",
+      "original_sha256": "4cb84837dcd993484659438e7fd422c58342e0ddca107b3243f815685531fc71",
+      "public_sha256": "a682c936c7d9691d562e54e4545246583eb1eaec9313445e57553ad44bce96b3",
+      "public_bytes": 116892,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.7.gz",
+      "original_git_blob": "3026644e0ed61100f5710646cc49c11ccbad715b",
+      "original_sha256": "475642d8585b9fc6382d4d815bf7bfcdff9b4a10e3abfa1be0e2cd318231bcf0",
+      "public_sha256": "3a0bf8f9d42bfe6c71a48fd260bf541a7b6bc5df6b93162aae0eacc152e61ca2",
+      "public_bytes": 120200,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c32.latency.1.gz",
+      "original_git_blob": "b8dc8c78cda26ad06610c25eb42c8d682099d755",
+      "original_sha256": "40131ec6180bcd7d1ad8121f91ad787878688f534f2f1c6a62478e8bdf42df17",
+      "public_sha256": "b70522c4f392c3a2f0fe7d198cab140a73d6ddb433d4e6b0f9758683ac9b51da",
+      "public_bytes": 116376,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c4.latency.1.1.gz",
+      "original_git_blob": "5d56d857e2a7dc7a84d7ffa574a74b2255910941",
+      "original_sha256": "5fc2acb6bb8efe473f63be021cf3b6760a5163a8379a27abdb162fc1a938dddc",
+      "public_sha256": "bc46f3add55fc048df9931174d40b7794cebed6fad41183e0913f055fd988ace",
+      "public_bytes": 99863,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c4.latency.1.2.gz",
+      "original_git_blob": "32d605e18439bc094bd45418d53c261e52699c08",
+      "original_sha256": "efbbbc69112f8b34de4397178d16b338495e2d314cb7c0a53e7bdd182c07cf3d",
+      "public_sha256": "5cad56b8b68c51564d56ddeb8ea04a6deb0c8ac8b4a60d4885eb71f1d135527f",
+      "public_bytes": 100034,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c4.latency.1.3.gz",
+      "original_git_blob": "a0c06bbb41a2252edc77855a07c26bffb86ece53",
+      "original_sha256": "1a525ff5ec241a1fb156f9a77565b8ad4b094491dda52dd8f4acb36bb99ce4a5",
+      "public_sha256": "eb15934b19c5a2f9192ced2d4bdb4cd35f14492870330756b810cdddb1a894a4",
+      "public_bytes": 100282,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c4.latency.1.gz",
+      "original_git_blob": "5a99c1d784c8d53739139982ee0184986a99edca",
+      "original_sha256": "0e10dca9e6ba53fa73eadce110e04c89fc8d1b5bd326ea7df766180208a683dd",
+      "public_sha256": "0e67be0b00f5cd16c6797b201413bbb25aef8bbdaf657e34455d6d0847ff5337",
+      "public_bytes": 101046,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.1.gz",
+      "original_git_blob": "31482430cad1400e84cb67d1c6a6102d1a18c07a",
+      "original_sha256": "cc0145ec638f36bc46a454a0570f079fc66651af00a265f6d73b589887e0d4e9",
+      "public_sha256": "979b4dd46dd3a72690324024807a1a56d7ef9862cdc7bd530c74f8215d9a4c10",
+      "public_bytes": 134481,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.2.gz",
+      "original_git_blob": "8facda561d54d834de1e6f7557b937b0cd54c631",
+      "original_sha256": "33286f0c07a2635a5f74a771b62918307351591e2240c2c7e6701f321bbf68a7",
+      "public_sha256": "a350187249d840f509c0bbc0fcf0100f7fb0d2952549064249e3a74717ecb829",
+      "public_bytes": 138402,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.3.gz",
+      "original_git_blob": "7a23b0417fe85c6aae3bf0f67872a70fbb59de67",
+      "original_sha256": "0bf64f412d66dcdc14b5de577a895322d8e64ea7a2a8018200aa589593838a52",
+      "public_sha256": "aebbdc3fa51853e8775b828e1ece98e84ca4421a468e07c8c5fa2fcec4503994",
+      "public_bytes": 136681,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.4.gz",
+      "original_git_blob": "47cab99a97f8ec5a4c68b68cafc19ad0f3a55b98",
+      "original_sha256": "1a5e4cfc5b41b00bc8001731503eb7889e2bcde102730e573b936725f997bcd0",
+      "public_sha256": "ff55cc49a1089f31090e8a1f1e82619565f49b648210f9139391fbc5d8c1ea25",
+      "public_bytes": 135703,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.5.gz",
+      "original_git_blob": "ff327765973f4055ad95de4dc9413515157a4225",
+      "original_sha256": "7956ae0ec4937390190257249a16f847a61e3c25422c5e2b2e96150864f0abc2",
+      "public_sha256": "3bfab62f0c8633d34b6f6a91f78f518488974059e6be7ab17a4d72af6d6f6e49",
+      "public_bytes": 133942,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.6.gz",
+      "original_git_blob": "c3f7eefd4f102270812883fff88e6ff91020cac9",
+      "original_sha256": "08036b1a49e43bf645b967cf59ee6610947992d878b7e688d20fe156a22f91d9",
+      "public_sha256": "10a32212a9ab64ec40cc5bd70d3af4b44171394b92ab986d113d08e4268072db",
+      "public_bytes": 131904,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.7.gz",
+      "original_git_blob": "75d4b5f621c0597d2b46ae61b38335966006d659",
+      "original_sha256": "232dd549ac6c53a46aef44295296698db23bffd61add1398827c8b6223f1c5f6",
+      "public_sha256": "2ccac57a9e1c713db64c703456edee05fcabe8e7c07a9b4ec7b4ca0b5c681500",
+      "public_bytes": 136770,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c64.latency.1.gz",
+      "original_git_blob": "38481b327f93d6adc5525f9c6fcbf2fc6180a3f0",
+      "original_sha256": "045cbbd5daf6ddb81a82028585337d1192f7de3e879ca5858d37ea15c9c99fdc",
+      "public_sha256": "74070d04447c7449d9fa62541f42a25ad23d58b9def1d398cb523296e0cce77b",
+      "public_bytes": 133831,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.1.gz",
+      "original_git_blob": "10b06893be29a91af12f974bfe4c8770f9663ab6",
+      "original_sha256": "0e95a4b22617e90c87fa3b53b0adcb9618c999e4db47f16ac6653fe1dd0f04ac",
+      "public_sha256": "86c4b631ba1bb1f3b768b9e95c360f58075a6e4ab782ee51d65e8bd7a90e00ec",
+      "public_bytes": 76082,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.2.gz",
+      "original_git_blob": "6ac84f9f7f43579bb8dda5b58c7a1af0687b409a",
+      "original_sha256": "73b84b976bed6c876629780f40520ba66befab247f0989f4cd40d00688e006fd",
+      "public_sha256": "c41ff5fce0d3f9c54e8b096c5f1e499bfdd8ad01839a4d365232907e188ba5bc",
+      "public_bytes": 76946,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.3.gz",
+      "original_git_blob": "36e4c509b9bdfba4d19250e46246a9282c2295ee",
+      "original_sha256": "22f265ab5b009f3e7dfc5845b565c908dc44b3b9f600ad312f241775e37a3363",
+      "public_sha256": "c74808e7f788dabc7ce7e5be69dcf642e432eb09cb4d419bf6d24a02d8dd046c",
+      "public_bytes": 76181,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.4.gz",
+      "original_git_blob": "a524c8b1df1b4930259397500e93e43c612fd128",
+      "original_sha256": "52ecc22457ce18260522bfce6a93398db8286e8ee16fac23eb36de00ccb3a770",
+      "public_sha256": "0191bc5e4346e374fd42527ef8120eb54c39177b7ffcea8d4a7563a50074f3bf",
+      "public_bytes": 75574,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.5.gz",
+      "original_git_blob": "8c17aed442f83c918c3cec9beb237e71ab26606f",
+      "original_sha256": "e63630f62fc3681a5e3706de729bd8e71d093b6f8e1845489d70ba3ad300c86e",
+      "public_sha256": "c2cfd705a603c4f05a83b8b35f619d3a47668ad8dfc5514d8dcaf20c08904edb",
+      "public_bytes": 76266,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.6.gz",
+      "original_git_blob": "4e9ed9057686746db6fc94d676f3ae931f9b0e42",
+      "original_sha256": "0ce07c7f3f4fe586c137e039cf6ed822bd47f90d53c53b032f7af998270f0afa",
+      "public_sha256": "645da4f5727b4dd4ac6dfdce61e2b094575b61d8f412129938ab078f5404b47b",
+      "public_bytes": 75573,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.7.gz",
+      "original_git_blob": "b75715b9f85b390eaf8af81bd022b12868126130",
+      "original_sha256": "fc218d546d8f88fbe42fef77ee77c8637e37a4c553ce24403f645c61e4f585d5",
+      "public_sha256": "de3542769ee81fcbb6810d53f48eb99e36ddb906197b0c2e308c3872fc0cfeb7",
+      "public_bytes": 75274,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/direct_replica-select-c8.latency.1.gz",
+      "original_git_blob": "8d95e2414776ba0d294b719374fb60694275d9d0",
+      "original_sha256": "abd4907167333626f5bf3a6411880d91667d866df120af598f0e7d3b0ee22daa",
+      "public_sha256": "510b5f48193e78947148666238e8757ffac4b9046c848ab5c8ae0220febc53f4",
+      "public_bytes": 77104,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c1.latency.1.gz",
+      "original_git_blob": "2c67202b6b135f85abf2b64683d63f55314d461f",
+      "original_sha256": "b34e06a163e7e0ea353b1fcb40cc09c1364c504d02c0b230df55fe33f736eea9",
+      "public_sha256": "fe9047bd7fc116de1280eea4343a151ce4f79acc36ec9fa64776ccdd2458664e",
+      "public_bytes": 34621,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.1.gz",
+      "original_git_blob": "991e408b35e5c11aba667471f229eea214dd92c2",
+      "original_sha256": "8316baf7f51e521b7eb4b18a3a3f5658dd0959be08fab8f48893a2f83446619d",
+      "public_sha256": "80893bf6d391619b166beeefe449c5e5e43de30784de575b2f41b7c4f79e48c2",
+      "public_bytes": 21895,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.2.gz",
+      "original_git_blob": "619d5c53ecbea61f3cf47389ff5d8522c30d158c",
+      "original_sha256": "50478e9513b354d922cdfb0db74cc65f23f63b02fdb031264acf2afda34d2990",
+      "public_sha256": "e3db1540525feb662a427dbfdeb215afb3098187136318bbb597efe1d255f887",
+      "public_bytes": 22165,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.3.gz",
+      "original_git_blob": "74ba5b74c7401681c0f01fb9867c509081ca228a",
+      "original_sha256": "67b6cd3fea2636a8601b13c946c15bb82eef3050cc41639049677643e32adad8",
+      "public_sha256": "f6570a6474237b999cc696c661b122611b727b1c7db6e4a06168914b89ba8979",
+      "public_bytes": 22693,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.4.gz",
+      "original_git_blob": "df0235db2cad014a5e2c280f1da8c886c8c16d9c",
+      "original_sha256": "3d40319c9e233636ec5c478beb5c5833c463596dc36a35d6145ebfe28beec45e",
+      "public_sha256": "7daea0cd3c8f1d648e705dabfb71d5f45919bb999c171da8222f37fc10dbe3bc",
+      "public_bytes": 21728,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.5.gz",
+      "original_git_blob": "395a647e15e31c5cdf693e45fd3a96a2083635fe",
+      "original_sha256": "3b0485ff81ac53f71a0d214a7d75f8725a42fbd8fe2e975eea5fb81f8fd4cc1e",
+      "public_sha256": "5564484cca19533f264cdbd8b7152b37b976c5a81ff0c6f31972c59e0ac5e5a1",
+      "public_bytes": 22751,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.6.gz",
+      "original_git_blob": "55857795f69da8c56cf72c8b7f6d2ee85e1db6cc",
+      "original_sha256": "41b29af07e4c6cdfd98ee65720a2313ec66e359da4873889a5cadbb3a565bfd0",
+      "public_sha256": "ab1786f09d4680d4a97f5608db7251812256b91eced4b0d9e6a8cf861cf4e29a",
+      "public_bytes": 23076,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.7.gz",
+      "original_git_blob": "5a39885f48b3e0df61c88fada16e2f7d79b4b38d",
+      "original_sha256": "3c88f8370af0acae8218e59bde711006e5b88cb5d2e51605fe6515366efb5390",
+      "public_sha256": "dace34ed9f62a08248b4fb4d97770a910d35e3905b64878c01fc3084d35f4ebf",
+      "public_bytes": 22904,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c16.latency.1.gz",
+      "original_git_blob": "b457b8e30630a36b156e436c0e930ff7476f63f1",
+      "original_sha256": "2428913b68a2a2ecb0478f594adb4b53e7c4f8dd6387cfed11e09ce344beeeec",
+      "public_sha256": "6bcb142cf1a835d04b70ac24a92da61dd9a2e3e96f7bb19fdc803a58ee2f66b1",
+      "public_bytes": 21933,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.1.gz",
+      "original_git_blob": "ed512bdc212d8b6d8eea81b526facf056590a9a2",
+      "original_sha256": "4bca59ac42762d741309e13524dd50a95b6026cd461e059fa80e52183018b9fa",
+      "public_sha256": "ca6e11de34734f2b8d0a9c058884b4b5d1b26bdf15143631d08b6f493c8795d6",
+      "public_bytes": 24594,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.2.gz",
+      "original_git_blob": "f46ebe96f618b46303dbe9b349d6dce04be9572b",
+      "original_sha256": "0ef5c1f550e23e0290a2fd695071351a5c85486aa0dd75505c4dbf5e0a9a8ff8",
+      "public_sha256": "e56788b836648cbde53d977bac382138e8e1e652f6dc5a5c7e760789aa9ad34c",
+      "public_bytes": 25174,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.3.gz",
+      "original_git_blob": "b655f2a4576085ba360c8c5148209f2b2a733e01",
+      "original_sha256": "8f638a3ac7385f338618e785adac4efbdbfa825d60587a23e03da8138172e1c5",
+      "public_sha256": "2bd707405463795e77d9b022a9d4f22e592a03dd1a2fb326cd60855ad3a7162b",
+      "public_bytes": 24994,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.4.gz",
+      "original_git_blob": "56c8cb6dfb9192667c8feb1bf5cd0c58926f5ea2",
+      "original_sha256": "c906fe1a175e6a7071508d227300d960fa2f26920ba6543777a50259b24c5bb6",
+      "public_sha256": "024dbbf3910a7b678cd79a92a63d20b77c54a7918cbd42fa52432ce43342f73d",
+      "public_bytes": 24982,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.5.gz",
+      "original_git_blob": "a30733726a788bca4d85dc8464cb0863db1181ba",
+      "original_sha256": "b6753d0621eb65342fbc0abb7cd9e2f5e675c69877565226ca74baa36b1a2e4f",
+      "public_sha256": "ff9526201c7aeafe4c5a75fddfbdba7dca25766efbe0c9a883a9f6ac1bf6f022",
+      "public_bytes": 25611,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.6.gz",
+      "original_git_blob": "5ffb2ddd3924620dbc81aacced428b820b4646c6",
+      "original_sha256": "5aeddbeebfa5a68e5e179948634cf58f2dfdd4368c11b136b582160ac17e99e4",
+      "public_sha256": "2d10d6ab362590315bcd28a2f7b7f7e887d731bdb1ee0d3d15ec9fc6c6d0f4f1",
+      "public_bytes": 25596,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.7.gz",
+      "original_git_blob": "d7fefb13975e157daea977cd307398b9319f7bfb",
+      "original_sha256": "8945085c0dda60795a1aacc860cf61a02471ad299f86a3de88862d26f646487a",
+      "public_sha256": "5f81a4c20faf9cf22e255d96b904fe04fc46b887bab57386b629a9f0acef0c5f",
+      "public_bytes": 25001,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c32.latency.1.gz",
+      "original_git_blob": "2c775c997de448952567b7835b4535a0eed147f0",
+      "original_sha256": "b243a6965a9b313f86bfdff75fba8dd695fc972ff3be1293858d9646e9e9ca2c",
+      "public_sha256": "c98d5ffef5b92fa1c730cee386462fd0c051213919d049082ce08da1eb6fa687",
+      "public_bytes": 24460,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c4.latency.1.1.gz",
+      "original_git_blob": "d6647675f1835dd1b88fe6cecca74a97f9257b9f",
+      "original_sha256": "b1b921d4cd1c07fbc8eb8c4662f6712c7850a792983e51c40d035341dd956bfc",
+      "public_sha256": "661b2d3f02d3111ff2a7b31fcd31d9a501b9255e918c89fd80208b36484af00f",
+      "public_bytes": 24745,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c4.latency.1.2.gz",
+      "original_git_blob": "a1c6e35bba97f5de2606d878ae3a50aa8aed9bea",
+      "original_sha256": "55ef564b72beab1c7fab4006a46f1e538c57958841bdfbf485d11c2e90f2e662",
+      "public_sha256": "4494b985484cf4ae30c5436344fe901bb885008edf317cf9b2355f151a83effd",
+      "public_bytes": 26067,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c4.latency.1.3.gz",
+      "original_git_blob": "175e5696efbaafcd1a93aaa8139803f23f43b14c",
+      "original_sha256": "ffd4c709e7eaf0c4e3420dd2617fcda6fe23b53ee4b36881d9fbc42449fd0d81",
+      "public_sha256": "991aa8fa7334d63b5ae174595f5287baeaaef617b4ab1975b2031d2408021757",
+      "public_bytes": 26349,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c4.latency.1.gz",
+      "original_git_blob": "e0cc76117e9f4f5fd5f2ec62f60d517c9ce239d3",
+      "original_sha256": "f77f58167123fddfa617c54a6a948a4cc2cbb9cb17aec3994f40eb544657d2b8",
+      "public_sha256": "6f1011ab54995059fea00d686b16b34bb2f1b969b2ee675344d190466c6808cd",
+      "public_bytes": 25861,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.1.gz",
+      "original_git_blob": "2e50054c1537f3579c09cb95e59866a68c0c4e31",
+      "original_sha256": "95753703d81364ea1bd7e9e0305d9b892451b68a499e550d8b48beb31971045f",
+      "public_sha256": "bfe2503f870ee73e68f780a0cfec3e02632280840000b6c2e5e3182ffc76580a",
+      "public_bytes": 28459,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.2.gz",
+      "original_git_blob": "a6a22203b909a6cebbb12730c52df7640b2fa1fd",
+      "original_sha256": "d49ced82ad29c7f7492d01792916194c7069b66a31d799ea7beac2d370ea591c",
+      "public_sha256": "8bc03fbe1b112272a8530cc42a7be07217d31eecd24fe9f62e27e5ab90a5836a",
+      "public_bytes": 29306,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.3.gz",
+      "original_git_blob": "89611d2ed32c2f63ef079fd98400f53634b6135c",
+      "original_sha256": "86591d027d63e3cacb614b133d728dbb32fb96531d121e73db3171d05931543d",
+      "public_sha256": "a103179fd1834e962a462e964268079702bc3443c703a051ea37eb82beafa037",
+      "public_bytes": 27716,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.4.gz",
+      "original_git_blob": "735d39b1d7a835aaa37132700804b978518062e9",
+      "original_sha256": "90c0f0021da203c9e5143988801cf5cc22b11dd682f31e03b12b2c00e7cc3fba",
+      "public_sha256": "ca3cc4b0b23967852af246d1a03e861510271f5d94cce69009359a7903fd39db",
+      "public_bytes": 28564,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.5.gz",
+      "original_git_blob": "c0b2c176b4912950793059573eb3afd495db4032",
+      "original_sha256": "d23f24cf416374453db5b2e06c36dca4e5760e012145aa4b2ac26bd6d800cb8e",
+      "public_sha256": "d73b4b4dd5a477d05d6027c774882ef3e6dcb962015cdbbdda119372fb2bbdfe",
+      "public_bytes": 29082,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.6.gz",
+      "original_git_blob": "6a29e154f1d2c708637df1ced34716fb471510f0",
+      "original_sha256": "f2c72a97f395f3180402997a0204db4e03d9526caf03bceeb68b9884ca79b63f",
+      "public_sha256": "82169c010e3547df5acaa98a9e45843fe5ec89019763b10f10687b849b48f086",
+      "public_bytes": 29345,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.7.gz",
+      "original_git_blob": "c6281d2a6b52832c847135428520b617e8b6b36f",
+      "original_sha256": "81a1a916f696638d0156bc13db1df6b5020ca9d28d79e6cfcf87193f79abe476",
+      "public_sha256": "c2a5e6b7449cba995eb27e117d70c324e8e12e7344295df6514d7120e1cc3d54",
+      "public_bytes": 28406,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c64.latency.1.gz",
+      "original_git_blob": "2986de86fbe8b1be3663e9805c106727fdc70f94",
+      "original_sha256": "4eaad67984cc53003f3edc4c409bcc9e0dceb4f0c66ca641aae34ec2b7476dd1",
+      "public_sha256": "36fe22896a8d8563d685478ee71b23cb0ea14fca02aeecdd625e80cfc8abc93c",
+      "public_bytes": 28495,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.1.gz",
+      "original_git_blob": "7b28aaf5fb3a5edf361c034a2c3f8f014c1888b2",
+      "original_sha256": "f2ee34ef34dd67b0c0c834dc4dd860ff09d03086c2bbd908518fa100446dd5ee",
+      "public_sha256": "197ea754da0b3c56ee01d8a58df749d7e11e5fd427229f2ced172894cdd3c749",
+      "public_bytes": 19136,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.2.gz",
+      "original_git_blob": "13d0ae3ceae350a35fa3587b3cd90b431299785e",
+      "original_sha256": "51442a5f0ea2d1c3d9ec0760393fefb6de949ff09d6e3d492cbf1e56de5e8473",
+      "public_sha256": "6d056b847a813b965c0a8d4913ff58ec97e05ec98c8e8db826e89b0f7a444ed8",
+      "public_bytes": 19254,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.3.gz",
+      "original_git_blob": "06a52d473f5d024453cbf0c5e8aee4ecf79bbb5c",
+      "original_sha256": "3cb67d3e8ded8560df7246678dd34e91951aac44e5d7b42456cadfa92f71166c",
+      "public_sha256": "0c149883f70ad8662c2aed51e5ebd1f31c407c9ef6d5b52f306c065d91c61bff",
+      "public_bytes": 18885,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.4.gz",
+      "original_git_blob": "e9eadb3c606eeb56e4bf171b2b1ca7911bdbc004",
+      "original_sha256": "f872b9243f8f90bcb6c1348e829cf3d6ef03773468813373ca678a30ae19f093",
+      "public_sha256": "4e4550473488853ec89eddd267e7fccc0c0d12db142c2a6517b0457ea4034e03",
+      "public_bytes": 19084,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.5.gz",
+      "original_git_blob": "8f749c6e9f7389e48d5b53cbe7ac89fb8a6b246d",
+      "original_sha256": "ef2a8e532057779a99aa8c292746d6578c5614b834bab915243c59e07c96ffb2",
+      "public_sha256": "80f9155f527f5b9a2918eb9b879f0e0af6a2eddf8e429ee9c5f514954c7bbcfc",
+      "public_bytes": 19266,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.6.gz",
+      "original_git_blob": "531c3ef515a536ddf9bec5908ccd0ce18219d257",
+      "original_sha256": "1aae54c818c6ffaacd6b6fff0fd1bf487327755d1c06d96d4af364c1a85f8964",
+      "public_sha256": "65dbc3b85a9589c01bc5e17f1092c715910e9fd81a8aed343cfbe508483fdbc7",
+      "public_bytes": 18995,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.7.gz",
+      "original_git_blob": "3ab9839f8f0ee17e0214f4c0f0c50219eb0d3d5e",
+      "original_sha256": "cde8f89328443487a80343e152ae28d1130cdee3b59c4901b1f0680d62e2dee5",
+      "public_sha256": "df373edf0c6d71bf5d2130d63e544d89f25ca0c0513605932d9610ba77ad256f",
+      "public_bytes": 18614,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-cte-c8.latency.1.gz",
+      "original_git_blob": "eca49af003cba37eb3bc2f33383547f8e1ca2e9a",
+      "original_sha256": "3b1502bd55e3b562bba82a15a0327ecaac7af77eadcbbc5a0f1e5e4d5b027374",
+      "public_sha256": "beb447f6c7b9f7212368f6163b9646334e1fa241f01d1152ed8f5ac1c2a03551",
+      "public_bytes": 19481,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c1.latency.1.gz",
+      "original_git_blob": "f54b1342231c069a79733b9919db6254834d1775",
+      "original_sha256": "157b1dde966c0c9ef40d1249d4da99d3e3f72399ad36e7fe7c5cb90ef6d294e8",
+      "public_sha256": "821aa3082add7f1da86d243f8d881a1f1034b5a22c3a25dee70c5553a6f9e1f7",
+      "public_bytes": 44151,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.1.gz",
+      "original_git_blob": "5916f3b99ebb4b4f05bbc565c3197e47992d44d7",
+      "original_sha256": "99c3e8e0ccd90fcd45689d3b792c14e196edff59fbce649934fad9198b958409",
+      "public_sha256": "c9c03d3499f87660f0cf513c48d68792c0f0c1801529f8caac88dbec35535e1e",
+      "public_bytes": 27121,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.2.gz",
+      "original_git_blob": "a40e2b1c4e485bdf7873e239e5c2df8cd790180d",
+      "original_sha256": "291974050b87d588287c698ab625a6b0efc12c1bf5f028c2f98182a074ce515b",
+      "public_sha256": "06ccf1e2b5a7afe1cfea8109a4cb379a50e3ca2f67e481e72112c7274f96ff0e",
+      "public_bytes": 27603,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.3.gz",
+      "original_git_blob": "2d7a8a2d08a016b657d93588cdfbb699a8d2cce9",
+      "original_sha256": "c4e7ee2ea8b3125ba4587f3fad67d5f3e27220da4c3f40d6758cf547c82f6110",
+      "public_sha256": "1a33739a5b54bd773494c348fdac73d9b3b6b8573f8bf63dcc2eb7920adb3b0a",
+      "public_bytes": 27386,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.4.gz",
+      "original_git_blob": "ab687319a34be18401c7c9c4385970263306799b",
+      "original_sha256": "dcd9fa08a8ed3fc8f18794354f933aee680bf20064190ce33f60f8ec9b66f311",
+      "public_sha256": "046e2415861551ad1f1190301a1f4b8bdc73fcb1de0e588f4588e2229800c37f",
+      "public_bytes": 27949,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.5.gz",
+      "original_git_blob": "35eb1f07c5af450e884428ab53653d9593967392",
+      "original_sha256": "08bcf7c78306b917915adeb605cc5001a6e1e9bb46120d62a614017d44634310",
+      "public_sha256": "4b826016f527d48bb08a25309b3187bb9343f0355d202bc4efbb0ee3fec2240c",
+      "public_bytes": 27730,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.6.gz",
+      "original_git_blob": "009a158354532a39e1389d2d050aa36f82d74c2d",
+      "original_sha256": "9f796555e37cd8fd0a72883660cf421aa2bce9105ad56bc12df18dd41700a1be",
+      "public_sha256": "1f213eb16342f0999dc2aaee03b6a3dcacd3a2bf6e449c1d039ea40fdbdd60f0",
+      "public_bytes": 28319,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.7.gz",
+      "original_git_blob": "f8cc22602836256b7de686d67952c715b62af0aa",
+      "original_sha256": "29c7b193960419d3609c122ea11a1611c813a40fc8bcebbcf7ea3f560b87f804",
+      "public_sha256": "568c41795e32e2c0efbeba3004166a6a52cbae161977356bebab1ff50baf0e46",
+      "public_bytes": 28089,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c16.latency.1.gz",
+      "original_git_blob": "ebca69e26e13522aa018b07987637d9a18ff3663",
+      "original_sha256": "b6d3d5564d18027092ec4b2d04deb81628e3f2b65205883547c15f5eecd55925",
+      "public_sha256": "d4c4366dfddaeb68eec93b13cd660bd3bc2b933cd84dd7b2a007822653c43afb",
+      "public_bytes": 26871,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.1.gz",
+      "original_git_blob": "094e9135550e97a956fd70ab8406688ba3107ca8",
+      "original_sha256": "f7b1accac273852d559a4cb03d9f60c14326caa2e610047418c8534a7d56d5fc",
+      "public_sha256": "0c34914911c2cc2eee8d914397093bbe62ceff7d0fb085bc7a727d9b8c4b03b0",
+      "public_bytes": 33370,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.2.gz",
+      "original_git_blob": "fe95de5afa4d3856c325f962c3383342b6b19006",
+      "original_sha256": "2088d6bb840279f4d73d37f7f0cd086ff5db2ca0982cf84d29e1c4ddcf64f5a2",
+      "public_sha256": "a80ed7d60a96ee909481681113db70259e7f2c9b318f3e1fb558ec4c51a20677",
+      "public_bytes": 32881,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.3.gz",
+      "original_git_blob": "941505d6e20b71abb4b49ce255a3c9f10d644fbe",
+      "original_sha256": "b0fb4d9316065d97238476bde65337241254207b01aadb3204d7681a99be108a",
+      "public_sha256": "ea097dc61e7b8c5c94d9dce88660674fdcbc66bb9525366f4752fbec72ceb3c9",
+      "public_bytes": 33231,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.4.gz",
+      "original_git_blob": "05ed1e7d53cc6fb2acd959ff0b615003a7ac60d9",
+      "original_sha256": "e499364617fbe47a58379118b830d05936cd54d8f13f57b802ae8680ec80195d",
+      "public_sha256": "f9ca14d35d98539dc6f8540f841e91ff0b81c2e220ce029dd8131cf357bebe3c",
+      "public_bytes": 32868,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.5.gz",
+      "original_git_blob": "e91a8212070bf0b484d4df115dffb69cefb765db",
+      "original_sha256": "5f5c02a176f311fee0a838f3c81f0dcd2ab9fbe0b078ff8b5842a9b9c5ec978f",
+      "public_sha256": "7d3520ac715905eb4b9837f35ff5cfd16842691c927beb0fb64bc0f8a7d14b16",
+      "public_bytes": 34151,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.6.gz",
+      "original_git_blob": "66abbd7225b721d50ef8a34e1427b236ea2a4d8b",
+      "original_sha256": "f14b1e46ae764181ad0a02d36c9c12289adbd02cce1c9f1f2334e549cc8a721c",
+      "public_sha256": "a9b23ec1dba46e88a7486fe7205a0a06e504671fec146a6ea674b673c6b88ce8",
+      "public_bytes": 32944,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.7.gz",
+      "original_git_blob": "fba28adacc18f1ff673ca53652917b8d869b55dc",
+      "original_sha256": "a57cb57fdfe205e6f73d9d4eba14665e42afdfc199c7fbf9d234a8da370e19fc",
+      "public_sha256": "498660c9cff9cedace63605e5e5a5f8cbfc9e3f3ab454d9b1861054335a9d26e",
+      "public_bytes": 32796,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c32.latency.1.gz",
+      "original_git_blob": "18b2f7c9fa21979cd54c9e1db5f278f03e60a375",
+      "original_sha256": "a64c7a9796185ee97326a78849f31cb1c963dd707685eadd6eaf1d4a9c4caa00",
+      "public_sha256": "6eedbe60802e52fd8ec74ace287a97d7ea7924b48c672933c54cfdf85f377732",
+      "public_bytes": 31862,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c4.latency.1.1.gz",
+      "original_git_blob": "9b68388a2fa73b9b007cdfe14464a83c10ac03ce",
+      "original_sha256": "6963d5c56c5c3c7f0fce915aec8ea41e2514e56fd018fb641df8e0ecfcbbf970",
+      "public_sha256": "de57206e04a23f06e6b338fb7e03d0b8cee4fec5f1f2cdb326243a50dc1ddb8d",
+      "public_bytes": 32121,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c4.latency.1.2.gz",
+      "original_git_blob": "09f1fb25a205d2ab9b9b059848165184b8c5a0f7",
+      "original_sha256": "e57b306ef9dc046bb2b45956a5d3397d70328c47fa54a22d0496c5820ef95e26",
+      "public_sha256": "82c12e6d41f7af1d4498043a8a824146d59c31372efd7f09205aee6d9be99e7a",
+      "public_bytes": 31557,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c4.latency.1.3.gz",
+      "original_git_blob": "ed01d59297e42b06b95bb47d84977ac1e9ec369c",
+      "original_sha256": "eedbb5791f7dba72febc88323c994269ce1eeba6d0adc0496c8b09e02b4e7b8f",
+      "public_sha256": "2a578bcc85a02e6c2b58e49750e55f67595be0f30dab458463e610a51d33b1a6",
+      "public_bytes": 31419,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c4.latency.1.gz",
+      "original_git_blob": "807d56c8ef615ab1c37fcf815accd636ef86dc61",
+      "original_sha256": "8af7a4a6e258737beacbe5a630f28fb425e9b8328a4cf65bb2ff5b55d075d615",
+      "public_sha256": "c8e8bd8b066ef57f620669ebfa489d19f9d19ba06bc20f9328fd3fcd6b5e3da7",
+      "public_bytes": 32591,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.1.gz",
+      "original_git_blob": "18d3c11a64f94a6601df892b4e29e36dccc10d2f",
+      "original_sha256": "ccd952fcfafc6e84cb63ae7a66e36d859b32f134fdc2a8fdd4267e1898a5f698",
+      "public_sha256": "899e57343513d0f61198104fb0c421f0617a854474a3770d9da5b512abf0e975",
+      "public_bytes": 35781,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.2.gz",
+      "original_git_blob": "087e3ae0b83d0a9e5707a056ada72936c7e2b7a0",
+      "original_sha256": "e1a24548c2e5f72805773bea97e5d97411b739c5d12bf63e88e2bfec4349aa82",
+      "public_sha256": "d5a88f1359b1e678b60a1e4280649ff1d74c7e38044c4437060108490d86f0e6",
+      "public_bytes": 35661,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.3.gz",
+      "original_git_blob": "db1efa68cb826232c7d5802230ffaeb48ee3bd43",
+      "original_sha256": "b282b9e4ff7a2f777f568bd3ead589a66c5572f133a19cfe7b425fa7d0c5f260",
+      "public_sha256": "ebe3772424d21cc32a3273134f9196b498c1eb91b61216f963f5cc51a80adc62",
+      "public_bytes": 35930,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.4.gz",
+      "original_git_blob": "9658461111fc0fce1ab2216790749dd80ae766ca",
+      "original_sha256": "a89a8208570482e34eecf1183c0a2747349c83021bb368cc7800390b843205cf",
+      "public_sha256": "d07ddcfa817fda7356c89338ec6f67cf73be02eb781901debba8430feb9fe0eb",
+      "public_bytes": 34893,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.5.gz",
+      "original_git_blob": "8232d420629c62429d1235de4ef385329e152f0d",
+      "original_sha256": "bc33c395e95ba4ff474a8b32d7e7ccb7629175bb48bde29949c8e512dc967c44",
+      "public_sha256": "30db1913119540e97ceaafcbdfa9edf863652974899c0b380ca0a70ee2fe055c",
+      "public_bytes": 35969,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.6.gz",
+      "original_git_blob": "af2848aca3b3ed1f174328999fac863ce6b19bf3",
+      "original_sha256": "589dcc6ef67758d226812e14e28060c924a626d1d9e8b444dffca5c9908698f2",
+      "public_sha256": "98f580cbfec065d5599e2a4ee2770229597897cded60d4aa7f4bcb54184e4a67",
+      "public_bytes": 35901,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.7.gz",
+      "original_git_blob": "e0ded1caf8ff6c6917882c92c49142e8a65711ed",
+      "original_sha256": "ac9d5349b57a0b80c7d1aa85fe0d51162588c6edb73d66b21b418c5417dc6040",
+      "public_sha256": "9e228e88bbfbb6fd46492af8dd87b27cc817f664585dcbb9dd5490dc4de004fd",
+      "public_bytes": 36176,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c64.latency.1.gz",
+      "original_git_blob": "c4cc90842c8cd8dc676aabcb6746892a9756f998",
+      "original_sha256": "f4995b0370c7cb01de19822ccafe628563b22f8136143f3f87f9400442274fc6",
+      "public_sha256": "9a5116e32690d8f23ca1d3c8ab2b6c59cbb4364a1b4a70af2ab6374e015bab54",
+      "public_bytes": 34845,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.1.gz",
+      "original_git_blob": "93fdb92ecb3ab7633083fc9dd61f29f2e89a3387",
+      "original_sha256": "d1702352153f82dae529f7205b974a385cde339c0d1128e6ffa9a8db0535193a",
+      "public_sha256": "6333afce68a4b806b3a546f3b5f70400e3be1d57a602bf0751795a778987f9cc",
+      "public_bytes": 24216,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.2.gz",
+      "original_git_blob": "fbdb5772a7a923e104f7e57c8b92c22db0d6b142",
+      "original_sha256": "55f9ad84f381de2d16f633037dceebc3bac6521f1a37386ec0d8842b40641e4e",
+      "public_sha256": "5fa3c04e840e7b4d97d14691aa52819e2ed9f5a399db794025f3af7baa773241",
+      "public_bytes": 24045,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.3.gz",
+      "original_git_blob": "5c02d7743a873680b4981ef4222195a7a4f2030d",
+      "original_sha256": "5b917ddf62aec5abcf6f7620565b061ff222cb5ecb91effd369bcf3b14c020a8",
+      "public_sha256": "eb95114036a990b9099f845323472f52b0b3eb518f6d2d73a708dfcb7b83bf6b",
+      "public_bytes": 23689,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.4.gz",
+      "original_git_blob": "d447c92d1030a0eb831912bc790f365d6b8587e5",
+      "original_sha256": "7a842bf5685180c91fcd7873d48df17e39a121b5478d17d9481f99066bac902c",
+      "public_sha256": "e360c7caa3dadc1a4e61bb806dad37d0c6c15e6876ff1c6feae9055482d55802",
+      "public_bytes": 23260,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.5.gz",
+      "original_git_blob": "bc901281678b61f565c500663962e7e607ea918a",
+      "original_sha256": "fcfc5f27e3654fad4e68634c54769763ecc70cec940603e020048f8527898889",
+      "public_sha256": "a944699dfa5cc5201cb22669d235adacc1e654da817c7a06d0588020d04c7ba3",
+      "public_bytes": 23619,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.6.gz",
+      "original_git_blob": "408dca69433088971198175d2638af178d0b198a",
+      "original_sha256": "962898f5012e38ac801a9336826c1d834798d4f1883b9ed8956ab897e4ed5d5b",
+      "public_sha256": "2b467fcfc435cbe1671824236b70a3d1589bd8ad47523641fb04d1c1de77b925",
+      "public_bytes": 23391,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.7.gz",
+      "original_git_blob": "9a2c585a66cb565d8493cec1c7084b3cbe8d3980",
+      "original_sha256": "611f4a4bedd425382188731b52cf55cf986cc1d958ea4d0f324e97accbfc7249",
+      "public_sha256": "fd1d909b58e43a8c8189d8a8f9c434798d0c3a710ba4c3ffda9689d58ea05240",
+      "public_bytes": 23072,
+      "asset": null
+    },
+    {
+      "path": "benchmarks/runs/measured-20261106/router-select-c8.latency.1.gz",
+      "original_git_blob": "d5f758c82afb2c287b36061271fe2bc301aa5eb7",
+      "original_sha256": "45ea552eea801a8bd4c16402ee8392f668644130f508314ca50fbb505ccac3b3",
+      "public_sha256": "7c82998cda63c7a61e98b26adb66faf637fb9625571e25669901fcc515280d88",
+      "public_bytes": 23698,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/diagnostic-fault-journald-manifest.json.gz",
+      "original_git_blob": "9db68e47383abb7cd129ff95d007adf36fb4c140",
+      "original_sha256": "3a69327f1e0ff3985b4e5aa46fcbb52caba2043c0c6db5c77c624d0bd6e686ee",
+      "public_sha256": "884f9fb046ac4dce666feb01f88c85adb3a076313bbed00148bf4036c688a43d",
+      "public_bytes": 1002,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/diagnostic-fault-journald.tar.zst",
+      "original_git_blob": "247b65e83e3dd9e935fda1b282252bcee023b21e",
+      "original_sha256": "ccd41ed1f481d3b7d3627d316c326f5877dc2730026c30592ac7b208e4c795fe",
+      "public_sha256": "62937e80027206ef46b369ee70c77871afcb9c1edbefe61df185f2009666120f",
+      "public_bytes": 2229678,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/failover-load-manifest.json.gz",
+      "original_git_blob": "8e4b4fb73cfcb3d5ff1a3debbc384bd2ddb07802",
+      "original_sha256": "25ffe0b33e97cc0d0efcb52f299f74ce24d986643be1608ff79630981451c3d1",
+      "public_sha256": "d17f5cf9f8b89835e368dee0479f3c2bf3c465dd201cf2f3c5d2d02380507e06",
+      "public_bytes": 18213,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/failover-load.tar.zst",
+      "original_git_blob": "9bf73092608993ac477403612415f69e9f2a208d",
+      "original_sha256": "4272909b8f1698feabe40d47097a4d489c2a94a1a886d773fea0782b723a5d8c",
+      "public_sha256": "5cb22afa79ea6e573bc931960ce5a144567bc3ef93be529abc4cbc977a82a187",
+      "public_bytes": 88627868,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/frozen-binaries-manifest.json.gz",
+      "original_git_blob": "0ffc9c27011b7fccbf1db0552c2e5984168e9fdd",
+      "original_sha256": "fd8459906d40e05838cd532c0139fb442cae27e50ae3bc2d3f8a6c54ce11da2c",
+      "public_sha256": "216f3dd00a51e5a3ebbd058c0361952cdaf68d8bc5bf4e3e0d755e03cdb0233a",
+      "public_bytes": 336,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/frozen-binaries.tar.zst",
+      "original_git_blob": "2d84ab89bc075956206f11b20a8a2e8d2461a286",
+      "original_sha256": "d4317a880ce6aabe6d6f603b585088b4f6a079529fc3610b938257dfccee6ecf",
+      "public_sha256": "ab5f11c52cd66d4d340bdc5110221ed52a33d6b2cda1e8c6ef15411e2aca4fdc",
+      "public_bytes": 70003513,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/kind-after-manifest.json.gz",
+      "original_git_blob": "74c8d771445f9eb6a0e3e02e712ae81f0a1affd0",
+      "original_sha256": "3617accdd59185d40ad05fc26fc40cb5e96d797dd0f502aeff5a11f3358210c0",
+      "public_sha256": "c925c7eb118a7a46350248db9711e6f3b9682bdf4954b3526a42b510269e1df8",
+      "public_bytes": 651,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/kind-after.tar.zst",
+      "original_git_blob": "b185233aab694d9c333f0628f65d869d09924ceb",
+      "original_sha256": "07e4169d8e73ac6155f881f62cc37c6689cfe3e4e77ea03cfcb5f7e11fc22619",
+      "public_sha256": "4c1497b8ee1d0a0e36e812e7f5e6ca9662153065cacab86b685ccac35247265a",
+      "public_bytes": 91837,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/memory-after-manifest.json.gz",
+      "original_git_blob": "62d124c1a82bb0288b08dc090e1f6e56407c77f3",
+      "original_sha256": "0cc7b8e33b92283729bf53f51311424755bf23279dd326002b25f5c192aaff72",
+      "public_sha256": "7e7ab735627a1ec32884777bf8a9aaa15a9a8fb9a1c6286b27a8b0a2d61a4dab",
+      "public_bytes": 3509,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/memory-after.tar.zst",
+      "original_git_blob": "1f385223967bdcb3afabc3931f9a709315288d8b",
+      "original_sha256": "b21b8e07b3f2d463fa4636f7e121eac5e69234d512ee8779bc47aa0dd5ff457b",
+      "public_sha256": "19a456243405506bf0f7e46578367bdabcf2c669dda929a904acabf591a8ca97",
+      "public_bytes": 34303,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/normalized-after-manifest.json.gz",
+      "original_git_blob": "5b0becda727f8eeb85121bc2d1c4f1dd31ce127e",
+      "original_sha256": "4887c4653d1f6a60b62ccc1d695ef46d557f0d51b051f4e1a781bad12298cb9d",
+      "public_sha256": "e5d95d7668e476836adcbc4b5d5e61a3446c65ba3c1724b33f59d37137fede8c",
+      "public_bytes": 104390,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/normalized-after.tar.zst",
+      "original_git_blob": "a4b725a57e350d31c02e8973c1b6d2914780a09b",
+      "original_sha256": "af8a574372cd8b9ed98032c7210e82606624f9e57e904dcf791f4c5ec356874c",
+      "public_sha256": "ba04d9a58fab999f686641a225f0874563ea94230da98207e51583fcf49639de",
+      "public_bytes": 261965615,
+      "asset": "a4b725a57e350d31-normalized-after.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/a4b725a57e350d31-normalized-after.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/perf-final/original-after-manifest.json.gz",
+      "original_git_blob": "07442297eb25d41ddac8a970c9d430a255283c5e",
+      "original_sha256": "d139f2a0e6a1cf583acdb743c49ac2c532972e20ededc3bbfa2df57dd0401512",
+      "public_sha256": "3a2dcc31e67c9e8b22bed6bd2366ea97fa45d5bec9e55389e0cb0eac0267427b",
+      "public_bytes": 90672,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/original-after.tar.zst",
+      "original_git_blob": "d0fef391743729d85bede6981631de3805b6497e",
+      "original_sha256": "d961ecb64b81e4e64c37c2f109587c47eb03615d720a38a73115ca4087f4444e",
+      "public_sha256": "10a879aebbe942b853bfed79a0e277fe62635548fe89ee5cea29c0e7a9155b21",
+      "public_bytes": 148040274,
+      "asset": "d0fef391743729d8-original-after.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/d0fef391743729d8-original-after.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/perf-final/pool-mixed-manifest.json.gz",
+      "original_git_blob": "e0b901119f6b0bd589dd4de3a11524fd9784b204",
+      "original_sha256": "1a454cd62fd6fda0ee9d62cd7375f2720360bfe21e28eb8f40f035e3eab9b991",
+      "public_sha256": "92e544446e7a30bb6d88f0a2fd56357dfbdd369a55a64e15b9df98eee662d5bb",
+      "public_bytes": 310501,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/pool-mixed.tar.zst",
+      "original_git_blob": "15dc0cad63d30fb117fd0b0e5232031fa6d49705",
+      "original_sha256": "f93b505f34b777cae001c3781cac18916f5bfb330583f4061c9cc565dc4ea770",
+      "public_sha256": "328beff03a88f01666085e88c355dab347ea268d65b11344edf8ef10577eb8e8",
+      "public_bytes": 56041018,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/pools-after-manifest.json.gz",
+      "original_git_blob": "192fe5d36c34bbca6770e3548b3ec08e9e84b2fd",
+      "original_sha256": "71b2016de95608106c77ab5fd15896653d6902cc3ec67958c8ec37fd1e3b8a73",
+      "public_sha256": "0e5d6538e22fe55624203e882b8fe415058868286824aa0ae7f2998cf4bbb92b",
+      "public_bytes": 197879,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/pools-after.tar.zst",
+      "original_git_blob": "ca6a534793dc3761c9fd36a9257437b01d3e7f13",
+      "original_sha256": "095b143d9c58ae6a92c582a7ece89199dd92a36ae94839a44fdb64f829e4dda7",
+      "public_sha256": "9fd431b93881ce57244b9da39dd99517b83208398a307e38876e17eb7f230ebf",
+      "public_bytes": 308804493,
+      "asset": "ca6a534793dc3761-pools-after.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/ca6a534793dc3761-pools-after.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/perf-final/profiles-after-manifest.json.gz",
+      "original_git_blob": "bb6fc0f242af71ec09b15bffd5b57a9f77b4816c",
+      "original_sha256": "399eb16306420b56c64df3c63fa93813cf292cca5cd8373c01d504e94c9219e2",
+      "public_sha256": "e95e7064d205ee63f7c14e1b260243f5a620627cf6d40765a49bf0d43542534c",
+      "public_bytes": 16433,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/profiles-after.tar.zst",
+      "original_git_blob": "ea54b2103ba01854d1c734e14cdb65ccb1ba757d",
+      "original_sha256": "72b925fb8fd03321cc68befe5d2146897a733b9e8b77da233a9145b627d2a859",
+      "public_sha256": "36e58e7f81c5c197b2b3b688d8407e353c3bc89e0f0981ff8e0e51ff0ef1e432",
+      "public_bytes": 154331724,
+      "asset": "ea54b2103ba01854-profiles-after.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/ea54b2103ba01854-profiles-after.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/perf-final/workloads-after-manifest.json.gz",
+      "original_git_blob": "65c4bf6038456338b705247bfde883448b0fd7f4",
+      "original_sha256": "1abb0ba19d6019f3174c6453caf376b613815e349653fead327cd1c94a5c6554",
+      "public_sha256": "5daf8f63b16c40588f267e26b2b0cd57f7c252d55f655db69c2f1b4e410fd22d",
+      "public_bytes": 578634,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-final/workloads-after.tar.zst",
+      "original_git_blob": "b306f85eb065406325ae8ae9ac1ff65cc1fcc4f1",
+      "original_sha256": "1c9fc549b49f22403d84dfebb358d08b188a61816719f8d0cfec39092f8d77d2",
+      "public_sha256": "05a97759baf79da3394c9d47fbd8707f603b1b2bb5c9a476366fd923deb868de",
+      "public_bytes": 874783557,
+      "asset": "b306f85eb0654063-workloads-after.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/b306f85eb0654063-workloads-after.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/perf-pools/manifest.json.gz",
+      "original_git_blob": "091add82a0bd26fd7d9df1dc282ff5725b78117f",
+      "original_sha256": "bcc1c5e35f3c2454a071904cfb2c1ddd1f1e58a3b506dbd84c3d224379e614d4",
+      "public_sha256": "5bacedeff6708381c27d81a558c38f15eb4d996f4f6c1234ad842e9762a9cab4",
+      "public_bytes": 198013,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/perf-pools/raw.tar.zst",
+      "original_git_blob": "29f916737a5320ca8f02beda52f39af2f3a9297e",
+      "original_sha256": "b8b7659f649feaedd0959f03fed189e6b7be0f7811e6c35dde5a217871a00fd8",
+      "public_sha256": "fa710695456f10beee93c713b4eefac28093e297c98282a8c0a460e2e3106bf0",
+      "public_bytes": 317151987,
+      "asset": "29f916737a5320ca-raw.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/29f916737a5320ca-raw.tar.zst"
+    },
+    {
+      "path": "docs/benchmarks/pgbouncer-comparison/raw-manifest.json.gz",
+      "original_git_blob": "6d28cd427a1f4a77fd4c0bbf7fad04aeed324f3f",
+      "original_sha256": "915e1f448726a450eb962a77b6070aa5a277689894213516ec9d782c9ecaa3f4",
+      "public_sha256": "f3f0564e5673f9ed5dd62605b76a6a468d1daaf2bbc15c21fdded007ad6d5ea8",
+      "public_bytes": 90979,
+      "asset": null
+    },
+    {
+      "path": "docs/benchmarks/pgbouncer-comparison/run.log.gz",
+      "original_git_blob": "1b16e2b52d58fbb95303342725a38580848e56be",
+      "original_sha256": "3e6ffc9ee5bb5a91fce4a520e61ca6479442cf07ad6fac67599fbdc634f8886d",
+      "public_sha256": "d8003b9f98921286832be83090dfef90e0bf00de2895dc1d92ac912a2df48d50",
+      "public_bytes": 325,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/cnpg-security/kind-baseline-evidence.tar.gz",
+      "original_git_blob": "3bbb224f35523badf81f9a387611c353c7ee3032",
+      "original_sha256": "fcd8b69b8127783f893113f9592c02651f0c82c6f8fd3f5a81dfc9b7659a05d4",
+      "public_sha256": "cb59c2b82c0a6e99c49423c2247d24278f99bda142c43952c86ea9e4b9b61448",
+      "public_bytes": 1869866,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/cnpg-security/kind-security-evidence.tar.gz",
+      "original_git_blob": "ac487f046af437e24931c989cb0cde17327ace24",
+      "original_sha256": "07c0838385feae897f393b143733f528cb83a4d617de00efaf3e0809eb41801b",
+      "public_sha256": "6c06e67de42bbb1fb4fff4f9811a915c530368b316ed87423e4e35e60431beba",
+      "public_bytes": 164940,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/cnpg-security/native-evidence.tar.gz",
+      "original_git_blob": "7e1fb901299cf04654a6821802c64c1852f04c1f",
+      "original_sha256": "2b40a48ea02ccfc94b32723686cbd4e6a68dae089b53c8c849feb487326cfae1",
+      "public_sha256": "01bef4e289d915d856099cc26950b6cedb3314b69e0dc17d1d0c3a5746fc5b2b",
+      "public_bytes": 821111,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/kind-cnpg/junit.xml.gz",
+      "original_git_blob": "c30ebdd094c547e05d8053611beae287b3ac2123",
+      "original_sha256": "c6b1039b44e5c72a7946c937b673c80fe107c228100ab6f17bb308b207e4247b",
+      "public_sha256": "c6b1039b44e5c72a7946c937b673c80fe107c228100ab6f17bb308b207e4247b",
+      "public_bytes": 15384,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/kind-cnpg/results.json.gz",
+      "original_git_blob": "1d35e8d0ce491d0c36cbf87565715e2c53f547c0",
+      "original_sha256": "f49183a5276566e48d4d5a2109fb0dec1b9c7b4167bfad026159c3cc7c662f5b",
+      "public_sha256": "f49183a5276566e48d4d5a2109fb0dec1b9c7b4167bfad026159c3cc7c662f5b",
+      "public_bytes": 16233,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/benchmark-raw-manifest.json.gz",
+      "original_git_blob": "aed46de03f23b94a5e0e91bf4f3b650fb5001d03",
+      "original_sha256": "13a720353a54e9379487efa5118f2c55a150e2849653ce7208a4a95350d34c3e",
+      "public_sha256": "19d9ff443d775b72f5747d29d35154e6f656e3ae9d69bce084c4769657b65743",
+      "public_bytes": 52641,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/build.log.gz",
+      "original_git_blob": "08be90b27942436193b7961107a4f44d0ebf4214",
+      "original_sha256": "bfdae5132cb7466e232ed6cd64dc88d16b9db817991f89c1df7879c4b7651479",
+      "public_sha256": "2cf5566b69ff0d9be132150e94f94c0a05741f7808e786ee7a7fb02c81020801",
+      "public_bytes": 1118,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/development-kind.log.gz",
+      "original_git_blob": "c5984c3f982250b2f74259d2281f9c7340ec4098",
+      "original_sha256": "953f4b46c76bb3d0bb0735575e07ac0f3c644abd6005fca08163066021c7ca2e",
+      "public_sha256": "40fc299e4c859ba167259f74fe8fed2dd991ec6689b31759bc5a29dd28a4aa54",
+      "public_bytes": 809,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/development-metrics-unittest.log.gz",
+      "original_git_blob": "82e8ad168ae36e8d2a7089b11c01ef6531aea1fa",
+      "original_sha256": "084a058cb4d0c54592df34e6aa70af1c41ddb2427b34763479f56ffd16464abb",
+      "public_sha256": "4324335097fb16afbb0a49348406811c434696cfaad53d0751a6c04bff34d37a",
+      "public_bytes": 836,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/grafana-check.log.gz",
+      "original_git_blob": "91b19fa62e1387142a8a43b48bd6bc0947d3f6c7",
+      "original_sha256": "d2ddb87ec2ebe8255855644da39954d5758bdf4b31133d02772a7d3005b2c5c1",
+      "public_sha256": "e2bf2d17992b7c87656f47faafb52f56ce55696eff01a9a1c5833958a8df1cb1",
+      "public_bytes": 223,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/image-build.log.gz",
+      "original_git_blob": "9c1c6cd03891e87426c49b3df0c60be5d0a940ac",
+      "original_sha256": "b67ed61bc1ad576c7dc584662b54af57c71e996d047ade46140c95904e1c4312",
+      "public_sha256": "69cbe71aff31c3574e531d3135424a2af92427403ddda63aae362b9a0c764e29",
+      "public_bytes": 4724,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/image-load.log.gz",
+      "original_git_blob": "570b60df042179cb548bc5eeeb90ee361d064f66",
+      "original_sha256": "0227fc82b08e3ae20ba1366f52ee1b42891282eb4b642eac2353d74c6dc570f5",
+      "public_sha256": "12af3b825ddad156f778b7aa57beaac25829a741ef52af851eff295bad9665ad",
+      "public_bytes": 169,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/kind-events.jsonl.gz",
+      "original_git_blob": "04b39eed7d0f03a6341bfaeb8990cabfcc9a8bff",
+      "original_sha256": "ee1723f582fe90ddfa0cfdb496dc949dfff5c21ab4b54e044b48419b2550948e",
+      "public_sha256": "7725fea9511826635e0ee316174a99a47e0d1fa1ea3f63e76a81c728e3295472",
+      "public_bytes": 8771,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/kind-results.json.gz",
+      "original_git_blob": "691cb32631def558ebe87756b3631c021c3e849b",
+      "original_sha256": "7ecbda2b2111cbdeca44455e69ed064cdf807dc7abfcf261854312c24fb5fe53",
+      "public_sha256": "5c5ed286bbc8f106ae688244ba6fa26bceea91db7161deef6cdbf20bde3207b3",
+      "public_bytes": 16909,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/kind.log.gz",
+      "original_git_blob": "e3c078de12c751cfd48248b4235c2071d325a8e3",
+      "original_sha256": "4cbfbab2ec81e4cbde707f5b907552f5f9e3cf49c2b0b14245eb17dbf34909e7",
+      "public_sha256": "5bc386c1f35c7d79bb42ca211fa28c22345d3c7c0dae22aec9f5ca5604b50a09",
+      "public_bytes": 288,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/metrics-unittest.log.gz",
+      "original_git_blob": "4cd23ff5e84ea40beeb11baccc63a411ccbf1577",
+      "original_sha256": "87700f33dbfafa6d0c8e35d0a467cc5f7a1c14009bc874e05f2097b9a2b54082",
+      "public_sha256": "345fb19c2b8f327620986b0cd98d49ccd880c81457597783619592102627c876",
+      "public_bytes": 403,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/nix-initial.log.gz",
+      "original_git_blob": "6414833358553db280d927b55cd1a74a8622db02",
+      "original_sha256": "ce1de50788036723ac9537f1f40d30da08327c00ac42708af3edf77011709a73",
+      "public_sha256": "e8c44acfcd5f996daff0b5d42828724f09d4855ad623a5f5d142d7366541e23a",
+      "public_bytes": 3890,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/offline-preflight.log.gz",
+      "original_git_blob": "a993c29aeaf71fcb90588cf63c469b0978080ea4",
+      "original_sha256": "161cdb71758ea9756a5c5493fa6a9d7e4b5546893e0ff1a6529d0573db7a83d1",
+      "public_sha256": "b20cf107ac4e754fdd3a16a4038ad6ee448648f8f616823d2862e9042c226a68",
+      "public_bytes": 176,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/prometheus-run-1.log.gz",
+      "original_git_blob": "ab01689692bf540649dcd50c064526f74421808b",
+      "original_sha256": "21ba25702585373e6985602b7691ce9f9e28907fbc705e33290e21fd11725098",
+      "public_sha256": "62b600ae6c0bec6fa513a1e715ed9c3d86195d6bda1d06904b6e269f40419bc1",
+      "public_bytes": 204,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/metrics-integration-evidence/regressions.log.gz",
+      "original_git_blob": "c120aba8cc1347afb12e6685397a8645a681565d",
+      "original_sha256": "64f03ca82e656fee0d886453b4850655a0ce93abfe7a0f33006acd9f74c093b8",
+      "public_sha256": "3d2fc7cdcd7618b77d87d0e9ad9e8a3cc13b9a3913df224f3e9d307ec5b97ac7",
+      "public_bytes": 719,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/attribution-monotonic.log.gz",
+      "original_git_blob": "cdfcaf238c5ed827e87a8abf5c162dbe27da08b0",
+      "original_sha256": "36c79b9da07b37fc8404903fd15701704235e4274f846a9de2b321a43cfc61ca",
+      "public_sha256": "a4053db31a90924c77623ed1143ae61da69d52a60a1278371fc5dd92345dfe3c",
+      "public_bytes": 148,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/baseline.log.gz",
+      "original_git_blob": "c0fcd218ebd9d3477c91fc52d30cb2a0a78e1ea1",
+      "original_sha256": "64e168a6ab9fc2e4db96020ad8a7d9d747ea9c48afc6048219aabc93c2a8e22c",
+      "public_sha256": "78fd63f8ede10abfc84ff9483399d1c16b56dcffe147913fa6c3f1fe3b81319e",
+      "public_bytes": 322,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/final-preflight.log.gz",
+      "original_git_blob": "e9efc85c0b1f17bb036290a742db77ee38b35382",
+      "original_sha256": "3cd4b340cb77504a8bf7f61f63b8f4f5c3f285d0a3b406038b26a23e30c27d1b",
+      "public_sha256": "8a84d565f538c926c83712138474210ac8149e7403d84986bd1d077e91399fc7",
+      "public_bytes": 153,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/full-raw-manifest.json.gz",
+      "original_git_blob": "8fbc83a59c3684cb8448458bda91a96baf2780dc",
+      "original_sha256": "22004276d3b22e1abb5002e9b914d4e41cdf4afaafa531cb9b80a44158f193ff",
+      "public_sha256": "60b0ff045e63c54e7918ceec09820941572bc0754b678d6177d77ae7d897b4e7",
+      "public_bytes": 211006,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/large-baseline.log.gz",
+      "original_git_blob": "3e34d745d3f1b4889f6f42fbdbbcd2fa54de02a5",
+      "original_sha256": "78db29abd8a8fa85db3ded2cc64a0c188e981a70a6e965cf5df98f67264b0817",
+      "public_sha256": "f194d8827d19177cbe701045d9eaa92250bed0c46887ae8ee1b4934262240514",
+      "public_bytes": 68,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/milestone-hook.log.gz",
+      "original_git_blob": "d12f3c718a7d9a18dff0518b708c33c621b8a154",
+      "original_sha256": "09266387a5cd1aa6f3e278ed057539c268ea0af85cf5edb3f868ae1d62326524",
+      "public_sha256": "5fb1495b0cbde0a8aa4218be7f3541e06381398925e9645aad974a521bc9ba09",
+      "public_bytes": 966,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/milestone-verification.log.gz",
+      "original_git_blob": "d6c828d9e59f18c4d1eab2e42e35cd185992f200",
+      "original_sha256": "e887693f7585d1126cbf4a4dbe4daf50f4182310b6f12899bab8cb6d15184976",
+      "public_sha256": "f4097d9060e1c63a3d40198a72fb597e2a4823f19fc5e85cdbb578b33574c66d",
+      "public_bytes": 3917,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/normalized-and-profiles-rerun.log.gz",
+      "original_git_blob": "486c8e5044b04f497ebeaf776d79de28fd04b4fe",
+      "original_sha256": "9b559900cae7315ddd25dd8bb7b1f466f8d21c79d39d4260776af30589c0a340",
+      "public_sha256": "06a746b894ddac067f4529f3719209a2d8a4c54be2446f3bd968d108796d6b43",
+      "public_bytes": 292,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/normalized-and-profiles.log.gz",
+      "original_git_blob": "bc396d43eb4e1c525281e27c96bd267471bf5429",
+      "original_sha256": "10762d5f11c0fa9a7fe9cbf57e22db008a9ef6bbd70ccbd9a1f65f89e755b30a",
+      "public_sha256": "b2c2123b1f90e422f486a0bfc7f48b986d82f61bd50f5cf2873835e1a4bc93a4",
+      "public_bytes": 415,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/offcpu-access.log.gz",
+      "original_git_blob": "bacc78a7d46498cf89a19999988eca9ba7dc2047",
+      "original_sha256": "51827cc0de98799ccc3a4df47bfc8f14d6982b7f5d76ad9bd335fcbf37fbb36e",
+      "public_sha256": "84d8c3e743c41fdd5e1be622577a086a73d734f9c88edcf873705168c02e1712",
+      "public_bytes": 256,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/preparation-hook.log.gz",
+      "original_git_blob": "e1207d7f7827c6c1a961b76f62ed2df4341a052b",
+      "original_sha256": "9826f161dae6bfd3a452cedcc621502ff0dd288a8b4d2eb8f56b3ed7e24dbaef",
+      "public_sha256": "b8f5240156c037a1713b033868455ff049f21b16c70d725929b75aaeb0198341",
+      "public_bytes": 696,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/preparation-verification.log.gz",
+      "original_git_blob": "d630860e9bba3adad17e3a99db337e2d09322c1d",
+      "original_sha256": "eaca058dd1d088db671ed5a58cc9df6cd2399c951a7a8f3e0efa66bb290dd4f0",
+      "public_sha256": "3ebc3b8af2274372574eed30a56b29a69a9cdbb58a12948551f61d51a4086129",
+      "public_bytes": 3906,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/profiler-help.log.gz",
+      "original_git_blob": "22cd8a91b5514b9a1abeadd8fc7b7bf374a32aba",
+      "original_sha256": "f358ed0f989f7ff6bd0984748c875ed0d0b6e9519a7681a97ace63fe8abadd62",
+      "public_sha256": "c261a13ef8593a09ccc2b48cf35ce8d6662c83b2be484f7ca3016f1ed04e3a82",
+      "public_bytes": 711,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/profiler-probe.log.gz",
+      "original_git_blob": "ae05e792bcbd21577f5870fd5347657f85d26ddc",
+      "original_sha256": "fb126496a1773949a485f89c23c65272c9af7fdab26023e10488b8f1fca1ebd1",
+      "public_sha256": "36c484da011ea2dc877b964c7abb602481d09aca3197f37fdb73ac51705ad49e",
+      "public_bytes": 5643,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/cpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "ab3217d7909c3ec94ac63d18b35700caabd30113",
+      "original_sha256": "b8c542ada492402b023da1cba3ab440d8c5fa46a5e4e6c237294828e939dfc90",
+      "public_sha256": "8f620c6a59a11fdbd9a139a6fb942ebc12627dad27f08bac0a26329a5ad7bdfe",
+      "public_bytes": 16484244,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/cpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "484f9eecf03a4cd5ae82e2c3a6a0792a395ccb76",
+      "original_sha256": "0070cde6906d4ddd9e9650da2d27c3b1e590c02d33bf6f6bed521ec0377d7ceb",
+      "public_sha256": "71eda4a3313d5732cf898ec043f0352f5b40e517d097346cf4337a38a2b87050",
+      "public_bytes": 27740132,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/cpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "3eda7fe6ca98da6f269ef3060084df00428e34f3",
+      "original_sha256": "400cc2c3d788b65c85c731746f98760cb553f2bea15eaef466c6460717ad32f1",
+      "public_sha256": "a47b126685fda0fc41a79dd4db3d3c70ea0601a6e1018e26ce796b410217b23a",
+      "public_bytes": 13073048,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/cpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "b3ee168c9697d8d1b177cc7429e063d6edb4bd8a",
+      "original_sha256": "073c87fad1b05737404dcd651887cab1333ca242787cdef12cc2055a897eacbd",
+      "public_sha256": "edc43bac457802376d4d773a6fe7e7833147d09d4d9cb20b5a3bffeccff2f5a5",
+      "public_bytes": 6128975,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/heap-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "b92cd03dd2938fd4145f7732955786fd198b8f74",
+      "original_sha256": "a49fcffb7a7cd2d30278fa8e43b2c6bc80d9cbc51b68fa3017f8acce2ce45643",
+      "public_sha256": "66edc36ef505a0e82be7706d98a4d0fa9ae9045f7320a3a14e6f07b1999cdc49",
+      "public_bytes": 259520,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/heap-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "2c38d8d885448cfc59591b5411754ce618bd3d01",
+      "original_sha256": "1e3bb1eae34cc02b81191cef6cf1acb2918e7a07097735d2543e24d83237d680",
+      "public_sha256": "f72c1111c550d307c427a6f22241bfd67dc9b230c72fd192cd1414f918d7ee24",
+      "public_bytes": 62459,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/heap-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "0810d1fba77f4f3d83efb09e47499f809bc0de9a",
+      "original_sha256": "2242b37f358136ab4fe26c386887b60609808abaabca4c4b610ca78d72192768",
+      "public_sha256": "8f60f00862ebc89c261d2d2ae6c44655a75559e4edb08408bf30a26c51061c3a",
+      "public_bytes": 2363469,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/heap-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "31299e353b5afcd6612f89f097535d5bf6ea460b",
+      "original_sha256": "a951ecc339af24dae32a00d7319645ba1fae3264cc6d949b4b3e5920d2adce1d",
+      "public_sha256": "f186c9283591ce92ad57ba53c1ebae3829f11438c9cf48505d2c6a61eb4daa98",
+      "public_bytes": 68975,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/large-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "70b483903a93e92d220c1e8ab8a43af2da064b21",
+      "original_sha256": "64aa5469ab6665f30920605ceed20979848cf16ed112aa86651663f582c2f8eb",
+      "public_sha256": "aa9c6d648f6e9abc9034270b5836ad14d7bdf9b785f49c3937a3acf21244b27f",
+      "public_bytes": 334719,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/large-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "34239468b0be35e5e28d91c2237f6639c13d6933",
+      "original_sha256": "e48dfc3320577ca9736a8e4b3d665588b007ae438c8802efb38cc5eb19dad688",
+      "public_sha256": "2a89d31c270603b57f3121b973f660a07ea8f682956d7fb97a9ff7d7ff02badd",
+      "public_bytes": 63135,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/large-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "c134bdb14f750964609097663f9daf309655973f",
+      "original_sha256": "cab7dfef750a9568a7524842dbcca955579ec378cb05c0bf870521d8e27d29bb",
+      "public_sha256": "6f82cbde377d741aaac17e611f794d224e0cc23f3278231d9c5f8c88126d4440",
+      "public_bytes": 3493032,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/large-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "4cad84d8aeeba8c0d0f8e2bd8a8023c0f607c9ec",
+      "original_sha256": "b9768d29ac1be4e6c61f56c26f8adbbf4c99b02c6fb17a7386ce9e49e262337c",
+      "public_sha256": "0889fe42357d3a8d5e278c920f206515b7e4e64168e702100a03ab612fe93789",
+      "public_bytes": 66998,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/offcpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "cf90ed6e37b831222984fda15e0213431b20c3a5",
+      "original_sha256": "9e2514d9f66a554eef4ba3f90f4d4e6b2ca4491338805f4e61edfe66c4ed1023",
+      "public_sha256": "2ba43c7762fa9ebbff8bc650497dd64404efaea9405756cdcb63f8e6605d43de",
+      "public_bytes": 15825709,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/offcpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "361198edc850e06ad90947ede7c1ce0f206a4363",
+      "original_sha256": "33000e61ffbb485fe48d901cfacb974d701059a9bebdf831a7130c9a0b663181",
+      "public_sha256": "498cf592a22b8e673a83dac5b653185bdceb8b1165db902cc254c291f689d6d2",
+      "public_bytes": 25736239,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/offcpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "9e502a7a46f1c19bdadf2f4a9e5985e7b424c5a9",
+      "original_sha256": "6d038a8038b84b9eac47e339391df85f16282c8f8063f7a79031f8e002f284fc",
+      "public_sha256": "26f4b015db5a3861ebb121a3f12b83f3a73e181ed5a73c0677f751dbc8006bb9",
+      "public_bytes": 12420580,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/offcpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "5b6b67753df65aa3613130441606080ec02be13e",
+      "original_sha256": "9f561a3d904872b73117b82d042ae32098ab142fe7025a9f9287e6244dcf2ffb",
+      "public_sha256": "0598a8de959b0bc4fa751a8fe5a568db034aa258781b9c237885ec49a45d6b59",
+      "public_bytes": 5777447,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/syscalls-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "44d14f0e69562d57a35e41acdeff0099b1287796",
+      "original_sha256": "e50580846640cbe6c7e6f698a85a53a94231b6d50c2b4849034ad698c348b963",
+      "public_sha256": "90c028b5011af6d7f997623eec5b80a89fa1b1605867a693cd45809f74c05d24",
+      "public_bytes": 5176798,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/syscalls-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "c0aacee1cd77f9a2a78ccd23e7ce63595e3a9b93",
+      "original_sha256": "d26e2593ac049aee45f1598e62bcec4ef0fba9e6c8e87476ee41a125f96deffa",
+      "public_sha256": "8a5531257d7cab07b4b85418cb08d10868ad6395b6cdb1fe438a5d25a430301b",
+      "public_bytes": 1124285,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/syscalls-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "46b6dfd6d95055b8da3bf5161b3499ff3a8c7c97",
+      "original_sha256": "e79f4ce132471f32bf0720b61bf96c6e78813ca947bbdfed9d4e26ae19cbaaeb",
+      "public_sha256": "26eff9e9673e197e367fabf856d0e1f74b26e079bb187fd479d9669852a953bf",
+      "public_bytes": 47760330,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/raw-profiles/syscalls-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "e6577711714be5f8c3076c2d9de9fd3277dbe268",
+      "original_sha256": "85e668db4e711d8177700acf0f5fec73146871630c585d6fe8803169ab4c8cc4",
+      "public_sha256": "fb748988a36d244360f9c261000379b2e552a850ff2bcc7813fefaeb33324261",
+      "public_bytes": 7845116,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-001-evidence/timing-metadata.json.gz",
+      "original_git_blob": "50df77501433799f7f74ea97f4ba1292e5502e48",
+      "original_sha256": "b306e5f58d983f126b627772d70c3d465378fafc2fed43e14c47322fe32bff66",
+      "public_sha256": "bf95b8a7cc2f116f39933fe5bbd7efb75edc0963ea71f70df57f42fdb0106ac3",
+      "public_bytes": 126290,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/acceptance-hook.log.gz",
+      "original_git_blob": "069b7af4ee73a24f96f5b7c62e6524eb48a5995c",
+      "original_sha256": "05b7e8755d8b7b8840ae7a8d1ede2337c670d72e468b8f0c69227294fdd5a62a",
+      "public_sha256": "016deee67e3ba78c9916e56899f4479a718eef313afdd095f9638b5bc0554612",
+      "public_bytes": 1009,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/acceptance-native.log.gz",
+      "original_git_blob": "073503006f3eb4854ac2821b69e2ad579f16bfd8",
+      "original_sha256": "a8511584cd93a6872fd394bd116a5aafb930c4750ef8ca84332c390a455cf69b",
+      "public_sha256": "6e5de0a88d2f471ed54f7de5445a9cec091828ea622cb7c12f8d4d33a233d4db",
+      "public_bytes": 3046,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/attribution-retry.log.gz",
+      "original_git_blob": "e5bf946145099bfbefe7e1e4484fa30b9be7ed9f",
+      "original_sha256": "1011d8c155f8ff8b7b747ce58d51ce8b1f29301166f0a1c773cd7cc376b0a924",
+      "public_sha256": "eb099e1c5b44f828299340af265859889a6a724a5a89c5a7253b30fa73a5e372",
+      "public_bytes": 242,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/build.log.gz",
+      "original_git_blob": "6d57124e74def51e26238c2b6135765e894d52a6",
+      "original_sha256": "3cb2a5cce68a8ca459d031769f3a18771739399d6beed5537ace9d69e9ee882a",
+      "public_sha256": "336da2952ae81689476e6b8a163232b2e8a87ed71a640dd5e479d728bba10bb0",
+      "public_bytes": 2642,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/measurements.log.gz",
+      "original_git_blob": "def5403171d275a1b6ab6a8ea47124c19be00680",
+      "original_sha256": "94826243c0a44b510acde9b26810518acdf06684598c09ba5dcb645c220da7f4",
+      "public_sha256": "fff0d042f2ad8df2b07e082b91b6cb2e073bc15d485336c54d6c13fd0c3eb323",
+      "public_bytes": 1305,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/native.log.gz",
+      "original_git_blob": "886075e5166383c5e858c9f3b5c05e512836422f",
+      "original_sha256": "db254182630d6cfc718839d471e142c1dfb1de1ba46e0001ee6c433ad0f9563b",
+      "public_sha256": "f6f6c4d2fd3f141f0983b992bc1d406d1430093537652091a8be0e89b45df301",
+      "public_bytes": 1656,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-manifest.json.gz",
+      "original_git_blob": "f4eafb874f8a6d5299f7495343557ff80f6a4109",
+      "original_sha256": "6a5afeefe89f68f36ec4ab500597ae4d0ef8a92664660f33cb5fe28157d73883",
+      "public_sha256": "553b814990581723aaedc9d784ecc04ce81974a07200985101184ac94afa63de",
+      "public_bytes": 208339,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-cpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "503b6bc6551d7a66532ec75a16b08550a378ea55",
+      "original_sha256": "4408ea47ae83e64d6d4cdc4b288a7052e39838bee2a8efc200089eeb1691e7a9",
+      "public_sha256": "b26adbc297d2531141c35f699d13d1687c096f4e6401765f612759e2e62baf20",
+      "public_bytes": 18622982,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-cpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "370be6d4cac06c6f16a06ca9141c45e15f7191bf",
+      "original_sha256": "d0ae69f5dfb5b4bb173afbd45982ab1b5bf0ddcaa2b32204c6b03bebfffcafa8",
+      "public_sha256": "8f1bf9c56ab8b1a98e3d7f80ed32fadec4d18fbe26fa3133b3cb9f0802e1f7b0",
+      "public_bytes": 19268876,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-cpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "24aa47ce994bac45129a9ac76e4527641a7556de",
+      "original_sha256": "ff98abd199ba2f84587d8b30d28e12037caf55bce7e7628d4aff1bd178c525d0",
+      "public_sha256": "b6564973aabd254dfed1f108a42587e75fd91f6577e7430d8e3f6fa15d38dd2c",
+      "public_bytes": 7062262,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-cpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "af4a0ad8ba71772f088f4f352bdd597533177965",
+      "original_sha256": "0ee12526890495145494c86b28f1f2e6bdb387d0c402ef2393c72ce916f3e4ae",
+      "public_sha256": "d489a2764f6fd50ac029e82392e9103dc194d9474c3df668e7b58ae359a6dd04",
+      "public_bytes": 6104209,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-heap-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "2622068ed7eb2afdcde220b344c9fb514ee86a39",
+      "original_sha256": "ccc488a156fcdb4b1750c5071179a1ff876f8bf3b49972fcb1ae7d6282021026",
+      "public_sha256": "32e78e1b1b1826513683fda10390c6ece01853fb1ba33dce8bc9b8c70659cd21",
+      "public_bytes": 102756,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-heap-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "4b34aac17ee4cce6be02af30203d491d71827dc2",
+      "original_sha256": "b9dbe9b53e5a9527b419ddbba3fcd45e8c0778121cafc12c5663f0969e23871f",
+      "public_sha256": "db3c97e0d228919d687c38bf668593bf9e21e28859f576edc3e5d58d80e21ef7",
+      "public_bytes": 62326,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-heap-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "c05c0b334fd77f33253bb69a1943bc4e35d33b14",
+      "original_sha256": "437638bdb797ae9b843a36dcc4da6839c3979fa98da19885173086e0340bbbab",
+      "public_sha256": "bc6d2e87dcf203802e18149ce47d425ce81679dcac4ca2d34ed9ded34afdb97c",
+      "public_bytes": 466487,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-heap-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "d59249b4aa91aa5841496ae294c19f8bf333a3fe",
+      "original_sha256": "10b70174521a668f4ba0d0efea1ee8216b3fc8f0b71aa714e2b6a79f2b9cb1e1",
+      "public_sha256": "f3ade0c8ed3fa4954f1f28e0715c0b372bd332f3af5d60b48efeb909d056b0c6",
+      "public_bytes": 69293,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-offcpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "17a0d890abe1ef7047fcecdc23d8727bc1653848",
+      "original_sha256": "f112fc3ce445edea595d0a3660d713c862fd3a93d77a1a836673f97dfd47a689",
+      "public_sha256": "f2cfbcb7205058d9ff1dc20a5cc54ed4852a2e1c45a4048ecf3bbc74c68f8f6b",
+      "public_bytes": 17592683,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-offcpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "a4b21e5e9b33003ff3adf711cbdbef6b83544d74",
+      "original_sha256": "52825c69269a6094e69d7c0c3a62dd7afa89b1bcd1e75f19ce68a5ecff48907e",
+      "public_sha256": "50645ae0e045b8d2c085cf202e3bd3316e0a0783dfcb8d87cca29f74e3a1c259",
+      "public_bytes": 18894074,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-offcpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "a39dc5151eebfc68b7ca5e73909398c6525586f2",
+      "original_sha256": "d7ecdf29460c03d79a7e3886f2b0317601685e7992174ab5911f3eeb433b52d1",
+      "public_sha256": "30f299d38ad39cf76f175c3d75d9da8b6e490f0ce7523e12d47871def3ff39fe",
+      "public_bytes": 7035354,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-offcpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "03f2dded9cb41df29a6bb2c55730faa50529aa70",
+      "original_sha256": "db859fb91a89dcf21915081fbddec0abe183e7384000ffdb461d83218a23910c",
+      "public_sha256": "9b0e04c56b0205bc8334b958df58da85a7507a8c688830d6a048e5cd62f3e40f",
+      "public_bytes": 6041449,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-syscalls-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "c93b9771403ab60a144898f5f1a9cc09f61d48a2",
+      "original_sha256": "7197bfe8efe093881143f0368e0d511efe29f59739a3758f34123850a0e51737",
+      "public_sha256": "6a58a8f7dabaa8d1a748179271436168510c02f2342c7f9d2ab0db8583991cab",
+      "public_bytes": 1361869,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-syscalls-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "c09ae61f06f3057eece4071626ee874677942d2e",
+      "original_sha256": "15188bb4a4bc0f2044a7f799ed924909383bdc745f6e6be39e2bd84f53fbbaff",
+      "public_sha256": "675505c0992734afa9e46b910f47e7e119ca36d4a61a6bc86ba35d094a4f590c",
+      "public_bytes": 1128994,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-syscalls-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "970f54f57f3ec7d7f51779ff29997078e85954f4",
+      "original_sha256": "628939a5eb5201aa08a97af1011a2672697581f5d6ba4f2bfa862226385c7278",
+      "public_sha256": "e380b28584be3b422380f0ea3dd93e4e97ab090382b41c90334fd1546fd24716",
+      "public_bytes": 10803071,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/attribution-retry-syscalls-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "d588bf8cd3d62dc94e9b08632b4aba95732f3205",
+      "original_sha256": "9ff7b681f8b31a074451912b128d4a16f2952b3d26cd548441c610efcfdeec81",
+      "public_sha256": "4869d7cb2dc62f28a325841e9faefaa9d9a9b7b8d7ac686913db7fbd9b05bcc0",
+      "public_bytes": 7938446,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/raw-profiles/normalized-and-profiles-cpu.tar.zst",
+      "original_git_blob": "6c6db9720fed15fa0504f699484fb2c99ab0f007",
+      "original_sha256": "8a7085a8ab765fb20c09f9778c50321844084dd6e2190518d733c34791dfc353",
+      "public_sha256": "1093347bb512724528da4196ac127f00785caa31499b357ca47ade7377bcc5cb",
+      "public_bytes": 51671992,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/runtime-buffering.log.gz",
+      "original_git_blob": "1df52dbcabfd0697a5063ab2b6a9a911c061d5c8",
+      "original_sha256": "dc099d2a8a81d5e4b140f7faf83a991c388e1db303ee5e325f390124154b2d05",
+      "public_sha256": "a687be0bd7fba76fb8e72b4e9b01aaf76f76283013d191d3673ed9f9f52e5bbe",
+      "public_bytes": 211,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/runtime-failover.log.gz",
+      "original_git_blob": "ab861beea7670b2e715b416c5ec9db5b97274309",
+      "original_sha256": "c1917a384fed88e850056114e63492a99ebf7a0f3e9170b2ad60e625c7ea196b",
+      "public_sha256": "7e66c04b71a29126f65cc9402a2b216623969b1584fda587286fd9c054ae3226",
+      "public_bytes": 537,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/runtime-long-queries.log.gz",
+      "original_git_blob": "3ce34844fcbb113da254f9332cdbb3389e750ba1",
+      "original_sha256": "4c66fae3b37677f2de117814caaffe99c6f36708cc8538d70d08c5f94c91131c",
+      "public_sha256": "4fa1a53168f4e108274c0ca35cd2c72709c55a8cd024ccdf987ddf381b934d55",
+      "public_bytes": 279,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/runtime-metrics.log.gz",
+      "original_git_blob": "2efd574faf1b19bea2e403909cb13fda718447d7",
+      "original_sha256": "dd7da0ca03e8353841dd55bc5b9bf0f3db43e2163bf29d3e5beb2f67e3539939",
+      "public_sha256": "48f83cb3a62f284d8d81f6ec266fe871de70addaab98baa85b54f6dba25d9fea",
+      "public_bytes": 404,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/runtime-run.log.gz",
+      "original_git_blob": "fbda94d4c0bafb709ea112f04ddb733782aff284",
+      "original_sha256": "2902492f5c8725b594f617f9a6e28e27e1f7d1eb335232e5bb828b220d674226",
+      "public_sha256": "2fd0d0b6ffebe61e2ce5b87c5402adcde7f342ca3e21a1172aa4ef94f0ba2505",
+      "public_bytes": 134,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-classifier-evidence/workmux-merge.log.gz",
+      "original_git_blob": "0694924be0c85be239ec3591b05fd23e73750f96",
+      "original_sha256": "1ae504cd25bc6cb6e8d1b1aae14d1248905e30e928b0d4467571db2103a59d10",
+      "public_sha256": "4148e036add401175803e3907e29573d3d5ffdd117c6496c431881db5f72d271",
+      "public_bytes": 572,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/frozen-source.tar.zst",
+      "original_git_blob": "f32f8e4b8ee6a5e43e12fe87f832f4b5e3efa7f5",
+      "original_sha256": "faab48829e8dc99692d545df4d1dc04b5eb4439204959036b03b6996ec9f7a90",
+      "public_sha256": "70593551f74752f6598b8c779df276e5faa6f84298f7e8952474d4da5ee5594a",
+      "public_bytes": 128460,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/manifest.json.gz",
+      "original_git_blob": "a75dee4bc7f445f9758fdded07bf0fcca0f4053b",
+      "original_sha256": "74999553075d122650e65798a487e3f3a689ef0d80b7d3a06cb93aebc4266ccc",
+      "public_sha256": "b020d40106a3fe25149dc6adbed273dc60f07f4f9065b0167d69765380d09662",
+      "public_bytes": 58485,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-buffering.tar.zst",
+      "original_git_blob": "3741cf6bd871ed39fb57c24030d56537cfa5e96e",
+      "original_sha256": "5212ec70a5a67556611defa3af6c1e01fd3e12b6b2584b85c4f039e1afa5a91d",
+      "public_sha256": "a720798bed6df7ca4acaa91956b5cf20266fefa0dfd7dab38ae5a1f8ba703b9e",
+      "public_bytes": 28520,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-metrics.tar.zst",
+      "original_git_blob": "2115418825c4af62965bebee9b15ccffb5ff105e",
+      "original_sha256": "58ad146c68aa1c73f194bec3b485a64472b9ebfbb3d60b88d1d5aad62f4b314e",
+      "public_sha256": "8f134543268c24fe80c10887a5d9cbc38c3c5ae1941d0ac165c051d17b43d05c",
+      "public_bytes": 35931,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-queues.tar.zst",
+      "original_git_blob": "57288a7be533c34505e442cd40b05b54a9c8b987",
+      "original_sha256": "4a96848ab9b33b545af67162c1ff93cd865ea669ababea3f4752f9ef11682ef4",
+      "public_sha256": "ea0c2d740ddc538f754404d6ebfd5a2d95be778dc61deac47b311a8c0f80c512",
+      "public_bytes": 29183,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-resources.tar.zst",
+      "original_git_blob": "fccf028414b363938cce4773e4751506e22d8c6b",
+      "original_sha256": "c957af63945bc418db780ea6981f9a7968d7164cb489ea9597916fb6ba8d96a6",
+      "public_sha256": "f66ec8c7fe53c5c3d13014cbd7be4adc3239141bc6e538ce3c63f7a1e7ba8d4a",
+      "public_bytes": 66128,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-sessions.tar.zst",
+      "original_git_blob": "206229113175cff6b381a0795e09e59dadb80306",
+      "original_sha256": "11b55119973474afe90cad2c9e5e5650c48a64add679e4a42c8440d12201bff5",
+      "public_sha256": "3d49d67dc8baae5c4057d6c0079dbfb7e65d75f23b4b259ef07648bcbff011d5",
+      "public_bytes": 61118,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted-transactions.tar.zst",
+      "original_git_blob": "1b4023efc02f50f0c47e6819af7bf7e6070392e0",
+      "original_sha256": "ff05134d0292efeab37af841e4bb6bb208a11cc8bd0bf1cce9c47324f207ee9e",
+      "public_sha256": "2fc447e454168641c3ef5370bc286396d570b103e15dd7a4ec926b9cf3366fd2",
+      "public_bytes": 13168,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-protocol-evidence/protocol-ownership-accepted.tar.zst",
+      "original_git_blob": "2e91c722635678b5d9ad1ec57972786a33e30194",
+      "original_sha256": "fafc3a432b72fdb9545d421b1ff408eceae894f96ae56d380de125e97beeaa1f",
+      "public_sha256": "7dff4cd71190b8a46099c2a9f284270496765e6fa5ace4c253512d326df2422d",
+      "public_bytes": 60195,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/manifest.json.gz",
+      "original_git_blob": "bf32754673005e08f7ed802ead853d05a1038dbb",
+      "original_sha256": "f2b723066dd38c0e482124b24d6b46cd384e876ab42ef4e557ae4b418b391567",
+      "public_sha256": "f2b723066dd38c0e482124b24d6b46cd384e876ab42ef4e557ae4b418b391567",
+      "public_bytes": 39887,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted-buffering.tar.zst",
+      "original_git_blob": "8ef49fc02cbe8b5d31ae79d83f543ecb2879f3ae",
+      "original_sha256": "0af42c6325c694b8e0a14cccea6068ab5eb49fb12653c0e73a33dee872d2cfe3",
+      "public_sha256": "ff7c7f8250c112883c04a75ebdb4ddac1c388018c0423611c069721441dd9c21",
+      "public_bytes": 28729,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted-metrics.tar.zst",
+      "original_git_blob": "e230dde27de9a58480f4fdbea18d9d57de6a94ee",
+      "original_sha256": "0b594669980c1fe993fb43b152db8e7051a9ce3fd69fc23983a1cc2aba5b375a",
+      "public_sha256": "2c34e80900428ebb6de262538e35e0c225971e83f4db827bc89b8c8bb31fda5f",
+      "public_bytes": 31583,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted-resources.tar.zst",
+      "original_git_blob": "521bbc1c598863d61fe2e6c110244058918955e2",
+      "original_sha256": "6f9a9cb5fc79a9a23b33040476ffb5502ef9c1549cd618be92e8ba575810ec98",
+      "public_sha256": "d7a925508bd7b82d370a7acc42874416ed4d8bc885bf28bc9e0d4d37ff139ad1",
+      "public_bytes": 65202,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted-sessions.tar.zst",
+      "original_git_blob": "6d19e591941e0eec8ae2fccab196beea373c5b53",
+      "original_sha256": "5f73b72d4f32c02280fce12c11c30c0fdb4ab7d5a9399c0341edb0e1252f2e14",
+      "public_sha256": "fbe9a32e48bab6958bfed354de243914be7db4197a826c5b97ad4258678e7fc3",
+      "public_bytes": 56673,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted-transactions.tar.zst",
+      "original_git_blob": "2699df73e8cbcbdd3b017d51fa85f5a8b34a34d2",
+      "original_sha256": "efd9e5b0f23b95f15db7fac4dbe67f1a3062bd791f47553a8a0e9ae4bd4818ea",
+      "public_sha256": "01cc5bfbe4fb2aca7ce78729c972dff54be0e18d94a1b92206e2fb06cf24b4b6",
+      "public_bytes": 12357,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-queues-evidence/queues-accepted.tar.zst",
+      "original_git_blob": "70bba61403314f27c01518aee836e6ebb3472de9",
+      "original_sha256": "af84d80933cea85b85e0336ef406fd6b3b922fb4440fff43ff4e5b007f2d4d78",
+      "public_sha256": "3622145ccad8ff11a314ca15046617e3c3dd9242572d80f57910a630c292f06b",
+      "public_bytes": 27830,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/buffering.tar.zst",
+      "original_git_blob": "8d82921ab8f861ca38e09150c3562d14cd68f0f0",
+      "original_sha256": "547f590c45fa53bed6a54272eec1f171f628f33cbf9bcb6111807007e48889f3",
+      "public_sha256": "5b7a01fd3552bd12ac79ebcd18f383cf7d70920fc33ead52524b3dc242b26e44",
+      "public_bytes": 28257,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/manifest.json.gz",
+      "original_git_blob": "93439f5c3c249c2e3b5d411a19446d0efb142aa0",
+      "original_sha256": "634e16b28a9ba23dcf57c21b7408dfe1e4ff78766d97f9c9218e604b366a7f98",
+      "public_sha256": "634e16b28a9ba23dcf57c21b7408dfe1e4ff78766d97f9c9218e604b366a7f98",
+      "public_bytes": 111868,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/memcheck.tar.zst",
+      "original_git_blob": "98c5a7a2371b4f46c294eb7cd483dc07a82af8b2",
+      "original_sha256": "a139ec8c9a52fcb19bfd15efb1536c3bb9c5846709aad607538f31b721070421",
+      "public_sha256": "8c6a9fb0a7c712b8ac7c24e7aa150384b7f92b6981a6670406a4823ed730b0fc",
+      "public_bytes": 24403,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/metrics.tar.zst",
+      "original_git_blob": "5a321f10ac811b12b9d13e94626e704e1f774624",
+      "original_sha256": "9e20ad70935a1f3927aec9a917a608a4a719769e2bbf325695ac9ac8f83dad32",
+      "public_sha256": "2982bbebc3473d25c918c4d0251c99fa3602edd2397e295867f3e3bb874fca81",
+      "public_bytes": 30905,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/original-comparison.tar.zst",
+      "original_git_blob": "26d5ad7ab98584a4f0035b2121e55707421e2693",
+      "original_sha256": "5ba47be4e77e6e1d78e774ab342d433a6fdef1c23b4a5ce84c31f64c80ac8ec0",
+      "public_sha256": "f96b097a7962cdea5607d4440a7d50d84c3ecdb5f57781b878b107bed2790571",
+      "public_bytes": 156176218,
+      "asset": "26d5ad7ab98584a4-original-comparison.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/26d5ad7ab98584a4-original-comparison.tar.zst"
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/combined/resources.tar.zst",
+      "original_git_blob": "be32750c4df23ebae25e642331fe5be8608e346e",
+      "original_sha256": "9edd151d479e16f582b9fd732d7c9579b7604b088f231e8de79be04237bd94fe",
+      "public_sha256": "02a4201de7f643edc47fff83addac5ebb507fe64aa65af93adb957dc874bb0a3",
+      "public_bytes": 61050,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/debug-regressions.log.gz",
+      "original_git_blob": "3b7f1a0568e64ebdfbbad76050fe41f274e65a05",
+      "original_sha256": "101afe0d7fa649fa044d180b4a4e8140bab50c35eea31f87fc4d762c24d4049a",
+      "public_sha256": "eb1cc1a0ca36a096255252d0ba8b546f93ea354c0446ff0d9087ae67d1fc7d3d",
+      "public_bytes": 1398,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/final-regressions.log.gz",
+      "original_git_blob": "9d21956cbc90019dbcb03fdf466d5d469ffe706c",
+      "original_sha256": "c8d7ca6abe1bd8491bcfb88cd6befdef361525dc8b6e54da6a6cb02b975a8afa",
+      "public_sha256": "79a26a9686f4c6397c72cfa15d3d6c02a217b2504826ed7cd7bc2edda4d9cd6b",
+      "public_bytes": 1333,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/final-resources.log.gz",
+      "original_git_blob": "4bc8964dee45e2a1bc29cc7ac9020812bebcfdf8",
+      "original_sha256": "909712494bf977bad267f0bd05d4288fa94a5e28a805bb9eaf71c3c206cef63c",
+      "public_sha256": "1b3a760140b683f650db634801c3ab866c62897d2976a0c305516e2b93286ecf",
+      "public_bytes": 628,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/first-live-compile-corrected.log.gz",
+      "original_git_blob": "db2652e7c753492350d69b69e982a68fb43425f7",
+      "original_sha256": "59bcedf96e3bddeafd70c4f9bc23b0668c5c0b18a990db7440bdeb920c036564",
+      "public_sha256": "2c7c1bc1ab6a816f01687d1a8a0e5ea8365bc4d08a90b1c622cf77251220a603",
+      "public_bytes": 1951,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/profiler-signal-check.log.gz",
+      "original_git_blob": "1f6a37b5d2a9c823bbe44c05ed999542115b4822",
+      "original_sha256": "3045f757754688cf626ff815f06f8637a09812a24fd5e0c2409a7ac2266e3df5",
+      "public_sha256": "18c942847d7052e3a2e169f38eb173dc3ec44897dc9fecc3e8a9fc5f58a1fabc",
+      "public_bytes": 181,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw-manifest.json.gz",
+      "original_git_blob": "cd947bd07b4a3daad955fef71003129889c3f5e3",
+      "original_sha256": "2f17bd53e8da1622e2ebadcf5fc90d393262afdbb14c721cfb3ab3a3b77eefb7",
+      "public_sha256": "5f8cdfc7bf94268fa2d907abfdf789d05a0aa691df4eaeb865ce810842f817d1",
+      "public_bytes": 64645,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw/final-resources.tar.zst",
+      "original_git_blob": "b3b21b6848b8dfd691dd854e66cfc6399c4223d3",
+      "original_sha256": "c27b306d594edf6931d8e73d2722dbb741b1e3d25438b6cf2b9fe90327643fbd",
+      "public_sha256": "1d33de24ebaffe39c45acbe2ad803819c93e6fd9e145959305f7a9649340bdc5",
+      "public_bytes": 59897,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw/slab-large-profile.tar.zst",
+      "original_git_blob": "60c77e2442d1ac2d068dc15f2cceed8c692a9714",
+      "original_sha256": "0bec27748f0f1fa2521bb4739b08d5e55993c3673c41b7388dff5345de73b20d",
+      "public_sha256": "8839d48b518d9cc109da65899f4bbd67227b58b10a1edd56b53f5d5f3862c72f",
+      "public_bytes": 270169,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw/slab-memcheck.tar.zst",
+      "original_git_blob": "ef62b72174d952851debba4fa441f548aaa7becf",
+      "original_sha256": "3b9ba6ffb105d659398dd8cccc4eec2d1d7621faf50a17293f2b2814817ca5c6",
+      "public_sha256": "fda034a41b9c9d213cc405c74c812fc1e4366688da9ebdfffc614031c7a3d4b3",
+      "public_bytes": 27829,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw/slab-regressions.tar.zst",
+      "original_git_blob": "8e71b53c87a2ef67113fb052eb46772819ba35ba",
+      "original_sha256": "f4356412187021519cd18135359228911dbf8fcb26256e94706dfe7c4ee51af5",
+      "public_sha256": "ce1e63dffda97969c887584187f83b3696049bc44a2bffc5fd97c860555c47e2",
+      "public_bytes": 59139,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/raw/slab-resources.tar.zst",
+      "original_git_blob": "fcfb171c518176f407249720fe3043cf9aefbaf2",
+      "original_sha256": "c9297861795c20fbd3f6d68df562524dc8c3970c0274af4835e52a6b9b72855f",
+      "public_sha256": "9fc677a42e027d7947246e9b4f90846d367bdaecada5b80ff3170c3cf053d146",
+      "public_bytes": 63432,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/slab-final-native.log.gz",
+      "original_git_blob": "d89f32839e82f5d95257729840adb22131f3adf5",
+      "original_sha256": "049a93d50cd3ea84265c41ac8be987a53a03bc166dff8a6fcbcc8704a567a187",
+      "public_sha256": "4fd2862c765bb1e23e3cb0b6d9412cd71b0d5208be5cd2758a20f86183b1a4e4",
+      "public_bytes": 1973,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/slab-large-profile.log.gz",
+      "original_git_blob": "cc1326428f12a3071e42494e1950dd69848bd026",
+      "original_sha256": "ac61ba30b94c181b3461163cd94077081b0480d0aed68941ec1d3b55e83983e5",
+      "public_sha256": "aebdeb68e5de8dc91083b381d8447461e9083d16358f8147755a741f591f3142",
+      "public_bytes": 166,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/slab-memcheck.log.gz",
+      "original_git_blob": "c0bd3256decda6e05a332e4d982f9bc2e117a972",
+      "original_sha256": "06097dc0968521900b178ad1db5036beddd18a50c6e78f79ae3a4354fadbde3a",
+      "public_sha256": "cdb5479840521d67df6eff6a5dc3aadce2deab96b049fde469637ff6851b4c11",
+      "public_bytes": 183,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/slab-regressions.log.gz",
+      "original_git_blob": "df45e237bbc9eff477af8026fd2675f232af5e6d",
+      "original_sha256": "6859f8d3d7d41c418a45cf672c2866cc0b91e4a407f298bfe5210dceb6e1356e",
+      "public_sha256": "67508d3cebae7bd9eed9863e546bbdc4f94bd0328c24f93a064076d6edc9ddd4",
+      "public_bytes": 1227,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-resources-evidence/slab-resources.log.gz",
+      "original_git_blob": "977d9e795666d1ad383bb9a17ba73e1b14c2a113",
+      "original_sha256": "21abe7cbb3c706c05cef05d440b52c5cd5a758f9e276c0b4cafa082610f842bc",
+      "public_sha256": "b69f9feb78b56539e5f612de2c836402c720ae1c1f87f108700d2c23ba2bdd2a",
+      "public_bytes": 770,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/before/manifest.json.gz",
+      "original_git_blob": "3e87f3745b7f968c35223ac0a79b57af2a79165e",
+      "original_sha256": "3869d55ebea4ff5121db0012ee0bf2543621c27d41105de20cabf90404e967cf",
+      "public_sha256": "269b62b7bc19b8aa89ed2a418f3fb6a6382cc8122246bbe28c0e470b04a4c121",
+      "public_bytes": 16515,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/before/raw.tar.zst",
+      "original_git_blob": "cf0fde328b108edf93f0d1a8b62b97a54f292b94",
+      "original_sha256": "05496b34476ab4b173b0d42e9d5d0f94115a663807498ca0108d999bfe2f0bfc",
+      "public_sha256": "d6fb447808f562ee84d532e75e882b048198a31712a3baf9f4bf5ab62810098a",
+      "public_bytes": 1173182646,
+      "asset": "cf0fde328b108edf-raw.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/cf0fde328b108edf-raw.tar.zst"
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/frozen-source.tar.zst",
+      "original_git_blob": "39ce2cd736983beed9f8877363ac5acc9aeb191d",
+      "original_sha256": "d246948becd9401501fbd4144bc397cb5530d3183ffc358583c940601c8c7dcb",
+      "public_sha256": "d6b80fe4128f5282128bef03b70778a9e0116e3f3e36c36c1fec00e8a52c8725",
+      "public_bytes": 130789,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-buffering.tar.zst",
+      "original_git_blob": "a55ca4cb3a7498f8a0065fadef95d70b22f889eb",
+      "original_sha256": "1bbf79ff6486e14d1b7f4d0612b6b13c179657af6359a20a3939053eb7cde45d",
+      "public_sha256": "15f7d02c24b010ab8c39cf5641b15f9cd86f5b1384ab89cb56e1eb111c7ea303",
+      "public_bytes": 28634,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-metrics.tar.zst",
+      "original_git_blob": "da4210ba9cf08247d2c3e6674f880f3e7ec8e142",
+      "original_sha256": "633eb65fbd5370d514552fb5671ac76f18e012856ba1c35c08f56fdabd222a71",
+      "public_sha256": "eef90fd74c350b37a3e11b4d0b669153313e8eb33bfc33bc8aa890cea6d5930c",
+      "public_bytes": 36017,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-protocol.tar.zst",
+      "original_git_blob": "98afe1fbdefb3ff9d4a3984bb7a618b9bf190d6c",
+      "original_sha256": "89a385bafc9e2d17624444ac1a84bdde55462376de781cd5bf1c532209266cff",
+      "public_sha256": "f35efb8828921f022f1604d481358645eb4f6cc87cc5e6df239dd78b68572102",
+      "public_bytes": 60314,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-queues.tar.zst",
+      "original_git_blob": "c66f4720d15574ab703574f68f82ab3c66a228e1",
+      "original_sha256": "371b24e76058a613a41d1b821e87f33b19076f5969901709413a40f32c499577",
+      "public_sha256": "8fe047f90aa29d4a41e1b924b60b153f7d6ed5084cdf2b9f8856a6b0e6dfd6e5",
+      "public_bytes": 30311,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-resources.tar.zst",
+      "original_git_blob": "4be3a1b1c4cf75f5ffb33b432ab746bab031d287",
+      "original_sha256": "1cef0563a7f88130c0c0bac581ff0409c7ec9b4e1d168d7e3e7a62d041864894",
+      "public_sha256": "6d8053e7f8e4a40a0f513e64c26fd423a1b85db2c66445dafd69e8ddf6cca8ce",
+      "public_bytes": 67354,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-sessions.tar.zst",
+      "original_git_blob": "7ed86715261166b7bd0f513b769ed5f92b981a77",
+      "original_sha256": "a040a11543483b6af421c3fbb8abcccaf55153bae9abc100ce5ec74e47516a49",
+      "public_sha256": "7a1047d45179d3075bfa17b631951ba25c15b725eedb86b94f5b3856726be1e2",
+      "public_bytes": 59103,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/heads-transactions.tar.zst",
+      "original_git_blob": "236b7546fadd58e62de1fd78debb553b01542e1a",
+      "original_sha256": "f93b0bc1cd17b84c6285efc4d438efabdfb0fbcd9c98d272f7c37897b2a9314d",
+      "public_sha256": "d077a96f33c2ef13fe077f48865f7f3dd519dd997c55c208328da9cf7328ebb8",
+      "public_bytes": 12619,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/heads/manifest.json.gz",
+      "original_git_blob": "195e00a0bb9de9ec5aeef3f6406aa3d54c7b5e07",
+      "original_sha256": "ad7429bf3786705b62d7b42c7c49ba58460c2abadaa66eb0bab7c2e3595bb132",
+      "public_sha256": "56133b4ac7bcb8481783f263845a420f5bf30311bcb954f9cd73c53ea67e0857",
+      "public_bytes": 58433,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/original-before/manifest.json.gz",
+      "original_git_blob": "4b587394d687ebc6051c30350a4cca543b3567ee",
+      "original_sha256": "882323e61fdd07b76d09334ea0f4022ef62260b30a1daf808c788e76f2fa8bbd",
+      "public_sha256": "d25a4b2fdf6118eda76a8f5b8012d469264cd1ddf546800c8fb171e602f2b99e",
+      "public_bytes": 90449,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-scheduling-evidence/original-before/raw.tar.zst",
+      "original_git_blob": "b68c6e2c417f368d193a190dce24b4d84035a43f",
+      "original_sha256": "69ac5737f9f95d23cb14fb4179f20ba881b547a3a88865111831682a3a0cb43e",
+      "public_sha256": "a398d6d1240ce2d5c3db4c2df2dc281d8e7bdf9ecebc7e7dafd8b65f2ee84be5",
+      "public_bytes": 123910405,
+      "asset": "b68c6e2c417f368d-raw.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/b68c6e2c417f368d-raw.tar.zst"
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/manifest.json.gz",
+      "original_git_blob": "eba31d37027ab54734f3695aae8205e13103343c",
+      "original_sha256": "e03d7d5c4a2942930bc8e479c13006746881dedd9f2feab873f4a2dc12d7334c",
+      "public_sha256": "e03d7d5c4a2942930bc8e479c13006746881dedd9f2feab873f4a2dc12d7334c",
+      "public_bytes": 30153,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/original-comparison/manifest.json.gz",
+      "original_git_blob": "991975555023725ec8968a52ec77183f9f653b38",
+      "original_sha256": "fbaba995d2bdc0382ef7551b703365ca6a19837b885edeb1e92ed9335635da4a",
+      "public_sha256": "fbaba995d2bdc0382ef7551b703365ca6a19837b885edeb1e92ed9335635da4a",
+      "public_bytes": 90963,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/original-comparison/raw.tar.zst",
+      "original_git_blob": "875f56f3443b5b5c7eaa8852b8604e441490c789",
+      "original_sha256": "e0982aef4de1c7f2306061a0db1454699b41149df2681688dac7918105e41c63",
+      "public_sha256": "763940dc0345c7da6b92fa79f8a41a7ea94dbee2f6b0f1a18082770183aa0276",
+      "public_bytes": 140684728,
+      "asset": "875f56f3443b5b5c-raw.tar.zst",
+      "url": "https://github.com/wesbragagt/rustybouncer/releases/download/evidence-publication-20261114/875f56f3443b5b5c-raw.tar.zst"
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/session-buffering.tar.zst",
+      "original_git_blob": "5613d17180bf5fd86cfb17ef78edb3d3caa6fa45",
+      "original_sha256": "169acee60a4b3eb03168fee6ed2a9900f0d114485bde1f20f2741540fb936ba3",
+      "public_sha256": "4cda7ef266e0b28c56e7a7269fa0607780f8eafa5da5cb9dd308f5b8ef4ca11a",
+      "public_bytes": 28657,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/session-metrics.tar.zst",
+      "original_git_blob": "15fcf2b3878b9ed4bc893eb4efd510efd2059c8f",
+      "original_sha256": "243037e7c02222ff2112da2911c9d49797b60cdf2d40c176cbff0577a8fd2c69",
+      "public_sha256": "2d694269795252510a073fcd070f341477992fa20ec243e63d8caad20fd03e3f",
+      "public_bytes": 32753,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/session-promotion-final.tar.zst",
+      "original_git_blob": "1371db6b502e2a104b9b3bb25dc607244cfeb2eb",
+      "original_sha256": "a9a132907d0148fa3f6e46e6f507e9a89b39ae8cba5617036d9442148b2b1ddf",
+      "public_sha256": "31d1bbb95c4df2a317485697deb9da3fc4eba56f05a52a92944a77ce5d468ae1",
+      "public_bytes": 50997,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-session-evidence/session-resources.tar.zst",
+      "original_git_blob": "89c64bc27d9b5d8f5847cb3772629fe097645fe9",
+      "original_sha256": "82cb882be714aa37073a2c95d844df9a8a4a5b010216bbf1e4051061478e5807",
+      "public_sha256": "482b35de6b84f844aade87407bbd3b9ecdb689b83feed875b21e42413ae416fd",
+      "public_bytes": 62000,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/manifest.json.gz",
+      "original_git_blob": "24360a377d9a78bd594efec3540852196339aac0",
+      "original_sha256": "9ad7da3818a441d843e27844f768668eb88e9a716c0a3e060ab3acb0831b3ba2",
+      "public_sha256": "9ad7da3818a441d843e27844f768668eb88e9a716c0a3e060ab3acb0831b3ba2",
+      "public_bytes": 33642,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/transaction-buffering.tar.zst",
+      "original_git_blob": "850aa44f97e83251f6daf7bc88460788c426fc60",
+      "original_sha256": "f6d36e1ad571b43f902575ed8460eadc36373f0504d1a6f18f14f49b95b02ffa",
+      "public_sha256": "7614c3a2fd19fc21fec4cf5f109141be3f5374503e80ca7a7abd24553cda084e",
+      "public_bytes": 28611,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/transaction-metrics.tar.zst",
+      "original_git_blob": "edb688f74ae6ecdeae6bab2c892e6a0d2257dcd4",
+      "original_sha256": "bf774257c47b8d051f14af9dbb9860030e3e1df892f7bbd1ea7aa17aa3741853",
+      "public_sha256": "04177e2ce7cd319d90a3766859736a142c7e0a59609e45b53fd1ad2a22628cc1",
+      "public_bytes": 30029,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/transaction-resources.tar.zst",
+      "original_git_blob": "29c8c47d66f9e5bada8e58778d4e7d83987a3b82",
+      "original_sha256": "176c1c9e068e5033005850edac58392b23e19963a01a2ccb4f03c8324af8d54a",
+      "public_sha256": "83db2f4d6959afbf8f1bcfe8c6d38971f600964be6d7f6861b524674487e1ad0",
+      "public_bytes": 64698,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/transaction-session.tar.zst",
+      "original_git_blob": "f4def0eff46903a18ba5466178028454dfadcdcd",
+      "original_sha256": "603aa3e19d6bfeed3142a1ac77f427d08434bb5138c3c2895863beb09db41f25",
+      "public_sha256": "a807c3beef386050cd7f8f83b8d4ba2dac1284f0e1d79b77cd306c516914f55d",
+      "public_bytes": 49327,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-transaction-leases-evidence/transaction-slice1.tar.zst",
+      "original_git_blob": "294d4417ea1a9600cc7521f81a3f28b58acb6b69",
+      "original_sha256": "65be1e7341f43abef0d64085f7a22cac1640738f1c4e0288211d19d935681673",
+      "public_sha256": "bef61ccee797313b16a6bfbb7de1a8699f56e0421ae18c2d480c0ae27d17af25",
+      "public_bytes": 11949,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/acceptance-hook.log.gz",
+      "original_git_blob": "25babe4fcfc41196a9ab283665bc66e472648fec",
+      "original_sha256": "0e9b22e94b3231a388216566d711a3907e8019d511e6d18286cb18062fc39ac9",
+      "public_sha256": "fde5448c1c5990744824243914c9a9167c5ced234a997161a77e12c19ec32703",
+      "public_bytes": 990,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/acceptance-native.log.gz",
+      "original_git_blob": "e2dfae2f834db86a971206da669b67f6995c16db",
+      "original_sha256": "517e641bca6ef746a6a1f65fa475e7b2a40a6d66a0fb724b84f864affa48c83b",
+      "public_sha256": "3116b06e20f47ee9076a6fa284219f8cfe460c16ec6754b95e2672e1bddd8fc9",
+      "public_bytes": 1503,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/accepted-buffering.log.gz",
+      "original_git_blob": "68bd7e58548e0c239aaf0deb8b92e3c04cbfd5ca",
+      "original_sha256": "c282ec5cd12316e3e1f145625930b942c2b7df9c289a3fa165834d1e93e49778",
+      "public_sha256": "58bd54c5cb519760c26ff8f0b12b8c354d008f8ccf5d3b075b6843c2bf358443",
+      "public_bytes": 211,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/accepted-failover.log.gz",
+      "original_git_blob": "88902ddedbb25aa072c32453eed53d0f12725246",
+      "original_sha256": "b928703fdc7b6da56009b7cfec7029d367c2baa7308eb71dffa890210019c080",
+      "public_sha256": "0c4336f3872d2c6ad5426c3f18d38f0fa3a02e6a6b1fe03c588bb60ba08553d4",
+      "public_bytes": 537,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/accepted-long-queries.log.gz",
+      "original_git_blob": "d757dfc19c56b98147770ba9e777bf2e8581ebf9",
+      "original_sha256": "06c96ed5e94293b33e762ad7111576688c76742c08d46865bab151674077c679",
+      "public_sha256": "42af6cc47205d316acf7d0bdb1e718066d12011cfc6efb08746f5cfa9837c9e0",
+      "public_bytes": 279,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/accepted-metrics.log.gz",
+      "original_git_blob": "dbb9c82edab664858f1bb7089e5e5a8048843ba0",
+      "original_sha256": "81ebee31fed45350bfbd0bdd45eafadd3ad6a029baab383b930d5c1148b0aafa",
+      "public_sha256": "42badb4f49709bf3ef02b902631eccfc4519f141a5ee2337cd734691d07acefe",
+      "public_bytes": 403,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/accepted-regressions.log.gz",
+      "original_git_blob": "bd97e36dae6411bcd02e7c4e6592a0f23bb6f0c0",
+      "original_sha256": "6e85062aff6da9b3cbf90024d8e5e36875f5f59a85e10d622dcaebae0aed13f6",
+      "public_sha256": "8bfbb9eb68b4dc055b16d2041e2cb2a01bdda4fb868650ba720c014f3d085669",
+      "public_bytes": 42,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/diagnostic-buffering.log.gz",
+      "original_git_blob": "5da55b2b840ed3e54a20596c79358bac3037c88c",
+      "original_sha256": "6b7d0748f5e4e290113d152e498c1e801424400b34f2d5128ef9e89941f5dd87",
+      "public_sha256": "1e3fd3b59b5f63969f75857160ca58717030630c5f97ef5e4cec3d9b6fef99a6",
+      "public_bytes": 599,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/diagnostic-failover.log.gz",
+      "original_git_blob": "b403b6345d4362bdafe229aab0cfcc8cb96a7808",
+      "original_sha256": "ca595a9e24d6598da3285aa0a865b9725999bb00327e1854c8ac1a20e87be7cb",
+      "public_sha256": "f4a61f071716162f815c10ecb3236d969767051b4c6dcd035e467abf6f5a1af6",
+      "public_bytes": 536,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/diagnostic-long-queries.log.gz",
+      "original_git_blob": "e8befc628395e0a430abb3f21ca643c98eee451e",
+      "original_sha256": "84ec8ceb5b87939f6ac7cde34f53cfa0ab4fe9e10a06064ed9cefb8095546741",
+      "public_sha256": "5a04b2577ee73a18258c326156dc0b6f75c6ce4016fc2982bb6c981b2bf758dc",
+      "public_bytes": 279,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/diagnostic-metrics.log.gz",
+      "original_git_blob": "d99c432db54e8525c6eef7806509cc895e5aefd9",
+      "original_sha256": "29dbb38e64fc00646e83ab88765654e1298f9c488cfff181aab284100349c2ef",
+      "public_sha256": "381df0fcb751231e2be57e2da3cdec3d2b96c05a0c2bc3ebe0a21040adf244b0",
+      "public_bytes": 404,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/diagnostic-regressions.log.gz",
+      "original_git_blob": "3292b8d3661265de1963f233fe0178b993e1c40e",
+      "original_sha256": "a61814926e91b575e1856524349c14d88399b7d3fd337337f851725ab8ba0906",
+      "public_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "public_bytes": 20,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/final-buffering.log.gz",
+      "original_git_blob": "619de4cc01663fb60448cc3af08cebbbd096527f",
+      "original_sha256": "9db195d2025a6eaec91077cbe6f60c2425929f7048dffe26b1edc3709ad87ff0",
+      "public_sha256": "fc2c95ac9de4a385ac4967966295578ad5219944800a20885e695bd66bdeba2b",
+      "public_bytes": 210,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/final-failover.log.gz",
+      "original_git_blob": "ea7b48b6f1bea92e8f01225752dc941744142116",
+      "original_sha256": "c11fca192708a4aca7ffb5fc11686049692ab9bf88e5ba9e3d8bc7f11fde3105",
+      "public_sha256": "a605072195b45ce29393a52f4ba644caa35d2964d1c56f4c7e587d1892c6dc1a",
+      "public_bytes": 536,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/final-long-queries.log.gz",
+      "original_git_blob": "5e86e46a0e2c70b50fdd89b9cf8505f8474fc7d2",
+      "original_sha256": "abad9e39adc6a03743dfe358cae88c8cfe48fc6bb55cd1768464ae65eab549d3",
+      "public_sha256": "7ec2794dc1c88f89c6be251a4b03f1ce937f6ddf480c622b1869e7b019632dcd",
+      "public_bytes": 279,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/final-metrics.log.gz",
+      "original_git_blob": "839e936cadff01581949cc1d019ac85769f9f6a4",
+      "original_sha256": "53bafe91e32add5cb7f42ba69a5fe732fdc3be3b77d465cbd2939f1e918a0cb1",
+      "public_sha256": "9aa6758c831e09f30ba0ef968570f73a2656acd7f84989f17dba988be52ed458",
+      "public_bytes": 404,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/final-regressions.log.gz",
+      "original_git_blob": "ac25d602be67aa1d9e42d4eeed81ce5c687c1ddc",
+      "original_sha256": "312ca94ce7a0a4625b6965c76ca0f3e2734c45004965b601148ee738f879f898",
+      "public_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "public_bytes": 20,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/large-candidate-hwm.log.gz",
+      "original_git_blob": "42125468a9f968a515614c58a9ab424c34675b01",
+      "original_sha256": "65ec293e785a2338e4853ded66c16fd1094e60c11ce8730c810c52ea57762da2",
+      "public_sha256": "f194d8827d19177cbe701045d9eaa92250bed0c46887ae8ee1b4934262240514",
+      "public_bytes": 68,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/large-original-hwm.log.gz",
+      "original_git_blob": "9394c6aa3730fe58a31bc2a5999b3e4a218a1541",
+      "original_sha256": "a573fa4f61795c114f08a300817206ec3309aa4e59d4176334329444430b177b",
+      "public_sha256": "f194d8827d19177cbe701045d9eaa92250bed0c46887ae8ee1b4934262240514",
+      "public_bytes": 68,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/memcheck-run.log.gz",
+      "original_git_blob": "0213c8cd5289e8c8156a18d31f49e114c96932e7",
+      "original_sha256": "9a9d4ce83b1320c11aa3d6dbcbc8c2f1c92f01a60d168575f706fb1604e3759f",
+      "public_sha256": "f11ef112fe0e3840db5dc5deec62a636318049b24927fcbc5230655a2cff91b8",
+      "public_bytes": 126,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/normalized-and-profiles.log.gz",
+      "original_git_blob": "f35c70e712e34e35859a7bbce5d36f53179ae742",
+      "original_sha256": "d089c2decbaa9399115688615c8821dfde96a4db2975b04fa82779d1060d80b4",
+      "public_sha256": "06a746b894ddac067f4529f3719209a2d8a4c54be2446f3bd968d108796d6b43",
+      "public_bytes": 292,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/original-comparison.log.gz",
+      "original_git_blob": "8b01ad9d6906d7105721080fcd5d965b4890bc54",
+      "original_sha256": "b1505ea690b05c2e77efded77539b4769d61a941b09d9b41438a792485093cd1",
+      "public_sha256": "1f87b68ae8befc5ec5ebb95200a083debab269fe636358213bb41d82b50825c6",
+      "public_bytes": 324,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/partial-write-verification.log.gz",
+      "original_git_blob": "92241196b41650674dd0a88fb05d1a56d60bb30b",
+      "original_sha256": "fcf06d30cf5953c0a5c8d6b285dbe57f6f3a1c0cdc6d6078e2207726a88e6495",
+      "public_sha256": "4920be0f1b8313e707da4d9d137f17c6bf94e702cb3c689246e6b5437ecd6f63",
+      "public_bytes": 1057,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/profiler-headless-check.log.gz",
+      "original_git_blob": "eab8b45bbc38437cf131fe764ccd48c20e7c1a4f",
+      "original_sha256": "338b3bcb30fc99df6d91170d4a2fe7b7f9057c2d48fa8b8c3dbfff6ae28f2ea8",
+      "public_sha256": "94a68e1be7d6236184023f71060487dbde1017c11c92235fa4bc10db8cd89a2a",
+      "public_bytes": 90,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-manifest.json.gz",
+      "original_git_blob": "33f42beea431eb8d698f5b0bb4a0033c39b21ebd",
+      "original_sha256": "bef39fe5ba9ea5e6fc6c3e0c085ffa4b1f092efa8fca7afea721577f9cfe5e23",
+      "public_sha256": "62342ed04f4d20b0914c7bf0d3ee6d91819b94f4775b6f5187e90b66ec54df11",
+      "public_bytes": 242139,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-candidate-hwm-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "a25b29c64c3e4b2c5fddb3578a092a77bb2fe229",
+      "original_sha256": "aac07d74a307ab1b80b82fb62e119336fa31eaece8a5ba8053b9acb6fc133a3a",
+      "public_sha256": "7f80c8c7f7acb9637e23aae93622e7da8df66dc2ebe17b9a8f7d80984942009b",
+      "public_bytes": 73396,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-candidate-hwm-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "c6f2cd93d4e0a1efa5346c056f803377270040ce",
+      "original_sha256": "6237e49ee93648d1b80b6e44925f61b0fb0898634fda0cfcf5c0dcccbece9780",
+      "public_sha256": "383374747ca3964ff6a0143af9ef71c21bcda623228007229c73f56e377ddc69",
+      "public_bytes": 66989,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-candidate-hwm-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "10cd4a0d0f47bca117e99b8d74b228b56110d3f6",
+      "original_sha256": "e1e85622cd88bd5378df31570b1025c5189f56beba278a39b6a1c97b9b993447",
+      "public_sha256": "1e3b80c1783cc4519c6a279e9804827158d48b50b1ee51b838a6cf30f928a99c",
+      "public_bytes": 105564,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-candidate-hwm-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "4541a58d7b6a37b6fef2255f220861b708600df9",
+      "original_sha256": "4cd6a6c4e821aa3df724ecb58a4dde32d1533685ab23dbb98658465496fbaf7f",
+      "public_sha256": "64e58d7b9344957b97c56bb550f5d1f18e2d9c975316382300994caeae9ccd19",
+      "public_bytes": 70760,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-original-hwm-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "dc222aaf556898dce72e4afa83dc9ab517685ce7",
+      "original_sha256": "c1721765821697fc6d130cc541dd01daa111a9d66e5d0f33b79de471574f858c",
+      "public_sha256": "f15212b509bcccef6513c5e5315bcf489ee311cee1d25d9a352745807a9d73d3",
+      "public_bytes": 303746,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-original-hwm-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "8bc026b1ea98dcdb915f85bc1c87995fb33b8030",
+      "original_sha256": "8a3568ca8880d16f769681cb816c5ad5a94da37e0c377c38cc1aca036fa60cff",
+      "public_sha256": "3bc835d9482e8826b16711d5887bcfa8e0985807f4e14ca45f636db07b0f6a7e",
+      "public_bytes": 63047,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-original-hwm-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "dfd3c1ab27c0afd4e6743ab58baa41a09f6584d1",
+      "original_sha256": "adc48ae3c67cccf0866b711b5516f32a61e34b1beb529e050c46e07f7295a43e",
+      "public_sha256": "2e043d566eaf80e6a7b45f1ebeac6a325899f83cf057f003ca2cb2dbdfa1dbf4",
+      "public_bytes": 3667260,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/large-original-hwm-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "fc241d61885bbff7f96c5446f6a962e4ab7f5d39",
+      "original_sha256": "462a54c774a9db99b1846c6153f61ce3e9fd0aa2c318adf51d79c8a030cfc329",
+      "public_sha256": "b29399847ae5d9c034ca2c75a13029f5a49219c65f5895704880f3996fb9d1c6",
+      "public_bytes": 67574,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/memcheck-final.tar.zst",
+      "original_git_blob": "461d5b58813b7e79d944ece552664f5df83761cc",
+      "original_sha256": "d3a170181838c1214803d96640629a196cd6e840e62a39c1dd3697339f14e50a",
+      "public_sha256": "fafe86f93163d30ebb0ce9b62f00ff68a16073eab2e93fc8750fa16f9a3f3cda",
+      "public_bytes": 27500,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-cpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "623fee74094ef5b508449e6210f3cd44dbbaf471",
+      "original_sha256": "1e0e67885d8a3bfb26b036df8db83b605fa929da3a5f8afaeb6429a4051ff972",
+      "public_sha256": "7a903c830625cec0a3b5f6ac54d0f058d680f6ff19fd0f00c23f6839aa2f281f",
+      "public_bytes": 25074797,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-cpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "719deaf874574e594e6bff4da9672255195b7f49",
+      "original_sha256": "aa0ec0604f18db64171cc66a4b5376413b59bd9948cde9a8478f0b334cb642ec",
+      "public_sha256": "176cb19427075ad062508651f4679f53798c3c0a4bcfd41c9800670b44e25e2a",
+      "public_bytes": 26640996,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-cpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "a70e29c2385162b61774677191fa19291fceff8e",
+      "original_sha256": "aea70a57c3a5f4bae0a2e1157ea161890b6211697d38a647212fb5ab0e4c54be",
+      "public_sha256": "eb8766709be796ef757017e5b9ab474c75582e08ff828dbe0ad202ca391a599b",
+      "public_bytes": 7443066,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-cpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "dde5a8833fc16bc358bc9dfd1aa647e8e0458808",
+      "original_sha256": "fef0f86387eef485afdcd2d00439e07fcaabb11d88efa23f917e109a34b2c673",
+      "public_sha256": "952d83fb6918af65750828b9b264de9230ea86d39870a57b5910a217af8f0f8d",
+      "public_bytes": 6089541,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-heap-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "3684dee3e70cfeea966239723743ca82d6e3c326",
+      "original_sha256": "aeb1199e3e3fcdb3f97d22e9815c0235227943a6dab168522a476a7511404043",
+      "public_sha256": "fc9fac2a0374fdd0707a97e77af52362295645a0ebd59339c9d35e4c2a292b64",
+      "public_bytes": 165650,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-heap-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "63bdb864179098d4ea54be1bd3150001ceaf8d39",
+      "original_sha256": "d27cc3da499e1144b80101282e790101193b8db3835fbe71ac985a49bce5f90b",
+      "public_sha256": "df572fc5236d4d5c5c5fed38d1d5b6ff14ead67b19bcb65e673e4d3744626408",
+      "public_bytes": 66000,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-heap-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "3d274506cd1f17fd9d22704919b39d9b29fda1e8",
+      "original_sha256": "576d765ef1c836ccd7f1945ca53a815a63507b36c8b2d7327a08282aa5849eb4",
+      "public_sha256": "562c0fba199f099d106d6937862acba464ea3d30c9224fc43d8b23576f93bab4",
+      "public_bytes": 1298651,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-heap-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "cdb00f6e7f153b25e2d8696532219233e412e28b",
+      "original_sha256": "8fcdac25ecabc3199a4b6a7f5f95fd7145a8af4dc658772fae391b8095333877",
+      "public_sha256": "40d171db34b42677532aadc768dad83d8b05d3fb19227bf64a7f4e6bf4005ab3",
+      "public_bytes": 72745,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-offcpu-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "f0087d978e0a2cfa58fe323147bc7ad45826b7fd",
+      "original_sha256": "3c0bad9a7647d7e53ad7e47c03909685f36ac6462e03fe736a3c529b93a82f0a",
+      "public_sha256": "29f3eebd11e6e797f9f4aa0d43f3847457b752e16b82571b0f57a99149a8b6ce",
+      "public_bytes": 26044730,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-offcpu-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "54bf999ef994cb4e5460b45fa084fa3d377de386",
+      "original_sha256": "0f94296e7ac95370307dcbd5a4c10d7b5374e30e39046a26a5f5220caa1c1975",
+      "public_sha256": "b36f29200d5846188f67f6424d62504f19f58b7d21ab9081624b41ebc64adafe",
+      "public_bytes": 26028289,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-offcpu-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "d391bd0d2ca2e303fd1015a435f9782fa835c87d",
+      "original_sha256": "f4ab86549ebf299c5182c4fb7241fcd486f65bb55b99f9763c8d62dd733a8b56",
+      "public_sha256": "aa033a2f98819d6f9c00ebb6122a3f6c2b93141f7591a6829c67ad76d16ead5b",
+      "public_bytes": 6791041,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-offcpu-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "d5e0dbe354369736cfb79116440d4cc9eb882247",
+      "original_sha256": "ca1ed2888570bfc652452b05c2fb9345ffcda0104059db6c9bd27a14b590110b",
+      "public_sha256": "446c0b345652ba19811b5b87dd3340ee015ae5280e3189e7f36753938dcc841c",
+      "public_bytes": 5809601,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-syscalls-c10-rustybouncer-routed.tar.zst",
+      "original_git_blob": "d418f3512f24cc3cb31c3a8849da8a578ee1ea8e",
+      "original_sha256": "d719e2b2d28166c11213dfe967348f358849a4a650c86005b9aacece7a66380a",
+      "public_sha256": "5f5a2f386f67f59658f906c90917ecb227c0e8e8ee159051bef1475d64421d82",
+      "public_bytes": 1344730,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-syscalls-c10-rustybouncer-session.tar.zst",
+      "original_git_blob": "5d224736ff026a48b0d136d1f378105e7c2bd238",
+      "original_sha256": "b876cc754144aa47fe440f0ab06fce0f841e08ca33706a5b060cc7f05a162826",
+      "public_sha256": "a7968cae281a0507b0531cc5fd87db8bd60e77f38c92260d145970b516555cc2",
+      "public_bytes": 1122253,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-syscalls-c100-rustybouncer-routed.tar.zst",
+      "original_git_blob": "111499f4ff24aff48dd2162c7cd844a1fe64ed7b",
+      "original_sha256": "e37230f65921d8ee11329c5941e6007136f0cb0514e444902e997a1836531866",
+      "public_sha256": "c50f5df3adcce6b29381192bee434d79a59e74b385b3bb197bfc023d8adb7e00",
+      "public_bytes": 10761688,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/raw-profiles/normalized-and-profiles-syscalls-c100-rustybouncer-session.tar.zst",
+      "original_git_blob": "0c17505ae63020ff83943849000c0465b314536c",
+      "original_sha256": "fbc2ddf93cbd00b1a64bf94618e0e1eca183057fb68d5da50f838ce8c482b7be",
+      "public_sha256": "98fbb3f5be535cfff236c2a5167a47083c9f02c10e424813453ebff6158f6eb0",
+      "public_bytes": 7864284,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/runtime-manifest.json.gz",
+      "original_git_blob": "f033782741778975d9e59c5453816e3d647178f8",
+      "original_sha256": "af1bfa68c2b86f1539bf0488e88db17431687aa65e58de66e36482cc02b988ce",
+      "public_sha256": "79cafb620c53b7d8c0ed6087d352a6bc704a8a427f8ba74e73b796038d7f0d34",
+      "public_bytes": 9264,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/soak-regressions.log.gz",
+      "original_git_blob": "aa25e006b7e8d6e54b37b806656fe564c3dd7738",
+      "original_sha256": "07939219533ce6280e6923f9d0ac4728a346f98ecda1feaef1cf9e6412bbe9d0",
+      "public_sha256": "9ceffb7310338057cfe71a4ae1e2c98d2c485d81cdef906532a801f457a38d64",
+      "public_bytes": 20,
+      "asset": null
+    },
+    {
+      "path": "docs/milestones/perf-wire-evidence/static.log.gz",
+      "original_git_blob": "9e79ed1c9eeb29fd4ad3232a6262d28940cd4799",
+      "original_sha256": "00bed1a2fcacc6c2973355e5ae0b7e6262325bca01045613182955bb6e2e128e",
+      "public_sha256": "e3f0ac2f969db9c3f58545d8ad549bd6dc89981115c5a0d5813e3acaa60593a1",
+      "public_bytes": 134,
+      "asset": null
+    }
+  ]
+}

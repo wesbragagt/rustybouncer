@@ -1,0 +1,90 @@
+{
+  "schema": 1,
+  "tool": "gitleaks",
+  "version": "8.28.0",
+  "archive_depth": 8,
+  "decode_depth": 3,
+  "honor_allow_comments": false,
+  "source_history": {
+    "reachable_commits": 59,
+    "nonempty_commit_diffs_scanned": 52,
+    "git_diff_bytes_scanned": 28715586527,
+    "gitleaks_raw_findings": 3,
+    "reviewed_credentials": 0
+  },
+  "original_tracked_tree": {
+    "bytes_scanned": 28715484902,
+    "gitleaks_raw_findings": 3,
+    "reviewed_credentials": 0
+  },
+  "historical_non_head_blobs": {
+    "blobs": 207,
+    "bytes": 2833344,
+    "gitleaks_raw_findings": 1,
+    "reviewed_credentials": 0,
+    "finding_reason": "Earlier version of the same memory-leak prose false positive"
+  },
+  "sanitized_tree": {
+    "bytes_scanned": 6758006972,
+    "gitleaks_raw_findings": 3,
+    "reviewed_credentials": 0
+  },
+  "finding_reviews": [
+    {
+      "rule": "generic-api-key",
+      "file": "docs/milestones/cnpg-security/artifacts.json",
+      "line": 6,
+      "decision": "false_positive",
+      "reason": "SHA-256 checksum of src/auth.rs, not an authentication credential"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/milestones/perf-final.md",
+      "line": 80,
+      "decision": "false_positive",
+      "reason": "English prose listing memory-leak categories, not an API key"
+    },
+    {
+      "rule": "generic-api-key",
+      "file": "docs/milestones/perf-resources.md",
+      "line": 64,
+      "decision": "false_positive",
+      "reason": "English prose listing memory-leak categories, not an API key"
+    }
+  ],
+  "private_metadata_scan": {
+    "files_and_members": 49958,
+    "bytes": 29237965257,
+    "archives": 121,
+    "findings": 0
+  },
+  "positive_control": {
+    "zstd_archive_private_key_fixture_detected": true,
+    "findings": 1,
+    "published": false
+  },
+  "sanitization": {
+    "private_infrastructure_hostname_references": 2,
+    "workstation_path_occurrences": 703003,
+    "artifacts_reviewed": 376,
+    "large_release_assets": 10,
+    "method": "Equal-width metadata substitutions, archive owner generalization and lossless recompression; numeric benchmark and test results unchanged"
+  },
+  "license": "Apache-2.0",
+  "contributions": {
+    "issues": true,
+    "pull_requests": false,
+    "discussions": false,
+    "projects": false,
+    "wiki": false
+  },
+  "verification": {
+    "rust_cases": 71,
+    "offline_python_cases": 73,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "required_commit_hook": "normal installed .githooks/pre-commit"
+  },
+  "outstanding": "Canonical feature/release acceptance remains open; this is publication, not release completeness."
+}
