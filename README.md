@@ -20,31 +20,68 @@ Version **1.0.1** does not promote PostgreSQL nodes
 or replay dispatched writes or interrupted transactions. It is not a complete
 PgBouncer replacement.
 
-## Getting started
+## Getting started with Docker Compose
 
-Install Nix with flakes enabled and Docker Engine with Compose v2. Start a local
-PostgreSQL instance and RustyBouncer:
+Requires Docker Engine with Compose v2 and Nix with flakes enabled for the image
+build. No local PostgreSQL client is needed. The [Compose example](deploy/compose/compose.yaml)
+starts PostgreSQL and RustyBouncer on an isolated network.
 
 ```sh
 git clone https://github.com/wesbragagt/rustybouncer.git
 cd rustybouncer
-git checkout v1.0.1
 nix build .#docker --no-update-lock-file --out-link result-image
 docker load -i result-image
 docker compose -f deploy/compose/compose.yaml up -d
-nix develop --command pg_isready -h 127.0.0.1 -p 6432 -U postgres -d postgres
+docker compose -f deploy/compose/compose.yaml exec -T postgres \
+  pg_isready -h rustybouncer -p 6432 -U postgres -d postgres
 ```
 
-Once readiness reports `accepting connections`, run a query:
+Repeat the readiness command until it reports `accepting connections`.
+All queries below connect **through RustyBouncer**, using the client bundled in
+the PostgreSQL container.
+
+### Try queries interactively
+
+Humans or agents with an interactive terminal can open `psql`:
 
 ```sh
-nix develop --command psql \
-  'host=127.0.0.1 port=6432 user=postgres dbname=postgres sslmode=disable' \
-  -c 'SELECT 42;'
+docker compose -f deploy/compose/compose.yaml exec postgres \
+  psql -h rustybouncer -p 6432 -U postgres -d postgres
 ```
 
-This loopback-only demo uses trust authentication and one primary. For TLS, SCRAM,
-certificate rotation, and three PostgreSQL instances, follow the
+Try `SELECT 42;` or `SELECT pg_is_in_recovery();` (expect `f`). Enter `\q` to exit.
+
+### Run a repeatable query check
+
+For scripts and agents, this command needs no terminal and exits nonzero on SQL
+errors. Temporary data disappears when the connection closes.
+
+```sh
+docker compose -f deploy/compose/compose.yaml exec -T postgres \
+  psql -h rustybouncer -p 6432 -U postgres -d postgres \
+  -X -v ON_ERROR_STOP=1 <<'SQL'
+SELECT 42 AS answer;
+CREATE TEMP TABLE demo (amount integer);
+INSERT INTO demo VALUES (10), (20);
+SELECT sum(amount) AS total FROM demo;
+BEGIN;
+UPDATE demo SET amount = 0;
+ROLLBACK;
+SELECT sum(amount) AS total_after_rollback FROM demo;
+SQL
+```
+
+Expect `answer = 42`, `total = 30`, and `total_after_rollback = 30`.
+For a machine-readable assertion:
+
+```sh
+answer=$(docker compose -f deploy/compose/compose.yaml exec -T postgres \
+  psql -h rustybouncer -p 6432 -U postgres -d postgres \
+  -X -v ON_ERROR_STOP=1 -Atc 'SELECT 42;') && test "$answer" = 42
+```
+
+This demo uses trust authentication and one primary; it demonstrates connectivity
+and transactions. For secured deployment and replicas, follow the
 [CloudNativePG guide](deploy/cnpg/README.md).
 
 Stop the demo while keeping its database volume:
