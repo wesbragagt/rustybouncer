@@ -59,7 +59,7 @@ the absence of shells/toolchains/package managers in the exported filesystem.
 `--require-rootless` fails if the runtime is not rootless. It never skips tests.
 Host `/proc` access is required for the process identity checks.
 
-Authority: [FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md). This is a
+Authority: the local feature checklist. This is a
 container checkpoint toward H06/G07; hosted CI, full conformance and the complete
 deployment matrix remain open. Local kind/CNPG validation is linked below. See [milestone evidence](../docs/milestones/container.md).
 

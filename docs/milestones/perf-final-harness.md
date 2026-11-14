@@ -1,7 +1,7 @@
 # PERF-005/009 — expanded final harness (INCOMPLETE checkpoint)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-005/009,
-S01–S12/H11/H13/G06 in [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-005/009,
+S01–S12/H11/H13/G06 in the local feature checklist.
 Neither task is complete at this checkpoint. The runtime candidate `14f077e`
 passes 66 Rust tests and all 144 live cases; its performance acceptance is pending.
 
@@ -32,7 +32,7 @@ before and after load. Separate short/long distributions and maxima remain
 visible. A negative offline case rejects missing client completion evidence.
 
 `pool_mixed.py` adds all 96 before/after shared-pool duration-mix arms described
-in the [scheduling plan](perf-scheduling-plan.md). `failover_load.py` defines all
+in the scheduling plan. `failover_load.py` defines all
 24 real crash/promotion experiments, with every worker acknowledging writes on
 both sides of promotion, synchronous pre-crash acknowledgements, independent
 committed-row reconciliation and zero application SQL replay. It records proxy

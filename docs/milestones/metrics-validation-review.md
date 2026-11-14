@@ -1,7 +1,7 @@
 # Metrics validation integration — INCOMPLETE checkpoint
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md) and the
-[reviewed plan](../plans/prometheus-metrics.md). D04, H11 and S10–S12 remain open.
+Authority: the local feature checklist and the
+reviewed plan. D04, H11 and S10–S12 remain open.
 This is harness preparation and offline verification, not runtime acceptance.
 
 The validation delegate committed `b88a82d501a56270b82e639225b79f80192b3e96`

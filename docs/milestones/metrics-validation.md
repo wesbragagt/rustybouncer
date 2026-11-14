@@ -1,7 +1,7 @@
 # Metrics validation — INCOMPLETE prepared checkpoint
 
-Authority: [reviewed metric contract](../plans/prometheus-metrics.md) and
-[canonical checklist](../../FEATURE_COMPLETENESS.md), particularly D04, H11,
+Authority: reviewed metric contract and
+canonical checklist, particularly D04, H11,
 S10–S12, F11/F12 and Q01–Q08. No checklist item is established by this checkpoint.
 
 Delivery track 2 only. Base: `ad8aff86b1cff483a20a8b10d663208e5af54f20`.

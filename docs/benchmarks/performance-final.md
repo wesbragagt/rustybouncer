@@ -1,7 +1,7 @@
 # Final performance comparison — PERF-005/009
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md) and
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md). This comparison covers
+Authority: performance tasks and
+the local feature checklist. This comparison covers
 the scoped performance tasks, not canonical release acceptance. Historical reference `c8997e8` and its
 [original report](pgbouncer-comparison.md) remain unchanged.
 
@@ -26,7 +26,7 @@ the scoped performance tasks, not canonical release acceptance. Historical refer
   [final native log](perf-final/run-metadata/final-native.log),
   and kind's complete result in `kind-after.tar.zst`.
 - [Acceptance, ranked attribution and limitations](../milestones/perf-final.md).
-  The [task ledger](../tasks/pgbouncer-performance.md) records the final milestone
+  The task ledger records the final milestone
   commit; broader feature-completeness and release requirements remain open.
 
 All **654 normal timing arms**, **64 attribution arms**, **24 crash/promotion

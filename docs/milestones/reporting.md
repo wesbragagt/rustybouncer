@@ -1,6 +1,6 @@
 # H12/R12 reporting and strict acceptance evidence
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 Scope: reporting/acceptance gate only; the coordinator owns checklist updates.
 
 ## Implemented behavior

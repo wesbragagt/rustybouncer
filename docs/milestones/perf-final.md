@@ -1,8 +1,8 @@
 # PERF-005/009 — final comparison and scheduling acceptance
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), scoped to
+Authority: performance tasks, scoped to
 PERF-005/009 and the performance evidence for S06/S09–S12/Q08/H11/G06 in
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md). This milestone does
+the local feature checklist. This milestone does
 not close the broader canonical conformance or release checklist.
 
 ## Change and decision
@@ -18,7 +18,7 @@ include 1,000 manually polled futures proving bounded handoff work and complete
 invalidation/cleanup. No in-flight write or transaction replay was introduced.
 
 The decision followed the full 24-arm pre-change attribution matrix and
-[recorded review](perf-scheduling-plan.md). The final report retains 24 matching
+recorded review. The final report retains 24 matching
 after-change profiles, separate from native timings. At 1,000 clients, sampled
 pool admission/handoff user-period shares change as follows:
 

@@ -1,8 +1,8 @@
 # Prometheus metrics integration
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md), particularly
+Authority: the local feature checklist, particularly
 D04, H11, S10–S12, H06/F11 and Q01–Q08. This report follows the
-[adversarially reviewed plan](../plans/prometheus-metrics.md). Existing checklist
+adversarially reviewed plan. Existing checklist
 items retain their full scope; this is the router metrics milestone, not release
 conformance or shared-pool implementation.
 

@@ -1,8 +1,8 @@
 # Prometheus runtime delivery track
 
-This evidence is subordinate to [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md)
+This evidence is subordinate to the local feature checklist
 and implements delivery track 1 of the reviewed
-[Prometheus metric contract](../plans/prometheus-metrics.md). Relevant stable IDs
+Prometheus metric contract. Relevant stable IDs
 are D04, H11, S10–S12, F11/F12 and Q01–Q08; no canonical item is checked or
 redefined by this runtime milestone. Combined metrics black-box, operations and
 benchmark acceptance belong to the coordinator after integration.

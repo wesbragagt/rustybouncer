@@ -1,6 +1,6 @@
 # F11; H06/G07 checkpoint — real kind and CloudNativePG integration
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 Execution date: 2026-11-08 UTC (2026-11-07 America/Chicago).
 Base commit: `cda6d14`. This milestone adds real Kubernetes integration and
 establishes F11's automatic-primary-discovery/promotion behavior. H06/G07 remain

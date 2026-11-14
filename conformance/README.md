@@ -1,6 +1,6 @@
 # PostgreSQL pooler black-box conformance
 
-The authoritative target is [FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md).
+The authoritative target is the local feature checklist.
 The current baseline runner still reports capability/fixture skips. These are
 diagnostic results, not milestone or release acceptance under the zero-skip
 policy. The runner exits nonzero for any skip, expected failure, unexpected

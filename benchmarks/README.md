@@ -69,8 +69,8 @@ Use longer repeated trials and production-shaped workloads before capacity plann
 
 ## Performance-task acceptance matrices
 
-[PERF-001–009](../docs/tasks/pgbouncer-performance.md) define acceptance;
-[FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md) remains authoritative.
+PERF-001–009 define acceptance;
+the local feature checklist remains authoritative.
 The accepted pool milestone is `0604ee8`: all 144 live cases and all 144
 bounded-pool comparison arms pass with zero failures/errors/skips. The scheduler
 candidate `14f077e` passes 66 Rust tests and all 144 live cases; its performance

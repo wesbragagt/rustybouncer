@@ -86,6 +86,6 @@ open features. Maintain network isolation; external fencing and replication
 durability remain the cluster manager's responsibility. A Pod TCP readiness probe
 only confirms a listener; verify SQL and actual backend roles as well.
 
-[FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md) remains authoritative.
+the local feature checklist remains authoritative.
 Documentation and example smoke checks do not establish full H06/G07 deployment
 or release acceptance, and hosted CI execution is not yet established.

@@ -1,6 +1,6 @@
 # Q01–Q04: bounded long reads
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 This track does not change the canonical checklist; coordinator review and merge
 must record the implementation commit there. Q05–Q08 remain open.
 

@@ -14,3 +14,16 @@ __pycache__/
 /config.demo.kubeconfig
 /metrics-evidence/
 /metrics-benchmark-evidence/
+
+# Local working instructions, specifications and agent plans
+/AGENTS.md
+/FEATURE_COMPLETENESS.md
+/design.md
+/docs/design/backend-pools.md
+/docs/design/result-memory.md
+/docs/milestones/perf-scheduling-plan.md
+/docs/parallel-milestones.md
+/docs/plans/prometheus-metrics.md
+/docs/tasks/pgbouncer-performance.md
+/docs/plans/
+/docs/tasks/

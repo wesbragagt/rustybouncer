@@ -217,4 +217,4 @@ nix develop --command kubectl delete -f deploy/cnpg/router.yaml
 Deleting the CNPG Cluster or namespace is a separate destructive database operation.
 Review your storage/PVC retention policy first. Do not remove a shared CNPG operator
 as part of application cleanup. Full H06/G07 deployment acceptance remains open in
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+the local feature checklist.

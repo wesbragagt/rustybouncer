@@ -91,7 +91,7 @@ Reports use the strict shared reporter; fixture/cleanup errors cannot become a
 passing run. The new `kind-cnpg` CI job builds the image, runs all six cases and
 uploads diagnostics even on failure. CI wiring is not evidence of a hosted run.
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md), especially
+Authority: the local feature checklist, especially
 H06, F11 and G07. See [milestone evidence](../../docs/milestones/kind-cnpg.md) for
 actual execution results and remaining coverage. This suite does not replace the
 complete PgBouncer/target conformance or deployment acceptance matrix.
@@ -119,5 +119,5 @@ Kubernetes diagnostics are retained. Private keys and the
 owned kubeconfig are removed during cleanup; fixture passwords are redacted from
 command logs. Failures and missing infrastructure fail the suite; no skips.
 
-This advances [A01–A04/A06–A09/P09](../../FEATURE_COMPLETENESS.md); it does not
+This advances A01–A04/A06–A09/P09; it does not
 replace the complete conformance or deployment acceptance matrix.

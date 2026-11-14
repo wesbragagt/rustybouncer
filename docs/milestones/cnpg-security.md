@@ -1,6 +1,6 @@
 # CloudNativePG authentication and TLS checkpoint
 
-Canonical scope: [A01–A04, A06–A09, P09, H03/H06 and G01–G08](../../FEATURE_COMPLETENESS.md).
+Canonical scope: A01–A04, A06–A09, P09, H03/H06 and G01–G08.
 This milestone removes the trust-only security blocker for routed/shared pooling
 with CloudNativePG. It does not establish complete pooler/release conformance;
 no canonical checkbox is closed by this checkpoint.

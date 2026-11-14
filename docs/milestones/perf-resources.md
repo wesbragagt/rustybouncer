@@ -4,8 +4,8 @@ Historical checkpoint; final combined acceptance is recorded in
 [PERF-006 acceptance](perf-resources-acceptance.md). The open gates below describe
 this checkpoint at `fe98354`, not the later acceptance.
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-006, and
-[canonical checklist](../../FEATURE_COMPLETENESS.md), L01/L03–L07, Q01/Q04–Q08, S11.
+Authority: performance tasks, PERF-006, and
+canonical checklist, L01/L03–L07, Q01/Q04–Q08, S11.
 This preserves an implemented and functionally verified candidate. PERF-006 is
 **not complete**: classifier integration, combined verification, complete candidate
 30-arm measurement and final acceptance remain pending. Shared backend pools and
@@ -39,7 +39,7 @@ cross-frontend lease handoff acceptance remain PERF-007/008 work.
   shutdown registration avoids recreating a signal receiver each select loop.
   Completed JoinSet entries are drained before more work is admitted.
 
-[Memory ownership](../design/result-memory.md) and [metric contract](../metrics.md)
+Memory ownership and [metric contract](../metrics.md)
 document fixed input/metadata/runtime overhead and six additional unlabelled
 families (123+29*N series). The footprint is not a total RSS limit. Opaque
 passthrough does not gain virtual cancellation. Authentication/TLS remain open.

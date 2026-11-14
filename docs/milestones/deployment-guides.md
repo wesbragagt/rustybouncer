@@ -1,6 +1,6 @@
 # Getting-started and deployment documentation — H06/G07 checkpoint
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 This documentation/example milestone checks no additional completeness items.
 It does not replace the full deployment/conformance matrix or hosted-CI evidence.
 

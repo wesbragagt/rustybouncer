@@ -1,8 +1,8 @@
 # PERF-008 — complete bounded-pool comparison and ownership acceptance
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-008,
+Authority: performance tasks, PERF-008,
 P04–P06/P08/P10, L01–L10, T01–T10 and W02–W12 in
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+the local feature checklist.
 This records the scoped pooling milestone, not broad canonical release acceptance.
 Source checkpoints: leases `8fa5330`, queues/fencing `058c151`, prepared/extended
 ownership `487a7b4`. Canonical deployment/workload criteria remain open.

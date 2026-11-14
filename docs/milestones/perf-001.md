@@ -1,7 +1,7 @@
 # PERF-001 — complete baseline profiling and equal-core study
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md) and
-[canonical checklist](../../FEATURE_COMPLETENESS.md), S10–S12/R11.
+Authority: performance tasks and
+canonical checklist, S10–S12/R11.
 Implementation/evidence committed as `2f33b63` through the mandatory installed hook.
 This establishes PERF-001's profiling scope, not a runtime optimization or release
 acceptance. PERF-002–009 and wider canonical scope remain open.
@@ -167,9 +167,9 @@ zero failures/errors/skips, Ruff, Astral ty, Clippy, Promtool and Grafana checks
 complexity maximum **26/30**. [Hook](perf-001-evidence/milestone-hook.log.gz) and
 [complete verification](perf-001-evidence/milestone-verification.log.gz) are retained. No router source was modified for this baseline milestone.
 
-PERF-007's [pool design](../design/backend-pools.md) has a documented coordinator
+PERF-007's pool design has a documented coordinator
 review, committed before implementation; session reuse and all acceptance remain
-open. [Memory ownership design](../design/result-memory.md) is a plan only.
+open. Memory ownership design is a plan only.
 Additional CTE/large/mixed workload tooling defines **180 mandatory arms**; its
 execution and before/after interpretation remain PERF-005/009 work. It does not
 replace the original comparison or establish slow-receiver/idle/churn/1,000-client,

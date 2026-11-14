@@ -86,6 +86,12 @@
     "skips": 0,
     "required_commit_hook": "normal installed .githooks/pre-commit"
   },
-  "outstanding": "Canonical feature/release acceptance remains open; this is publication, not release completeness.",
-  "publication_version": "1.0.1"
+  "outstanding": "Broad feature/release acceptance remains open; the complete working checklist is retained locally, excluded from public Git.",
+  "publication_version": "1.0.1",
+  "excluded_planning_documents": 9,
+  "planning_archive_scan": {
+    "archives": 121,
+    "members": 50754,
+    "planning_members": 0
+  }
 }

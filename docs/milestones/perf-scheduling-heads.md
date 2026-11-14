@@ -1,7 +1,7 @@
 # PERF-005 — bounded head notification (INCOMPLETE performance acceptance)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-005/009,
-S06/S09–S12/Q08 in [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-005/009,
+S06/S09–S12/Q08 in the local feature checklist.
 PERF-008 is accepted as `0604ee8` and workmux-integrated. This checkpoint does not
 claim a throughput/tail gain or close PERF-005/009 before complete measurement.
 
@@ -32,7 +32,7 @@ sleep and runnable delay; syscall amortization includes startup/preflight/probes
 An initial missing-debug-info assertion is retained as a development failure;
 it produced no accepted profile measurement and was corrected before all 24 runs.
 
-The [coordinator plan/decision](perf-scheduling-plan.md) precedes implementation.
+The coordinator plan/decision precedes implementation.
 This is a coordinator review, not an independent agent review.
 
 ## Implemented work bound

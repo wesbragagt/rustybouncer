@@ -1,7 +1,7 @@
 # PERF-009 — session-source comparison checkpoint (INCOMPLETE)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-009 and
-PERF-005; [canonical checklist](../../FEATURE_COMPLETENESS.md), S10–S12/H11–H13.
+Authority: performance tasks, PERF-009 and
+PERF-005; canonical checklist, S10–S12/H11–H13.
 This records one complete candidate timing matrix; PERF-009 remains incomplete.
 It is not the new bounded-pool comparison or final README acceptance.
 

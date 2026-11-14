@@ -1,7 +1,7 @@
 # PERF-005/009 — complete timing checkpoint (INCOMPLETE acceptance)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-005/009,
-S06/S09–S12/H11/G06 in [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-005/009,
+S06/S09–S12/H11/G06 in the local feature checklist.
 Both performance tasks remain open. This checkpoint freezes completed normal
 measurements and the remaining validation/reporting harness, not final delivery.
 

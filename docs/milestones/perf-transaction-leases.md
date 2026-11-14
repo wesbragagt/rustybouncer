@@ -1,7 +1,7 @@
 # PERF-008 — transaction-lease slice (INCOMPLETE feature)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-008,
-P04–P06/P08/P10 and T01–T10 in [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-008,
+P04–P06/P08/P10 and T01–T10 in the local feature checklist.
 This commits the first simple-query transaction-leasing slice. PERF-008 remains
 **incomplete** until capacity/queue, protocol/prepared, full cancellation and
 10/100/1,000-client acceptance and comparisons pass. No canonical box is closed.

@@ -1,7 +1,7 @@
 # PERF-008 — bounded queues and failure fencing (INCOMPLETE feature)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-008,
-L01–L10/P04–P06/P08 and [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-008,
+L01–L10/P04–P06/P08 and the local feature checklist.
 This is the second verified slice after `8fa5330`. PERF-008 remains incomplete:
 extended/prepared protocol and the complete small-pool comparisons are required.
 No canonical box is closed and no throughput improvement is claimed.

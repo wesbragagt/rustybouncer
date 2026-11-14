@@ -4,15 +4,18 @@ The source is published at <https://github.com/wesbragagt/rustybouncer> and mirr
 to Forgejo. The public history retains the original 59 source commits, with new
 commit IDs after removing private workstation paths and infrastructure hostnames.
 [Commit mappings](docs/publication/commit-map.json) relate the original IDs cited
-in historical reports to their sanitized public ancestors. A later publication
-commit records the public export itself. Private recovery branches retain the
+in historical reports to their sanitized public ancestors. Later publication
+commits record the public export itself. Design specifications, agent instructions, task plans and the working feature
+checklist are excluded from published history and retained only locally. A recursive
+check of 121 evidence archives found no embedded copies of those documents.
+Private recovery branches retain the
 original history locally; do not push them or merge pre-publication branches into
 public `main`. Rebase or apply reviewed patches onto the sanitized history.
 
 No measured timings, test outcomes, required checklist items or acceptance
 thresholds are changed by this publication. Historical failed/skipped diagnostic
 runs remain diagnostics; they are not promoted to passing release evidence.
-[FEATURE_COMPLETENESS.md](FEATURE_COMPLETENESS.md) remains authoritative.
+The full feature checklist remains authoritative and is retained locally.
 
 Workstation path prefixes were replaced with generic public paths in text and
 compressed evidence. Equal-width replacements preserve offsets in retained ELF

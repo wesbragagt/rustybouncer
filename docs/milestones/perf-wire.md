@@ -1,7 +1,7 @@
 # PERF-002 / PERF-003 — wire batching and private response ownership
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-002/003, and
-[canonical checklist](../../FEATURE_COMPLETENESS.md), W01/W09–W11, Q04/Q07, S06/S11.
+Authority: performance tasks, PERF-002/003, and
+canonical checklist, W01/W09–W11, Q04/Q07, S06/S11.
 Runtime source checkpoint: `60d14df`. This acceptance report records completed
 comparative verification; acceptance/evidence commit: `3ab8c6b`, registered in the task ledger.
 Broader cancellation, aggregate limits, pooling and release acceptance remain open.

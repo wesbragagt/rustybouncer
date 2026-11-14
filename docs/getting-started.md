@@ -5,13 +5,11 @@ complete PostgreSQL + rustybouncer setup, or follow the native-binary steps if y
 already have PostgreSQL. The [deployment guide](deployments.md) covers single
 containers, Docker Compose and CloudNativePG.
 
-The prototype supports trusted networks and simple-query clients such as `psql`;
-opt-in shared pools also support extended/prepared protocol. Query-routing mode requires trust-authenticated backend connections;
-it does not authenticate frontend users or provide TLS. Use these demos locally
-or on an isolated test network. Dispatched writes and interrupted transactions
-are never replayed automatically. This is an experimental router. The default keeps backend caches per client;
-opt-in shared session/transaction pools have separate acceptance evidence in the
-[performance task ledger](tasks/pgbouncer-performance.md).
+Shared session and transaction pools support TLS, rotating PEM credentials and
+SCRAM authentication through `auth_query`. The local Compose example uses trust
+authentication on an isolated network. Follow the CNPG guide for the secured setup.
+Dispatched writes and interrupted transactions are never replayed automatically.
+This is experimental software; broader production acceptance remains incomplete.
 
 ## Start PostgreSQL and rustybouncer with Compose
 
@@ -101,7 +99,7 @@ COMMIT;
 `SET`, temporary objects and other session state pin the connection to the primary;
 use a fresh connection when experimenting with replica routing. Drivers must use
 the simple Query protocol in unshared routing mode, or select a shared pool for
-extended/prepared protocol. The [main guide](../README.md#query-routing-mode)
+extended/prepared protocol. The [main guide](routing.md#query-routing-mode)
 explains classification, CTEs, authentication, buffering and retry limits.
 
 ## Try managed failover with CloudNativePG
@@ -128,4 +126,4 @@ nix flake check --no-update-lock-file
 The installed commit hook checks the staged snapshot, including Rust checks,
 Ruff, Astral ty and complexity <=30. [Development instructions](development.md)
 list when live integration suites are required. Track remaining work in
-[FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md).
+the local feature checklist.

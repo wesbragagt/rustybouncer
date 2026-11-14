@@ -1,6 +1,6 @@
 # H06/G07 checkpoint: distroless, non-root image
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 Date: 2026-11-07 UTC. Base: `c1215db8be9aafc843d9f768590f190d69cdb3cb`.
 This adds the container deployment artifact; H06/G07 remain open for the complete
 Kubernetes/CI/deployment and conformance matrix. No existing requirement is narrowed.

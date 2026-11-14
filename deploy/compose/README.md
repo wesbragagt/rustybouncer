@@ -72,4 +72,4 @@ changing environment variables does not reinitialize an existing volume.
 
 [Getting started](../../docs/getting-started.md) ·
 [Deployment guide](../../docs/deployments.md) ·
-[Canonical checklist](../../FEATURE_COMPLETENESS.md)
+Canonical checklist

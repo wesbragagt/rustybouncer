@@ -1,7 +1,7 @@
 # PERF-004 — allocation-light conservative classification
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-004, and
-[canonical checklist](../../FEATURE_COMPLETENESS.md), W01/F06/F07/S10.
+Authority: performance tasks, PERF-004, and
+canonical checklist, W01/F06/F07/S10.
 This milestone implements classifier allocation reduction; it does not establish
 new SQL purity guarantees, a throughput/tail SLO or broader release acceptance.
 

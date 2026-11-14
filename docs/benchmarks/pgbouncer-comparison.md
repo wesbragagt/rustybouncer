@@ -1,6 +1,6 @@
 # PgBouncer comparison — S10/S12
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md). This milestone
+Authority: the local feature checklist. This milestone
 measures a declared workload; it does not establish the complete conformance,
 1,000-client, mixed-load or sustained-capacity checklist. No performance budget
 is imposed and no required test is skipped.
@@ -121,6 +121,6 @@ SO_REUSEPORT; that topology is not measured here. See
 
 ## Follow-up work
 
-[Prioritized performance tasks](../tasks/pgbouncer-performance.md) distinguish
+Prioritized performance tasks distinguish
 measured gaps, code-inspection hypotheses and unmeasured pooling/resource gaps.
 Task acceptance preserves routing safety and the full required verification scope.

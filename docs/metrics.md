@@ -1,7 +1,7 @@
 # Operating Prometheus metrics
 
-This is the operations companion to the [reviewed contract](plans/prometheus-metrics.md).
-The [canonical checklist](../FEATURE_COMPLETENESS.md) remains authoritative:
+This is the operations companion to the reviewed contract.
+The canonical checklist remains authoritative:
 these assets support D04, H11, S10–S12, F11/F12 and Q01–Q08 without establishing
 their broader acceptance. Runtime metrics are opt-in; the operations evidence
 validates PromQL against synthetic series, independently of live endpoint tests.
@@ -367,7 +367,7 @@ protocol rejection finalize explicit outcomes; external task abort remains
 `aborted`. Two 256-byte private response allowances per frontend cover ordinary
 small output and the cancellation synchronization barrier. Backend read buffers,
 startup/configuration data, queue metadata, allocator/runtime/socket overhead and
-probe tasks are separate fixed bounds; see [result ownership](design/result-memory.md).
+probe tasks are separate fixed bounds; see result ownership.
 
 Routed clients receive virtual PID/secret credentials. Cancellation targets only
 their active operation, stops retries, and awaits native cancel EOF plus the

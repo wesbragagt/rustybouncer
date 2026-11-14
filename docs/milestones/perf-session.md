@@ -1,10 +1,10 @@
 # PERF-007 — verified shared session reuse
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-007;
-[canonical checklist](../../FEATURE_COMPLETENESS.md), P02/P03/P08–P10, C07 and D04.
+Authority: performance tasks, PERF-007;
+canonical checklist, P02/P03/P08–P10, C07 and D04.
 This is the routed simple-query session-reuse slice, not full pooler/release
 conformance. Transaction/protocol/queue acceptance remains PERF-008. The reviewed
-[ownership design](../design/backend-pools.md) was committed before implementation
+ownership design was committed before implementation
 (`2f33b63`, with lazy-startup/protocol refinements `27af1cf`/`b9ed782`).
 
 ## Behavior

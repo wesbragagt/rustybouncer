@@ -1,7 +1,7 @@
 # PERF-006 — combined resource acceptance
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-006;
-[canonical checklist](../../FEATURE_COMPLETENESS.md), L01/L03–L07,
+Authority: performance tasks, PERF-006;
+canonical checklist, L01/L03–L07,
 Q01/Q04–Q08 and S11. This closes the scoped aggregate-result-memory task.
 Shared backend ownership/lease handoff remains PERF-007/008. It does not close
 broader canonical deployment, protocol or cancellation acceptance.
@@ -63,7 +63,7 @@ FATAL 53200 before exposure, with no dispatched-write replay.
 
 The ownership bound excludes documented fixed frontend/inline/index/task/socket
 and allocator overhead; it is not a total process RSS limit. See
-[result-memory.md](../design/result-memory.md). The retained cache uses more
+result-memory.md. The retained cache uses more
 memory after an isolated burst; repeated slab cycles reduce large-allocation
 churn compared with the contiguous-ledger development candidate. Three cycles
 are not proof of an indefinitely flat RSS plateau.

@@ -1,8 +1,8 @@
 # H07/H10 — bounded harness lifecycle
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 Scope: the bounded harness lifecycle track in
-[parallel-milestones.md](../parallel-milestones.md), based on coordination commit
+parallel-milestones.md, based on coordination commit
 `2a8717544d1a3f196fa6342b74fbf44765e74a5b`. The canonical checklist is owned
 by the coordinator and is unchanged here. This is not release/matrix evidence.
 

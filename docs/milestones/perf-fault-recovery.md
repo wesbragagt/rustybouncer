@@ -1,7 +1,7 @@
 # PERF-009 — complete crash/promotion scope; final publication still open
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-009,
-S09/G06/H11/R11 in [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: performance tasks, PERF-009,
+S09/G06/H11/R11 in the local feature checklist.
 This records the fault-validation slice, not completion of PERF-005/009 or broad
 release conformance. Runtime remains `14f077e`, frozen production SHA256
 `103fb7c79cb53baebb629446b32481952fe3124a4cf3a7fc6e86bbd94c9b3e1f`.

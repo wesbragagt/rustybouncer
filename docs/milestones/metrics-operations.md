@@ -1,9 +1,9 @@
 # Metrics operations milestone — delivery track 3
 
 Scope: documentation and synthetic Prometheus validation only, based on reviewed
-[metric contract](../plans/prometheus-metrics.md), base main
+metric contract, base main
 ad8aff86b1cff483a20a8b10d663208e5af54f20. The
-[canonical feature checklist](../../FEATURE_COMPLETENESS.md) remains authoritative.
+canonical feature checklist remains authoritative.
 D04, H11, S10–S12, F11/F12 and Q01–Q08 are related requirements, not completion
 claims. No canonical checkbox is changed.
 

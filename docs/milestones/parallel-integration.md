@@ -1,13 +1,13 @@
 # Parallel milestone integration evidence
 
-Authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+Authority: the local feature checklist.
 Date: 2026-11-07 UTC. This establishes the assigned parallel batch and seven
 checklist items, not overall conformance or release acceptance.
 
 All three agents worked in isolated tool-provisioned worktrees with disjoint
 ownership. The coordinator reviewed source, tests and evidence, then merged each
 branch with workmux. The exact implementation/merge SHAs and workmux handles are
-in the [merge ledger](../parallel-milestones.md). All three pre-merge
+in the merge ledger. All three pre-merge
 `nix flake check --no-update-lock-file` hooks exited 0; no conflicts, bypasses or
 manual cherry-picks were used. Branches/worktrees were retained.
 

@@ -3,7 +3,7 @@
 Start with the shipped **Rustybouncer Overview** for the router, then add the
 PostgreSQL and infrastructure dashboard appropriate to your deployment. Reviewed
 upstream sources on 2026-11-08. The [metrics contract](metrics.md) defines what
-Rustybouncer observes; [FEATURE_COMPLETENESS.md](../FEATURE_COMPLETENESS.md)
+Rustybouncer observes; the local feature checklist
 remains the project acceptance target.
 
 | Dashboard | Use it for | Required source and compatibility |

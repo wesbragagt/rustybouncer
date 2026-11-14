@@ -1,6 +1,6 @@
 # Conformance acceptance and coverage
 
-> Current authority: [FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+> Current authority: the local feature checklist.
 > The zero-skip policy supersedes the historical baseline bookkeeping below.
 > Those runs do not complete current feature or release gates; all eight current
 > release gates remain open until the required matrix passes without skips.

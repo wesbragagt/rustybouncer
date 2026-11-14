@@ -1,8 +1,8 @@
 # PERF-008 — prepared/extended ownership (INCOMPLETE feature)
 
-Authority: [performance tasks](../tasks/pgbouncer-performance.md), PERF-008,
+Authority: performance tasks, PERF-008,
 W02–W12/P04–P06/P08/T01–T10/S01–S03/S07–S08 in
-[FEATURE_COMPLETENESS.md](../../FEATURE_COMPLETENESS.md).
+the local feature checklist.
 This is the third slice after leases `8fa5330` and queues `058c151`.
 The full feature remains incomplete until the declared small-pool comparisons and
 integration pass. No canonical checkbox or performance gain is claimed here.
