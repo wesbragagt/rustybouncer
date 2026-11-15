@@ -17,6 +17,8 @@ and database roles to decide where work belongs:
 - **Validate the integration:** real CloudNativePG tests in kind exercise routing,
   failover, TLS, certificate rotation, and authentication.
 
+![PgBouncer vs RustyBouncer query routing during a primary failover](docs/assets/routing-failover.gif)
+
 ## Getting started with Docker Compose
 
 Requires Docker Engine with Compose v2 and Nix with flakes enabled for the image

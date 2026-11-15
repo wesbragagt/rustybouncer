@@ -1,0 +1,93 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://esm.sh/@xyflow/react@12.3.6/dist/style.css">
+<style>
+  body{margin:0;font-family:ui-sans-serif,system-ui,sans-serif}
+  #root{background:#fbfaf7;border-radius:14px;padding:16px;color:#3b3a45;width:900px;box-sizing:border-box}
+  .row{display:flex;align-items:center;gap:12px;margin:6px 0 2px}
+  .tag{font-weight:700;font-size:15px}
+  .cap{font-size:13px;color:#5d5b6b;min-height:18px}
+  .flow{height:200px;border:1px solid #ebe7f0;border-radius:12px;background:#fff}
+  .node{padding:8px 12px;border-radius:12px;border:2px solid;font-size:13px;text-align:center;min-width:110px;transition:all .4s}
+  .node small{display:block;font-size:11px;opacity:.75}
+  .steps{display:flex;gap:6px;margin:10px 0 4px}
+  .step{flex:1;font-size:12px;padding:6px 8px;border-radius:8px;background:#f1eef6;color:#7a7790;transition:all .4s}
+  .step.on{background:#d9ccf5;color:#3b3a45;font-weight:600}
+  .react-flow__attribution{display:none}
+  .react-flow__edge-textbg{fill:#fbfaf7}
+  .react-flow__edge-text{font-size:11px;font-weight:600}
+</style></head>
+<body><div id="root"></div>
+<script type="module">
+import React,{useEffect,useState} from "https://esm.sh/react@18.3.1";
+import {createRoot} from "https://esm.sh/react-dom@18.3.1/client";
+import {ReactFlow,Handle,Position} from "https://esm.sh/@xyflow/react@12.3.6?deps=react@18.3.1,react-dom@18.3.1";
+import htm from "https://esm.sh/htm@3.1.1";
+const html=htm.bind(React.createElement);
+
+const C={app:["#e3f0fb","#8bb8e0"],pool:["#efe7fb","#b49ae0"],primary:["#e2f5ea","#7cc49a"],replica:["#fff3dc","#e5bd6c"],down:["#fde4e4","#e39a9a"],wait:["#fff3dc","#e5bd6c"]};
+const ok="#7cc49a",read="#e5bd6c",bad="#e39a9a",wait="#b49ae0";
+
+function Box({data}){
+  const [bg,bd]=C[data.kind];
+  return html`<div class="node" style=${{background:bg,borderColor:bd}}>
+    <${Handle} type="target" position=${Position.Left} style=${{opacity:0}}/>
+    <b>${data.label}</b><small>${data.sub}</small>
+    <${Handle} type="source" position=${Position.Right} style=${{opacity:0}}/></div>`;
+}
+const nodeTypes={box:Box};
+const n=(id,x,y,label,sub,kind)=>({id,position:{x,y},type:"box",data:{label,sub,kind}});
+const e=(id,s,t,label,color,dashed)=>({id,source:s,target:t,label,animated:!dashed,
+  style:{stroke:color,strokeWidth:2.5,strokeDasharray:dashed?"6 5":undefined},labelStyle:{fill:color}});
+
+const STEPS=["1. Normal traffic","2. Primary pg-1 fails","3. pg-2 promoted"];
+// Each phase: [pgbouncer nodes/edges/caption, rustybouncer nodes/edges/caption]
+function scene(p){
+  const pgDown=p>=1, promoted=p>=2;
+  const pg1=pgDown?["pg-1","down","down"]:["pg-1","primary","primary"];
+  const pg2=promoted?["pg-2","primary (promoted)","primary"]:["pg-2","replica","replica"];
+  const nodes=(pool,poolSub,poolKind)=>[
+    n("app",0,75,"App","SELECT + INSERT","app"),
+    n("pool",230,75,pool,poolSub,poolKind),
+    n("pg1",500,10,pg1[0],pg1[1],pg1[2]),
+    n("pg2",500,140,pg2[0],pg2[1],pg2[2])];
+  const pb=[
+    {sub:"fixed target: pg-1",edges:[e("a","app","pool","SELECT + INSERT",ok),e("b","pool","pg1","all queries",ok)],
+     cap:"Every query goes to the one configured host. The replica sits idle."},
+    {sub:"fixed target: pg-1",edges:[e("a","app","pool","errors",bad),e("b","pool","pg1","connection lost",bad,true)],
+     cap:"Server connections break. Clients get errors and must reconnect."},
+    {sub:"still targets pg-1",edges:[e("a","app","pool","errors",bad),e("b","pool","pg1","refused",bad,true)],
+     cap:"Errors continue until DNS, a VIP, or the config is changed to point at pg-2."}][p];
+  const rb=[
+    {kind:"pool",sub:"discovers roles",edges:[e("a","app","pool","SELECT + INSERT",ok),e("b","pool","pg1","INSERT",ok),e("c","pool","pg2","SELECT",read)],
+     cap:"Reads go to the healthy replica. Writes go to the primary."},
+    {kind:"wait",sub:"holds INSERT ≤ wait_timeout_ms",edges:[e("a","app","pool","same socket",ok),e("b","pool","pg1","",bad,true),e("c","pool","pg2","SELECT",read)],
+     cap:"Reads keep flowing to pg-2. The undispatched INSERT waits for a new primary."},
+    {kind:"pool",sub:"new primary: pg-2",edges:[e("a","app","pool","same socket",ok),e("c","pool","pg2","SELECT + INSERT",ok)],
+     cap:"The waiting INSERT runs on pg-2. The idle client never reconnects."}][p];
+  return {
+    pg:{nodes:nodes("PgBouncer",pb.sub,pgDown?"down":"pool"),edges:pb.edges,cap:pb.cap},
+    rb:{nodes:nodes("RustyBouncer",rb.sub,rb.kind),edges:rb.edges,cap:rb.cap}};
+}
+
+function Flow({s,name}){
+  return html`<div>
+    <div class="row"><span class="tag">${name}</span><span class="cap">${s.cap}</span></div>
+    <div class="flow"><${ReactFlow} nodes=${s.nodes} edges=${s.edges} nodeTypes=${nodeTypes}
+      fitView fitViewOptions=${{padding:0.15}} nodesDraggable=${false} panOnDrag=${false}
+      zoomOnScroll=${false} zoomOnPinch=${false} zoomOnDoubleClick=${false} preventScrolling=${false}/></div></div>`;
+}
+
+function App(){
+  const [p,setP]=useState(Number(new URLSearchParams(location.search).get("phase")??0));
+  useEffect(()=>{ if(new URLSearchParams(location.search).has("phase"))return;
+    const t=setInterval(()=>setP(x=>(x+1)%3),3200); return()=>clearInterval(t);},[]);
+  window.__setPhase=setP;
+  const s=scene(p);
+  return html`<div>
+    <div class="steps">${STEPS.map((t,i)=>html`<div class=${"step"+(i===p?" on":"")}>${t}</div>`)}</div>
+    <${Flow} s=${s.pg} name="PgBouncer"/>
+    <${Flow} s=${s.rb} name="RustyBouncer"/></div>`;
+}
+createRoot(document.getElementById("root")).render(html`<${App}/>`);
+</script></body></html>
