@@ -2,30 +2,25 @@
 
 **A PgBouncer alternative that follows your Postgres primary.**
 
-RustyBouncer gives your app one endpoint for PostgreSQL connection pooling. It
-discovers the current primary automatically and gives writes that haven't been
-sent yet a short window to wait during failover. With unshared routing, it also
-sends eligible reads to healthy replicas. Shared session and transaction pools
-stay on the primary.
+When your primary fails over, PgBouncer keeps sending queries to the old host
+until you change DNS or its config. RustyBouncer finds the new primary on its
+own, so your app keeps one endpoint and fewer errors.
 
-It works with standard PostgreSQL deployments. CloudNativePG is a supported
-integration, not a dependency.
-
-**[Quick start](#getting-started-with-docker-compose)**
-
-[PgBouncer](https://www.pgbouncer.org/config.html#databases) pools connections to configured targets. RustyBouncer also inspects SQL
-and database roles to decide where work belongs:
-
-- **Handle primary changes:** idle, stateless clients can keep their connection
-  through failover. Undispatched writes can wait for the replacement primary.
-- **Use your replicas:** unshared routing sends eligible reads to healthy replicas
-  and writes to the primary. Shared pools currently keep all SQL on the primary.
-- **Keep pooling secure:** shared session and transaction pools support TLS,
-  SCRAM through `auth_query`, and rotating PEM certificates without a restart.
-- **Validate the integration:** real CloudNativePG tests in kind exercise routing,
-  failover, TLS, certificate rotation, and authentication.
+**[Quick start](#getting-started-with-docker-compose)** · [How routing works](docs/routing.md)
 
 ![PgBouncer vs RustyBouncer query routing during a primary failover](docs/assets/routing-failover.gif)
+
+- **Rides through failover.** Writes not yet sent wait for the new primary.
+  Idle clients keep their connection.
+- **Uses your replicas.** In unshared mode, eligible reads go to healthy
+  replicas. Shared session and transaction pools stay on the primary.
+- **Secures shared pools.** TLS, SCRAM through `auth_query`, and certificate
+  rotation without a restart.
+- **Tested on real clusters.** CloudNativePG suites in kind cover routing,
+  failover, TLS and authentication.
+
+Works with any standard PostgreSQL deployment. CloudNativePG is supported, not
+required.
 
 ## Getting started with Docker Compose
 
