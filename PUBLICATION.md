@@ -23,15 +23,9 @@ and profiling data. Archive user metadata was generalized, and archives were
 recompressed. Historical source/binary/archive hashes still describe the original
 measured artifacts. They must not be mistaken for hashes of sanitized copies.
 The [artifact manifest](docs/publication/artifact-manifest.json) records original
-and public SHA-256 values, public sizes, and download URLs for release assets.
+and public SHA-256 values and public sizes.
 
-Ten archives exceed GitHub's per-file limit. Their audited public copies are
-preserved as assets in the `v1.0.1` release, rather than
-Git blobs. Documentation links point directly to those assets. Download an asset
-and verify its public SHA-256 from the manifest before unpacking it. If a retained
-command expects its original relative path, place the downloaded archive at the
-manifest's `path`. Smaller evidence archives remain in Git. No Git LFS subscription
-is required.
+Ten archives exceed GitHub's per-file limit and are not published.
 
 The publication audit includes Git-history and tracked-tree secret scanning,
 recursive archive traversal, historical blobs absent from the current tree,
@@ -48,22 +42,9 @@ and wikis are disabled.
 
 The initial public package version is **1.0.1**, tagged `v1.0.1`. The executable's
 Rust implementation and dependency versions are unchanged from the validated CNPG
-milestone; package version and license metadata have been updated. The release
-assets retain historical evidence and are not builds of the 1.0.1 executable.
+milestone; package version and license metadata have been updated. Each release
+publishes only `linux/amd64` and `linux/arm64` images to
+`ghcr.io/wesbragagt/rustybouncer`.
 The installed verification hook checks publication commits normally. Full platform/security/release acceptance remains
 open as recorded in the completeness checklist.
 
-## Large evidence downloads
-
-| Original path | Public download | Public SHA-256 |
-| --- | --- | --- |
-| `docs/benchmarks/perf-final/normalized-after.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/a4b725a57e350d31-normalized-after.tar.zst) | `ba04d9a58fab999f686641a225f0874563ea94230da98207e51583fcf49639de` |
-| `docs/benchmarks/perf-final/original-after.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/d0fef391743729d8-original-after.tar.zst) | `10a879aebbe942b853bfed79a0e277fe62635548fe89ee5cea29c0e7a9155b21` |
-| `docs/benchmarks/perf-final/pools-after.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/ca6a534793dc3761-pools-after.tar.zst) | `9fd431b93881ce57244b9da39dd99517b83208398a307e38876e17eb7f230ebf` |
-| `docs/benchmarks/perf-final/profiles-after.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/ea54b2103ba01854-profiles-after.tar.zst) | `36e58e7f81c5c197b2b3b688d8407e353c3bc89e0f0981ff8e0e51ff0ef1e432` |
-| `docs/benchmarks/perf-final/workloads-after.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/b306f85eb0654063-workloads-after.tar.zst) | `05a97759baf79da3394c9d47fbd8707f603b1b2bb5c9a476366fd923deb868de` |
-| `docs/benchmarks/perf-pools/raw.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/29f916737a5320ca-raw.tar.zst) | `fa710695456f10beee93c713b4eefac28093e297c98282a8c0a460e2e3106bf0` |
-| `docs/milestones/perf-resources-evidence/combined/original-comparison.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/26d5ad7ab98584a4-original-comparison.tar.zst) | `f96b097a7962cdea5607d4440a7d50d84c3ecdb5f57781b878b107bed2790571` |
-| `docs/milestones/perf-scheduling-evidence/before/raw.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/cf0fde328b108edf-raw.tar.zst) | `d6fb447808f562ee84d532e75e882b048198a31712a3baf9f4bf5ab62810098a` |
-| `docs/milestones/perf-scheduling-evidence/original-before/raw.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/b68c6e2c417f368d-raw.tar.zst) | `a398d6d1240ce2d5c3db4c2df2dc281d8e7bdf9ecebc7e7dafd8b65f2ee84be5` |
-| `docs/milestones/perf-session-evidence/original-comparison/raw.tar.zst` | [Download](https://github.com/wesbragagt/rustybouncer/releases/download/v1.0.1/875f56f3443b5b5c-raw.tar.zst) | `763940dc0345c7da6b92fa79f8a41a7ea94dbee2f6b0f1a18082770183aa0276` |
