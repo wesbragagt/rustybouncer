@@ -153,3 +153,12 @@ Use a fresh output directory. The suite owns its kind nodes and kubeconfig and
 removes them even after setup/test failures. Its Kubernetes privileges and image
 pulls are separate from the sandboxed Nix/offline checks. The CI `kind-cnpg` job
 runs this scope independently of the incomplete broad conformance baseline.
+
+## Release images
+
+Tag the release, then publish `linux/amd64` and `linux/arm64` images to GHCR
+from this machine. arm64 builds need an aarch64 Nix builder or binfmt emulation.
+
+```sh
+GHCR_TOKEN=$(gh auth token -u wesbragagt) scripts/release-images v1.0.1
+```

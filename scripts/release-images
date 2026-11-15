@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Build linux/amd64 and linux/arm64 images with Nix and publish them to GHCR.
+# arm64 builds need an aarch64 builder or binfmt emulation.
+# Usage: GHCR_TOKEN=... scripts/release-images v1.0.1
+set -euo pipefail
+
+tag=${1:?usage: scripts/release-images <tag>}
+version=${tag#v}
+image=ghcr.io/wesbragagt/rustybouncer
+user=${GHCR_USER:-wesbragagt}
+: "${GHCR_TOKEN:?set GHCR_TOKEN to a token with write:packages}"
+
+src=$(mktemp -d)
+trap 'rm -rf "$src"' EXIT
+git worktree add --detach "$src/tree" "$tag" >/dev/null
+trap 'git worktree remove --force "$src/tree"; rm -rf "$src"' EXIT
+
+tools() { nix shell nixpkgs#skopeo nixpkgs#crane -c "$@"; }
+echo "$GHCR_TOKEN" | tools skopeo login ghcr.io -u "$user" --password-stdin
+echo "$GHCR_TOKEN" | tools crane auth login ghcr.io -u "$user" --password-stdin
+
+for pair in amd64:x86_64-linux arm64:aarch64-linux; do
+  arch=${pair%%:*} system=${pair#*:}
+  out=$(nix build "$src/tree#packages.$system.docker" --no-update-lock-file --no-link --print-out-paths)
+  tools skopeo copy "docker-archive:$out" "docker://$image:$version-$arch"
+done
+
+for t in "$version" latest; do
+  tools crane index append -m "$image:$version-amd64" -m "$image:$version-arm64" -t "$image:$t"
+done
+echo "published $image:$version and :latest"
