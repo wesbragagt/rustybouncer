@@ -24,15 +24,14 @@ required.
 
 ## Getting started with Docker Compose
 
-Requires Docker Engine with Compose v2 and Nix with flakes enabled for the image
-build. No local PostgreSQL client is needed. The [Compose example](deploy/compose/compose.yaml)
+Requires Docker Engine with Compose v2. No local PostgreSQL client is needed. The [Compose example](deploy/compose/compose.yaml)
 starts PostgreSQL and RustyBouncer on an isolated network.
 
 ```sh
 git clone https://github.com/wesbragagt/rustybouncer.git
 cd rustybouncer
-nix build .#docker --no-update-lock-file --out-link result-image
-docker load -i result-image
+docker pull ghcr.io/wesbragagt/rustybouncer:1.0.1
+docker tag ghcr.io/wesbragagt/rustybouncer:1.0.1 rustybouncer:latest
 docker compose -f deploy/compose/compose.yaml up -d
 docker compose -f deploy/compose/compose.yaml exec -T postgres \
   pg_isready -h rustybouncer -p 6432 -U postgres -d postgres
