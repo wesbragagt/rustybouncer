@@ -20,7 +20,7 @@ Build/load the local image, then start the supplied stack:
 ```sh
 nix build .#docker --no-update-lock-file --out-link result-image
 docker load -i result-image
-docker compose -f deploy/compose/compose.yaml up -d
+RUSTYBOUNCER_IMAGE=rustybouncer:latest docker compose -f deploy/compose/compose.yaml up -d
 nix develop --command pg_isready -h 127.0.0.1 -p 6432 -U postgres -d postgres
 ```
 

@@ -1,10 +1,8 @@
 # Docker Compose starter
 
-From the repository root, build/load the distroless image, then start the example:
+From the repository root, start the example:
 
 ```sh
-nix build .#docker --no-update-lock-file --out-link result-image
-docker load -i result-image
 docker compose -f deploy/compose/compose.yaml up -d
 nix develop --command pg_isready -h 127.0.0.1 -p 6432 -U postgres -d postgres
 nix develop --command psql \
@@ -18,8 +16,9 @@ there are no replicas, automatic promotion or high-availability guarantees.
 See [CNPG](../cnpg/README.md) for a managed three-instance example.
 
 The Compose file uses PostgreSQL 16 pinned by registry manifest digest, a named
-data volume, health-based startup ordering, and a local `rustybouncer:latest`
-image with `pull_policy: never`. You must load that image before `up`. PostgreSQL
+data volume, health-based startup ordering, and the published
+`ghcr.io/wesbragagt/rustybouncer:1.0.1` image. To test a local build, load it and set
+`RUSTYBOUNCER_IMAGE=rustybouncer:latest`. PostgreSQL
 is not published on a host port. The router publishes only on host loopback and
 runs as UID/GID 10001 with a read-only rootfs, no capabilities and no-new-privileges.
 The included trust authentication is for this isolated local demo only.

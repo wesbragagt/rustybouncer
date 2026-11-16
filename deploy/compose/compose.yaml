@@ -12,8 +12,7 @@ services:
       timeout: 2s
       retries: 30
   rustybouncer:
-    image: rustybouncer:latest
-    pull_policy: never
+    image: ${RUSTYBOUNCER_IMAGE:-ghcr.io/wesbragagt/rustybouncer:1.0.1}
     depends_on:
       postgres:
         condition: service_healthy
