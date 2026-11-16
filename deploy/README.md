@@ -3,8 +3,16 @@
 The image contains rustybouncer and its runtime library closure, assembled from
 scratch by the pinned Nix toolchain. No shell, compiler or package manager ships
 in the image. It defaults to UID/GID **10001:10001**, listens on an unprivileged
-port and needs no writable filesystem. Build/load requires no registry push.
-Linux builds produce a Docker archive for the build machine's architecture.
+port and needs no writable filesystem.
+
+Pull the published `linux/amd64` or `linux/arm64` image:
+
+```sh
+docker pull ghcr.io/wesbragagt/rustybouncer:1.0.1
+```
+
+To build locally instead, Nix produces a Docker archive for the build machine's
+architecture. The local image is tagged `rustybouncer:latest`.
 
 ```sh
 nix build .#docker --no-update-lock-file --out-link result-image
@@ -32,7 +40,7 @@ docker run --rm --name rustybouncer --network database \
   --read-only --cap-drop=ALL --security-opt=no-new-privileges \
   -p 127.0.0.1:6432:6432 \
   --mount "type=bind,src=$PWD/deploy/container.toml,dst=/etc/rustybouncer/rustybouncer.toml,readonly" \
-  rustybouncer:latest
+  ghcr.io/wesbragagt/rustybouncer:1.0.1
 ```
 
 Use `podman` in place of `docker` for rootless Podman. Set any probe credential
