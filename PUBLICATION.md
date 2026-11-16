@@ -37,8 +37,8 @@ private keys, or live kubeconfigs are included in the exported Git history.
 
 The current project license is Apache-2.0 (`LICENSE` and Cargo metadata), with
 contributor attribution retained in `NOTICE`. Historical commits retain their
-then-current license. GitHub accepts issues; pull requests, Discussions, projects
-and wikis are disabled.
+then-current license. GitHub accepts issues and pull requests; Discussions, projects and wikis are
+disabled.
 
 The initial public package version is **1.0.1**, tagged `v1.0.1`. The executable's
 Rust implementation and dependency versions are unchanged from the validated CNPG

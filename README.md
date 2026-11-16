@@ -106,4 +106,4 @@ Broader production and release acceptance remains incomplete.
 
 Licensed under [Apache 2.0](LICENSE). Report bugs and request features through
 [GitHub issues](https://github.com/wesbragagt/rustybouncer/issues).
-[Contributions are issues-only](CONTRIBUTING.md); pull requests are disabled.
+[Pull requests are welcome](CONTRIBUTING.md).
